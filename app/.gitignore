@@ -29,5 +29,4 @@ local.properties
 ##----------Other----------
 .DS_Store
 gradle.properties
-##-------指定文件-----
-app/src/main/java/com/yfy/app
+
