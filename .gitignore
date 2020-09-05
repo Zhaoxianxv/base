@@ -8,3 +8,5 @@
 .externalNativeBuild
 gradle-app.setting
 *.jks
+##-------指定文件-----
+/app/src/main/java/com/yfy/tool
