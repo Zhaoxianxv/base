@@ -1,4 +1,4 @@
-package com.yfy.final_tag;
+package com.yfy.final_tag.glide;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 
+
+import com.yfy.final_tag.Base;
+import com.yfy.final_tag.FileTools;
 
 import java.io.File;
 

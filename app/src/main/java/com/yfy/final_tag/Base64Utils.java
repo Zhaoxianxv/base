@@ -10,6 +10,8 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.util.Base64;
 
+import com.yfy.final_tag.glide.Photo;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,4 +1,4 @@
-package com.yfy.final_tag;
+package com.yfy.final_tag.glide;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -6,6 +6,8 @@ import android.graphics.Matrix;
 import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
+
+import com.yfy.final_tag.FileTools;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
