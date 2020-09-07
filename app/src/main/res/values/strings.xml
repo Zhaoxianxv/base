@@ -2,7 +2,8 @@
 <resources>
     <string name="app_school_name" translatable="false">泡桐树小学境界校区</string>
     <string name="again_click_exit" translatable="false">再按一次退出程序</string>
-
+    <!--initial-->
+    <string name="guide_done" translatable="false">立即体验</string>
 
     <!-- 下拉加载，上拉刷新 -->
     <string name="pull_to_refresh_pull_label" translatable="false">下拉刷新</string>

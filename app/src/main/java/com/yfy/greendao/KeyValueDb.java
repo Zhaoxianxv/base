@@ -55,27 +55,44 @@ public class KeyValueDb {
         this.num = num;
         this.id = id;
     }
-
-    public KeyValueDb(String key, String value, String name) {
-        this.key = key;
-        this.value = value;
-        this.name = name;
-    }
-    public KeyValueDb(String key, String value, String name,int view_type) {
-        this.key = key;
-        this.value = value;
-        this.name = name;
-        this.view_type = view_type;
-    }
-
-
-
-    public KeyValueDb(Long id) {
-        this.id = id;
-    }
-
     @Generated(hash = 980486890)
     public KeyValueDb() {
+    }
+    public String getType() {
+        return this.type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+    public String getModel_type() {
+        return this.model_type;
+    }
+    public void setModel_type(String model_type) {
+        this.model_type = model_type;
+    }
+    public String getParent_id() {
+        return this.parent_id;
+    }
+    public void setParent_id(String parent_id) {
+        this.parent_id = parent_id;
+    }
+    public String getChild_id() {
+        return this.child_id;
+    }
+    public void setChild_id(String child_id) {
+        this.child_id = child_id;
+    }
+    public boolean getRequired() {
+        return this.required;
+    }
+    public void setRequired(boolean required) {
+        this.required = required;
+    }
+    public int getView_type() {
+        return this.view_type;
+    }
+    public void setView_type(int view_type) {
+        this.view_type = view_type;
     }
     public String getKey_value_id() {
         return this.key_value_id;
@@ -88,12 +105,6 @@ public class KeyValueDb {
     }
     public void setKey(String key) {
         this.key = key;
-    }
-    public String getType() {
-        return this.type;
-    }
-    public void setType(String type) {
-        this.type = type;
     }
     public String getValue() {
         return this.value;
@@ -113,61 +124,18 @@ public class KeyValueDb {
     public void setImage(String image) {
         this.image = image;
     }
-
-    public boolean getRequired() {
-        return this.required;
-    }
-    public void setRequired(boolean required) {
-        this.required = required;
-    }
-    public int getView_type() {
-        return this.view_type;
-    }
-    public void setView_type(int view_type) {
-        this.view_type = view_type;
-    }
-    public String getModel_type() {
-        return this.model_type;
-    }
-    public void setModel_type(String model_type) {
-        this.model_type = model_type;
-    }
-
-    public String getParent_id() {
-        return this.parent_id;
-    }
-
-    public void setParent_id(String parent_id) {
-        this.parent_id = parent_id;
-    }
-
-    public String getChild_id() {
-        return this.child_id;
-    }
-
-    public void setChild_id(String child_id) {
-        this.child_id = child_id;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public int getNum() {
         return this.num;
     }
-
     public void setNum(int num) {
         this.num = num;
     }
-
-
-
-
+    public Long getId() {
+        return this.id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 
 }

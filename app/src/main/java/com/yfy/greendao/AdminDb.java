@@ -83,9 +83,6 @@ public class AdminDb {
     @Generated(hash = 909522727)
     public AdminDb() {
     }
-    public AdminDb(Long id) {
-        this.id = id;
-    }
     public String getIsheadmasters() {
         return this.isheadmasters;
     }
@@ -134,7 +131,6 @@ public class AdminDb {
     public void setIsxcadmin(String isxcadmin) {
         this.isxcadmin = isxcadmin;
     }
-
     public String getIsfuncRoom() {
         return this.isfuncRoom;
     }
@@ -207,4 +203,5 @@ public class AdminDb {
     public void setId(Long id) {
         this.id = id;
     }
+
 }

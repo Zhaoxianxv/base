@@ -11,8 +11,6 @@ public class UserPreferences extends Preferences {
      * 配置文件名儿
      */
     private static final String PREFERENCE_NAME = "USER_INFO";
-    /** 用户登录状态*/
-    private static final String TAG_FIRST = "frist";
 
 
     private static UserPreferences userPreferences;
@@ -40,15 +38,16 @@ public class UserPreferences extends Preferences {
     }
 
     /**
-     * 保存用户是否是第一次
+     * 保存first
      */
-    public void saveFIRST(String first) {
-        saveString(TAG_FIRST, first);
-    }
-    public String getFIRST() {
-        return getString(TAG_FIRST, "");
+    private static final String TAG_FIRST = "first";
+    public void saveFirstTimeOpen(boolean name){
+        saveBooolean(TAG_FIRST, name);
     }
 
+    public boolean getIsFirstTimeOpen(){
+        return getBoolean(TAG_FIRST,true);
+    }
 
 
 

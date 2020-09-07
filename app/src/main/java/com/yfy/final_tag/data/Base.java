@@ -12,7 +12,7 @@ public class Base {
 
     public static final String RETROFIT_URI = "https://www.cdeps.sc.cn/";
     //app更新地址
-    public static final String AUTHORITY = "com.example.zhao_sheng.fileProvider";//android 7.0文件访问权限Tag（要和Provider一直）
+    public static final String AUTHORITY = "com.yfy.base.fileProvider";//android 7.0文件访问权限Tag（要和Provider一直）
     public static final String Content_Type = "Content-Type: text/xml;charset=UTF-8";//
     public static final String SOAP_ACTION = "SOAPAction: http://tempuri.org/AppService/";//
     public static final String POST_URI = "/AppService.svc";//

@@ -14,11 +14,16 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 import com.google.gson.Gson;
+import com.yfy.app.net.ReqBody;
+import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResEnv;
+import com.yfy.app.net.RetrofitGenerator;
+import com.yfy.app.net.base.BaseGetTokenReq;
 import com.yfy.base.App;
 import com.yfy.base.R;
 import com.yfy.db.GreenDaoManager;
 import com.yfy.db.UserPreferences;
+import com.yfy.final_tag.Logger;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.StringJudge;
 import com.yfy.view.SQToolBar;
@@ -271,24 +276,24 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
 
 
 
-//
-//    protected String token="";
-//
-//    public void getToken(String s) {
-//        token=s;
-//        ReqEnv reqEnv = new ReqEnv();
-//        ReqBody reqBody = new ReqBody();
-//        BaseGetTokenReq req = new BaseGetTokenReq();
-//        //获取参数
-//
-//        reqBody.baseGetTookenReq = req;
-//        reqEnv.body = reqBody;
-//        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().base_get_tooken(reqEnv);
-//        call.enqueue(this);
-//        Logger.e(s);
-//        Logger.e(reqEnv.toString());
-//
-//    }
+
+    protected String token="";
+
+    public void getToken(String s) {
+        token=s;
+        ReqEnv reqEnv = new ReqEnv();
+        ReqBody reqBody = new ReqBody();
+        BaseGetTokenReq req = new BaseGetTokenReq();
+        //获取参数
+
+        reqBody.baseGetTookenReq = req;
+        reqEnv.body = reqBody;
+        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().base_get_tooken(reqEnv);
+        call.enqueue(this);
+        Logger.e(s);
+        Logger.e(reqEnv.toString());
+
+    }
 //
 //    public void login(String token) {
 //        if (Base.user==null)return;

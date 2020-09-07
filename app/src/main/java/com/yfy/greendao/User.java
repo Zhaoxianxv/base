@@ -42,7 +42,7 @@ public class User {
     @NotNull
     private String usertype;
     private Date date;
-    @Generated(hash = 461131870)
+    @Generated(hash = 724797418)
     public User(Long id, @NotNull String name, @NotNull String username, @NotNull String idU,
             @NotNull String session_key, @NotNull String headPic, @NotNull String pwd,
             @NotNull String token, @NotNull String classid, @NotNull String fxid,
@@ -65,10 +65,6 @@ public class User {
     }
     @Generated(hash = 586692638)
     public User() {
-    }
-
-    public User(Long id) {
-        this.id = id;
     }
     public Long getId() {
         return this.id;
@@ -118,29 +114,17 @@ public class User {
     public void setToken(String token) {
         this.token = token;
     }
-    public String getFxid() {
-        return this.fxid;
-    }
-    public void setFxid(String fxid) {
-        this.fxid = fxid;
-    }
-    public String getUsertype() {
-        return this.usertype;
-    }
-    public void setUsertype(String usertype) {
-        this.usertype = usertype;
-    }
-    public Date getDate() {
-        return this.date;
-    }
-    public void setDate(Date date) {
-        this.date = date;
-    }
     public String getClassid() {
         return this.classid;
     }
     public void setClassid(String classid) {
         this.classid = classid;
+    }
+    public String getFxid() {
+        return this.fxid;
+    }
+    public void setFxid(String fxid) {
+        this.fxid = fxid;
     }
     public String getIsDuplication() {
         return this.isDuplication;
@@ -154,6 +138,17 @@ public class User {
     public void setRightlist(String rightlist) {
         this.rightlist = rightlist;
     }
-
+    public String getUsertype() {
+        return this.usertype;
+    }
+    public void setUsertype(String usertype) {
+        this.usertype = usertype;
+    }
+    public Date getDate() {
+        return this.date;
+    }
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
 }

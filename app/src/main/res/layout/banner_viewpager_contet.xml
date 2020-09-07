@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_viewager_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/rela_viewPager_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.yfy.banner.BaseViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </com.yfy.banner.BaseViewPager>
+
+        <LinearLayout
+            android:id="@+id/layout_viewpager_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:background="@drawable/banner_bottom_bg"
+            >
+            <TextView
+                android:id="@+id/title_viewpager_indicator"
+                android:layout_width="@dimen/margin_0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/White"
+                android:gravity="center_vertical"
+                android:alpha="1"
+                android:paddingLeft="@dimen/margin_10dp"
+                android:text="@string/app_name"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

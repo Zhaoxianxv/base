@@ -15,7 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.example.zhao_sheng.R;
+
+import com.yfy.base.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +48,8 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
     private List<ADInfo> infos;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.view_cycle_viewpager_contet, null);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.banner_viewpager_contet, null);
         final float width=getActivity().getResources().getDisplayMetrics().widthPixels;
         int heigh= (int) (width/5);
         RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,heigh);
@@ -124,8 +124,7 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
             indicators = new ImageView[ivSize - 2];
         indicatorLayout.removeAllViews();
         for (int i = 0; i < indicators.length; i++) {
-            View view = LayoutInflater.from(getActivity()).inflate(
-                    R.layout.view_cycle_viewpager_indicator, null);
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.banner_viewpager_indicator, null);
             indicators[i] = (ImageView) view.findViewById(R.id.image_indicator);
             indicatorLayout.addView(view);
         }
@@ -368,12 +367,10 @@ public class CycleViewPager extends Fragment implements OnPageChangeListener {
      */
     private void setIndicator(int selectedPosition) {
         for (int i = 0; i < indicators.length; i++) {
-            indicators[i]
-                    .setBackgroundResource(R.drawable.ic_launcher);
+            indicators[i].setBackgroundResource(R.drawable.oval_gray);
         }
         if (indicators.length > selectedPosition)
-            indicators[selectedPosition]
-                    .setBackgroundResource(R.drawable.ic_launcher);
+            indicators[selectedPosition].setBackgroundResource(R.drawable.oval_gray);
     }
 
     /**

@@ -41,7 +41,7 @@ public class GlideTools {
     //如果缩略图和原图都是网络上的同一张图，这种方式效果不明显。
     public void getSamllimage(Context mContxt, String url, ImageView imageView){
         Glide.with( mContxt )
-                .load( url )
+                .load(StringUtils.stringToImgToURlImg(url))
                 .thumbnail( 0.1f ) // 缩略图长宽相对于原始图片的比例
                 .into( imageView );
     }
@@ -55,8 +55,8 @@ public class GlideTools {
                 .into(imageView);
     }
     //无效果
-    public static void  loadImage(Context mContxt, int res, ImageView imageView){
-        Glide.with(mContxt)
+    public static void  loadImage(Context mContext, int res, ImageView imageView){
+        Glide.with(mContext)
                 .load(res)
                 .into(imageView);
     }
@@ -64,7 +64,7 @@ public class GlideTools {
     public static void jj(Context mContxt, String url, ImageView imageView){
         MultiTransformation multi = new MultiTransformation(new BlurTransformation(25), new RoundedCornersTransformation(128, 0, RoundedCornersTransformation.CornerType.ALL));
         Glide.with(mContxt)
-                .load(url)
+                .load(StringUtils.stringToImgToURlImg(url))
                 .apply(RequestOptions.bitmapTransform(multi))
                 .into(imageView);
     }
@@ -73,7 +73,7 @@ public class GlideTools {
     //黑白图
     public static void  chan(Context mContxt, String url, ImageView imageView){
         Glide.with(mContxt)
-                .load(url)
+                .load(StringUtils.stringToImgToURlImg(url))
                 .apply(RequestOptions.bitmapTransform(new GrayscaleTransformation()))
                 .into(imageView);
     }
