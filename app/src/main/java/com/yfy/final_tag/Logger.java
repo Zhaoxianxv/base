@@ -2,6 +2,8 @@ package com.yfy.final_tag;
 
 import android.util.Log;
 
+import com.yfy.final_tag.data.TagFinal;
+
 /**
  * Created by efan on 2017/4/13.
  */

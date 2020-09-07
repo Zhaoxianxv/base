@@ -4,7 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Fragment;
 
-import com.yfy.final_tag.TagFinal;
+import com.yfy.final_tag.data.TagFinal;
 
 
 /**

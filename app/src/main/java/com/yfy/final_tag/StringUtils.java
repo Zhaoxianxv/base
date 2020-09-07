@@ -7,6 +7,8 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 
 
+import com.yfy.final_tag.data.Base;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
