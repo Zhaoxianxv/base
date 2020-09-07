@@ -1,11 +1,17 @@
 package com.yfy.app.PEquality;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
+import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.SelectedTermAdapter;
 import com.yfy.app.bean.BaseRes;
+import com.yfy.app.bean.TermBean;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -14,6 +20,7 @@ import com.yfy.app.net.RetrofitGenerator;
 import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
+import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
 import com.yfy.final_tag.StringUtils;
@@ -22,6 +29,7 @@ import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
+import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,47 +40,51 @@ import retrofit2.Response;
 public class PEQualityMainActivity extends BaseActivity {
     private static final String TAG = PEQualityMainActivity.class.getSimpleName();
 
-    private SelectedTermAdapter adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.public_recycler_view);
-        initRecycler();
+        setContentView(R.layout.p_e_quality_main);
         initSQToolbar();
         getTerm();
     }
 
 
+    private TermBean select_term;
+    private TextView menu_one;
     private void initSQToolbar() {
         assert toolbar!=null;
-        toolbar.setTitle("选择学期");
-
-
-    }
-
-
-
-
-
-    public RecyclerView recyclerView;
-    public void initRecycler(){
-
-        recyclerView =  findViewById(R.id.public_recycler);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //添加分割线
-        recyclerView.addItemDecoration(new RecycleViewDivider(
-                mActivity,
-                LinearLayoutManager.HORIZONTAL,
-                1,
-                ColorRgbUtil.getGainsboro()));
-        adapter=new SelectedTermAdapter(mActivity);
-        recyclerView.setAdapter(adapter);
+        toolbar.setTitle("体育素质");
+        menu_one=toolbar.addMenuText(TagFinal.ONE_INT,"");
+        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent=new Intent(mActivity,SelectedTermActivity.class);
+                startActivityForResult(intent,TagFinal.UI_TAG);
+            }
+        });
+        select_term=new TermBean();
+        select_term.setName(UserPreferences.getInstance().getTermName());
+        select_term.setId(UserPreferences.getInstance().getTermId());
+        menu_one.setText(select_term.getName());
 
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK){
+            switch (requestCode){
+                case TagFinal.UI_TAG:
+                    select_term=data.getParcelableExtra(Base.data);
+                    menu_one.setText(select_term.getName());
+                    break;
+            }
+        }
+    }
+
 
 
 
@@ -104,8 +116,7 @@ public class PEQualityMainActivity extends BaseActivity {
                 Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
-                    adapter.setDataList(res.getTerm());
-                    adapter.setLoadState(TagFinal.LOADING_END);
+
                 }else{
                     toastShow("error");
                 }
