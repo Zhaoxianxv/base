@@ -103,6 +103,28 @@
             android:name="com.yfy.base.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <!--login-->
+        <activity
+            android:name="com.yfy.app.login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name="com.yfy.app.login.ResetPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name="com.yfy.app.login.ResetPasswordToHavePasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name="com.yfy.app.login.ChangePasswordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <!--PEquality-->
         <activity
             android:name="com.yfy.app.PEquality.PEQualityMainActivity"

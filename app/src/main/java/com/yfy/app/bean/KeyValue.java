@@ -53,6 +53,11 @@ public class KeyValue implements Parcelable {
         this.value = value;
     }
 
+    public KeyValue(String name, int res_image) {
+        this.name = name;
+        this.res_image = res_image;
+    }
+
     public KeyValue(String type, List<String> listValue) {
         this.type = type;
         this.listValue = listValue;
