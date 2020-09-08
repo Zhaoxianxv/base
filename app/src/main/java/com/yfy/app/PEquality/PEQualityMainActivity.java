@@ -93,6 +93,7 @@ public class PEQualityMainActivity extends BaseActivity {
         setContentView(R.layout.p_e_quality_stu_main);
         initSQToolbar();
         initView();
+        initChartView();
     }
 
 
@@ -248,39 +249,8 @@ public class PEQualityMainActivity extends BaseActivity {
 
 
 
-    private List<TermBean> termBeanList =new ArrayList<>();
-    private void initData(SchoolRes res){
-        for (TermBean termBean:res.getTermlist()){
-            termBeanList.add(termBean);
-        }
 
-        if (StringJudge.isNotEmpty(termBeanList)){
-            initData();
-        }
-    }
-    private List<ScoreBean> scoreBeanList=new ArrayList<>();
-    private CPWListBeanView cpwListView;
-    List<CPWBean> txts=new ArrayList<>();
-    private void initData(){
-        txts.clear();
-        for(TermBean s:termBeanList){
-            txts.add(new CPWBean(s.getName(), s.getId()));
-        }
-        closeKeyWord();
-        cpwListView.setDatas(txts);
-        cpwListView.showAtCenter();
-    }
-    private void initDialog(){
-        cpwListView = new CPWListBeanView(mActivity);
-        cpwListView.setOnPopClickListenner(new CPWListBeanView.OnPopClickListenner() {
-            @Override
-            public void onClick(CPWBean index,String type) {
-                setData();
-                cpwListView.dismiss();
 
-            }
-        });
-    }
 
     private Typeface tf;
     private RadarChart mChart;
@@ -330,34 +300,44 @@ public class PEQualityMainActivity extends BaseActivity {
         l.setXEntrySpace(7f);
         l.setYEntrySpace(5f);
     }
+
+
+    private List<ScoreBean> scoreBeanList=new ArrayList<>();
+
     public void setData() {
+
+
+        List<Integer> score=new ArrayList<>(R.array.p_e_score);
+        List<String> types=new ArrayList<>(R.array.p_e_score);
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
-        ArrayList<Entry> yVals2 = new ArrayList<Entry>();
-        for (int i = 0; i < scoreBeanList.size(); i++) {
-            yVals1.add(new Entry((float) ConvertObjtect.getInstance().getFloat(scoreBeanList.get(i).getScores().get(0).getExamscore()), i));
+//        ArrayList<Entry> yVals2 = new ArrayList<Entry>();
+        for (int i = 0; i < score.size(); i++) {
+            yVals1.add(new Entry((float)score.get(i) , i));
         }
-        for (int i = 0; i < scoreBeanList.size(); i++) {
-            yVals2.add(new Entry((float) ConvertObjtect.getInstance().getFloat(scoreBeanList.get(i).getScores().get(1).getExamscore()), i));
-        }
+//        for (int i = 0; i < scoreBeanList.size(); i++) {
+//            yVals2.add(new Entry((float) ConvertObjtect.getInstance().getFloat(scoreBeanList.get(i).getScores().get(1).getExamscore()), i));
+//        }
 
         ArrayList<String> xVals = new ArrayList<String>();
 
-        for (int i = 0; i < scoreBeanList.size(); i++)
-            xVals.add(scoreBeanList.get(i).getCoursename());
+        for (int i = 0; i < types.size(); i++){
+            xVals.add(types.get(i));
+        }
+
 
         RadarDataSet set1 = new RadarDataSet(yVals1, scoreBeanList.get(0).getScores().get(0).getExamname());
         set1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
         set1.setDrawFilled(true);
         set1.setLineWidth(2f);
 
-        RadarDataSet set2 = new RadarDataSet(yVals2, scoreBeanList.get(0).getScores().get(1).getExamname());
-        set2.setColor(ColorTemplate.VORDIPLOM_COLORS[4]);
-        set2.setDrawFilled(true);
-        set2.setLineWidth(2f);
+//        RadarDataSet set2 = new RadarDataSet(yVals2, scoreBeanList.get(0).getScores().get(1).getExamname());
+//        set2.setColor(ColorTemplate.VORDIPLOM_COLORS[4]);
+//        set2.setDrawFilled(true);
+//        set2.setLineWidth(2f);
 
         ArrayList<RadarDataSet> sets = new ArrayList<RadarDataSet>();
         sets.add(set1);
-        sets.add(set2);
+//        sets.add(set2);
 
         RadarData data = new RadarData(xVals, sets);
         data.setValueTypeface(tf);
