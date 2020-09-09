@@ -47,7 +47,7 @@ public class LineChartRenderer extends LineScatterCandleRadarRenderer {
     protected CircleBuffer[] mCircleBuffers;
 
     public LineChartRenderer(LineDataProvider chart, ChartAnimator animator,
-            ViewPortHandler viewPortHandler) {
+                             ViewPortHandler viewPortHandler) {
         super(animator, viewPortHandler);
         mChart = chart;
 

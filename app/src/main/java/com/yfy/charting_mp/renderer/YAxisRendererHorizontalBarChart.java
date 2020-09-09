@@ -21,7 +21,7 @@ import java.util.List;
 public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
 
     public YAxisRendererHorizontalBarChart(ViewPortHandler viewPortHandler, YAxis yAxis,
-                                           Transformer trans) {
+            Transformer trans) {
         super(viewPortHandler, yAxis, trans);
         
         mLimitLinePaint.setTextAlign(Align.LEFT);

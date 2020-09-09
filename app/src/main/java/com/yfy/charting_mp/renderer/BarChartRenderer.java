@@ -34,7 +34,7 @@ public class BarChartRenderer extends DataRenderer {
     protected Paint mShadowPaint;
 
     public BarChartRenderer(BarDataProvider chart, ChartAnimator animator,
-                            ViewPortHandler viewPortHandler) {
+            ViewPortHandler viewPortHandler) {
         super(animator, viewPortHandler);
         this.mChart = chart;
 
@@ -400,7 +400,7 @@ public class BarChartRenderer extends DataRenderer {
     }
 
     public float[] getTransformedValues(Transformer trans, List<BarEntry> entries,
-                                        int dataSetIndex) {
+            int dataSetIndex) {
         return trans.generateTransformedValuesBarChart(entries, dataSetIndex,
                 mChart.getBarData(),
                 mAnimator.getPhaseY());

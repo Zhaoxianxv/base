@@ -20,7 +20,7 @@ public class CombinedChartRenderer extends com.yfy.charting_mp.renderer.DataRend
 	/**
 	 * all rederers for the different kinds of data this combined-renderer can draw
 	 */
-	protected List<com.yfy.charting_mp.renderer.DataRenderer> mRenderers;
+	protected List<DataRenderer> mRenderers;
 
 	public CombinedChartRenderer(CombinedChart chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
 		super(animator, viewPortHandler);
@@ -31,14 +31,14 @@ public class CombinedChartRenderer extends com.yfy.charting_mp.renderer.DataRend
 	/**
 	 * Creates the renderers needed for this combined-renderer in the required order. Also takes the DrawOrder into
 	 * consideration.
-	 * 
+	 *
 	 * @param chart
 	 * @param animator
 	 * @param viewPortHandler
 	 */
 	protected void createRenderers(CombinedChart chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
 
-		mRenderers = new ArrayList<com.yfy.charting_mp.renderer.DataRenderer>();
+		mRenderers = new ArrayList<DataRenderer>();
 
 		DrawOrder[] orders = chart.getDrawOrder();
 
@@ -111,7 +111,7 @@ public class CombinedChartRenderer extends com.yfy.charting_mp.renderer.DataRend
 
 	/**
 	 * Returns the sub-renderer object at the specified index.
-	 * 
+	 *
 	 * @param index
 	 * @return
 	 */
@@ -124,10 +124,10 @@ public class CombinedChartRenderer extends com.yfy.charting_mp.renderer.DataRend
 
 	/**
 	 * Returns all sub-renderers.
-	 * 
+	 *
 	 * @return
 	 */
-	public List<com.yfy.charting_mp.renderer.DataRenderer> getSubRenderers() {
+	public List<DataRenderer> getSubRenderers() {
 		return mRenderers;
 	}
 

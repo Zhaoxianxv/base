@@ -1483,7 +1483,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleData<? exte
 
         @Override
         public float getFillLinePosition(LineDataSet dataSet, LineData data,
-                                         float chartMaxY, float chartMinY) {
+                float chartMaxY, float chartMinY) {
 
             float fillMin = 0f;
 

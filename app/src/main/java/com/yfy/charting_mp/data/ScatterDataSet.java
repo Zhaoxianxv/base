@@ -9,7 +9,7 @@ import com.yfy.charting_mp.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScatterDataSet extends LineScatterCandleRadarDataSet<Entry> {
+public class ScatterDataSet extends LineScatterCandleRadarDataSet<com.yfy.charting_mp.data.Entry> {
 
     /** the size the scattershape will have, in screen pixels */
     private float mShapeSize = 15f;

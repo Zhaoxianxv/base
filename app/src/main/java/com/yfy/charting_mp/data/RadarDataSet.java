@@ -4,16 +4,16 @@ package com.yfy.charting_mp.data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RadarDataSet extends LineRadarDataSet<Entry> {
-
-    public RadarDataSet(List<Entry> yVals, String label) {
+public class RadarDataSet extends LineRadarDataSet<com.yfy.charting_mp.data.Entry> {
+    
+    public RadarDataSet(List<com.yfy.charting_mp.data.Entry> yVals, String label) {
         super(yVals, label);
     }
 
     @Override
-    public DataSet<Entry> copy() {
+    public DataSet<com.yfy.charting_mp.data.Entry> copy() {
 
-        List<Entry> yVals = new ArrayList<Entry>();
+        List<com.yfy.charting_mp.data.Entry> yVals = new ArrayList<Entry>();
 
         for (int i = 0; i < mYVals.size(); i++) {
             yVals.add(mYVals.get(i).copy());

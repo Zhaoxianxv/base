@@ -11,15 +11,13 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.yfy.app.PEquality.bean.SchoolRes;
-import com.yfy.app.PEquality.bean.ScoreBean;
-import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.bean.TermBean;
@@ -31,6 +29,7 @@ import com.yfy.app.net.ResEnv;
 import com.yfy.app.net.RetrofitGenerator;
 import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
+import com.yfy.base.RadarPointBean;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.charting_mp.charts.RadarChart;
 import com.yfy.charting_mp.components.Legend;
@@ -39,19 +38,16 @@ import com.yfy.charting_mp.components.YAxis;
 import com.yfy.charting_mp.data.Entry;
 import com.yfy.charting_mp.data.RadarData;
 import com.yfy.charting_mp.data.RadarDataSet;
+import com.yfy.charting_mp.renderer.XAxisRendererRadarChart;
 import com.yfy.charting_mp.utils.ColorTemplate;
-import com.yfy.db.UserPreferences;
+import com.yfy.charting_mp_test.PEQualityMainTestActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
-import com.yfy.final_tag.StringJudge;
 import com.yfy.final_tag.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.dialog.CPWBean;
-import com.yfy.final_tag.dialog.CPWListBeanView;
-import com.yfy.final_tag.dialog.CPWListView;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.recycerview.DividerGridItemDecoration;
 import com.yfy.final_tag.recycerview.RecycAnimator;
@@ -97,6 +93,43 @@ public class PEQualityMainActivity extends BaseActivity {
         initView();
         initChartView();
         setData();
+
+
+
+
+
+        mChart.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+//                List<RadarPointBean> pointBeans = RadarUtil.computePosition(mChart);
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        x = event.getX();
+                        y = event.getY();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        XAxisRendererRadarChart xa = RadarUtil.getXAxisRendererRadarChart(mChart);
+//
+//                        for (int i = 0; i < pointBeans.size(); i++) {
+//                            RadarPointBean pointBean = pointBeans.get(i);
+//                            if (pointBean.isIn(x, y)) {
+//                                String name=mChart.getXAxis().getLongestLabel();
+//                                toastShow(name);
+//                                return true;
+//                            }
+//                        }
+
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+
+                        return true;
+                    default:
+
+                        break;
+                }
+                return false;
+            }
+        });
     }
 
 
@@ -109,8 +142,10 @@ public class PEQualityMainActivity extends BaseActivity {
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent=new Intent(mActivity,SelectedTermActivity.class);
-                startActivityForResult(intent,TagFinal.UI_TAG);
+//                Intent intent=new Intent(mActivity,SelectedTermActivity.class);
+//                startActivityForResult(intent,TagFinal.UI_TAG);
+//                startActivity(new Intent(mActivity,MainActivity.class));
+                startActivity(new Intent(mActivity,PEQualityMainTestActivity.class));
             }
         });
         toolbar.setOnNaviClickListener(new View.OnClickListener() {
@@ -125,10 +160,10 @@ public class PEQualityMainActivity extends BaseActivity {
 
             }
         });
-        select_term=new TermBean();
-        select_term.setName(UserPreferences.getInstance().getTermName());
-        select_term.setId(UserPreferences.getInstance().getTermId());
-        menu_one.setText(select_term.getName());
+//        select_term=new TermBean();
+//        select_term.setName(UserPreferences.getInstance().getTermName());
+//        select_term.setId(UserPreferences.getInstance().getTermId());
+//        menu_one.setText(select_term.getName());
 
     }
 
@@ -253,7 +288,8 @@ public class PEQualityMainActivity extends BaseActivity {
 
 
 
-
+    float x = 0;
+    float y = 0;
 
     private Typeface tf;
     private RadarChart mChart;
@@ -270,7 +306,8 @@ public class PEQualityMainActivity extends BaseActivity {
         tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
 
         mChart.setDescription("");
-        mChart.setTouchEnabled(false);
+//        mChart.setTouchEnabled(false);
+        mChart.setDragDecelerationEnabled(false);
 
         mChart.setWebLineWidth(1.5f);
         mChart.setWebLineWidthInner(0.75f);
@@ -295,15 +332,20 @@ public class PEQualityMainActivity extends BaseActivity {
         yAxis.setTypeface(tf);
         yAxis.setLabelCount(5, false);
         yAxis.setTextSize(9f);
-        yAxis.setStartAtZero(false);
-        yAxis.setAxisMaxValue(100);//最大值
+        yAxis.setStartAtZero(true);
+        //最大值
+        yAxis.setAxisMaxValue(100);
         yAxis.setTextColor(Color.WHITE);
+        // 是否显示y轴刻度值
+        yAxis.setDrawLabels(false);
 
         Legend l = mChart.getLegend();
-        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
-        l.setTypeface(tf);
-        l.setXEntrySpace(7f);
-        l.setYEntrySpace(5f);
+        l.setEnabled(false);
+//        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
+//        l.setTypeface(tf);
+//        l.setXEntrySpace(7f);
+//        l.setYEntrySpace(5f);
+
 
     }
 
@@ -346,7 +388,8 @@ public class PEQualityMainActivity extends BaseActivity {
         RadarData data = new RadarData(xVals, sets);
         data.setValueTypeface(tf);
         data.setValueTextSize(8f);
-        data.setDrawValues(false);
+        //显示Y值
+        data.setDrawValues(true);
         data.setValueTextColor(Color.WHITE);
 
 
