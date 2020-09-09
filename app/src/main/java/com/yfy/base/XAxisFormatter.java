@@ -16,15 +16,15 @@ import java.util.List;
  * </pre>
  */
 
-public class XAxisFormatter  implements IAxisValueFormatter {
+public class XAxisFormatter extends ValueFormatter  {
     List<String> list;
 
     public XAxisFormatter(List<String> list) {
         this.list = list;
     }
 
-    @Override
-    public String getFormattedValue(float value, AxisBase axis) {
+
+    public String getFormattedValue(float value) {
         if (list == null || list.size() == 0) return "";
         int position = (int) Math.abs(value) % list.size();
         if (position < list.size()) {

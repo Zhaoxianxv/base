@@ -36,11 +36,13 @@ import com.yfy.base.RadarUtil;
 import com.yfy.base.XAxisFormatter;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.charting_mp_test.charts.RadarChart;
+import com.yfy.charting_mp_test.components.AxisBase;
 import com.yfy.charting_mp_test.components.XAxis;
 import com.yfy.charting_mp_test.components.YAxis;
 import com.yfy.charting_mp_test.data.RadarData;
 import com.yfy.charting_mp_test.data.RadarDataSet;
 import com.yfy.charting_mp_test.data.RadarEntry;
+import com.yfy.charting_mp_test.formatter.ValueFormatter;
 import com.yfy.charting_mp_test.interfaces.datasets.IRadarDataSet;
 import com.yfy.charting_mp_test.utils.ColorTemplate;
 import com.yfy.db.UserPreferences;
@@ -96,6 +98,34 @@ public class PEQualityMainTestActivity extends BaseActivity {
         initView();
         initChartView();
         setData();
+
+        mChart.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                List<RadarPointBean> pointBeans = RadarUtil.computePosition(mChart);
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        x = event.getX();
+                        y = event.getY();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        for (int i = 0; i < pointBeans.size(); i++) {
+                            RadarPointBean pointBean = pointBeans.get(i);
+                            if (pointBean.isIn(x, y)) {
+                                toastShow(Arrays.asList(getResources().getStringArray(R.array.p_e_type)).get(i));
+                                return true;
+                            }
+                        }
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        return  true;
+                    default:
+
+                        break;
+                }
+                return false;
+            }
+        });
     }
 
 
@@ -263,9 +293,8 @@ public class PEQualityMainTestActivity extends BaseActivity {
         mChart = (RadarChart) findViewById(R.id.stu_main_pie_test);
 
         tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
-
-        mChart.getDescription().setEnabled(false);
-        mChart.setTouchEnabled(false);
+        mChart.setTouchEnabled(true);
+        mChart.setDragDecelerationEnabled(false);
         mChart.setWebLineWidth(1.5f);
         mChart.setWebLineWidthInner(0.75f);
         mChart.setWebAlpha(100);
@@ -273,15 +302,14 @@ public class PEQualityMainTestActivity extends BaseActivity {
         mChart.setWebColorInner(Color.WHITE);
 
 
-//        MarkerView mv = new MarkerView(this, R.layout.custom_marker_view);
-
-//        mChart.setMarkerView(mv);
-
 
         XAxis xAxis = mChart.getXAxis();
-        //坐标值字体样式
+        xAxis.setDrawLabels(true);
+        xAxis.setTypeface(tf);
         xAxis.setTextSize(9f);
         xAxis.setTextColor(Color.WHITE);
+
+
 
 
         YAxis yAxis = mChart.getYAxis();
@@ -291,45 +319,19 @@ public class PEQualityMainTestActivity extends BaseActivity {
         // Y坐标值字体大小
         yAxis.setTextSize(5f);
         //最大值
-//        yAxis.setAxisMaximum(100f);
-        yAxis.setAxisMaxValue(100f);
+        yAxis.setAxisMaximum(80f);
         yAxis.setDrawAxisLine(true);
-
         // 是否显示y值在图表上
         yAxis.setDrawLabels(false);
         // Y坐标值是否从0开始
         yAxis.setStartAtZero(true);
         //设置图例：
-        mChart.getLegend().setEnabled(false);
 
 
 
 
-        mChart.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                List<RadarPointBean> pointBeans = RadarUtil.computePosition(mChart);
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        x = event.getX();
-                        y = event.getY();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        for (int i = 0; i < pointBeans.size(); i++) {
-                            RadarPointBean pointBean = pointBeans.get(i);
-                            if (pointBean.isIn(x, y)) {
-                                toastShow(Arrays.asList(getResources().getStringArray(R.array.p_e_type)).get(i));
-                                return true;
-                            }
-                        }
-                        break;
-                    default:
 
-                        break;
-                }
-                return false;
-            }
-        });
+
 
     }
 
@@ -337,18 +339,16 @@ public class PEQualityMainTestActivity extends BaseActivity {
 
     public void setData() {
 
-        List<String> types=Arrays.asList(getResources().getStringArray(R.array.p_e_type));
+        final List<String> list=Arrays.asList(getResources().getStringArray(R.array.p_e_type));
         List<String> score=Arrays.asList(getResources().getStringArray(R.array.p_e_score));
         ArrayList<RadarEntry> yVals1 = new ArrayList<RadarEntry>();
-//        ArrayList<Entry> yVals2 = new ArrayList<Entry>();
+
         for (int i = 0; i < score.size(); i++) {
-            yVals1.add(new RadarEntry(ConvertObjtect.getInstance().getFloat(score.get(i)) , types.get(i)));
+            yVals1.add(new RadarEntry(ConvertObjtect.getInstance().getFloat(score.get(i))));
         }
-//        for (int i = 0; i < scoreBeanList.size(); i++) {
-//            yVals2.add(new Entry((float) ConvertObjtect.getInstance().getFloat(scoreBeanList.get(i).getScores().get(1).getExamscore()), i));
-//        }
 
         XAxis xAxis = mChart.getXAxis();
+        xAxis.setValueFormatter(new XAxisFormatter(list));
 
 
         //设置显示内容块：
@@ -358,21 +358,17 @@ public class PEQualityMainTestActivity extends BaseActivity {
         // 实心填充区域颜色
 //        set1.setFillColor(ColorTemplate.VORDIPLOM_COLORS[0]);
         // 是否实心填充区域
-        set1.setDrawFilled(true);
+        set1.setDrawFilled(false);
         // 数据线条宽度
         set1.setLineWidth(2f);
+        set1.setDrawHorizontalHighlightIndicator(false); // 是否绘制高亮水平线，默认为true
+        set1.setDrawVerticalHighlightIndicator(false); // 是否绘制高亮垂直线，默认为true
 
-//        RadarDataSet set2 = new RadarDataSet(yVals2, scoreBeanList.get(0).getScores().get(1).getExamname());
-//        set2.setColor(ColorTemplate.VORDIPLOM_COLORS[4]);
-//        set2.setDrawFilled(true);
-//        set2.setLineWidth(2f);
         ArrayList<IRadarDataSet> sets = new ArrayList<IRadarDataSet>();
         sets.add(set1);
-//        sets.add(set2);
 
         RadarData data = new RadarData(sets);
-
-        data.setLabels(Arrays.asList(getResources().getStringArray(R.array.p_e_type)));
+//        data.setValueFormatter(new XAxisFormatter(list));
         data.setValueTypeface(tf);
         data.setValueTextSize(8f);
         //显示Y值
@@ -380,7 +376,8 @@ public class PEQualityMainTestActivity extends BaseActivity {
         data.setValueTextColor(Color.WHITE);
 
 
-
+        mChart.getDescription().setEnabled(false);
+        mChart.getLegend().setEnabled(false);
         mChart.setData(data);
         mChart.invalidate();
     }

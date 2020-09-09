@@ -94,10 +94,6 @@ public class PEQualityMainActivity extends BaseActivity {
         initChartView();
         setData();
 
-
-
-
-
         mChart.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -263,9 +259,9 @@ public class PEQualityMainActivity extends BaseActivity {
             }
         });
         adapter_data_show.add(new KeyValue("体育荣誉证书",R.drawable.ic_parent_head));
-        adapter_data_show.add(new KeyValue("体育比赛成绩",R.drawable.ic_parent_head));
-        adapter_data_show.add(new KeyValue("课堂表现",R.drawable.ic_parent_head));
-        adapter_data_show.add(new KeyValue("膳食建议",R.drawable.ic_parent_head));
+        adapter_data_show.add(new KeyValue("体育比赛成绩",R.drawable.ic_check_selected));
+        adapter_data_show.add(new KeyValue("课堂表现",R.drawable.ic_arrow_drop_down_black_24dp));
+        adapter_data_show.add(new KeyValue("膳食建议",R.drawable.ic_left_nav));
         adapter.setDataList(adapter_data_show);
         adapter.setLoadState(TagFinal.LOADING_END);
     }
@@ -295,26 +291,20 @@ public class PEQualityMainActivity extends BaseActivity {
     private RadarChart mChart;
     private void initChartView(){
 
-
         GlideTools.chanCircle(mActivity, Base.user.getHeadPic(),user_head,R.drawable.ic_parent_head);
-//        user_one.setText(StringUtils.getTextJoint("职能: %1$s",Base.user.getTerm()));
-//        user_two.setText(StringUtils.getTextJoint("所属: %1$s",Base.user.getSchoolname()));
-
-
         mChart = (RadarChart) findViewById(R.id.stu_main_pie);
 
         tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
 
-        mChart.setDescription("");
-//        mChart.setTouchEnabled(false);
+        mChart.getLegend().setEnabled(false);
         mChart.setDragDecelerationEnabled(false);
-
         mChart.setWebLineWidth(1.5f);
         mChart.setWebLineWidthInner(0.75f);
         mChart.setWebAlpha(100);
 
         mChart.setWebColor(Color.WHITE);
         mChart.setWebColorInner(Color.WHITE);
+
         // create a custom MarkerView (extend MarkerView) and specify the layout
         // to use for it
 //        MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
@@ -328,6 +318,7 @@ public class PEQualityMainActivity extends BaseActivity {
         xAxis.setTextSize(9f);
         xAxis.setTextColor(Color.WHITE);
 
+
         YAxis yAxis = mChart.getYAxis();
         yAxis.setTypeface(tf);
         yAxis.setLabelCount(5, false);
@@ -339,8 +330,9 @@ public class PEQualityMainActivity extends BaseActivity {
         // 是否显示y轴刻度值
         yAxis.setDrawLabels(false);
 
-        Legend l = mChart.getLegend();
-        l.setEnabled(false);
+
+
+
 //        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
 //        l.setTypeface(tf);
 //        l.setXEntrySpace(7f);
@@ -375,6 +367,8 @@ public class PEQualityMainActivity extends BaseActivity {
         set1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
         set1.setDrawFilled(true);
         set1.setLineWidth(2f);
+        set1.setDrawHorizontalHighlightIndicator(false); // 是否绘制高亮水平线，默认为true
+        set1.setDrawVerticalHighlightIndicator(false); // 是否绘制高亮垂直线，默认为true
 
 //        RadarDataSet set2 = new RadarDataSet(yVals2, scoreBeanList.get(0).getScores().get(1).getExamname());
 //        set2.setColor(ColorTemplate.VORDIPLOM_COLORS[4]);
@@ -393,8 +387,10 @@ public class PEQualityMainActivity extends BaseActivity {
         data.setValueTextColor(Color.WHITE);
 
 
-        mChart.setData(data);
 
+
+
+        mChart.setData(data);
         mChart.invalidate();
     }
 

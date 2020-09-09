@@ -169,12 +169,13 @@
         android:layout_above="@id/p_e_main_type_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="10dp"
         android:background="@color/DarkOrange">
         <com.yfy.charting_mp_test.charts.RadarChart
             android:id="@+id/stu_main_pie_test"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp"
+
             />
     </RelativeLayout>
 </RelativeLayout>

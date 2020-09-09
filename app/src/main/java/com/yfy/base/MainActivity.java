@@ -104,10 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
         List<String> list = new ArrayList<>();
         List<RadarEntry> studentEntries = new ArrayList<>();//个人
-        List<RadarEntry> gradeEntries = new ArrayList<>();//年级
         for (int i = 0; i < axisArray.length; i++) {
             studentEntries.add(new RadarEntry((float) (Math.random() * 10), axisArray[i]));
-            gradeEntries.add(new RadarEntry((float) (Math.random() * 10), axisArray[i]));
             list.add(axisArray[i]);
         }
 
@@ -123,21 +121,11 @@ public class MainActivity extends AppCompatActivity {
         studentSet.setDrawHighlightCircleEnabled(true);
         studentSet.setDrawHighlightIndicators(false);
 
-        RadarDataSet gradeSet = new RadarDataSet(gradeEntries, "年级平均值");
-        gradeSet.setColor(Color.parseColor("#0072bd"));
-        gradeSet.setFillColor(Color.parseColor("#0072bd"));
-        gradeSet.setDrawFilled(true);
-        gradeSet.setFillAlpha(85);
-        gradeSet.setLineWidth(1f);
-        gradeSet.setDrawHighlightCircleEnabled(true);
-        gradeSet.setDrawHighlightIndicators(false);
 
         ArrayList<IRadarDataSet> sets = new ArrayList<IRadarDataSet>();
         sets.add(studentSet);
-        sets.add(gradeSet);
 
         RadarData data = new RadarData(sets);
-        data.setLabels(list);
         data.setValueTextSize(8f);
         data.setDrawValues(false);
         data.setValueTextColor(Color.WHITE);
