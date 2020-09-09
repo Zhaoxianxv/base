@@ -60,6 +60,7 @@ import com.yfy.view.multi.MultiPictureView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
@@ -92,7 +93,10 @@ public class PEQualityMainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.p_e_quality_stu_main);
         initSQToolbar();
+        if (Base.user==null)return;
         initView();
+        initChartView();
+        setData();
     }
 
 
@@ -132,7 +136,7 @@ public class PEQualityMainActivity extends BaseActivity {
 
     private void initView(){
         Typeface mTypeface=Typeface.createFromAsset(getAssets(),"OpenSans-Bold.ttf");
-        if (Base.user==null)return;
+
         GlideTools.chanCircle(mActivity, Base.user.getHeadPic(), user_head, R.drawable.ic_parent_head);
         user_name.setText(Base.user.getName());
         user_class.setText("三年级二十五班");
@@ -248,45 +252,15 @@ public class PEQualityMainActivity extends BaseActivity {
 
 
 
-    private List<TermBean> termBeanList =new ArrayList<>();
-    private void initData(SchoolRes res){
-        for (TermBean termBean:res.getTermlist()){
-            termBeanList.add(termBean);
-        }
 
-        if (StringJudge.isNotEmpty(termBeanList)){
-            initData();
-        }
-    }
-    private List<ScoreBean> scoreBeanList=new ArrayList<>();
-    private CPWListBeanView cpwListView;
-    List<CPWBean> txts=new ArrayList<>();
-    private void initData(){
-        txts.clear();
-        for(TermBean s:termBeanList){
-            txts.add(new CPWBean(s.getName(), s.getId()));
-        }
-        closeKeyWord();
-        cpwListView.setDatas(txts);
-        cpwListView.showAtCenter();
-    }
-    private void initDialog(){
-        cpwListView = new CPWListBeanView(mActivity);
-        cpwListView.setOnPopClickListenner(new CPWListBeanView.OnPopClickListenner() {
-            @Override
-            public void onClick(CPWBean index,String type) {
-                setData();
-                cpwListView.dismiss();
 
-            }
-        });
-    }
 
     private Typeface tf;
     private RadarChart mChart;
     private void initChartView(){
+
+
         GlideTools.chanCircle(mActivity, Base.user.getHeadPic(),user_head,R.drawable.ic_parent_head);
-        user_name.setText(StringUtils.getTextJoint("用户名: %1$s",Base.user.getName()));
 //        user_one.setText(StringUtils.getTextJoint("职能: %1$s",Base.user.getTerm()));
 //        user_two.setText(StringUtils.getTextJoint("所属: %1$s",Base.user.getSchoolname()));
 
@@ -321,7 +295,8 @@ public class PEQualityMainActivity extends BaseActivity {
         yAxis.setTypeface(tf);
         yAxis.setLabelCount(5, false);
         yAxis.setTextSize(9f);
-        yAxis.setStartAtZero(true);
+        yAxis.setStartAtZero(false);
+        yAxis.setAxisMaxValue(100);//最大值
         yAxis.setTextColor(Color.WHITE);
 
         Legend l = mChart.getLegend();
@@ -329,41 +304,51 @@ public class PEQualityMainActivity extends BaseActivity {
         l.setTypeface(tf);
         l.setXEntrySpace(7f);
         l.setYEntrySpace(5f);
+
     }
+
+
+
     public void setData() {
+
+        List<String> types=Arrays.asList(getResources().getStringArray(R.array.p_e_type));
+        List<String> score=Arrays.asList(getResources().getStringArray(R.array.p_e_score));
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
-        ArrayList<Entry> yVals2 = new ArrayList<Entry>();
-        for (int i = 0; i < scoreBeanList.size(); i++) {
-            yVals1.add(new Entry((float) ConvertObjtect.getInstance().getFloat(scoreBeanList.get(i).getScores().get(0).getExamscore()), i));
+//        ArrayList<Entry> yVals2 = new ArrayList<Entry>();
+        for (int i = 0; i < score.size(); i++) {
+            yVals1.add(new Entry((float)ConvertObjtect.getInstance().getFloat(score.get(i)) , i));
         }
-        for (int i = 0; i < scoreBeanList.size(); i++) {
-            yVals2.add(new Entry((float) ConvertObjtect.getInstance().getFloat(scoreBeanList.get(i).getScores().get(1).getExamscore()), i));
-        }
+//        for (int i = 0; i < scoreBeanList.size(); i++) {
+//            yVals2.add(new Entry((float) ConvertObjtect.getInstance().getFloat(scoreBeanList.get(i).getScores().get(1).getExamscore()), i));
+//        }
 
         ArrayList<String> xVals = new ArrayList<String>();
 
-        for (int i = 0; i < scoreBeanList.size(); i++)
-            xVals.add(scoreBeanList.get(i).getCoursename());
+        for (int i = 0; i < types.size(); i++){
+            xVals.add(types.get(i));
+        }
 
-        RadarDataSet set1 = new RadarDataSet(yVals1, scoreBeanList.get(0).getScores().get(0).getExamname());
+
+        RadarDataSet set1 = new RadarDataSet(yVals1, "");
         set1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
         set1.setDrawFilled(true);
         set1.setLineWidth(2f);
 
-        RadarDataSet set2 = new RadarDataSet(yVals2, scoreBeanList.get(0).getScores().get(1).getExamname());
-        set2.setColor(ColorTemplate.VORDIPLOM_COLORS[4]);
-        set2.setDrawFilled(true);
-        set2.setLineWidth(2f);
+//        RadarDataSet set2 = new RadarDataSet(yVals2, scoreBeanList.get(0).getScores().get(1).getExamname());
+//        set2.setColor(ColorTemplate.VORDIPLOM_COLORS[4]);
+//        set2.setDrawFilled(true);
+//        set2.setLineWidth(2f);
 
         ArrayList<RadarDataSet> sets = new ArrayList<RadarDataSet>();
         sets.add(set1);
-        sets.add(set2);
+//        sets.add(set2);
 
         RadarData data = new RadarData(xVals, sets);
         data.setValueTypeface(tf);
         data.setValueTextSize(8f);
         data.setDrawValues(false);
         data.setValueTextColor(Color.WHITE);
+
 
         mChart.setData(data);
 
