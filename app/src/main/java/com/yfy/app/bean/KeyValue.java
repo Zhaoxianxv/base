@@ -19,6 +19,7 @@ public class KeyValue implements Parcelable {
     private String value;//值
     private String name;//值名称
     private String title;//
+    private String content;//
     private String left_title;//
     private String right;//
     private String right_key;//
@@ -91,6 +92,14 @@ public class KeyValue implements Parcelable {
         this.right_name = right_name;
         this.right_value = right_value;
 
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public int getNum() {
@@ -328,6 +337,7 @@ public class KeyValue implements Parcelable {
         dest.writeString(this.value);
         dest.writeString(this.name);
         dest.writeString(this.title);
+        dest.writeString(this.content);
         dest.writeString(this.left_title);
         dest.writeString(this.right);
         dest.writeString(this.right_key);
@@ -357,6 +367,7 @@ public class KeyValue implements Parcelable {
         this.value = in.readString();
         this.name = in.readString();
         this.title = in.readString();
+        this.content = in.readString();
         this.left_title = in.readString();
         this.right = in.readString();
         this.right_key = in.readString();

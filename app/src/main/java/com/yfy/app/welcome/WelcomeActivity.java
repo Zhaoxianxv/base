@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.yfy.app.PEquality.PEQualityMainActivity;
+import com.yfy.app.PEquality.PEQualityMainTestActivity;
 import com.yfy.app.welcome.adapter.GuidePagerAdapter;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItem;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItemAdapter;
@@ -24,7 +25,6 @@ import com.yfy.app.welcome.utils.v4.FragmentPagerItems;
 
 import com.yfy.base.MainActivity;
 import com.yfy.base.R;
-import com.yfy.charting_mp_test.PEQualityMainTestActivity;
 import com.yfy.db.UserPreferences;
 import com.yfy.jpush.ExampleUtil;
 import com.yfy.jpush.LocalBroadcastManager;
@@ -102,8 +102,8 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //初始化登录信息
-                startActivity(new Intent(WelcomeActivity.this,PEQualityMainActivity.class));
-//                startActivity(new Intent(WelcomeActivity.this,PEQualityMainTestActivity.class));
+//                startActivity(new Intent(WelcomeActivity.this,PEQualityMainActivity.class));
+                startActivity(new Intent(WelcomeActivity.this,PEQualityMainTestActivity.class));
 
 
                 finish();

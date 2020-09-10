@@ -171,10 +171,18 @@
         android:layout_height="match_parent"
         android:background="@color/DarkOrange">
         <com.yfy.charting_mp.charts.RadarChart
-            android:id="@+id/stu_main_pie"
+            android:id="@+id/p_e_main_radar_chart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/margin_100dp"
             android:padding="10dp"
             />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/p_e_main_radar_chart_recycler"
+            android:layout_width="@dimen/margin_100dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
     </RelativeLayout>
 </RelativeLayout>

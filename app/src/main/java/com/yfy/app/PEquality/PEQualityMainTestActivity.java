@@ -1,4 +1,4 @@
-package com.yfy.charting_mp_test;
+package com.yfy.app.PEquality;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,7 +18,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.yfy.app.PEquality.PEQualityMainAdapter;
+import com.yfy.app.PEquality.adapter.PEQualityMainAdapter;
 import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
@@ -36,15 +36,13 @@ import com.yfy.base.RadarUtil;
 import com.yfy.base.XAxisFormatter;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.charting_mp_test.charts.RadarChart;
-import com.yfy.charting_mp_test.components.AxisBase;
+import com.yfy.charting_mp_test.components.Legend;
 import com.yfy.charting_mp_test.components.XAxis;
 import com.yfy.charting_mp_test.components.YAxis;
 import com.yfy.charting_mp_test.data.RadarData;
 import com.yfy.charting_mp_test.data.RadarDataSet;
 import com.yfy.charting_mp_test.data.RadarEntry;
-import com.yfy.charting_mp_test.formatter.ValueFormatter;
 import com.yfy.charting_mp_test.interfaces.datasets.IRadarDataSet;
-import com.yfy.charting_mp_test.utils.ColorTemplate;
 import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
@@ -112,7 +110,35 @@ public class PEQualityMainTestActivity extends BaseActivity {
                         for (int i = 0; i < pointBeans.size(); i++) {
                             RadarPointBean pointBean = pointBeans.get(i);
                             if (pointBean.isIn(x, y)) {
-                                toastShow(Arrays.asList(getResources().getStringArray(R.array.p_e_type)).get(i));
+                                Intent intent;
+                                String type=Arrays.asList(getResources().getStringArray(R.array.p_e_type)).get(i);
+                                switch (type){
+                                    case "学习态度":
+                                        intent=new Intent(mActivity,PEQualityAttitudeActivity.class);
+                                        intent.putExtra(Base.title,type);
+                                        startActivity(intent);
+                                        break;
+                                    case "健康教育知识"://PEQualityKnowledgeActivity
+                                        intent=new Intent(mActivity,PEQualityKnowledgeActivity.class);
+                                        intent.putExtra(Base.title,type);
+                                        startActivity(intent);
+                                        break;
+                                    case "运动技能":
+                                        break;
+                                    case "体能":
+                                        break;
+                                    case "体育课后作业":
+                                        break;
+                                    case "国家体质健康标准":
+                                        intent=new Intent(mActivity,PEQualityStandardListActivity.class);
+                                        intent.putExtra(Base.title,type);
+                                        startActivity(intent);
+                                        break;
+
+                                    default:
+                                        toastShow("暂未开放");
+                                        break;
+                                }
                                 return true;
                             }
                         }
@@ -293,21 +319,23 @@ public class PEQualityMainTestActivity extends BaseActivity {
         mChart = (RadarChart) findViewById(R.id.stu_main_pie_test);
 
         tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+        mChart.getDescription().setText("点击图表文字查看详情");//点击图表文字查看详情
+        mChart.getLegend().setEnabled(false);
         mChart.setTouchEnabled(true);
         mChart.setDragDecelerationEnabled(false);
         mChart.setWebLineWidth(1.5f);
         mChart.setWebLineWidthInner(0.75f);
         mChart.setWebAlpha(100);
-        mChart.setWebColor(Color.WHITE);
-        mChart.setWebColorInner(Color.WHITE);
+        mChart.setWebColor(Color.BLACK);
+        mChart.setWebColorInner(Color.BLACK);
 
 
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setDrawLabels(true);
-        xAxis.setTypeface(tf);
-        xAxis.setTextSize(9f);
-        xAxis.setTextColor(Color.WHITE);
+//        xAxis.setTypeface(tf);
+//        xAxis.setTextSize(9f);
+//        xAxis.setTextColor(Color.WHITE);
 
 
 
@@ -354,11 +382,11 @@ public class PEQualityMainTestActivity extends BaseActivity {
         //设置显示内容块：
         RadarDataSet set1 = new RadarDataSet(yVals1,"zxx");
         // 数据颜色设置
-        set1.setColor(ColorTemplate.VORDIPLOM_COLORS[4]);
+        set1.setColor(ColorRgbUtil.getBaseColor());
         // 实心填充区域颜色
-//        set1.setFillColor(ColorTemplate.VORDIPLOM_COLORS[0]);
+        set1.setFillColor(ColorRgbUtil.getBlue());
         // 是否实心填充区域
-        set1.setDrawFilled(false);
+        set1.setDrawFilled(true);
         // 数据线条宽度
         set1.setLineWidth(2f);
         set1.setDrawHorizontalHighlightIndicator(false); // 是否绘制高亮水平线，默认为true
@@ -373,11 +401,10 @@ public class PEQualityMainTestActivity extends BaseActivity {
         data.setValueTextSize(8f);
         //显示Y值
         data.setDrawValues(true);
-        data.setValueTextColor(Color.WHITE);
+        data.setValueTextColor(Color.BLACK);
 
 
-        mChart.getDescription().setEnabled(false);
-        mChart.getLegend().setEnabled(false);
+
         mChart.setData(data);
         mChart.invalidate();
     }

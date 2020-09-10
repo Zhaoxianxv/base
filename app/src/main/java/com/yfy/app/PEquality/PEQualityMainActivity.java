@@ -8,7 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.design.internal.FlowLayout;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,6 +20,8 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.yfy.app.PEquality.adapter.PEQualityMainAdapter;
+import com.yfy.app.PEquality.adapter.PEQualityMainChartAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.bean.TermBean;
@@ -29,18 +33,14 @@ import com.yfy.app.net.ResEnv;
 import com.yfy.app.net.RetrofitGenerator;
 import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
-import com.yfy.base.RadarPointBean;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.charting_mp.charts.RadarChart;
-import com.yfy.charting_mp.components.Legend;
 import com.yfy.charting_mp.components.XAxis;
 import com.yfy.charting_mp.components.YAxis;
 import com.yfy.charting_mp.data.Entry;
 import com.yfy.charting_mp.data.RadarData;
 import com.yfy.charting_mp.data.RadarDataSet;
-import com.yfy.charting_mp.renderer.XAxisRendererRadarChart;
 import com.yfy.charting_mp.utils.ColorTemplate;
-import com.yfy.charting_mp_test.PEQualityMainTestActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
 import com.yfy.final_tag.StringUtils;
@@ -90,8 +90,11 @@ public class PEQualityMainActivity extends BaseActivity {
         setContentView(R.layout.p_e_quality_stu_main);
         initSQToolbar();
         if (Base.user==null)return;
-        initView();
+
         initChartView();
+        initRecyclerView();
+        initChartRecycler();
+        initView();
         setData();
 
         mChart.setOnTouchListener(new View.OnTouchListener() {
@@ -104,7 +107,6 @@ public class PEQualityMainActivity extends BaseActivity {
                         y = event.getY();
                         break;
                     case MotionEvent.ACTION_UP:
-                        XAxisRendererRadarChart xa = RadarUtil.getXAxisRendererRadarChart(mChart);
 //
 //                        for (int i = 0; i < pointBeans.size(); i++) {
 //                            RadarPointBean pointBean = pointBeans.get(i);
@@ -195,7 +197,20 @@ public class PEQualityMainActivity extends BaseActivity {
         list.add(new KeyValue("运动处方1","加强运动"));
         list.add(new KeyValue("运动处方1","加强运动"));
         setFlowLayoutTop(list);
-        initRecyclerView();
+
+
+
+        adapter_data_show.add(new KeyValue("体育荣誉证书",R.drawable.ic_parent_head));
+        adapter_data_show.add(new KeyValue("体育比赛成绩",R.drawable.ic_check_selected));
+        adapter_data_show.add(new KeyValue("课堂表现",R.drawable.ic_arrow_drop_down_black_24dp));
+        adapter_data_show.add(new KeyValue("膳食建议",R.drawable.ic_left_nav));
+        adapter.setDataList(adapter_data_show);
+        adapter.setLoadState(TagFinal.LOADING_END);
+
+
+
+
+
     }
 
 
@@ -258,12 +273,7 @@ public class PEQualityMainActivity extends BaseActivity {
                 }
             }
         });
-        adapter_data_show.add(new KeyValue("体育荣誉证书",R.drawable.ic_parent_head));
-        adapter_data_show.add(new KeyValue("体育比赛成绩",R.drawable.ic_check_selected));
-        adapter_data_show.add(new KeyValue("课堂表现",R.drawable.ic_arrow_drop_down_black_24dp));
-        adapter_data_show.add(new KeyValue("膳食建议",R.drawable.ic_left_nav));
-        adapter.setDataList(adapter_data_show);
-        adapter.setLoadState(TagFinal.LOADING_END);
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -292,12 +302,14 @@ public class PEQualityMainActivity extends BaseActivity {
     private void initChartView(){
 
         GlideTools.chanCircle(mActivity, Base.user.getHeadPic(),user_head,R.drawable.ic_parent_head);
-        mChart = (RadarChart) findViewById(R.id.stu_main_pie);
+        mChart = (RadarChart) findViewById(R.id.p_e_main_radar_chart);
 
         tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
 
         mChart.getLegend().setEnabled(false);
         mChart.setDragDecelerationEnabled(false);
+        mChart.setDescription("");
+
         mChart.setWebLineWidth(1.5f);
         mChart.setWebLineWidthInner(0.75f);
         mChart.setWebAlpha(100);
@@ -333,10 +345,6 @@ public class PEQualityMainActivity extends BaseActivity {
 
 
 
-//        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
-//        l.setTypeface(tf);
-//        l.setXEntrySpace(7f);
-//        l.setYEntrySpace(5f);
 
 
     }
@@ -387,13 +395,51 @@ public class PEQualityMainActivity extends BaseActivity {
         data.setValueTextColor(Color.WHITE);
 
 
-
-
-
         mChart.setData(data);
         mChart.invalidate();
-    }
 
+
+
+        for (String s:types){
+            adapter_chart_data.add(new KeyValue(s));
+        }
+        chartAdapter.setDataList(adapter_chart_data);
+        chartAdapter.setLoadState(TagFinal.LOADING_END);
+
+    }
+    public List<KeyValue> adapter_chart_data=new ArrayList<>();
+    public PEQualityMainChartAdapter chartAdapter;
+    public RecyclerView chart_recycler;
+    public void initChartRecycler(){
+        chart_recycler=findViewById(R.id.p_e_main_radar_chart_recycler);
+        chart_recycler.setLayoutManager(new LinearLayoutManager(this));
+        chart_recycler.setItemAnimator(new DefaultItemAnimator());
+        chartAdapter=new PEQualityMainChartAdapter(mActivity);
+        chart_recycler.setAdapter(chartAdapter);
+        chartAdapter.setItemOnc(new PEQualityMainChartAdapter.PEChartRightOnC() {
+            @Override
+            public void onc(KeyValue bean) {
+                toastShow(bean.getId());
+                switch (bean.getId()){
+                    case "学习态度":
+                        break;
+                    case "健康教育知识":
+                        break;
+                    case "运动技能":
+                        break;
+                    case "体能":
+                        break;
+                    case "体育课后作业":
+                        break;
+                    case "国家体质健康标准":
+                        break;
+                        default:
+                            toastShow("暂未开放");
+                            break;
+                }
+            }
+        });
+    }
     /**
      * ----------------------------retrofit-----------------------
      */

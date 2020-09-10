@@ -113,8 +113,6 @@
 
 
 
-
-
     <RelativeLayout
         android:id="@+id/p_e_main_recipe_layout"
         android:layout_width="match_parent"
@@ -150,32 +148,29 @@
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/p_e_main_type_layout"
-        android:layout_above="@id/p_e_main_recipe_layout"
-        android:background="@color/MediumTurquoise"
+        android:layout_below="@id/p_e_main_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/p_e_main_type_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
         </android.support.v7.widget.RecyclerView>
     </RelativeLayout>
 
 
 
     <RelativeLayout
-        android:layout_below="@id/p_e_main_line"
-        android:layout_above="@id/p_e_main_type_layout"
+        android:layout_below="@id/p_e_main_type_layout"
+        android:layout_above="@id/p_e_main_recipe_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
-        android:background="@color/DarkOrange">
+        android:layout_marginTop="@dimen/margin_2dp"
+        android:background="@color/white">
         <com.yfy.charting_mp_test.charts.RadarChart
             android:id="@+id/stu_main_pie_test"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             />
     </RelativeLayout>
 </RelativeLayout>

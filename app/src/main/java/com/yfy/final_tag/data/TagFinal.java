@@ -34,6 +34,7 @@ public  class TagFinal {
     public final static int TYPE_CHILD = FOUR_INT;//常量 10
     public final static int TYPE_FOOTER = TEN_INT;//常量 10
     public final static int TYPE_REFRECH = TEN_FIVE;//常量 15
+    public final static int TYPE_DETAIL = 16;//常量 15
 
     public final static int TYPE_IMAGE = 101;
     public final static int TYPE_TXT = 102;
@@ -134,7 +135,6 @@ public  class TagFinal {
     public static final String HINT_TAG="hint_tag";
     public static final String URI_TAG="uri_tag";
     public static final String CLASS_ID="class_id";//
-    public static final String TYPE_TAG="type_tag";
     public static final String FORBID_TAG="forbid_tag";
     public static final String USER_TYPE_TEA="tea";
     public static final String USER_TYPE_STU="stu";

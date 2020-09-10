@@ -1,4 +1,4 @@
-package com.yfy.app.PEquality;
+package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
 import android.support.v7.widget.AppCompatImageView;
@@ -12,10 +12,7 @@ import android.widget.TextView;
 
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
-import com.yfy.final_tag.StringJudge;
-import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.glide.GlideTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +21,13 @@ import java.util.List;
  * Created by yfyandr on 2017/12/27.
  */
 
-public class PEQualityMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PEQualityMainChartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Activity mContext;
     private List<KeyValue> dataList;
     private int loadState = 2;
 
-    public PEQualityMainAdapter(Activity mContext) {
+    public PEQualityMainChartAdapter(Activity mContext) {
         this.mContext=mContext;
         this.dataList = new ArrayList<>();
 
@@ -50,7 +47,7 @@ public class PEQualityMainAdapter extends RecyclerView.Adapter<RecyclerView.View
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TagFinal.TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_main_gridview_item, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_main_chart_right_item, parent, false);
             return new ItemHolder(view);
         }
         return null;
@@ -63,10 +60,7 @@ public class PEQualityMainAdapter extends RecyclerView.Adapter<RecyclerView.View
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
             iHolder.index=position;
-            iHolder.name.setText(iHolder.bean.getName());
-            iHolder.icon.setImageResource(iHolder.bean.getRes_image());
-            iHolder.count.setVisibility(View.GONE);
-
+            iHolder.name.setText(iHolder.bean.getId());
         }
 
     }
@@ -79,19 +73,13 @@ public class PEQualityMainAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private class ItemHolder extends RecyclerView.ViewHolder {
 
-        public TextView name;
-        public AppCompatImageView count;
-        public AppCompatImageView icon;
-        private RelativeLayout layout;
+        public AppCompatTextView name;
         private int index;
         KeyValue bean;
         public ItemHolder(View itemView) {
             super(itemView);
-            count =  itemView.findViewById(R.id.oa_item_admin_count);
-            name =  itemView.findViewById(R.id.oa_item_name);
-            icon =  itemView.findViewById(R.id.oa_item_icon_image);
-            layout = itemView.findViewById(R.id.oa_item_layout);
-            layout.setOnClickListener(new View.OnClickListener() {
+            name =  itemView.findViewById(R.id.p_e_main_right_item_name);
+            name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (itemOnc!=null){
@@ -115,11 +103,11 @@ public class PEQualityMainAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.loadState = loadState;
         notifyDataSetChanged();
     }
-    public interface ItemOnc{
+    public interface PEChartRightOnC {
         void onc(KeyValue bean);
     }
-    public ItemOnc itemOnc;
-    public void setItemOnc(ItemOnc itemOnc) {
+    public PEChartRightOnC itemOnc;
+    public void setItemOnc(PEChartRightOnC itemOnc) {
         this.itemOnc = itemOnc;
     }
 }

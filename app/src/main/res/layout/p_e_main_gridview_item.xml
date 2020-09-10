@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:background="@drawable/layer_right_grayline"
+    android:background="@drawable/layer_bottom_right_grayline_whitebg"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/oa_item_icon_image"
