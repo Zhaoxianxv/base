@@ -124,10 +124,19 @@ public class PEQualityMainTestActivity extends BaseActivity {
                                         startActivity(intent);
                                         break;
                                     case "运动技能":
+                                        intent=new Intent(mActivity,PEQualitySkillsActivity.class);
+                                        intent.putExtra(Base.title,type);
+                                        startActivity(intent);
                                         break;
                                     case "体能":
+                                        intent=new Intent(mActivity,PEQualityStaminaActivity.class);
+                                        intent.putExtra(Base.title,type);
+                                        startActivity(intent);
                                         break;
                                     case "体育课后作业":
+                                        intent=new Intent(mActivity,PEQualityHomeworkActivity.class);
+                                        intent.putExtra(Base.title,type);
+                                        startActivity(intent);
                                         break;
                                     case "国家体质健康标准":
                                         intent=new Intent(mActivity,PEQualityStandardListActivity.class);

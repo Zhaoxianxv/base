@@ -5,7 +5,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.RequiresApi;
 import android.support.annotation.StringRes;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -243,7 +245,8 @@ public class SQToolBar extends RelativeLayout {
     public ImageView addMenu(int position, @DrawableRes int resid) {
         return addMenu(position, getResources().getDrawable(resid));
     }
-    public ImageView addMenu(int position, @DrawableRes int resid,int res_color) {
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public ImageView addMenu(int position, @DrawableRes int resid, int res_color) {
         Drawable drawable=getResources().getDrawable(resid);
         drawable.setTint(res_color);
         return addMenu(position, drawable);

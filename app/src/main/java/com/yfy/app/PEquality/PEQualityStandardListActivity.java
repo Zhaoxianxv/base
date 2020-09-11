@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.yfy.app.PEquality.adapter.PEQualityAttenListAdapter;
+import com.yfy.app.PEquality.adapter.PEQualityStandardListAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
@@ -32,7 +33,7 @@ import retrofit2.Response;
 public class PEQualityStandardListActivity extends BaseActivity {
     private static final String TAG = PEQualityStandardListActivity.class.getSimpleName();
 
-    private PEQualityAttenListAdapter adapter;
+    private PEQualityStandardListAdapter adapter;
 
 
     @Override
@@ -64,7 +65,7 @@ public class PEQualityStandardListActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        adapter=new PEQualityAttenListAdapter(mActivity);
+        adapter=new PEQualityStandardListAdapter(mActivity);
         recyclerView.setAdapter(adapter);
     }
 
@@ -73,15 +74,15 @@ public class PEQualityStandardListActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
-        KeyValue all=new KeyValue("请假记录5条","",TagFinal.TYPE_ITEM);
-        KeyValue detail=new KeyValue("本期满分100分，已扣除12分当前88分","",TagFinal.TYPE_ITEM);
         KeyValue one=new KeyValue("","",TagFinal.TYPE_ITEM);
-        one.setTitle("旷课(-6)");
+        one.setTitle("体重指数");
         one.setContent("2020.5.21  下午第二节课");
         one.setRight("张丹");
 
-        keyValue_adapter.add(all);
-        keyValue_adapter.add(detail);
+
+        keyValue_adapter.add(new KeyValue("综合得分" ,"86.58分",TagFinal.TYPE_TOP));
+        keyValue_adapter.add(one);
+        keyValue_adapter.add(one);
         keyValue_adapter.add(one);
 
         adapter.setDataList(keyValue_adapter);

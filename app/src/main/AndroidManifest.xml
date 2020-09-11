@@ -154,6 +154,18 @@
             android:name="com.yfy.app.PEquality.PEQualityKnowledgeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.PEquality.PEQualityStaminaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.PEquality.PEQualityHomeworkActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.PEquality.PEQualitySkillsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

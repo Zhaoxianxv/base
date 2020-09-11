@@ -1,6 +1,7 @@
 package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,8 +44,12 @@ public class PEQualityStandardListAdapter extends RecyclerView.Adapter<RecyclerV
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
+        if (viewType == TagFinal.TYPE_TOP) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_txt, parent, false);
+            return new TopHolder(view);
+        }
         if (viewType == TagFinal.TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_item_icon_detail_head, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_stadard_item, parent, false);
             return new ItemHolder(view);
         }
 
@@ -58,6 +63,12 @@ public class PEQualityStandardListAdapter extends RecyclerView.Adapter<RecyclerV
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
         }
+        if (holder instanceof TopHolder){
+            TopHolder topHolder = (TopHolder) holder;
+            topHolder.bean = dataList.get(position);
+            topHolder.left_title.setText(topHolder.bean.getName());
+            topHolder.right_value.setText(topHolder.bean.getValue());
+        }
 
     }
 
@@ -68,17 +79,38 @@ public class PEQualityStandardListAdapter extends RecyclerView.Adapter<RecyclerV
 
 
     private class ItemHolder extends RecyclerView.ViewHolder {
-        TextView title;
-        TextView sub;
-        TextView content;
-        TextView state;
+        AppCompatTextView left_title;
+        AppCompatTextView left_sub;
+        AppCompatTextView left_score;
+        AppCompatTextView left_weight;
+        AppCompatTextView right_title;
+        AppCompatTextView right_value;
+        AppCompatTextView event_grade;
+        AppCompatTextView event_title;
         KeyValue bean;
         ItemHolder(View itemView) {
             super(itemView);
-            title=  itemView.findViewById(R.id.public_detail_item_title);
-            sub=  itemView.findViewById(R.id.public_detail_item_sub);
-            state =  itemView.findViewById(R.id.public_detail_item_state);
-            content=  itemView.findViewById(R.id.public_detail_item_reason);
+            left_title =  itemView.findViewById(R.id.p_e_standard_title);
+            left_sub =  itemView.findViewById(R.id.p_e_standard_value);
+            left_weight =  itemView.findViewById(R.id.p_e_standard_score);
+            left_score =  itemView.findViewById(R.id.p_e_standard_weight);
+            right_title =  itemView.findViewById(R.id.p_e_standard_end_score_title);
+            right_value =  itemView.findViewById(R.id.p_e_standard_end_score_value);
+            event_grade =  itemView.findViewById(R.id.p_e_standard_end_event_grade);
+            event_title =  itemView.findViewById(R.id.p_e_standard_end_event_title);
+
+        }
+    }
+
+
+    private class TopHolder extends RecyclerView.ViewHolder {
+        TextView left_title;
+        TextView right_value;
+        KeyValue bean;
+        TopHolder(View itemView) {
+            super(itemView);
+            left_title =  itemView.findViewById(R.id.public_type_txt_key);
+            right_value =  itemView.findViewById(R.id.public_type_txt_value);
 
         }
     }
