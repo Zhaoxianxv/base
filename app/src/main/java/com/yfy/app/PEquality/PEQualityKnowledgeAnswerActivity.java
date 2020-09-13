@@ -1,13 +1,8 @@
 package com.yfy.app.PEquality;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
-import com.yfy.app.PEquality.adapter.PEQualityAttenListAdapter;
 import com.yfy.app.bean.BaseRes;
-import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -20,26 +15,22 @@ import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
 import com.yfy.final_tag.StringUtils;
 import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class PEQualityKnowledgeActivity extends BaseActivity {
-    private static final String TAG = PEQualityKnowledgeActivity.class.getSimpleName();
+public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
+    private static final String TAG = PEQualityKnowledgeAnswerActivity.class.getSimpleName();
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.p_e_knowledge_main);
+        setContentView(R.layout.p_e_knowledge_answer);
         getData();
         initSQToolbar();
 
@@ -60,20 +51,6 @@ public class PEQualityKnowledgeActivity extends BaseActivity {
 
 
 
-    @OnClick(R.id.p_e_knowledge_library)
-    void knowledgeLibrary(){
-        Intent intent=new Intent(mActivity,PEQualityKnowledgeLibraryActivity.class);
-        intent.putExtra(Base.title,"健康知识库");
-        startActivity(intent);
-    }
-    @OnClick(R.id.p_e_knowledge_answer)
-    void knowledgeAnswer(){
-
-        Intent intent=new Intent(mActivity,PEQualityKnowledgeAnswerActivity.class);
-        intent.putExtra(Base.title,"健康知识库");
-        startActivity(intent);
-
-    }
 
     /**
      * ----------------------------retrofit-----------------------
