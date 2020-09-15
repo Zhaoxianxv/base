@@ -15,7 +15,7 @@ public class KeyValue implements Parcelable {
     private String type="";//用于判断value取那个字段
     private String user_type;
     private String activity_type;
-    private boolean required=true;//用于判断是否必填
+
     private String value;//值
     private String name;//值名称
     private String title;//
@@ -36,8 +36,9 @@ public class KeyValue implements Parcelable {
     private int res_color;
     private int span_size;
     private int item_id;
+    private boolean required=true;//用于判断是否必填
+    private boolean is_selected=false;//用于判断是否必填
     private List<String> listValue=new ArrayList<String>();
-
     private List<CPWBean> cpwBeanArrayList =new ArrayList<>();
 
 
@@ -92,6 +93,14 @@ public class KeyValue implements Parcelable {
         this.right_name = right_name;
         this.right_value = right_value;
 
+    }
+
+    public boolean isIs_selected() {
+        return is_selected;
+    }
+
+    public void setIs_selected(boolean is_selected) {
+        this.is_selected = is_selected;
     }
 
     public String getContent() {
@@ -333,7 +342,6 @@ public class KeyValue implements Parcelable {
         dest.writeString(this.type);
         dest.writeString(this.user_type);
         dest.writeString(this.activity_type);
-        dest.writeByte(this.required ? (byte) 1 : (byte) 0);
         dest.writeString(this.value);
         dest.writeString(this.name);
         dest.writeString(this.title);
@@ -354,6 +362,8 @@ public class KeyValue implements Parcelable {
         dest.writeInt(this.res_color);
         dest.writeInt(this.span_size);
         dest.writeInt(this.item_id);
+        dest.writeByte(this.required ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.is_selected ? (byte) 1 : (byte) 0);
         dest.writeStringList(this.listValue);
         dest.writeTypedList(this.cpwBeanArrayList);
     }
@@ -363,7 +373,6 @@ public class KeyValue implements Parcelable {
         this.type = in.readString();
         this.user_type = in.readString();
         this.activity_type = in.readString();
-        this.required = in.readByte() != 0;
         this.value = in.readString();
         this.name = in.readString();
         this.title = in.readString();
@@ -384,6 +393,8 @@ public class KeyValue implements Parcelable {
         this.res_color = in.readInt();
         this.span_size = in.readInt();
         this.item_id = in.readInt();
+        this.required = in.readByte() != 0;
+        this.is_selected = in.readByte() != 0;
         this.listValue = in.createStringArrayList();
         this.cpwBeanArrayList = in.createTypedArrayList(CPWBean.CREATOR);
     }

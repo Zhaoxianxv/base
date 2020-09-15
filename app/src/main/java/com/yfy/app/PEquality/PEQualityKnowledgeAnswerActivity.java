@@ -1,8 +1,11 @@
 package com.yfy.app.PEquality;
 
 import android.os.Bundle;
+import android.widget.ListView;
 
+import com.yfy.app.PEquality.adapter.PEAttituAnswerListViewAdapter;
 import com.yfy.app.bean.BaseRes;
+import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -15,8 +18,10 @@ import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
 import com.yfy.final_tag.StringUtils;
 import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.data.TagFinal;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -33,6 +38,7 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         setContentView(R.layout.p_e_knowledge_answer);
         getData();
         initSQToolbar();
+        initListView();
 
     }
 
@@ -49,8 +55,43 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
 
 
 
+    public List<KeyValue> keyValue_adapter=new ArrayList<>();
+    public PEAttituAnswerListViewAdapter list_adapter;
+    public ListView listview;
+    private  void initListView(){
+        listview=findViewById(R.id.attitude_answer_list);
+        list_adapter=new PEAttituAnswerListViewAdapter(mActivity);
+        listview.setAdapter(list_adapter);
+
+        keyValue_adapter.clear();
 
 
+        KeyValue one=new KeyValue("古罗马","",TagFinal.TYPE_ITEM);
+        one.setTitle("总分");
+        one.setContent("技能项简评");
+        one.setRight("88");
+
+        KeyValue two=new KeyValue("古希腊","",TagFinal.TYPE_ITEM);
+        two.setTitle("必考项 1");
+        two.setContent("（球类）");
+        two.setRight("88");
+
+        KeyValue three=new KeyValue("法国","",TagFinal.TYPE_ITEM);
+        three.setTitle("必考项 ");
+        three.setContent("（体操）");
+        three.setRight("88");
+
+        KeyValue four=new KeyValue("英国","",TagFinal.TYPE_ITEM);
+        four.setTitle("选考项 ");
+        four.setContent("（田径，民传，新兴体育）");
+        four.setRight("88");
+
+        keyValue_adapter.add(one);
+        keyValue_adapter.add(two);
+        keyValue_adapter.add(three);
+        keyValue_adapter.add(four);
+        list_adapter.setDatas(keyValue_adapter);
+    }
 
     /**
      * ----------------------------retrofit-----------------------

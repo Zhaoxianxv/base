@@ -48,6 +48,7 @@ public class PEQualityAttitudeAdapter extends RecyclerView.Adapter<RecyclerView.
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TagFinal.TYPE_ITEM) {
+
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_attitude_item, parent, false);
             return new ItemHolder(view);
         }
@@ -56,7 +57,7 @@ public class PEQualityAttitudeAdapter extends RecyclerView.Adapter<RecyclerView.
             return new DetailH(view);
         }
         if (viewType == TagFinal.TYPE_TOP) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_item_singe_top_txt_center, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_attitude_atten_item, parent, false);
             return new AttenlH(view);
         }
         return null;

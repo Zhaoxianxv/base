@@ -5,7 +5,7 @@
     android:id="@+id/p_e_attitude_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/layer_bottom_grayline_whitebg">
+    android:background="@color/white">
     <TextView
         android:id="@+id/p_e_attitude_state"
         android:layout_width="wrap_content"

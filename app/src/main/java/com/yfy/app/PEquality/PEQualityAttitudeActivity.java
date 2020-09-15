@@ -1,8 +1,11 @@
 package com.yfy.app.PEquality;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.yfy.app.PEquality.adapter.PEQualityAttitudeAdapter;
 import com.yfy.app.bean.BaseRes;
@@ -23,6 +26,7 @@ import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
+import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,10 +58,19 @@ public class PEQualityAttitudeActivity extends BaseActivity {
     private void getData(){
         title=getIntent().getStringExtra(Base.title);
     }
+    private TextView one_menu;
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
-
+        one_menu=toolbar.addMenuText(TagFinal.ONE_INT,"");
+        one_menu.setVisibility(View.GONE);
+        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent=new Intent(mActivity,PEQualityAttenListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     public RecyclerView recyclerView;
@@ -65,7 +78,12 @@ public class PEQualityAttitudeActivity extends BaseActivity {
         recyclerView =  findViewById(R.id.public_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
+        //添加分割线
+        recyclerView.addItemDecoration(new RecycleViewDivider(
+                mActivity,
+                LinearLayoutManager.HORIZONTAL,
+                1,
+                getResources().getColor(R.color.gray)));
         adapter=new PEQualityAttitudeAdapter(mActivity);
         recyclerView.setAdapter(adapter);
     }
@@ -82,12 +100,16 @@ public class PEQualityAttitudeActivity extends BaseActivity {
         one.setContent("2020.5.21  下午第二节课");
         one.setRight("张丹");
 
-        keyValue_adapter.add(all);
         keyValue_adapter.add(detail);
         keyValue_adapter.add(one);
 
+
+
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);
+
+        one_menu.setVisibility(View.VISIBLE);
+        one_menu.setText("请假记录");
     }
     /**
      * ----------------------------retrofit-----------------------

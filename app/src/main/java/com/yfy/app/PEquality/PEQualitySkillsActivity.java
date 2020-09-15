@@ -26,6 +26,7 @@ import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.ConfirmContentWindow;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
+import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
@@ -107,7 +108,12 @@ public class PEQualitySkillsActivity extends BaseActivity {
         recyclerView =  findViewById(R.id.public_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
+        //添加分割线
+        recyclerView.addItemDecoration(new RecycleViewDivider(
+                mActivity,
+                LinearLayoutManager.HORIZONTAL,
+                1,
+                getResources().getColor(R.color.gray)));
         adapter=new PEQualitySkillsAdapter(mActivity);
         recyclerView.setAdapter(adapter);
     }

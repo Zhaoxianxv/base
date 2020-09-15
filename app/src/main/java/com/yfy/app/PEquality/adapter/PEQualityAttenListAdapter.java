@@ -71,7 +71,6 @@ public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView
     private class ItemHolder extends RecyclerView.ViewHolder {
         TextView title;
         TextView sub;
-        TextView content;
         TextView state;
         KeyValue bean;
         ItemHolder(View itemView) {
@@ -79,7 +78,6 @@ public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView
             title=  itemView.findViewById(R.id.public_detail_item_title);
             sub=  itemView.findViewById(R.id.public_detail_item_sub);
             state =  itemView.findViewById(R.id.public_detail_item_state);
-            content=  itemView.findViewById(R.id.public_detail_item_reason);
 
         }
     }
