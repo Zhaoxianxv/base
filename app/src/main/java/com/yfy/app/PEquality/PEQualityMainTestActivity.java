@@ -170,6 +170,9 @@ public class PEQualityMainTestActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle("体育素质");
         menu_one=toolbar.addMenuText(TagFinal.ONE_INT,"add");
+
+        toolbar.cancelNavi();
+        toolbar.setNaviText("教师");
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -184,15 +187,14 @@ public class PEQualityMainTestActivity extends BaseActivity {
                     Intent intent=new Intent(mActivity,LoginActivity.class);
                     startActivityForResult(intent,TagFinal.UI_ADD);
                 }else{
-                    finish();
+                    Intent intent=new Intent(mActivity,SelectedTermActivity.class);
+                    startActivityForResult(intent,TagFinal.UI_TAG);
                 }
 
             }
         });
-        select_term=new TermBean();
-        select_term.setName(UserPreferences.getInstance().getTermName());
-        select_term.setId(UserPreferences.getInstance().getTermId());
-        menu_one.setText(select_term.getName());
+
+        menu_one.setText("19-20上期");
 
     }
 
