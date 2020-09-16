@@ -48,7 +48,7 @@ public class PEQualitySkillsAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TagFinal.TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_attitude_item, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_skills_item, parent, false);
             return new ItemHolder(view);
         }
 

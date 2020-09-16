@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/public_center_txt_add_layout"
-    android:background="@color/Snow">
-    <TextView
-        android:id="@+id/public_center_txt_add"
+    android:background="@color/white"
+    android:id="@+id/public_center_txt_add_layout">
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/public_center_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_45dp"
-        android:textSize="@dimen/textsize11"
-        android:textColor="@color/white"
+        android:textSize="@dimen/textsize10"
         android:text="新增提问"
-        android:textStyle="bold"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="@dimen/textsize3"
+        app:autoSizeMaxTextSize="@dimen/textsize10"
+        android:maxLines="1"
         android:gravity="center"/>
 
 </LinearLayout>

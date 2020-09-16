@@ -1,6 +1,7 @@
 package com.yfy.app.PEquality;
 
 import android.os.Bundle;
+import android.widget.AbsListView;
 import android.widget.ListView;
 
 import com.yfy.app.PEquality.adapter.PEAttituAnswerListViewAdapter;
@@ -60,31 +61,25 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
     public ListView listview;
     private  void initListView(){
         listview=findViewById(R.id.attitude_answer_list);
+//        listview.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+        listview.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
         list_adapter=new PEAttituAnswerListViewAdapter(mActivity);
         listview.setAdapter(list_adapter);
 
         keyValue_adapter.clear();
 
 
-        KeyValue one=new KeyValue("古罗马","",TagFinal.TYPE_ITEM);
-        one.setTitle("总分");
-        one.setContent("技能项简评");
-        one.setRight("88");
+        KeyValue one=new KeyValue("A、古罗马","",TagFinal.TYPE_ITEM);
 
-        KeyValue two=new KeyValue("古希腊","",TagFinal.TYPE_ITEM);
-        two.setTitle("必考项 1");
-        two.setContent("（球类）");
-        two.setRight("88");
 
-        KeyValue three=new KeyValue("法国","",TagFinal.TYPE_ITEM);
-        three.setTitle("必考项 ");
-        three.setContent("（体操）");
-        three.setRight("88");
+        KeyValue two=new KeyValue("B、古希腊","",TagFinal.TYPE_ITEM);
 
-        KeyValue four=new KeyValue("英国","",TagFinal.TYPE_ITEM);
-        four.setTitle("选考项 ");
-        four.setContent("（田径，民传，新兴体育）");
-        four.setRight("88");
+
+        KeyValue three=new KeyValue("C、法国文字超出一行文字超出一行文字超出一行文字超出一行","",TagFinal.TYPE_ITEM);
+
+
+        KeyValue four=new KeyValue("D、英国","",TagFinal.TYPE_ITEM);
+
 
         keyValue_adapter.add(one);
         keyValue_adapter.add(two);

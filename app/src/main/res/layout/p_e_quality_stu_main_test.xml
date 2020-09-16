@@ -129,7 +129,7 @@
             android:layout_centerVertical="true"
             android:text="运动处方"
             android:ems="1"
-
+            android:textSize="@dimen/textsize9"
             />
         <android.support.design.internal.FlowLayout
             android:id="@+id/p_e_main_recipe_flow_layout"

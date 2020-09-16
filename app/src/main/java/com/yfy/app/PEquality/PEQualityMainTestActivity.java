@@ -208,6 +208,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
         grade_sub.setText("95.5");
         user_content.setText(StringUtils.getTextJoint("身高:\t%1$scm\t\t体重:\t%2$skg",145,39));
         recipe_title.setText("运动处方");
+        recipe_title.setTypeface(mTypeface);
         grade_title.setTypeface(mTypeface);
         grade_sub.setTypeface(mTypeface);
         String grade="优";
@@ -223,10 +224,10 @@ public class PEQualityMainTestActivity extends BaseActivity {
         }
         List<KeyValue> list=new ArrayList<>();
         list.add(new KeyValue("*运动处方1：","建议加强体能锻炼"));
-        list.add(new KeyValue("*运动处方2：","建议加强体能锻炼"));
-        list.add(new KeyValue("*运动处方3：","建议加强体能锻炼"));
-        list.add(new KeyValue("*运动处方4：","建议加强体能锻炼"));
-        list.add(new KeyValue("*运动处方5：","建议加强体能锻炼"));
+        list.add(new KeyValue("*运动处方2：","建议加跳高能锻炼"));
+        list.add(new KeyValue("*运动处方3：","建议加跳远能锻炼"));
+        list.add(new KeyValue("*运动处方4：","建议加短跑能锻炼"));
+        list.add(new KeyValue("*运动处方5：","建议加长跑能锻炼"));
         setFlowLayoutTop(list);
         initRecyclerView();
     }
@@ -291,10 +292,10 @@ public class PEQualityMainTestActivity extends BaseActivity {
                 }
             }
         });
-        adapter_data_show.add(new KeyValue("体育荣誉证书",R.drawable.ic_parent_head));
-        adapter_data_show.add(new KeyValue("体育比赛成绩",R.drawable.ic_parent_head));
-        adapter_data_show.add(new KeyValue("课堂表现",R.drawable.ic_parent_head));
-        adapter_data_show.add(new KeyValue("膳食建议",R.drawable.ic_parent_head));
+        adapter_data_show.add(new KeyValue("体育荣誉证书",R.drawable.icon_credentials));
+        adapter_data_show.add(new KeyValue("体育比赛成绩",R.drawable.icon_score));
+        adapter_data_show.add(new KeyValue("课堂表现",R.drawable.icon_show));
+        adapter_data_show.add(new KeyValue("膳食建议",R.drawable.icon_suggestion));
         adapter.setDataList(adapter_data_show);
         adapter.setLoadState(TagFinal.LOADING_END);
     }

@@ -47,7 +47,7 @@ public class PEAttituAnswerListViewAdapter extends BaseAdapter {
         ViewHolder viewHolder = null;
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.public_checked_textview , null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.public_singe_checked_layout , null);
             viewHolder.name = convertView.findViewById(android.R.id.text1);
             convertView.setTag(viewHolder);
         }else{

@@ -102,6 +102,8 @@ public class PEQualityAttitudeActivity extends BaseActivity {
 
         keyValue_adapter.add(detail);
         keyValue_adapter.add(one);
+        keyValue_adapter.add(one);
+        keyValue_adapter.add(one);
 
 
 

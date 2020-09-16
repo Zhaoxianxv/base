@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.final_tag.StringUtils;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class PEQualityStandardListAdapter extends RecyclerView.Adapter<RecyclerV
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TagFinal.TYPE_TOP) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_txt, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_item_singe_top_txt, parent, false);
             return new TopHolder(view);
         }
         if (viewType == TagFinal.TYPE_ITEM) {
@@ -66,8 +67,7 @@ public class PEQualityStandardListAdapter extends RecyclerView.Adapter<RecyclerV
         if (holder instanceof TopHolder){
             TopHolder topHolder = (TopHolder) holder;
             topHolder.bean = dataList.get(position);
-            topHolder.left_title.setText(topHolder.bean.getName());
-            topHolder.right_value.setText(topHolder.bean.getValue());
+            topHolder.top_title.setText(StringUtils.stringToGetTextJoint("%1$s:%2$s",topHolder.bean.getName(),topHolder.bean.getValue()));
         }
 
     }
@@ -104,13 +104,11 @@ public class PEQualityStandardListAdapter extends RecyclerView.Adapter<RecyclerV
 
 
     private class TopHolder extends RecyclerView.ViewHolder {
-        TextView left_title;
-        TextView right_value;
+        AppCompatTextView top_title;
         KeyValue bean;
         TopHolder(View itemView) {
             super(itemView);
-            left_title =  itemView.findViewById(R.id.public_type_txt_key);
-            right_value =  itemView.findViewById(R.id.public_type_txt_value);
+            top_title =  itemView.findViewById(R.id.public_center_title);
 
         }
     }

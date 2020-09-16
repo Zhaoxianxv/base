@@ -131,17 +131,17 @@ public class PEQualitySkillsActivity extends BaseActivity {
 
         KeyValue two=new KeyValue("","",TagFinal.TYPE_ITEM);
         two.setTitle("必考项 1");
-        two.setContent("（球类）");
+        two.setContent("球类");
         two.setRight("88");
 
         KeyValue three=new KeyValue("","",TagFinal.TYPE_ITEM);
         three.setTitle("必考项 ");
-        three.setContent("（体操）");
+        three.setContent("体操");
         three.setRight("88");
 
         KeyValue four=new KeyValue("","",TagFinal.TYPE_ITEM);
         four.setTitle("选考项 ");
-        four.setContent("（田径，民传，新兴体育）");
+        four.setContent("田径、民传、新兴体育");
         four.setRight("88");
 
         keyValue_adapter.add(one);
