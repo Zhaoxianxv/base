@@ -10,15 +10,20 @@ import com.yfy.greendao.User;
 public class Base {
     public static String DB_NAME="yfydb";
 
+
+    //app地址
+//    public final static String RETROFIT_URI = "https://www.cdpx.net/";
+//    public static final String SOAP_ACTION = "SOAPAction: http://tempuri.org/Service2/";//
+//    public static final String POST_URI = "/Service2.svc";//
+
     public static final String RETROFIT_URI = "https://www.cdeps.sc.cn/";
-    //app更新地址
-    public static final String AUTHORITY = "com.yfy.base.fileProvider";//android 7.0文件访问权限Tag（要和Provider一直）
-    public static final String Content_Type = "Content-Type: text/xml;charset=UTF-8";//
     public static final String SOAP_ACTION = "SOAPAction: http://tempuri.org/AppService/";//
     public static final String POST_URI = "/AppService.svc";//
-    public static final String NAMESPACE = "http://tempuri.org/";//
 
+    public static final String NAMESPACE = "http://tempuri.org/";//
+    public static final String Content_Type = "Content-Type: text/xml;charset=UTF-8";//
     //app更新地址
+    public static final String AUTHORITY = "com.yfy.base.fileProvider";//android 7.0文件访问权限Tag（要和Provider一直）
     public static final String AUTO_UPDATE_URI = "http://www.yfyit.com/apk/cdsyxx.txt";
     public static final String HUAWEI_PRIVATE = "http://www.yfyit.com/yszc.html";//
     public static final String HUAWEI_AGREEMENT = "http://www.yfyit.com/yhxy.html";//

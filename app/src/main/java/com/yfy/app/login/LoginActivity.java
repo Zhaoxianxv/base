@@ -335,16 +335,13 @@ public class LoginActivity extends BaseActivity {
 				}
 			}
 			if (b.userGetDuplicationListRes !=null){
-
 				String result=b.userGetDuplicationListRes.result;
 				Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
-
 				UserRes res= gson.fromJson(result,UserRes.class);
 				setCPWlListBeanData(res.getStunlist());
 				dismissProgressDialog();
 			}
 			if (b.userDuplicationLoginRes !=null){
-
 				String result=b.userDuplicationLoginRes.result;
 				Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
 				dismissProgressDialog();

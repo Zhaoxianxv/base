@@ -81,6 +81,14 @@
             android:name="com.yfy.app.SelectedTermActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.SelectedClassActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.SelectStuActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <!--album-->
         <activity
             android:name="com.yfy.app.album.AlbumAllActivity"
@@ -172,6 +180,14 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.yfy.app.PEquality.PEQualitySkillsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.PEquality.PEHonorMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.PEquality.PEHonorAddActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>

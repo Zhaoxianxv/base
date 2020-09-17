@@ -1,13 +1,10 @@
 package com.yfy.app.PEquality;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.yfy.app.PEquality.adapter.PEQualityAttenListAdapter;
 import com.yfy.app.PEquality.adapter.PEQualitySkillsAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;

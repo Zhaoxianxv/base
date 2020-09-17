@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.yfy.app.PEquality.adapter.PEQualityAttenListAdapter;
 import com.yfy.app.PEquality.adapter.PEQualityHomeworkAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;

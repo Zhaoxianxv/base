@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yfy.app.PEquality.adapter.PEQualityMainAdapter;
+import com.yfy.app.SelectedClassActivity;
 import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
@@ -187,8 +188,8 @@ public class PEQualityMainTestActivity extends BaseActivity {
                     Intent intent=new Intent(mActivity,LoginActivity.class);
                     startActivityForResult(intent,TagFinal.UI_ADD);
                 }else{
-                    Intent intent=new Intent(mActivity,SelectedTermActivity.class);
-                    startActivityForResult(intent,TagFinal.UI_TAG);
+                    Intent intent=new Intent(mActivity,SelectedClassActivity.class);
+                    startActivity(intent);
                 }
 
             }
@@ -288,8 +289,17 @@ public class PEQualityMainTestActivity extends BaseActivity {
         adapter.setItemOnc(new PEQualityMainAdapter.ItemOnc() {
             @Override
             public void onc(KeyValue bean) {
-                switch (bean.getType()){
-                    case "":
+               Intent intent;
+                switch (bean.getName()) {
+                    case "体育荣誉证书":
+                        intent=new Intent(mActivity,PEHonorMainActivity.class);
+                        intent.putExtra(Base.title,bean.getName());
+                        startActivity(intent);
+                        break;
+                    case "体育比赛成绩":
+                        intent=new Intent(mActivity,PEHonorMainActivity.class);
+                        intent.putExtra(Base.title,bean.getName());
+                        startActivity(intent);
                         break;
                 }
             }

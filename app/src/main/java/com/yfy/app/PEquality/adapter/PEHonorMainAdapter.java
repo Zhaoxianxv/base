@@ -26,13 +26,13 @@ import java.util.List;
  * Created by yfyandr on 2017/12/27.
  */
 
-public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PEHonorMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Activity mContext;
     private List<KeyValue> dataList;
     private int loadState = 2;
 
-    public PEQualityAttenListAdapter(Activity mContext) {
+    public PEHonorMainAdapter(Activity mContext) {
         this.mContext = mContext;
         this.dataList = new ArrayList<>();
 
@@ -52,7 +52,7 @@ public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TagFinal.TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_atten_item_layout, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_honor_main_item_layout, parent, false);
             return new ItemHolder(view);
         }
 
@@ -68,6 +68,7 @@ public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView
             iHolder.left_title.setText(iHolder.bean.getLeft_title());
             iHolder.left_sub.setText(iHolder.bean.getTitle());
             iHolder.right_state.setText(iHolder.bean.getRight());
+            iHolder.right_score.setText(iHolder.bean.getRight_value());
             if (StringJudge.isEmpty(iHolder.bean.getListValue())){
 //                iHolder.multi.setVisibility(View.GONE);
                 List<String> list=new ArrayList<>();
@@ -92,14 +93,16 @@ public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView
         TextView left_title;
         TextView left_sub;
         TextView right_state;
+        TextView right_score;
         MultiPictureView multi;
         KeyValue bean;
         ItemHolder(View itemView) {
             super(itemView);
-            left_title =  itemView.findViewById(R.id.p_e_atten_left_title);
-            left_sub =  itemView.findViewById(R.id.p_e_atten_left_sub);
-            right_state =  itemView.findViewById(R.id.p_e_atten_right_state);
-            multi =  itemView.findViewById(R.id.p_e_atten_item_multi);
+            left_title =  itemView.findViewById(R.id.p_e_honor_left_title);
+            left_sub =  itemView.findViewById(R.id.p_e_honor_left_sub);
+            right_state =  itemView.findViewById(R.id.p_e_honor_right_state);
+            right_score =  itemView.findViewById(R.id.p_e_honor_right_score);
+            multi =  itemView.findViewById(R.id.p_e_honor_item_multi);
             multi.setItemClickCallback(new MultiPictureView.ItemClickCallback() {
                 @Override
                 public void onItemClicked(@NotNull View view, int index, @NotNull ArrayList<String> uris) {
