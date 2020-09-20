@@ -1,15 +1,9 @@
 package com.yfy.app.PEquality;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.support.v7.widget.AppCompatTextView;
 
-import com.yfy.app.PEquality.adapter.PEQualityStandardListAdapter;
-import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.bean.BaseRes;
-import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -22,97 +16,52 @@ import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
 import com.yfy.final_tag.StringUtils;
 import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.recycerview.DefaultItemAnimator;
-import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class PEQualityStandardListActivity extends BaseActivity {
-    private static final String TAG = PEQualityStandardListActivity.class.getSimpleName();
+public class PEQualitySuggestActivity extends BaseActivity {
+    private static final String TAG = PEQualitySuggestActivity.class.getSimpleName();
 
-    private PEQualityStandardListAdapter adapter;
 
+    @Bind(R.id.p_e_suggest_title)
+    AppCompatTextView suggest_title;
+
+    @Bind(R.id.p_e_suggest_reason)
+    AppCompatTextView suggest_subtitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.public_recycler_view);
+        setContentView(R.layout.p_e_suggest_main);
         getData();
-        initRecycler();
         initSQToolbar();
-//        getTerm();
+        initView();
 
-        setAdapterData();
     }
 
 
-    private String title,type;
+    private String title;
     private void getData(){
         title=getIntent().getStringExtra(Base.title);
-        type=getIntent().getStringExtra(Base.type);
     }
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
-        if (type.equalsIgnoreCase(TagFinal.FALSE))return;
-        toolbar.addMenuText(TagFinal.ONE_INT,"添加");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
-                intent.putExtra(Base.title,title);
-                intent.putExtra(Base.type,TAG);
-                startActivity(intent);
-            }
-        });
-
 
     }
-    public List<KeyValue> keyValue_adapter=new ArrayList<>();
-    public RecyclerView recyclerView;
-    public void initRecycler(){
-        recyclerView =  findViewById(R.id.public_recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        adapter=new PEQualityStandardListAdapter(mActivity);
-        recyclerView.setAdapter(adapter);
+    private void initView(){
+        suggest_title.setText("膳食建议标题");
+        suggest_subtitle.setText("五谷杂粮，如莜麦面、荞麦面、燕麦片、玉米面、紫山药等富含维生素B、多种微量元素及食物纤维，以低糖，低淀粉的食物或者粗粮以及蔬菜等做主食。\n" +
+                "豆类及豆制品，豆类食品富含蛋白质、无机盐和维生素，且豆油含不饱和脂肪酸，能降低血清胆固醇及甘油三酯。\n" +
+                "苦瓜、桑叶、洋葱、香菇、柚子、可降低血糖，是糖尿病人最理想食物，如能长期食用，则降血糖和预防并发症的效果会更好。");
     }
 
-
-
-    private void setAdapterData(){
-        keyValue_adapter.clear();
-
-        KeyValue one=new KeyValue("","",TagFinal.TYPE_ITEM);
-        one.setTitle("体重指数");
-        one.setRight("张丹");
-        one.setValue("18.24310926");
-
-        KeyValue three=new KeyValue("","",TagFinal.TYPE_ITEM);
-        three.setTitle("50米");
-        three.setRight("张丹");
-        three.setValue("13.3");
-
-        KeyValue two=new KeyValue("","",TagFinal.TYPE_ITEM);
-        two.setTitle("一分钟跳绳");
-        two.setRight("张丹");
-        two.setValue("124");
-
-        keyValue_adapter.add(new KeyValue("综合得分" ,"86.58分",TagFinal.TYPE_TOP));
-        keyValue_adapter.add(one);
-        keyValue_adapter.add(three);
-        keyValue_adapter.add(two);
-
-        adapter.setDataList(keyValue_adapter);
-        adapter.setLoadState(TagFinal.LOADING_END);
-    }
     /**
      * ----------------------------retrofit-----------------------
      */

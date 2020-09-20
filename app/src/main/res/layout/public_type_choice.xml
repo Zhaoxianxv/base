@@ -3,12 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_10dp"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_45dp"
-        android:background="@color/White">
+        android:background="@drawable/layer_top_bottom_grayline_whitebg">
 
         <TextView
             android:id="@+id/public_type_choice_key"

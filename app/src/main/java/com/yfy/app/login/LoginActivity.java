@@ -168,7 +168,7 @@ public class LoginActivity extends BaseActivity {
 			cpwBeans.clear();
 			for(Stunlist opear:stunlist){
 				CPWBean cpwBean =new CPWBean();
-				cpwBean.setName(StringUtils.getTextJoint("%1$s(%2$s)",opear.getStuname(),opear.getClassname()));
+				cpwBean.setName(StringUtils.stringToGetTextJoint("%1$s(%2$s)",opear.getStuname(),opear.getClassname()));
 				cpwBean.setId(opear.getStuid());
 				cpwBeans.add(cpwBean);
 			}
@@ -310,7 +310,7 @@ public class LoginActivity extends BaseActivity {
 			ResBody b=respEnvelope.body;
 			if (b.userLoginRes !=null){
 				String result=b.userLoginRes.result;
-				Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
+				Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
 				UserRes res= gson.fromJson(result,UserRes.class);
 				if (res.getResult().equalsIgnoreCase(TagFinal.TRUE)) {
 					dismissProgressDialog();
@@ -336,14 +336,14 @@ public class LoginActivity extends BaseActivity {
 			}
 			if (b.userGetDuplicationListRes !=null){
 				String result=b.userGetDuplicationListRes.result;
-				Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
+				Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
 				UserRes res= gson.fromJson(result,UserRes.class);
 				setCPWlListBeanData(res.getStunlist());
 				dismissProgressDialog();
 			}
 			if (b.userDuplicationLoginRes !=null){
 				String result=b.userDuplicationLoginRes.result;
-				Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
+				Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
 				dismissProgressDialog();
 				UserRes res= gson.fromJson(result,UserRes.class);
 				if (res.getResult().equalsIgnoreCase(TagFinal.TRUE)) {
@@ -363,7 +363,7 @@ public class LoginActivity extends BaseActivity {
 			}
 			if (b.baseGetTookenRes !=null){
 				String result=b.baseGetTookenRes.result;
-				Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
+				Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
 				BaseRes res=gson.fromJson(result,BaseRes.class);
 				if (res.getResult().equalsIgnoreCase(TagFinal.TRUE)){
 					if (token.equalsIgnoreCase("login")){
@@ -375,8 +375,8 @@ public class LoginActivity extends BaseActivity {
 			}
 		}else{
 			dismissProgressDialog();
-			Logger.e(StringUtils.getTextJoint("%1$s:%2$d",name,response.code()));
-			toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
+			Logger.e(StringUtils.stringToGetTextJoint("%1$s:%2$d",name,response.code()));
+			toastShow(StringUtils.stringToGetTextJoint("数据错误:%1$d",response.code()));
 		}
 
 	}

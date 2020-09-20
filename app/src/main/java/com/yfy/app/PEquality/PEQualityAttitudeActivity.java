@@ -68,6 +68,7 @@ public class PEQualityAttitudeActivity extends BaseActivity {
             @Override
             public void onClick(View view, int position) {
                 Intent intent=new Intent(mActivity,PEQualityAttenListActivity.class);
+                intent.putExtra(Base.title,"请假记录");
                 startActivity(intent);
             }
         });

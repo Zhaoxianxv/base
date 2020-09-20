@@ -123,7 +123,7 @@ public class AlterCllActivity extends BaseActivity implements Callback<ResEnv> {
             ResBody b=respEnvelope.body;
             if (b.userResetCallRes !=null){
                 String result=b.userResetCallRes.result;
-                Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
+                Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
 //                if (JsonParser.isSuccess(result)){
 //                    toastShow("联系号码设置成功！");
 //                    setResult(RESULT_OK);
@@ -131,7 +131,7 @@ public class AlterCllActivity extends BaseActivity implements Callback<ResEnv> {
 //                }
             }
         }else{
-            Logger.e(StringUtils.getTextJoint("%1$s:%2$d",name,response.code()));
+            Logger.e(StringUtils.stringToGetTextJoint("%1$s:%2$d",name,response.code()));
         }
 
     }

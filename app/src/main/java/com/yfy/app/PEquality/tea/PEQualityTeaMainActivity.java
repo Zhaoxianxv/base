@@ -1,4 +1,4 @@
-package com.yfy.app.PEquality;
+package com.yfy.app.PEquality.tea;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,6 +18,14 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.yfy.app.PEquality.PEHonorMainActivity;
+import com.yfy.app.PEquality.PEQualityAttitudeActivity;
+import com.yfy.app.PEquality.PEQualityHomeworkActivity;
+import com.yfy.app.PEquality.PEQualityKnowledgeActivity;
+import com.yfy.app.PEquality.PEQualitySkillsActivity;
+import com.yfy.app.PEquality.PEQualityStaminaActivity;
+import com.yfy.app.PEquality.PEQualityStandardListActivity;
+import com.yfy.app.PEquality.PERecipeActivity;
 import com.yfy.app.PEquality.adapter.PEQualityMainAdapter;
 import com.yfy.app.SelectedClassActivity;
 import com.yfy.app.SelectedTermActivity;
@@ -37,14 +45,12 @@ import com.yfy.base.RadarUtil;
 import com.yfy.base.XAxisFormatter;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.charting_mp_test.charts.RadarChart;
-import com.yfy.charting_mp_test.components.Legend;
 import com.yfy.charting_mp_test.components.XAxis;
 import com.yfy.charting_mp_test.components.YAxis;
 import com.yfy.charting_mp_test.data.RadarData;
 import com.yfy.charting_mp_test.data.RadarDataSet;
 import com.yfy.charting_mp_test.data.RadarEntry;
 import com.yfy.charting_mp_test.interfaces.datasets.IRadarDataSet;
-import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
 import com.yfy.final_tag.StringUtils;
@@ -68,8 +74,8 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class PEQualityMainTestActivity extends BaseActivity {
-    private static final String TAG = PEQualityMainTestActivity.class.getSimpleName();
+public class PEQualityTeaMainActivity extends BaseActivity {
+    private static final String TAG = PEQualityTeaMainActivity.class.getSimpleName();
 
 
     @Bind(R.id.p_e_main_user_head)
@@ -118,6 +124,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
                                     case "学习态度":
                                         intent=new Intent(mActivity,PEQualityAttitudeActivity.class);
                                         intent.putExtra(Base.title,type);
+                                        intent.putExtra(Base.type,TagFinal.TRUE);
                                         startActivity(intent);
                                         break;
                                     case "健康教育知识"://PEQualityKnowledgeActivity
@@ -128,24 +135,25 @@ public class PEQualityMainTestActivity extends BaseActivity {
                                     case "运动技能":
                                         intent=new Intent(mActivity,PEQualitySkillsActivity.class);
                                         intent.putExtra(Base.title,type);
-                                        intent.putExtra(Base.type,TagFinal.FALSE);
+                                        intent.putExtra(Base.type,TagFinal.TRUE);
                                         startActivity(intent);
                                         break;
                                     case "体能":
-                                        intent=new Intent(mActivity,PEQualityStaminaActivity.class);
+                                        intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                                         intent.putExtra(Base.title,type);
+                                        intent.putExtra(Base.type,"stamina");
                                         startActivity(intent);
                                         break;
                                     case "体育课后作业":
                                         intent=new Intent(mActivity,PEQualityHomeworkActivity.class);
                                         intent.putExtra(Base.title,type);
-                                        intent.putExtra(Base.type,TagFinal.FALSE);
+                                        intent.putExtra(Base.type,TagFinal.TRUE);
                                         startActivity(intent);
                                         break;
                                     case "国家体质健康标准":
                                         intent=new Intent(mActivity,PEQualityStandardListActivity.class);
                                         intent.putExtra(Base.title,type);
-                                        intent.putExtra(Base.type,TagFinal.FALSE);
+                                        intent.putExtra(Base.type,TagFinal.TRUE);
                                         startActivity(intent);
                                         break;
 
@@ -170,36 +178,14 @@ public class PEQualityMainTestActivity extends BaseActivity {
 
 
     private TermBean select_term;
-    private TextView menu_one;
+
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle("体育素质");
-        menu_one=toolbar.addMenuText(TagFinal.ONE_INT,"add");
 
-        toolbar.cancelNavi();
-        toolbar.setNaviText("教师");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Intent intent=new Intent(mActivity,SelectedTermActivity.class);
-                startActivityForResult(intent,TagFinal.UI_TAG);
-            }
-        });
-        toolbar.setOnNaviClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Base.user==null){
-                    Intent intent=new Intent(mActivity,LoginActivity.class);
-                    startActivityForResult(intent,TagFinal.UI_ADD);
-                }else{
-                    Intent intent=new Intent(mActivity,SelectedClassActivity.class);
-                    startActivity(intent);
-                }
 
-            }
-        });
 
-        menu_one.setText("19-20上期");
+
 
     }
 
@@ -303,9 +289,10 @@ public class PEQualityMainTestActivity extends BaseActivity {
                         intent.putExtra(Base.title,bean.getName());
                         startActivity(intent);
                         break;
-                    case "膳食建议":
-                        intent=new Intent(mActivity,PEQualitySuggestActivity.class);
+                    case "膳食建议"://
+                        intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                         intent.putExtra(Base.title,bean.getName());
+                        intent.putExtra(Base.type,TAG);
                         startActivity(intent);
                         break;
                 }
@@ -324,8 +311,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
         if (resultCode==RESULT_OK){
             switch (requestCode){
                 case TagFinal.UI_TAG:
-                    select_term=data.getParcelableExtra(Base.data);
-                    menu_one.setText(select_term.getName());
+
                     break;
                 case TagFinal.UI_ADD:
                     getTerm();
@@ -439,15 +425,16 @@ public class PEQualityMainTestActivity extends BaseActivity {
     }
 
 
+
+
     @OnClick(R.id.p_e_main_recipe_layout)
     void setRecipe(){
 
         Intent intent=new Intent(mActivity,PERecipeActivity.class);
         intent.putExtra(Base.title,"运动处方");
-        intent.putExtra(Base.type,TagFinal.FALSE);
+        intent.putExtra(Base.type,TagFinal.TRUE);
         startActivity(intent);
     }
-
     /**
      * ----------------------------retrofit-----------------------
      */

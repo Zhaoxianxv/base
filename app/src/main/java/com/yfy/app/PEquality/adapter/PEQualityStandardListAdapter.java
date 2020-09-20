@@ -63,6 +63,8 @@ public class PEQualityStandardListAdapter extends RecyclerView.Adapter<RecyclerV
         if (holder instanceof ItemHolder) {
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
+            iHolder.left_title.setText(iHolder.bean.getTitle());
+            iHolder.left_sub.setText(iHolder.bean.getValue());
         }
         if (holder instanceof TopHolder){
             TopHolder topHolder = (TopHolder) holder;

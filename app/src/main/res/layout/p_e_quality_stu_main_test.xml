@@ -116,36 +116,42 @@
     <RelativeLayout
         android:id="@+id/p_e_main_recipe_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/margin_5dp"
-        android:layout_marginBottom="@dimen/margin_5dp"
-        >
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/margin_80dp"
+            android:background="@drawable/radius4_radio_group"
+            android:layout_margin="@dimen/margin_10dp"
+            >
+            <android.support.design.internal.FlowLayout
+                android:id="@+id/p_e_main_recipe_flow_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:layout_marginBottom="@dimen/margin_5dp"
+                app:lineSpacing="@dimen/margin_3dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:foregroundGravity="center"
+                android:layout_centerVertical="true"
+                />
+        </RelativeLayout>
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/p_e_main_recipe"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_10dp"
-            android:layout_centerVertical="true"
+            android:layout_height="@dimen/margin_20dp"
+            android:layout_marginLeft="@dimen/margin_30dp"
             android:text="运动处方"
-            android:ems="1"
-            android:textSize="@dimen/textsize9"
-            />
-        <android.support.design.internal.FlowLayout
-            android:id="@+id/p_e_main_recipe_flow_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_toRightOf="@id/p_e_main_recipe"
-            android:layout_marginTop="@dimen/margin_5dp"
-            android:layout_marginBottom="@dimen/margin_5dp"
-            app:lineSpacing="@dimen/margin_3dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="@dimen/margin_10dp"
-            android:foregroundGravity="center"
+            android:gravity="center"
+            android:background="@color/White"
+            android:paddingLeft="@dimen/margin_5dp"
+            android:paddingRight="@dimen/margin_5dp"
             />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/p_e_main_type_layout"
         android:layout_below="@id/p_e_main_line"

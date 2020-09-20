@@ -1,12 +1,15 @@
 package com.yfy.app.PEquality;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.yfy.app.PEquality.adapter.PEQualitySkillsAdapter;
+import com.yfy.app.PEquality.adapter.PERecipeAdapter;
 import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
@@ -23,9 +26,7 @@ import com.yfy.final_tag.Logger;
 import com.yfy.final_tag.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.dialog.ConfirmContentWindow;
-import com.yfy.final_tag.recycerview.DefaultItemAnimator;
-import com.yfy.final_tag.recycerview.RecycleViewDivider;
+import com.yfy.final_tag.recycerview.EndlessRecyclerOnScrollListener;
 import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
@@ -35,22 +36,18 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class PEQualitySkillsActivity extends BaseActivity {
-    private static final String TAG = PEQualitySkillsActivity.class.getSimpleName();
-
-    private PEQualitySkillsAdapter adapter;
+public class PERecipeActivity extends BaseActivity {
+    private static final String TAG = PERecipeActivity.class.getSimpleName();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.public_recycler_view);
+        setContentView(R.layout.swip_recycler_main);
         getData();
-        initRecycler();
-        initDialog();
         initSQToolbar();
+        initRecycler();
         setAdapterData();
-
     }
 
 
@@ -62,105 +59,92 @@ public class PEQualitySkillsActivity extends BaseActivity {
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
-        if (type.equalsIgnoreCase(TagFinal.FALSE)){
-            toolbar.addMenu(TagFinal.ONE_INT,R.drawable.ic_help_white_24dp);
-        }else{
-            toolbar.addMenuText(TagFinal.ONE_INT,R.string.add);
-        }
+        if (type.equalsIgnoreCase(TagFinal.FALSE))return;
+        toolbar.addMenuText(TagFinal.ONE_INT,"添加");
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
-                if (type.equalsIgnoreCase(TagFinal.FALSE)){
-                    showDialog("得分规则","得分规则说明","确定");
-                }else{
-                    Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
-                    intent.putExtra(Base.title,title);
-                    intent.putExtra(Base.type,TAG);
-                    startActivity(intent);
-                }
+                Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
+                intent.putExtra(Base.title,title);
+                intent.putExtra(Base.type,TAG);
+                startActivity(intent);
             }
         });
 
     }
 
 
-    private ConfirmContentWindow confirmContentWindow;
-    private void initDialog(){
+    public SwipeRefreshLayout swipeRefreshLayout;
+    public RecyclerView recyclerView;
+    public PERecipeAdapter adapter;
+    public void initRecycler(){
 
-        confirmContentWindow = new ConfirmContentWindow(mActivity);
-        confirmContentWindow.setOnPopClickListenner(new ConfirmContentWindow.OnPopClickListenner() {
+        recyclerView =  findViewById(R.id.public_recycler);
+        swipeRefreshLayout =  findViewById(R.id.public_swip);
+        // 设置刷新控件颜色
+        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#4DB6AC"));
+        // 设置下拉刷新
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View view) {
-
-                switch (view.getId()){
-                    case R.id.pop_dialog_title:
-                        break;
-                    case R.id.pop_dialog_content:
-                        break;
-                    case R.id.pop_dialog_ok:
-                        break;
-                }
+            public void onRefresh() {
+                // 刷新数据
+                closeSwipeRefresh();
             }
         });
+        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
+            @Override
+            public void onLoadMore() {
+                adapter.setLoadState(TagFinal.LOADING);
+                adapter.setLoadState(TagFinal.LOADING_END);
+            }
+        });
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        xlist.setLayoutManager(new GridLayoutManager(this, 1));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        //添加分割线
+//        recyclerView.addItemDecoration(new RecycleViewDivider(
+//                mActivity,
+//                LinearLayoutManager.HORIZONTAL,
+//                1,
+//                getResources().getColor(R.color.Gray)));
+        adapter=new PERecipeAdapter(mActivity);
+        recyclerView.setAdapter(adapter);
+
     }
 
-    private void showDialog(String title,String content,String ok){
-        if (confirmContentWindow==null)return;
-        confirmContentWindow.setTitle_s(title,content,ok);
-        closeKeyWord();
-        confirmContentWindow.showAtCenter();
+
+
+
+
+
+    public void closeSwipeRefresh(){
+        if (swipeRefreshLayout!=null){
+            swipeRefreshLayout.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }
+            }, 200);
+        }
     }
 
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
-    public RecyclerView recyclerView;
-    public void initRecycler(){
-        recyclerView =  findViewById(R.id.public_recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //添加分割线
-        recyclerView.addItemDecoration(new RecycleViewDivider(
-                mActivity,
-                LinearLayoutManager.HORIZONTAL,
-                1,
-                getResources().getColor(R.color.gray)));
-        adapter=new PEQualitySkillsAdapter(mActivity);
-        recyclerView.setAdapter(adapter);
-    }
-
-
 
     private void setAdapterData(){
         keyValue_adapter.clear();
 
 
-        KeyValue one=new KeyValue("","",TagFinal.TYPE_ITEM);
-        one.setTitle("总分");
-        one.setContent("技能项简评");
-        one.setRight("88");
 
-        KeyValue two=new KeyValue("","",TagFinal.TYPE_ITEM);
-        two.setTitle("必考项 1");
-        two.setContent("球类");
-        two.setRight("88");
-
-        KeyValue three=new KeyValue("","",TagFinal.TYPE_ITEM);
-        three.setTitle("必考项 ");
-        three.setContent("体操");
-        three.setRight("88");
-
-        KeyValue four=new KeyValue("","",TagFinal.TYPE_ITEM);
-        four.setTitle("选考项 ");
-        four.setContent("田径、民传、新兴体育");
-        four.setRight("88");
-
-        keyValue_adapter.add(one);
-        keyValue_adapter.add(two);
-        keyValue_adapter.add(three);
-        keyValue_adapter.add(four);
+        keyValue_adapter.add(new KeyValue("长跑","建议加强体能锻炼","",TagFinal.TYPE_ITEM));
+        keyValue_adapter.add(new KeyValue("跳高","建议加大腿弹跳能力","",TagFinal.TYPE_ITEM));
 
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);
     }
+
     /**
      * ----------------------------retrofit-----------------------
      */
@@ -185,7 +169,7 @@ public class PEQualitySkillsActivity extends BaseActivity {
             ResBody b=respEnvelope.body;
             if (b.userGetTermListRes !=null){
                 String result=b.userGetTermListRes.result;
-                Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
+                Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
                 }else{

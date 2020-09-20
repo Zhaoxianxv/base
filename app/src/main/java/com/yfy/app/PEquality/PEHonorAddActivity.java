@@ -1,12 +1,16 @@
 package com.yfy.app.PEquality;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.yfy.app.PEquality.adapter.PEHonorMainAdapter;
 import com.yfy.app.bean.BaseRes;
+import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
@@ -18,9 +22,14 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.StringJudge;
 import com.yfy.final_tag.StringUtils;
 import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.dialog.CPWBean;
+import com.yfy.final_tag.dialog.CPWListBeanView;
+import com.yfy.final_tag.dialog.ConfirmDateWindow;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.view.SQToolBar;
 
@@ -28,6 +37,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -36,12 +47,24 @@ public class PEHonorAddActivity extends BaseActivity {
 
 
 
+    @Bind(R.id.p_e_honor_add_choose_date)
+    AppCompatTextView choose_date;
+    @Bind(R.id.p_e_honor_add_choose_course)
+    AppCompatTextView choose_course;
+
+
+    private DateBean dateBean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.p_e_honor_add);
+        dateBean=new DateBean();
+        dateBean.setValue_long(System.currentTimeMillis(),true);
         getData();
+        initView();
         initSQToolbar();
+        initDateDialog();
+        initDialogList();
 
     }
 
@@ -67,38 +90,80 @@ public class PEHonorAddActivity extends BaseActivity {
         });
 
     }
-    public List<KeyValue> keyValue_adapter=new ArrayList<>();
+
+    private void initView(){
+        choose_course.setText("未选择");
+        choose_course.setTextColor(ColorRgbUtil.getGrayText());
+        choose_date.setTextColor(ColorRgbUtil.getGrayText());
+        choose_date.setText("未选择");
+    }
+    private ConfirmDateWindow date_dialog;
+    private void initDateDialog(){
+        date_dialog = new ConfirmDateWindow(mActivity);
+        date_dialog.setOnPopClickListenner(new ConfirmDateWindow.OnPopClickListenner() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.set:
+                        dateBean.setName(date_dialog.getTimeName());
+                        dateBean.setValue(date_dialog.getTimeValue());
+                        choose_date.setText(dateBean.getName());
+                        choose_date.setTextColor(ColorRgbUtil.getBaseText());
+                        date_dialog.dismiss();
+                        break;
+                    case R.id.cancel:
+                        date_dialog.dismiss();
+                        break;
+                }
+
+            }
+        });
+    }
 
 
 
-    private void setAdapterData(){
-        keyValue_adapter.clear();
-
-        KeyValue three=new KeyValue(TagFinal.TYPE_ITEM);
-        KeyValue two=new KeyValue(TagFinal.TYPE_ITEM);
-        KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
-
-        one.setLeft_title("800米长跑");
-        two.setLeft_title("100米短跑");
-        three.setLeft_title("单人乒乓球");
-
-        one.setTitle("2020.5.21  学校运动会");
-        two.setTitle("2020.5.21  学校运动会");
-        three.setTitle("2020.5.21 学校运动会");
 
 
-        one.setRight_value("20\t分");
-        two.setRight_value("20\t分");
-        three.setRight_value("20\t分");
 
-        one.setRight("已通过");
-        two.setRight("已通过");
-        three.setRight("已通过");
+    private CPWListBeanView cpwListBeanView;
+    List<CPWBean> cpwBeans=new ArrayList<>();
+    private void setCPWlListBeanData(){
+        if (StringJudge.isEmpty(cpwBeans)){
+            cpwBeans.add(new CPWBean("上午·第1节",""));
+            cpwBeans.add(new CPWBean("上午·第2节",""));
+            cpwBeans.add(new CPWBean("上午·第3节",""));
+            cpwBeans.add(new CPWBean("上午·第4节",""));
+            cpwBeans.add(new CPWBean("下午·第1节",""));
+            cpwBeans.add(new CPWBean("下午·第2节",""));
+            cpwBeans.add(new CPWBean("下午·第3节",""));
+        }
+        cpwListBeanView.setDatas(cpwBeans);
 
-        keyValue_adapter.add(one);
-        keyValue_adapter.add(two);
-        keyValue_adapter.add(three);
+    }
 
+
+    private void initDialogList(){
+        cpwListBeanView = new CPWListBeanView(mActivity);
+        cpwListBeanView.setOnPopClickListenner(new CPWListBeanView.OnPopClickListenner() {
+            @Override
+            public void onClick(CPWBean cpwBean,String type) {
+                choose_course.setText(cpwBean.getName());
+                choose_course.setTextColor(ColorRgbUtil.getBaseText());
+                cpwListBeanView.dismiss();
+            }
+        });
+    }
+
+
+
+    @OnClick(R.id.p_e_honor_add_choose_course)
+    void setCourse(){
+        setCPWlListBeanData();
+        cpwListBeanView.showAtCenter();
+    }
+    @OnClick(R.id.p_e_honor_add_choose_date)
+    void setDate(){
+        date_dialog.showAtBottom();
 
     }
     /**

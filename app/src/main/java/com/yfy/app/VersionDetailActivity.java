@@ -49,14 +49,14 @@ public class VersionDetailActivity extends BaseActivity {
 
         version_name.setText(R.string.app_school_name);
         version_site.setText("地址：成都市青羊区青森小区南侧");
-        version_weiht.setText(StringUtils.getTextJoint("版权所有 © %1$s",
+        version_weiht.setText(StringUtils.stringToGetTextJoint("版权所有 © %1$s",
                 mActivity.getResources().getString(R.string.app_school_name)));
-        version.setText(StringUtils.getTextJoint("(Version\t\t%1$s)",AppLess.$vername()));
-        version_admin.setText(StringUtils.getTextJoint("Copyright(c) %1$s.All rights reserved.",
+        version.setText(StringUtils.stringToGetTextJoint("(Version\t\t%1$s)",AppLess.$vername()));
+        version_admin.setText(StringUtils.stringToGetTextJoint("Copyright(c) %1$s.All rights reserved.",
                 mActivity.getResources().getString(R.string.app_school_name)));
 //        version_admin.setText("Copyright(C) 2013 JinCheng Primary School of Chengdu Hi-Tech Zone");
         version_tell.setVisibility(View.GONE);
-        version_tell.setText(StringUtils.getTextJoint("联系电话：%1$s","028-85311847"));
+        version_tell.setText(StringUtils.stringToGetTextJoint("联系电话：%1$s","028-85311847"));
     }
 
 

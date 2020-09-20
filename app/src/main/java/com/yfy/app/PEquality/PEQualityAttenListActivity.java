@@ -1,11 +1,14 @@
 package com.yfy.app.PEquality;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.yfy.app.PEquality.adapter.PEQualityAttenListAdapter;
 import com.yfy.app.PEquality.adapter.PEQualityAttitudeDetailAdapter;
+import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
@@ -22,6 +25,7 @@ import com.yfy.final_tag.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
+import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,6 +58,17 @@ public class PEQualityAttenListActivity extends BaseActivity {
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
+        toolbar.addMenuText(TagFinal.ONE_INT,"新增");
+        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+
+                Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
+                intent.putExtra(Base.title,"新增请假");
+                intent.putExtra(Base.type,TAG);
+                startActivity(intent);
+            }
+        });
 
     }
     public List<KeyValue> keyValue_adapter=new ArrayList<>();

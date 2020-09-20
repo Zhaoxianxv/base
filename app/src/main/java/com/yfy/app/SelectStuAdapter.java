@@ -1,6 +1,7 @@
 package com.yfy.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
@@ -8,12 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
+import com.yfy.app.PEquality.tea.PEQualityTeaMainActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
-import com.yfy.final_tag.StringJudge;
-import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
 
@@ -90,7 +89,8 @@ public class SelectStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent intent=new Intent(mContext,PEQualityTeaMainActivity.class);
+                    mContext.startActivity(intent);
                 }
             });
         }

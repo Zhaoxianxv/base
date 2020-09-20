@@ -163,6 +163,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
+            android:name="com.yfy.app.PEquality.tea.PEQualityTeaMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name="com.yfy.app.PEquality.PEQualityKnowledgeLibraryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
@@ -188,6 +192,18 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.yfy.app.PEquality.PEHonorAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.PEquality.PEQualitySuggestActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.PEquality.PERecipeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>

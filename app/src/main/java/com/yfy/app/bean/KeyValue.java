@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
+import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 
 import java.util.ArrayList;
@@ -25,11 +26,12 @@ public class KeyValue implements Parcelable {
     private String right_key;//
     private String right_name;//
     private String right_value="";//
-    private String id;
+    private String id="";
     private String max;
     private String min;
     private String group_id;
     private String second_group_id;
+    private String is_edit=TagFinal.TRUE;
     private int view_type;
     private int res_image;
     private int num;
@@ -44,6 +46,11 @@ public class KeyValue implements Parcelable {
 
     public KeyValue() {
 
+    }
+
+
+    public KeyValue(int view_type) {
+        this.view_type = view_type;
     }
 
     public KeyValue(String id) {
@@ -93,6 +100,14 @@ public class KeyValue implements Parcelable {
         this.right_name = right_name;
         this.right_value = right_value;
 
+    }
+
+    public String getIs_edit() {
+        return is_edit;
+    }
+
+    public void setIs_edit(String is_edit) {
+        this.is_edit = is_edit;
     }
 
     public boolean isIs_selected() {
@@ -197,11 +212,6 @@ public class KeyValue implements Parcelable {
         this.right_value = right_value;
     }
 
-
-
-    public KeyValue(int view_type) {
-        this.view_type = view_type;
-    }
 
     public int getItem_id() {
         return item_id;

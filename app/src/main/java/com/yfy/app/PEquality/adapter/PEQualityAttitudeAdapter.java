@@ -56,10 +56,7 @@ public class PEQualityAttitudeAdapter extends RecyclerView.Adapter<RecyclerView.
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_item_singe_top_txt_center, parent, false);
             return new DetailH(view);
         }
-        if (viewType == TagFinal.TYPE_TOP) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_attitude_atten_item, parent, false);
-            return new AttenlH(view);
-        }
+
         return null;
     }
 
@@ -79,11 +76,7 @@ public class PEQualityAttitudeAdapter extends RecyclerView.Adapter<RecyclerView.
             detailH.bean = dataList.get(position);
             detailH.name.setText(detailH.bean.getName());
         }
-        if (holder instanceof AttenlH) {
-            AttenlH detailH = (AttenlH) holder;
-            detailH.bean = dataList.get(position);
-            detailH.name.setText(detailH.bean.getName());
-        }
+
     }
 
     @Override
@@ -123,22 +116,6 @@ public class PEQualityAttitudeAdapter extends RecyclerView.Adapter<RecyclerView.
         public DetailH(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.public_top_text);
-        }
-    }
-
-    private class AttenlH extends RecyclerView.ViewHolder {
-        public TextView name;
-        KeyValue bean;
-        public AttenlH(View itemView) {
-            super(itemView);
-            name = itemView.findViewById(R.id.public_top_text);
-            name.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent=new Intent(mContext,PEQualityAttenListActivity.class);
-                    mContext.startActivity(intent);
-                }
-            });
         }
     }
 
