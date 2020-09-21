@@ -23,16 +23,12 @@ import com.yfy.app.PEquality.PEQualityAttitudeActivity;
 import com.yfy.app.PEquality.PEQualityHomeworkActivity;
 import com.yfy.app.PEquality.PEQualityKnowledgeActivity;
 import com.yfy.app.PEquality.PEQualitySkillsActivity;
-import com.yfy.app.PEquality.PEQualityStaminaActivity;
 import com.yfy.app.PEquality.PEQualityStandardListActivity;
 import com.yfy.app.PEquality.PERecipeActivity;
 import com.yfy.app.PEquality.adapter.PEQualityMainAdapter;
-import com.yfy.app.SelectedClassActivity;
-import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.bean.TermBean;
-import com.yfy.app.login.LoginActivity;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -53,7 +49,7 @@ import com.yfy.charting_mp_test.data.RadarEntry;
 import com.yfy.charting_mp_test.interfaces.datasets.IRadarDataSet;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
-import com.yfy.final_tag.StringUtils;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.ConvertObjtect;
@@ -61,7 +57,6 @@ import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.recycerview.DividerGridItemDecoration;
 import com.yfy.final_tag.recycerview.RecycAnimator;
-import com.yfy.view.SQToolBar;
 import com.yfy.view.multi.MultiPictureView;
 
 import java.io.IOException;
@@ -295,6 +290,13 @@ public class PEQualityTeaMainActivity extends BaseActivity {
                         intent.putExtra(Base.type,TAG);
                         startActivity(intent);
                         break;
+                    case "课堂表现":
+                        intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
+                        intent.putExtra(Base.title,bean.getName());
+                        intent.putExtra(Base.type,"show");
+                        startActivity(intent);
+                        break;
+
                 }
             }
         });

@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.yfy.base.R;
-import com.yfy.final_tag.StringUtils;
+import com.yfy.final_tag.stringtool.StringUtils;
 
 
 /**

@@ -25,8 +25,8 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
-import com.yfy.final_tag.StringJudge;
-import com.yfy.final_tag.StringUtils;
+import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.FileCamera;
@@ -35,7 +35,6 @@ import com.yfy.final_tag.glide.ZoomImage;
 import com.yfy.final_tag.permission.PermissionFail;
 import com.yfy.final_tag.permission.PermissionGen;
 import com.yfy.final_tag.permission.PermissionSuccess;
-import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
@@ -134,9 +133,68 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
             case "PEQualityStandardListActivity":
                 setStandard();
                 break;
+            case "PEQualityAttitudeActivity":
+                setAttitudeData();
+                break;
+            case "show":
+                setShow();
+                break;
         }
     }
 
+    private void setShow(){
+        keyValueAdapterData.clear();
+        KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
+
+        one.setTitle(title);
+        one.setValue("");
+        one.setKey("请输入分数");
+
+
+
+
+        keyValueAdapterData.add(one);
+
+        adapter.setDataList(keyValueAdapterData);
+        adapter.setLoadState(TagFinal.LOADING_END);
+    }
+    private void setAttitudeData(){
+        keyValueAdapterData.clear();
+
+        KeyValue one=new KeyValue(TagFinal.TYPE_DATE);
+        one.setTitle("选择日期");
+        one.setRight_value("");
+        one.setRight_name("");
+        one.setRight_key("未选择");
+
+
+        KeyValue two=new KeyValue(TagFinal.TYPE_SELECT_SINGLE);
+        two.setTitle("选择课时");
+        two.setRight_value("");
+        two.setRight_name("");
+        two.setRight_key("未选择");
+        two.setContent("上午·第1节,上午·第2节,上午·第3节,上午·第4节,下午·第1节,下午·第2节,下午·第3节");
+        two.setGroup_id(TagFinal.FALSE);
+
+        KeyValue three=new KeyValue(TagFinal.TYPE_SELECT_SINGLE);
+        three.setTitle("扣分项目");
+        three.setRight_value("");
+        three.setRight_name("");
+        three.setRight_key("未选择");
+        three.setContent("大课间体育活动违纪或缺席,旷课,迟到,早退,违反课堂纪律,着装不符合运动要求,其他");
+        three.setGroup_id(TagFinal.FALSE);
+
+
+
+
+        keyValueAdapterData.add(one);
+        keyValueAdapterData.add(two);
+        keyValueAdapterData.add(three);
+
+
+        adapter.setDataList(keyValueAdapterData);
+        adapter.setLoadState(TagFinal.LOADING_END);
+    }
     private void setStandard(){
         keyValueAdapterData.clear();
 
@@ -263,7 +321,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         four.setContent("田径,民传,新兴体育");
         four.setRight_key("未选择");
         four.setRight_value("");
-        two.setGroup_id(TagFinal.TRUE);
+        four.setGroup_id(TagFinal.TRUE);
 
         KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
         one.setTitle("总分");
@@ -278,7 +336,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         keyValueAdapterData.add(two);
         keyValueAdapterData.add(three);
         keyValueAdapterData.add(four);
-        keyValueAdapterData.add(one);
+//        keyValueAdapterData.add(one);
         keyValueAdapterData.add(five);
 
         adapter.setDataList(keyValueAdapterData);
@@ -316,6 +374,9 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         adapter.setDataList(keyValueAdapterData);
         adapter.setLoadState(TagFinal.LOADING_END);
     }
+
+
+
 
 
 

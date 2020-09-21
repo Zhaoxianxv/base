@@ -37,17 +37,15 @@ import com.yfy.base.RadarUtil;
 import com.yfy.base.XAxisFormatter;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.charting_mp_test.charts.RadarChart;
-import com.yfy.charting_mp_test.components.Legend;
 import com.yfy.charting_mp_test.components.XAxis;
 import com.yfy.charting_mp_test.components.YAxis;
 import com.yfy.charting_mp_test.data.RadarData;
 import com.yfy.charting_mp_test.data.RadarDataSet;
 import com.yfy.charting_mp_test.data.RadarEntry;
 import com.yfy.charting_mp_test.interfaces.datasets.IRadarDataSet;
-import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
-import com.yfy.final_tag.StringUtils;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.ConvertObjtect;
@@ -118,6 +116,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
                                     case "学习态度":
                                         intent=new Intent(mActivity,PEQualityAttitudeActivity.class);
                                         intent.putExtra(Base.title,type);
+                                        intent.putExtra(Base.type,TagFinal.FALSE);
                                         startActivity(intent);
                                         break;
                                     case "健康教育知识"://PEQualityKnowledgeActivity
@@ -198,9 +197,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
 
             }
         });
-
         menu_one.setText("19-20上期");
-
     }
 
 
@@ -306,6 +303,15 @@ public class PEQualityMainTestActivity extends BaseActivity {
                     case "膳食建议":
                         intent=new Intent(mActivity,PEQualitySuggestActivity.class);
                         intent.putExtra(Base.title,bean.getName());
+                        intent.putExtra(Base.name,"膳食建议标题");
+                        intent.putExtra(Base.content,"苦瓜、桑叶、洋葱、香菇、柚子、可降低血糖，是糖尿病人最理想食物，如能长期食用，则降血糖和预防并发症的效果会更好。");
+                        startActivity(intent);
+                        break;
+                    case "课堂表现":
+                        intent=new Intent(mActivity,PEQualitySuggestActivity.class);
+                        intent.putExtra(Base.title,bean.getName());
+                        intent.putExtra(Base.name,"课堂表现");
+                        intent.putExtra(Base.content,"90");
                         startActivity(intent);
                         break;
                 }

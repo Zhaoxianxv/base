@@ -2,12 +2,8 @@ package com.yfy.app.PEquality;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
-import com.yfy.app.PEquality.adapter.PEQualityAttenListAdapter;
 import com.yfy.app.bean.BaseRes;
-import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -18,13 +14,10 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
-import com.yfy.final_tag.StringUtils;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.OnClick;

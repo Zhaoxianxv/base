@@ -1,14 +1,11 @@
 package com.yfy.app.PEquality;
 
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatTextView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.yfy.app.PEquality.adapter.KnowledgeLibraryPagerAdapter;
+import com.yfy.app.PEquality.adapter.KnowledgeAnswerPagerAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
@@ -21,8 +18,8 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
-import com.yfy.final_tag.StringJudge;
-import com.yfy.final_tag.StringUtils;
+import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 
@@ -98,7 +95,7 @@ public class PEQualityKnowledgeLibraryActivity extends BaseActivity {
     }
     public LinkedList<KeyValue> data_list = new LinkedList<KeyValue>();
     private ViewPager pager;
-    private KnowledgeLibraryPagerAdapter pager_adapter;
+    private KnowledgeAnswerPagerAdapter pager_adapter;
 
     private void initPager(){
         pager =  findViewById(R.id.knowledge_library_pager);
@@ -109,7 +106,7 @@ public class PEQualityKnowledgeLibraryActivity extends BaseActivity {
             pager.setVisibility(View.VISIBLE);
             bgtext_view.setVisibility(View.GONE);
         }
-        pager_adapter=new KnowledgeLibraryPagerAdapter(mActivity);
+        pager_adapter=new KnowledgeAnswerPagerAdapter(mActivity);
         pager.setAdapter(pager_adapter);
         pager_adapter.reSetData(data_list);
     }

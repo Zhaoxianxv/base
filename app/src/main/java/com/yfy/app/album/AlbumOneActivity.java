@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.yfy.app.album;
 
 import android.content.Intent;
@@ -17,7 +14,7 @@ import com.yfy.app.album.PhotoAlbumHelper.OnEndListenner;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.FileTools;
-import com.yfy.final_tag.StringJudge;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.Photo;
 import com.yfy.final_tag.glide.PhotoAlbum;
@@ -32,9 +29,7 @@ import butterknife.OnClick;
 
 /**
  * @author yfy
- * @date 2015-10-6
  * @version 1.0
- * @description OneAlbumActivity
  */
 public class AlbumOneActivity extends BaseActivity implements OnEndListenner,CheckedListenner {
 
@@ -102,7 +97,6 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 	}
 
 	/**
-	 * @description
 	 */
 	private void initViews() {
 		getData();

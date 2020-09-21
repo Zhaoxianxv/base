@@ -48,7 +48,6 @@ public class PEQualityAttitudeAdapter extends RecyclerView.Adapter<RecyclerView.
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TagFinal.TYPE_ITEM) {
-
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_attitude_item, parent, false);
             return new ItemHolder(view);
         }
@@ -69,7 +68,7 @@ public class PEQualityAttitudeAdapter extends RecyclerView.Adapter<RecyclerView.
             iHolder.attitude_state.setText(iHolder.bean.getRight());
             iHolder.attitude_title.setText(iHolder.bean.getTitle());
             iHolder.attitude_content.setText(iHolder.bean.getContent());
-            iHolder.attitude_sub.setVisibility(View.GONE);
+            iHolder.attitude_sub.setText(iHolder.bean.getLeft_title());
         }
         if (holder instanceof DetailH) {
             DetailH detailH = (DetailH) holder;

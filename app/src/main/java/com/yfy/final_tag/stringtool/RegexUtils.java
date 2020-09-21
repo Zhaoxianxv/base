@@ -1,4 +1,4 @@
-package com.yfy.final_tag;
+package com.yfy.final_tag.stringtool;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,8 +56,8 @@ public class RegexUtils {
      * 匹配手机号码的正则表达式
      * 匹配给定的字符串是否是一个手机号码，支持130——139、150——153、155——159、180、183、185、186、188、189号段
      */
-//    public static final String PHONE_NUMBER_REGEX = "^1{1}(3{1}\\d{1}|5{1}[012356789]{1}|8{1}[035689]{1})\\d{8}$";
-    public static final String PHONE_NUMBER_REGEX = "^1{1}(3{1}\\d{1}|4{1}\\d{1}|5{1}\\d{1}|7{1}\\d{1}|8{1}\\d{1}|9{1}\\d{1})\\d{8}$";//
+    public static final String PHONE_NUMBER_REGEX = "^1(3[0-9]|5[189]|8[6789])[0-9]{8}$";
+//    public static final String PHONE_NUMBER_REGEX = "^1{1}(3{1}\\d{1}|4{1}\\d{1}|5{1}\\d{1}|7{1}\\d{1}|8{1}\\d{1}|9{1}\\d{1})\\d{8}$";//
 
     public static boolean isMobilePhoneNumber(String string){
         return string.matches(PHONE_NUMBER_REGEX);

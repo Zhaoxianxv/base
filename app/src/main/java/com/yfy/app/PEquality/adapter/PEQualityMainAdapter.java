@@ -2,7 +2,6 @@ package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
 import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +11,7 @@ import android.widget.TextView;
 
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
-import com.yfy.final_tag.StringJudge;
-import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.glide.GlideTools;
 
 import java.util.ArrayList;
 import java.util.List;

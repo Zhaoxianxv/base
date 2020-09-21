@@ -25,7 +25,7 @@ import com.yfy.db.GreenDaoManager;
 import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.Logger;
 import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.StringJudge;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.view.SQToolBar;
 
 import butterknife.Bind;

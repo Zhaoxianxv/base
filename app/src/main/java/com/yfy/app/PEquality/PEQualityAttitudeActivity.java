@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
 import com.yfy.app.PEquality.adapter.PEQualityAttitudeAdapter;
+import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
@@ -20,9 +21,8 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
-import com.yfy.final_tag.StringUtils;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
@@ -32,6 +32,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -40,38 +42,54 @@ public class PEQualityAttitudeActivity extends BaseActivity {
 
     private PEQualityAttitudeAdapter adapter;
 
+    @Bind(R.id.public_recycler_del)
+    Button del_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.public_recycler_view);
+        setContentView(R.layout.public_recycler_del_view);
         getData();
         initRecycler();
-        initSQToolbar();
-//        getTerm();
 
+        initView();
         setAdapterData();
     }
 
 
-    private String title;
+    private String title,type;
     private void getData(){
         title=getIntent().getStringExtra(Base.title);
+        type=getIntent().getStringExtra(Base.type);
+        initSQToolbar();
     }
-    private TextView one_menu;
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
-        one_menu=toolbar.addMenuText(TagFinal.ONE_INT,"");
-        one_menu.setVisibility(View.GONE);
+        if (type.equalsIgnoreCase(TagFinal.FALSE))return;
+        toolbar.addMenuText(TagFinal.ONE_INT,"添加");
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent=new Intent(mActivity,PEQualityAttenListActivity.class);
-                intent.putExtra(Base.title,"请假记录");
+                Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
+                intent.putExtra(Base.title,title);
+                intent.putExtra(Base.type,TAG);
                 startActivity(intent);
             }
         });
+
+    }
+
+
+    private void initView(){
+        del_button.setText("请假记录");
+    }
+
+    @OnClick(R.id.public_recycler_del)
+    void setDel(){
+        Intent intent=new Intent(mActivity,PEQualityAttenListActivity.class);
+        intent.putExtra(Base.title,"请假记录");
+        startActivity(intent);
     }
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     public RecyclerView recyclerView;
@@ -94,16 +112,22 @@ public class PEQualityAttitudeActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
-        KeyValue all=new KeyValue("请假记录5条","",TagFinal.TYPE_TOP);
+        KeyValue two=new KeyValue("","",TagFinal.TYPE_ITEM);
         KeyValue detail=new KeyValue("本期满分100分，已扣除12分当前88分","",TagFinal.TYPE_DETAIL);
         KeyValue one=new KeyValue("","",TagFinal.TYPE_ITEM);
-        one.setTitle("旷课(-6)");
+        one.setTitle("旷课");
+        one.setLeft_title("-6");
         one.setContent("2020.5.21  下午第二节课");
         one.setRight("张丹");
 
+        two.setTitle("大课间体育活动违纪或缺席");
+        two.setLeft_title("-6");
+        two.setContent("2020.5.21  下午第二节课");
+        two.setRight("张丹");
+
         keyValue_adapter.add(detail);
         keyValue_adapter.add(one);
-        keyValue_adapter.add(one);
+        keyValue_adapter.add(two);
         keyValue_adapter.add(one);
 
 
@@ -111,8 +135,7 @@ public class PEQualityAttitudeActivity extends BaseActivity {
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);
 
-        one_menu.setVisibility(View.VISIBLE);
-        one_menu.setText("请假记录");
+
     }
     /**
      * ----------------------------retrofit-----------------------

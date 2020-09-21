@@ -82,7 +82,6 @@ public class SelectStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         KeyValue bean;
         public ItemHolder(View itemView) {
             super(itemView);
-
             user_name =  itemView.findViewById(R.id.stu_grid_name);
             user_head =  itemView.findViewById(R.id.stu_grid_head);
             layout = itemView.findViewById(R.id.stu_grid_layout);

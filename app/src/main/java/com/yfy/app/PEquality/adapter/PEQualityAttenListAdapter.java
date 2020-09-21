@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.yfy.app.album.MultPicShowActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
-import com.yfy.final_tag.StringJudge;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.view.multi.MultiPictureView;

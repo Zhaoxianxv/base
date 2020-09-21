@@ -1,4 +1,4 @@
-package com.yfy.final_tag;
+package com.yfy.final_tag.stringtool;
 
 
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.net.Uri;
 
 
 import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.stringtool.StringJudge;
 
 import java.io.File;
 import java.io.IOException;

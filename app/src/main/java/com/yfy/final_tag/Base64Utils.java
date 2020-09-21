@@ -12,6 +12,7 @@ import android.util.Base64;
 
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.Photo;
+import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

@@ -14,7 +14,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
-import com.yfy.final_tag.StringUtils;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 
 import java.io.IOException;
@@ -45,9 +45,11 @@ public class PEQualitySuggestActivity extends BaseActivity {
     }
 
 
-    private String title;
+    private String title,name,content;
     private void getData(){
         title=getIntent().getStringExtra(Base.title);
+        name=getIntent().getStringExtra(Base.name);
+        content=getIntent().getStringExtra(Base.content);
     }
     private void initSQToolbar() {
         assert toolbar!=null;
@@ -56,10 +58,12 @@ public class PEQualitySuggestActivity extends BaseActivity {
     }
 
     private void initView(){
-        suggest_title.setText("膳食建议标题");
-        suggest_subtitle.setText("五谷杂粮，如莜麦面、荞麦面、燕麦片、玉米面、紫山药等富含维生素B、多种微量元素及食物纤维，以低糖，低淀粉的食物或者粗粮以及蔬菜等做主食。\n" +
-                "豆类及豆制品，豆类食品富含蛋白质、无机盐和维生素，且豆油含不饱和脂肪酸，能降低血清胆固醇及甘油三酯。\n" +
-                "苦瓜、桑叶、洋葱、香菇、柚子、可降低血糖，是糖尿病人最理想食物，如能长期食用，则降血糖和预防并发症的效果会更好。");
+        suggest_title.setText(name);
+        suggest_subtitle.setText(content);
+//        suggest_title.setText("膳食建议标题");
+//        suggest_subtitle.setText("五谷杂粮，如莜麦面、荞麦面、燕麦片、玉米面、紫山药等富含维生素B、多种微量元素及食物纤维，以低糖，低淀粉的食物或者粗粮以及蔬菜等做主食。\n" +
+//                "豆类及豆制品，豆类食品富含蛋白质、无机盐和维生素，且豆油含不饱和脂肪酸，能降低血清胆固醇及甘油三酯。\n" +
+//                "");
     }
 
     /**

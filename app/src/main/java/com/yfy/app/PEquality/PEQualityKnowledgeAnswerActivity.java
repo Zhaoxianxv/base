@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.yfy.app.PEquality.adapter.PEAttituAnswerListViewAdapter;
+import com.yfy.app.PEquality.adapter.KnowledgeAnswerListViewAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
@@ -17,7 +17,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
-import com.yfy.final_tag.StringUtils;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 
@@ -57,13 +57,13 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
 
 
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
-    public PEAttituAnswerListViewAdapter list_adapter;
+    public KnowledgeAnswerListViewAdapter list_adapter;
     public ListView listview;
     private  void initListView(){
         listview=findViewById(R.id.attitude_answer_list);
 //        listview.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         listview.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
-        list_adapter=new PEAttituAnswerListViewAdapter(mActivity);
+        list_adapter=new KnowledgeAnswerListViewAdapter(mActivity);
         listview.setAdapter(list_adapter);
 
         keyValue_adapter.clear();

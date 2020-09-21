@@ -14,8 +14,8 @@ import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.album.SingePicShowActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
-import com.yfy.final_tag.StringJudge;
-import com.yfy.final_tag.StringUtils;
+import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
@@ -301,6 +301,7 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
             apply_value.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mContext.closeKeyWord();
                     setDialogData(StringUtils.listToStringSplitCharacters(bean.getContent(),","));
                 }
             });
@@ -334,6 +335,30 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
                             bean.setRight_name(cpwBean.getName());
                             bean.setRight_value(cpwBean.getValue());
 
+
+
+                            if (cpwBean.getName().equalsIgnoreCase("其他")){
+                                removeItemData("choice");
+
+                                List<KeyValue> list=new ArrayList<>();
+                                KeyValue three=new KeyValue(TagFinal.TYPE_LONG_TXT_EDIT);
+                                three.setTitle("其他扣分说明");
+                                three.setKey("输入扣分说明");
+                                three.setValue("");
+                                three.setType("choice");
+                                three.setId("choice");
+                                KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
+                                one.setTitle("其他扣分");
+                                one.setKey("扣分分数");
+                                one.setValue("");
+                                one.setType("choice");
+                                one.setId("choice");
+
+                                list.add(three);
+                                list.add(one);
+                                addItemData(index_position,list);
+
+                            }
                             if (bean.getGroup_id().equalsIgnoreCase(TagFinal.TRUE)){
                                 //是否关联数据
                                 removeItemData("choice");

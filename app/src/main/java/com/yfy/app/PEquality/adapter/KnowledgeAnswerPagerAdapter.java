@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
-import com.yfy.final_tag.StringUtils;
+import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.util.LinkedList;
 
-public class KnowledgeLibraryPagerAdapter extends PagerAdapter {
+public class KnowledgeAnswerPagerAdapter extends PagerAdapter {
     private Context mcontext;
     private LayoutInflater inflater;
     public LinkedList<View> viewCache = new LinkedList<View>();
@@ -33,7 +33,7 @@ public class KnowledgeLibraryPagerAdapter extends PagerAdapter {
         notifyDataSetChanged();
     }
 
-    public KnowledgeLibraryPagerAdapter(Context mcontext) {
+    public KnowledgeAnswerPagerAdapter(Context mcontext) {
         this.mcontext = mcontext;
     }
 

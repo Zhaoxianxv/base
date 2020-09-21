@@ -11,7 +11,7 @@ import com.yfy.base.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PEAttituAnswerListViewAdapter extends BaseAdapter {
+public class KnowledgeAnswerListViewAdapter extends BaseAdapter {
 
 
     private Context context;
@@ -22,7 +22,7 @@ public class PEAttituAnswerListViewAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public PEAttituAnswerListViewAdapter(Context context) {
+    public KnowledgeAnswerListViewAdapter(Context context) {
         this.datas = new ArrayList<>();
         this.context = context;
     }

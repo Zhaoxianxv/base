@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.yfy.base.R;
 import com.yfy.base.adapter.AbstractAdapter;
-import com.yfy.final_tag.StringJudge;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.glide.PhotoAlbum;
 
 import java.util.List;

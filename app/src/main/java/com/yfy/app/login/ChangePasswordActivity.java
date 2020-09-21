@@ -1,6 +1,5 @@
 package com.yfy.app.login;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -13,13 +12,10 @@ import com.yfy.app.net.RetrofitGenerator;
 import com.yfy.app.net.base.UserChangePasswordReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.db.GreenDaoManager;
-import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
-import com.yfy.final_tag.StringJudge;
-import com.yfy.final_tag.StringUtils;
-import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.view.SQToolBar;
 
 import java.util.List;

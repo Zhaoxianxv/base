@@ -13,7 +13,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.yfy.base.R;
-import com.yfy.final_tag.StringJudge;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.dialog.adapter.NumericWheelAdapter;
 import com.yfy.final_tag.dialog.widget.WheelView;
 
