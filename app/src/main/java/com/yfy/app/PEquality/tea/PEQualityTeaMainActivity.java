@@ -55,7 +55,7 @@ import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
-import com.yfy.final_tag.recycerview.DividerGridItemDecoration;
+import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
 import com.yfy.final_tag.recycerview.RecycAnimator;
 import com.yfy.view.multi.MultiPictureView;
 
@@ -252,7 +252,7 @@ public class PEQualityTeaMainActivity extends BaseActivity {
     public RecyclerView recycler_view;
     public PEQualityMainAdapter adapter;
     public List<KeyValue> adapter_data_show =new ArrayList<>();
-    public DividerGridItemDecoration white_line=new DividerGridItemDecoration(Color.parseColor("#ffffff"));
+    public GridDividerLineNotBottom white_line=new GridDividerLineNotBottom(Color.parseColor("#ffffff"));
 
     public void initRecyclerView(){
         recycler_view =findViewById(R.id.p_e_main_type_recycler_view);

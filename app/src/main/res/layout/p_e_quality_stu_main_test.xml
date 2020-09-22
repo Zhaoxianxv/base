@@ -107,9 +107,9 @@
     <View
         android:id="@+id/p_e_main_line"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0dp"
         android:layout_below="@id/p_e_main_top_layout"
-        android:background="@color/MediumTurquoise"/>
+        android:background="@color/gray_text"/>
 
 
 
@@ -156,19 +156,31 @@
         android:id="@+id/p_e_main_type_layout"
         android:layout_below="@id/p_e_main_line"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/layer_top_bottom_grayline_whitebg">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/p_e_main_type_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
         </android.support.v7.widget.RecyclerView>
     </RelativeLayout>
 
 
+    <TextView
+        android:id="@+id/p_e_main_reason"
+        android:layout_above="@id/p_e_main_recipe_layout"
+        android:layout_width="match_parent"
+        android:gravity="right"
+        android:paddingRight="@dimen/margin_15dp"
+        android:textSize="@dimen/textsize5"
+        android:textColor="@color/gray_text"
+        android:layout_height="wrap_content"
+        android:text="点击图表文字查看详情"/>
 
     <RelativeLayout
         android:layout_below="@id/p_e_main_type_layout"
-        android:layout_above="@id/p_e_main_recipe_layout"
+        android:layout_above="@id/p_e_main_reason"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/margin_2dp"

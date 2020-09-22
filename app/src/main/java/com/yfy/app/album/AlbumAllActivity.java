@@ -20,13 +20,12 @@ import java.util.ArrayList;
 
 /**
  * @author yfy
- * @description AllAlbumActivity
  */
 public class AlbumAllActivity extends BaseActivity {
 
 
-	private ListView album_listview;
-	private AlbumAllAdapter adapter;
+	public ListView album_listview;
+	public AlbumAllAdapter adapter;
 	private Intent intent;
 	public ArrayList<PhotoAlbum> allPhotoAlbumList = new ArrayList<>();
 	@Override
@@ -66,7 +65,7 @@ public class AlbumAllActivity extends BaseActivity {
 	}
 	private void init() {
 		intent = getIntent();
-		album_listview = (ListView) findViewById(R.id.album_listview);
+		album_listview =  findViewById(R.id.album_listview);
 		album_listview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

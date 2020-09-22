@@ -20,9 +20,9 @@ import java.util.List;
 
 public class PEQualityHomeworkAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Activity mContext;
-    private List<KeyValue> dataList;
-    private int loadState = 2;
+    public Activity mContext;
+    public List<KeyValue> dataList;
+    public int loadState = 2;
 
     public PEQualityHomeworkAdapter(Activity mContext) {
         this.mContext = mContext;
@@ -36,13 +36,13 @@ public class PEQualityHomeworkAdapter extends RecyclerView.Adapter<RecyclerView.
 
     @Override
     public int getItemViewType(int position) {
-        // 最后一个item设置为FooterView
+
+
         return dataList.get(position).getView_type();
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //进行判断显示类型，来创建返回不同的View
         if (viewType == TagFinal.TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_txt, parent, false);
             return new ItemHolder(view);
@@ -69,7 +69,7 @@ public class PEQualityHomeworkAdapter extends RecyclerView.Adapter<RecyclerView.
     }
 
 
-    private class ItemHolder extends RecyclerView.ViewHolder {
+    public class ItemHolder extends RecyclerView.ViewHolder {
         public TextView key;
         public TextView value;
         KeyValue bean;

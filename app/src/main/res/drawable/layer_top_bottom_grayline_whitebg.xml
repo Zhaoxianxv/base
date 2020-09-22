@@ -9,8 +9,8 @@
     </item>
     <!-- 主体背景颜色值 -->
     <item
-        android:bottom="1dp"
-        android:top="1dp">
+        android:bottom="@dimen/margin_05dp"
+        android:top="@dimen/margin_05dp">
         <shape>
             <solid android:color="@color/White" />
         </shape>

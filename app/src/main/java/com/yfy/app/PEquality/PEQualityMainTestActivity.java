@@ -51,8 +51,7 @@ import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
-import com.yfy.final_tag.recycerview.DividerGridItemDecoration;
-import com.yfy.final_tag.recycerview.RecycAnimator;
+import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
 import com.yfy.view.SQToolBar;
 import com.yfy.view.multi.MultiPictureView;
 
@@ -197,6 +196,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
 
             }
         });
+
         menu_one.setText("19-20上期");
     }
 
@@ -268,21 +268,21 @@ public class PEQualityMainTestActivity extends BaseActivity {
     public RecyclerView recycler_view;
     public PEQualityMainAdapter adapter;
     public List<KeyValue> adapter_data_show =new ArrayList<>();
-    public DividerGridItemDecoration white_line=new DividerGridItemDecoration(Color.parseColor("#ffffff"));
 
     public void initRecyclerView(){
         recycler_view =findViewById(R.id.p_e_main_type_recycler_view);
         GridLayoutManager manager = new GridLayoutManager(this,4);
         recycler_view.setLayoutManager(manager);
-        recycler_view.setItemAnimator(new RecycAnimator());
+//        recycler_view.setItemAnimator(new RecycAnimator());
         //添加线
-//        recycler_view.addItemDecoration(white_line);
-        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                return 1;
-            }
-        });
+
+//        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+//            @Override
+//            public int getSpanSize(int position) {
+//                return 1;
+//            }
+//        });
+        recycler_view.addItemDecoration(new GridDividerLineNotBottom(Color.TRANSPARENT));
         adapter=new PEQualityMainAdapter(mActivity);
         recycler_view.setAdapter(adapter);
         adapter.setItemOnc(new PEQualityMainAdapter.ItemOnc() {
@@ -354,9 +354,12 @@ public class PEQualityMainTestActivity extends BaseActivity {
         mChart = (RadarChart) findViewById(R.id.stu_main_pie_test);
 
         tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
-        mChart.getDescription().setText("点击图表文字查看详情");//点击图表文字查看详情
+//        mChart.getDescription().setText("点击图表文字查看详情");//点击图表文字查看详情
+        mChart.getDescription().setEnabled(false);
         mChart.getLegend().setEnabled(false);
+        //图表点击响应
         mChart.setTouchEnabled(true);
+        //
         mChart.setDragDecelerationEnabled(false);
         mChart.setWebLineWidth(1.5f);
         mChart.setWebLineWidthInner(0.75f);

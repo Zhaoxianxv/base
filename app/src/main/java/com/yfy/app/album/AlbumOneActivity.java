@@ -44,8 +44,7 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 
 	private AlbumOneAdapter adapter;
 	private ArrayList<Photo> photoList;//相册分类组
-//	private ArrayList<Photo> existing=new ArrayList<>();//已有图片
-	public List<Photo> selectedPhotoList = new ArrayList<Photo>();//选中图片
+	public List<Photo> selectedPhotoList = new ArrayList<>();//选中图片
 	public ArrayList<PhotoAlbum> allPhotoAlbumList = null;//全部图片
 	private int position;
 	private boolean single;
@@ -96,8 +95,6 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 
 	}
 
-	/**
-	 */
 	private void initViews() {
 		getData();
 		startAdaterTask();
@@ -111,25 +108,13 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 				single = b.getBoolean(TagFinal.ALBUM_SINGLE);
 			}
 			if (b.containsKey("existing")) {
-//				existing = b.getParcelableArrayList("existing");
 			}
 		}
 	}
 
-	/**
-	 * @description
-	 */
-//	private void initExisting(List<Photo> list){
-//		for (Photo p:list){
-//			for (Photo b:existing){
-//				if (p.getPath().equals(b.getPath())) p.setSelected(true);
-//			}
-//		}
-//	}
 	private void startAdaterTask() {
 		if (allPhotoAlbumList != null&&allPhotoAlbumList.size()!=0) {
 			photoList = allPhotoAlbumList.get(position).photoList;
-//			initExisting(photoList);
 			adapter = new AlbumOneAdapter(mActivity, photoList, single);
 			adapter.initItemSize(pic_gridview);
 			if (position == 0) {
@@ -157,7 +142,6 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 		}
 		allPhotoAlbumList = list;
 		photoList = list.get(position).photoList;
-//		initExisting(photoList);
 
 		adapter = new AlbumOneAdapter(this, photoList, single);
 		if (position == 0) {

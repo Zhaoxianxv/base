@@ -45,7 +45,7 @@ public class PERecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (position + 1 == getItemCount()) {
             return TagFinal.TYPE_FOOTER;
         } else {
-            return TagFinal.TYPE_ITEM;
+            return dataList.get(position).getView_type();
         }
     }
 
@@ -56,7 +56,14 @@ public class PERecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_recipe_item_layout, parent, false);
             return new IHolder(view);
 
-        } else if (viewType == TagFinal.TYPE_FOOTER) {
+        }
+        if (viewType == TagFinal.TYPE_TXT_LEFT_TITLE) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_txt_left_title, parent, false);
+            return new TxtLeftTitleH(view);
+
+        }
+
+        if (viewType == TagFinal.TYPE_FOOTER) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_refresh_footer, parent, false);
             return new FootViewHolder(view);
         }
@@ -70,9 +77,13 @@ public class PERecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             iHolder.bean=dataList.get(position);
             iHolder.title.setText(iHolder.bean.getKey());
             iHolder.title_sub.setText(iHolder.bean.getValue());
-
-
-        } else if (holder instanceof FootViewHolder) {
+        }
+        if (holder instanceof TxtLeftTitleH) {
+            TxtLeftTitleH txtLeftTitleH = (TxtLeftTitleH) holder;
+            txtLeftTitleH.bean=dataList.get(position);
+            txtLeftTitleH.title.setText(txtLeftTitleH.bean.getValue());
+        }
+        if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;
             switch (loadState) {
                 case TagFinal.LOADING: // 正在加载
@@ -101,6 +112,17 @@ public class PERecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return dataList.size() + 1;
     }
 
+    private class TxtLeftTitleH extends RecyclerView.ViewHolder {
+
+
+        AppCompatTextView title;
+        KeyValue bean;
+        TxtLeftTitleH(View itemView) {
+            super(itemView);
+            title =  itemView.findViewById(R.id.public_type_txt_left_title);
+        }
+    }
+
     private class IHolder extends RecyclerView.ViewHolder {
 
         RelativeLayout layout;
@@ -113,10 +135,6 @@ public class PERecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             layout=  itemView.findViewById(R.id.p_e_recipe_layout);
             title =  itemView.findViewById(R.id.p_e_recipe_title);
             title_sub=  itemView.findViewById(R.id.p_e_recipe_title_sub);
-
-
-
-
         }
     }
 

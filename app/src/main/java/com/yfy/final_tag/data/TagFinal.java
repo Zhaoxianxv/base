@@ -37,12 +37,15 @@ public  class TagFinal {
     public final static int TYPE_DETAIL = 16;//常量 15
 
     public final static int TYPE_IMAGE = 101;
-    public final static int TYPE_TXT = 102;
-    public final static int TYPE_LONG_TXT_EDIT = 103;
+
+
     public final static int TYPE_CHOICE = 104;
 
-
+    public final static int TYPE_TXT = 302;
+    public final static int TYPE_TXT_LEFT_TITLE = 302;
     public final static int TYPE_TXT_EDIT = 107;
+    public final static int TYPE_LONG_TXT_EDIT = 103;
+
     public final static int TYPE_CHECK = 108;
     public final static int TYPE_GROUP = 109;
 
@@ -59,9 +62,7 @@ public  class TagFinal {
     public final static int TYPE_DATE = 131;//
     public final static int TYPE_DATE_TIME = 132;//
     public final static int TYPE_IMAGE_ONE = 223;
-
     public final static int TYPE_STAR_TITLE = 251;
-
     public final static int TYPE_SELECT_USER = 293;
 
     public final static int LOADING = ONE_INT;//

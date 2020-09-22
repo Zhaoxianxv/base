@@ -39,7 +39,7 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         setContentView(R.layout.p_e_knowledge_answer);
         getData();
         initSQToolbar();
-        initListView();
+//        initListView();
 
     }
 
@@ -68,18 +68,10 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
 
         keyValue_adapter.clear();
 
-
         KeyValue one=new KeyValue("A、古罗马","",TagFinal.TYPE_ITEM);
-
-
         KeyValue two=new KeyValue("B、古希腊","",TagFinal.TYPE_ITEM);
-
-
         KeyValue three=new KeyValue("C、法国文字超出一行文字超出一行文字超出一行文字超出一行","",TagFinal.TYPE_ITEM);
-
-
         KeyValue four=new KeyValue("D、英国","",TagFinal.TYPE_ITEM);
-
 
         keyValue_adapter.add(one);
         keyValue_adapter.add(two);

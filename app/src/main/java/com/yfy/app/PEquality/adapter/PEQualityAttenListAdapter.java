@@ -65,8 +65,8 @@ public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView
         if (holder instanceof ItemHolder) {
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
-            iHolder.left_title.setText(iHolder.bean.getLeft_title());
-            iHolder.left_sub.setText(iHolder.bean.getTitle());
+            iHolder.left_title.setText(iHolder.bean.getTitle());
+            iHolder.left_sub.setText(iHolder.bean.getLeft_title());
             iHolder.right_state.setText(iHolder.bean.getRight());
             if (StringJudge.isEmpty(iHolder.bean.getListValue())){
 //                iHolder.multi.setVisibility(View.GONE);

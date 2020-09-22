@@ -99,12 +99,12 @@ public class PEHonorMainActivity extends BaseActivity {
 
 
         one.setRight_value("20\t分");
-        two.setRight_value("20\t分");
-        three.setRight_value("20\t分");
+        two.setRight_value("0\t分");
+        three.setRight_value("0\t分");
 
         one.setRight("已通过");
-        two.setRight("已通过");
-        three.setRight("已通过");
+        two.setRight("已拒绝");
+        three.setRight("已提交");
 
         keyValue_adapter.add(one);
         keyValue_adapter.add(two);

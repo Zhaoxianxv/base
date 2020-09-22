@@ -1,9 +1,13 @@
 package com.yfy.app.PEquality;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.Toast;
 
+import com.yfy.app.album.AlbumOneActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.net.ReqBody;
@@ -16,6 +20,11 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.glide.FileCamera;
+import com.yfy.final_tag.glide.Photo;
+import com.yfy.final_tag.permission.PermissionFail;
+import com.yfy.final_tag.permission.PermissionGen;
+import com.yfy.final_tag.permission.PermissionSuccess;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
@@ -25,6 +34,7 @@ import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWListBeanView;
 import com.yfy.final_tag.dialog.ConfirmDateWindow;
 import com.yfy.view.SQToolBar;
+import com.yfy.view.multi.MultiPictureView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -122,13 +132,12 @@ public class PEHonorAddActivity extends BaseActivity {
     List<CPWBean> cpwBeans=new ArrayList<>();
     private void setCPWlListBeanData(){
         if (StringJudge.isEmpty(cpwBeans)){
-            cpwBeans.add(new CPWBean("上午·第1节",""));
-            cpwBeans.add(new CPWBean("上午·第2节",""));
-            cpwBeans.add(new CPWBean("上午·第3节",""));
-            cpwBeans.add(new CPWBean("上午·第4节",""));
-            cpwBeans.add(new CPWBean("下午·第1节",""));
-            cpwBeans.add(new CPWBean("下午·第2节",""));
-            cpwBeans.add(new CPWBean("下午·第3节",""));
+            cpwBeans.add(new CPWBean("学校运动会",""));
+            cpwBeans.add(new CPWBean("校区联赛",""));
+            cpwBeans.add(new CPWBean("县级比赛",""));
+            cpwBeans.add(new CPWBean("市级比赛",""));
+            cpwBeans.add(new CPWBean("省级比赛",""));
+            cpwBeans.add(new CPWBean("国家级比赛",""));
         }
         cpwListBeanView.setDatas(cpwBeans);
 
@@ -158,6 +167,25 @@ public class PEHonorAddActivity extends BaseActivity {
     void setDate(){
         date_dialog.showAtBottom();
 
+    }
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case TagFinal.CAMERA:
+                    addMult(FileCamera.photo_camera);
+                    break;
+                case TagFinal.PHOTO_ALBUM:
+                    ArrayList<Photo> photo_a=data.getParcelableArrayListExtra(TagFinal.ALBUM_TAG);
+                    if (photo_a==null)return;
+                    if (photo_a.size()==0)return;
+                    setMultList(photo_a);
+            }
+        }
     }
     /**
      * ----------------------------retrofit-----------------------
@@ -216,4 +244,58 @@ public class PEHonorAddActivity extends BaseActivity {
     public boolean isActivity() {
         return AppLess.isTopActivy(TAG);
     }
+
+
+
+
+
+
+
+
+
+
+    @Bind(R.id.public_add_multi)
+    MultiPictureView add_multi;
+
+    public void addMult(String uri){
+        if (uri==null) return;
+        add_multi.addItem(uri);
+    }
+    public void setMultList(List<Photo> list){
+        for (Photo photo:list){
+            if (photo==null) continue;
+            addMult(photo.getPath());
+        }
+    }
+
+    @PermissionSuccess(requestCode = TagFinal.CAMERA)
+    private void takePhoto() {
+        FileCamera camera=new FileCamera(mActivity);
+        startActivityForResult(camera.takeCamera(), TagFinal.CAMERA);
+    }
+    @PermissionSuccess(requestCode = TagFinal.PHOTO_ALBUM)
+    private void photoAlbum() {
+        Intent intent;
+        intent = new Intent(mActivity, AlbumOneActivity.class);
+        Bundle b = new Bundle();
+        b.putInt(TagFinal.ALBUM_LIST_INDEX, 0);
+        b.putBoolean(TagFinal.ALBUM_SINGLE, false);
+        intent.putExtras(b);
+        startActivityForResult(intent,TagFinal.PHOTO_ALBUM);
+    }
+    @PermissionFail(requestCode = TagFinal.CAMERA)
+    private void showCamere() {
+        Toast.makeText(getApplicationContext(), R.string.permission_fail_camere, Toast.LENGTH_SHORT).show();
+    }
+    @PermissionFail(requestCode = TagFinal.PHOTO_ALBUM)
+    private void showTip1() {
+        Toast.makeText(getApplicationContext(), R.string.permission_fail_album, Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+    }
+
+
+
 }

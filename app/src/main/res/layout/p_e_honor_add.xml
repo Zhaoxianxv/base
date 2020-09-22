@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
+        android:paddingBottom="@dimen/margin_1dp"
+        android:paddingTop="@dimen/margin_1dp"
         android:background="@drawable/layer_top_bottom_grayline_whitebg">
 
         <TextView
@@ -42,12 +44,14 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
+        android:paddingBottom="@dimen/margin_1dp"
+        android:paddingTop="@dimen/margin_1dp"
         android:background="@drawable/layer_top_bottom_grayline_whitebg">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="选择课时"
+            android:text="选择级别"
             android:layout_centerVertical="true"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -67,35 +71,69 @@
     </RelativeLayout>
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_10dp"
         android:background="@drawable/layer_top_bottom_grayline_whitebg"
-        android:orientation="vertical"
+        android:paddingBottom="@dimen/margin_1dp"
+        android:paddingTop="@dimen/margin_1dp"
+        android:layout_marginTop="@dimen/margin_10dp"
         >
+        <TextView
+            android:id="@+id/public_type_long_txt_edit_key"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/margin_20dp"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/textsize7"
+            android:textStyle="bold"
+            android:text="运动项目"
+            android:layout_marginTop="@dimen/margin_3dp"/>
+
         <EditText
-            android:id="@+id/p_e_honor_add_long_txt"
+            android:id="@+id/public_type_long_txt_edit_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/margin_80dp"
-            android:layout_marginTop="@dimen/margin_1dp"
-            android:background="@color/White"
-            android:padding="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_25dp"
+            android:minHeight="@dimen/margin_60dp"
+            android:background="@color/white"
+            android:hint="请填写运动项目"
             android:gravity="start"
             android:textSize="@dimen/textsize7"
-            android:hint="点击输入请假因由(限制字数20字)" />
+            android:paddingLeft="@dimen/margin_10dp"
+            android:paddingRight="@dimen/margin_10dp"
+            android:paddingBottom="@dimen/margin_5dp"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layer_top_bottom_grayline_whitebg"
+        android:layout_marginTop="@dimen/margin_10dp">
+
+        <TextView
+            android:id="@+id/public_add_multi_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_3dp"
+            android:textSize="@dimen/textsize7"
+            android:textStyle="bold"
+            android:text="获奖证书"/>
         <com.yfy.view.multi.MultiPictureView
-            android:id="@+id/p_e_honor_add_multi"
+            android:id="@+id/public_add_multi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="@dimen/margin_5dp"
+            android:layout_below="@id/public_add_multi_name"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="@dimen/margin_10dp"
             app:editable="true"
             app:max="9"
             app:ratio="1"
             app:space="2dp"
             app:span="4" />
 
-    </LinearLayout>
+
+    </RelativeLayout>
 </LinearLayout>

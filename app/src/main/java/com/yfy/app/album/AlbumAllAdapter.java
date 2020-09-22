@@ -20,9 +20,7 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * @author yfy
- * @date 2015-10-6
  * @version 1.0
- * @description AlbumAllAdapter
  */
 public class AlbumAllAdapter extends AbstractAdapter<PhotoAlbum> {
 

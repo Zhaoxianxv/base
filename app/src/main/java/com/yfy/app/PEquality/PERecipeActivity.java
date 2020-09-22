@@ -138,6 +138,8 @@ public class PERecipeActivity extends BaseActivity {
 
 
 
+        keyValue_adapter.add(new KeyValue("给我的处方","建议加强体能锻炼这是系统生成，，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字","",TagFinal.TYPE_ITEM));
+        keyValue_adapter.add(new KeyValue("长跑","其他处方","",TagFinal.TYPE_TXT_LEFT_TITLE));
         keyValue_adapter.add(new KeyValue("长跑","建议加强体能锻炼","",TagFinal.TYPE_ITEM));
         keyValue_adapter.add(new KeyValue("跳高","建议加大腿弹跳能力","",TagFinal.TYPE_ITEM));
 

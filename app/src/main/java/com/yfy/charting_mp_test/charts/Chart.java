@@ -1285,7 +1285,6 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      * Returns the Description object of the chart that is responsible for holding all information related
      * to the description text that is displayed in the bottom right corner of the chart (by default).
      *
-     * @return
      */
     public Description getDescription() {
         return mDescription;
