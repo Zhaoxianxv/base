@@ -135,7 +135,7 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <!--PEquality-->
         <activity
-            android:name="com.yfy.app.PEquality.PEQualityMainActivity"
+            android:name="com.yfy.app.PEquality.PEScoreMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
@@ -204,6 +204,10 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.yfy.app.PEquality.PERecipeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.PEquality.tea.PETeaMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>

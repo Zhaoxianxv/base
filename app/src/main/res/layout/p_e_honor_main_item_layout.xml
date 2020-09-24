@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/p_e_honor_item_layout">
 
 
     <android.support.v7.widget.CardView
@@ -25,7 +27,7 @@
                 <LinearLayout
                     android:id="@+id/p_e_honor_radio_group"
                     android:layout_marginRight="5dp"
-                    android:background="@drawable/radius4_radio_group"
+                    android:background="@drawable/radius4_line"
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_alignParentRight="true"
@@ -37,16 +39,14 @@
                         android:layout_height="@dimen/margin_25dp"
                         android:text="已通过"
                         android:gravity="center"
-                        android:layout_weight="1"
+                        android:minWidth="@dimen/margin_60dp"
                         android:textColor="@color/red"
-                        android:layout_marginLeft="@dimen/margin_5dp"
                         android:textSize="@dimen/textsize5"/>
                     <View
+                        android:id="@+id/p_e_honor_right_line"
                         android:layout_width="@dimen/margin_1dp"
                         android:layout_height="@dimen/margin_25dp"
                         android:layout_alignParentRight="true"
-                        android:layout_marginLeft="@dimen/margin_5dp"
-                        android:layout_marginRight="@dimen/margin_5dp"
                         android:background="@color/red"
                         />
                     <android.support.v7.widget.AppCompatTextView
@@ -54,7 +54,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/margin_25dp"
                         android:text="15分"
-                        android:layout_marginRight="@dimen/margin_5dp"
+                        android:minWidth="@dimen/margin_60dp"
                         android:gravity="center"
                         android:textColor="@color/red"
                         android:textSize="@dimen/textsize5"/>
@@ -105,4 +105,4 @@
     </android.support.v7.widget.CardView>
 
 
-</LinearLayout>
+</RelativeLayout>

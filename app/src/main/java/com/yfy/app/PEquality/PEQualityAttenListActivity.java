@@ -20,6 +20,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
@@ -50,13 +51,16 @@ public class PEQualityAttenListActivity extends BaseActivity {
     }
 
 
-    private String title;
+    private String title,type;
     private void getData(){
         title=getIntent().getStringExtra(Base.title);
+        type=getIntent().getStringExtra(Base.type);
     }
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
+        if (StringJudge.isEmpty(type))return;
+        if (type.equalsIgnoreCase(TagFinal.FALSE))return;
         toolbar.addMenuText(TagFinal.ONE_INT,"新增");
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
@@ -64,7 +68,7 @@ public class PEQualityAttenListActivity extends BaseActivity {
 
                 Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                 intent.putExtra(Base.title,"新增请假");
-                intent.putExtra(Base.type,TAG);
+                intent.putExtra(Base.type,title);
                 startActivity(intent);
             }
         });

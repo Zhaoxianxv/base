@@ -73,7 +73,7 @@ public class PEQualityAttitudeActivity extends BaseActivity {
             public void onClick(View view, int position) {
                 Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                 intent.putExtra(Base.title,title);
-                intent.putExtra(Base.type,TAG);
+                intent.putExtra(Base.type,title);
                 startActivity(intent);
             }
         });
@@ -82,13 +82,19 @@ public class PEQualityAttitudeActivity extends BaseActivity {
 
 
     private void initView(){
-        del_button.setText("请假记录");
+        if (type.equalsIgnoreCase(TagFinal.TRUE)){
+            del_button.setVisibility(View.GONE);
+        }else{
+            del_button.setText("请假记录");
+        }
+
     }
 
     @OnClick(R.id.public_recycler_del)
     void setDel(){
         Intent intent=new Intent(mActivity,PEQualityAttenListActivity.class);
         intent.putExtra(Base.title,"请假记录");
+        intent.putExtra(Base.type,TagFinal.FALSE);
         startActivity(intent);
     }
     public List<KeyValue> keyValue_adapter=new ArrayList<>();

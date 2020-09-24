@@ -19,6 +19,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
@@ -43,16 +44,23 @@ public class SelectedClassActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_recycler_view);
+        getData();
         initRecycler();
         initSQToolbar();
         setAdapterData();
     }
 
+    private String title,type;
+    private void getData(){
+        title=getIntent().getStringExtra(Base.title);
+        type=getIntent().getStringExtra(Base.type);
+    }
+
     private TextView menu_one;
     private void initSQToolbar() {
         assert toolbar!=null;
-        toolbar.setTitle("选择班级");
-        menu_one=toolbar.addMenuText(TagFinal.ONE_INT,"");
+        toolbar.setTitle(title);
+        menu_one=toolbar.addMenuText(TagFinal.ONE_INT,"19-20上期");
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -61,7 +69,6 @@ public class SelectedClassActivity extends BaseActivity {
             }
         });
 
-        menu_one.setText("19-20上期");
     }
 
 
@@ -81,7 +88,7 @@ public class SelectedClassActivity extends BaseActivity {
                 LinearLayoutManager.HORIZONTAL,
                 1,
                 ColorRgbUtil.getGainsboro()));
-        adapter=new SelectedClassAdapter(mActivity);
+        adapter=new SelectedClassAdapter(this);
         recyclerView.setAdapter(adapter);
 
     }
@@ -90,30 +97,17 @@ public class SelectedClassActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
-        KeyValue three=new KeyValue(TagFinal.TYPE_ITEM);
-        KeyValue two=new KeyValue(TagFinal.TYPE_ITEM);
-        KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
-
-        one.setLeft_title("800米长跑");
-        two.setLeft_title("100米短跑");
-        three.setLeft_title("单人乒乓球");
-
-        one.setTitle("一年级1班");
-        two.setTitle("一年级2班");
-        three.setTitle("一年级3班");
 
 
-        one.setRight_value("20\t分");
-        two.setRight_value("20\t分");
-        three.setRight_value("20\t分");
+        List<String> list=StringUtils.listToStringSplitCharacters("一年级1班,一年级2班,一年级3班",",");
+        for (String s:list){
+            KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
+            one.setTitle(s);
+            one.setType(type);
+            keyValue_adapter.add(one);
+        }
 
-        one.setRight("已通过");
-        two.setRight("已通过");
-        three.setRight("已通过");
 
-        keyValue_adapter.add(one);
-        keyValue_adapter.add(two);
-        keyValue_adapter.add(three);
 
 
         adapter.setDataList(keyValue_adapter);

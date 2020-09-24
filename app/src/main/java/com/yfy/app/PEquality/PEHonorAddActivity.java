@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.yfy.app.album.AlbumOneActivity;
+import com.yfy.app.album.SingePicShowActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.net.ReqBody;
@@ -20,11 +21,13 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.dialog.ConfirmAlbumWindow;
 import com.yfy.final_tag.glide.FileCamera;
 import com.yfy.final_tag.glide.Photo;
 import com.yfy.final_tag.permission.PermissionFail;
 import com.yfy.final_tag.permission.PermissionGen;
 import com.yfy.final_tag.permission.PermissionSuccess;
+import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
@@ -35,6 +38,8 @@ import com.yfy.final_tag.dialog.CPWListBeanView;
 import com.yfy.final_tag.dialog.ConfirmDateWindow;
 import com.yfy.view.SQToolBar;
 import com.yfy.view.multi.MultiPictureView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,6 +60,8 @@ public class PEHonorAddActivity extends BaseActivity {
     @Bind(R.id.p_e_honor_add_choose_course)
     AppCompatTextView choose_course;
 
+    @Bind(R.id.public_add_multi)
+    MultiPictureView add_multi;
 
     private DateBean dateBean;
     @Override
@@ -63,6 +70,8 @@ public class PEHonorAddActivity extends BaseActivity {
         setContentView(R.layout.p_e_honor_add);
         dateBean=new DateBean();
         dateBean.setValue_long(System.currentTimeMillis(),true);
+        initAlbumDialog();
+        initAbsListView();
         getData();
         initView();
         initSQToolbar();
@@ -184,6 +193,7 @@ public class PEHonorAddActivity extends BaseActivity {
                     if (photo_a==null)return;
                     if (photo_a.size()==0)return;
                     setMultList(photo_a);
+
             }
         }
     }
@@ -251,11 +261,57 @@ public class PEHonorAddActivity extends BaseActivity {
 
 
 
+    private void initAbsListView() {
+        add_multi.setAddClickCallback(new MultiPictureView.AddClickCallback() {
+            @Override
+            public void onAddClick(View view) {
+                closeKeyWord();
+                album_select.showAtBottom();
+            }
+        });
 
+        add_multi.setClickable(false);
+        add_multi.setDeleteClickCallback(new MultiPictureView.DeleteClickCallback() {
+            @Override
+            public void onDeleted(@NotNull View view, int index) {
+                add_multi.removeItem(index,true);
+            }
+        });
+        add_multi.setItemClickCallback(new MultiPictureView.ItemClickCallback() {
+            @Override
+            public void onItemClicked(@NotNull View view, int index, @NotNull ArrayList<String> uris) {
+                Intent intent=new Intent(mActivity, SingePicShowActivity.class);
+                Bundle b=new Bundle();
+                b.putString(TagFinal.ALBUM_SINGE_URI,uris.get(index));
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
 
+    }
 
-    @Bind(R.id.public_add_multi)
-    MultiPictureView add_multi;
+    ConfirmAlbumWindow album_select;
+    private void initAlbumDialog() {
+        album_select = new ConfirmAlbumWindow(mActivity);
+        album_select.setTwo_select(mActivity.getResources().getString(R.string.album));
+        album_select.setOne_select(mActivity.getResources().getString(R.string.take_photo));
+        album_select.setName(mActivity.getResources().getString(R.string.upload_type));
+        album_select.setOnPopClickListenner(new ConfirmAlbumWindow.OnPopClickListenner() {
+            @Override
+            public void onClick(View view) {
+
+                switch (view.getId()) {
+                    case R.id.popu_select_one:
+                        PermissionTools.tryCameraPerm(mActivity);
+                        break;
+                    case R.id.popu_select_two:
+                        PermissionTools.tryWRPerm(mActivity);
+                        break;
+                }
+            }
+        });
+    }
+
 
     public void addMult(String uri){
         if (uri==null) return;

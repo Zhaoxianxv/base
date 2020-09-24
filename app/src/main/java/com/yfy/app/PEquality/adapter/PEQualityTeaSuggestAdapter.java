@@ -11,9 +11,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
+import com.yfy.app.SelectStuActivity;
 import com.yfy.app.album.SingePicShowActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
@@ -49,17 +51,19 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
 
-    public void addItemData(int position,List<KeyValue> two){
+    private void addItemData(int position, List<KeyValue> two){
         dataList.addAll(position+1, two);
         notifyItemRangeInserted(position, two.size());
     }
-    public void removeItemData(String id) {
+    private void removeItemData(String id) {
         for (int i = 0; i < dataList.size(); i++) {
             KeyValue remove=dataList.get(i);
             if (id.equalsIgnoreCase(remove.getId())){
                 dataList.remove(i);
                 notifyItemRangeRemoved(i, 1);
-                continue;
+
+                removeItemData(id);
+                return;
             }
         }
     }
@@ -88,6 +92,10 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
         if (viewType == TagFinal.TYPE_SELECT_SINGLE) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_choice, parent, false);
             return new ChoiceListHolder(view);
+        }
+        if (viewType == TagFinal.TYPE_SELECT_STU) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_choice, parent, false);
+            return new SelectStuHolder(view);
         }
         if (viewType == TagFinal.TYPE_LONG_TXT_EDIT) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_long_txt_edit, parent, false);
@@ -118,6 +126,19 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
             }else {
                 dateH.apply_value.setTextColor(ColorRgbUtil.getBaseText());
                 dateH.apply_value.setText(dateH.bean.getRight_name());
+            }
+        }
+        if (holder instanceof SelectStuHolder) {
+            SelectStuHolder stuH = (SelectStuHolder) holder;
+            stuH.index_position=position;
+            stuH.bean=dataList.get(position);
+            stuH.apply_name.setText(StringUtils.getTextJoint("%1$s",stuH.bean.getTitle()));
+            if (StringJudge.isEmpty(stuH.bean.getRight_value())){
+                stuH.apply_value.setTextColor(ColorRgbUtil.getGrayText());
+                stuH.apply_value.setText(stuH.bean.getRight_key());
+            }else {
+                stuH.apply_value.setTextColor(ColorRgbUtil.getBaseText());
+                stuH.apply_value.setText(stuH.bean.getRight_name());
             }
         }
         if (holder instanceof DateTimeHolder) {
@@ -289,6 +310,31 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
             });
         }
     }
+    private class SelectStuHolder extends RecyclerView.ViewHolder {
+        TextView apply_name;
+        TextView apply_value;
+        KeyValue bean;
+        int index_position;
+        SelectStuHolder(View itemView) {
+            super(itemView);
+            apply_name=  itemView.findViewById(R.id.public_type_choice_key);
+            apply_value=  itemView.findViewById(R.id.public_type_choice_value);
+            apply_value.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.closeKeyWord();
+                    Intent intent=new Intent(mContext,SelectStuActivity.class);
+                    intent.putExtra(Base.index,index_position);
+                    intent.putExtra(Base.title,"选择学生");
+                    intent.putExtra(Base.type,"select_stu");
+                    mContext.startActivityForResult(intent,TagFinal.UI_REFRESH);
+                }
+            });
+        }
+
+
+
+    }
     private class ChoiceListHolder extends RecyclerView.ViewHolder {
         TextView apply_name;
         TextView apply_value;
@@ -337,28 +383,6 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
 
 
 
-                            if (cpwBean.getName().equalsIgnoreCase("其他")){
-                                removeItemData("choice");
-
-                                List<KeyValue> list=new ArrayList<>();
-                                KeyValue three=new KeyValue(TagFinal.TYPE_LONG_TXT_EDIT);
-                                three.setTitle("其他扣分说明");
-                                three.setKey("输入扣分说明");
-                                three.setValue("");
-                                three.setType("choice");
-                                three.setId("choice");
-                                KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
-                                one.setTitle("其他扣分");
-                                one.setKey("扣分分数");
-                                one.setValue("");
-                                one.setType("choice");
-                                one.setId("choice");
-
-                                list.add(three);
-                                list.add(one);
-                                addItemData(index_position,list);
-
-                            }
                             if (bean.getGroup_id().equalsIgnoreCase(TagFinal.TRUE)){
                                 //是否关联数据
                                 removeItemData("choice");
@@ -372,7 +396,40 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
                                 list.add(three);
                                 addItemData(index_position,list);
                             }else{
-                                notifyItemChanged(index_position,bean);
+                                removeItemData("choice");
+                                List<KeyValue> list=new ArrayList<>();
+                                if (cpwBean.getName().equalsIgnoreCase("其他")){
+                                    list.clear();
+                                    KeyValue three=new KeyValue(TagFinal.TYPE_LONG_TXT_EDIT);
+                                    three.setTitle("其他扣分说明");
+                                    three.setKey("输入扣分说明");
+                                    three.setValue("");
+                                    three.setType("choice");
+                                    three.setId("choice");
+                                    KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
+                                    one.setTitle("其他扣分");
+                                    one.setKey("扣分分数");
+                                    one.setValue("");
+                                    one.setType("choice");
+                                    one.setId("choice");
+
+                                    list.add(three);
+                                    list.add(one);
+                                    addItemData(index_position,list);
+
+                                }
+                                if (cpwBean.getName().equalsIgnoreCase("已通过")){
+                                    list.clear();
+                                    KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
+                                    one.setTitle("荣誉打分");
+                                    one.setKey("荣誉打分");
+                                    one.setValue("");
+                                    one.setType("choice");
+                                    one.setId("choice");
+                                    list.add(one);
+                                    addItemData(index_position,list);
+                                }
+                                notifyDataSetChanged();
                             }
                             cpwListView.dismiss();
                             break;

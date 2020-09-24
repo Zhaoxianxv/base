@@ -75,7 +75,7 @@ public class PEQualitySkillsActivity extends BaseActivity {
                 }else{
                     Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                     intent.putExtra(Base.title,title);
-                    intent.putExtra(Base.type,TAG);
+                    intent.putExtra(Base.type,title);
                     startActivity(intent);
                 }
             }

@@ -38,9 +38,12 @@ public class SelectStuActivity extends BaseActivity implements Callback<ResEnv> 
         initRecycler();
         setAdapterData();
     }
-    private String title;
+    public String title,type;
+    public int index;
     private void getData(){
         title=getIntent().getStringExtra(Base.title);
+        type=getIntent().getStringExtra(Base.type);
+        index=getIntent().getIntExtra(Base.index,0);
         initSQtoolbar(title);
     }
 
@@ -79,6 +82,7 @@ public class SelectStuActivity extends BaseActivity implements Callback<ResEnv> 
         recyclerView.setAdapter(adapter);
 
 
+        adapter.setIndex(index);
 
     }
 
@@ -87,32 +91,47 @@ public class SelectStuActivity extends BaseActivity implements Callback<ResEnv> 
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
         keyValue_adapter.clear();
-
-        KeyValue three=new KeyValue("张三",Base.user.getHeadPic(),TagFinal.TYPE_ITEM);
-        KeyValue two=new KeyValue("李四",Base.user.getHeadPic(),TagFinal.TYPE_ITEM);
-        KeyValue one=new KeyValue("王五",Base.user.getHeadPic(),TagFinal.TYPE_ITEM);
-
-        one.setLeft_title("800米长跑");
-        two.setLeft_title("100米短跑");
-        three.setLeft_title("单人乒乓球");
-
-        one.setTitle("一年级1班");
-        two.setTitle("一年级2班");
-        three.setTitle("一年级3班");
-
-
-        one.setRight_value("20\t分");
-        two.setRight_value("20\t分");
-        three.setRight_value("20\t分");
-
-        one.setRight("已通过");
-        two.setRight("已通过");
-        three.setRight("已通过");
-
-        keyValue_adapter.add(one);
-        keyValue_adapter.add(two);
-        keyValue_adapter.add(three);
-
+        List<String> list=StringUtils.listToStringSplitCharacters("张三,李四,王五",",");
+        for (String s:list){
+            KeyValue one=new KeyValue(s,Base.user.getHeadPic(),TagFinal.TYPE_ITEM);
+            one.setType(type);
+            switch (type){
+                case "运动技能":
+                    one.setRight_value("总分：88");
+                    break;
+                case "请假":
+                    one.setRight_value("请假次数：8");
+                    break;
+                case "课后作业":
+                    one.setRight_value("总分：88");
+                    break;
+                case "体能":
+                    one.setRight_value("总分：88");
+                    break;
+                case "国家体质标准":
+                    one.setRight_value("总分：88");
+                    break;
+                case "学习态度采集":
+                    one.setRight_value("总分：88");
+                    break;
+                case "膳食建议":
+                    one.setRight_value("膳食建议:无");
+                    break;
+                case "运动处方":
+                    one.setRight_value("运动处方:无");
+                    break;
+                case "课堂表现":
+                    one.setRight_value("得分：88");
+                    break;
+                case "体育比赛成绩":
+                    one.setRight_value("体育比赛成绩:5条");
+                    break;
+                case "体育荣誉证书":
+                    one.setRight_value("体育荣誉:5次");
+                    break;
+            }
+            keyValue_adapter.add(one);
+        }
 
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);

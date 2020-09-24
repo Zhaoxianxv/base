@@ -136,7 +136,7 @@ public class PEQualityTeaMainActivity extends BaseActivity {
                                     case "体能":
                                         intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                                         intent.putExtra(Base.title,type);
-                                        intent.putExtra(Base.type,"stamina");
+                                        intent.putExtra(Base.type,"体能");
                                         startActivity(intent);
                                         break;
                                     case "体育课后作业":
@@ -287,13 +287,13 @@ public class PEQualityTeaMainActivity extends BaseActivity {
                     case "膳食建议"://
                         intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                         intent.putExtra(Base.title,bean.getName());
-                        intent.putExtra(Base.type,TAG);
+                        intent.putExtra(Base.type,bean.getName());
                         startActivity(intent);
                         break;
                     case "课堂表现":
                         intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                         intent.putExtra(Base.title,bean.getName());
-                        intent.putExtra(Base.type,"show");
+                        intent.putExtra(Base.type,bean.getName());
                         startActivity(intent);
                         break;
 

@@ -21,22 +21,37 @@
             app:cardCornerRadius="@dimen/margin_5dp"
             app:cardBackgroundColor="@color/white">
             <RelativeLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="@dimen/margin_10dp">
 
                 <TextView
-
-                    android:layout_centerHorizontal="true"
+                    android:id="@+id/stamina_tag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_60dp"
-                    android:text="力量"/>
+                    android:text="体能项：由学生选择（速度类、力量类、灵敏类、柔韧类、耐力类）其中一项进行考试打分。"/>
                 <TextView
-                    android:layout_centerInParent="true"
+                    android:id="@+id/stamina_user_selected_project_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="95.5分"/>
+                    android:layout_below="@id/stamina_tag"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:textSize="@dimen/textsize8"
+                    android:text="我选择考试项：力量类"/>
+                <TextView
+                    android:id="@+id/stamina_user_selected_project_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/stamina_user_selected_project_title"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="我考试得分：95.5分"/>
+                <TextView
+                    android:id="@+id/stamina_user_selected_project_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/stamina_user_selected_project_score"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="考试评语：无"/>
             </RelativeLayout>
 
         </android.support.v7.widget.CardView>

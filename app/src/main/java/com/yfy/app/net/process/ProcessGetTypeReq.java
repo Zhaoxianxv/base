@@ -18,11 +18,11 @@ public class ProcessGetTypeReq {
 
     @Namespace(reference = TagFinal.NAMESPACE)
     @Element(name = Base.session_key, required = false)
-    private String session_key;     ///
+    public String session_key;     ///
 
     @Namespace(reference = TagFinal.NAMESPACE)
     @Element(name = "fxid", required = false)
-    private int fxid=13;
+    public int fxid=13;
 
 
     public void setSession_key(String session_key) {

@@ -50,6 +50,7 @@ public  class TagFinal {
     public final static int TYPE_GROUP = 109;
 
     public final static int TYPE_SELECT_SINGLE = 114;
+    public final static int TYPE_SELECT_STU = 115;
     public final static int TYPE_SELECT_GROUP = 110;
     public final static int TYPE_SELECT_ONE = 111;
     public final static int TYPE_SELECT_TWO = 112;

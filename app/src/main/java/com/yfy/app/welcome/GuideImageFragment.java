@@ -24,11 +24,11 @@ public class GuideImageFragment extends Fragment {
         iv_image=contentView.findViewById(R.id.guide_iv_image);//
         fragmentPagerItemPosition = FragmentPagerItem.getPosition(getArguments());
         if (fragmentPagerItemPosition == 0) {
-            bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);//initial one pager
+            bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.homepaga);//initial one pager
         } else if (fragmentPagerItemPosition == 1) {
-            bitmap = BitmapFactory.decodeResource(getResources(),  R.mipmap.ic_launcher);//initial two pager
+            bitmap = BitmapFactory.decodeResource(getResources(),  R.drawable.homepaga);//initial two pager
         } else if (fragmentPagerItemPosition == 2) {
-            bitmap = BitmapFactory.decodeResource(getResources(),  R.mipmap.ic_launcher);//initial three pager
+            bitmap = BitmapFactory.decodeResource(getResources(),  R.drawable.homepaga);//initial three pager
         }
         if (Utils.isNotNull(bitmap)) {
             ViewTools.setImageBitmap(iv_image, bitmap);

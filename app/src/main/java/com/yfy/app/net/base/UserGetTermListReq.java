@@ -13,8 +13,16 @@ import org.simpleframework.xml.Root;
 @Root(name = TagFinal.USER_GET_TERM_LIST, strict = false)
 @Namespace(reference = TagFinal.NAMESPACE)
 public class UserGetTermListReq {
+
     @Namespace(reference = TagFinal.NAMESPACE)
     @Element(name = "session_key", required = false)
-    private String session_key=Base.user.getSession_key();;
+    public String session_key=Base.user.getSession_key();
+
+
+    public void setSession_key(String session_key) {
+        this.session_key = session_key;
+    }
+
+
 
 }

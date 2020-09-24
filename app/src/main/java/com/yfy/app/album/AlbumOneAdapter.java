@@ -16,7 +16,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.yfy.base.R;
-import com.yfy.final_tag.ViewUtils;
+import com.yfy.final_tag.glide.GlideTools;
+import com.yfy.final_tag.viewtools.ViewUtils;
 import com.yfy.final_tag.glide.Photo;
 import com.yfy.view.CheckImageView;
 
@@ -31,10 +32,9 @@ import java.util.List;
  */
 public class AlbumOneAdapter extends BaseAdapter {
 
-//	private final static String TAG = AlbumOneAdapter.class.getSimpleName();
 
-	public List<Photo> selectedPhotoList = new ArrayList<Photo>();
-	private List<Photo> photoList = new ArrayList<Photo>();
+	public List<Photo> selectedPhotoList = new ArrayList<>();
+	private List<Photo> photoList = new ArrayList<>();
 	private LayoutInflater inflater;
 	private boolean single;
 	private Context context;
@@ -76,9 +76,9 @@ public class AlbumOneAdapter extends BaseAdapter {
 		if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.album_one_item_gridview, null);
-			holder.photo = (ImageView) convertView.findViewById(R.id.photo);
-			holder.selected_iv = (CheckImageView) convertView.findViewById(R.id.selected_iv);
-			LayoutParams params = (LayoutParams) holder.photo.getLayoutParams();
+			holder.photo =  convertView.findViewById(R.id.photo);
+			holder.selected_iv =  convertView.findViewById(R.id.selected_iv);
+			LayoutParams params =  holder.photo.getLayoutParams();
 			params.width = itemWidth;
 			params.height = itemWidth;
 			holder.photo.requestLayout();
@@ -91,10 +91,7 @@ public class AlbumOneAdapter extends BaseAdapter {
 		holder.selected_iv.setChecked(photo.isSelected());
 
 
-		Glide.with(context)
-				.load(photoList.get(position).getPath())
-				.into(holder.photo);
-
+		GlideTools.loadImage(context,photoList.get(position).getPath(),holder.photo);
 		convertView.setOnClickListener(new OnClickListener() {
 
 			@Override

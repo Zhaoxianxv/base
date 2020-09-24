@@ -1399,9 +1399,6 @@ public class ReqBody {
         this.delayTeaAddReq = delayTeaAddReq;
     }
 
-    public void setProcessGetTypeReq(ProcessGetTypeReq processGetTypeReq) {
-        this.processGetTypeReq = processGetTypeReq;
-    }
 
     public void setProcessGetUserListReq(ProcessGetUserListReq processGetUserListReq) {
         this.processGetUserListReq = processGetUserListReq;

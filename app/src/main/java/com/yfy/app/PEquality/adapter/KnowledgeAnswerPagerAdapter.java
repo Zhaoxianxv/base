@@ -33,6 +33,28 @@ public class KnowledgeAnswerPagerAdapter extends PagerAdapter {
         notifyDataSetChanged();
     }
 
+
+    //    public KnowledgeAnswerListViewAdapter list_adapter;
+//    public ListView listview;
+//    private  void initListView(){
+//        listview=findViewById(R.id.attitude_answer_list);
+//        listview.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
+//        list_adapter=new KnowledgeAnswerListViewAdapter(mActivity);
+//        listview.setAdapter(list_adapter);
+//
+//        keyValue_adapter.clear();
+//
+//        KeyValue one=new KeyValue("A、古罗马","",TagFinal.TYPE_ITEM);
+//        KeyValue two=new KeyValue("B、古希腊","",TagFinal.TYPE_ITEM);
+//        KeyValue three=new KeyValue("C、法国文字超出一行文字超出一行文字超出一行文字超出一行","",TagFinal.TYPE_ITEM);
+//        KeyValue four=new KeyValue("D、英国","",TagFinal.TYPE_ITEM);
+//
+//        keyValue_adapter.add(one);
+//        keyValue_adapter.add(two);
+//        keyValue_adapter.add(three);
+//        keyValue_adapter.add(four);
+//        list_adapter.setDatas(keyValue_adapter);
+//    }
     public KnowledgeAnswerPagerAdapter(Context mcontext) {
         this.mcontext = mcontext;
     }

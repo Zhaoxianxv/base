@@ -157,13 +157,18 @@
         android:layout_below="@id/p_e_main_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+
         android:background="@drawable/layer_top_bottom_grayline_whitebg">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/p_e_main_type_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_3dp"
+            android:layout_marginBottom="@dimen/margin_3dp"
             android:scrollbars="none">
         </android.support.v7.widget.RecyclerView>
+
     </RelativeLayout>
 
 

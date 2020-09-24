@@ -47,13 +47,18 @@ import retrofit2.Response;
 
 public class PEQualityTeaSuggestActivity extends BaseActivity {
     private static final String TAG = PEQualityTeaSuggestActivity.class.getSimpleName();
-
+    KeyValue stu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_recycler_view);
+        stu=new KeyValue(TagFinal.TYPE_SELECT_STU);
+        stu.setTitle("选择学生");
+        stu.setRight_key("未选择");
+        stu.setRight_value("");
         initRecycler();
         getData();
+
     }
 
 
@@ -112,36 +117,53 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
 
     private void initView(String type){
         switch (type){
-            case "PERecipeActivity":
+            case "运动处方":
                 setRecipe();
                 break;
-            case "PEQualityTeaMainActivity":
+            case "膳食建议":
                 setSuggest();
                 break;
-            case "PEQualitySkillsActivity":
+            case "运动技能":
                 setSkillsAdapterData();
                 break;
-            case "PEQualityAttenListActivity":
+            case "请假":
                 setAttenData();
                 break;
-            case "PEQualityHomeworkActivity":
+            case "课后作业":
                 setHomework();
                 break;
-            case "stamina":
+            case "体能":
                 setStamina();
                 break;
-            case "PEQualityStandardListActivity":
+            case "国家体质标准":
                 setStandard();
                 break;
-            case "PEQualityAttitudeActivity":
+            case "学习态度采集":
                 setAttitudeData();
                 break;
-            case "show":
+            case "课堂表现":
                 setShow();
+                break;
+            case "admin":
+                setAdmin();
                 break;
         }
     }
 
+    private void setAdmin(){
+        keyValueAdapterData.clear();
+        KeyValue three=new KeyValue(TagFinal.TYPE_SELECT_SINGLE);
+        three.setTitle("审批状态");
+        three.setRight_value("");
+        three.setRight_name("");
+        three.setRight_key("未选择");
+        three.setContent("已通过,已拒绝");
+        three.setGroup_id(TagFinal.FALSE);
+
+        keyValueAdapterData.add(three);
+        adapter.setDataList(keyValueAdapterData);
+        adapter.setLoadState(TagFinal.LOADING_END);
+    }
     private void setShow(){
         keyValueAdapterData.clear();
         KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
@@ -149,9 +171,6 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         one.setTitle(title);
         one.setValue("");
         one.setKey("请输入分数");
-
-
-
 
         keyValueAdapterData.add(one);
 
@@ -186,7 +205,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
 
 
 
-
+//        keyValueAdapterData.add(stu);
         keyValueAdapterData.add(one);
         keyValueAdapterData.add(two);
         keyValueAdapterData.add(three);
@@ -211,7 +230,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
 
         KeyValue five=new KeyValue("请输入分数","","",TagFinal.TYPE_TXT_EDIT);
         five.setTitle("一分钟跳绳");
-
+//        keyValueAdapterData.add(stu);
         keyValueAdapterData.add(one);
         keyValueAdapterData.add(two);
         keyValueAdapterData.add(three);
@@ -223,17 +242,15 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
     }
     private void setStamina(){
         keyValueAdapterData.clear();
-        KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
 
-        one.setTitle(title);
-        one.setValue("");
-        one.setKey("请输入分数");
+        KeyValue four=new KeyValue(TagFinal.TYPE_SELECT_SINGLE);
+        four.setTitle("选择考试项");
+        four.setContent("力量类,灵敏类,柔韧类,耐力类");
+        four.setRight_key("未选择");
+        four.setRight_value("");
+        four.setGroup_id(TagFinal.TRUE);
 
-
-
-
-        keyValueAdapterData.add(one);
-
+        keyValueAdapterData.add(four);
         adapter.setDataList(keyValueAdapterData);
         adapter.setLoadState(TagFinal.LOADING_END);
     }
@@ -256,7 +273,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         three.setKey("88");
         three.setIs_edit(TagFinal.FALSE);
 
-
+//        keyValueAdapterData.add(stu);
         keyValueAdapterData.add(one);
         keyValueAdapterData.add(two);
         keyValueAdapterData.add(two);
@@ -294,7 +311,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
 
 
 
-
+//        keyValueAdapterData.add(stu);
         keyValueAdapterData.add(one);
         keyValueAdapterData.add(two);
         keyValueAdapterData.add(three);
@@ -332,7 +349,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         five.setTitle("运动技能简评");
         five.setKey("未评论");
         five.setValue("");
-
+//        keyValueAdapterData.add(stu);
         keyValueAdapterData.add(two);
         keyValueAdapterData.add(three);
         keyValueAdapterData.add(four);
@@ -352,7 +369,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         one.setKey("请输入标题");
         two.setTitle("内容");
         two.setValue("五谷杂粮，如莜麦面、荞麦面、燕麦片、玉米面、紫山药等富含维生素B、多种微量元素及食物纤维，以低糖，低淀粉的食物或者粗粮以及蔬菜等做主食。");
-
+//        keyValueAdapterData.add(stu);
         keyValueAdapterData.add(one);
         keyValueAdapterData.add(two);
         adapter.setDataList(keyValueAdapterData);
@@ -368,7 +385,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         one.setKey("请输入项目名");
         two.setTitle("处方建议");
         two.setValue("建议加强体能锻炼");
-
+//        keyValueAdapterData.add(stu);
         keyValueAdapterData.add(one);
         keyValueAdapterData.add(two);
         adapter.setDataList(keyValueAdapterData);
@@ -407,6 +424,14 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
                     break;
 
 
+                case TagFinal.UI_REFRESH:
+                    KeyValue bean=data.getParcelableExtra(Base.data);
+                    int index=data.getIntExtra(Base.index,0);
+                    KeyValue adapter_bean=adapter.getDataList().get(index);
+                    adapter_bean.setRight_name(bean.getName());
+                    adapter_bean.setRight_value(bean.getName());
+                    adapter.notifyItemChanged(index,adapter_bean);
+                    break;
 
             }
         }

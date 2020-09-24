@@ -1,10 +1,11 @@
 package com.yfy.app.PEquality;
 
 import android.os.Bundle;
-import android.widget.AbsListView;
-import android.widget.ListView;
+import android.support.v4.view.ViewPager;
+import android.view.View;
 
-import com.yfy.app.PEquality.adapter.KnowledgeAnswerListViewAdapter;
+import com.yfy.app.PEquality.adapter.KnowledgeAnswerPagerAdapter;
+import com.yfy.app.PEquality.adapter.KnowledgeLibraryPagerAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
@@ -17,20 +18,23 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.dialog.CPWBean;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.data.TagFinal;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import butterknife.Bind;
 import retrofit2.Call;
 import retrofit2.Response;
 
 public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
     private static final String TAG = PEQualityKnowledgeAnswerActivity.class.getSimpleName();
-
 
 
     @Override
@@ -39,8 +43,8 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         setContentView(R.layout.p_e_knowledge_answer);
         getData();
         initSQToolbar();
-//        initListView();
-
+        initPager();
+        setAdapterData();
     }
 
 
@@ -51,43 +55,54 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
+    }
+
+    @Bind(R.id.knowledge_answer_pager)
+    ViewPager pager;
+    public LinkedList<KeyValue> data_list = new LinkedList<>();
+    public KnowledgeLibraryPagerAdapter pager_adapter;
+    public void initPager(){
+        pager_adapter=new KnowledgeLibraryPagerAdapter(mActivity);
+        pager.setAdapter(pager_adapter);
+    }
+    private void setAdapterData(){
+        data_list.clear();
+        KeyValue keyValue=new KeyValue(TagFinal.TYPE_ITEM);
+        List<CPWBean> cpwbeanList=new ArrayList<>();
+        keyValue.setTitle("奥林匹克运动会的发源地");
+        cpwbeanList.add(new CPWBean("A、古罗马",""));
+        cpwbeanList.add(new CPWBean("B、古希腊",""));
+        cpwbeanList.add(new CPWBean("C、法国文字超出一行文字超出一行文字超出一行文字超出一行",""));
+        cpwbeanList.add(new CPWBean("D、英国",""));
+        keyValue.setCpwBeanArrayList(cpwbeanList);
+        keyValue.setType(TagFinal.TRUE);
+
+        data_list.add(keyValue);
+        data_list.add(keyValue);
+        data_list.add(keyValue);
+        if (StringJudge.isEmpty(data_list)){
+            pager.setVisibility(View.GONE);
+        }else{
+            pager.setVisibility(View.VISIBLE);
+        }
+        pager_adapter.reSetData(data_list);
 
     }
 
 
 
-    public List<KeyValue> keyValue_adapter=new ArrayList<>();
-    public KnowledgeAnswerListViewAdapter list_adapter;
-    public ListView listview;
-    private  void initListView(){
-        listview=findViewById(R.id.attitude_answer_list);
-//        listview.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-        listview.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
-        list_adapter=new KnowledgeAnswerListViewAdapter(mActivity);
-        listview.setAdapter(list_adapter);
 
-        keyValue_adapter.clear();
-
-        KeyValue one=new KeyValue("A、古罗马","",TagFinal.TYPE_ITEM);
-        KeyValue two=new KeyValue("B、古希腊","",TagFinal.TYPE_ITEM);
-        KeyValue three=new KeyValue("C、法国文字超出一行文字超出一行文字超出一行文字超出一行","",TagFinal.TYPE_ITEM);
-        KeyValue four=new KeyValue("D、英国","",TagFinal.TYPE_ITEM);
-
-        keyValue_adapter.add(one);
-        keyValue_adapter.add(two);
-        keyValue_adapter.add(three);
-        keyValue_adapter.add(four);
-        list_adapter.setDatas(keyValue_adapter);
-    }
 
     /**
      * ----------------------------retrofit-----------------------
      */
     public void getTerm() {
+        if (Base.user==null)return;
         ReqEnv env = new ReqEnv();
         ReqBody reqBody = new ReqBody();
         UserGetTermListReq req = new UserGetTermListReq();
         //获取参数
+        req.setSession_key(Base.user.getSession_key());
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
@@ -107,6 +122,7 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
                 Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
+                    Logger.e("");
                 }else{
                     toastShow("error");
                 }
@@ -114,6 +130,7 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
 
         }else{
             try {
+                assert response.errorBody() != null;
                 String s=response.errorBody().string();
                 Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
             } catch (IOException e) {

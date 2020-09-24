@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yfy.app.PEquality.adapter.PEQualityMainAdapter;
+import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.SelectedClassActivity;
 import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.BaseRes;
@@ -95,7 +96,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
         initView();
         initChartView();
         setData();
-
+        initRecyclerView();
         mChart.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -190,7 +191,8 @@ public class PEQualityMainTestActivity extends BaseActivity {
                     Intent intent=new Intent(mActivity,LoginActivity.class);
                     startActivityForResult(intent,TagFinal.UI_ADD);
                 }else{
-                    Intent intent=new Intent(mActivity,SelectedClassActivity.class);
+                    Intent intent=new Intent(mActivity,PETeaMainActivity.class);
+                    intent.putExtra(Base.title,"教师打分");
                     startActivity(intent);
                 }
 
@@ -231,7 +233,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
         list.add(new KeyValue("调高：","建议加大腿弹跳能力"));
 
         setFlowLayoutTop(list);
-        initRecyclerView();
+
     }
 
 
@@ -293,11 +295,13 @@ public class PEQualityMainTestActivity extends BaseActivity {
                     case "体育荣誉证书":
                         intent=new Intent(mActivity,PEHonorMainActivity.class);
                         intent.putExtra(Base.title,bean.getName());
+                        intent.putExtra(Base.type,TagFinal.FALSE);
                         startActivity(intent);
                         break;
                     case "体育比赛成绩":
                         intent=new Intent(mActivity,PEHonorMainActivity.class);
                         intent.putExtra(Base.title,bean.getName());
+                        intent.putExtra(Base.type,TagFinal.FALSE);
                         startActivity(intent);
                         break;
                     case "膳食建议":
@@ -457,6 +461,13 @@ public class PEQualityMainTestActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    @OnClick(R.id.p_e_main_grade_layout)
+    void setGrade(){
+        Intent intent=new Intent(mActivity,PEScoreMainActivity.class);
+        intent.putExtra(Base.title,"详细得分");
+        startActivity(intent);
+    }
+
     /**
      * ----------------------------retrofit-----------------------
      */
@@ -465,7 +476,9 @@ public class PEQualityMainTestActivity extends BaseActivity {
         ReqEnv env = new ReqEnv();
         ReqBody reqBody = new ReqBody();
         UserGetTermListReq req = new UserGetTermListReq();
+
         //获取参数
+        req.setSession_key(Base.user.getSession_key());
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);

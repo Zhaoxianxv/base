@@ -91,7 +91,7 @@ public class GridDividerLineNotBottom extends RecyclerView.ItemDecoration {
     }
 
     private boolean isLastColum(RecyclerView parent, int pos, int spanCount, int childCount) {
-        Logger.e(pos+"------"+spanCount+"--------"+childCount);
+//        Logger.e(pos+"------"+spanCount+"--------"+childCount);
         LayoutManager layoutManager = parent.getLayoutManager();
         if (layoutManager instanceof GridLayoutManager) {
             // 如果是最后一列，则不需要绘制右边

@@ -7,13 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.bean.TermBean;
+import com.yfy.app.login.bean.Stunlist;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.dialog.CPWBean;
+import com.yfy.final_tag.dialog.CPWListBeanView;
+import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.stringtool.StringUtils;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +36,7 @@ public class SelectedClassAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
     private List<KeyValue> dataList;
-    private Activity mContext;
+    private SelectedClassActivity mContext;
 
     public void setDataList(List<KeyValue> dataList) {
         this.dataList = dataList;
@@ -38,7 +46,7 @@ public class SelectedClassAdapter extends RecyclerView.Adapter<RecyclerView.View
     private int loadState = 2;
 
 
-    public SelectedClassAdapter(Activity mContext){
+    public SelectedClassAdapter(SelectedClassActivity mContext){
         this.mContext=mContext;
         this.dataList = new ArrayList<>();
     }
@@ -55,7 +63,7 @@ public class SelectedClassAdapter extends RecyclerView.Adapter<RecyclerView.View
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TagFinal.TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.selected_singe_item_layout, parent, false);
-            return new SelectedTermH(view);
+            return new SelectedClassH(view);
 
         }
         return null;
@@ -64,10 +72,11 @@ public class SelectedClassAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        if (holder instanceof SelectedTermH) {
-            SelectedTermH selectedTermH = (SelectedTermH) holder;
+        if (holder instanceof SelectedClassH) {
+            SelectedClassH selectedTermH = (SelectedClassH) holder;
             selectedTermH.bean=dataList.get(position);
             selectedTermH.name.setText(selectedTermH.bean.getTitle());
+            selectedTermH.initDialogList();
         }
     }
 
@@ -76,11 +85,11 @@ public class SelectedClassAdapter extends RecyclerView.Adapter<RecyclerView.View
         return dataList.size();
     }
 
-    private class SelectedTermH extends RecyclerView.ViewHolder {
+    private class SelectedClassH extends RecyclerView.ViewHolder {
         TextView name;
         TextView type;
         KeyValue bean;
-        SelectedTermH(View itemView) {
+        SelectedClassH(View itemView) {
             super(itemView);
             name=  itemView.findViewById(R.id.selected_item_name);
             type=  itemView.findViewById(R.id.selected_item_type);
@@ -89,12 +98,60 @@ public class SelectedClassAdapter extends RecyclerView.Adapter<RecyclerView.View
                 public void onClick(View v) {
                     //单/多选
                     Intent intent=new Intent(mContext,SelectStuActivity.class);
-                    intent.putExtra(Base.title,bean.getTitle());
+                    intent.putExtra(Base.index,1);
+                    intent.putExtra(Base.title,"选择学生");
+                    intent.putExtra(Base.type,bean.getType());
                     mContext.startActivity(intent);
+//                    setCPWlListBeanData();
+//                    Intent intent=new Intent(mContext,PETeaMainActivity.class);
+//                    intent.putExtra(Base.title,bean.getTitle());
+//                    mContext.startActivity(intent);
                 }
             });
 
         }
+
+
+        public CPWListBeanView cpwListBeanView;
+        List<CPWBean> cpwBeans=new ArrayList<>();
+        private void setCPWlListBeanData(){
+            if (StringJudge.isEmpty(cpwBeans)){
+                cpwBeans.add(new CPWBean("添加打分","add"));
+                cpwBeans.add(new CPWBean("查看学生记录","see_stu"));
+            }
+
+            mContext.closeKeyWord();
+            cpwListBeanView.setDatas(cpwBeans);
+            cpwListBeanView.showAtCenter();
+
+        }
+        private void initDialogList(){
+            cpwListBeanView = new CPWListBeanView(mContext);
+            cpwListBeanView.setOnPopClickListenner(new CPWListBeanView.OnPopClickListenner() {
+                @Override
+                public void onClick(CPWBean cpwBean, String type) {
+                    Intent intent;
+                    switch (cpwBean.getId()){
+                        case "add":
+                            intent=new Intent(mContext,PETeaMainActivity.class);
+                            intent.putExtra(Base.title,bean.getTitle());
+                            mContext.startActivity(intent);
+                            break;
+                        case "see_stu":
+                            intent=new Intent(mContext,SelectStuActivity.class);
+                            intent.putExtra(Base.index,1);
+                            intent.putExtra(Base.title,"选择学生");
+                            intent.putExtra(Base.type,cpwBean.getId());
+                            mContext.startActivity(intent);
+                            break;
+                    }
+                    cpwListBeanView.dismiss();
+                }
+            });
+        }
+
+
+
     }
 
 

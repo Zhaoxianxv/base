@@ -22,7 +22,6 @@ import com.yfy.app.welcome.utils.v4.FragmentPagerItem;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItemAdapter;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItems;
 
-import com.yfy.base.MainActivity;
 import com.yfy.base.R;
 import com.yfy.db.UserPreferences;
 import com.yfy.jpush.ExampleUtil;
@@ -48,7 +47,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        splashBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.radius3_e3bg);
+        splashBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.homepaga);
         if (UserPreferences.getInstance().getIsFirstTimeOpen()) {
             showGuide();//显示引导内容
         } else {
@@ -57,9 +56,9 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void showGuide() {
-        vp_guide = (ViewPager) findViewById(R.id.splash_vp_guide);
-        tab_indicator = (SmartTabLayout) findViewById(R.id.splash_tab_guide);
-        btn_done = (TextView) findViewById(R.id.guide_btn_done);
+        vp_guide =  findViewById(R.id.splash_vp_guide);
+        tab_indicator =  findViewById(R.id.splash_tab_guide);
+        btn_done =  findViewById(R.id.guide_btn_done);
         vp_guide.setVisibility(View.VISIBLE);
         tab_indicator.setVisibility(View.VISIBLE);
         //adapter
@@ -138,9 +137,9 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
 
-    private MessageReceiver mMessageReceiver;
+    public MessageReceiver mMessageReceiver;
     public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
-    public static final String KEY_TITLE = "title";
+//    public static final String KEY_TITLE = "title";
     public static final String KEY_MESSAGE = "message";
     public static final String KEY_EXTRAS = "extras";
 
@@ -160,9 +159,9 @@ public class WelcomeActivity extends AppCompatActivity {
                 String messge = intent.getStringExtra(KEY_MESSAGE);
                 String extras = intent.getStringExtra(KEY_EXTRAS);
                 StringBuilder showMsg = new StringBuilder();
-                showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
+                showMsg.append(KEY_MESSAGE).append(" : " ).append( messge ).append("\n");
                 if (!ExampleUtil.isEmpty(extras)) {
-                    showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
+                    showMsg.append(KEY_MESSAGE).append(" : " ).append( extras ).append("\n");
                 }
                 setCostomMsg(showMsg.toString());
             }
@@ -170,10 +169,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         private void setCostomMsg(String string) {
             // TODO Auto-generated method stub
-//			if (null != msgText) {
-//				msgText.setText(msg);
-//				msgText.setVisibility(android.view.View.VISIBLE);
-//			}
+
         }
     }
 }

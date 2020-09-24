@@ -2,7 +2,6 @@ package com.yfy.app.PEquality;
 
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
-
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
@@ -55,15 +54,21 @@ public class PEQualitySuggestActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle(title);
 
+
     }
 
     private void initView(){
-        suggest_title.setText(name);
-        suggest_subtitle.setText(content);
-//        suggest_title.setText("膳食建议标题");
-//        suggest_subtitle.setText("五谷杂粮，如莜麦面、荞麦面、燕麦片、玉米面、紫山药等富含维生素B、多种微量元素及食物纤维，以低糖，低淀粉的食物或者粗粮以及蔬菜等做主食。\n" +
-//                "豆类及豆制品，豆类食品富含蛋白质、无机盐和维生素，且豆油含不饱和脂肪酸，能降低血清胆固醇及甘油三酯。\n" +
-//                "");
+        switch (title){
+            case "课堂表现":
+                suggest_title.setText(StringUtils.stringToGetTextJoint("打分项：%1$s",name));
+                suggest_subtitle.setText(StringUtils.stringToGetTextJoint("%1$s得分：%2$s",name,content));
+                break;
+                default:
+                    suggest_subtitle.setText(content);
+                    suggest_title.setText(name);
+                    break;
+        }
+
     }
 
     /**
@@ -73,6 +78,7 @@ public class PEQualitySuggestActivity extends BaseActivity {
         ReqEnv env = new ReqEnv();
         ReqBody reqBody = new ReqBody();
         UserGetTermListReq req = new UserGetTermListReq();
+        req.setSession_key(Base.user.getSession_key());
         //获取参数
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
@@ -93,6 +99,7 @@ public class PEQualitySuggestActivity extends BaseActivity {
                 Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
+                    Logger.e("");
                 }else{
                     toastShow("error");
                 }
@@ -100,6 +107,7 @@ public class PEQualitySuggestActivity extends BaseActivity {
 
         }else{
             try {
+                assert response.errorBody() != null;
                 String s=response.errorBody().string();
                 Logger.e(StringUtils.stringToGetTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
             } catch (IOException e) {
