@@ -74,6 +74,8 @@ public class PEQualityStaminaActivity extends BaseActivity {
         ReqEnv env = new ReqEnv();
         ReqBody reqBody = new ReqBody();
         UserGetTermListReq req = new UserGetTermListReq();
+        req.setSession_key(Base.user.getSession_key());
+
         //获取参数
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
@@ -94,6 +96,7 @@ public class PEQualityStaminaActivity extends BaseActivity {
                 Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
+                    Logger.e("");
                 }else{
                     toastShow("error");
                 }
@@ -101,6 +104,7 @@ public class PEQualityStaminaActivity extends BaseActivity {
 
         }else{
             try {
+                assert response.errorBody()!=null;
                 String s=response.errorBody().string();
                 Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
             } catch (IOException e) {

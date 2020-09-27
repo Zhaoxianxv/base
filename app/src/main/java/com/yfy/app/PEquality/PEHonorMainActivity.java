@@ -92,28 +92,14 @@ public class PEHonorMainActivity extends BaseActivity {
         KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
 
 
-//        one.setTitle("学习态度");
-//        one.setRight_name("90");
-//        one.setRight_value("10%");
-//        one.setLeft_title("最终得分：9");
-//
-//        two.setTitle("健康教育知识");
-//        two.setRight_name("90");
-//        two.setRight_value("10%");
-//        two.setLeft_title("最终得分：9");
-//
-//        three.setTitle("运动技能");
-//        three.setRight_name("90");
-//        three.setRight_value("10%");
-//        three.setLeft_title("最终得分：9");
 
-        one.setTitle("800米长跑");
-        two.setTitle("100米短跑");
-        three.setTitle("单人乒乓球");
+        one.setContent("800米长跑");
+        two.setContent("100米短跑");
+        three.setContent("单人乒乓球");
 
-        one.setLeft_title("2020.5.21  学校运动会");
-        two.setLeft_title("2020.5.21  学校运动会");
-        three.setLeft_title("2020.5.21 学校运动会");
+        one.setLeft_title("2020.5.21");
+        two.setLeft_title("2020.5.21");
+        three.setLeft_title("2020.5.21");
 
 
         one.setRight_value("20\t分");
@@ -123,6 +109,10 @@ public class PEHonorMainActivity extends BaseActivity {
         one.setRight("已通过");
         two.setRight("已拒绝");
         three.setRight("已提交");
+
+        one.setTitle("学校运动会");
+        two.setTitle("学校运动会");
+        three.setTitle("学校运动会");
 
         one.setType(type);
         two.setType(type);

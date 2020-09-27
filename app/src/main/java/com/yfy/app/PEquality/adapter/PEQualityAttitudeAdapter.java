@@ -13,6 +13,7 @@ import com.yfy.app.PEquality.PEQualityAttenListActivity;
 import com.yfy.app.PEquality.PEQualityAttitudeDetailActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.util.ArrayList;
@@ -69,6 +70,7 @@ public class PEQualityAttitudeAdapter extends RecyclerView.Adapter<RecyclerView.
             iHolder.attitude_title.setText(iHolder.bean.getTitle());
             iHolder.attitude_content.setText(iHolder.bean.getContent());
             iHolder.attitude_sub.setText(iHolder.bean.getLeft_title());
+            iHolder.attitude_sub.setTextColor(ColorRgbUtil.getBaseColor());
         }
         if (holder instanceof DetailH) {
             DetailH detailH = (DetailH) holder;

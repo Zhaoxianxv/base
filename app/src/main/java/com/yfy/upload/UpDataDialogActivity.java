@@ -28,7 +28,7 @@ import java.util.TimerTask;
 
 
 public class UpDataDialogActivity extends BaseActivity {
-    private UpdateManager mUpdateManager;
+    public UpdateManager mUpdateManager;
     private  LinearLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +39,9 @@ public class UpDataDialogActivity extends BaseActivity {
     }
 
     private void initView() {
-        TextView upData= (TextView) findViewById(R.id.updata_app);
-        TextView exit= (TextView) findViewById(R.id.updata_exit);
-        layout= (LinearLayout) findViewById(R.id.updata_app_layout);
+        TextView upData=  findViewById(R.id.updata_app);
+        TextView exit=  findViewById(R.id.updata_exit);
+        layout=  findViewById(R.id.updata_app_layout);
         upData.setOnClickListener(view);
         exit.setOnClickListener(view);
 

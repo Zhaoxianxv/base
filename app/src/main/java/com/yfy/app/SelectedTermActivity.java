@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.yfy.app.bean.BaseRes;
+import com.yfy.app.bean.TermBean;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -15,6 +16,8 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
@@ -68,11 +71,22 @@ public class SelectedTermActivity extends BaseActivity {
                 1,
                 ColorRgbUtil.getGainsboro()));
         adapter=new SelectedTermAdapter(mActivity);
+
         recyclerView.setAdapter(adapter);
 
     }
 
 
+    public void setAdapterData(List<TermBean> list){
+        if (StringJudge.isEmpty(list)){
+
+
+        }else{
+
+        }
+        adapter.setDataList(list);
+        adapter.setLoadState(TagFinal.LOADING_END);
+    }
 
     /**
      * ----------------------------retrofit-----------------------
@@ -82,6 +96,8 @@ public class SelectedTermActivity extends BaseActivity {
         ReqBody reqBody = new ReqBody();
         UserGetTermListReq req = new UserGetTermListReq();
         //获取参数
+        req.setSession_key(Base.user.getSession_key());
+
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
@@ -101,8 +117,7 @@ public class SelectedTermActivity extends BaseActivity {
                 Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
-                    adapter.setDataList(res.getTerm());
-                    adapter.setLoadState(TagFinal.LOADING_END);
+                   setAdapterData(res.getTerm());
                 }else{
                     toastShow("error");
                 }
@@ -110,6 +125,7 @@ public class SelectedTermActivity extends BaseActivity {
 
         }else{
             try {
+                assert response.errorBody()!=null;
                 String s=response.errorBody().string();
                 Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
             } catch (IOException e) {

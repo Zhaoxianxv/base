@@ -15,9 +15,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.yfy.base.R;
-import com.yfy.final_tag.data.ColorRgbUtil;
-
 
 public class ViewTool {
 
@@ -51,11 +48,16 @@ public class ViewTool {
     }
 
 
-
+    /**
+     * ---------------ScreenWidth--------------
+     */
+    public static int getScreenWidth(Context context){
+        return context.getResources().getDisplayMetrics().widthPixels;
+    }
     /**
      * 设置输入框的光标到末尾
      */
-    public static final void setEditTextSelectionToEnd(EditText editText) {
+    public static void setEditTextSelectionToEnd(EditText editText) {
         Editable editable = editText.getEditableText();
         Selection.setSelection(editable, editable.toString().length());
     }

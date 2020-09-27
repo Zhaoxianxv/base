@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_45dp"
             android:layout_alignParentBottom="true"
-            android:visibility="gone"
+            android:visibility="visible"
             android:background="@color/app_base_color">
 
         </RelativeLayout>

@@ -11,143 +11,113 @@
         android:background="@color/WhiteSmoke"
         android:layout_height="match_parent">
 
+        <android.support.v7.widget.GridLayout
 
-        <LinearLayout
-            android:orientation="vertical"
+
+            android:id="@+id/grid_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:alignmentMode="alignBounds"
+            app:columnCount="2"
+            app:orientation="horizontal"
+            app:rowCount="2"
+            app:useDefaultMargins="false">
+
             <android.support.v7.widget.CardView
                 android:id="@+id/p_e_knowledge_library"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:minHeight="@dimen/margin_90dp"
-                android:layout_marginLeft="@dimen/margin_8dp"
-                android:layout_marginTop="@dimen/margin_8dp"
-                android:layout_marginRight="@dimen/margin_8dp"
-                android:layout_marginBottom="@dimen/margin_8dp"
+                app:layout_columnSpan="2"
+                app:layout_columnWeight="1"
+                android:minHeight="@dimen/margin_45dp"
+                android:layout_margin="@dimen/margin_5dp"
                 app:cardCornerRadius="@dimen/margin_5dp"
                 app:cardBackgroundColor="@color/white">
                 <RelativeLayout
+                    android:layout_margin="@dimen/margin_5dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <RelativeLayout
-                        android:background="@drawable/radius4_radio_group"
-                        android:layout_width="75dp"
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/p_e_knowledge_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_parent_head"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_5dp"/>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/p_e_knowledge_name"
+                        android:layout_width="wrap_content"
+                        android:layout_below="@id/p_e_knowledge_icon"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_5dp"
-                        android:layout_height="90dp">
-
-                        <android.support.v7.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="图标"
-                            android:maxLines="1"
-                            android:gravity="center"
-                            android:textSize="@dimen/textsize18"
-                            app:autoSizeMinTextSize="@dimen/textsize16"
-                            app:autoSizeTextType="uniform"
-                            android:layout_marginTop="@dimen/margin_10dp"/>
-
-                    </RelativeLayout>
-                    <LinearLayout
-                        android:layout_marginLeft="80dp"
-                        android:padding="@dimen/margin_5dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <android.support.v7.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="健康知识库"
-                            android:maxLines="1"
-                            android:gravity="center"
-                            android:textSize="@dimen/textsize12"
-                            android:padding="@dimen/margin_3dp"
-                            app:autoSizeMinTextSize="@dimen/textsize16"
-                            app:autoSizeTextType="uniform"/>
-
-
-                    </LinearLayout>
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_5dp"
+                        android:layout_marginBottom="@dimen/margin_5dp"
+                        android:text="健康知识库"
+                        android:textSize="@dimen/textsize12"
+                        android:padding="@dimen/margin_3dp"/>
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
-                android:id="@+id/p_e_knowledge_answer"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:minHeight="@dimen/margin_90dp"
-                android:layout_marginLeft="@dimen/margin_8dp"
-                android:layout_marginTop="@dimen/margin_8dp"
-                android:layout_marginRight="@dimen/margin_8dp"
-                android:layout_marginBottom="@dimen/margin_8dp"
+                android:id="@+id/p_e_knowledge_answer_end"
+                app:layout_columnSpan="1"
+                app:layout_columnWeight="1"
+
+                android:layout_margin="@dimen/margin_5dp"
                 app:cardCornerRadius="@dimen/margin_5dp"
                 app:cardBackgroundColor="@color/white">
                 <RelativeLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <RelativeLayout
-                        android:background="@drawable/radius4_radio_group"
-                        android:layout_width="75dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_5dp"
-                        android:layout_height="90dp">
+                    android:layout_height="@dimen/margin_60dp"
+                    android:layout_margin="@dimen/margin_5dp"
+                    android:layout_width="match_parent">
 
-                        <android.support.v7.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="图标"
-                            android:maxLines="1"
-                            android:gravity="center"
-                            android:textSize="@dimen/textsize18"
-                            app:autoSizeMinTextSize="@dimen/textsize16"
-                            app:autoSizeTextType="uniform"
-                            android:layout_marginTop="@dimen/margin_10dp"/>
 
-                    </RelativeLayout>
-                    <LinearLayout
-                        android:layout_marginLeft="80dp"
-                        android:padding="@dimen/margin_5dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <android.support.v7.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="体育安全知识"
-                            android:maxLines="1"
-                            android:textSize="@dimen/textsize10"
-                            app:autoSizeMinTextSize="@dimen/textsize6"
-                            app:autoSizeTextType="uniform"/>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="当前尚未答题"
+                        android:textSize="@dimen/textsize8"
+                        android:padding="@dimen/margin_3dp"/>
 
-                        <android.support.v7.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="最高得分90"
-                            android:maxLines="1"
-                            android:textSize="@dimen/textsize8"
-                            app:autoSizeMinTextSize="@dimen/textsize6"
-                            app:autoSizeTextType="uniform"/>
-                        <android.support.v7.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="12/20继续作答"
-                            android:maxLines="1"
-                            android:textSize="@dimen/textsize6"
-                            app:autoSizeMinTextSize="@dimen/textsize4"
-                            app:autoSizeTextType="uniform"/>
-                    </LinearLayout>
 
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
-        </LinearLayout>
+            <android.support.v7.widget.CardView
+                android:id="@+id/p_e_knowledge_answer_start"
+                app:layout_columnWeight="1"
+                app:layout_columnSpan="1"
+                android:layout_margin="@dimen/margin_5dp"
+                app:cardCornerRadius="@dimen/margin_5dp"
+                app:cardBackgroundColor="@color/white">
+                <RelativeLayout
+                    android:layout_margin="@dimen/margin_5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_60dp">
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/p_e_knowledge_answer_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="开始答题/继续答题"
+                        android:textSize="@dimen/textsize8"
+                        android:padding="@dimen/margin_3dp"/>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/p_e_knowledge_answer_value"
+                        android:layout_below="@id/p_e_knowledge_answer_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/app_base_color"
+                        android:text="12/12"
+                        android:textSize="@dimen/textsize8"
+                        android:padding="@dimen/margin_3dp"/>
+
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+        </android.support.v7.widget.GridLayout>
 
     </RelativeLayout>
 </RelativeLayout>

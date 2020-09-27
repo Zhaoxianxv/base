@@ -59,8 +59,16 @@ public class PEQualityKnowledgeActivity extends BaseActivity {
         intent.putExtra(Base.title,"健康知识库");
         startActivity(intent);
     }
-    @OnClick(R.id.p_e_knowledge_answer)
-    void knowledgeAnswer(){
+    @OnClick(R.id.p_e_knowledge_answer_start)
+    void knowledgeAnswerStart(){
+
+        Intent intent=new Intent(mActivity,PEQualityKnowledgeAnswerActivity.class);
+        intent.putExtra(Base.title,"健康知识库");
+        startActivity(intent);
+
+    }
+    @OnClick(R.id.p_e_knowledge_answer_end)
+    void knowledgeAnswerEnd(){
 
         Intent intent=new Intent(mActivity,PEQualityKnowledgeAnswerActivity.class);
         intent.putExtra(Base.title,"健康知识库");
@@ -75,6 +83,7 @@ public class PEQualityKnowledgeActivity extends BaseActivity {
         ReqEnv env = new ReqEnv();
         ReqBody reqBody = new ReqBody();
         UserGetTermListReq req = new UserGetTermListReq();
+        req.setSession_key(Base.user.getSession_key());
         //获取参数
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
@@ -95,6 +104,7 @@ public class PEQualityKnowledgeActivity extends BaseActivity {
                 Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
+                    Logger.e("");
                 }else{
                     toastShow("error");
                 }
@@ -102,6 +112,7 @@ public class PEQualityKnowledgeActivity extends BaseActivity {
 
         }else{
             try {
+                assert response.errorBody()!=null;
                 String s=response.errorBody().string();
                 Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
             } catch (IOException e) {

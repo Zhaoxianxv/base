@@ -90,26 +90,16 @@ public class PEQualityAttenListActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
-        KeyValue three=new KeyValue(TagFinal.TYPE_ITEM);
-        KeyValue two=new KeyValue(TagFinal.TYPE_ITEM);
-        KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
-
-        one.setLeft_title("感冒");
-        two.setLeft_title("走亲访友");
-        three.setLeft_title("发烧");
-
-        one.setTitle("2020.5.21  下午第二节课");
-        two.setTitle("2020.5.21  下午第二节课");
-        three.setTitle("2020.5.21  下午第二节课");
-
-        one.setRight("记录人：张丹");
-        two.setRight("记录人：张丹");
-        three.setRight("记录人：张丹");
-
-        keyValue_adapter.add(one);
-        keyValue_adapter.add(two);
-        keyValue_adapter.add(three);
-
+        String list_content="感冒,走亲访友,发烧";
+        List<String> list=StringUtils.listToStringSplitCharacters(list_content,",");
+        for (String s:list){
+            KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
+            one.setContent(s);
+            one.setTitle("2020.5.21");
+            one.setLeft_title("下午第二节课");
+            one.setRight("记录人：张丹");
+            keyValue_adapter.add(one);
+        }
 
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);

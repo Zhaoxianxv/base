@@ -67,6 +67,7 @@ public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView
             iHolder.bean = dataList.get(position);
             iHolder.left_title.setText(iHolder.bean.getTitle());
             iHolder.left_sub.setText(iHolder.bean.getLeft_title());
+            iHolder.left_content.setText(iHolder.bean.getContent());
             iHolder.right_state.setText(iHolder.bean.getRight());
             if (StringJudge.isEmpty(iHolder.bean.getListValue())){
 //                iHolder.multi.setVisibility(View.GONE);
@@ -91,6 +92,7 @@ public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView
     private class ItemHolder extends RecyclerView.ViewHolder {
         TextView left_title;
         TextView left_sub;
+        TextView left_content;
         TextView right_state;
         MultiPictureView multi;
         KeyValue bean;
@@ -98,6 +100,7 @@ public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView
             super(itemView);
             left_title =  itemView.findViewById(R.id.p_e_atten_left_title);
             left_sub =  itemView.findViewById(R.id.p_e_atten_left_sub);
+            left_content =  itemView.findViewById(R.id.p_e_atten_left_content);
             right_state =  itemView.findViewById(R.id.p_e_atten_right_state);
             multi =  itemView.findViewById(R.id.p_e_atten_item_multi);
             multi.setItemClickCallback(new MultiPictureView.ItemClickCallback() {

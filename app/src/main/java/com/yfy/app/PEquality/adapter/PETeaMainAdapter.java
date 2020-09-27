@@ -61,8 +61,6 @@ public class PETeaMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
             iHolder.left_title.setText(iHolder.bean.getTitle());
-            iHolder.left_sub.setVisibility(View.GONE);
-            iHolder.line_layout.setVisibility(View.GONE);
         }
     }
 
@@ -74,20 +72,12 @@ public class PETeaMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public class ItemHolder extends RecyclerView.ViewHolder {
         TextView left_title;
-        TextView left_sub;
-        TextView right_weight;
-        TextView right_score;
-        LinearLayout line_layout;
         LinearLayout item_layout;
         KeyValue bean;
         ItemHolder(View itemView) {
             super(itemView);
             item_layout =  itemView.findViewById(R.id.p_e_score_item_layout);
-            line_layout =  itemView.findViewById(R.id.p_e_score_layout);
             left_title =  itemView.findViewById(R.id.p_e_score_title);
-            left_sub =  itemView.findViewById(R.id.p_e_score_math);
-            right_weight =  itemView.findViewById(R.id.p_e_score_weight);
-            right_score =  itemView.findViewById(R.id.p_e_score_num);
 
             item_layout.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -2,17 +2,20 @@ package com.yfy.app;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yfy.app.bean.TermBean;
 import com.yfy.base.R;
+import com.yfy.base.adapter.BaseRecyclerAdapter;
+import com.yfy.base.adapter.ReViewHolder;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,24 +25,22 @@ import static android.app.Activity.RESULT_OK;
 /**
  * Created by yfy1 on 2016/10/17.
  */
-public class SelectedTermAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SelectedTermAdapter extends BaseRecyclerAdapter {
 
 
 
-    private List<TermBean> dataList;
-    private Activity mContext;
+    public List<TermBean> dataList;
+
 
     public void setDataList(List<TermBean> dataList) {
         this.dataList = dataList;
-//        getRandomHeights(dataList);
-    }
-    // 当前加载状态，默认为加载完成
-    private int loadState = 2;
 
+    }
 
     public SelectedTermAdapter(Activity mContext){
-        this.mContext=mContext;
+        super(mContext);
         this.dataList = new ArrayList<>();
+
     }
 
 
@@ -49,19 +50,18 @@ public class SelectedTermAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return TagFinal.TYPE_ITEM;
     }
 
+    @NotNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ReViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
-        if (viewType == TagFinal.TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.selected_singe_item_layout, parent, false);
-            return new SelectedTermH(view);
+        if (viewType == TagFinal.TYPE_ITEM) return new SelectedTermH(inflater.inflate(R.layout.selected_singe_item_layout, parent,false));
 
-        }
+
         return null;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ReViewHolder holder, int position) {
 
         if (holder instanceof SelectedTermH) {
             SelectedTermH selectedTermH = (SelectedTermH) holder;
@@ -80,7 +80,7 @@ public class SelectedTermAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return dataList.size();
     }
 
-    private class SelectedTermH extends RecyclerView.ViewHolder {
+    public class SelectedTermH extends ReViewHolder {
         TextView name;
         TextView type;
         TermBean bean;
@@ -101,20 +101,6 @@ public class SelectedTermAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         }
     }
-
-
-    /**
-     * 设置上拉加载状态
-     *
-     * @param loadState 1.正在加载 2.加载完成 3.加载到底
-     */
-    public void setLoadState(int loadState) {
-        this.loadState = loadState;
-        notifyDataSetChanged();
-    }
-
-
-
 
 
 

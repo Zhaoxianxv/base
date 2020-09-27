@@ -79,7 +79,7 @@ public class PEQualityTeaMainActivity extends BaseActivity {
     AppCompatTextView user_name;
     @Bind(R.id.p_e_main_user_class)
     AppCompatTextView user_class;
-    @Bind(R.id.p_e_main_user_content)
+    @Bind(R.id.p_e_main_user_height)
     AppCompatTextView user_content;
     @Bind(R.id.p_e_user_grade_title)
     AppCompatTextView grade_title;

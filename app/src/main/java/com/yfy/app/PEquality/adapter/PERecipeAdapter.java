@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.base.adapter.BaseRecyclerAdapter;
+import com.yfy.base.adapter.ReViewHolder;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ import java.util.List;
  * Created by yfyandr on 2017/12/27.
  */
 
-public class PERecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PERecipeAdapter extends BaseRecyclerAdapter {
 
     private List<KeyValue> dataList;
     private Activity mContext;
@@ -34,6 +36,7 @@ public class PERecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public PERecipeAdapter(Activity mContext) {
+        super(mContext);
         this.mContext=mContext;
         this.dataList = new ArrayList<>();
 
@@ -50,7 +53,7 @@ public class PERecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ReViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TagFinal.TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_recipe_item_layout, parent, false);
@@ -64,14 +67,13 @@ public class PERecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         if (viewType == TagFinal.TYPE_FOOTER) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_refresh_footer, parent, false);
-            return new FootViewHolder(view);
+            return new FootViewHolder(inflater.inflate(R.layout.recyclerview_refresh_footer, parent, false));
         }
         return null;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(ReViewHolder holder, int position) {
         if (holder instanceof IHolder) {
             IHolder iHolder = (IHolder) holder;
             iHolder.bean=dataList.get(position);
@@ -112,7 +114,7 @@ public class PERecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return dataList.size() + 1;
     }
 
-    private class TxtLeftTitleH extends RecyclerView.ViewHolder {
+    private class TxtLeftTitleH extends ReViewHolder {
 
 
         AppCompatTextView title;
@@ -123,7 +125,7 @@ public class PERecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    private class IHolder extends RecyclerView.ViewHolder {
+    private class IHolder extends ReViewHolder {
 
         RelativeLayout layout;
 
@@ -138,7 +140,7 @@ public class PERecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    private class FootViewHolder extends RecyclerView.ViewHolder {
+    private class FootViewHolder extends ReViewHolder {
 
         ProgressBar pbLoading;
         TextView tvLoading;

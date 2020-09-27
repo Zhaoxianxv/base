@@ -115,6 +115,8 @@ public class PEQualityHomeworkActivity extends BaseActivity {
         ReqBody reqBody = new ReqBody();
         UserGetTermListReq req = new UserGetTermListReq();
         //获取参数
+        req.setSession_key(Base.user.getSession_key());
+
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);

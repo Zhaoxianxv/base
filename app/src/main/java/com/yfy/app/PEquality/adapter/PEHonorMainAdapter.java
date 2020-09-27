@@ -76,6 +76,7 @@ public class PEHonorMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             iHolder.bean = dataList.get(position);
             iHolder.left_title.setText(iHolder.bean.getLeft_title());
             iHolder.left_sub.setText(iHolder.bean.getTitle());
+            iHolder.left_content.setText(iHolder.bean.getContent());
             iHolder.right_state.setText(iHolder.bean.getRight());
             iHolder.right_score.setText(iHolder.bean.getRight_value());
             ViewTool.alterGradientDrawableStrokeColor(mContext,iHolder.bg,mContext.getResources().getColor(R.color.red));
@@ -124,6 +125,7 @@ public class PEHonorMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private class ItemHolder extends RecyclerView.ViewHolder {
         TextView left_title;
         TextView left_sub;
+        TextView left_content;
         TextView right_state;
         TextView right_score;
         View line;
@@ -138,6 +140,7 @@ public class PEHonorMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             line =  itemView.findViewById(R.id.p_e_honor_right_line);
             left_title =  itemView.findViewById(R.id.p_e_honor_left_title);
             left_sub =  itemView.findViewById(R.id.p_e_honor_left_sub);
+            left_content =  itemView.findViewById(R.id.p_e_honor_content);
             right_state =  itemView.findViewById(R.id.p_e_honor_right_state);
             right_score =  itemView.findViewById(R.id.p_e_honor_right_score);
             multi =  itemView.findViewById(R.id.p_e_honor_item_multi);

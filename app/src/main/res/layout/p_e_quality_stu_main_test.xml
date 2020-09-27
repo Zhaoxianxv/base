@@ -77,24 +77,29 @@
                     />
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/p_e_main_user_class"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/p_e_main_user_name"
-                    app:autoSizeMinTextSize="@dimen/textsize5"
-                    app:autoSizeMaxTextSize="@dimen/textsize20"
-                    android:maxLines="1"
+                    android:layout_below="@id/p_e_main_user_name"
+                    android:textSize="@dimen/textsize6"
                     android:gravity="center"
                     android:text="三年级二十五班" />
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/p_e_main_user_content"
+                    android:id="@+id/p_e_main_user_height"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="升高asaadasda体重"
-                    android:maxLines="1"
-                    android:layout_below="@id/p_e_main_user_name"
-                    android:layout_marginTop="@dimen/margin_5dp"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="@dimen/textsize5"
+                    android:text=""
+                    android:textSize="@dimen/textsize6"
+                    android:layout_below="@id/p_e_main_user_class"
+                    android:layout_marginTop="@dimen/margin_3dp"
+                    />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/p_e_main_user_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textsize6"
+                    android:text=""
+                    android:layout_below="@id/p_e_main_user_height"
+                    android:layout_marginTop="@dimen/margin_3dp"
                     />
             </RelativeLayout>
 
@@ -176,10 +181,12 @@
         android:id="@+id/p_e_main_reason"
         android:layout_above="@id/p_e_main_recipe_layout"
         android:layout_width="match_parent"
-        android:gravity="right"
+        android:gravity="center_horizontal"
+        android:background="@drawable/layer_bottom_grayline_whitebg"
+        android:paddingBottom="@dimen/margin_3dp"
         android:paddingRight="@dimen/margin_15dp"
         android:textSize="@dimen/textsize5"
-        android:textColor="@color/gray_text"
+        android:textColor="@color/app_base_color"
         android:layout_height="wrap_content"
         android:text="点击图表文字查看详情"/>
 

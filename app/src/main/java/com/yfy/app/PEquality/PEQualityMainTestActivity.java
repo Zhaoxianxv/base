@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import com.yfy.app.PEquality.adapter.PEQualityMainAdapter;
 import com.yfy.app.PEquality.tea.PETeaMainActivity;
-import com.yfy.app.SelectedClassActivity;
 import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
@@ -76,8 +75,10 @@ public class PEQualityMainTestActivity extends BaseActivity {
     AppCompatTextView user_name;
     @Bind(R.id.p_e_main_user_class)
     AppCompatTextView user_class;
-    @Bind(R.id.p_e_main_user_content)
-    AppCompatTextView user_content;
+    @Bind(R.id.p_e_main_user_height)
+    AppCompatTextView user_height;
+    @Bind(R.id.p_e_main_user_weight)
+    AppCompatTextView user_weight;
     @Bind(R.id.p_e_user_grade_title)
     AppCompatTextView grade_title;
     @Bind(R.id.p_e_user_grade_sub)
@@ -212,7 +213,8 @@ public class PEQualityMainTestActivity extends BaseActivity {
         user_class.setText("三年级二十五班");
         grade_title.setText("优");
         grade_sub.setText("95.5");
-        user_content.setText(StringUtils.getTextJoint("身高:\t%1$scm\t\t体重:\t%2$skg",145,39));
+        user_height.setText(StringUtils.getTextJoint("身高:\t%1$scm",145,39));
+        user_weight.setText(StringUtils.getTextJoint("体重:\t%2$skg",145,39));
         recipe_title.setText("运动处方");
         recipe_title.setTypeface(mTypeface);
         grade_title.setTypeface(mTypeface);
@@ -338,7 +340,11 @@ public class PEQualityMainTestActivity extends BaseActivity {
                     menu_one.setText(select_term.getName());
                     break;
                 case TagFinal.UI_ADD:
-                    getTerm();
+                    if (Base.user==null)return;
+                    initView();
+                    initChartView();
+                    setData();
+                    initRecyclerView();
                     break;
             }
         }
