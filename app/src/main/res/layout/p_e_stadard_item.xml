@@ -4,142 +4,150 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <RelativeLayout
-        android:background="@drawable/radius4_radio_group"
-        android:layout_margin="@dimen/margin_10dp"
-        android:padding="@dimen/margin_5dp"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_5dp"
+        app:cardCornerRadius="@dimen/margin_5dp"
+        app:cardBackgroundColor="@color/white"
+        >
+        <RelativeLayout
+            android:padding="@dimen/margin_5dp"
 
-        <LinearLayout
-            android:id="@+id/p_e_standard_end_score_layout"
-            android:layout_width="@dimen/margin_100dp"
-            android:layout_height="@dimen/margin_80dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="@dimen/margin_5dp"
-            android:background="@drawable/radius4_radio_group"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/p_e_standard_end_score_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="最终得分"
-                android:textSize="@dimen/textsize7"
-                app:autoSizeMinTextSize="@dimen/textsize5"
-                app:autoSizeTextType="uniform" />
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/p_e_standard_end_score_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="45.5"
-                android:textSize="@dimen/textsize6"
-                app:autoSizeMinTextSize="@dimen/textsize5"
-                app:autoSizeTextType="uniform" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_1dp"
-                android:layout_marginLeft="@dimen/margin_25dp"
-                android:layout_marginRight="@dimen/margin_25dp"
-                android:background="@color/app_base_color" />
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/p_e_standard_end_event_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="评价等级"
-                android:textSize="@dimen/textsize7"
-                app:autoSizeMinTextSize="@dimen/textsize5"
-                app:autoSizeTextType="uniform" />
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/p_e_standard_end_event_grade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="超重"
-                android:textSize="@dimen/textsize6"
-                app:autoSizeMinTextSize="@dimen/textsize5"
-                app:autoSizeTextType="uniform" />
-        </LinearLayout>
-
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/p_e_standard_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="体重指数"
-            android:layout_marginRight="110dp"
-            android:maxLines="1"
-            android:gravity="center"
-            android:layout_alignTop="@id/p_e_standard_end_score_layout"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="@dimen/textsize5"
-            android:textSize="@dimen/textsize10"/>
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/p_e_standard_value"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="(18.24310926)"
-            android:maxLines="1"
-            android:layout_marginRight="110dp"
-            android:gravity="center"
-            android:layout_centerVertical="true"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="@dimen/textsize5"
-            android:textSize="@dimen/textsize6"/>
-
-        <LinearLayout
-
-            android:layout_marginRight="110dp"
-            android:background="@drawable/radius4_radio_group"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_alignBottom="@id/p_e_standard_end_score_layout"
             android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/p_e_standard_score"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/margin_25dp"
-                android:text="得分80.00"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:textColor="@color/red"
-                android:textSize="@dimen/textsize5"/>
-            <View
-                android:layout_width="@dimen/margin_1dp"
-                android:layout_height="@dimen/margin_25dp"
+
+            <LinearLayout
+                android:id="@+id/p_e_standard_end_score_layout"
+                android:layout_width="@dimen/margin_100dp"
+                android:layout_height="@dimen/margin_80dp"
                 android:layout_alignParentRight="true"
-                android:background="@color/red"
-                />
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/p_e_standard_weight"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/margin_25dp"
-                android:layout_weight="1"
-                android:text="占比15%"
+                android:layout_marginLeft="@dimen/margin_5dp"
+                android:background="@drawable/radius4_line_gray"
                 android:gravity="center"
-                android:textColor="@color/red"
-                android:textSize="@dimen/textsize5"/>
-        </LinearLayout>
-    </RelativeLayout>
+                android:orientation="vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/p_e_standard_end_score_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="最终得分"
+                    android:textSize="@dimen/textsize7"
+                    app:autoSizeMinTextSize="@dimen/textsize5"
+                    app:autoSizeTextType="uniform" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/p_e_standard_end_score_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="45.5"
+                    android:textSize="@dimen/textsize6"
+                    app:autoSizeMinTextSize="@dimen/textsize5"
+                    app:autoSizeTextType="uniform" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_05dp"
+                    android:layout_marginLeft="@dimen/margin_25dp"
+                    android:layout_marginRight="@dimen/margin_25dp"
+                    android:background="@color/color_3c3c3c" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/p_e_standard_end_event_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="评价等级"
+                    android:textSize="@dimen/textsize7"
+                    app:autoSizeMinTextSize="@dimen/textsize5"
+                    app:autoSizeTextType="uniform" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/p_e_standard_end_event_grade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="超重"
+                    android:textSize="@dimen/textsize6"
+                    app:autoSizeMinTextSize="@dimen/textsize5"
+                    app:autoSizeTextType="uniform" />
+            </LinearLayout>
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/p_e_standard_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="体重指数"
+                android:layout_marginRight="110dp"
+                android:maxLines="1"
+                android:gravity="center"
+                android:layout_alignTop="@id/p_e_standard_end_score_layout"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="@dimen/textsize5"
+                android:textSize="@dimen/textsize10"/>
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/p_e_standard_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(18.24310926)"
+                android:maxLines="1"
+                android:layout_marginRight="110dp"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="@dimen/textsize5"
+                android:textSize="@dimen/textsize6"/>
+
+            <LinearLayout
+
+                android:layout_marginRight="110dp"
+                android:background="@drawable/radius4_line_gray"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_alignBottom="@id/p_e_standard_end_score_layout"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/p_e_standard_score"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_25dp"
+                    android:text="得分80.00"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textColor="@color/app_base_text_color"
+                    android:textSize="@dimen/textsize5"/>
+                <View
+                    android:layout_width="@dimen/margin_05dp"
+                    android:layout_height="@dimen/margin_25dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/color_3c3c3c"
+                    />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/p_e_standard_weight"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/margin_25dp"
+                    android:layout_weight="1"
+                    android:text="占比15%"
+                    android:gravity="center"
+                    android:textColor="@color/app_base_text_color"
+                    android:textSize="@dimen/textsize5"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
 
 </LinearLayout>

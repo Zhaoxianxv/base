@@ -27,7 +27,6 @@
                 android:id="@+id/p_e_knowledge_library"
                 app:layout_columnSpan="2"
                 app:layout_columnWeight="1"
-                android:minHeight="@dimen/margin_45dp"
                 android:layout_margin="@dimen/margin_5dp"
                 app:cardCornerRadius="@dimen/margin_5dp"
                 app:cardBackgroundColor="@color/white">
@@ -35,7 +34,7 @@
                     android:layout_margin="@dimen/margin_5dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="@dimen/margin_70dp">
                     <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/p_e_knowledge_icon"
                         android:layout_width="wrap_content"
@@ -67,15 +66,25 @@
                 app:cardCornerRadius="@dimen/margin_5dp"
                 app:cardBackgroundColor="@color/white">
                 <RelativeLayout
-                    android:layout_height="@dimen/margin_60dp"
+                    android:layout_height="@dimen/margin_70dp"
                     android:layout_margin="@dimen/margin_5dp"
                     android:layout_width="match_parent">
-
-
-                    <android.support.v7.widget.AppCompatTextView
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/knowledge_end_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="当前尚未答题"
+                        android:src="@drawable/ic_safety"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_5dp"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/knowledge_end_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/knowledge_end_icon"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_5dp"
+                        android:text="当前最高分数97"
                         android:textSize="@dimen/textsize8"
                         android:padding="@dimen/margin_3dp"/>
 
@@ -93,25 +102,26 @@
                 <RelativeLayout
                     android:layout_margin="@dimen/margin_5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_60dp">
-
+                    android:layout_height="@dimen/margin_70dp">
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/knowledge_start_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_safety"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_5dp"/>
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/p_e_knowledge_answer_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="开始答题/继续答题"
+                        android:layout_below="@id/knowledge_start_icon"
+                        android:layout_marginTop="@dimen/margin_5dp"
+                        android:text="继续答题(3/12)"
+                        android:layout_centerHorizontal="true"
                         android:textSize="@dimen/textsize8"
                         android:padding="@dimen/margin_3dp"/>
-                    <android.support.v7.widget.AppCompatTextView
-                        android:id="@+id/p_e_knowledge_answer_value"
-                        android:layout_below="@id/p_e_knowledge_answer_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/app_base_color"
-                        android:text="12/12"
-                        android:textSize="@dimen/textsize8"
-                        android:padding="@dimen/margin_3dp"/>
+
 
 
                 </RelativeLayout>

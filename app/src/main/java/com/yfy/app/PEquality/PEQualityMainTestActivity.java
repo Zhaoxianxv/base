@@ -169,7 +169,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
     }
 
 
-    private TermBean select_term;
+    public TermBean select_term;
     private TextView menu_one;
     private void initSQToolbar() {
         assert toolbar!=null;
@@ -193,7 +193,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
                     startActivityForResult(intent,TagFinal.UI_ADD);
                 }else{
                     Intent intent=new Intent(mActivity,PETeaMainActivity.class);
-                    intent.putExtra(Base.title,"教师打分");
+                    intent.putExtra(Base.title,"体育素质评价");
                     startActivity(intent);
                 }
 

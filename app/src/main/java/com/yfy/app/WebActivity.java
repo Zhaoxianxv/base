@@ -23,9 +23,9 @@ public class WebActivity extends BaseActivity {
 
 	private final static String TAG = WebActivity.class.getSimpleName();
 
-	private ViewGroup container_view;
-	private WebView webView;
-	private WebSettings setttings;
+	public ViewGroup container_view;
+	public WebView webView;
+	public WebSettings webSettings;
 
 
 	private ProgressBar progressBar;
@@ -50,14 +50,11 @@ public class WebActivity extends BaseActivity {
 
 	@Override
 	public void finish() {
-		if (index==-1){
-
-		}else{
+		if (index!=-1){
 			Intent intent=new Intent();
 			intent.putExtra(TagFinal.ALBUM_LIST_INDEX, index);
 			setResult(RESULT_OK,intent);
 		}
-
 		super.finish();
 	}
 
@@ -82,7 +79,6 @@ public class WebActivity extends BaseActivity {
 	}
 
 	/**
-	 * @description
 	 */
 	private int index;
 	private String url;
@@ -141,17 +137,17 @@ public class WebActivity extends BaseActivity {
 			}
 		});
 
-		setttings = webView.getSettings();
-		setttings.setJavaScriptEnabled(false);
-		setttings.setPluginState(PluginState.ON);
-		setttings.setUseWideViewPort(true);
-		setttings.setLoadWithOverviewMode(true);
-		setttings.setJavaScriptCanOpenWindowsAutomatically(true);
+		webSettings = webView.getSettings();
+		webSettings.setJavaScriptEnabled(false);
+		webSettings.setPluginState(PluginState.ON);
+		webSettings.setUseWideViewPort(true);
+		webSettings.setLoadWithOverviewMode(true);
+		webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
 
 
 
-		setttings.setAllowFileAccess(false);
-		setttings.setAllowFileAccessFromFileURLs(false);
+		webSettings.setAllowFileAccess(false);
+		webSettings.setAllowFileAccessFromFileURLs(false);
 
 
 		webView.removeJavascriptInterface("searchBoxJavaBridge_");

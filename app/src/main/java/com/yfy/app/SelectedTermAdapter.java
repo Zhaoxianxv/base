@@ -37,7 +37,7 @@ public class SelectedTermAdapter extends BaseRecyclerAdapter {
 
     }
 
-    public SelectedTermAdapter(Activity mContext){
+    SelectedTermAdapter(Activity mContext){
         super(mContext);
         this.dataList = new ArrayList<>();
 

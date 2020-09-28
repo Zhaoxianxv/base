@@ -14,6 +14,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 
@@ -64,6 +65,7 @@ public class PEQualityKnowledgeActivity extends BaseActivity {
 
         Intent intent=new Intent(mActivity,PEQualityKnowledgeAnswerActivity.class);
         intent.putExtra(Base.title,"健康知识库");
+        intent.putExtra(Base.type,TagFinal.TRUE);
         startActivity(intent);
 
     }
@@ -72,6 +74,7 @@ public class PEQualityKnowledgeActivity extends BaseActivity {
 
         Intent intent=new Intent(mActivity,PEQualityKnowledgeAnswerActivity.class);
         intent.putExtra(Base.title,"健康知识库");
+        intent.putExtra(Base.type,TagFinal.FALSE);
         startActivity(intent);
 
     }

@@ -39,6 +39,11 @@ public class KnowledgeLibraryPagerAdapter extends PagerAdapter {
                 listview.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
             }
 
+            if (bean.getId().equalsIgnoreCase(TagFinal.TRUE)){
+                listview.setClickable(true);
+            }else{
+                listview.setClickable(false);
+            }
             listview.setAdapter(list_adapter);
             list_adapter.setDatas(bean.getCpwBeanArrayList());
             title.setText(StringUtils.stringToGetTextJoint("(%2$d/%3$d)、\t%1$s",list.get(i).getTitle(),i+1,list.size()));

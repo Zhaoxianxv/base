@@ -11,5 +11,6 @@
     android:paddingRight="@dimen/margin_15dp"
     android:text="@string/date_type"
     android:textSize="@dimen/textsize7"
+
     android:checkMark="?android:attr/listChoiceIndicatorSingle" />
 

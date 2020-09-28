@@ -3,6 +3,7 @@ package com.yfy.app.PEquality;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.yfy.app.PEquality.adapter.KnowledgeLibraryPagerAdapter;
 import com.yfy.app.bean.BaseRes;
@@ -35,6 +36,8 @@ import retrofit2.Response;
 public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
     private static final String TAG = PEQualityKnowledgeAnswerActivity.class.getSimpleName();
 
+    @Bind(R.id.knowledge_answer_bottom)
+    RelativeLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +50,10 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
     }
 
 
-    private String title;
+    private String title ,type;
     private void getData(){
         title=getIntent().getStringExtra(Base.title);
+        type=getIntent().getStringExtra(Base.type);
     }
     private void initSQToolbar() {
         assert toolbar!=null;
@@ -65,14 +69,19 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         pager.setAdapter(pager_adapter);
     }
     private void setAdapterData(){
+        if (type.equalsIgnoreCase(TagFinal.TRUE)){
+            layout.setVisibility(View.VISIBLE);
+        }else {
+            layout.setVisibility(View.GONE);
+        }
         data_list.clear();
         KeyValue keyValue=new KeyValue(TagFinal.TYPE_ITEM);
         List<CPWBean> cpwbeanList=new ArrayList<>();
         keyValue.setTitle("奥林匹克运动会的发源地");
-        cpwbeanList.add(new CPWBean("A、古罗马",""));
-        cpwbeanList.add(new CPWBean("B、古希腊",""));
-        cpwbeanList.add(new CPWBean("C、法国文字超出一行文字超出一行文字超出一行文字超出一行",""));
-        cpwbeanList.add(new CPWBean("D、英国",""));
+        cpwbeanList.add(new CPWBean("A、古罗马",type));
+        cpwbeanList.add(new CPWBean("B、古希腊",type));
+        cpwbeanList.add(new CPWBean("C、法国文字超出一行文字超出一行文字超出一行文字超出一行",type));
+        cpwbeanList.add(new CPWBean("D、英国",type));
         keyValue.setCpwBeanArrayList(cpwbeanList);
         keyValue.setType(TagFinal.TRUE);
 

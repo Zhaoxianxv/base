@@ -101,6 +101,9 @@ public class PEScoreMainActivity extends BaseActivity {
         keyValue_adapter.add(one);
         keyValue_adapter.add(two);
         keyValue_adapter.add(three);
+        KeyValue chart=new KeyValue(TagFinal.TYPE_SELECT_GROUP);
+        one.setTitle("各学期分数");
+        keyValue_adapter.add(chart);
 
 
         adapter.setDataList(keyValue_adapter);

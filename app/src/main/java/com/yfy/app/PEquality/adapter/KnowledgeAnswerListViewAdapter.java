@@ -58,6 +58,9 @@ public class KnowledgeAnswerListViewAdapter extends BaseAdapter {
         viewHolder.name.setText(datas.get(position).getName());
         viewHolder.name.setChecked(datas.get(position).isIs_select());
 
+//        if (true){
+//            viewHolder.name.
+//        }
         return convertView;
     }
 
