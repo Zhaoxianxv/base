@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.db.UserPreferences;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.io.File;

@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_45dp"
-        android:background="@drawable/layer_top_bottom_grayline_whitebg">
+        android:background="@drawable/layer_top_bottom_gray_line_white_bg">
 
         <TextView
             android:id="@+id/public_type_choice_key"

@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 
 import java.util.ArrayList;
 import java.util.List;

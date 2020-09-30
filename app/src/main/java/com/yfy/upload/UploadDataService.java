@@ -9,7 +9,7 @@ import android.os.IBinder;
 
 import com.yfy.base.App;
 import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;

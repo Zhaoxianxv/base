@@ -19,7 +19,8 @@ import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.dialog.CPWBean;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
@@ -46,8 +47,6 @@ public class PEHonorMainActivity extends BaseActivity {
         getData();
         initRecycler();
         initSQToolbar();
-//        getTerm();
-
         setAdapterData();
     }
 
@@ -118,6 +117,21 @@ public class PEHonorMainActivity extends BaseActivity {
         two.setType(type);
         three.setType(type);
 
+
+        KeyValue all=new KeyValue(TagFinal.TYPE_FLOW_TITLE);
+        all.setTitle("统计");
+        List<String> list=StringUtils.listToStringSplitCharacters("学校运动会:",",");
+        List<CPWBean> cps=new ArrayList<>();
+        for (String s:list){
+            CPWBean bean=new CPWBean();
+            bean.setName(s);
+            bean.setValue("3次");
+            bean.setType("");
+            cps.add(bean);
+        }
+        all.setCpwBeanArrayList(cps);
+
+        keyValue_adapter.add(all);
         keyValue_adapter.add(one);
         keyValue_adapter.add(two);
         keyValue_adapter.add(three);

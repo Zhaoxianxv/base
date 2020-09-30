@@ -1,4 +1,4 @@
-package com.yfy.db;
+package com.yfy.greendao.tool;
 
 
 import org.greenrobot.greendao.converter.PropertyConverter;

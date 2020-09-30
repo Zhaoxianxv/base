@@ -1,6 +1,7 @@
 package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,10 +12,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.base.adapter.BaseRecyclerAdapter;
 import com.yfy.base.adapter.ReViewHolder;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.util.ArrayList;
@@ -26,9 +29,14 @@ import java.util.List;
 
 public class PERecipeAdapter extends BaseRecyclerAdapter {
 
+
+    private String type;
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     private List<KeyValue> dataList;
-    private Activity mContext;
-    private int loadState = 2;
     public void setDataList(List<KeyValue> dataList) {
 
         this.dataList = dataList;
@@ -37,7 +45,6 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
 
     public PERecipeAdapter(Activity mContext) {
         super(mContext);
-        this.mContext=mContext;
         this.dataList = new ArrayList<>();
 
     }
@@ -137,6 +144,20 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
             layout=  itemView.findViewById(R.id.p_e_recipe_layout);
             title =  itemView.findViewById(R.id.p_e_recipe_title);
             title_sub=  itemView.findViewById(R.id.p_e_recipe_title_sub);
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (type.equalsIgnoreCase(TagFinal.TRUE)){
+                        Intent intent=new Intent(mContext,PEQualityTeaSuggestActivity.class);
+                        intent.putExtra(Base.title,"运动处方");
+                        intent.putExtra(Base.data,bean);
+                        intent.putExtra(Base.type,"运动处方");
+                        mContext.startActivity(intent);
+                    }
+
+                }
+            });
+
         }
     }
 
@@ -157,14 +178,5 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
         }
     }
 
-    /**
-     * 设置上拉加载状态
-     *
-     * @param loadState 1.正在加载 2.加载完成 3.加载到底
-     */
-    public void setLoadState(int loadState) {
-        this.loadState = loadState;
-        notifyDataSetChanged();
-    }
 
 }

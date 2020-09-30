@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 import android.provider.MediaStore.Images.Media;
 import android.provider.MediaStore.Images.Thumbnails;
 
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.glide.Photo;
 import com.yfy.final_tag.glide.PhotoAlbum;
 

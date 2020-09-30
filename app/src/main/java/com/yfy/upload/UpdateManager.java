@@ -21,7 +21,7 @@ import com.yfy.base.App;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.FileTools;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 
 import java.io.File;
 import java.io.FileOutputStream;

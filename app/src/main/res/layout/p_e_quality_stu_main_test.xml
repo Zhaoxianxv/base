@@ -129,24 +129,34 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/margin_80dp"
             android:background="@drawable/radius4_line_gray"
-
             android:layout_margin="@dimen/margin_10dp"
             >
-            <android.support.design.internal.FlowLayout
-                android:id="@+id/p_e_main_recipe_flow_layout"
-                android:layout_width="match_parent"
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/p_e_main_recipe_content"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="    建议加强体能锻炼这是系统生成，，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字"
+                android:textSize="@dimen/textsize6"
+                android:maxLines="3"
+                android:textColor="@color/app_base_text_color"
+
                 android:layout_marginTop="@dimen/margin_10dp"
-                android:layout_marginBottom="@dimen/margin_5dp"
-                app:lineSpacing="@dimen/margin_3dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="@dimen/margin_10dp"
-                android:foregroundGravity="center"
-                android:layout_centerVertical="true"
-                />
+                android:layout_marginLeft="@dimen/margin_5dp"
+                android:layout_marginRight="@dimen/margin_5dp"/>
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/p_e_main_recipe_content"
+                android:text="点击查看更多处方！"
+                android:textColor="@color/gray"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/margin_3dp"
+                android:layout_marginTop="@dimen/margin_3dp"
+                android:layout_marginRight="@dimen/margin_5dp"
+                android:textSize="@dimen/textsize4"/>
         </RelativeLayout>
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/p_e_main_recipe"
@@ -166,7 +176,7 @@
         android:layout_below="@id/p_e_main_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/layer_top_bottom_grayline_whitebg">
+        android:background="@drawable/layer_top_bottom_gray_line_white_bg">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/p_e_main_type_recycler_view"
             android:layout_width="match_parent"

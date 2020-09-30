@@ -2,7 +2,7 @@ package com.yfy.upload;
 
 import android.util.Log;
 
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.io.BufferedInputStream;

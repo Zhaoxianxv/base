@@ -13,7 +13,7 @@ import android.provider.MediaStore;
 import android.util.Base64;
 
 import com.yfy.final_tag.FileTools;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.io.ByteArrayOutputStream;

@@ -15,45 +15,18 @@ public class StringJudge {
 
 
 
-    public static String listToString(List<String> datas) {
-        StringBuilder sb=new StringBuilder();
-        for (String h:datas){
-            sb.append(h).append(",");
-        }
-        if (sb.length()>2){
-            return sb.substring(0,sb.length()-1);
-        }
-        return "";
-    }
-    public static List<String> stringToList(String data) {
-        return Arrays.asList(data.split(","));
-    }
-
-    public static String[] arraysToList(List<String> list){
-        String[] se=new String[list.size()];
-        return list.toArray(se);
-    }
-
-
-
     public static boolean isContainsKey(Bundle b, String tag) {
         if (b != null) {
-            if (b.containsKey(tag)) {
-                return true;
-            }
+            return b.containsKey(tag);
         }
         return false;
     }
-
 
     /**
      * 判断一个对象是否为空
      */
     public static boolean isNull(Object obj) {
-        if (obj == null) {
-            return true;
-        }
-        return false;
+        return obj == null;
     }
 
     /**

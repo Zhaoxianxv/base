@@ -28,6 +28,7 @@ public class ViewTool {
         GradientDrawable one = (GradientDrawable) view.getBackground();
         one.setTint(color);
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void alterGradientDrawableStrokeColor(Context context,View view, int color) {
         GradientDrawable one = (GradientDrawable) view.getBackground();

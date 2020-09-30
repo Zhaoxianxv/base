@@ -71,8 +71,7 @@ public abstract class AxisBase extends ComponentBase {
 
     /**
      * Set this to true if the line alongside the axis should be drawn or not.
-     * 
-     * @param enabled
+     *
      */
     public void setDrawAxisLine(boolean enabled) {
         mDrawAxisLine = enabled;

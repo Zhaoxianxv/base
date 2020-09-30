@@ -20,7 +20,7 @@ import com.yfy.app.net.login.ResetPasswordGetCodeReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.RegexUtils;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;

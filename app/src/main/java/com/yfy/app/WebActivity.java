@@ -18,13 +18,14 @@ import android.widget.ProgressBar;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.stringtool.StringJudge;
 
 public class WebActivity extends BaseActivity {
 
 	private final static String TAG = WebActivity.class.getSimpleName();
 
-	public ViewGroup container_view;
-	public WebView webView;
+	private ViewGroup container_view;
+	private WebView webView;
 	public WebSettings webSettings;
 
 
@@ -80,10 +81,10 @@ public class WebActivity extends BaseActivity {
 
 	/**
 	 */
-	private int index;
-	private String url;
-	private String title;
-	private void getData() {
+	public int index;
+	public String url;
+	public String title;
+	public void getData() {
 		Bundle b = getIntent().getExtras();
 		if (b != null) {
 			if (b.containsKey(TagFinal.URI_TAG)) {
@@ -94,14 +95,16 @@ public class WebActivity extends BaseActivity {
 			}else{
 				index=-1;
 			}
-			if (b.containsKey(TagFinal.TITLE_TAG)) {
+			if (StringJudge.isContainsKey(b,TagFinal.TITLE_TAG)) {
 				title = b.getString(TagFinal.TITLE_TAG);
+				if (StringJudge.isEmpty(title))title="";
 				if (title.length()>10){
 					title="新闻详情";
 				}
 			}
-			if (b.containsKey("session_key")) {
+			if (StringJudge.isContainsKey(b,"session_key")) {
 				String session_key = b.getString("session_key");
+				if (StringJudge.isEmpty(session_key))session_key="";
 				url = url.replace("%@", session_key);
 			}
 			initSQtoolbar(title);

@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.SparseArray;
 
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 
 import java.util.Locale;
 import java.util.Set;

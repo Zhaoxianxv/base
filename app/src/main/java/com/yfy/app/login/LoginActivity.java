@@ -1,14 +1,15 @@
-/**
- *
- */
 package com.yfy.app.login;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.login.bean.Stunlist;
@@ -23,11 +24,13 @@ import com.yfy.app.net.login.UserGetDuplicationListReq;
 import com.yfy.app.net.login.UserLoginReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.db.GreenDaoManager;
+import com.yfy.final_tag.keyboard.KeyboardTouchListener;
+import com.yfy.final_tag.keyboard.KeyboardUtil;
+import com.yfy.greendao.tool.GreenDaoManager;
 import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.Logger;
-import com.yfy.final_tag.RxCaptcha;
+import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.final_tag.glide.RxCaptcha;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
@@ -49,7 +52,7 @@ import cn.jpush.android.api.JPushInterface;
 import retrofit2.Call;
 import retrofit2.Response;
 
-import static com.yfy.final_tag.RxCaptcha.TYPE.NUMBER;
+import static com.yfy.final_tag.glide.RxCaptcha.TYPE.NUMBER;
 
 
 /**
@@ -90,7 +93,7 @@ public class LoginActivity extends BaseActivity {
 				.type(NUMBER)
 				.into(code_icon);
 		code_s=rxCaptcha.getCode();
-//		initMoveKeyBoard();
+		initMoveKeyBoard();
 		initDialogList();
 	}
 
@@ -426,9 +429,7 @@ public class LoginActivity extends BaseActivity {
 
 		}
 
-//		Base.adminDb=adminDb;
-//
-//		GreenDaoManager.getInstance().saveAdminDb(adminDb);
+
 	}
 	private void setAdminString(AdminDb adminDb, String value){
 
@@ -470,55 +471,56 @@ public class LoginActivity extends BaseActivity {
 
 
 
-//
-//	//password edit keyboard
-//	@Bind(R.id.all_ed)
-//	LinearLayout rootView;
-//	@Bind(R.id.sv_main)
-//	ScrollView scrollView;
-//	private KeyboardUtil keyboardUtil;
-//	@Override
-//	public boolean onKeyDown(int keyCode, KeyEvent event) {
-//		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0 ) {
-//			if(keyboardUtil.isShow){
-//				keyboardUtil.hideSystemKeyBoard();
-//				keyboardUtil.hideAllKeyBoard();
-//				keyboardUtil.hideKeyboardLayout();
-//			}else {
-//				return super.onKeyDown(keyCode, event);
-//			}
-//
-//			return false;
-//		} else
-//			return super.onKeyDown(keyCode, event);
-//	}
-//
-//	private void initMoveKeyBoard() {
-//		keyboardUtil = new KeyboardUtil(this, rootView, scrollView);
-//		keyboardUtil.setOtherEdittext(account,code);
-//		// monitor the KeyBarod state
-//		keyboardUtil.setKeyBoardStateChangeListener(new KeyBoardStateListener());
-//		// monitor the finish or next Key
-//		keyboardUtil.setInputOverListener(new inputOverListener());
-//		password.setOnTouchListener(new KeyboardTouchListener(keyboardUtil, KeyboardUtil.INPUTTYPE_ABC, -1));
-//	}
-//
-//	class KeyBoardStateListener implements KeyboardUtil.KeyBoardStateChangeListener {
-//
-//		@Override
-//		public void KeyBoardStateChange(int state, EditText editText) {
-////            System.out.println("state" + state);
-////            System.out.println("editText" + editText.getText().toString());
-//		}
-//	}
-//
-//	class inputOverListener implements KeyboardUtil.InputFinishListener {
-//
-//		@Override
-//		public void inputHasOver(int onclickType, EditText editText) {
-////            System.out.println("onclickType" + onclickType);
-////            System.out.println("editText" + editText.getText().toString());
-//		}
-//	}
+
+	//password edit keyboard
+	@Bind(R.id.all_ed)
+	LinearLayout rootView;
+	@Bind(R.id.sv_main)
+	ScrollView scrollView;
+	private KeyboardUtil keyboardUtil;
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0 ) {
+			if(keyboardUtil.isShow){
+				keyboardUtil.hideSystemKeyBoard();
+				keyboardUtil.hideAllKeyBoard();
+				keyboardUtil.hideKeyboardLayout();
+			}else {
+				return super.onKeyDown(keyCode, event);
+			}
+
+			return false;
+		} else
+			return super.onKeyDown(keyCode, event);
+	}
+
+	@SuppressLint("ClickableViewAccessibility")
+	private void initMoveKeyBoard() {
+		keyboardUtil = new KeyboardUtil(this, rootView, scrollView);
+		keyboardUtil.setOtherEdittext(account,code);
+		// monitor the KeyBarod state
+		keyboardUtil.setKeyBoardStateChangeListener(new KeyBoardStateListener());
+		// monitor the finish or next Key
+		keyboardUtil.setInputOverListener(new inputOverListener());
+		password.setOnTouchListener(new KeyboardTouchListener(keyboardUtil, KeyboardUtil.INPUTTYPE_ABC, -1));
+	}
+
+	class KeyBoardStateListener implements KeyboardUtil.KeyBoardStateChangeListener {
+
+		@Override
+		public void KeyBoardStateChange(int state, EditText editText) {
+//            System.out.println("state" + state);
+//            System.out.println("editText" + editText.getText().toString());
+		}
+	}
+
+	class inputOverListener implements KeyboardUtil.InputFinishListener {
+
+		@Override
+		public void inputHasOver(int onclickType, EditText editText) {
+//            System.out.println("onclickType" + onclickType);
+//            System.out.println("editText" + editText.getText().toString());
+		}
+	}
 
 }

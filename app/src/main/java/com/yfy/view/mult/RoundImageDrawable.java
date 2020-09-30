@@ -11,7 +11,7 @@ import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.Drawable;
 
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 
 public class RoundImageDrawable extends Drawable {
 

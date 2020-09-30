@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
@@ -18,7 +17,7 @@ import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
@@ -56,11 +55,10 @@ public class SelectedClassActivity extends BaseActivity {
         type=getIntent().getStringExtra(Base.type);
     }
 
-    private TextView menu_one;
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
-        menu_one=toolbar.addMenuText(TagFinal.ONE_INT,"19-20上期");
+        toolbar.addMenuText(TagFinal.ONE_INT,"19-20上期");
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -121,6 +119,7 @@ public class SelectedClassActivity extends BaseActivity {
         ReqBody reqBody = new ReqBody();
         UserGetTermListReq req = new UserGetTermListReq();
         //获取参数
+        req.setSession_key(Base.user.getSession_key());
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
@@ -140,7 +139,7 @@ public class SelectedClassActivity extends BaseActivity {
                 Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
-
+                    Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 }else{
                     toastShow("error");
                 }
@@ -148,6 +147,7 @@ public class SelectedClassActivity extends BaseActivity {
 
         }else{
             try {
+                assert response.errorBody()!=null;
                 String s=response.errorBody().string();
                 Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
             } catch (IOException e) {

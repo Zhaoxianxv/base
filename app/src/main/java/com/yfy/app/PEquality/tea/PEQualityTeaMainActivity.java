@@ -48,7 +48,7 @@ import com.yfy.charting_mp_test.data.RadarDataSet;
 import com.yfy.charting_mp_test.data.RadarEntry;
 import com.yfy.charting_mp_test.interfaces.datasets.IRadarDataSet;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
@@ -87,8 +87,7 @@ public class PEQualityTeaMainActivity extends BaseActivity {
     AppCompatTextView grade_sub;
     @Bind(R.id.p_e_main_recipe)
     AppCompatTextView recipe_title;
-    @Bind(R.id.p_e_main_recipe_flow_layout)
-    FlowLayout recipe_flowlayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,38 +213,9 @@ public class PEQualityTeaMainActivity extends BaseActivity {
         list.add(new KeyValue("长跑：","建议加强体能锻炼"));
         list.add(new KeyValue("调高：","建议加大腿弹跳能力"));
 
-        setFlowLayoutTop(list);
         initRecyclerView();
     }
 
-
-
-    private void setFlowLayoutTop(List<KeyValue> top_jz){
-
-        LayoutInflater mInflater = LayoutInflater.from(mActivity);
-        if (recipe_flowlayout.getChildCount()!=0){
-            recipe_flowlayout.removeAllViews();
-        }
-        for (KeyValue bean:top_jz){
-            RelativeLayout layout = (RelativeLayout) mInflater.inflate(R.layout.public_detail_top_item,recipe_flowlayout, false);
-            TextView key=layout.findViewById(R.id.seal_detail_key);
-            TextView value=layout.findViewById(R.id.seal_detail_value);
-            RatingBar ratingBar=layout.findViewById(R.id.seal_detail_value_star);
-            LinearLayout linearLayout=layout.findViewById(R.id.public_detail_txt_layout);
-            MultiPictureView multi=layout.findViewById(R.id.public_detail_layout_multi);
-
-            key.setTextColor(ColorRgbUtil.getGrayText());
-            value.setTextColor(ColorRgbUtil.getBaseText());
-            key.setText(bean.getKey());
-            linearLayout.setVisibility(View.VISIBLE);
-            multi.setVisibility(View.GONE);
-            value.setText(bean.getValue());
-            ratingBar.setVisibility(View.GONE);
-            value.setVisibility(View.VISIBLE);
-
-            recipe_flowlayout.addView(layout);
-        }
-    }
 
 
 

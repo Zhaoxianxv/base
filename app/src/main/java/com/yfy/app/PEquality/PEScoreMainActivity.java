@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.yfy.app.PEquality.adapter.PEScoreMainAdapter;
 import com.yfy.app.bean.BaseRes;
@@ -19,12 +18,11 @@ import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -102,7 +100,7 @@ public class PEScoreMainActivity extends BaseActivity {
         keyValue_adapter.add(two);
         keyValue_adapter.add(three);
         KeyValue chart=new KeyValue(TagFinal.TYPE_SELECT_GROUP);
-        one.setTitle("各学期分数");
+        chart.setTitle("各学期分数");
         keyValue_adapter.add(chart);
 
 

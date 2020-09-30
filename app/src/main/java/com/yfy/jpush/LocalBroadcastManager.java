@@ -8,7 +8,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;

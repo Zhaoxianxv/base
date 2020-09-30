@@ -1,4 +1,4 @@
-package com.yfy.db;
+package com.yfy.greendao.tool;
 
 import android.database.Cursor;
 import android.database.SQLException;

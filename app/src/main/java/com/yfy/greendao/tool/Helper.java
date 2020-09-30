@@ -1,16 +1,16 @@
-package com.yfy.db;
+package com.yfy.greendao.tool;
 
 import android.content.Context;
 
 import com.yfy.base.App;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.greendao.DaoMaster;
 import com.yfy.greendao.DaoSession;
 import com.yfy.greendao.UserDao;
 
 import org.greenrobot.greendao.database.Database;
 
-public class Helper extends DaoMaster.OpenHelper{
+public class Helper extends DaoMaster.OpenHelper {
 
     private static DaoMaster daoMaster;
     private static DaoSession daoSession;

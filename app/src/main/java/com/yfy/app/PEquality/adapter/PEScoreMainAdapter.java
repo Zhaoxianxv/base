@@ -10,10 +10,8 @@ import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.base.adapter.BaseRecyclerAdapter;
 import com.yfy.base.adapter.ReViewHolder;
-import com.yfy.charting_mp.animation.Easing;
 import com.yfy.charting_mp.charts.LineChart;
 import com.yfy.charting_mp.components.Legend;
-import com.yfy.charting_mp.components.LimitLine;
 import com.yfy.charting_mp.components.XAxis;
 import com.yfy.charting_mp.components.YAxis;
 import com.yfy.charting_mp.data.Entry;
@@ -118,7 +116,7 @@ public class PEScoreMainAdapter extends BaseRecyclerAdapter {
         private void setData(float range) {
 
             List<String> yearlist=StringUtils.listToStringSplitCharacters("18年-上,18年-下,19年-上,19年-下,20年-上",",");
-            ArrayList<String> xVals = new ArrayList<String>();
+            ArrayList<String> xVals = new ArrayList<>();
             for (String s:yearlist) {
                 xVals.add(s);
             }
@@ -134,20 +132,24 @@ public class PEScoreMainAdapter extends BaseRecyclerAdapter {
                 i++;
             }
 
-            // create a dataset and give it a type
+            // 折线图链接线设置
             LineDataSet set1 = new LineDataSet(yVals, "");
-
-
-            set1.setColor(Color.BLACK);
-            set1.setCircleColor(Color.BLACK);
+            //设置线样式
+            set1.enableDashedLine(10f, 5f, 0f);
+            //line 颜色
+            set1.setColor(ColorRgbUtil.getBaseColor());
+            //点颜色
+            set1.setCircleColor(ColorRgbUtil.getBaseColor());
+            //线粗细
             set1.setLineWidth(1f);
             set1.setCircleSize(3f);
             set1.setDrawCircleHole(false);
-            set1.setValueTextSize(9f);
+            set1.setValueTextSize(7f);
 
 
-            ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
-            dataSets.add(set1); // add the datasets
+            //链接线数组
+            ArrayList<LineDataSet> dataSets = new ArrayList<>();
+            dataSets.add(set1);
 
 
             // create a data object with the datasets
@@ -187,23 +189,31 @@ public class PEScoreMainAdapter extends BaseRecyclerAdapter {
             XAxis xAxis = mChart.getXAxis();
 
             xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-            xAxis.setDrawLabels(true);//
-            xAxis.setDrawAxisLine(false);
-            //网格图
+            xAxis.setDrawLabels(true);
+            //X轴线绘制 true false
+            xAxis.setDrawAxisLine(true);
+            //X网格图
             xAxis.setDrawGridLines(false);
-            xAxis.setTextSize(6f);
+            xAxis.setTextSize(8f);
 
             YAxis leftAxis = mChart.getAxisLeft();//
             YAxis rightAxis = mChart.getAxisRight();//右边数据
 //            rightAxis.setDrawTopYLabelEntry(false);
-
+            //是否显示
             rightAxis.setEnabled(false);
             rightAxis.setDrawGridLines(false);
+
+            //是否显示
+            leftAxis.setEnabled(true);
+            //Y轴线绘制 true false
+            leftAxis.setDrawAxisLine(true);
+            //Y网格图
             leftAxis.setDrawGridLines(false);
-            leftAxis.setAxisMaxValue(100f);
+            leftAxis.setAxisMaxValue(120f);
             leftAxis.setAxisMinValue(0f);
-            leftAxis.setStartAtZero(true);//从0开始
-            leftAxis.setEnabled(false);
+            //从0开始
+            leftAxis.setStartAtZero(true);
+            leftAxis.setTextSize(7f);
 
 
             Legend l = mChart.getLegend();

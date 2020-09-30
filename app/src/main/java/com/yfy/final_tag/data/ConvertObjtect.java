@@ -2,47 +2,36 @@ package com.yfy.final_tag.data;
 
 
 /**
- * Created by yfy1 on 2016/11/24.
  * 转换数据类型
  *
  */
 public class ConvertObjtect {
 
-    public static ConvertObjtect objtect;
+    private static ConvertObjtect object;
 
     public static ConvertObjtect getInstance(){
-        if (objtect==null){
-            objtect=new ConvertObjtect();
+        if (object ==null){
+            object =new ConvertObjtect();
         }
-        return objtect;
+        return object;
     }
 
-
-    /**
-     * @return
-     * String convert int
-     */
     public int getInt(String s){
         try {
             Integer.parseInt(s);
         } catch (NumberFormatException e) {
             return -1;
         }
-        int i=Integer.valueOf(s).intValue();
-        return i;
+        return Integer.valueOf(s);
     }
-    /**
-     * @return
-     * String convert float
-     */
+
     public float getFloat(String s){
         try {
             Float.parseFloat(s);
         } catch (NumberFormatException e) {
             return -1;
         }
-        float i=Float.valueOf(s).floatValue();
-        return i;
+        return Float.valueOf(s);
     }
 
     public String getString(float f){

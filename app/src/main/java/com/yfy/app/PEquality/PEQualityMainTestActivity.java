@@ -44,7 +44,7 @@ import com.yfy.charting_mp_test.data.RadarDataSet;
 import com.yfy.charting_mp_test.data.RadarEntry;
 import com.yfy.charting_mp_test.interfaces.datasets.IRadarDataSet;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
@@ -85,8 +85,8 @@ public class PEQualityMainTestActivity extends BaseActivity {
     AppCompatTextView grade_sub;
     @Bind(R.id.p_e_main_recipe)
     AppCompatTextView recipe_title;
-    @Bind(R.id.p_e_main_recipe_flow_layout)
-    FlowLayout recipe_flowlayout;
+//    @Bind(R.id.p_e_main_recipe_flow_layout)
+//    FlowLayout recipe_flowlayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,14 +126,15 @@ public class PEQualityMainTestActivity extends BaseActivity {
                                         startActivity(intent);
                                         break;
                                     case "运动技能":
-                                        intent=new Intent(mActivity,PEQualitySkillsActivity.class);
+                                        intent=new Intent(mActivity,PEQualityStandardListActivity.class);
                                         intent.putExtra(Base.title,type);
                                         intent.putExtra(Base.type,TagFinal.FALSE);
                                         startActivity(intent);
                                         break;
                                     case "体能":
-                                        intent=new Intent(mActivity,PEQualityStaminaActivity.class);
+                                        intent=new Intent(mActivity,PEQualityStandardListActivity.class);
                                         intent.putExtra(Base.title,type);
+                                        intent.putExtra(Base.type,TagFinal.FALSE);
                                         startActivity(intent);
                                         break;
                                     case "体育课后作业":
@@ -230,42 +231,39 @@ public class PEQualityMainTestActivity extends BaseActivity {
                 grade_sub.setTextColor(ColorRgbUtil.getGray());
                 break;
         }
-        List<KeyValue> list=new ArrayList<>();
-        list.add(new KeyValue("长跑：","建议加强体能锻炼"));
-        list.add(new KeyValue("调高：","建议加大腿弹跳能力"));
 
-        setFlowLayoutTop(list);
+//        setFlowLayoutTop(list);
 
     }
 
 
 
-    private void setFlowLayoutTop(List<KeyValue> top_jz){
-
-        LayoutInflater mInflater = LayoutInflater.from(mActivity);
-        if (recipe_flowlayout.getChildCount()!=0){
-            recipe_flowlayout.removeAllViews();
-        }
-        for (KeyValue bean:top_jz){
-            RelativeLayout layout = (RelativeLayout) mInflater.inflate(R.layout.public_detail_top_item,recipe_flowlayout, false);
-            TextView key=layout.findViewById(R.id.seal_detail_key);
-            TextView value=layout.findViewById(R.id.seal_detail_value);
-            RatingBar ratingBar=layout.findViewById(R.id.seal_detail_value_star);
-            LinearLayout linearLayout=layout.findViewById(R.id.public_detail_txt_layout);
-            MultiPictureView multi=layout.findViewById(R.id.public_detail_layout_multi);
-
-            key.setTextColor(ColorRgbUtil.getGrayText());
-            value.setTextColor(ColorRgbUtil.getBaseText());
-            key.setText(bean.getKey());
-            linearLayout.setVisibility(View.VISIBLE);
-            multi.setVisibility(View.GONE);
-            value.setText(bean.getValue());
-            ratingBar.setVisibility(View.GONE);
-            value.setVisibility(View.VISIBLE);
-
-            recipe_flowlayout.addView(layout);
-        }
-    }
+//    private void setFlowLayoutTop(List<KeyValue> top_jz){
+//
+//        LayoutInflater mInflater = LayoutInflater.from(mActivity);
+//        if (recipe_flowlayout.getChildCount()!=0){
+//            recipe_flowlayout.removeAllViews();
+//        }
+//        for (KeyValue bean:top_jz){
+//            RelativeLayout layout = (RelativeLayout) mInflater.inflate(R.layout.public_detail_top_item,recipe_flowlayout, false);
+//            TextView key=layout.findViewById(R.id.seal_detail_key);
+//            TextView value=layout.findViewById(R.id.seal_detail_value);
+//            RatingBar ratingBar=layout.findViewById(R.id.seal_detail_value_star);
+//            LinearLayout linearLayout=layout.findViewById(R.id.public_detail_txt_layout);
+//            MultiPictureView multi=layout.findViewById(R.id.public_detail_layout_multi);
+//
+//            key.setTextColor(ColorRgbUtil.getGrayText());
+//            value.setTextColor(ColorRgbUtil.getBaseText());
+//            key.setText(bean.getKey());
+//            linearLayout.setVisibility(View.VISIBLE);
+//            multi.setVisibility(View.GONE);
+//            value.setText(bean.getValue());
+//            ratingBar.setVisibility(View.GONE);
+//            value.setVisibility(View.VISIBLE);
+//
+//            recipe_flowlayout.addView(layout);
+//        }
+//    }
 
 
 
@@ -275,7 +273,11 @@ public class PEQualityMainTestActivity extends BaseActivity {
 
     public void initRecyclerView(){
         recycler_view =findViewById(R.id.p_e_main_type_recycler_view);
-        GridLayoutManager manager = new GridLayoutManager(this,4);
+        GridLayoutManager manager = new GridLayoutManager(this,3
+
+
+
+        );
         recycler_view.setLayoutManager(manager);
 //        recycler_view.setItemAnimator(new RecycAnimator());
         //添加线
@@ -323,7 +325,6 @@ public class PEQualityMainTestActivity extends BaseActivity {
                 }
             }
         });
-        adapter_data_show.add(new KeyValue("体育荣誉证书",R.drawable.icon_credentials));
         adapter_data_show.add(new KeyValue("体育比赛成绩",R.drawable.icon_score));
         adapter_data_show.add(new KeyValue("课堂表现",R.drawable.icon_show));
         adapter_data_show.add(new KeyValue("膳食建议",R.drawable.icon_suggestion));

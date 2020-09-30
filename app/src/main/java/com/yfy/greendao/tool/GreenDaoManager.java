@@ -1,9 +1,9 @@
-package com.yfy.db;
+package com.yfy.greendao.tool;
 
 import android.util.Log;
 
 import com.yfy.base.App;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.greendao.AdminDb;
 import com.yfy.greendao.AdminDbDao;

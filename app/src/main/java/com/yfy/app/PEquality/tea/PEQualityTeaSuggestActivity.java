@@ -1,5 +1,6 @@
 package com.yfy.app.PEquality.tea;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.Logger;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
@@ -62,8 +63,10 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
     }
 
 
-    private String title,type;
+    public KeyValue data;
+    public String title,type;
     private void getData(){
+        data=getIntent().getParcelableExtra(Base.data);
         title=getIntent().getStringExtra(Base.title);
         type=getIntent().getStringExtra(Base.type);
         initSQToolbar(title);
@@ -93,12 +96,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         recyclerView =  findViewById(R.id.public_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //添加分割线
-//        recyclerView.addItemDecoration(new RecycleViewDivider(
-//                mActivity,
-//                LinearLayoutManager.HORIZONTAL,
-//                1,
-//                getResources().getColor(R.color.gray)));
+
         adapter=new PEQualityTeaSuggestAdapter(this);
         recyclerView.setAdapter(adapter);
         adapter.setSealChoice(new PEQualityTeaSuggestAdapter.SealChoice() {
@@ -380,12 +378,26 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
         KeyValue two=new KeyValue(TagFinal.TYPE_LONG_TXT_EDIT);
 
-        one.setTitle("项目名");
-        one.setValue("长跑");
-        one.setKey("请输入项目名");
-        two.setTitle("处方建议");
-        two.setValue("建议加强体能锻炼");
-//        keyValueAdapterData.add(stu);
+        if (data==null){
+            one.setTitle("项目名");
+            one.setValue("长跑");
+
+            two.setTitle("处方建议");
+            two.setValue("建议加强体能锻炼");
+        }else{
+            one.setTitle("项目名");
+            one.setValue(data.getKey());
+            if (data.getKey().equalsIgnoreCase("给我的处方")){
+                one.setIs_edit(TagFinal.FALSE);
+            }else{
+                one.setIs_edit(TagFinal.TRUE);
+            }
+
+            two.setTitle("处方建议");
+            two.setValue(data.getValue());
+        }
+
+
         keyValueAdapterData.add(one);
         keyValueAdapterData.add(two);
         adapter.setDataList(keyValueAdapterData);
@@ -445,6 +457,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         ReqBody reqBody = new ReqBody();
         UserGetTermListReq req = new UserGetTermListReq();
         //获取参数
+        req.setSession_key(Base.user.getSession_key());
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
@@ -478,6 +491,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
                 Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
+                    Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
                 }else{
                     toastShow("error");
                 }
@@ -501,6 +515,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
             }
         }else{
             try {
+                assert response.errorBody()!=null;
                 String s=response.errorBody().string();
                 Logger.e(StringUtils.stringToGetTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
             } catch (IOException e) {
@@ -543,10 +558,11 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
 
 
 
-    private MyAsyncTask mtask;
-    private int num=0;
-    private List<String> base64_list=new ArrayList<>();
-    public class MyAsyncTask extends AsyncTask<String, Integer, Void> {
+    public MyAsyncTask mtask;
+    public int num=0;
+    public List<String> base64_list=new ArrayList<>();
+    @SuppressLint("StaticFieldLeak")
+    class MyAsyncTask extends AsyncTask<String, Integer, Void> {
         //内部执行后台任务,不可在此方法内修改UI
         @Override
         protected Void doInBackground(String... arg0) {

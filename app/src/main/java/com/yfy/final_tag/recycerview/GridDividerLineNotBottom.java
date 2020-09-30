@@ -14,8 +14,6 @@ import android.support.v7.widget.RecyclerView.State;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
-import com.yfy.final_tag.Logger;
-
 /**
  * @author b不绘制底边
  *

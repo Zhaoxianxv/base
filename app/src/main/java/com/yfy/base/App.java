@@ -6,7 +6,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.multidex.MultiDexApplication;
 
-import com.yfy.db.Helper;
+import com.yfy.greendao.tool.Helper;
 import com.yfy.final_tag.$;
 import com.yfy.greendao.DaoMaster;
 import com.yfy.greendao.DaoSession;

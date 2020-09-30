@@ -66,6 +66,8 @@ public  class TagFinal {
     public final static int TYPE_STAR_TITLE = 251;
     public final static int TYPE_SELECT_USER = 293;
 
+    public final static int TYPE_FLOW_TITLE = 331;
+
     public final static int LOADING = ONE_INT;//
     public final static int LOADING_COMPLETE = TWO_INT;//
     public final static int LOADING_END = THREE_INT;//

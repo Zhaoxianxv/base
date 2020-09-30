@@ -2,15 +2,23 @@ package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.VectorDrawable;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.internal.FlowLayout;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,7 +26,13 @@ import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.album.MultPicShowActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.base.adapter.BaseRecyclerAdapter;
+import com.yfy.base.adapter.ReViewHolder;
 import com.yfy.final_tag.data.ColorRgbUtil;
+import com.yfy.final_tag.data.ConvertObjtect;
+import com.yfy.final_tag.dialog.CPWBean;
+import com.yfy.final_tag.permission.PermissionTools;
+import com.yfy.final_tag.stringtool.RegexUtils;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
@@ -31,16 +45,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by yfyandr on 2017/12/27.
+ * Created by
  */
 
-public class PEHonorMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PEHonorMainAdapter extends BaseRecyclerAdapter {
 
-    private Activity mContext;
     private List<KeyValue> dataList;
-    private int loadState = 2;
 
     public PEHonorMainAdapter(Activity mContext) {
+        super(mContext);
         this.mContext = mContext;
         this.dataList = new ArrayList<>();
 
@@ -57,20 +70,29 @@ public class PEHonorMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ReViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TagFinal.TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_honor_main_item_layout, parent, false);
-            return new ItemHolder(view);
+            return new ItemHolder(inflater.inflate(R.layout.p_e_honor_main_item_layout, parent, false));
         }
-
-        return null;
+        if (viewType == TagFinal.TYPE_FLOW_TITLE) {
+            return new TopH(inflater.inflate(R.layout.public_type_flow, parent, false));
+        }
+        return new ErrorHolder(inflater.inflate(R.layout.p_e_honor_main_item_layout, parent, false));
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(ReViewHolder holder, int position) {
+        if (holder instanceof TopH) {
+            TopH topH = (TopH) holder;
+            topH.bean = dataList.get(position);
+            topH.title.setText(topH.bean.getTitle());
+            topH.right_arrow.setVisibility(View.GONE);
+            topH.setFlowLayoutTop(topH.bean.getCpwBeanArrayList());
+
+        }
         if (holder instanceof ItemHolder) {
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
@@ -122,7 +144,7 @@ public class PEHonorMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
 
-    private class ItemHolder extends RecyclerView.ViewHolder {
+    private class ItemHolder extends ReViewHolder {
         TextView left_title;
         TextView left_sub;
         TextView left_content;
@@ -172,13 +194,106 @@ public class PEHonorMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
 
-    /**
-     * 设置上拉加载状态
-     *
-     * @param loadState 1.正在加载 2.加载完成 3.加载到底
-     */
-    public void setLoadState(int loadState) {
-        this.loadState = loadState;
-        notifyDataSetChanged();
+    private class TopH extends ReViewHolder {
+        AppCompatTextView title;
+        AppCompatImageView right_arrow;
+        FlowLayout flow;
+        RelativeLayout layout;
+        KeyValue bean;
+        TopH(View itemView) {
+            super(itemView);
+            layout =  itemView.findViewById(R.id.public_type_flow_layout);
+            title =  itemView.findViewById(R.id.public_type_flow_title);
+            right_arrow =  itemView.findViewById(R.id.public_type_flow_arrow);
+            flow =  itemView.findViewById(R.id.public_type_flow_flow);
+        }
+
+
+        private void setFlowLayoutTop(List<CPWBean> top_jz){
+
+            LayoutInflater mInflater = LayoutInflater.from(mContext);
+            if (flow.getChildCount()!=0){
+                flow.removeAllViews();
+            }
+            for (CPWBean bean:top_jz){
+                RelativeLayout layout = (RelativeLayout) mInflater.inflate(R.layout.public_detail_top_item,flow, false);
+                TextView key=layout.findViewById(R.id.seal_detail_key);
+                TextView value=layout.findViewById(R.id.seal_detail_value);
+                RatingBar ratingBar=layout.findViewById(R.id.seal_detail_value_star);
+                LinearLayout linearLayout=layout.findViewById(R.id.public_detail_txt_layout);
+                MultiPictureView multi=layout.findViewById(R.id.public_detail_layout_multi);
+
+                key.setTextColor(ColorRgbUtil.getGrayText());
+                value.setTextColor(ColorRgbUtil.getBaseText());
+                key.setText(bean.getName());
+                switch (bean.getType()){
+                    case "star":
+                        linearLayout.setVisibility(View.VISIBLE);
+                        multi.setVisibility(View.GONE);
+                        if (bean.getValue().equals("")){
+                            ratingBar.setRating(0f);
+                        }else{
+                            ratingBar.setRating(ConvertObjtect.getInstance().getFloat(bean.getValue()));
+                        }
+                        ratingBar.setVisibility(View.VISIBLE);
+                        value.setVisibility(View.GONE);
+                        break;
+                    case "image":
+                        linearLayout.setVisibility(View.GONE);
+                        multi.setVisibility(View.VISIBLE);
+
+//                        multi.clearItem();
+//                        if (StringJudge.isEmpty(bean.getListValue())){
+//                            multi.setVisibility(View.GONE);
+//                        }else{
+//                            multi.setVisibility(View.VISIBLE);
+//                            multi.setList(bean.getListValue());
+//                            multi.setItemClickCallback(new MultiPictureView.ItemClickCallback() {
+//                                @Override
+//                                public void onItemClicked(@NotNull View view, int index, @NotNull ArrayList<String> uris) {
+//                                    Intent intent=new Intent(mContext, MultPicShowActivity.class);
+//                                    Bundle b=new Bundle();
+//                                    b.putStringArrayList(TagFinal.ALBUM_SINGE_URI,uris);
+//                                    b.putInt(TagFinal.ALBUM_LIST_INDEX,index);
+//                                    intent.putExtras(b);
+//                                    mContext.startActivity(intent);
+//                                }
+//                            });
+//                        }
+                        break;
+                    default:
+                        linearLayout.setVisibility(View.VISIBLE);
+                        multi.setVisibility(View.GONE);
+                        value.setText(bean.getValue());
+                        ratingBar.setVisibility(View.GONE);
+                        value.setVisibility(View.VISIBLE);
+                        break;
+                }
+                final String content=bean.getValue().trim();
+                if (RegexUtils.isMobilePhoneNumber(content)){
+                    SpannableString ss = new SpannableString(content);
+                    ss.setSpan(new ClickableSpan() {
+                        @Override
+                        public void onClick(View view) {
+
+                            PermissionTools.tryTellPhone(mContext);
+                        }
+                    }, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    ss.setSpan(new ForegroundColorSpan(Color.parseColor("#FF3030")), 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    value.setText(ss);
+                    value.setMovementMethod(LinkMovementMethod.getInstance());
+                }
+
+
+
+                flow.addView(layout);
+            }
+        }
+
+
+
     }
+
+
+
 }
