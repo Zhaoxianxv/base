@@ -3,13 +3,17 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/main_red"
+    android:paddingLeft="@dimen/margin_5dp"
+    android:paddingRight="@dimen/margin_5dp"
+    android:paddingBottom="@dimen/margin_5dp"
     android:layout_height="match_parent">
     <com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
     <RelativeLayout
         android:id="@+id/p_e_main_top_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_10dp"
         android:background="@color/white"
         android:layout_marginTop="@dimen/margin_50dp">
         <android.support.v7.widget.AppCompatImageView
@@ -32,8 +36,8 @@
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/p_e_user_grade_title"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="优"
                 android:maxLines="1"
@@ -41,8 +45,8 @@
                 android:textSize="@dimen/textsize14"/>
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/p_e_user_grade_sub"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/p_e_user_grade_title"
                 android:text="95.5"
@@ -124,6 +128,7 @@
     <RelativeLayout
         android:id="@+id/p_e_main_recipe_layout"
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content">
         <RelativeLayout
@@ -174,9 +179,9 @@
     <RelativeLayout
         android:id="@+id/p_e_main_type_layout"
         android:layout_below="@id/p_e_main_line"
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/layer_top_bottom_gray_line_white_bg">
+        android:layout_height="wrap_content">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/p_e_main_type_recycler_view"
             android:layout_width="match_parent"
@@ -189,30 +194,91 @@
     </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/p_e_main_reason"
-        android:layout_above="@id/p_e_main_recipe_layout"
-        android:layout_width="match_parent"
-        android:gravity="center_horizontal"
-        android:background="@drawable/layer_bottom_grayline_whitebg"
-        android:paddingBottom="@dimen/margin_15dp"
-        android:paddingRight="@dimen/margin_15dp"
-        android:textSize="@dimen/textsize5"
-        android:textColor="@color/app_base_color"
-        android:layout_height="wrap_content"
-        android:text="点击图表文字查看详情"/>
+
+
 
     <RelativeLayout
         android:layout_below="@id/p_e_main_type_layout"
-        android:layout_above="@id/p_e_main_reason"
+        android:layout_above="@id/p_e_main_recipe_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/margin_2dp"
+
         android:background="@color/white">
+
         <com.yfy.charting_mp_test.charts.RadarChart
             android:id="@+id/stu_main_pie_test"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+            <com.zhangzheng.superxml.library.view.DottedLineView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_centerVertical="true"
+                android:background="@color/main_red"
+                app:layout_dash_gap="5dp"
+                app:layout_dash_height="2dp"
+                app:layout_dash_width="5dp" />
+
+            <ImageView
+                android:layout_width="@dimen/margin_10dp"
+                android:layout_height="@dimen/margin_20dp"
+                android:src="@drawable/radius_oval_gray"
+                android:scaleY="2"
+                android:scaleX="-2"
+                android:tint="@color/main_red"/>
+            <ImageView
+                android:layout_width="@dimen/margin_10dp"
+                android:layout_height="@dimen/margin_20dp"
+                android:src="@drawable/radius_oval_gray"
+                android:layout_alignParentRight="true"
+                android:scaleY="2"
+                android:scaleX="-2"
+                android:tint="@color/main_red"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            >
+            <com.zhangzheng.superxml.library.view.DottedLineView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_centerVertical="true"
+                android:background="@color/main_red"
+                app:layout_dash_gap="5dp"
+                app:layout_dash_height="2dp"
+                app:layout_dash_width="5dp" />
+            <ImageView
+                android:layout_width="@dimen/margin_10dp"
+                android:layout_height="@dimen/margin_20dp"
+                android:src="@drawable/radius_oval_gray"
+                android:scaleY="2"
+                android:scaleX="-2"
+                android:tint="@color/main_red"/>
+            <ImageView
+                android:layout_width="@dimen/margin_10dp"
+                android:layout_height="@dimen/margin_20dp"
+                android:src="@drawable/radius_oval_gray"
+                android:layout_alignParentRight="true"
+                android:scaleY="2"
+                android:scaleX="-2"
+                android:tint="@color/main_red"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/p_e_main_reason"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/textsize5"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/margin_15dp"
+            android:textColor="@color/app_base_color"
+            android:text="点击图表文字查看详情"/>
     </RelativeLayout>
 </RelativeLayout>

@@ -75,27 +75,7 @@ public class PETeaMainActivity extends BaseActivity {
             @Override
             public void onc(KeyValue bean) {
                 String title=bean.getTitle();
-                switch (title){
 
-
-                    case "运动技能":
-                        break;
-                    case "请假":
-                        break;
-                    case "课后作业":
-                        break;
-                    case "体能":
-                        break;
-                    case "国家体质标准":
-                        break;
-                    case "学习态度采集":
-                        break;
-
-                }
-//                Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
-//                intent.putExtra(Base.title,title);
-//                intent.putExtra(Base.type,title);
-//                startActivity(intent);
                 Intent intent=new Intent(mActivity,SelectedClassActivity.class);
                 intent.putExtra(Base.title,title);
                 intent.putExtra(Base.type,bean.getTitle());
@@ -111,7 +91,7 @@ public class PETeaMainActivity extends BaseActivity {
 
 
 
-        List<String> list=StringUtils.listToStringSplitCharacters("学习态度采集,请假,运动技能,体能,课后作业,国家体质标准,体育荣誉证书,体育比赛成绩,课堂表现,膳食建议,运动处方",",");
+        List<String> list=StringUtils.listToStringSplitCharacters("学习态度采集,请假,成绩录入,课后作业,荣誉比赛,课堂表现,膳食建议,运动处方",",");
         for (String s:list){
             KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
             one.setTitle(s);
@@ -153,7 +133,7 @@ public class PETeaMainActivity extends BaseActivity {
                 Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
-
+                    Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 }else{
                     toastShow("error");
                 }
@@ -161,6 +141,7 @@ public class PETeaMainActivity extends BaseActivity {
 
         }else{
             try {
+                assert response.errorBody()!=null;
                 String s=response.errorBody().string();
                 Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
             } catch (IOException e) {

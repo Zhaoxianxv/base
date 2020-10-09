@@ -15,10 +15,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
+@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class ViewTool {
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
     public static void alterVectorDrawableColor(View view, int color) {
         VectorDrawable one = (VectorDrawable) view.getBackground();
         one.setTint(color);
@@ -29,7 +29,7 @@ public class ViewTool {
         one.setTint(color);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
     public static void alterGradientDrawableStrokeColor(Context context,View view, int color) {
         GradientDrawable one = (GradientDrawable) view.getBackground();
         one.setStroke(px2dip(context,1),color);

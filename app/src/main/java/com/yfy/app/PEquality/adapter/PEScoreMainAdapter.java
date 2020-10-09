@@ -1,7 +1,6 @@
 package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,20 +47,20 @@ public class PEScoreMainAdapter extends BaseRecyclerAdapter {
 
     @NonNull
     @Override
-    public ReViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == TagFinal.TYPE_ITEM) {
+    public ReViewHolder initViewHolder(@NonNull ViewGroup parent, int position) {
+        if (position == TagFinal.TYPE_ITEM) {
             return new ItemHolder(inflater.inflate(R.layout.p_e_score_item_layout, parent, false));
         }
-        if (viewType == TagFinal.TYPE_SELECT_GROUP) {
+        if (position == TagFinal.TYPE_SELECT_GROUP) {
             return new LineChartH(inflater.inflate(R.layout.p_e_score_year_layout, parent, false));
         }
 
-        return null;
+        return new ErrorHolder(parent);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull ReViewHolder holder, int position) {
+    public void bindHolder(@NonNull ReViewHolder holder, int position) {
         if (holder instanceof ItemHolder) {
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);

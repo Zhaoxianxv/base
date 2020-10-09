@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-
     android:background="@drawable/layer_left_right_bottom_line_white_bg"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <android.support.v7.widget.AppCompatImageView
@@ -14,7 +13,10 @@
         android:src="@drawable/ic_parent_head"
         android:padding="@dimen/margin_10dp"
         android:layout_marginLeft="@dimen/margin_5dp"
-        android:tint="@color/app_base_color"
+        android:tint="@color/white"
+        android:background="@drawable/radius_oval_gray"
+        android:backgroundTint="@color/WhiteSmoke"
+        android:layout_marginTop="@dimen/margin_5dp"
         android:layout_centerHorizontal="true"
         />
     <android.support.v7.widget.AppCompatImageView
@@ -30,6 +32,7 @@
         />
 
     <TextView
+
         android:id="@+id/oa_item_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +41,8 @@
         android:textSize="@dimen/textsize5"
         android:layout_marginBottom="@dimen/margin_3dp"
         android:textColor="@color/DimGray"
-        android:layout_marginTop="@dimen/margin_50dp"/>
+        android:layout_below="@id/oa_item_icon_image"
+        android:layout_marginTop="@dimen/margin_5dp"/>
 
 
 

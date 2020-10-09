@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.yfy.app.PEquality.adapter.PEQualityTeaSuggestAdapter;
 import com.yfy.app.album.AlbumOneActivity;
 import com.yfy.app.bean.BaseRes;
+import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
@@ -49,10 +50,13 @@ import retrofit2.Response;
 public class PEQualityTeaSuggestActivity extends BaseActivity {
     private static final String TAG = PEQualityTeaSuggestActivity.class.getSimpleName();
     KeyValue stu;
+    DateBean dateBean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_recycler_view);
+        dateBean=new DateBean();
+        dateBean.setValue_long(System.currentTimeMillis(),true);
         stu=new KeyValue(TagFinal.TYPE_SELECT_STU);
         stu.setTitle("选择学生");
         stu.setRight_key("未选择");
@@ -180,8 +184,8 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
 
         KeyValue one=new KeyValue(TagFinal.TYPE_DATE);
         one.setTitle("选择日期");
-        one.setRight_value("");
-        one.setRight_name("");
+        one.setRight_value(dateBean.getValue());
+        one.setRight_name(dateBean.getName());
         one.setRight_key("未选择");
 
 
@@ -285,8 +289,8 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
 
         KeyValue one=new KeyValue(TagFinal.TYPE_DATE);
         one.setTitle("选择日期");
-        one.setRight_value("");
-        one.setRight_name("");
+        one.setRight_value(dateBean.getValue());
+        one.setRight_name(dateBean.getName());
         one.setRight_key("未选择");
 
 

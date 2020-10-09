@@ -1,9 +1,9 @@
 package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -11,23 +11,22 @@ import android.widget.TextView;
 
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.base.adapter.BaseRecyclerAdapter;
+import com.yfy.base.adapter.ReViewHolder;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by yfyandr on 2017/12/27.
- */
 
-public class PEQualityMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Activity mContext;
+public class PEQualityMainAdapter extends BaseRecyclerAdapter {
+
     private List<KeyValue> dataList;
-    private int loadState = 2;
 
     public PEQualityMainAdapter(Activity mContext) {
-        this.mContext=mContext;
+        super(mContext);
         this.dataList = new ArrayList<>();
 
     }
@@ -43,24 +42,24 @@ public class PEQualityMainAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ReViewHolder initViewHolder(ViewGroup parent, int position) {
         //进行判断显示类型，来创建返回不同的View
-        if (viewType == TagFinal.TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_main_gridview_item, parent, false);
-            return new ItemHolder(view);
+        if (position == TagFinal.TYPE_ITEM) {
+            return new ItemHolder(inflater.inflate(R.layout.p_e_main_gridview_item, parent, false));
         }
-        return null;
+        return new ErrorHolder(inflater.inflate(R.layout.public_type_error, parent, false));
     }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void bindHolder(ReViewHolder holder, int position) {
         if (holder instanceof ItemHolder){
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
             iHolder.index=position;
             iHolder.name.setText(iHolder.bean.getName());
             iHolder.icon.setImageResource(iHolder.bean.getRes_image());
+            ViewTool.alterGradientDrawableColor(iHolder.icon,iHolder.bean.getRes_color());
             iHolder.count.setVisibility(View.GONE);
 
         }
@@ -73,13 +72,13 @@ public class PEQualityMainAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
 
-    private class ItemHolder extends RecyclerView.ViewHolder {
+    private class ItemHolder extends ReViewHolder {
 
-        public TextView name;
-        public AppCompatImageView count;
-        public AppCompatImageView icon;
-        private RelativeLayout layout;
-        private int index;
+        TextView name;
+        AppCompatImageView count;
+        AppCompatImageView icon;
+        RelativeLayout layout;
+        int index;
         KeyValue bean;
         public ItemHolder(View itemView) {
             super(itemView);
@@ -102,19 +101,11 @@ public class PEQualityMainAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
 
-    /**
-     * 设置上拉加载状态
-     *
-     * @param loadState 1.正在加载 2.加载完成 3.加载到底
-     */
-    public void setLoadState(int loadState) {
-        this.loadState = loadState;
-        notifyDataSetChanged();
-    }
+
     public interface ItemOnc{
         void onc(KeyValue bean);
     }
-    public ItemOnc itemOnc;
+    private ItemOnc itemOnc;
     public void setItemOnc(ItemOnc itemOnc) {
         this.itemOnc = itemOnc;
     }

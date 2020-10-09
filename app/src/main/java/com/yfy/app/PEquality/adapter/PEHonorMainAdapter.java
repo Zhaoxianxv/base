@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.internal.FlowLayout;
 import android.support.v7.widget.AppCompatImageView;
@@ -68,23 +69,22 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
         // 最后一个item设置为FooterView
         return dataList.get(position).getView_type();
     }
-
+    @NonNull
     @Override
-    public ReViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ReViewHolder initViewHolder( ViewGroup parent, int position) {
         //进行判断显示类型，来创建返回不同的View
-        if (viewType == TagFinal.TYPE_ITEM) {
+        if (position == TagFinal.TYPE_ITEM) {
             return new ItemHolder(inflater.inflate(R.layout.p_e_honor_main_item_layout, parent, false));
         }
-        if (viewType == TagFinal.TYPE_FLOW_TITLE) {
+        if (position == TagFinal.TYPE_FLOW_TITLE) {
             return new TopH(inflater.inflate(R.layout.public_type_flow, parent, false));
         }
-        return new ErrorHolder(inflater.inflate(R.layout.p_e_honor_main_item_layout, parent, false));
+        return new ErrorHolder(parent);
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onBindViewHolder(ReViewHolder holder, int position) {
+    public void bindHolder(ReViewHolder holder, int position) {
         if (holder instanceof TopH) {
             TopH topH = (TopH) holder;
             topH.bean = dataList.get(position);

@@ -52,16 +52,16 @@ public class SelectedTermAdapter extends BaseRecyclerAdapter {
 
     @NotNull
     @Override
-    public ReViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ReViewHolder initViewHolder(@NonNull ViewGroup parent, int position) {
         //进行判断显示类型，来创建返回不同的View
-        if (viewType == TagFinal.TYPE_ITEM) return new SelectedTermH(inflater.inflate(R.layout.selected_singe_item_layout, parent,false));
+        if (position == TagFinal.TYPE_ITEM) return new SelectedTermH(inflater.inflate(R.layout.selected_singe_item_layout, parent,false));
 
 
-        return null;
+        return new ErrorHolder(parent);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ReViewHolder holder, int position) {
+    public void bindHolder(@NonNull ReViewHolder holder, int position) {
 
         if (holder instanceof SelectedTermH) {
             SelectedTermH selectedTermH = (SelectedTermH) holder;

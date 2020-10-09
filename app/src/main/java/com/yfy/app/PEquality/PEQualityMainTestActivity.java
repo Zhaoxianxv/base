@@ -296,18 +296,13 @@ public class PEQualityMainTestActivity extends BaseActivity {
             public void onc(KeyValue bean) {
                Intent intent;
                 switch (bean.getName()) {
-                    case "体育荣誉证书":
+                    case "荣誉比赛":
                         intent=new Intent(mActivity,PEHonorMainActivity.class);
                         intent.putExtra(Base.title,bean.getName());
                         intent.putExtra(Base.type,TagFinal.FALSE);
                         startActivity(intent);
                         break;
-                    case "体育比赛成绩":
-                        intent=new Intent(mActivity,PEHonorMainActivity.class);
-                        intent.putExtra(Base.title,bean.getName());
-                        intent.putExtra(Base.type,TagFinal.FALSE);
-                        startActivity(intent);
-                        break;
+
                     case "膳食建议":
                         intent=new Intent(mActivity,PEQualitySuggestActivity.class);
                         intent.putExtra(Base.title,bean.getName());
@@ -325,9 +320,25 @@ public class PEQualityMainTestActivity extends BaseActivity {
                 }
             }
         });
-        adapter_data_show.add(new KeyValue("体育比赛成绩",R.drawable.icon_score));
-        adapter_data_show.add(new KeyValue("课堂表现",R.drawable.icon_show));
-        adapter_data_show.add(new KeyValue("膳食建议",R.drawable.icon_suggestion));
+        List<String> list=StringUtils.listToStringSplitCharacters("荣誉比赛,课堂表现,膳食建议",",");
+        for (String s:list){
+            KeyValue keyValue;
+            switch (s){
+                case "膳食建议":
+                    keyValue=new KeyValue(s,R.drawable.icon_suggestion);
+                    keyValue.setRes_color(getResources().getColor(R.color.IndianRed));
+                    break;
+                case "荣誉比赛":
+                    keyValue=new KeyValue(s,R.drawable.icon_score);
+                    keyValue.setRes_color(getResources().getColor(R.color.LightSalmon));
+                    break;
+                    default:
+                        keyValue=new KeyValue(s,R.drawable.icon_show);
+                        keyValue.setRes_color(getResources().getColor(R.color.DoderBlue));
+                        break;
+            }
+            adapter_data_show.add(keyValue);
+        }
         adapter.setDataList(adapter_data_show);
         adapter.setLoadState(TagFinal.LOADING_END);
     }

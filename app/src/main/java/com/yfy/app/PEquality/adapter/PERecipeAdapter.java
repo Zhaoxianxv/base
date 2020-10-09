@@ -60,27 +60,27 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
     }
 
     @Override
-    public ReViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ReViewHolder initViewHolder(ViewGroup parent, int position) {
         //进行判断显示类型，来创建返回不同的View
-        if (viewType == TagFinal.TYPE_ITEM) {
+        if (position == TagFinal.TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_recipe_item_layout, parent, false);
             return new IHolder(view);
 
         }
-        if (viewType == TagFinal.TYPE_TXT_LEFT_TITLE) {
+        if (position == TagFinal.TYPE_TXT_LEFT_TITLE) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_txt_left_title, parent, false);
             return new TxtLeftTitleH(view);
 
         }
 
-        if (viewType == TagFinal.TYPE_FOOTER) {
+        if (position == TagFinal.TYPE_FOOTER) {
             return new FootViewHolder(inflater.inflate(R.layout.recyclerview_refresh_footer, parent, false));
         }
-        return null;
+        return new ErrorHolder(parent);
     }
 
     @Override
-    public void onBindViewHolder(ReViewHolder holder, int position) {
+    public void bindHolder(ReViewHolder holder, int position) {
         if (holder instanceof IHolder) {
             IHolder iHolder = (IHolder) holder;
             iHolder.bean=dataList.get(position);

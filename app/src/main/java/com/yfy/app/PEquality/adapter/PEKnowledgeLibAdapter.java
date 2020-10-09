@@ -37,20 +37,19 @@ public class PEKnowledgeLibAdapter extends BaseRecyclerAdapter {
         return dataList.get(position).getView_type();
     }
 
-    @NonNull
     @Override
-    public ReViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        if (viewType==TagFinal.TYPE_ITEM) {
+    public ReViewHolder initViewHolder(@NonNull ViewGroup viewGroup, int position) {
+        if (position ==TagFinal.TYPE_ITEM) {
             return new LibItemH(inflater.inflate(R.layout.knowledge_library_pager_item_layout, viewGroup,false));
         }
-        if (viewType == TagFinal.TYPE_FOOTER) {
+        if (position == TagFinal.TYPE_FOOTER) {
             return new FootViewHolder(inflater.inflate(R.layout.recyclerview_refresh_footer, viewGroup,false));
         }
-        return null;
+        return new ErrorHolder(viewGroup);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ReViewHolder holder, int position) {
+    public void bindHolder(@NonNull ReViewHolder holder, int position) {
         if (holder instanceof LibItemH){
             LibItemH libH = (LibItemH) holder;
             libH.bean= dataList.get(position);
