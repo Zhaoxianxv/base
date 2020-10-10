@@ -19,6 +19,8 @@
         android:layout_marginTop="@dimen/margin_5dp"
         android:textSize="@dimen/textsize9"
         tools:ignore="RelativeOverlap" />
+
+
     <android.support.design.internal.FlowLayout
         android:id="@+id/public_type_flow_flow"
         android:layout_width="match_parent"
@@ -31,6 +33,42 @@
         android:foregroundGravity="center"
         android:layout_below="@id/public_type_flow_title"
         />
+
+    <LinearLayout
+        android:id="@+id/public_type_flow_star_layout"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_below="@id/public_type_flow_flow"
+        android:layout_marginBottom="@dimen/margin_5dp"
+        android:layout_height="wrap_content">
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:numStars="1"
+            android:rating="1"
+            android:stepSize="1"
+            android:isIndicator="true"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small" />
+        <TextView
+            android:id="@+id/public_type_flow_star_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize5"
+            android:textColor="@color/main_red"
+            android:text="你已是我校体育人才"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:numStars="1"
+            android:rating="1"
+            android:stepSize="1"
+            android:isIndicator="true"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small" />
+    </LinearLayout>
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/public_type_flow_arrow"
         app:srcCompat="@drawable/ic_arrow_right_gray_24dp"

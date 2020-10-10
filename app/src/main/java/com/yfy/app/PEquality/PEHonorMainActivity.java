@@ -77,7 +77,7 @@ public class PEHonorMainActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        adapter=new PEHonorMainAdapter(mActivity);
+        adapter=new PEHonorMainAdapter(this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -120,14 +120,21 @@ public class PEHonorMainActivity extends BaseActivity {
 
         KeyValue all=new KeyValue(TagFinal.TYPE_FLOW_TITLE);
         all.setTitle("统计");
-        List<String> list=StringUtils.listToStringSplitCharacters("学校运动会:",",");
+        List<String> list=StringUtils.listToStringSplitCharacters("学级获奖:,总共得分:",",");
         List<CPWBean> cps=new ArrayList<>();
+        int i=0;
         for (String s:list){
             CPWBean bean=new CPWBean();
             bean.setName(s);
-            bean.setValue("3次");
+            if (i==0){
+                bean.setValue("3次");
+            }else{
+                bean.setValue("110分");
+            }
+
             bean.setType("");
             cps.add(bean);
+            i++;
         }
         all.setCpwBeanArrayList(cps);
 

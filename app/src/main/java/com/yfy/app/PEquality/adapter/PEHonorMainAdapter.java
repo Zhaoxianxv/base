@@ -23,20 +23,24 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.yfy.app.PEquality.PEHonorMainActivity;
 import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.album.MultPicShowActivity;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.login.bean.Stunlist;
 import com.yfy.base.R;
 import com.yfy.base.adapter.BaseRecyclerAdapter;
 import com.yfy.base.adapter.ReViewHolder;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.dialog.CPWBean;
+import com.yfy.final_tag.dialog.CPWListBeanView;
 import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.stringtool.RegexUtils;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.view.multi.MultiPictureView;
 
@@ -53,9 +57,10 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
 
     private List<KeyValue> dataList;
 
-    public PEHonorMainAdapter(Activity mContext) {
+    private PEHonorMainActivity mActivity;
+    public PEHonorMainAdapter(PEHonorMainActivity mContext) {
         super(mContext);
-        this.mContext = mContext;
+        this.mActivity = mContext;
         this.dataList = new ArrayList<>();
 
     }
@@ -96,6 +101,8 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
         if (holder instanceof ItemHolder) {
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
+            iHolder.index=position;
+            iHolder.initDialogList();
             iHolder.left_title.setText(iHolder.bean.getLeft_title());
             iHolder.left_sub.setText(iHolder.bean.getTitle());
             iHolder.left_content.setText(iHolder.bean.getContent());
@@ -155,6 +162,7 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
         LinearLayout bg;
         RelativeLayout layout;
         KeyValue bean;
+        int index;
         ItemHolder(View itemView) {
             super(itemView);
             layout =  itemView.findViewById(R.id.p_e_honor_item_layout);
@@ -181,15 +189,60 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
                 @Override
                 public void onClick(View view) {
                     if (bean.getType().equalsIgnoreCase(TagFinal.TRUE)){
-                        ViewTool.showToastShort(mContext,"荣誉审核");
-                        Intent intent=new Intent(mContext,PEQualityTeaSuggestActivity.class);
-                        intent.putExtra(Base.title,bean.getTitle());
-                        intent.putExtra(Base.type,"admin");
-                        mContext.startActivity(intent);
+
+
+                        setCPWlListBeanData(bean);
                     }
                 }
             });
         }
+
+        CPWListBeanView cpwListBeanView;
+        List<CPWBean> cpwBeans=new ArrayList<>();
+        private void setCPWlListBeanData(KeyValue bean){
+            switch (bean.getRight()){
+                case "已通过":
+                   return;
+                case "已拒绝":
+                    return;
+                case "已提交":
+                    if (StringJudge.isEmpty(cpwBeans)){
+                        List<String> list=StringUtils.listToStringSplitCharacters("已通过,已拒绝",",");
+                        for(String s:list){
+                            CPWBean cpwBean =new CPWBean();
+                            cpwBean.setName(s);
+                            cpwBean.setId(s);
+                            cpwBeans.add(cpwBean);
+                        }
+                    }
+                    cpwListBeanView.setDatas(cpwBeans);
+                    cpwListBeanView.showAtCenter();
+                    break;
+            }
+
+
+        }
+        private void initDialogList(){
+            cpwListBeanView = new CPWListBeanView(mActivity);
+            cpwListBeanView.setOnPopClickListenner(new CPWListBeanView.OnPopClickListenner() {
+                @Override
+                public void onClick(CPWBean cpwBean, String type) {
+                    cpwListBeanView.dismiss();
+                    bean.setRight(cpwBean.getName());
+                    mActivity.showProgressDialog("");
+                    bg.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mActivity.dismissProgressDialog();
+                            notifyItemChanged(index,bean);
+                        }
+                    },1000);
+
+                }
+            });
+        }
+
+
     }
 
 

@@ -383,7 +383,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
         mChart.setTouchEnabled(true);
         //
         mChart.setDragDecelerationEnabled(false);
-        mChart.setWebLineWidth(1.5f);
+        mChart.setWebLineWidth(1f);
         mChart.setWebLineWidthInner(0.75f);
         mChart.setWebAlpha(100);
         mChart.setWebColor(Color.BLACK);
@@ -395,7 +395,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
         xAxis.setDrawLabels(true);
 //        xAxis.setTypeface(tf);
 //        xAxis.setTextSize(9f);
-//        xAxis.setTextColor(Color.WHITE);
+        xAxis.setTextColor(ColorRgbUtil.getBaseColor());
 
 
 
@@ -414,9 +414,6 @@ public class PEQualityMainTestActivity extends BaseActivity {
         // Y坐标值是否从0开始
         yAxis.setStartAtZero(true);
         //设置图例：
-
-
-
 
 
 
@@ -444,11 +441,11 @@ public class PEQualityMainTestActivity extends BaseActivity {
         // 数据颜色设置
         set1.setColor(ColorRgbUtil.getBaseColor());
         // 实心填充区域颜色
-        set1.setFillColor(ColorRgbUtil.getBlue());
+        set1.setFillColor(ColorRgbUtil.getBaseColor());
         // 是否实心填充区域
         set1.setDrawFilled(true);
         // 数据线条宽度
-        set1.setLineWidth(2f);
+        set1.setLineWidth(1f);
         set1.setDrawHorizontalHighlightIndicator(false); // 是否绘制高亮水平线，默认为true
         set1.setDrawVerticalHighlightIndicator(false); // 是否绘制高亮垂直线，默认为true
 
@@ -460,6 +457,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
         data.setValueTypeface(tf);
         data.setValueTextSize(8f);
         //显示Y值
+
         data.setDrawValues(true);
         data.setValueTextColor(Color.BLACK);
 

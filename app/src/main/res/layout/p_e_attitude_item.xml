@@ -14,7 +14,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/margin_10dp"
         android:layout_centerVertical="true"
-        android:text="维修状态"/>
+        android:text="老师名字"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,6 +25,7 @@
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/p_e_attitude_title"
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_3dp"
             android:textSize="@dimen/textsize9"
@@ -32,7 +33,7 @@
             android:maxLines="1"
             app:autoSizeTextType="uniform"
             app:autoSizeMaxTextSize="@dimen/textsize12"
-            android:text="报修地点"/>
+            android:text="学生名字"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/p_e_attitude_sub"
@@ -44,7 +45,7 @@
             android:maxLines="1"
             app:autoSizeTextType="uniform"
             app:autoSizeMaxTextSize="@dimen/textsize12"
-            android:text="2017-11-11"/>
+            android:text="2012.12.12"/>
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/p_e_attitude_content"
             android:layout_width="wrap_content"
@@ -55,7 +56,7 @@
             android:maxLines="1"
             app:autoSizeTextType="uniform"
             app:autoSizeMaxTextSize="@dimen/textsize12"
-            android:text="维修状态"/>
+            android:text="旷课"/>
     </LinearLayout>
 
 </RelativeLayout>

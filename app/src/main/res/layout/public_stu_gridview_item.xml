@@ -33,8 +33,19 @@
         android:layout_below="@id/stu_grid_name"
         android:textSize="@dimen/textsize4"
         android:layout_centerHorizontal="true"
+        android:paddingBottom="@dimen/margin_5dp"
         android:gravity="center"
         android:text="张三李四"
-        android:layout_marginBottom="@dimen/margin_5dp"
         />
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/stu_grid_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:layout_margin="@dimen/margin_5dp"
+        android:layout_alignBottom="@id/stu_grid_state"
+        android:layout_alignParentTop="true"
+        android:alpha="0.5"
+        />
+
 </RelativeLayout>

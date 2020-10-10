@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -17,11 +15,12 @@ import com.yfy.app.PEquality.PEQualityHomeworkActivity;
 import com.yfy.app.PEquality.PEQualityKnowledgeActivity;
 import com.yfy.app.PEquality.PEQualitySkillsActivity;
 import com.yfy.app.PEquality.PEQualityStandardListActivity;
-import com.yfy.app.PEquality.PEQualitySuggestActivity;
 import com.yfy.app.PEquality.PERecipeActivity;
 import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.base.adapter.BaseRecyclerAdapter;
+import com.yfy.base.adapter.ReViewHolder;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
@@ -29,11 +28,9 @@ import com.yfy.final_tag.glide.GlideTools;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SelectStuAdapter extends BaseRecyclerAdapter {
 
-    private Activity mContext;
     private List<KeyValue> dataList;
-    private int loadState = 2;
     public int index_pos;
 
     public void setIndex(int index) {
@@ -46,9 +43,13 @@ public class SelectStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public SelectStuAdapter(Activity mContext) {
-        this.mContext=mContext;
+        super(mContext);
         this.dataList = new ArrayList<>();
 
+    }
+
+    public List<KeyValue> getDataList() {
+        return dataList;
     }
 
     public void setDataList(List<KeyValue> dataList) {
@@ -62,18 +63,17 @@ public class SelectStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ReViewHolder initViewHolder(ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TagFinal.TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_stu_gridview_item, parent, false);
-            return new ItemHolder(view);
+            return new ItemHolder(inflater.inflate(R.layout.public_stu_gridview_item, parent, false));
         }
         return null;
     }
 
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void bindHolder(ReViewHolder holder, int position) {
         if (holder instanceof ItemHolder){
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
@@ -81,6 +81,11 @@ public class SelectStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             iHolder.user_name.setText(iHolder.bean.getName());
             iHolder.user_score.setText(iHolder.bean.getRight_value());
             GlideTools.chanCircle(mContext,iHolder.bean.getValue(),iHolder.user_head,R.drawable.ic_parent_head);
+            if (iHolder.bean.isIs_selected()){
+                iHolder.select_state.setVisibility(View.VISIBLE);
+            }else{
+                iHolder.select_state.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -90,16 +95,18 @@ public class SelectStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
 
-    public class ItemHolder extends RecyclerView.ViewHolder {
+    public class ItemHolder extends ReViewHolder {
 
         AppCompatTextView user_name;
         AppCompatTextView user_score;
         AppCompatImageView user_head;
+        AppCompatImageView select_state;
         private RelativeLayout layout;
         private int index;
         KeyValue bean;
         public ItemHolder(View itemView) {
             super(itemView);
+            select_state =  itemView.findViewById(R.id.stu_grid_select);
             user_score =  itemView.findViewById(R.id.stu_grid_state);
             user_name =  itemView.findViewById(R.id.stu_grid_name);
             user_head =  itemView.findViewById(R.id.stu_grid_head);
@@ -111,11 +118,8 @@ public class SelectStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     type=bean.getType();
                     switch (type){
                         case "select_stu":
-                            intent=new Intent();
-                            intent.putExtra(Base.data,bean);
-                            intent.putExtra(Base.index,index_pos);
-                            mContext.setResult(Activity.RESULT_OK,intent);
-                            mContext.finish();
+                            bean.setIs_selected(!bean.isIs_selected());
+                            notifyItemChanged(index,bean);
                             break;
                         case "请假":
                             intent=new Intent(mContext,PEQualityAttenListActivity.class);
@@ -179,13 +183,8 @@ public class SelectStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             intent.putExtra(Base.type,TagFinal.TRUE);
                             mContext.startActivity(intent);
                             break;
-                        case "体育荣誉证书":
-                            intent=new Intent(mContext,PEHonorMainActivity.class);
-                            intent.putExtra(Base.title,bean.getName());
-                            intent.putExtra(Base.type,TagFinal.TRUE);
-                            mContext.startActivity(intent);
-                            break;
-                        case "体育比赛成绩":
+
+                        case "荣誉比赛":
                             intent=new Intent(mContext,PEHonorMainActivity.class);
                             intent.putExtra(Base.title,bean.getName());
                             intent.putExtra(Base.type,TagFinal.TRUE);
@@ -201,15 +200,6 @@ public class SelectStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 
 
-    /**
-     * 设置上拉加载状态
-     *
-     * @param loadState 1.正在加载 2.加载完成 3.加载到底
-     */
-    public void setLoadState(int loadState) {
-        this.loadState = loadState;
-        notifyDataSetChanged();
-    }
 
 
 }

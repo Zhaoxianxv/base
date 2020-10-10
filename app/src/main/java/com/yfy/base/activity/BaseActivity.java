@@ -52,9 +52,9 @@ import retrofit2.Response;
  */
 public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> {
 
-    protected ProgressDialog dialog;
-    protected BaseActivity mActivity;
-    protected Gson gson;
+    public ProgressDialog dialog;
+    public BaseActivity mActivity;
+    public Gson gson;
 
     public static float mDensity = 0;
     public static int mScreenWidth = 0;
@@ -167,7 +167,7 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
        toastShow(mActivity.getString(text));
     }
     // 显示一个ProgressDialog
-    protected void showProgressDialog(String title, String message) {
+    public void showProgressDialog(String title, String message) {
         if (dialog == null) {
             dialog = new ProgressDialog(this);
         }
@@ -180,10 +180,10 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
         }
         dialog.show();
     }
-    protected void showProgressDialog(String message) {
+    public void showProgressDialog(String message) {
         showProgressDialog(null, message);
     }
-    protected void dismissProgressDialog() {
+    public void dismissProgressDialog() {
         if (dialog != null) {
             dialog.dismiss();
         }

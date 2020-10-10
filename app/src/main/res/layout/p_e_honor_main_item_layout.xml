@@ -93,37 +93,6 @@
                 android:layout_marginTop="@dimen/margin_3dp"
                 android:layout_marginLeft="@dimen/margin_10dp"/>
 
-            <LinearLayout
-                android:id="@+id/public_detail_txt_layout"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/seal_detail_key"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textSize="@dimen/textsize5"
-                    android:layout_marginTop="@dimen/margin_3dp"
-                    android:layout_marginLeft="@dimen/margin_10dp"
-                    android:text="运动指数："/>
-
-                <RatingBar
-                    android:id="@+id/seal_detail_value_star"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/seal_detail_key"
-                    android:layout_marginLeft="@dimen/margin_10dp"
-                    android:visibility="visible"
-                    android:numStars="9"
-                    android:rating="5"
-                    android:stepSize="1"
-                    android:isIndicator="true"
-                    android:layout_marginRight="@dimen/margin_10dp"
-                    style="@style/Base.Widget.AppCompat.RatingBar.Small" />
-            </LinearLayout>
-
 
             <com.yfy.view.multi.MultiPictureView
                 android:id="@+id/p_e_honor_item_multi"

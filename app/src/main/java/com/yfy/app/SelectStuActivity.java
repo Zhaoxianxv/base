@@ -1,5 +1,6 @@
 package com.yfy.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,8 @@ import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
+import com.yfy.view.SQToolBar;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +66,25 @@ public class SelectStuActivity extends BaseActivity implements Callback<ResEnv> 
                 finish();
             }
         });
+        if (type.equalsIgnoreCase("select_stu")){
+            toolbar.addMenuText(TagFinal.ONE_INT,"确定");
+            toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+                @Override
+                public void onClick(View view, int position) {
+
+                    List<String> nameList=new ArrayList<>();
+                    List<KeyValue> stuList=adapter.getDataList();
+                    for (KeyValue stu:stuList){
+                        if (stu.isIs_selected())nameList.add(stu.getName());
+                    }
+                    Intent intent=new Intent();
+                    intent.putExtra(Base.data,StringUtils.stringToArraysGetString(nameList,","));
+                    intent.putExtra(Base.index,index);
+                    setResult(RESULT_OK,intent);
+                    finish();
+                }
+            });
+        }
     }
 
     public RecyclerView recyclerView;
@@ -123,11 +145,8 @@ public class SelectStuActivity extends BaseActivity implements Callback<ResEnv> 
                 case "课堂表现":
                     one.setRight_value("得分：88");
                     break;
-                case "体育比赛成绩":
-                    one.setRight_value("体育比赛成绩:5条");
-                    break;
-                case "体育荣誉证书":
-                    one.setRight_value("体育荣誉:5次");
+                case "荣誉比赛":
+                    one.setRight_value("荣誉比赛:5次");
                     break;
             }
             keyValue_adapter.add(one);

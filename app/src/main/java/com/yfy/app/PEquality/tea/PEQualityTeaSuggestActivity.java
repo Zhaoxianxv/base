@@ -207,8 +207,9 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
 
 
 
-//        keyValueAdapterData.add(stu);
+
         keyValueAdapterData.add(one);
+        keyValueAdapterData.add(stu);
         keyValueAdapterData.add(two);
         keyValueAdapterData.add(three);
 
@@ -441,11 +442,11 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
 
 
                 case TagFinal.UI_REFRESH:
-                    KeyValue bean=data.getParcelableExtra(Base.data);
+                    String bean=data.getStringExtra(Base.data);
                     int index=data.getIntExtra(Base.index,0);
                     KeyValue adapter_bean=adapter.getDataList().get(index);
-                    adapter_bean.setRight_name(bean.getName());
-                    adapter_bean.setRight_value(bean.getName());
+                    adapter_bean.setRight_name(bean);
+                    adapter_bean.setRight_value(bean);
                     adapter.notifyItemChanged(index,adapter_bean);
                     break;
 
