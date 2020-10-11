@@ -1,6 +1,5 @@
 package com.yfy.app.PEquality.adapter;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -24,10 +23,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yfy.app.PEquality.PEHonorMainActivity;
-import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.album.MultPicShowActivity;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.login.bean.Stunlist;
 import com.yfy.base.R;
 import com.yfy.base.adapter.BaseRecyclerAdapter;
 import com.yfy.base.adapter.ReViewHolder;
@@ -87,7 +84,7 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
         return new ErrorHolder(parent);
     }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void bindHolder(ReViewHolder holder, int position) {
         if (holder instanceof TopH) {
@@ -229,6 +226,9 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
                 public void onClick(CPWBean cpwBean, String type) {
                     cpwListBeanView.dismiss();
                     bean.setRight(cpwBean.getName());
+                    if(cpwBean.getName().equalsIgnoreCase("已通过")){
+                        bean.setRight_value("20\t分");
+                    }
                     mActivity.showProgressDialog("");
                     bg.postDelayed(new Runnable() {
                         @Override

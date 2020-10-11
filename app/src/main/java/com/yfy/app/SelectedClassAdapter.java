@@ -84,20 +84,23 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
                 public void onClick(View v) {
                     //单/多选
                     Intent intent;
-                    if (bean.getType().equalsIgnoreCase("学习态度采集")){
-                        intent=new Intent(mContext,PEQualityAttitudeActivity.class);
-                        intent.putExtra(Base.title,bean.getType());
-                        intent.putExtra(Base.type,TagFinal.TRUE);
-                        mContext.startActivity(intent);
-                    }else{
-                        intent=new Intent(mContext,SelectStuActivity.class);
-                        intent.putExtra(Base.index,1);
-                        intent.putExtra(Base.title,"选择学生");
-                        intent.putExtra(Base.type,bean.getType());
-                        mContext.startActivity(intent);
+                    switch (bean.getType()){
+                        case "学习态度采集":
+                            intent=new Intent(mContext,PEQualityAttitudeActivity.class  );
+                            intent.putExtra(Base.title,bean.getType());
+                            intent.putExtra(Base.type,TagFinal.TRUE);
+                            mContext.startActivity(intent);
+                            break;
+                        case "成绩录入":
+                            break;
+                            default:
+                                intent=new Intent(mContext,SelectStuActivity.class);
+                                intent.putExtra(Base.index,1);
+                                intent.putExtra(Base.title,"选择学生");
+                                intent.putExtra(Base.type,bean.getType());
+                                mContext.startActivity(intent);
+                                break;
                     }
-
-
                 }
             });
 

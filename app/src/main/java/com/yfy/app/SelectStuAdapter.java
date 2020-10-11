@@ -127,42 +127,41 @@ public class SelectStuAdapter extends BaseRecyclerAdapter {
                             intent.putExtra(Base.type,TagFinal.TRUE);
                             mContext.startActivity(intent);
                             break;
-
                         case "学习态度采集":
                             intent=new Intent(mContext,PEQualityAttitudeActivity.class);
                             intent.putExtra(Base.title,type);
                             intent.putExtra(Base.type,TagFinal.TRUE);
                             mContext.startActivity(intent);
                             break;
-                        case "健康教育知识"://PEQualityKnowledgeActivity
-                            intent=new Intent(mContext,PEQualityKnowledgeActivity.class);
-                            intent.putExtra(Base.title,type);
-                            mContext.startActivity(intent);
-                            break;
-                        case "运动技能":
-                            intent=new Intent(mContext,PEQualitySkillsActivity.class);
-                            intent.putExtra(Base.title,type);
-                            intent.putExtra(Base.type,TagFinal.TRUE);
-                            mContext.startActivity(intent);
-                            break;
-                        case "体能":
-                            intent=new Intent(mContext,PEQualityTeaSuggestActivity.class);
-                            intent.putExtra(Base.title,type);
-                            intent.putExtra(Base.type,"体能");
-                            mContext.startActivity(intent);
-                            break;
+//                        case "健康教育知识"://PEQualityKnowledgeActivity
+//                            intent=new Intent(mContext,PEQualityKnowledgeActivity.class);
+//                            intent.putExtra(Base.title,type);
+//                            mContext.startActivity(intent);
+//                            break;
+//                        case "运动技能":
+//                            intent=new Intent(mContext,PEQualitySkillsActivity.class);
+//                            intent.putExtra(Base.title,type);
+//                            intent.putExtra(Base.type,TagFinal.TRUE);
+//                            mContext.startActivity(intent);
+//                            break;
+//                        case "体能":
+//                            intent=new Intent(mContext,PEQualityTeaSuggestActivity.class);
+//                            intent.putExtra(Base.title,type);
+//                            intent.putExtra(Base.type,"体能");
+//                            mContext.startActivity(intent);
+//                            break;
                         case "课后作业":
                             intent=new Intent(mContext,PEQualityHomeworkActivity.class);
                             intent.putExtra(Base.title,type);
                             intent.putExtra(Base.type,TagFinal.TRUE);
                             mContext.startActivity(intent);
                             break;
-                        case "国家体质标准":
-                            intent=new Intent(mContext,PEQualityStandardListActivity.class);
-                            intent.putExtra(Base.title,type);
-                            intent.putExtra(Base.type,TagFinal.TRUE);
-                            mContext.startActivity(intent);
-                            break;
+//                        case "国家体质标准":
+//                            intent=new Intent(mContext,PEQualityStandardListActivity.class);
+//                            intent.putExtra(Base.title,type);
+//                            intent.putExtra(Base.type,TagFinal.TRUE);
+//                            mContext.startActivity(intent);
+//                            break;
                         case "膳食建议":
                             intent=new Intent(mContext,PEQualityTeaSuggestActivity.class);
                             intent.putExtra(Base.title,type);
