@@ -61,6 +61,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         stu.setTitle("选择学生");
         stu.setRight_key("未选择");
         stu.setRight_value("");
+        stu.setType("select_stu");
         initRecycler();
         getData();
 
@@ -76,14 +77,39 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         initSQToolbar(title);
         initView(type);
     }
-    private void initSQToolbar(String title) {
+    private int dataIndex;
+    private void initSQToolbar(final String title) {
         assert toolbar!=null;
         toolbar.setTitle(title);
         toolbar.addMenuText(TagFinal.ONE_INT,R.string.submit);
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
-                finish();
+                mActivity.showProgressDialog("");
+                recyclerView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mActivity.closeKeyWord();
+                        mActivity.dismissProgressDialog();
+                        if (type.equalsIgnoreCase("成绩录入")){
+                            KeyValue adapter_bean=adapter.getDataList().get(index);
+                            for (int i=0;i<allStu.size();i++){
+                                if (allStu.get(i).getName().equalsIgnoreCase(adapter_bean.getRight_name()))dataIndex=i;
+                            }
+                            if (dataIndex==allStu.size()-1){
+                                finish();
+                            }else{
+                                adapter_bean.setRight_name(allStu.get(dataIndex+1).getName());
+                                adapter_bean.setRight_value(allStu.get(dataIndex+1).getName());
+                                adapter.notifyItemChanged(index,adapter_bean);
+                            }
+                        }else{
+                            finish();
+                        }
+                    }
+                },1000);
+
+
             }
         });
 
@@ -125,7 +151,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
             case "膳食建议":
                 setSuggest();
                 break;
-            case "运动技能":
+            case "成绩录入":
                 setSkillsAdapterData();
                 break;
             case "请假":
@@ -327,37 +353,46 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
     private void setSkillsAdapterData(){
         keyValueAdapterData.clear();
         KeyValue two=new KeyValue(TagFinal.TYPE_TXT_EDIT);
-        two.setTitle("球类");
+        two.setTitle(title);
         two.setKey("未打分");
-        two.setValue("88");
+        two.setValue("");
 
-        KeyValue three=new KeyValue(TagFinal.TYPE_TXT_EDIT);
-        three.setTitle("体操 ");
-        three.setKey("未打分");
-        three.setValue("88");
+//        KeyValue three=new KeyValue(TagFinal.TYPE_TXT_EDIT);
+//        three.setTitle("体操 ");
+//        three.setKey("未打分");
+//        three.setValue("88");
+//
+//        KeyValue four=new KeyValue(TagFinal.TYPE_SELECT_SINGLE);
+//        four.setTitle("选考项");
+//        four.setContent("田径,民传,新兴体育");
+//        four.setRight_key("未选择");
+//        four.setRight_value("");
+//        four.setGroup_id(TagFinal.TRUE);
+//
+//        KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
+//        one.setTitle("总分");
+//        one.setValue("88");
+//        one.setIs_edit(TagFinal.FALSE);
+//
+//        KeyValue five=new KeyValue(TagFinal.TYPE_LONG_TXT_EDIT);
+//        five.setTitle("运动技能简评");
+//        five.setKey("未评论");
+//        five.setValue("");
+        //
+        KeyValue stu_one=new KeyValue(TagFinal.TYPE_SELECT_STU);
+        stu_one.setTitle("选择学生");
+        stu_one.setRight_key("未选择");
+        stu_one.setRight_value("");
+        stu_one.setType("select_stu_one");
 
-        KeyValue four=new KeyValue(TagFinal.TYPE_SELECT_SINGLE);
-        four.setTitle("选考项");
-        four.setContent("田径,民传,新兴体育");
-        four.setRight_key("未选择");
-        four.setRight_value("");
-        four.setGroup_id(TagFinal.TRUE);
-
-        KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
-        one.setTitle("总分");
-        one.setValue("88");
-        one.setIs_edit(TagFinal.FALSE);
-
-        KeyValue five=new KeyValue(TagFinal.TYPE_LONG_TXT_EDIT);
-        five.setTitle("运动技能简评");
-        five.setKey("未评论");
-        five.setValue("");
-//        keyValueAdapterData.add(stu);
+        keyValueAdapterData.add(stu_one);
         keyValueAdapterData.add(two);
-        keyValueAdapterData.add(three);
-        keyValueAdapterData.add(four);
+
+
+//        keyValueAdapterData.add(three);
+//        keyValueAdapterData.add(four);
 //        keyValueAdapterData.add(one);
-        keyValueAdapterData.add(five);
+//        keyValueAdapterData.add(five);
 
         adapter.setDataList(keyValueAdapterData);
         adapter.setLoadState(TagFinal.LOADING_END);
@@ -443,7 +478,9 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
 
                 case TagFinal.UI_REFRESH:
                     String bean=data.getStringExtra(Base.data);
-                    int index=data.getIntExtra(Base.index,0);
+                    allStu=data.getParcelableArrayListExtra("all");
+                    index=data.getIntExtra(Base.index,0);
+
                     KeyValue adapter_bean=adapter.getDataList().get(index);
                     adapter_bean.setRight_name(bean);
                     adapter_bean.setRight_value(bean);
@@ -453,6 +490,8 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
             }
         }
     }
+    private int index;
+    private List<KeyValue> allStu=new ArrayList<>();
 
     /**
      * ----------------------------retrofit-----------------------

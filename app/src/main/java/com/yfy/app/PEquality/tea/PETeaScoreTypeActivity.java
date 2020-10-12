@@ -1,27 +1,22 @@
-package com.yfy.app.PEquality;
+package com.yfy.app.PEquality.tea;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.yfy.app.PEquality.adapter.PEScoreMainAdapter;
+import com.yfy.app.PEquality.adapter.PETeaMainAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.net.ReqBody;
-import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
-import com.yfy.app.net.RetrofitGenerator;
-import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.io.IOException;
@@ -31,11 +26,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-
-public class PEScoreMainActivity extends BaseActivity {
-    private static final String TAG = PEScoreMainActivity.class.getSimpleName();
-
-    private PEScoreMainAdapter adapter;
+public class PETeaScoreTypeActivity extends BaseActivity {
+    private static final String TAG = PETeaScoreTypeActivity.class.getSimpleName();
 
 
     @Override
@@ -43,31 +35,47 @@ public class PEScoreMainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_recycler_view);
         getData();
-        initRecycler();
-        initSQToolbar();
-        setAdapterData();
-    }
 
+        initSQToolbar();
+        initRecycler();
+        setAdapterData();
+
+
+    }
 
     private String title;
     private void getData(){
         title=getIntent().getStringExtra(Base.title);
     }
+
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
-
-
-
     }
+
+
+
+
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     public RecyclerView recyclerView;
+    public PETeaMainAdapter adapter;
     public void initRecycler(){
         recyclerView =  findViewById(R.id.public_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        adapter=new PEScoreMainAdapter(mActivity);
+        adapter=new PETeaMainAdapter(mActivity);
         recyclerView.setAdapter(adapter);
+
+
+        adapter.setItemOnc(new PETeaMainAdapter.ItemOnc() {
+            @Override
+            public void onc(KeyValue bean) {
+                Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
+                intent.putExtra(Base.title,bean.getTitle());
+                intent.putExtra(Base.type,title);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -75,68 +83,25 @@ public class PEScoreMainActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
-        KeyValue three=new KeyValue(TagFinal.TYPE_ITEM);
-        KeyValue two=new KeyValue(TagFinal.TYPE_ITEM);
-        KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
-
-        one.setTitle("学习态度");
-        one.setRight_name("90");
-        one.setRight_value("10%");
-        one.setLeft_title("最终得分：9");
-
-        two.setTitle("健康教育知识");
-        two.setRight_name("90");
-        two.setRight_value("10%");
-        two.setLeft_title("最终得分：9");
-
-        three.setTitle("运动技能");
-        three.setRight_name("90");
-        three.setRight_value("10%");
-        three.setLeft_title("最终得分：9");
-
-        KeyValue chart=new KeyValue(TagFinal.TYPE_SELECT_GROUP);
-        chart.setTitle("各学期分数");
-        keyValue_adapter.add(chart);
 
 
-        keyValue_adapter.add(one);
-        keyValue_adapter.add(two);
-        keyValue_adapter.add(three);
-        keyValue_adapter.add(one);
-
-
-
+        List<String> list=StringUtils.listToStringSplitCharacters("体重指数,肺活量,50米,坐位体前屈,体能,田径,民传,新兴体育,球类,体操类,速度类,力量类,灵敏类,柔韧类,耐力类",",");
+        for (String s:list){
+            KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
+            one.setTitle(s);
+            keyValue_adapter.add(one);
+        }
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RESULT_OK){
-            switch (requestCode){
-                case TagFinal.UI_ADD:
-                    setAdapterData();
-                    break;
-            }
-        }
-    }
+
+
 
     /**
      * ----------------------------retrofit-----------------------
      */
-    public void getTerm() {
-        if (Base.user==null)return;
-        ReqEnv env = new ReqEnv();
-        ReqBody reqBody = new ReqBody();
-        UserGetTermListReq req = new UserGetTermListReq();
-        //获取参数
-        req.setSession_key(Base.user.getSession_key());
-        reqBody.userGetTermListReq = req;
-        env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
-        call.enqueue(this);
-    }
+
     @Override
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
         if (!isActivity())return;
@@ -151,7 +116,7 @@ public class PEScoreMainActivity extends BaseActivity {
                 Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
-                    toastShow("true");
+                    Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 }else{
                     toastShow("error");
                 }
@@ -159,7 +124,7 @@ public class PEScoreMainActivity extends BaseActivity {
 
         }else{
             try {
-                assert response.errorBody() != null;
+                assert response.errorBody()!=null;
                 String s=response.errorBody().string();
                 Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
             } catch (IOException e) {

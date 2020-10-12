@@ -26,8 +26,8 @@ import com.yfy.app.PEquality.PEHonorMainActivity;
 import com.yfy.app.album.MultPicShowActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
-import com.yfy.base.adapter.BaseRecyclerAdapter;
-import com.yfy.base.adapter.ReViewHolder;
+import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.dialog.CPWBean;
@@ -131,7 +131,7 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
                     iHolder.line.setVisibility(View.GONE);
                     ViewTool.alterGradientDrawableStrokeColor(mContext,iHolder.bg,ColorRgbUtil.getGray());
                     break;
-                case "已提交":
+                case "待审核":
                     iHolder.right_state.setTextColor(ColorRgbUtil.getOrangeRed());
                     iHolder.right_score.setVisibility(View.GONE);
                     iHolder.line.setVisibility(View.GONE);
@@ -202,7 +202,7 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
                    return;
                 case "已拒绝":
                     return;
-                case "已提交":
+                case "待审核":
                     if (StringJudge.isEmpty(cpwBeans)){
                         List<String> list=StringUtils.listToStringSplitCharacters("已通过,已拒绝",",");
                         for(String s:list){

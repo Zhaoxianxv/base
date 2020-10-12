@@ -107,11 +107,11 @@ public class PEHonorMainActivity extends BaseActivity {
 
         one.setRight("已通过");
         two.setRight("已拒绝");
-        three.setRight("已提交");
+        three.setRight("待审核");
 
-        one.setTitle("学校运动会");
-        two.setTitle("学校运动会");
-        three.setTitle("学校运动会");
+        one.setTitle("国家级比赛");
+        two.setTitle("校级比赛");
+        three.setTitle("校级比赛");
 
         one.setType(type);
         two.setType(type);
@@ -119,15 +119,15 @@ public class PEHonorMainActivity extends BaseActivity {
 
 
         KeyValue all=new KeyValue(TagFinal.TYPE_FLOW_TITLE);
-        all.setTitle("统计");
-        List<String> list=StringUtils.listToStringSplitCharacters("学级获奖:,总共得分:",",");
+        all.setTitle("");
+        List<String> list=StringUtils.listToStringSplitCharacters("校级获奖:3次，区级获奖:2次，市级获奖:1次。,总共得分:",",");
         List<CPWBean> cps=new ArrayList<>();
         int i=0;
         for (String s:list){
             CPWBean bean=new CPWBean();
             bean.setName(s);
             if (i==0){
-                bean.setValue("3次");
+                bean.setValue("");
             }else{
                 bean.setValue("110分");
             }

@@ -2,6 +2,7 @@ package com.yfy.app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -80,6 +81,7 @@ public class SelectStuActivity extends BaseActivity implements Callback<ResEnv> 
                     Intent intent=new Intent();
                     intent.putExtra(Base.data,StringUtils.stringToArraysGetString(nameList,","));
                     intent.putExtra(Base.index,index);
+                    intent.putParcelableArrayListExtra("all", (ArrayList<? extends Parcelable>) stuList);
                     setResult(RESULT_OK,intent);
                     finish();
                 }

@@ -3,81 +3,108 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="@dimen/margin_10dp"
-    android:background="@drawable/layer_top_bottom_gray_line_white_bg"
-    android:paddingBottom="@dimen/margin_1dp"
-    android:paddingTop="@dimen/margin_1dp"
+    android:layout_marginTop="@dimen/margin_5dp"
     android:id="@+id/public_type_flow_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/public_type_flow_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="name"
-        android:layout_marginLeft="@dimen/margin_10dp"
-        android:layout_marginStart="@dimen/margin_10dp"
-        android:layout_marginTop="@dimen/margin_5dp"
-        android:textSize="@dimen/textsize9"
-        tools:ignore="RelativeOverlap" />
 
 
-    <android.support.design.internal.FlowLayout
-        android:id="@+id/public_type_flow_flow"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_5dp"
-        android:layout_marginBottom="@dimen/margin_5dp"
-        app:lineSpacing="@dimen/margin_3dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:foregroundGravity="center"
-        android:layout_below="@id/public_type_flow_title"
-        />
+        android:layout_marginLeft="@dimen/margin_5dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginRight="@dimen/margin_8dp"
+        android:layout_marginBottom="@dimen/margin_8dp"
+        app:cardCornerRadius="@dimen/margin_5dp"
+        app:cardBackgroundColor="@color/white">
 
-    <LinearLayout
-        android:id="@+id/public_type_flow_star_layout"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_below="@id/public_type_flow_flow"
-        android:layout_marginBottom="@dimen/margin_5dp"
-        android:layout_height="wrap_content">
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/margin_10dp"
-            android:numStars="1"
-            android:rating="1"
-            android:stepSize="1"
-            android:isIndicator="true"
-            style="@style/Base.Widget.AppCompat.RatingBar.Small" />
-        <TextView
-            android:id="@+id/public_type_flow_star_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/textsize5"
-            android:textColor="@color/main_red"
-            android:text="你已是我校体育人才"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:numStars="1"
-            android:rating="1"
-            android:stepSize="1"
-            android:isIndicator="true"
-            style="@style/Base.Widget.AppCompat.RatingBar.Small" />
-    </LinearLayout>
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/public_type_flow_arrow"
-        app:srcCompat="@drawable/ic_arrow_right_gray_24dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="@dimen/margin_10dp"
-        android:layout_marginEnd="@dimen/margin_10dp"
-        />
+            <LinearLayout
+                android:id="@+id/public_type_flow_star_layout"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/margin_10dp"
+                android:layout_marginTop="@dimen/margin_5dp"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:numStars="1"
+                    android:rating="1"
+                    android:stepSize="1"
+                    android:isIndicator="true"
+                    style="@style/Base.Widget.AppCompat.RatingBar.Small" />
+                <TextView
+                    android:id="@+id/public_type_flow_star_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textsize6"
+                    android:textColor="@color/main_red"
+                    android:text="你已进入我校体育人才储备库"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:numStars="1"
+                    android:rating="1"
+                    android:stepSize="1"
+                    android:isIndicator="true"
+                    style="@style/Base.Widget.AppCompat.RatingBar.Small" />
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/public_type_flow_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="name"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginStart="@dimen/margin_10dp"
+                android:layout_marginTop="@dimen/margin_5dp"
+                android:visibility="gone"
+                android:textSize="@dimen/textsize9"
+                tools:ignore="RelativeOverlap" />
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/public_type_flow_arrow"
+                app:srcCompat="@drawable/ic_arrow_right_gray_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:visibility="gone"
+                />
+
+            <android.support.design.internal.FlowLayout
+                android:id="@+id/public_type_flow_flow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:layout_marginBottom="@dimen/margin_5dp"
+                app:lineSpacing="@dimen/margin_3dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:foregroundGravity="center"
+                android:layout_below="@id/public_type_flow_star_layout"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/d3_gray"
+                android:layout_marginRight="@dimen/margin_20dp"
+                android:layout_marginLeft="@dimen/margin_20dp"
+                android:layout_above="@id/public_type_flow_flow"
+                />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+
 </RelativeLayout>

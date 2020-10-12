@@ -47,7 +47,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        splashBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.homepaga);
+        splashBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.homepaga);
         if (UserPreferences.getInstance().getIsFirstTimeOpen()) {
             showGuide();//显示引导内容
         } else {

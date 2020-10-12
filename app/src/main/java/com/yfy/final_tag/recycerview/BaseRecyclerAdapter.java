@@ -1,10 +1,7 @@
-package com.yfy.base.adapter;
+package com.yfy.final_tag.recycerview;
 
 
 import android.app.Activity;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +37,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<ReViewHol
     public class ErrorHolder extends ReViewHolder{
 
         public ErrorHolder(ViewGroup parent) {
-            super(inflater.inflate(R.layout.p_e_honor_main_item_layout, parent, false));
+            super(inflater.inflate(R.layout.public_type_error, parent, false));
         }
 
         public ErrorHolder(View itemView) {

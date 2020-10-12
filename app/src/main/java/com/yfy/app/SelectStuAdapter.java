@@ -2,6 +2,7 @@ package com.yfy.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
@@ -12,15 +13,12 @@ import com.yfy.app.PEquality.PEHonorMainActivity;
 import com.yfy.app.PEquality.PEQualityAttenListActivity;
 import com.yfy.app.PEquality.PEQualityAttitudeActivity;
 import com.yfy.app.PEquality.PEQualityHomeworkActivity;
-import com.yfy.app.PEquality.PEQualityKnowledgeActivity;
-import com.yfy.app.PEquality.PEQualitySkillsActivity;
-import com.yfy.app.PEquality.PEQualityStandardListActivity;
 import com.yfy.app.PEquality.PERecipeActivity;
 import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
-import com.yfy.base.adapter.BaseRecyclerAdapter;
-import com.yfy.base.adapter.ReViewHolder;
+import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
@@ -120,6 +118,14 @@ public class SelectStuAdapter extends BaseRecyclerAdapter {
                         case "select_stu":
                             bean.setIs_selected(!bean.isIs_selected());
                             notifyItemChanged(index,bean);
+                            break;
+                        case "select_stu_one":
+                            intent=new Intent();
+                            intent.putExtra(Base.data,bean.getName());
+                            intent.putParcelableArrayListExtra("all", (ArrayList<? extends Parcelable>) dataList);
+                            intent.putExtra(Base.index,index_pos);
+                            mContext.setResult(Activity.RESULT_OK,intent);
+                            mContext.finish();
                             break;
                         case "请假":
                             intent=new Intent(mContext,PEQualityAttenListActivity.class);

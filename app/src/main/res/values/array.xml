@@ -33,10 +33,18 @@
 
    <string-array name="p_e_score">
        <item>90</item>
-       <item>95</item>
-       <item>89</item>
+       <item>45</item>
+       <item>90</item>
+       <item>72</item>
+       <item>45</item>
+       <item>65</item>
+   </string-array>
+   <string-array name="p_e_score_class">
+       <item>50</item>
+       <item>85</item>
        <item>80</item>
-       <item>75</item>
-       <item>75</item>
+       <item>98</item>
+       <item>57</item>
+       <item>90</item>
    </string-array>
 </resources>

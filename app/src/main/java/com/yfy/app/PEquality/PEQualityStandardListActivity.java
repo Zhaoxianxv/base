@@ -109,6 +109,8 @@ public class PEQualityStandardListActivity extends BaseActivity {
         keyValue_adapter.add(one);
         keyValue_adapter.add(three);
         keyValue_adapter.add(two);
+        keyValue_adapter.add(one);
+        keyValue_adapter.add(two);
 
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);

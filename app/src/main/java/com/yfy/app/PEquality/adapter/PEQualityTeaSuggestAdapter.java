@@ -326,7 +326,7 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
                     Intent intent=new Intent(mContext,SelectStuActivity.class);
                     intent.putExtra(Base.index,index_position);
                     intent.putExtra(Base.title,"选择学生");
-                    intent.putExtra(Base.type,"select_stu");
+                    intent.putExtra(Base.type,bean.getType());
                     mContext.startActivityForResult(intent,TagFinal.UI_REFRESH);
                 }
             });

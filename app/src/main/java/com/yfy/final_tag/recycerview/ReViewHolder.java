@@ -1,4 +1,4 @@
-package com.yfy.base.adapter;
+package com.yfy.final_tag.recycerview;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

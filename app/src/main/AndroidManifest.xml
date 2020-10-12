@@ -210,6 +210,10 @@
             android:name="com.yfy.app.PEquality.tea.PETeaMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.PEquality.tea.PETeaScoreTypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

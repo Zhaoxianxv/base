@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.util.LinkedList;
@@ -21,11 +22,10 @@ public class KnowledgeLibraryPagerAdapter extends PagerAdapter {
     public LayoutInflater inflater;
     public LinkedList<View> viewCache = new LinkedList<>();
     LinkedList<KeyValue> list = new LinkedList<>();
-    public KnowledgeAnswerListViewAdapter list_adapter;
     public void reSetData(LinkedList<KeyValue> data_list) {
         this.list =data_list;
         inflater = LayoutInflater.from(mcontext);
-        list_adapter=new KnowledgeAnswerListViewAdapter(mcontext);
+
         viewCache.clear();
         for (int i = 0; i < list.size(); i++) {
             KeyValue bean=list.get(i);
@@ -39,13 +39,21 @@ public class KnowledgeLibraryPagerAdapter extends PagerAdapter {
                 listview.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
             }
 
-            if (bean.getId().equalsIgnoreCase(TagFinal.TRUE)){
-                listview.setClickable(true);
-            }else{
-                listview.setClickable(false);
-            }
+            KnowledgeAnswerListViewAdapter list_adapter=new KnowledgeAnswerListViewAdapter(mcontext);
             listview.setAdapter(list_adapter);
             list_adapter.setDatas(bean.getCpwBeanArrayList());
+
+
+            for (int n=0;n<bean.getCpwBeanArrayList().size();n++){
+                listview.setItemChecked(n, bean.getCpwBeanArrayList().get(n).getId().equalsIgnoreCase(TagFinal.TRUE));
+            }
+            if (bean.getId().equalsIgnoreCase(TagFinal.TRUE)){
+                list_adapter.setEnable(true);
+            }else{
+                list_adapter.setEnable(false);
+            }
+
+
             title.setText(StringUtils.stringToGetTextJoint("(%2$d/%3$d)、\t%1$s",list.get(i).getTitle(),i+1,list.size()));
             viewCache.add(view);
         }

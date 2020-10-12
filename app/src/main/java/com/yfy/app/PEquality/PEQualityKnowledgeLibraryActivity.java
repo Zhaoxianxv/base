@@ -128,7 +128,7 @@ public class PEQualityKnowledgeLibraryActivity extends BaseActivity {
         keyValue_adapter.clear();
 
         KeyValue one=new KeyValue("奥林匹克运动会的发源地","奥林匹克运动会发源于两千多年前的古希腊，1894年06月23日，当被尊称为“奥林匹克之父”的法国教育家皮埃尔·德·顾拜旦与12个国家的79名代表决定成立国际奥委会",TagFinal.TYPE_ITEM);
-        KeyValue two=new KeyValue("奥林匹克运动会的发源地","奥林匹克运动会发源于两千多年前的古希腊，1894年06月23日，当被尊称为“奥林匹克之父”的法国教育家皮埃尔·德·顾拜旦与12个国家的79名代表决定成立国际奥委会",TagFinal.TYPE_ITEM);
+        KeyValue two=new KeyValue("奥林匹克运动会","奥林匹克运动会发源于两千多年前的古希腊，1894年06月23日，当被尊称为“奥林匹克之父”的法国教育家皮埃尔·德·顾拜旦与12个国家的79名代表决定成立国际奥委会",TagFinal.TYPE_ITEM);
         KeyValue three=new KeyValue("发源地","奥林匹克运动会发源于两千多年前的古希腊，1894年06月23日，当被尊称为“奥林匹克之父”的法国教育家皮埃尔·德·顾拜旦与12个国家的79名代表决定成立国际奥委会",TagFinal.TYPE_ITEM);
         KeyValue four=new KeyValue("奥林匹克运动会的发源地","奥林匹克运动会发源于两千多年前的古希腊，1894年06月23日，当被尊称为“奥林匹克之父”的法国教育家皮埃尔·德·顾拜旦与12个国家的79名代表决定成立国际奥委会",TagFinal.TYPE_ITEM);
 

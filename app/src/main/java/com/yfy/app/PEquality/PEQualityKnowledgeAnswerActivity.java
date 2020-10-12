@@ -78,16 +78,47 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         KeyValue keyValue=new KeyValue(TagFinal.TYPE_ITEM);
         List<CPWBean> cpwbeanList=new ArrayList<>();
         keyValue.setTitle("奥林匹克运动会的发源地");
-        cpwbeanList.add(new CPWBean("A、古罗马",type));
-        cpwbeanList.add(new CPWBean("B、古希腊",type));
-        cpwbeanList.add(new CPWBean("C、法国文字超出一行文字超出一行文字超出一行文字超出一行",type));
-        cpwbeanList.add(new CPWBean("D、英国",type));
+        cpwbeanList.add(new CPWBean("A、古罗马",TagFinal.FALSE));
+        cpwbeanList.add(new CPWBean("B、古希腊",TagFinal.TRUE));
+        cpwbeanList.add(new CPWBean("C、法国文字超出一行文字超出一行文字超出一行文字超出一行",TagFinal.FALSE));
+        cpwbeanList.add(new CPWBean("D、英国",TagFinal.FALSE));
         keyValue.setCpwBeanArrayList(cpwbeanList);
-        keyValue.setType(TagFinal.TRUE);
+        keyValue.setType(TagFinal.TRUE);//单选
+        keyValue.setId(type);//可不可以交互
+
+
+        KeyValue not=new KeyValue(TagFinal.TYPE_ITEM);
+        List<CPWBean> cpwbeanNot=new ArrayList<>();
+        not.setTitle("奥林匹克运动会的发源地");
+        cpwbeanNot.add(new CPWBean("A、古罗马",TagFinal.FALSE));
+        cpwbeanNot.add(new CPWBean("B、古希腊",TagFinal.FALSE));
+        cpwbeanNot.add(new CPWBean("C、法国文字超出一行文字超出一行文字超出一行文字超出一行",TagFinal.FALSE));
+        cpwbeanNot.add(new CPWBean("D、英国(没有完成答题)",TagFinal.FALSE));
+        not.setCpwBeanArrayList(cpwbeanNot);
+        not.setType(TagFinal.TRUE);
+        not.setId(type);
 
         data_list.add(keyValue);
         data_list.add(keyValue);
+        data_list.add(not);
         data_list.add(keyValue);
+        data_list.add(not);
+        data_list.add(keyValue);
+        data_list.add(not);
+        data_list.add(keyValue);
+        data_list.add(not);
+        data_list.add(keyValue);
+        data_list.add(not);
+        data_list.add(keyValue);
+        data_list.add(not);
+        data_list.add(keyValue);
+        data_list.add(not);
+        data_list.add(keyValue);
+        data_list.add(not);
+        data_list.add(keyValue);
+        data_list.add(not);
+        data_list.add(keyValue);
+        data_list.add(not);
         if (StringJudge.isEmpty(data_list)){
             pager.setVisibility(View.GONE);
         }else{

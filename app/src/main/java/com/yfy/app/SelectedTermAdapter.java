@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.yfy.app.bean.TermBean;
 import com.yfy.base.R;
-import com.yfy.base.adapter.BaseRecyclerAdapter;
-import com.yfy.base.adapter.ReViewHolder;
+import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;

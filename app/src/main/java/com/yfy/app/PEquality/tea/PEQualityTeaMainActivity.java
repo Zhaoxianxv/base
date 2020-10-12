@@ -270,10 +270,10 @@ public class PEQualityTeaMainActivity extends BaseActivity {
                 }
             }
         });
-        adapter_data_show.add(new KeyValue("体育荣誉证书",R.drawable.icon_credentials));
-        adapter_data_show.add(new KeyValue("体育比赛成绩",R.drawable.icon_score));
-        adapter_data_show.add(new KeyValue("课堂表现",R.drawable.icon_show));
-        adapter_data_show.add(new KeyValue("膳食建议",R.drawable.icon_suggestion));
+        adapter_data_show.add(new KeyValue("体育荣誉证书",R.mipmap.icon_credentials));
+        adapter_data_show.add(new KeyValue("体育比赛成绩",R.mipmap.icon_score));
+        adapter_data_show.add(new KeyValue("课堂表现",R.mipmap.icon_show));
+        adapter_data_show.add(new KeyValue("膳食建议",R.mipmap.icon_suggestion));
         adapter.setDataList(adapter_data_show);
         adapter.setLoadState(TagFinal.LOADING_END);
     }

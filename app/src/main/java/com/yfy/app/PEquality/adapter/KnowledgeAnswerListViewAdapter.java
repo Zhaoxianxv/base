@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckedTextView;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 
 import java.util.ArrayList;
@@ -56,11 +57,8 @@ public class KnowledgeAnswerListViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder)convertView.getTag();
         }
         viewHolder.name.setText(datas.get(position).getName());
-        viewHolder.name.setChecked(datas.get(position).isIs_select());
 
-//        if (true){
-//            viewHolder.name.
-//        }
+
         return convertView;
     }
 
@@ -69,4 +67,15 @@ public class KnowledgeAnswerListViewAdapter extends BaseAdapter {
     }
 
 
+
+    private boolean isEnable=true;
+
+    public void setEnable(boolean enable) {
+        isEnable = enable;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return isEnable;
+    }
 }

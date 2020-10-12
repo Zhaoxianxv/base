@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
-import com.yfy.base.adapter.BaseRecyclerAdapter;
-import com.yfy.base.adapter.ReViewHolder;
+import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class PEKnowledgeLibAdapter extends BaseRecyclerAdapter {
             LibItemH libH = (LibItemH) holder;
             libH.bean= dataList.get(position);
             libH.title.setText(libH.bean.getName());
-            libH.content.setText(libH.bean.getValue());
+//            libH.content.setText(libH.bean.getValue());
         }
         if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;

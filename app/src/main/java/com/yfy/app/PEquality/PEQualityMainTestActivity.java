@@ -37,6 +37,7 @@ import com.yfy.base.RadarUtil;
 import com.yfy.base.XAxisFormatter;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.charting_mp_test.charts.RadarChart;
+import com.yfy.charting_mp_test.components.Legend;
 import com.yfy.charting_mp_test.components.XAxis;
 import com.yfy.charting_mp_test.components.YAxis;
 import com.yfy.charting_mp_test.data.RadarData;
@@ -208,7 +209,6 @@ public class PEQualityMainTestActivity extends BaseActivity {
 
     private void initView(){
         Typeface mTypeface=Typeface.createFromAsset(getAssets(),"OpenSans-Bold.ttf");
-
         GlideTools.chanCircle(mActivity, Base.user.getHeadPic(), user_head, R.drawable.ic_parent_head);
         user_name.setText(Base.user.getName());
         user_class.setText("三年级二十五班");
@@ -325,15 +325,15 @@ public class PEQualityMainTestActivity extends BaseActivity {
             KeyValue keyValue;
             switch (s){
                 case "膳食建议":
-                    keyValue=new KeyValue(s,R.drawable.icon_suggestion);
+                    keyValue=new KeyValue(s,R.mipmap.dealbook);
                     keyValue.setRes_color(getResources().getColor(R.color.IndianRed));
                     break;
                 case "荣誉比赛":
-                    keyValue=new KeyValue(s,R.drawable.icon_score);
+                    keyValue=new KeyValue(s,R.mipmap.deyu);
                     keyValue.setRes_color(getResources().getColor(R.color.LightSalmon));
                     break;
                     default:
-                        keyValue=new KeyValue(s,R.drawable.icon_show);
+                        keyValue=new KeyValue(s,R.mipmap.main_delay_service);
                         keyValue.setRes_color(getResources().getColor(R.color.DoderBlue));
                         break;
             }
@@ -378,7 +378,16 @@ public class PEQualityMainTestActivity extends BaseActivity {
         tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
 //        mChart.getDescription().setText("点击图表文字查看详情");//点击图表文字查看详情
         mChart.getDescription().setEnabled(false);
+        //y轴数据说明
         mChart.getLegend().setEnabled(false);
+//        mChart.getLegend().setForm(Legend.LegendForm.CIRCLE);//图案形状
+//        //说明文字图的位置
+//        mChart.getLegend().setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
+//        mChart.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);
+//        mChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+//        mChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
+
+
         //图表点击响应
         mChart.setTouchEnabled(true);
         //
@@ -426,10 +435,15 @@ public class PEQualityMainTestActivity extends BaseActivity {
 
         final List<String> list=Arrays.asList(getResources().getStringArray(R.array.p_e_type));
         List<String> score=Arrays.asList(getResources().getStringArray(R.array.p_e_score));
+        List<String> score_class=Arrays.asList(getResources().getStringArray(R.array.p_e_score_class));
         ArrayList<RadarEntry> yVals1 = new ArrayList<RadarEntry>();
+        ArrayList<RadarEntry> yVals2 = new ArrayList<RadarEntry>();
 
         for (int i = 0; i < score.size(); i++) {
             yVals1.add(new RadarEntry(ConvertObjtect.getInstance().getFloat(score.get(i))));
+        }
+        for (int i = 0; i < score_class.size(); i++) {
+            yVals2.add(new RadarEntry(ConvertObjtect.getInstance().getFloat(score_class.get(i))));
         }
 
         XAxis xAxis = mChart.getXAxis();
@@ -437,11 +451,11 @@ public class PEQualityMainTestActivity extends BaseActivity {
 
 
         //设置显示内容块：
-        RadarDataSet set1 = new RadarDataSet(yVals1,"zxx");
+        RadarDataSet set1 = new RadarDataSet(yVals1,"我的成绩");
         // 数据颜色设置
-        set1.setColor(ColorRgbUtil.getBaseColor());
+        set1.setColor(Color.parseColor("#942328"));
         // 实心填充区域颜色
-        set1.setFillColor(ColorRgbUtil.getBaseColor());
+        set1.setFillColor(Color.parseColor("#77942328"));
         // 是否实心填充区域
         set1.setDrawFilled(true);
         // 数据线条宽度
@@ -449,7 +463,22 @@ public class PEQualityMainTestActivity extends BaseActivity {
         set1.setDrawHorizontalHighlightIndicator(false); // 是否绘制高亮水平线，默认为true
         set1.setDrawVerticalHighlightIndicator(false); // 是否绘制高亮垂直线，默认为true
 
+        //设置显示内容块：
+        RadarDataSet set2 = new RadarDataSet(yVals2,"班级平均成绩");
+        // 数据颜色设置
+        set2.setColor(Color.parseColor("#3182c4"));
+        // 实心填充区域颜色
+        set2.setFillColor(Color.parseColor("#553182c4"));
+        // 是否实心填充区域
+        set2.setDrawFilled(true);
+        // 数据线条宽度
+        set2.setLineWidth(1f);
+        set2.setDrawHorizontalHighlightIndicator(false); // 是否绘制高亮水平线，默认为true
+        set2.setDrawVerticalHighlightIndicator(false); // 是否绘制高亮垂直线，默认为true
+
         ArrayList<IRadarDataSet> sets = new ArrayList<IRadarDataSet>();
+
+        sets.add(set2);
         sets.add(set1);
 
         RadarData data = new RadarData(sets);
