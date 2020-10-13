@@ -1,6 +1,7 @@
 package com.yfy.app.PEquality;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -10,6 +11,10 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,6 +50,7 @@ import com.yfy.charting_mp_test.data.RadarDataSet;
 import com.yfy.charting_mp_test.data.RadarEntry;
 import com.yfy.charting_mp_test.interfaces.datasets.IRadarDataSet;
 import com.yfy.final_tag.AppLess;
+import com.yfy.final_tag.glide.BitmapLess;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
@@ -53,6 +59,7 @@ import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
+import com.yfy.final_tag.stringtool.TextToolSpan;
 import com.yfy.view.SQToolBar;
 import com.yfy.view.multi.MultiPictureView;
 
@@ -86,6 +93,9 @@ public class PEQualityMainTestActivity extends BaseActivity {
     AppCompatTextView grade_sub;
     @Bind(R.id.p_e_main_recipe)
     AppCompatTextView recipe_title;
+
+    @Bind(R.id.p_e_main_chart_reason)
+    AppCompatTextView chart_sup_reason;
 //    @Bind(R.id.p_e_main_recipe_flow_layout)
 //    FlowLayout recipe_flowlayout;
 
@@ -116,9 +126,8 @@ public class PEQualityMainTestActivity extends BaseActivity {
                                 String type=Arrays.asList(getResources().getStringArray(R.array.p_e_type)).get(i);
                                 switch (type){
                                     case "学习态度":
-                                        intent=new Intent(mActivity,PEQualityAttitudeActivity.class);
+                                        intent=new Intent(mActivity,PEAttitudeStuMainActivity.class);
                                         intent.putExtra(Base.title,type);
-                                        intent.putExtra(Base.type,TagFinal.FALSE);
                                         startActivity(intent);
                                         break;
                                     case "健康教育知识"://PEQualityKnowledgeActivity
@@ -326,15 +335,15 @@ public class PEQualityMainTestActivity extends BaseActivity {
             switch (s){
                 case "膳食建议":
                     keyValue=new KeyValue(s,R.mipmap.dealbook);
-                    keyValue.setRes_color(getResources().getColor(R.color.IndianRed));
+                    keyValue.setRes_color(Color.parseColor("#fab067"));
                     break;
                 case "荣誉比赛":
                     keyValue=new KeyValue(s,R.mipmap.deyu);
-                    keyValue.setRes_color(getResources().getColor(R.color.LightSalmon));
+                    keyValue.setRes_color(Color.parseColor("#67bafa"));
                     break;
                     default:
                         keyValue=new KeyValue(s,R.mipmap.main_delay_service);
-                        keyValue.setRes_color(getResources().getColor(R.color.DoderBlue));
+                        keyValue.setRes_color(Color.parseColor("#fa676c"));
                         break;
             }
             adapter_data_show.add(keyValue);
@@ -455,10 +464,11 @@ public class PEQualityMainTestActivity extends BaseActivity {
         // 数据颜色设置
         set1.setColor(Color.parseColor("#942328"));
         // 实心填充区域颜色
-        set1.setFillColor(Color.parseColor("#77942328"));
+        set1.setFillColor(Color.parseColor("#00942328"));
         // 是否实心填充区域
         set1.setDrawFilled(true);
         // 数据线条宽度
+
         set1.setLineWidth(1f);
         set1.setDrawHorizontalHighlightIndicator(false); // 是否绘制高亮水平线，默认为true
         set1.setDrawVerticalHighlightIndicator(false); // 是否绘制高亮垂直线，默认为true
@@ -477,9 +487,9 @@ public class PEQualityMainTestActivity extends BaseActivity {
         set2.setDrawVerticalHighlightIndicator(false); // 是否绘制高亮垂直线，默认为true
 
         ArrayList<IRadarDataSet> sets = new ArrayList<IRadarDataSet>();
-
+        sets.add(set1);//最上层
         sets.add(set2);
-        sets.add(set1);
+
 
         RadarData data = new RadarData(sets);
 //        data.setValueFormatter(new XAxisFormatter(list));
@@ -490,6 +500,19 @@ public class PEQualityMainTestActivity extends BaseActivity {
         data.setDrawValues(true);
         data.setValueTextColor(Color.BLACK);
 
+//text
+        ImageSpan imgSpan = new ImageSpan(this, BitmapLess.$drawableColor(mActivity,R.drawable.radius_oval_gray,Color.parseColor("#942328")));
+        ImageSpan two = new ImageSpan(this, BitmapLess.$drawableColor(mActivity,R.drawable.radius_oval_gray,Color.parseColor("#3182c4")));
+        SpannableStringBuilder sb=new SpannableStringBuilder();
+        SpannableString sb_one = new SpannableString("01\t我的成绩");
+        SpannableString sb_two = new SpannableString("01\t班级平均成绩");
+        TextToolSpan.$spannableStringColor(sb_one,Color.parseColor("#942328"));
+        TextToolSpan.$spannableStringColor(sb_two,Color.parseColor("#3182c4"));
+
+        sb_one.setSpan(imgSpan, 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb_two.setSpan(two, 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb.append(sb_one).append("\t").append(sb_two);
+        chart_sup_reason.setText(sb);
 
 
         mChart.setData(data);

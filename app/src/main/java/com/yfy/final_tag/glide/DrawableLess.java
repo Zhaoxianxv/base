@@ -13,6 +13,7 @@ public final class DrawableLess {
      * tint drawable with Color or ColorStateList using the DrawableCompat in support v4 library
      * ========================================================
      */
+    //改变drawable图片颜色
     public static Drawable $tint(Drawable originDrawable, int color) {
         return $tint(originDrawable, ColorStateList.valueOf(color));
     }

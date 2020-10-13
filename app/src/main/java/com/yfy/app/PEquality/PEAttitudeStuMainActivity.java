@@ -1,13 +1,14 @@
 package com.yfy.app.PEquality;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.yfy.app.PEquality.adapter.PEQualitySkillsAdapter;
-import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
+import com.yfy.app.PEquality.adapter.PEAttendListAdapter;
+import com.yfy.app.PEquality.adapter.PEAttitudeStuMainAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
@@ -23,143 +24,146 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.dialog.ConfirmContentWindow;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
-import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class PEQualitySkillsActivity extends BaseActivity {
-    private static final String TAG = PEQualitySkillsActivity.class.getSimpleName();
+public class PEAttitudeStuMainActivity extends BaseActivity {
+    private static final String TAG = PEAttitudeStuMainActivity.class.getSimpleName();
 
-    private PEQualitySkillsAdapter adapter;
-
+    public PEAttitudeStuMainAdapter adapter_attitude;
+    public PEAttendListAdapter adapter_attend;
+    @Bind(R.id.attend_txt)
+    AppCompatTextView attend_txt;
+    @Bind(R.id.attend_card)
+    CardView attend_card;
+    @Bind(R.id.attitude_txt)
+    AppCompatTextView attitude_txt;
+    @Bind(R.id.attitude_card)
+    CardView attitude_card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.public_recycler_view);
+        setContentView(R.layout.p_e_attitude_stu_main);
         getData();
         initRecycler();
-        initDialog();
         initSQToolbar();
-        setAdapterData();
 
     }
 
 
-    private String title,type;
+    private String title;
     private void getData(){
         title=getIntent().getStringExtra(Base.title);
-        type=getIntent().getStringExtra(Base.type);
     }
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
-        if (type.equalsIgnoreCase(TagFinal.FALSE)){
-            toolbar.addMenu(TagFinal.ONE_INT,R.drawable.ic_help_white_24dp);
-        }else{
-            toolbar.addMenuText(TagFinal.ONE_INT,R.string.add);
-        }
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                if (type.equalsIgnoreCase(TagFinal.FALSE)){
-                    showDialog("得分规则","得分规则说明","确定");
-                }else{
-                    Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
-                    intent.putExtra(Base.title,title);
-                    intent.putExtra(Base.type,title);
-                    startActivity(intent);
-                }
-            }
-        });
+
 
     }
 
 
-    private ConfirmContentWindow confirmContentWindow;
-    private void initDialog(){
-
-        confirmContentWindow = new ConfirmContentWindow(mActivity);
-        confirmContentWindow.setOnPopClickListenner(new ConfirmContentWindow.OnPopClickListenner() {
-            @Override
-            public void onClick(View view) {
-
-                switch (view.getId()){
-                    case R.id.pop_dialog_title:
-                        break;
-                    case R.id.pop_dialog_content:
-                        break;
-                    case R.id.pop_dialog_ok:
-                        break;
-                }
-            }
-        });
-    }
-
-    private void showDialog(String title,String content,String ok){
-        if (confirmContentWindow==null)return;
-        confirmContentWindow.setTitle_s(title,content,ok);
-        closeKeyWord();
-        confirmContentWindow.showAtCenter();
-    }
 
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     public RecyclerView recyclerView;
+    private RecycleViewDivider divider;
     public void initRecycler(){
         recyclerView =  findViewById(R.id.public_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //添加分割线
-        recyclerView.addItemDecoration(new RecycleViewDivider(
-                mActivity,
-                LinearLayoutManager.HORIZONTAL,
-                1,
-                getResources().getColor(R.color.gray)));
-        adapter=new PEQualitySkillsAdapter(mActivity);
-        recyclerView.setAdapter(adapter);
+        divider = new RecycleViewDivider(mActivity, LinearLayoutManager.HORIZONTAL, 1, getResources().getColor(R.color.gray));
+        adapter_attitude =new PEAttitudeStuMainAdapter(mActivity);
+        adapter_attend=new PEAttendListAdapter(mActivity);
+
+
+
+        setAdapterData(true);
+        attend_txt.setText("请假记录:5条");
+        attitude_txt.setText("学习态度:88分");
     }
 
 
+    @OnClick(R.id.attend_txt)
+    void setAttend(){
+        setAdapterData(false);
+    }
 
-    private void setAdapterData(){
+    @OnClick(R.id.attitude_txt)
+    void setAttitude(){
+        setAdapterData(true);
+    }
+
+
+    private void setAdapterData(boolean is){
+
+
+        if (is){
+            recyclerView.addItemDecoration(divider);
+            attitude_card.setVisibility(View.VISIBLE);
+            attend_card.setVisibility(View.GONE);
+            recyclerView.setAdapter(adapter_attitude);
+            setAttitudeData();
+        }else{
+            recyclerView.removeItemDecoration(divider);
+            attitude_card.setVisibility(View.GONE);
+            attend_card.setVisibility(View.VISIBLE);
+            recyclerView.setAdapter(adapter_attend);
+            setAttendData();
+        }
+    }
+    private void setAttitudeData(){
         keyValue_adapter.clear();
 
-
-        KeyValue one=new KeyValue("","",TagFinal.TYPE_ITEM);
-        one.setTitle("总分");
-        one.setContent("技能项简评");
-        one.setRight("88");
-
         KeyValue two=new KeyValue("","",TagFinal.TYPE_ITEM);
-        two.setTitle("必考项 1");
-        two.setContent("球类");
-        two.setRight("88");
+        KeyValue one=new KeyValue("","",TagFinal.TYPE_ITEM);
+        one.setTitle("2020.5.21");
+        one.setLeft_title("-6");
+        one.setContent("旷课");
+        one.setRight("张丹");
 
-        KeyValue three=new KeyValue("","",TagFinal.TYPE_ITEM);
-        three.setTitle("必考项 ");
-        three.setContent("体操");
-        three.setRight("88");
-
-        KeyValue four=new KeyValue("","",TagFinal.TYPE_ITEM);
-        four.setTitle("选考项 ");
-        four.setContent("田径、民传、新兴体育");
-        four.setRight("88");
+        two.setTitle("2020.5.21");
+        two.setLeft_title("-2");
+        two.setContent("大课间体育活动违纪或缺席");
+        two.setRight("张丹");
 
         keyValue_adapter.add(one);
         keyValue_adapter.add(two);
-        keyValue_adapter.add(three);
-        keyValue_adapter.add(four);
+        keyValue_adapter.add(one);
 
-        adapter.setDataList(keyValue_adapter);
-        adapter.setLoadState(TagFinal.LOADING_END);
+
+
+        adapter_attitude.setDataList(keyValue_adapter);
+        adapter_attitude.setLoadState(TagFinal.LOADING_END);
+
+
+    }
+
+    private void setAttendData(){
+        keyValue_adapter.clear();
+        String list_content="感冒,走亲访友,发烧";
+        List<String> list=StringUtils.listToStringSplitCharacters(list_content,",");
+        for (String s:list){
+            KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
+            one.setContent(s);
+            one.setTitle("2020.5.21");
+            one.setLeft_title("下午第二节课");
+            one.setRight("记录人：张丹");
+            keyValue_adapter.add(one);
+        }
+
+        adapter_attend.setDataList(keyValue_adapter);
+        adapter_attend.setLoadState(TagFinal.LOADING_END);
     }
     /**
      * ----------------------------retrofit-----------------------
@@ -190,6 +194,7 @@ public class PEQualitySkillsActivity extends BaseActivity {
                 Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
+                    Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
                 }else{
                     toastShow("error");
                 }
@@ -197,6 +202,7 @@ public class PEQualitySkillsActivity extends BaseActivity {
 
         }else{
             try {
+                assert response.errorBody()!=null;
                 String s=response.errorBody().string();
                 Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
             } catch (IOException e) {

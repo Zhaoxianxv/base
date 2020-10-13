@@ -5,24 +5,17 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.internal.FlowLayout;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RatingBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.yfy.app.PEquality.PEHonorMainActivity;
 import com.yfy.app.PEquality.PEQualityAttitudeActivity;
 import com.yfy.app.PEquality.PEQualityHomeworkActivity;
 import com.yfy.app.PEquality.PEQualityKnowledgeActivity;
-import com.yfy.app.PEquality.PEQualitySkillsActivity;
 import com.yfy.app.PEquality.PEQualityStandardListActivity;
 import com.yfy.app.PEquality.PERecipeActivity;
 import com.yfy.app.PEquality.adapter.PEQualityMainAdapter;
@@ -126,12 +119,8 @@ public class PEQualityTeaMainActivity extends BaseActivity {
                                         intent.putExtra(Base.title,type);
                                         startActivity(intent);
                                         break;
-                                    case "运动技能":
-                                        intent=new Intent(mActivity,PEQualitySkillsActivity.class);
-                                        intent.putExtra(Base.title,type);
-                                        intent.putExtra(Base.type,TagFinal.TRUE);
-                                        startActivity(intent);
-                                        break;
+
+
                                     case "体能":
                                         intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                                         intent.putExtra(Base.title,type);

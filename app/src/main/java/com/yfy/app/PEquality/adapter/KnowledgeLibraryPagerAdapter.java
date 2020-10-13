@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.yfy.app.bean.KeyValue;
@@ -31,6 +32,10 @@ public class KnowledgeLibraryPagerAdapter extends PagerAdapter {
             KeyValue bean=list.get(i);
             View view = inflater.inflate(R.layout.p_e_knowledge_answer_pager_item, null);
             AppCompatTextView title=view.findViewById(R.id.attitude_answer_title);
+
+
+            Button button = view.findViewById(R.id.knowledge_answer_bottom);
+            AppCompatTextView right_answer=view.findViewById(R.id.knowledge_right_answer);
             ListView listview=view.findViewById(R.id.attitude_answer_list);
             if (bean.getType().equalsIgnoreCase(TagFinal.TRUE)){
                 //单选
@@ -49,10 +54,19 @@ public class KnowledgeLibraryPagerAdapter extends PagerAdapter {
             }
             if (bean.getId().equalsIgnoreCase(TagFinal.TRUE)){
                 list_adapter.setEnable(true);
+                button.setVisibility(View.VISIBLE);
+                right_answer.setVisibility(View.GONE);
             }else{
                 list_adapter.setEnable(false);
+                button.setVisibility(View.GONE);
+                right_answer.setVisibility(View.VISIBLE);
             }
 
+            if (bean.getRight_name().equalsIgnoreCase(TagFinal.TRUE)){
+                right_answer.setText("正确");
+            }else{
+                right_answer.setText("错误\t\t标准答案：B");
+            }
 
             title.setText(StringUtils.stringToGetTextJoint("(%2$d/%3$d)、\t%1$s",list.get(i).getTitle(),i+1,list.size()));
             viewCache.add(view);

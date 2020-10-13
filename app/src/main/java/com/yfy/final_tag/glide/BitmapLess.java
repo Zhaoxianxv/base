@@ -3,8 +3,13 @@ package com.yfy.final_tag.glide;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.os.Environment;
+
+import com.yfy.base.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,6 +19,26 @@ import java.io.InputStream;
 import java.util.UUID;
 
 public final class BitmapLess {
+
+
+    /**
+     * 读取drawable资源成Bitmap
+     */
+    public static Bitmap $drawable(Context context, int drawableId) {
+        return BitmapFactory.decodeResource(context.getResources(), drawableId);
+    }
+    //改变drawableId图片颜色
+    public static Bitmap $drawableColor(Context context, int drawableId,int color) {
+        return drawableToBitmap(DrawableLess.$tint(context.getResources().getDrawable(drawableId),color));
+    }
+    // Drawable转换成一个Bitmap
+    private static  Bitmap drawableToBitmap(Drawable drawable) {
+        Bitmap bitmap = Bitmap.createBitmap( drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        drawable.draw(canvas);
+        return bitmap;
+    }
 
     /**
      * 根据reqWidth, reqHeight计算最合适的inSampleSize

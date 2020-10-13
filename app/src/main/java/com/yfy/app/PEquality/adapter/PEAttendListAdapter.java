@@ -3,8 +3,6 @@ package com.yfy.app.PEquality.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -12,6 +10,8 @@ import android.widget.TextView;
 import com.yfy.app.album.MultPicShowActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
@@ -26,14 +26,12 @@ import java.util.List;
  * Created by yfyandr on 2017/12/27.
  */
 
-public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PEAttendListAdapter extends BaseRecyclerAdapter {
 
-    private Activity mContext;
     private List<KeyValue> dataList;
-    private int loadState = 2;
 
-    public PEQualityAttenListAdapter(Activity mContext) {
-        this.mContext = mContext;
+    public PEAttendListAdapter(Activity mContext) {
+        super(mContext);
         this.dataList = new ArrayList<>();
 
     }
@@ -49,19 +47,19 @@ public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //进行判断显示类型，来创建返回不同的View
+    public ReViewHolder initViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TagFinal.TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_atten_item_layout, parent, false);
-            return new ItemHolder(view);
+            return new ItemHolder(inflater.inflate(R.layout.p_e_atten_item_layout, parent, false));
         }
 
-        return null;
+        return new ErrorHolder(parent);
     }
 
 
+
+
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void bindHolder(ReViewHolder holder, int position) {
         if (holder instanceof ItemHolder) {
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
@@ -70,7 +68,6 @@ public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView
             iHolder.left_content.setText(iHolder.bean.getContent());
             iHolder.right_state.setText(iHolder.bean.getRight());
             if (StringJudge.isEmpty(iHolder.bean.getListValue())){
-//                iHolder.multi.setVisibility(View.GONE);
                 List<String> list=new ArrayList<>();
                 list.add(Base.user.getHeadPic());
                 list.add(Base.user.getHeadPic());
@@ -89,7 +86,7 @@ public class PEQualityAttenListAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
 
-    private class ItemHolder extends RecyclerView.ViewHolder {
+    private class ItemHolder extends ReViewHolder {
         TextView left_title;
         TextView left_sub;
         TextView left_content;

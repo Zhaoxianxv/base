@@ -2,18 +2,18 @@ package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.yfy.app.PEquality.PEQualityAttenListActivity;
 import com.yfy.app.PEquality.PEQualityAttitudeDetailActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.ReViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +22,12 @@ import java.util.List;
  * Created by yfyandr on 2017/12/27.
  */
 
-public class PEQualitySkillsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PEAttitudeStuMainAdapter extends BaseRecyclerAdapter {
 
-    private Activity mContext;
     private List<KeyValue> dataList;
-    private int loadState = 2;
 
-    public PEQualitySkillsAdapter(Activity mContext) {
-        this.mContext = mContext;
+    public PEAttitudeStuMainAdapter(Activity mContext) {
+        super(mContext);
         this.dataList = new ArrayList<>();
 
     }
@@ -40,34 +38,32 @@ public class PEQualitySkillsAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public int getItemViewType(int position) {
-        // 最后一个item设置为FooterView
         return dataList.get(position).getView_type();
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //进行判断显示类型，来创建返回不同的View
+    public ReViewHolder initViewHolder(ViewGroup viewGroup, int viewType) {
         if (viewType == TagFinal.TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_skills_item, parent, false);
-            return new ItemHolder(view);
+            return new ItemHolder(inflater.inflate(R.layout.p_e_attitude_item, viewGroup, false));
         }
-
-        return null;
+        return new ErrorHolder(viewGroup);
     }
 
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void bindHolder(ReViewHolder holder, int position) {
         if (holder instanceof ItemHolder) {
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
             iHolder.attitude_state.setText(iHolder.bean.getRight());
             iHolder.attitude_title.setText(iHolder.bean.getTitle());
             iHolder.attitude_content.setText(iHolder.bean.getContent());
-            iHolder.attitude_sub.setVisibility(View.GONE);
+            iHolder.attitude_sub.setText(iHolder.bean.getLeft_title());
+            iHolder.attitude_sub.setTextColor(ColorRgbUtil.getBaseColor());
         }
-
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -75,12 +71,12 @@ public class PEQualitySkillsAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
 
-    private class ItemHolder extends RecyclerView.ViewHolder {
-        public TextView attitude_state;
-        public TextView attitude_title;
-        public TextView attitude_sub;
-        public TextView attitude_content;
-        private RelativeLayout layout;
+    private class ItemHolder extends ReViewHolder {
+        TextView attitude_state;
+        TextView attitude_title;
+        TextView attitude_sub;
+        TextView attitude_content;
+        RelativeLayout layout;
         KeyValue bean;
 
         public ItemHolder(View itemView) {
@@ -90,17 +86,15 @@ public class PEQualitySkillsAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             attitude_sub = itemView.findViewById(R.id.p_e_attitude_sub);
             attitude_content = itemView.findViewById(R.id.p_e_attitude_content);
             layout = itemView.findViewById(R.id.p_e_attitude_layout);
-//            layout.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent=new Intent(mContext,PEQualityAttitudeDetailActivity.class);
-//                    mContext.startActivity(intent);
-//                }
-//            });
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(mContext,PEQualityAttitudeDetailActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
         }
     }
-
-
     /**
      * 设置上拉加载状态
      *

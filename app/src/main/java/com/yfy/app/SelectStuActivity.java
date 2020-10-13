@@ -25,10 +25,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SelectStuActivity extends BaseActivity implements Callback<ResEnv> {
+public class SelectStuActivity extends BaseActivity {
 
     private static final String TAG = SelectStuActivity.class.getSimpleName();
 
@@ -93,15 +92,8 @@ public class SelectStuActivity extends BaseActivity implements Callback<ResEnv> 
     public void initRecycler(){
         recyclerView =  findViewById(R.id.public_recycler);
         GridLayoutManager manager = new GridLayoutManager(mActivity,4, LinearLayoutManager.VERTICAL,false);
-//        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(int position) {
-//                return select_stu.get(position).getSpan_size();
-//            }
-//        });
         recyclerView.setLayoutManager(manager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         adapter=new SelectStuAdapter(mActivity);
         recyclerView.setAdapter(adapter);
 

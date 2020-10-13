@@ -41,6 +41,30 @@
 
             </ListView>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:visibility="visible">
+
+                <Button
+                    android:id="@+id/knowledge_answer_bottom"
+                    android:text="@string/submit"
+                    android:backgroundTint="@color/app_base_color"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="@dimen/margin_45dp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/knowledge_right_answer"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_45dp"
+                    android:gravity="center"
+                    android:textColor="@color/main_red"
+                    android:text="标准答案：B"/>
+
+            </RelativeLayout>
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

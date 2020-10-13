@@ -26,7 +26,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<ReViewHol
         return initViewHolder(viewGroup,position);
     }
 
-    public abstract ReViewHolder initViewHolder(ViewGroup viewGroup, int position);
+    public abstract ReViewHolder initViewHolder(ViewGroup viewGroup, int viewType);
 
     @Override
     public void onBindViewHolder(ReViewHolder reViewHolder, int position) {

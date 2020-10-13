@@ -171,19 +171,20 @@
                         app:layout_dash_width="5dp" />
 
                     <ImageView
-                        android:layout_width="@dimen/margin_10dp"
+                        android:layout_width="4dp"
                         android:layout_height="@dimen/margin_20dp"
                         android:src="@drawable/radius_oval_gray"
-                        android:scaleY="2"
-                        android:scaleX="-2"
+                        android:scaleY="5"
+                        android:scaleX="-5"
                         android:tint="@color/main_red"/>
                     <ImageView
-                        android:layout_width="@dimen/margin_10dp"
+                        android:layout_width="4dp"
                         android:layout_height="@dimen/margin_20dp"
                         android:src="@drawable/radius_oval_gray"
+                        android:scaleY="5"
+                        android:scaleX="-5"
                         android:layout_alignParentRight="true"
-                        android:scaleY="2"
-                        android:scaleX="-2"
+
                         android:tint="@color/main_red"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -200,32 +201,42 @@
                         app:layout_dash_height="2dp"
                         app:layout_dash_width="5dp" />
                     <ImageView
-                        android:layout_width="@dimen/margin_10dp"
+                        android:layout_width="4dp"
                         android:layout_height="@dimen/margin_20dp"
                         android:src="@drawable/radius_oval_gray"
-                        android:scaleY="2"
-                        android:scaleX="-2"
+                        android:scaleY="5"
+                        android:scaleX="-5"
                         android:tint="@color/main_red"/>
                     <ImageView
-                        android:layout_width="@dimen/margin_10dp"
+                        android:layout_width="4dp"
                         android:layout_height="@dimen/margin_20dp"
                         android:src="@drawable/radius_oval_gray"
+                        android:scaleY="5"
+                        android:scaleX="-5"
                         android:layout_alignParentRight="true"
-                        android:scaleY="2"
-                        android:scaleX="-2"
                         android:tint="@color/main_red"/>
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/p_e_main_reason"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textSize="@dimen/textsize5"
                     android:layout_centerHorizontal="true"
+                    android:textColor="@color/app_base_color"
+                    android:layout_marginTop="@dimen/margin_15dp"
+                    android:text="点击图表文字查看详情"/>
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/p_e_main_chart_reason"
+                    android:layout_height="@dimen/margin_20dp"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/textsize6"
+                    android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="@dimen/margin_20dp"
+                    android:gravity="bottom"
+                    app:autoSizeTextType="uniform"
                     android:textColor="@color/app_base_color"
-                    android:text="点击图表文字查看详情"/>
+                    android:text="0132班级平均成绩"/>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/p_e_main_recipe_layout"

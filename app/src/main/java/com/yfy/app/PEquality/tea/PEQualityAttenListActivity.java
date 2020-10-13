@@ -1,4 +1,4 @@
-package com.yfy.app.PEquality;
+package com.yfy.app.PEquality.tea;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.yfy.app.PEquality.adapter.PEQualityAttenListAdapter;
-import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
+import com.yfy.app.PEquality.adapter.PEAttendListAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
@@ -37,7 +36,7 @@ import retrofit2.Response;
 public class PEQualityAttenListActivity extends BaseActivity {
     private static final String TAG = PEQualityAttenListActivity.class.getSimpleName();
 
-    private PEQualityAttenListAdapter adapter;
+    private PEAttendListAdapter adapter;
 
 
     @Override
@@ -81,7 +80,7 @@ public class PEQualityAttenListActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        adapter=new PEQualityAttenListAdapter(mActivity);
+        adapter=new PEAttendListAdapter(mActivity);
         recyclerView.setAdapter(adapter);
     }
 

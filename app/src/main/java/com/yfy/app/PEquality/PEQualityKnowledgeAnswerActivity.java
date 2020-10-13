@@ -2,8 +2,9 @@ package com.yfy.app.PEquality;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.Button;
 
 import com.yfy.app.PEquality.adapter.KnowledgeLibraryPagerAdapter;
 import com.yfy.app.bean.BaseRes;
@@ -36,8 +37,7 @@ import retrofit2.Response;
 public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
     private static final String TAG = PEQualityKnowledgeAnswerActivity.class.getSimpleName();
 
-    @Bind(R.id.knowledge_answer_bottom)
-    RelativeLayout layout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +69,7 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         pager.setAdapter(pager_adapter);
     }
     private void setAdapterData(){
-        if (type.equalsIgnoreCase(TagFinal.TRUE)){
-            layout.setVisibility(View.VISIBLE);
-        }else {
-            layout.setVisibility(View.GONE);
-        }
+
         data_list.clear();
         KeyValue keyValue=new KeyValue(TagFinal.TYPE_ITEM);
         List<CPWBean> cpwbeanList=new ArrayList<>();
@@ -82,21 +78,28 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         cpwbeanList.add(new CPWBean("B、古希腊",TagFinal.TRUE));
         cpwbeanList.add(new CPWBean("C、法国文字超出一行文字超出一行文字超出一行文字超出一行",TagFinal.FALSE));
         cpwbeanList.add(new CPWBean("D、英国",TagFinal.FALSE));
+
         keyValue.setCpwBeanArrayList(cpwbeanList);
         keyValue.setType(TagFinal.TRUE);//单选
         keyValue.setId(type);//可不可以交互
+        keyValue.setRight("A");//正确答案
+        keyValue.setRight_name(TagFinal.TRUE);
+
+
 
 
         KeyValue not=new KeyValue(TagFinal.TYPE_ITEM);
         List<CPWBean> cpwbeanNot=new ArrayList<>();
         not.setTitle("奥林匹克运动会的发源地");
-        cpwbeanNot.add(new CPWBean("A、古罗马",TagFinal.FALSE));
+        cpwbeanNot.add(new CPWBean("A、古罗马",TagFinal.TRUE));
         cpwbeanNot.add(new CPWBean("B、古希腊",TagFinal.FALSE));
         cpwbeanNot.add(new CPWBean("C、法国文字超出一行文字超出一行文字超出一行文字超出一行",TagFinal.FALSE));
         cpwbeanNot.add(new CPWBean("D、英国(没有完成答题)",TagFinal.FALSE));
         not.setCpwBeanArrayList(cpwbeanNot);
         not.setType(TagFinal.TRUE);
         not.setId(type);
+        not.setRight("A");//正确答案
+        not.setRight_name("");
 
         data_list.add(keyValue);
         data_list.add(keyValue);

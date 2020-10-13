@@ -94,7 +94,8 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
                             break;
                         case "成绩录入":
                             intent=new Intent(mContext,PETeaScoreTypeActivity.class  );
-                            intent.putExtra(Base.title,bean.getType());
+                            intent.putExtra(Base.title,bean.getTitle());
+                            intent.putExtra(Base.type,bean.getType());
                             mContext.startActivity(intent);
                             break;
                             default:

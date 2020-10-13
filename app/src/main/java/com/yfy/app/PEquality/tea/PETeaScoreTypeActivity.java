@@ -43,9 +43,10 @@ public class PETeaScoreTypeActivity extends BaseActivity {
 
     }
 
-    private String title;
+    private String title,type;
     private void getData(){
         title=getIntent().getStringExtra(Base.title);
+        type=getIntent().getStringExtra(Base.type);
     }
 
     private void initSQToolbar() {
@@ -70,10 +71,13 @@ public class PETeaScoreTypeActivity extends BaseActivity {
         adapter.setItemOnc(new PETeaMainAdapter.ItemOnc() {
             @Override
             public void onc(KeyValue bean) {
-                Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
+
+                Intent intent=new Intent(mActivity,PETeaStandardListActivity.class  );
                 intent.putExtra(Base.title,bean.getTitle());
-                intent.putExtra(Base.type,title);
+                intent.putExtra(Base.type,type);
                 startActivity(intent);
+
+
             }
         });
     }

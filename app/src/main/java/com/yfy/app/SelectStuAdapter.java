@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.yfy.app.PEquality.PEHonorMainActivity;
-import com.yfy.app.PEquality.PEQualityAttenListActivity;
+import com.yfy.app.PEquality.tea.PEQualityAttenListActivity;
 import com.yfy.app.PEquality.PEQualityAttitudeActivity;
 import com.yfy.app.PEquality.PEQualityHomeworkActivity;
 import com.yfy.app.PEquality.PERecipeActivity;
@@ -29,7 +29,7 @@ import java.util.List;
 public class SelectStuAdapter extends BaseRecyclerAdapter {
 
     private List<KeyValue> dataList;
-    public int index_pos;
+    private int index_pos;
 
     public void setIndex(int index) {
         this.index_pos = index;
@@ -40,7 +40,7 @@ public class SelectStuAdapter extends BaseRecyclerAdapter {
         this.type = type;
     }
 
-    public SelectStuAdapter(Activity mContext) {
+    SelectStuAdapter(Activity mContext) {
         super(mContext);
         this.dataList = new ArrayList<>();
 
@@ -144,12 +144,7 @@ public class SelectStuAdapter extends BaseRecyclerAdapter {
 //                            intent.putExtra(Base.title,type);
 //                            mContext.startActivity(intent);
 //                            break;
-//                        case "运动技能":
-//                            intent=new Intent(mContext,PEQualitySkillsActivity.class);
-//                            intent.putExtra(Base.title,type);
-//                            intent.putExtra(Base.type,TagFinal.TRUE);
-//                            mContext.startActivity(intent);
-//                            break;
+
 //                        case "体能":
 //                            intent=new Intent(mContext,PEQualityTeaSuggestActivity.class);
 //                            intent.putExtra(Base.title,type);
