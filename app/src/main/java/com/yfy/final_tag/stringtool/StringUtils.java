@@ -37,6 +37,16 @@ public class StringUtils {
 			return stringList;
 		}
 	}
+	public static List<String> listToArrays(String[] content){
+		if (content==null)return new ArrayList<>();
+		List<String> list = Arrays.asList(content);
+		List<String> stringList=new ArrayList<>(list);
+		if (content.length==0){
+			return new ArrayList<>();
+		}else{
+			return stringList;
+		}
+	}
 
 	public static List<String> listToStringSplitCharactersHttp(String content, String tag, String http){
 		List<String> list = Arrays.asList(content.split(Pattern.quote(tag)));

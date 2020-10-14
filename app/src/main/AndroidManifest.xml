@@ -235,6 +235,16 @@
             android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.PEquality.PEAttendClassActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.PEquality.tea.PETeaAddScoreActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

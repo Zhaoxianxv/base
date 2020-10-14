@@ -320,10 +320,8 @@ public class PEQualityMainTestActivity extends BaseActivity {
                         startActivity(intent);
                         break;
                     case "课堂表现":
-                        intent=new Intent(mActivity,PEQualitySuggestActivity.class);
+                        intent=new Intent(mActivity,PEAttendClassActivity.class);
                         intent.putExtra(Base.title,bean.getName());
-                        intent.putExtra(Base.name,"课堂表现");
-                        intent.putExtra(Base.content,"90");
                         startActivity(intent);
                         break;
                 }
@@ -501,16 +499,16 @@ public class PEQualityMainTestActivity extends BaseActivity {
         data.setValueTextColor(Color.BLACK);
 
 //text
-        ImageSpan imgSpan = new ImageSpan(this, BitmapLess.$drawableColor(mActivity,R.drawable.radius_oval_gray,Color.parseColor("#942328")));
-        ImageSpan two = new ImageSpan(this, BitmapLess.$drawableColor(mActivity,R.drawable.radius_oval_gray,Color.parseColor("#3182c4")));
+        ImageSpan imgSpan = new ImageSpan(mActivity, BitmapLess.$drawableColor(mActivity,R.drawable.rectangle_square10_gray,Color.parseColor("#942328")));
+        ImageSpan two = new ImageSpan(mActivity, BitmapLess.$drawableColor(mActivity,R.drawable.rectangle_square10_gray,Color.parseColor("#3182c4")));
         SpannableStringBuilder sb=new SpannableStringBuilder();
-        SpannableString sb_one = new SpannableString("01\t我的成绩");
-        SpannableString sb_two = new SpannableString("01\t班级平均成绩");
+        SpannableString sb_one = new SpannableString("0 我的成绩");
+        SpannableString sb_two = new SpannableString("0 班级平均成绩");
         TextToolSpan.$spannableStringColor(sb_one,Color.parseColor("#942328"));
         TextToolSpan.$spannableStringColor(sb_two,Color.parseColor("#3182c4"));
 
-        sb_one.setSpan(imgSpan, 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sb_two.setSpan(two, 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb_one.setSpan(imgSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb_two.setSpan(two, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         sb.append(sb_one).append("\t").append(sb_two);
         chart_sup_reason.setText(sb);
 

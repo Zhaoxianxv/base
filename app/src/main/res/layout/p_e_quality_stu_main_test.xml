@@ -223,18 +223,16 @@
                     android:textSize="@dimen/textsize5"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/app_base_color"
-                    android:layout_marginTop="@dimen/margin_15dp"
+                    android:layout_marginTop="@dimen/margin_20dp"
                     android:text="点击图表文字查看详情"/>
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/p_e_main_chart_reason"
-                    android:layout_height="@dimen/margin_20dp"
+                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:textSize="@dimen/textsize6"
+                    android:textSize="@dimen/textsize3"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="@dimen/margin_20dp"
-                    android:gravity="bottom"
-                    app:autoSizeTextType="uniform"
                     android:textColor="@color/app_base_color"
                     android:text="0132班级平均成绩"/>
             </RelativeLayout>

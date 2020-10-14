@@ -29,6 +29,11 @@
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="@dimen/textsize5"
                 android:textSize="@dimen/textsize8"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_below="@id/p_e_recipe_title"
+                android:layout_height="0.5dp"
+                android:background="@color/c3_gray"/>
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/p_e_recipe_title_sub"
                 android:layout_width="match_parent"

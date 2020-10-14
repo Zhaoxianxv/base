@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/WhiteSmoke">
+
+    <com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
+
+    <View
+        android:id="@+id/p_e_tea_add_score_line"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_gravity="right"
+        android:background="@color/WhiteSmoke"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="@dimen/margin_1dp"
+        android:paddingTop="@dimen/margin_1dp"
+        android:background="@drawable/layer_top_bottom_gray_line_white_bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="项目名称"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/gray" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/p_e_tea_add_score_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="name"
+            android:gravity="right|center_vertical"
+            android:textColor="@color/gray"
+            android:drawablePadding="@dimen/margin_10dp"
+            android:paddingRight="@dimen/margin_10dp"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="@dimen/margin_1dp"
+        android:paddingTop="@dimen/margin_1dp"
+        android:background="@drawable/layer_top_bottom_gray_line_white_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="学生姓名"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/base_color" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/p_e_tea_add_score_stu_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="张三"
+            android:gravity="right|center_vertical"
+            android:textColor="@android:color/black"
+            android:drawablePadding="@dimen/margin_10dp"
+            android:paddingRight="@dimen/margin_10dp"
+            android:drawableRight="@drawable/ic_arrow_right_gray_24dp"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="@dimen/margin_1dp"
+        android:paddingTop="@dimen/margin_1dp"
+        android:background="@drawable/layer_top_bottom_gray_line_white_bg">
+        <TextView
+            android:id="@+id/public_type_txt_edit_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_10dp"
+            android:textSize="@dimen/textsize7"
+            android:text="录入成绩"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_10dp"/>
+
+        <EditText
+            android:id="@+id/public_type_txt_edit_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/margin_45dp"
+            android:background="@color/white"
+            android:hint="点击输入"
+            android:inputType="numberDecimal"
+            android:gravity="center_vertical|right"
+            android:paddingRight="@dimen/margin_10dp"
+            android:textSize="@dimen/textsize7"
+            android:layout_toRightOf="@id/public_type_txt_edit_key"
+            android:imeOptions="actionDone"
+            />
+    </RelativeLayout>
+
+
+
+
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:alignmentMode="alignBounds"
+        android:layout_marginTop="@dimen/margin_60dp"
+        app:columnCount="5"
+        app:rowCount="1"
+        app:useDefaultMargins="false">
+        <Button
+            android:id="@+id/p_e_tea_add_score_forward"
+            app:layout_columnSpan="1"
+            android:layout_height="45dp"
+            android:backgroundTint="@color/main_red"
+            android:layout_toLeftOf="@id/p_e_tea_add_score_submit"
+            android:textSize="@dimen/textsize3"
+            android:textColor="@color/white"
+            android:text="上一个"
+            android:layout_marginRight="@dimen/margin_20dp"
+            />
+        <Button
+            android:id="@+id/p_e_tea_add_score_submit"
+            app:layout_columnSpan="3"
+            app:layout_columnWeight="1"
+            android:layout_height="45dp"
+            android:backgroundTint="@color/main_red"
+            android:textColor="@color/white"
+            android:text="@string/submit"
+            android:textSize="@dimen/textsize7"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:id="@+id/p_e_tea_add_score_next"
+            app:layout_columnSpan="1"
+            android:layout_height="45dp"
+            android:backgroundTint="@color/main_red"
+            android:layout_toRightOf="@id/p_e_tea_add_score_submit"
+            android:textColor="@color/white"
+            android:text="下一个"
+            android:textSize="@dimen/textsize3"
+            android:layout_marginLeft="@dimen/margin_20dp"
+            />
+    </android.support.v7.widget.GridLayout>
+
+</LinearLayout>

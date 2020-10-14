@@ -2,6 +2,7 @@ package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -14,6 +15,7 @@ import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,11 +63,13 @@ public class PEQualityAttitudeAdapter extends BaseRecyclerAdapter {
         if (holder instanceof ItemHolder) {
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
-            iHolder.attitude_state.setText(iHolder.bean.getRight());
-            iHolder.attitude_title.setText(iHolder.bean.getTitle());
+            iHolder.attitude_state.setText(iHolder.bean.getValue());
+            iHolder.attitude_title.setText(iHolder.bean.getLeft_title());
             iHolder.attitude_content.setText(iHolder.bean.getContent());
-            iHolder.attitude_sub.setText(iHolder.bean.getLeft_title());
-            iHolder.attitude_sub.setTextColor(ColorRgbUtil.getBaseColor());
+            iHolder.attitude_sub.setText(iHolder.bean.getTitle());
+            iHolder.attitude_tea.setVisibility(View.VISIBLE);
+            iHolder.attitude_tea.setText(StringUtils.stringToGetTextJoint("记录人:%1$s",iHolder.bean.getRight()));
+            iHolder.attitude_state.setTextColor(ColorRgbUtil.getBaseColor());
         }
         if (holder instanceof DetailH) {
             DetailH detailH = (DetailH) holder;
@@ -85,16 +89,18 @@ public class PEQualityAttitudeAdapter extends BaseRecyclerAdapter {
         TextView attitude_state;
         TextView attitude_title;
         TextView attitude_sub;
+        TextView attitude_tea;
         TextView attitude_content;
-        RelativeLayout layout;
+        CardView layout;
         KeyValue bean;
 
         public ItemHolder(View itemView) {
             super(itemView);
             attitude_state = itemView.findViewById(R.id.p_e_attitude_state);
             attitude_title = itemView.findViewById(R.id.p_e_attitude_title);
-            attitude_sub = itemView.findViewById(R.id.p_e_attitude_sub);
             attitude_content = itemView.findViewById(R.id.p_e_attitude_content);
+            attitude_sub = itemView.findViewById(R.id.p_e_attitude_sub);
+            attitude_tea = itemView.findViewById(R.id.p_e_attitude_tea);
             layout = itemView.findViewById(R.id.p_e_attitude_layout);
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override

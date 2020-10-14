@@ -1,6 +1,7 @@
 package com.yfy.final_tag.viewtools;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.VectorDrawable;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.text.Editable;
 import android.text.Selection;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -28,6 +30,15 @@ public class ViewTool {
         GradientDrawable one = (GradientDrawable) view.getBackground();
         one.setTint(color);
     }
+//   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//    public static void alterButtonColor(Button view, int color) {
+//       int[] colors = new int[]{0xfff8513f, 0xffe43d2b};
+//       int[][] states = new int[2][];
+//       states[0] = new int[]{android.R.attr.state_pressed};
+//       states[1] = new int[]{android.R.attr.state_enabled};
+//       view.setBackgroundTintList(new ColorStateList(states, colors));
+//       view.setBackgroundTintMode(mode[i - 1]);
+//    }
 
 
     public static void alterGradientDrawableStrokeColor(Context context,View view, int color) {

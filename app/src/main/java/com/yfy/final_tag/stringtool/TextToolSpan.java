@@ -14,7 +14,7 @@ import com.yfy.base.R;
 
 public class TextToolSpan {
 
-    //start、end 用图片替换字符串start到end 的位置：不包含end
+    //start、end 用图片替换字符串[star，end) 的位置
     public static SpannableString stringToByteArrayGetString(String content, Context context, int resourceId){
         SpannableString spannableString = new SpannableString(content);
         ImageSpan imgSpan = new ImageSpan(context,resourceId);

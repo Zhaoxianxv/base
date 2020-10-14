@@ -64,7 +64,7 @@ public class PETeaStandardListActivity extends BaseActivity {
             @Override
             public void onClick(View view, int position) {
 
-                Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
+                Intent intent=new Intent(mActivity,PETeaAddScoreActivity.class);
                 intent.putExtra(Base.title,title);
                 intent.putExtra(Base.type,type);
                 startActivity(intent);

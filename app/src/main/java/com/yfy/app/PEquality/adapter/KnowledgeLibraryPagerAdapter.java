@@ -63,9 +63,9 @@ public class KnowledgeLibraryPagerAdapter extends PagerAdapter {
             }
 
             if (bean.getRight_name().equalsIgnoreCase(TagFinal.TRUE)){
-                right_answer.setText("正确");
+                right_answer.setText("当前问题回答：正确");
             }else{
-                right_answer.setText("错误\t\t标准答案：B");
+                right_answer.setText("当前问题回答：错误\t\t正确答案：B");
             }
 
             title.setText(StringUtils.stringToGetTextJoint("(%2$d/%3$d)、\t%1$s",list.get(i).getTitle(),i+1,list.size()));

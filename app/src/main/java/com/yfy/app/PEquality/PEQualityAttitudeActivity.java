@@ -105,11 +105,11 @@ public class PEQualityAttitudeActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //添加分割线
-        recyclerView.addItemDecoration(new RecycleViewDivider(
-                mActivity,
-                LinearLayoutManager.HORIZONTAL,
-                1,
-                getResources().getColor(R.color.gray)));
+//        recyclerView.addItemDecoration(new RecycleViewDivider(
+//                mActivity,
+//                LinearLayoutManager.HORIZONTAL,
+//                1,
+//                getResources().getColor(R.color.gray)));
         adapter=new PEQualityAttitudeAdapter(mActivity);
         recyclerView.setAdapter(adapter);
     }
@@ -126,15 +126,18 @@ public class PEQualityAttitudeActivity extends BaseActivity {
         one.setLeft_title("学生1");
         one.setContent("旷课");
         one.setRight("张丹");
+        one.setValue("-6");
 
         two.setTitle("2020.5.21");
         two.setLeft_title("学生2");
         two.setContent("大课间体育活动违纪或缺席");
         two.setRight("张丹");
+        two.setValue("-6");
 
         if (type.equalsIgnoreCase(TagFinal.FALSE))
         keyValue_adapter.add(detail);
         keyValue_adapter.add(one);
+        keyValue_adapter.add(two);
         keyValue_adapter.add(two);
         keyValue_adapter.add(one);
 

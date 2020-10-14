@@ -18,12 +18,14 @@ import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
+import com.yfy.final_tag.dialog.ConfirmContentWindow;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
+import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         initSQToolbar();
         initPager();
         setAdapterData();
+        initDialog();
     }
 
 
@@ -58,6 +61,42 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
+        if(type.equalsIgnoreCase(TagFinal.FALSE))return;
+        toolbar.addMenuText(TagFinal.ONE_INT,"结束答题");
+        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                showDialog("提示","结束本次答题并计算最终分数","确定");
+            }
+        });
+    }
+
+
+    private ConfirmContentWindow confirmContentWindow;
+    private void initDialog(){
+
+        confirmContentWindow = new ConfirmContentWindow(mActivity);
+        confirmContentWindow.setOnPopClickListenner(new ConfirmContentWindow.OnPopClickListenner() {
+            @Override
+            public void onClick(View view) {
+
+                switch (view.getId()){
+                    case R.id.pop_dialog_title:
+                        break;
+                    case R.id.pop_dialog_content:
+                        break;
+                    case R.id.pop_dialog_ok:
+
+                        break;
+                }
+            }
+        });
+    }
+
+    private void showDialog(String title,String content,String ok){
+        if (confirmContentWindow==null)return;
+        confirmContentWindow.setTitle_s(title,content,ok);
+        confirmContentWindow.showAtCenter();
     }
 
     @Bind(R.id.knowledge_answer_pager)

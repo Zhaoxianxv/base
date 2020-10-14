@@ -18,7 +18,9 @@ import android.widget.PopupWindow;
 
 
 import com.yfy.base.R;
+import com.yfy.final_tag.data.ColorRgbUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,14 +29,13 @@ import java.util.List;
  */
 public class CPWMatchListView extends PopupWindow  {
 	private Activity context;
-	private ListView listview;
+	public ListView listview;
 	private PopListAdapter adapter;
 	private String type;
-	private List<CPWBean> datas;
-	public CPWMatchListView(Activity context, List<CPWBean> groups) {
+
+	public CPWMatchListView(Activity context) {
 		super(context);
 		this.context = context;
-		this.datas = groups;
 		initalize();
 	}
 
@@ -52,7 +53,7 @@ public class CPWMatchListView extends PopupWindow  {
 //                int index = state_list .getCheckedItemPosition();     // 即获取选中位置
 				if(ListView.INVALID_POSITION != position) {
 					if (listenner!=null){
-						listenner.onClick(type, datas.get(position));
+						listenner.onClick(type, adapter.datas.get(position));
 					}
 					dismiss();
 				}
@@ -65,7 +66,7 @@ public class CPWMatchListView extends PopupWindow  {
 
 	private void initWindow() {
 		DisplayMetrics d = context.getResources().getDisplayMetrics();
-		this.setWidth((int) (d.widthPixels * 1));//width比例
+		this.setWidth((int) (d.widthPixels * 0.3));//width比例
 
 		this.setHeight(LayoutParams.WRAP_CONTENT);
 		this.setFocusable(true);
@@ -75,11 +76,11 @@ public class CPWMatchListView extends PopupWindow  {
 		ColorDrawable dw = new ColorDrawable(0x00000000);
 		//设置SelectPicPopupWindow弹出窗体的背景
 		this.setBackgroundDrawable(dw);
-		backgroundAlpha( context, 1.0f);//0.0-1.0
+		backgroundAlpha( context, 0.5f);//弹出出后透明度
 		this.setOnDismissListener(new OnDismissListener() {
 			@Override
 			public void onDismiss() {
-				backgroundAlpha( context, 1f);
+				backgroundAlpha( context, 1f);//退出后透明
 			}
 		});
 	}
@@ -92,13 +93,17 @@ public class CPWMatchListView extends PopupWindow  {
 	}
 
 
-	public void showAtBottom(View view) {
+	public void showAtBottom(View view, List<CPWBean> groups) {
+		setData(groups);
 		showAsDropDown(view, Math.abs((view.getWidth() - getWidth()) / 2), 0);
 	}
 
 
 
 
+	public void setData(List<CPWBean> groups){
+		adapter.setDatas(groups);
+	}
 
 	private OnPopClickListenner listenner = null;
 
@@ -119,11 +124,17 @@ public class CPWMatchListView extends PopupWindow  {
 
 	public class PopListAdapter extends BaseAdapter {
 		private Context context;
-
-		public PopListAdapter(Context context) {
-
+		List<CPWBean> datas;
+		PopListAdapter(Context context) {
 			this.context = context;
+			this.datas = new ArrayList<>();
 		}
+
+		public void setDatas(List<CPWBean> datas) {
+			this.datas = datas;
+			notifyDataSetChanged();
+		}
+
 		@Override
 		public int getCount() {
 			return datas.size();
@@ -150,10 +161,22 @@ public class CPWMatchListView extends PopupWindow  {
 			}else{
 				viewHolder = (PopListAdapter.ViewHolder)convertView.getTag();
 			}
-			viewHolder.name.setText(datas.get(position).getName());
-			if (datas.get(position).isIs_show()){
-				viewHolder.name.setChecked(datas.get(position).isIs_select());
-				datas.get(position).setIs_show(false);
+			CPWBean bean=datas.get(position);
+
+			viewHolder.name.setText(bean.getName());
+
+			if (bean.isIs_select()){
+				viewHolder.name.setTextColor(ColorRgbUtil.getBaseColor());
+			}else {
+				if (position%2==0){
+					viewHolder.name.setTextColor(ColorRgbUtil.getForestGreen());
+				}else{
+					viewHolder.name.setTextColor(ColorRgbUtil.getGray());
+				}
+			}
+			if (bean.isIs_show()){
+				viewHolder.name.setChecked(bean.isIs_select());
+				bean.setIs_show(false);
 			}
 
 			return convertView;

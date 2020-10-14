@@ -109,13 +109,13 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
 
 
         if (is){
-            recyclerView.addItemDecoration(divider);
+//            recyclerView.addItemDecoration(divider);
             attitude_card.setVisibility(View.VISIBLE);
             attend_card.setVisibility(View.GONE);
             recyclerView.setAdapter(adapter_attitude);
             setAttitudeData();
         }else{
-            recyclerView.removeItemDecoration(divider);
+//            recyclerView.removeItemDecoration(divider);
             attitude_card.setVisibility(View.GONE);
             attend_card.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(adapter_attend);

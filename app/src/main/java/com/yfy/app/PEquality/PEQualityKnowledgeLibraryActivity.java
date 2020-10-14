@@ -135,6 +135,15 @@ public class PEQualityKnowledgeLibraryActivity extends BaseActivity {
         keyValue_adapter.add(one);
         keyValue_adapter.add(two);
         keyValue_adapter.add(three);
+        keyValue_adapter.add(three);
+        keyValue_adapter.add(three);
+        keyValue_adapter.add(three);
+        keyValue_adapter.add(three);
+        keyValue_adapter.add(three);
+        keyValue_adapter.add(four);
+        keyValue_adapter.add(four);
+        keyValue_adapter.add(four);
+        keyValue_adapter.add(four);
         keyValue_adapter.add(four);
 
         adapter.setDataList(keyValue_adapter);
