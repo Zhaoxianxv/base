@@ -59,7 +59,7 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/knowledge_right_answer"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_60dp"
+                    android:layout_height="@dimen/margin_80dp"
                     android:textColor="@color/white"
                     android:padding="@dimen/margin_5dp"
                     android:layout_margin="@dimen/margin_5dp"

@@ -1,4 +1,4 @@
-package com.yfy.final_tag.keyboard;
+package com.yfy.final_tag.keyboard.password;
 
 import android.content.Context;
 import android.graphics.Canvas;

@@ -2,6 +2,7 @@ package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.glide.GlideTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +63,7 @@ public class PETeaMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
             iHolder.left_title.setText(iHolder.bean.getTitle());
+            GlideTools.loadImage(mContext,iHolder.bean.getRes_image(),iHolder.icon);
         }
     }
 
@@ -72,12 +75,14 @@ public class PETeaMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public class ItemHolder extends RecyclerView.ViewHolder {
         TextView left_title;
+        AppCompatImageView icon;
         LinearLayout item_layout;
         KeyValue bean;
         ItemHolder(View itemView) {
             super(itemView);
             item_layout =  itemView.findViewById(R.id.p_e_score_item_layout);
             left_title =  itemView.findViewById(R.id.p_e_score_title);
+            icon =  itemView.findViewById(R.id.p_e_score_icon);
 
             item_layout.setOnClickListener(new View.OnClickListener() {
                 @Override

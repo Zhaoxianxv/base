@@ -127,13 +127,13 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
 
         KeyValue two=new KeyValue("","",TagFinal.TYPE_ITEM);
         KeyValue one=new KeyValue("","",TagFinal.TYPE_ITEM);
-        one.setTitle("2020.5.21");
-        one.setLeft_title("-6");
+        one.setTitle("2020.5.21·下午第二节课");
+        one.setLeft_title("-6分");
         one.setContent("旷课");
         one.setRight("张丹");
 
-        two.setTitle("2020.5.21");
-        two.setLeft_title("-2");
+        two.setTitle("2020.5.21·下午第二节课");
+        two.setLeft_title("-2分");
         two.setContent("大课间体育活动违纪或缺席");
         two.setRight("张丹");
 

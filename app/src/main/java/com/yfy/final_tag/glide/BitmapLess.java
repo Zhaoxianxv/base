@@ -29,13 +29,15 @@ public final class BitmapLess {
     }
     //改变drawableId图片颜色
     public static Bitmap $drawableColor(Context context, int drawableId,int color) {
-        return drawableToBitmap(DrawableLess.$tint(context.getResources().getDrawable(drawableId),color));
+        return drawableToBitmap(DrawableLess.$tint(context.getResources().getDrawable(drawableId),color),true);
     }
     // Drawable转换成一个Bitmap
-    private static  Bitmap drawableToBitmap(Drawable drawable) {
+    public static Bitmap drawableToBitmap(Drawable drawable,boolean is) {
         Bitmap bitmap = Bitmap.createBitmap( drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565);
         Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        if(is){
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());//保证图片大小不变
+        }
         drawable.draw(canvas);
         return bitmap;
     }

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.charting_mp.animation.Easing;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.charting_mp.charts.LineChart;
@@ -180,8 +181,8 @@ public class PEScoreMainAdapter extends BaseRecyclerAdapter {
             //绘制边框4边
             mChart.setDrawBorders(false);
 //            mChart.setBorderColor(ColorRgbUtil.getBaseColor());
-            //
-
+            //动画
+            mChart.animateX(1500, Easing.EasingOption.EaseInOutQuart);
 
 
 

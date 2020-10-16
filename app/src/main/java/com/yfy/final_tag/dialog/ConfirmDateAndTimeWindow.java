@@ -46,15 +46,6 @@ public class ConfirmDateAndTimeWindow extends PopupWindow  {
 				day.getCurrentItem()+1,hour.getCurrentItem(),mins.getCurrentItem());
 		return time;
 	}
-	public String getTimeTV() {
-		String time = String.format(Locale.CHINA,
-				"%04d年%02d月%02d\t\t%02d:%02d",
-				year.getCurrentItem()+1950,
-				month.getCurrentItem()+1,
-				day.getCurrentItem()+1,hour.getCurrentItem(),mins.getCurrentItem());
-		return time;
-	}
-
 
 	public String getTimeValue() {
 		String time = String.format(Locale.CHINA,

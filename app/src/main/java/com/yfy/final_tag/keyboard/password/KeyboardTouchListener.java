@@ -1,4 +1,4 @@
-package com.yfy.final_tag.keyboard;
+package com.yfy.final_tag.keyboard.password;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,8 +25,6 @@ public class KeyboardTouchListener implements View.OnTouchListener {
             else if(keyboardUtil != null && keyboardUtil.getEd() ==null){
                 keyboardUtil.showKeyBoardLayout((EditText) v,keyboardType,scrollTo);
             }else{
-//                Log.d("KeyboardTouchListener", "v.getId():" + v.getId());
-//                Log.d("KeyboardTouchListener", "keyboardUtil.getEd().getId():" + keyboardUtil.getEd().getId());
                     if (keyboardUtil != null) {
                         keyboardUtil.setKeyBoardCursorNew((EditText) v);
                 }

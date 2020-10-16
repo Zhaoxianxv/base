@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,6 +18,9 @@ import android.widget.TextView;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.yfy.app.PEquality.PEQualityMainTestActivity;
+import com.yfy.app.PEquality.tea.PETeaMainActivity;
+import com.yfy.app.login.LoginActivity;
+import com.yfy.app.spannable_string.SpannableStringMainActivity;
 import com.yfy.app.welcome.adapter.GuidePagerAdapter;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItem;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItemAdapter;
@@ -24,6 +28,14 @@ import com.yfy.app.welcome.utils.v4.FragmentPagerItems;
 
 import com.yfy.base.R;
 import com.yfy.db.UserPreferences;
+import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.data.ColorRgbUtil;
+import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.dialog.ConfirmAlbumWindow;
+import com.yfy.final_tag.glide.BitmapLess;
+import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.viewtools.ViewTool;
+import com.yfy.greendao.tool.GreenDaoManager;
 import com.yfy.jpush.ExampleUtil;
 import com.yfy.jpush.LocalBroadcastManager;
 
@@ -44,11 +56,13 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.initial_welcome);
         registerMessageReceiver();
         initView();
+        initDialog();
     }
 
     private void initView() {
-        splashBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.homepaga);
-        if (UserPreferences.getInstance().getIsFirstTimeOpen()) {
+        splashBitmap = BitmapLess.$drawableColor(this,R.drawable.rectangle_square10_gray,ColorRgbUtil.getBaseColor());
+//        if (UserPreferences.getInstance().getIsFirstTimeOpen()) {
+        if (false) {
             showGuide();//显示引导内容
         } else {
             showSplash();//显示闪屏图片
@@ -100,13 +114,68 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //初始化登录信息
-//                startActivity(new Intent(WelcomeActivity.this,PEQualityMainActivity.class));
-                startActivity(new Intent(WelcomeActivity.this,PEQualityMainTestActivity.class));
-
-
-                finish();
+//                startActivity(new Intent(WelcomeActivity.this,SpannableStringMainActivity.class));
+//                finish();
+//
+                String userID=UserPreferences.getInstance().getUserID();
+                if (StringJudge.isEmpty(userID)){
+                    Base.user = null;
+                }else{
+                    if (StringJudge.isEmpty(GreenDaoManager.getInstance().loadAllUser())){
+                        Base.user = null;
+                    }else{
+                        Base.user =  GreenDaoManager.getInstance().loadAllUser().get(0);
+                    }
+                }
+                if (Base.user==null){
+                    Intent intent=new Intent(WelcomeActivity.this,LoginActivity.class);
+                    startActivityForResult(intent,TagFinal.UI_ADD);
+                }else{
+                    album_select.showAtCenter();
+                }
             }
         }, 1000);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK){
+            switch (requestCode){
+                case TagFinal.UI_ADD:
+                    if (Base.user==null){
+                        Intent intent=new Intent(WelcomeActivity.this,LoginActivity.class);
+                        startActivityForResult(intent,TagFinal.UI_ADD);
+                    }else{
+                        album_select.showAtCenter();
+                    }
+                    break;
+            }
+        }
+    }
+
+    ConfirmAlbumWindow album_select;
+    private void initDialog() {
+        album_select = new ConfirmAlbumWindow(this);
+        album_select.setOne_select("教师");
+        album_select.setTwo_select("学生");
+        album_select.setName("请选择账号类型");
+        album_select.setOnPopClickListenner(new ConfirmAlbumWindow.OnPopClickListenner() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.popu_select_one:
+                        Intent intent=new Intent(WelcomeActivity.this,PETeaMainActivity.class);
+                        intent.putExtra(Base.title,"体育素质评价");
+                        startActivity(intent);
+                        break;
+                    case R.id.popu_select_two:
+                        startActivity(new Intent(WelcomeActivity.this,PEQualityMainTestActivity.class));
+                        break;
+                }
+                finish();
+            }
+        });
     }
 
     private FragmentPagerItemAdapter createFragmentPagerItemAdapter() {

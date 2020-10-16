@@ -170,6 +170,12 @@ public class SelectStuAdapter extends BaseRecyclerAdapter {
                             mContext.startActivity(intent);
                             break;
 
+                        case "荣誉比赛":
+                            intent=new Intent(mContext,PEHonorMainActivity.class);
+                            intent.putExtra(Base.title,type);
+                            intent.putExtra(Base.type,TagFinal.FALSE);
+                            mContext.startActivity(intent);
+                            break;
                         case "课堂表现":
                             intent=new Intent(mContext,PEQualityTeaSuggestActivity.class);
                             intent.putExtra(Base.title,type);
@@ -184,12 +190,6 @@ public class SelectStuAdapter extends BaseRecyclerAdapter {
                             mContext.startActivity(intent);
                             break;
 
-                        case "荣誉比赛":
-                            intent=new Intent(mContext,PEHonorMainActivity.class);
-                            intent.putExtra(Base.title,bean.getName());
-                            intent.putExtra(Base.type,TagFinal.TRUE);
-                            mContext.startActivity(intent);
-                            break;
                     }
 
                 }

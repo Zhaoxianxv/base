@@ -1,4 +1,4 @@
-package com.yfy.final_tag.keyboard;
+package com.yfy.final_tag.keyboard.password;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -122,7 +122,7 @@ public class KeyboardUtil {
         rootView.addView(keyBoardLayout);
 
         if (keyBoardLayout != null && keyBoardLayout.getVisibility() == View.VISIBLE)
-            Log.d("KeyboardUtil", "visible");
+            Log.d("keyBoardLayout", "visible");
     }
 
     public void initLayoutHeight(LinearLayout layoutView) {
@@ -556,7 +556,7 @@ public class KeyboardUtil {
         this.scrollTo = scrollTo;
         //TODO
         if (keyBoardLayout != null && keyBoardLayout.getVisibility() == View.VISIBLE)
-            Log.d("KeyboardUtil", "visible");
+            Log.d("keyBoardLayout", "visible");
 
         if (setKeyBoardCursorNew(editText)) {
             showHandler = new Handler();

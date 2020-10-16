@@ -112,6 +112,12 @@
             android:name="com.yfy.base.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <!--spannable_string-->
+        <activity
+            android:name="com.yfy.app.spannable_string.SpannableStringMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <!--login-->
         <activity
             android:name="com.yfy.app.login.LoginActivity"
@@ -167,11 +173,6 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.yfy.app.PEquality.PEQualityKnowledgeActivity"
-            tools:ignore="InnerclassSeparator"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name="com.yfy.app.PEquality.tea.PEQualityTeaMainActivity"
             tools:ignore="InnerclassSeparator"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />

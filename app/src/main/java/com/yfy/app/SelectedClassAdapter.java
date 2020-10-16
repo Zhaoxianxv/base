@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.yfy.app.PEquality.PEHonorMainActivity;
 import com.yfy.app.PEquality.PEQualityAttitudeActivity;
 import com.yfy.app.PEquality.tea.PETeaScoreTypeActivity;
 import com.yfy.app.bean.KeyValue;
@@ -28,10 +29,8 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
 
     public void setDataList(List<KeyValue> dataList) {
         this.dataList = dataList;
-//        getRandomHeights(dataList);
     }
-    // 当前加载状态，默认为加载完成
-    private int loadState = 2;
+
 
 
     public SelectedClassAdapter(SelectedClassActivity mContext){
@@ -96,6 +95,12 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
                             intent=new Intent(mContext,PETeaScoreTypeActivity.class  );
                             intent.putExtra(Base.title,bean.getTitle());
                             intent.putExtra(Base.type,bean.getType());
+                            mContext.startActivity(intent);
+                            break;
+                        case "荣誉比赛":
+                            intent=new Intent(mContext,PEHonorMainActivity.class);
+                            intent.putExtra(Base.title,bean.getType());
+                            intent.putExtra(Base.type,TagFinal.TRUE);
                             mContext.startActivity(intent);
                             break;
                             default:

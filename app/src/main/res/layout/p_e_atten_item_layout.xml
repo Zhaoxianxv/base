@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content">
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/margin_5dp"
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/p_e_atten_right_state"

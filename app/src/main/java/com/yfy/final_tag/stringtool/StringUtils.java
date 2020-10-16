@@ -105,11 +105,7 @@ public class StringUtils {
 		return  sb.toString();
 	}
 
-	public static String stringToGetTwoToDecimals(float f){
-		DecimalFormat decimalFormat=new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
-		String p=decimalFormat.format(f);//format 返回的是字符串
-		return p;
-	}
+
 
 	public static String getTextJoint(String type,Object... args){
 		return String.format(type,args);

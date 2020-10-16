@@ -122,17 +122,17 @@ public class PEQualityAttitudeActivity extends BaseActivity {
         KeyValue two=new KeyValue("","",TagFinal.TYPE_ITEM);
         KeyValue detail=new KeyValue("本期满分100分，已扣除12分当前88分","",TagFinal.TYPE_DETAIL);
         KeyValue one=new KeyValue("","",TagFinal.TYPE_ITEM);
-        one.setTitle("2020.5.21");
+        one.setTitle("2020.5.21·下午第二节课");
         one.setLeft_title("学生1");
         one.setContent("旷课");
         one.setRight("张丹");
-        one.setValue("-6");
+        one.setValue("-6分");
 
-        two.setTitle("2020.5.21");
+        two.setTitle("2020.5.21·下午第二节课");
         two.setLeft_title("学生2");
         two.setContent("大课间体育活动违纪或缺席");
         two.setRight("张丹");
-        two.setValue("-6");
+        two.setValue("-6分");
 
         if (type.equalsIgnoreCase(TagFinal.FALSE))
         keyValue_adapter.add(detail);

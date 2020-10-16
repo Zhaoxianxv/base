@@ -13,8 +13,10 @@ import android.text.Editable;
 import android.text.Selection;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -59,6 +61,12 @@ public class ViewTool {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, dipValue, context.getResources().getDisplayMetrics());
     }
 
+    //-
+    public static void setRelativeLayoutDisplayMetrics(View view,int height,int width){
+        //ViewGroup.LayoutParams.MATCH_PARENT
+        RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(height,width);
+        view.setLayoutParams(params);
+    }
 
     /**
      * ---------------ScreenWidth--------------

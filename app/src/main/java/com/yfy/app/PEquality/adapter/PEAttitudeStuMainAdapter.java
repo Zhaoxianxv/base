@@ -62,6 +62,7 @@ public class PEAttitudeStuMainAdapter extends BaseRecyclerAdapter {
             iHolder.attitude_content.setText(StringUtils.stringToGetTextJoint("扣分项目:%1$s",iHolder.bean.getContent()));
             iHolder.attitude_sub.setText(StringUtils.stringToGetTextJoint("记录人:%1$s",iHolder.bean.getRight()));
             iHolder.attitude_state.setTextColor(ColorRgbUtil.getBaseColor());
+            iHolder.attitude_sub.setTextColor(ColorRgbUtil.getBaseText());
         }
     }
 

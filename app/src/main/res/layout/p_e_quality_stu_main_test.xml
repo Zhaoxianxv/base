@@ -255,7 +255,9 @@
                         android:layout_height="wrap_content"
                         android:text="    建议加强体能锻炼这是系统生成，，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字"
                         android:textSize="@dimen/textsize6"
-                        android:maxLines="3"
+                        android:lineSpacingExtra="@dimen/margin_5dp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
                         android:textColor="@color/app_base_text_color"
 
                         android:layout_marginTop="@dimen/margin_10dp"

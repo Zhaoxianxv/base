@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.yfy.app.PEquality.adapter.PEHonorMainAdapter;
+import com.yfy.app.SelectStuActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
@@ -38,8 +39,6 @@ public class PEHonorMainActivity extends BaseActivity {
     private static final String TAG = PEHonorMainActivity.class.getSimpleName();
 
     private PEHonorMainAdapter adapter;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,13 +58,29 @@ public class PEHonorMainActivity extends BaseActivity {
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
-        if (type.equalsIgnoreCase(TagFinal.TRUE))return;
-        toolbar.addMenuText(TagFinal.ONE_INT,"添加");
+        if (type.equalsIgnoreCase(TagFinal.TRUE)){
+            toolbar.addMenuText(TagFinal.ONE_INT,"选择学生");
+        }else{
+            toolbar.addMenuText(TagFinal.ONE_INT,"添加");
+        }
+
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent =new Intent(mActivity,PEHonorAddActivity.class);
-                startActivityForResult(intent,TagFinal.UI_ADD);
+                Intent intent;
+                if (type.equalsIgnoreCase(TagFinal.TRUE)){
+                    intent=new Intent(mActivity,SelectStuActivity.class);
+                    intent.putExtra(Base.index,1);
+                    intent.putExtra(Base.title,"选择学生");
+                    intent.putExtra(Base.type,title);
+                    startActivity(intent);
+
+                }else{
+                    intent=new Intent(mActivity,PEHonorAddActivity.class);
+                    startActivityForResult(intent,TagFinal.UI_ADD);
+                }
+
+
             }
         });
 
@@ -79,6 +94,7 @@ public class PEHonorMainActivity extends BaseActivity {
 
         adapter=new PEHonorMainAdapter(this);
         recyclerView.setAdapter(adapter);
+        adapter.setIs_stu(type.equalsIgnoreCase(TagFinal.TRUE));
     }
 
 
@@ -138,10 +154,15 @@ public class PEHonorMainActivity extends BaseActivity {
         }
         all.setCpwBeanArrayList(cps);
 
-        keyValue_adapter.add(all);
+
+        if (!type.equalsIgnoreCase(TagFinal.TRUE)){
+            keyValue_adapter.add(all);
+            keyValue_adapter.add(new KeyValue(TagFinal.TYPE_CHECK));
+        }
+        keyValue_adapter.add(three);
         keyValue_adapter.add(one);
         keyValue_adapter.add(two);
-        keyValue_adapter.add(three);
+
 
 
         adapter.setDataList(keyValue_adapter);
@@ -168,6 +189,7 @@ public class PEHonorMainActivity extends BaseActivity {
         ReqBody reqBody = new ReqBody();
         UserGetTermListReq req = new UserGetTermListReq();
         //获取参数
+        req.setSession_key(Base.user.getSession_key());
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
@@ -187,6 +209,7 @@ public class PEHonorMainActivity extends BaseActivity {
                 Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
+                    Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 }else{
                     toastShow("error");
                 }
@@ -194,6 +217,7 @@ public class PEHonorMainActivity extends BaseActivity {
 
         }else{
             try {
+                assert response.errorBody()!=null;
                 String s=response.errorBody().string();
                 Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
             } catch (IOException e) {

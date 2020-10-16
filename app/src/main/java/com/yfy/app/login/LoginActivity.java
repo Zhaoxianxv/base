@@ -24,8 +24,8 @@ import com.yfy.app.net.login.UserGetDuplicationListReq;
 import com.yfy.app.net.login.UserLoginReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.final_tag.keyboard.KeyboardTouchListener;
-import com.yfy.final_tag.keyboard.KeyboardUtil;
+import com.yfy.final_tag.keyboard.password.KeyboardTouchListener;
+import com.yfy.final_tag.keyboard.password.KeyboardUtil;
 import com.yfy.greendao.tool.GreenDaoManager;
 import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
@@ -93,7 +93,7 @@ public class LoginActivity extends BaseActivity {
 				.type(NUMBER)
 				.into(code_icon);
 		code_s=rxCaptcha.getCode();
-		initMoveKeyBoard();
+//		initMoveKeyBoard();
 		initDialogList();
 	}
 

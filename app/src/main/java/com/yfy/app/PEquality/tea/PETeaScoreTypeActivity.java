@@ -88,12 +88,23 @@ public class PETeaScoreTypeActivity extends BaseActivity {
         keyValue_adapter.clear();
 
 
-
+        int[] res_drawables=new int[]{
+                R.mipmap.schedule,
+                R.mipmap.attend_leave,
+                R.mipmap.goods_seven,
+                R.mipmap.goods_two,
+                R.mipmap.deyu,
+                R.mipmap.icon_score,
+                R.mipmap.suggestion,
+                R.mipmap.recipe};
+        int i=0;
         List<String> list=StringUtils.listToStringSplitCharacters("体重指数,肺活量,50米,坐位体前屈,体能,田径,民传,新兴体育,球类,体操类,速度类,力量类,灵敏类,柔韧类,耐力类",",");
         for (String s:list){
             KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
             one.setTitle(s);
+            one.setRes_image(res_drawables[i%res_drawables.length]);
             keyValue_adapter.add(one);
+            i++;
         }
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);

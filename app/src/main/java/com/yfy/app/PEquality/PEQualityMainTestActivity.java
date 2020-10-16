@@ -187,8 +187,8 @@ public class PEQualityMainTestActivity extends BaseActivity {
         toolbar.setTitle("体育素质");
         menu_one=toolbar.addMenuText(TagFinal.ONE_INT,"add");
 
-        toolbar.cancelNavi();
-        toolbar.setNaviText("教师");
+//        toolbar.cancelNavi();
+//        toolbar.setNaviText("教师");
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -196,20 +196,8 @@ public class PEQualityMainTestActivity extends BaseActivity {
                 startActivityForResult(intent,TagFinal.UI_TAG);
             }
         });
-        toolbar.setOnNaviClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Base.user==null){
-                    Intent intent=new Intent(mActivity,LoginActivity.class);
-                    startActivityForResult(intent,TagFinal.UI_ADD);
-                }else{
-                    Intent intent=new Intent(mActivity,PETeaMainActivity.class);
-                    intent.putExtra(Base.title,"体育素质评价");
-                    startActivity(intent);
-                }
 
-            }
-        });
+
 
         menu_one.setText("19-20上期");
     }
@@ -460,9 +448,9 @@ public class PEQualityMainTestActivity extends BaseActivity {
         //设置显示内容块：
         RadarDataSet set1 = new RadarDataSet(yVals1,"我的成绩");
         // 数据颜色设置
-        set1.setColor(Color.parseColor("#942328"));
+        set1.setColor(Color.parseColor("#3182c4"));
         // 实心填充区域颜色
-        set1.setFillColor(Color.parseColor("#00942328"));
+        set1.setFillColor(Color.parseColor("#553182c4"));
         // 是否实心填充区域
         set1.setDrawFilled(true);
         // 数据线条宽度
@@ -474,9 +462,9 @@ public class PEQualityMainTestActivity extends BaseActivity {
         //设置显示内容块：
         RadarDataSet set2 = new RadarDataSet(yVals2,"班级平均成绩");
         // 数据颜色设置
-        set2.setColor(Color.parseColor("#3182c4"));
+        set2.setColor(Color.parseColor("#942328"));
         // 实心填充区域颜色
-        set2.setFillColor(Color.parseColor("#553182c4"));
+        set2.setFillColor(Color.parseColor("#00942328"));
         // 是否实心填充区域
         set2.setDrawFilled(true);
         // 数据线条宽度
@@ -499,13 +487,13 @@ public class PEQualityMainTestActivity extends BaseActivity {
         data.setValueTextColor(Color.BLACK);
 
 //text
-        ImageSpan imgSpan = new ImageSpan(mActivity, BitmapLess.$drawableColor(mActivity,R.drawable.rectangle_square10_gray,Color.parseColor("#942328")));
-        ImageSpan two = new ImageSpan(mActivity, BitmapLess.$drawableColor(mActivity,R.drawable.rectangle_square10_gray,Color.parseColor("#3182c4")));
+        ImageSpan two = new ImageSpan(mActivity, BitmapLess.$drawableColor(mActivity,R.drawable.rectangle_square10_gray,Color.parseColor("#942328")));
+        ImageSpan imgSpan = new ImageSpan(mActivity, BitmapLess.$drawableColor(mActivity,R.drawable.rectangle_square10_gray,Color.parseColor("#3182c4")));
         SpannableStringBuilder sb=new SpannableStringBuilder();
         SpannableString sb_one = new SpannableString("0 我的成绩");
         SpannableString sb_two = new SpannableString("0 班级平均成绩");
-        TextToolSpan.$spannableStringColor(sb_one,Color.parseColor("#942328"));
-        TextToolSpan.$spannableStringColor(sb_two,Color.parseColor("#3182c4"));
+        TextToolSpan.$spannableStringColor(sb_two,Color.parseColor("#942328"));
+        TextToolSpan.$spannableStringColor(sb_one,Color.parseColor("#3182c4"));
 
         sb_one.setSpan(imgSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         sb_two.setSpan(two, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

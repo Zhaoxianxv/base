@@ -2,14 +2,19 @@ package com.yfy.final_tag.stringtool;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
+import android.widget.TextView;
 
 import com.yfy.base.R;
+import com.yfy.final_tag.data.ColorRgbUtil;
+import com.yfy.final_tag.glide.BitmapLess;
+import com.yfy.final_tag.glide.DrawableLess;
 
 
 public class TextToolSpan {
@@ -23,8 +28,6 @@ public class TextToolSpan {
     }
     public static SpannableString stringToByteArrayGetString(Context context){
         SpannableString spannableString = new SpannableString("");
-
-
         ImageSpan imgSpan = new ImageSpan(context, R.drawable.radius_oval_gray);
         ImageSpan two = new ImageSpan(context, R.drawable.radius_oval_gray);
         SpannableStringBuilder sb=new SpannableStringBuilder();
@@ -39,5 +42,19 @@ public class TextToolSpan {
     //修改字体颜色
     public static void  $spannableStringColor(SpannableString spannableString, int color){
         spannableString.setSpan(new ForegroundColorSpan(color), 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
+    //添加一个图片
+    public static void  $spannableAddIconColor(Context context, TextView textView,String string, int resourceId, int color){
+        SpannableString sb = new SpannableString(string);
+
+        sb.setSpan(new ForegroundColorSpan(color), 0, sb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        Drawable drawable=DrawableLess.$tint(context.getResources().getDrawable(resourceId),color);
+
+        drawable.setBounds(0, 0, textView.getLineHeight(),textView.getLineHeight());//让图片与文字对齐
+
+        ImageSpan imgSpan = new ImageSpan(drawable);
+
+        sb.setSpan(imgSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(sb);
     }
 }

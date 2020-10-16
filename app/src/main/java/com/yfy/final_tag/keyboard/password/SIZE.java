@@ -1,4 +1,4 @@
-package com.yfy.final_tag.keyboard;
+package com.yfy.final_tag.keyboard.password;
 
 public class SIZE {
 

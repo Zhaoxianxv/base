@@ -1,19 +1,12 @@
 package com.yfy.app.PEquality.tea;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.CardView;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.EditText;
 
-import com.yfy.app.album.AlbumOneActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
@@ -32,21 +25,13 @@ import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWMatchListView;
-import com.yfy.final_tag.glide.FileCamera;
-import com.yfy.final_tag.glide.Photo;
-import com.yfy.final_tag.glide.ZoomImage;
-import com.yfy.final_tag.permission.PermissionFail;
-import com.yfy.final_tag.permission.PermissionGen;
-import com.yfy.final_tag.permission.PermissionSuccess;
 import com.yfy.final_tag.stringtool.Logger;
-import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
@@ -67,10 +52,12 @@ public class PETeaAddScoreActivity extends BaseActivity {
     View line;
 
     @Bind(R.id.p_e_tea_add_score_forward)
-    Button forward;
+    CardView forward;
     @Bind(R.id.p_e_tea_add_score_next)
-    Button next;
+    CardView next;
 
+    @Bind(R.id.p_e_tea_add_score_edit_content)
+    EditText score_edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +72,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
         getData();
 
 
-//        refreshButton();
+        refreshButton();
 
     }
 
@@ -99,7 +86,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
         initSQToolbar(title);
         stu_name.setText("张三");
         project_name.setText(title);
-        List<String> list=StringUtils.listToStringSplitCharacters("张三,李四,王八,赵一,钱二,孙三,周五,吴六,郑七,米",",");
+        List<String> list=StringUtils.listToStringSplitCharacters("张三,李四,王八,赵一,钱二,孙三,周五,吴六,郑七,米九,柴静,一,二,lenka",",");
         for (String s:list){
             KeyValue one=new KeyValue(s,Base.user.getHeadPic(),TagFinal.TYPE_ITEM);
             allStu.add(one);
@@ -115,32 +102,39 @@ public class PETeaAddScoreActivity extends BaseActivity {
     private void initSQToolbar(final String title) {
         assert toolbar!=null;
         toolbar.setTitle(title);
-
-
+        toolbar.addMenu(TagFinal.ONE_INT,R.drawable.ic_parent_head,ColorRgbUtil.getWhite());
+        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                String name=stu_name.getText().toString().trim();
+                for (CPWBean bean:scanStateList){
+                    if (bean.getName().equalsIgnoreCase(name)){
+                        bean.setIs_select(true);
+                    }else{
+                        bean.setIs_select(false);
+                    }
+                }
+                CPWMatchListView confirmPopWindow=new CPWMatchListView(mActivity);
+                confirmPopWindow.setAnimationStyle(R.style.pop_window_anim_style);
+                confirmPopWindow.setOnPopClickListener(new CPWMatchListView.OnPopClickListener() {
+                    @Override
+                    public void onClick(String type, CPWBean bean) {
+                        stu_name.setText(bean.getName());
+                    }
+                });
+                confirmPopWindow.showAtBottom(line,scanStateList);
+            }
+        });
     }
 
 
 
     private List<CPWBean> scanStateList=new ArrayList<>();
+
+
     @OnClick(R.id.p_e_tea_add_score_stu_name)
     void setScore(){
-        String name=stu_name.getText().toString().trim();
-        for (CPWBean bean:scanStateList){
-            if (bean.getName().equalsIgnoreCase(name)){
-                bean.setIs_select(true);
-            }else{
-                bean.setIs_select(false);
-            }
-        }
 
-        CPWMatchListView confirmPopWindow=new CPWMatchListView(mActivity);
-        confirmPopWindow.setOnPopClickListenner(new CPWMatchListView.OnPopClickListenner() {
-            @Override
-            public void onClick(String type, CPWBean bean) {
-                stu_name.setText(bean.getName());
-            }
-        });
-        confirmPopWindow.showAtBottom(line,scanStateList);
     }
 
 
@@ -153,7 +147,6 @@ public class PETeaAddScoreActivity extends BaseActivity {
             if (allStu.get(i).getName().equalsIgnoreCase(name))dataIndex=i;
         }
         if (dataIndex==0){
-
         }else{
             stu_name.setText(allStu.get(dataIndex-1).getName());
         }
@@ -177,6 +170,13 @@ public class PETeaAddScoreActivity extends BaseActivity {
     @OnClick(R.id.p_e_tea_add_score_submit)
     void setSubmit(){
         closeKeyWord();
+        String score=score_edit.getText().toString().trim();
+        if (score.equalsIgnoreCase("")){
+            ViewTool.showToastShort(mActivity,StringUtils.stringToGetTextJoint("请输入%1$s分数",title
+            ));
+            return;
+        }
+
         showProgressDialog("");
         forward.postDelayed(new Runnable() {
             @Override
@@ -190,6 +190,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
                     stu_name.setText(allStu.get(dataIndex+1).getName());
                 }
                 refreshButton();
+                dismissProgressDialog();
             }
         },1000);
 
@@ -206,15 +207,18 @@ public class PETeaAddScoreActivity extends BaseActivity {
 
         if (dataIndex==0){
             ViewTool.showToastShort(mActivity,"已经是第一个学生了");
+            forward.setCardBackgroundColor(ColorRgbUtil.getGray());
 //            ViewTool.alterGradientDrawableColor(forward,ColorRgbUtil.getGray());
         }else{
+            forward.setCardBackgroundColor(ColorRgbUtil.getBaseColor());
 //            ViewTool.alterGradientDrawableColor(forward,ColorRgbUtil.getBaseColor());
         }
         if (dataIndex==allStu.size()-1){
+            next.setCardBackgroundColor(ColorRgbUtil.getGray());
             ViewTool.showToastShort(mActivity,"最后一个学生了");
 //            ViewTool.alterGradientDrawableColor(next,ColorRgbUtil.getGray());
         }else{
-
+            next.setCardBackgroundColor(ColorRgbUtil.getBaseColor());
 //            ViewTool.alterGradientDrawableColor(next,ColorRgbUtil.getBaseColor());
         }
     }
