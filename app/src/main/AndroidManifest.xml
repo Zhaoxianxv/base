@@ -140,6 +140,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!--mode-->
+
+        <activity
+            android:name="com.yfy.app.SelectedModeTypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            />
+
         <!--PEquality-->
         <activity
             android:name="com.yfy.app.PEquality.PEScoreMainActivity"
