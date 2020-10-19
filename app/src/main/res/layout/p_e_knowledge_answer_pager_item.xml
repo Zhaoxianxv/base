@@ -63,7 +63,7 @@
                     android:textColor="@color/white"
                     android:padding="@dimen/margin_5dp"
                     android:layout_margin="@dimen/margin_5dp"
-                    android:background="@color/blue"
+                    android:background="#fab067"
 
                     android:text="标准答案：B"/>
 

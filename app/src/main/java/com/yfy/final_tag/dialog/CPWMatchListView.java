@@ -180,7 +180,7 @@ public class CPWMatchListView extends PopupWindow  {
 						viewHolder.name,
 						StringUtils.stringToGetTextJoint("0\t%1$s",bean.getName()),
 						R.drawable.ic_play_arrow_black_24dp,
-						ColorRgbUtil.getBaseColor());
+						ColorRgbUtil.getOrangeRed());
 			}else {
 				if (position%2==0){
 					TextToolSpan.$spannableAddIconColor(
@@ -188,7 +188,7 @@ public class CPWMatchListView extends PopupWindow  {
 							viewHolder.name,
 							StringUtils.stringToGetTextJoint("0\t%1$s",bean.getName()),
 							R.drawable.ic_check_box_black_24dp,
-							ColorRgbUtil.getForestGreen());
+							ColorRgbUtil.getBaseColor());
 				}else{
 					TextToolSpan.$spannableAddIconColor(
 							context,

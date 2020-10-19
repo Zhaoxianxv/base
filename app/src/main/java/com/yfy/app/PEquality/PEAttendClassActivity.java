@@ -93,8 +93,8 @@ public class PEAttendClassActivity extends BaseActivity {
         barChart.getLegend().setEnabled(true);//显示标注说明
         barChart.setDrawBorders(false);//绘制边框4边
 
-        barChart.animateX(1000);
-        barChart.animateY(3000);
+        barChart.animateX(500);
+        barChart.animateY(1500);
 
         XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//x轴位置

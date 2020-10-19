@@ -49,11 +49,9 @@ public class TextToolSpan {
 
         sb.setSpan(new ForegroundColorSpan(color), 0, sb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         Drawable drawable=DrawableLess.$tint(context.getResources().getDrawable(resourceId),color);
-
         drawable.setBounds(0, 0, textView.getLineHeight(),textView.getLineHeight());//让图片与文字对齐
 
         ImageSpan imgSpan = new ImageSpan(drawable);
-
         sb.setSpan(imgSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.setText(sb);
     }

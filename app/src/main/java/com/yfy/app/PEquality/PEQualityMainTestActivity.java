@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.internal.FlowLayout;
@@ -51,6 +52,7 @@ import com.yfy.charting_mp_test.data.RadarEntry;
 import com.yfy.charting_mp_test.interfaces.datasets.IRadarDataSet;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.glide.BitmapLess;
+import com.yfy.final_tag.glide.DrawableLess;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
@@ -487,8 +489,13 @@ public class PEQualityMainTestActivity extends BaseActivity {
         data.setValueTextColor(Color.BLACK);
 
 //text
-        ImageSpan two = new ImageSpan(mActivity, BitmapLess.$drawableColor(mActivity,R.drawable.rectangle_square10_gray,Color.parseColor("#942328")));
-        ImageSpan imgSpan = new ImageSpan(mActivity, BitmapLess.$drawableColor(mActivity,R.drawable.rectangle_square10_gray,Color.parseColor("#3182c4")));
+        Drawable drawable_two=DrawableLess.$tint(mActivity.getResources().getDrawable(R.drawable.rectangle_square10_gray),Color.parseColor("#942328"));
+        Drawable drawable_one=DrawableLess.$tint(mActivity.getResources().getDrawable(R.drawable.rectangle_square10_gray),Color.parseColor("#3182c4"));
+        drawable_two.setBounds(0, 0, chart_sup_reason.getLineHeight(),chart_sup_reason.getLineHeight());//让图片与文字对齐
+        drawable_one.setBounds(0, 0, chart_sup_reason.getLineHeight(),chart_sup_reason.getLineHeight());//让图片与文字对齐
+        ImageSpan two = new ImageSpan(drawable_two);
+        ImageSpan imgSpan = new ImageSpan(drawable_one);
+
         SpannableStringBuilder sb=new SpannableStringBuilder();
         SpannableString sb_one = new SpannableString("0 我的成绩");
         SpannableString sb_two = new SpannableString("0 班级平均成绩");

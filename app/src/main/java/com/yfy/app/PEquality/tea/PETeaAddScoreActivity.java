@@ -86,7 +86,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
         initSQToolbar(title);
         stu_name.setText("张三");
         project_name.setText(title);
-        List<String> list=StringUtils.listToStringSplitCharacters("张三,李四,王八,赵一,钱二,孙三,周五,吴六,郑七,米九,柴静,一,二,lenka",",");
+        List<String> list=StringUtils.listToStringSplitCharacters("张三,李四,王八,赵一,钱二,孙三,周五,吴六,郑七,米九,柴静,一,二,lenka,name,one,two,three",",");
         for (String s:list){
             KeyValue one=new KeyValue(s,Base.user.getHeadPic(),TagFinal.TYPE_ITEM);
             allStu.add(one);
