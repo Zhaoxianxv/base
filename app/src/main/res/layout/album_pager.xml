@@ -10,7 +10,7 @@
         android:id="@+id/show_pic_one_title_bar"
         android:layout_width="match_parent"
         android:layout_marginTop="20dp"
-        app:navigationIcon="@drawable/ic_left_nav"
+        app:navigationIcon="@drawable/ic_arrow_left_nav"
         app:titleTextColor="@color/White"
         app:contentInsetStart="0dp"
         android:layout_height="46dp">

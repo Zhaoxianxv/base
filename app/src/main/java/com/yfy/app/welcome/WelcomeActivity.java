@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.yfy.app.PEquality.PEQualityMainTestActivity;
 import com.yfy.app.PEquality.tea.PETeaMainActivity;
+import com.yfy.app.SelectedModeTypeActivity;
 import com.yfy.app.login.LoginActivity;
 import com.yfy.app.spannable_string.SpannableStringMainActivity;
 import com.yfy.app.welcome.adapter.GuidePagerAdapter;
@@ -114,25 +115,25 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //初始化登录信息
-//                startActivity(new Intent(WelcomeActivity.this,SpannableStringMainActivity.class));
-//                finish();
+                startActivity(new Intent(WelcomeActivity.this,SelectedModeTypeActivity.class));
+                finish();
 //
-                String userID=UserPreferences.getInstance().getUserID();
-                if (StringJudge.isEmpty(userID)){
-                    Base.user = null;
-                }else{
-                    if (StringJudge.isEmpty(GreenDaoManager.getInstance().loadAllUser())){
-                        Base.user = null;
-                    }else{
-                        Base.user =  GreenDaoManager.getInstance().loadAllUser().get(0);
-                    }
-                }
-                if (Base.user==null){
-                    Intent intent=new Intent(WelcomeActivity.this,LoginActivity.class);
-                    startActivityForResult(intent,TagFinal.UI_ADD);
-                }else{
-                    album_select.showAtCenter();
-                }
+//                String userID=UserPreferences.getInstance().getUserID();
+//                if (StringJudge.isEmpty(userID)){
+//                    Base.user = null;
+//                }else{
+//                    if (StringJudge.isEmpty(GreenDaoManager.getInstance().loadAllUser())){
+//                        Base.user = null;
+//                    }else{
+//                        Base.user =  GreenDaoManager.getInstance().loadAllUser().get(0);
+//                    }
+//                }
+//                if (Base.user==null){
+//                    Intent intent=new Intent(WelcomeActivity.this,LoginActivity.class);
+//                    startActivityForResult(intent,TagFinal.UI_ADD);
+//                }else{
+//                    album_select.showAtCenter();
+//                }
             }
         }, 1000);
     }

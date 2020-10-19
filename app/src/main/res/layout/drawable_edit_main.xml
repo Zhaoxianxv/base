@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/drawable_edit_describe"
+                android:layout_gravity="center_vertical" android:layout_marginTop="@dimen/margin_10dp"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/margin_30dp"/>
+            <TableRow
+                android:layout_marginTop="@dimen/margin_10dp">
+                <EditText
+                    android:layout_width="@dimen/margin_100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20dp"
+                    android:textColor="@color/gray_text"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="普通 EditText"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/margin_30dp"/>
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="@dimen/margin_10dp">
+                <EditText
+                    android:layout_width="@dimen/margin_100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20dp"
+                    android:selectAllOnFocus="true"
+
+                    android:hint="hint"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="edit: selectAllOnFocus=true"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/margin_30dp"/>
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="@dimen/margin_10dp">
+                <EditText
+                    android:layout_width="@dimen/margin_100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20dp"
+                    android:selectAllOnFocus="true"
+                    android:inputType="textAutoCorrect"
+                    android:hint="hint"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="inputType = textAutoCorrect"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/margin_30dp"/>
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="@dimen/margin_10dp">
+                <EditText
+                    android:layout_width="@dimen/margin_100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20dp"
+                    android:selectAllOnFocus="true"
+                    android:hint="hint"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="inputType = textAutoCorrect  text系有很多"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/margin_30dp"/>
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="@dimen/margin_10dp">
+                <com.yfy.view.ClearableEditText
+                    android:layout_width="@dimen/margin_100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20dp"
+                    android:selectAllOnFocus="true"
+                    android:hint="hint"
+
+                    android:text="ss"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="ClearableEditText"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/margin_30dp"/>
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="@dimen/margin_10dp">
+                <com.yfy.view.ClearableEditText
+                    android:layout_width="@dimen/margin_100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20dp"
+                    android:selectAllOnFocus="true"
+                    android:hint="hint"
+
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="ClearableEditText"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/margin_30dp"/>
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+</LinearLayout>

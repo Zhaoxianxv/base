@@ -82,7 +82,7 @@ class MultiPictureView : FrameLayout {
 
 
     // 删除图标
-    var deleteDrawableId: Int = R.drawable.image_view_delete
+    var deleteDrawableId: Int = R.drawable.ic_delete_red
 
     // 添加图标
     var addDrawableId: Int = R.drawable.image_view_add

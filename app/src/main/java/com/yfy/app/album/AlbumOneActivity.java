@@ -78,7 +78,7 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		toolbar.setNavigationIcon(R.drawable.ic_left_nav);
+		toolbar.setNavigationIcon(R.drawable.ic_arrow_left_nav);
 		toolbar.setTitle("相册");
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override

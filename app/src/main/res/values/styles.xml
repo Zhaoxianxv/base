@@ -102,5 +102,8 @@
     </style>
 
 
-
+    <!--按钮styly-->
+    <style name="Toggle_style" parent="@android:style/Widget.CompoundButton">
+        <item name="android:button">@drawable/bg_checked_color_greed_gray</item>
+    </style>
 </resources>

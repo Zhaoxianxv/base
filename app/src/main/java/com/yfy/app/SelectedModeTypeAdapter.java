@@ -26,7 +26,7 @@ public class SelectedModeTypeAdapter extends BaseRecyclerAdapter {
     }
 
 
-    SelectedModeTypeAdapter(Activity context) {
+    public SelectedModeTypeAdapter(Activity context) {
         super(context);
         this.dataList = new ArrayList<>();
     }
@@ -73,7 +73,7 @@ public class SelectedModeTypeAdapter extends BaseRecyclerAdapter {
                 @Override
                 public void onClick(View v) {
                     if (modeItem!=null){
-                        modeItem.modeItem(bean.getName());
+                        modeItem.modeItem(bean.getTitle());
                     }
 
                 }

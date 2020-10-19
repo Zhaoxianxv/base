@@ -100,7 +100,6 @@ public class MultPicShowActivity extends BaseActivity {
 //        }else{
 //            toolbar.setTitle("返回");
 //        }
-//        toolbar.setNavigationIcon(R.drawable.ic_left_nav);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

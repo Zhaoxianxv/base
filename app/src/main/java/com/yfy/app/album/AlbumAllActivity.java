@@ -53,7 +53,7 @@ public class AlbumAllActivity extends BaseActivity {
 		Toolbar toolbar=  findViewById(R.id.album_all_title_bar);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		toolbar.setNavigationIcon(R.drawable.ic_left_nav);
+		toolbar.setNavigationIcon(R.drawable.ic_arrow_left_nav);
 		toolbar.setTitle("相册");
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override

@@ -1,13 +1,16 @@
 package com.yfy.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.drawableBg.DrawableBgActivity;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
+import com.yfy.app.spannable_string.SpannableStringMainActivity;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
@@ -65,14 +68,19 @@ public class SelectedModeTypeActivity extends BaseActivity {
                 LinearLayoutManager.HORIZONTAL,
                 1,
                 ColorRgbUtil.getGainsboro()));
-        adapter=new SelectedModeTypeAdapter(this);
+        adapter=new SelectedModeTypeAdapter(mActivity);
         recyclerView.setAdapter(adapter);
         adapter.setModeItem(new SelectedModeTypeAdapter.ModeItem() {
             @Override
             public void modeItem(String name) {
                 switch (name){
                     case "视频":
-
+                        break;
+                    case "drawable":
+                        startActivity(new Intent(mActivity,DrawableBgActivity.class));
+                        break;
+                    case "SpannableStringMainActivity":
+                        startActivity(new Intent(mActivity,SpannableStringMainActivity.class));
                         break;
                         default:
                             break;
@@ -81,9 +89,12 @@ public class SelectedModeTypeActivity extends BaseActivity {
         });
 
     }
-    private List<String> list=StringUtils.listToStringSplitCharacters("视频,一年级2班,一年级3班",",");
+    private List<String> list=new ArrayList<>();
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
+        list.add("视频");
+        list.add("drawable");
+        list.add("SpannableStringMainActivity");
         keyValue_adapter.clear();
         for (String s:list){
             KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);

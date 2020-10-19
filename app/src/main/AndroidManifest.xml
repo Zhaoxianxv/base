@@ -140,6 +140,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 配置edit框 -->
+        <activity
+            android:name="com.yfy.app.drawableBg.widget.EditTextActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="com.yfy.app.drawableBg.widget.ButtomActivity" />
+        <activity android:name="com.yfy.app.drawableBg.widget.ImageViewActivity" />
+        <activity android:name="com.yfy.app.drawableBg.widget.ListViewActivity" />
+        <activity android:name="com.yfy.app.drawableBg.widget.OrthogonActivity" />
+        <activity android:name="com.yfy.app.drawableBg.DrawableBgActivity" />
         <!--mode-->
 
         <activity

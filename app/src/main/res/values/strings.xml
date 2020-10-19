@@ -618,4 +618,15 @@
     <string name="not_edit_code" translatable="false">验证码输入错误</string>
     <string name="title_activity_check_main">CheckMainActivity</string>
 
+
+
+
+
+    <!--drawable /widget-->
+    <string name="drawable_orthogon_describe">corners:圆角/stroke:边线/solid:填充色sssss</string>
+    <string name="drawable_edit_describe">edit:inputType \t date:时间输入 \t numbar：numberPassword:
+    numberSigned:numberDecimal:phone </string>
+    <string name="drawable_buttom_describe">buttom:</string>
+    <string name="drawer_open">drawer_open</string>
+    <string name="drawer_close">drawer_close</string>
 </resources>

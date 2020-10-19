@@ -3,10 +3,7 @@ package com.yfy.final_tag.dialog;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.text.SpannableString;
-import android.text.style.ImageSpan;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +12,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -23,10 +19,8 @@ import android.widget.TextView;
 
 import com.yfy.base.R;
 import com.yfy.final_tag.data.ColorRgbUtil;
-import com.yfy.final_tag.glide.BitmapLess;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.stringtool.TextToolSpan;
-import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -179,7 +173,7 @@ public class CPWMatchListView extends PopupWindow  {
 						context,
 						viewHolder.name,
 						StringUtils.stringToGetTextJoint("0\t%1$s",bean.getName()),
-						R.drawable.ic_play_arrow_black_24dp,
+						R.drawable.ic_arrow_play_right_black_24dp,
 						ColorRgbUtil.getOrangeRed());
 			}else {
 				if (position%2==0){
