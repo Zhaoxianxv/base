@@ -2,12 +2,15 @@ package com.yfy.app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.bean.TermBean;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -18,7 +21,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.stringtool.Logger;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
@@ -55,10 +58,11 @@ public class SelectedClassActivity extends BaseActivity {
         type=getIntent().getStringExtra(Base.type);
     }
 
+    private TextView menu_one;
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
-        toolbar.addMenuText(TagFinal.ONE_INT,"19-20上期");
+        menu_one =toolbar.addMenuText(TagFinal.ONE_INT,"19-20上期");
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -69,6 +73,20 @@ public class SelectedClassActivity extends BaseActivity {
 
     }
 
+    public TermBean select_term;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK){
+            switch (requestCode){
+                case TagFinal.UI_TAG:
+                    select_term=data.getParcelableExtra(Base.data);
+                    menu_one.setText(select_term.getName());
+                    break;
+
+            }
+        }
+    }
 
 
 

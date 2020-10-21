@@ -23,7 +23,7 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.recycerview.EndlessRecyclerOnScrollListener;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.io.IOException;

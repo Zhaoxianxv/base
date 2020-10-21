@@ -20,7 +20,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_20dp"
-                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginStart="@dimen/margin_10dp"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/textsize7"
                 android:text="小结"
@@ -29,7 +29,7 @@
                 android:id="@+id/duty_add_item_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/margin_10dp"
+                android:layout_marginStart="@dimen/margin_10dp"
                 android:gravity="center"
                 android:textSize="@dimen/textsize5"
                 android:paddingTop="@dimen/margin_2dp"
@@ -40,7 +40,7 @@
                 android:text="上传"
                 android:textColor="@color/red"
                 android:background="@drawable/radius3_whitebg_basecolorline"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/margin_3dp"/>
 
             <EditText

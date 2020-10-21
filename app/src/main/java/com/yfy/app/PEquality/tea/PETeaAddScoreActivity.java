@@ -20,8 +20,9 @@ import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
+import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWMatchListView;
@@ -72,11 +73,9 @@ public class PETeaAddScoreActivity extends BaseActivity {
         getData();
 
 
-        refreshButton();
 
     }
 
-    public List<KeyValue> allStu=new ArrayList<>();
     public KeyValue data;
     public String title,type;
     private void getData(){
@@ -84,16 +83,29 @@ public class PETeaAddScoreActivity extends BaseActivity {
         title=getIntent().getStringExtra(Base.title);
         type=getIntent().getStringExtra(Base.type);
         initSQToolbar(title);
-        stu_name.setText("张三");
         project_name.setText(title);
         List<String> list=StringUtils.listToStringSplitCharacters("张三,李四,王八,赵一,钱二,孙三,周五,吴六,郑七,米九,柴静,一,二,lenka,name,one,two,three",",");
-        for (String s:list){
-            KeyValue one=new KeyValue(s,Base.user.getHeadPic(),TagFinal.TYPE_ITEM);
-            allStu.add(one);
 
+        int i=0;
+        for (String s:list){
+//            KeyValue one=new KeyValue(s,Base.user.getHeadPic(),TagFinal.TYPE_ITEM);
             CPWBean bean=new CPWBean();
+            if (i%2==0){
+                bean.setType(TagFinal.TRUE);
+                bean.setValue(String.valueOf(MathTool.getRandomInt(20,80)));
+
+            }else{
+                bean.setType(TagFinal.FALSE);
+                bean.setValue("");
+            }
             bean.setName(s);
             scanStateList.add(bean);
+            if (i==0){
+                forward.setCardBackgroundColor(ColorRgbUtil.getGray());
+                score_edit.setText(bean.getValue());
+                stu_name.setText(bean.getName());
+            }
+            i++;
         }
 
 
@@ -120,6 +132,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
                     @Override
                     public void onClick(String type, CPWBean bean) {
                         stu_name.setText(bean.getName());
+                        score_edit.setText(bean.getValue());
                     }
                 });
                 confirmPopWindow.showAtBottom(line,scanStateList);
@@ -143,12 +156,13 @@ public class PETeaAddScoreActivity extends BaseActivity {
     @OnClick(R.id.p_e_tea_add_score_forward)
     void setForWard(){
         String name=stu_name.getText().toString().trim();
-        for (int i=0;i<allStu.size();i++){
-            if (allStu.get(i).getName().equalsIgnoreCase(name))dataIndex=i;
+        for (int i=0;i<scanStateList.size();i++){
+            if (scanStateList.get(i).getName().equalsIgnoreCase(name))dataIndex=i;
         }
         if (dataIndex==0){
         }else{
-            stu_name.setText(allStu.get(dataIndex-1).getName());
+            stu_name.setText(scanStateList.get(dataIndex-1).getName());
+            score_edit.setText(scanStateList.get(dataIndex-1).getValue());
         }
         refreshButton();
     }
@@ -156,13 +170,14 @@ public class PETeaAddScoreActivity extends BaseActivity {
     @OnClick(R.id.p_e_tea_add_score_next)
     void setNext(){
         String name=stu_name.getText().toString().trim();
-        for (int i=0;i<allStu.size();i++){
-            if (allStu.get(i).getName().equalsIgnoreCase(name))dataIndex=i;
+        for (int i=0;i<scanStateList.size();i++){
+            if (scanStateList.get(i).getName().equalsIgnoreCase(name))dataIndex=i;
         }
-        if (dataIndex==allStu.size()-1){
+        if (dataIndex==scanStateList.size()-1){
 
         }else{
-            stu_name.setText(allStu.get(dataIndex+1).getName());
+            stu_name.setText(scanStateList.get(dataIndex+1).getName());
+            score_edit.setText(scanStateList.get(dataIndex+1).getValue());
         }
         refreshButton();
     }
@@ -182,12 +197,13 @@ public class PETeaAddScoreActivity extends BaseActivity {
             @Override
             public void run() {
                 String name=stu_name.getText().toString().trim();
-                for (int i=0;i<allStu.size();i++){
-                    if (allStu.get(i).getName().equalsIgnoreCase(name))dataIndex=i;
+                for (int i=0;i<scanStateList.size();i++){
+                    if (scanStateList.get(i).getName().equalsIgnoreCase(name))dataIndex=i;
                 }
-                if (dataIndex==allStu.size()-1){
+                if (dataIndex==scanStateList.size()-1){
                 }else{
-                    stu_name.setText(allStu.get(dataIndex+1).getName());
+                    stu_name.setText(scanStateList.get(dataIndex+1).getName());
+                    score_edit.setText(scanStateList.get(dataIndex+1).getValue());
                 }
                 refreshButton();
                 dismissProgressDialog();
@@ -201,8 +217,8 @@ public class PETeaAddScoreActivity extends BaseActivity {
 
     public void refreshButton(){
         String name=stu_name.getText().toString().trim();
-        for (int i=0;i<allStu.size();i++){
-            if (allStu.get(i).getName().equalsIgnoreCase(name))dataIndex=i;
+        for (int i=0;i<scanStateList.size();i++){
+            if (scanStateList.get(i).getName().equalsIgnoreCase(name))dataIndex=i;
         }
 
         if (dataIndex==0){
@@ -213,7 +229,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
             forward.setCardBackgroundColor(ColorRgbUtil.getBaseColor());
 //            ViewTool.alterGradientDrawableColor(forward,ColorRgbUtil.getBaseColor());
         }
-        if (dataIndex==allStu.size()-1){
+        if (dataIndex==scanStateList.size()-1){
             next.setCardBackgroundColor(ColorRgbUtil.getGray());
             ViewTool.showToastShort(mActivity,"最后一个学生了");
 //            ViewTool.alterGradientDrawableColor(next,ColorRgbUtil.getGray());

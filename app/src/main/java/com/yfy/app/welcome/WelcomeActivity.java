@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,7 +20,6 @@ import com.yfy.app.PEquality.PEQualityMainTestActivity;
 import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.SelectedModeTypeActivity;
 import com.yfy.app.login.LoginActivity;
-import com.yfy.app.spannable_string.SpannableStringMainActivity;
 import com.yfy.app.welcome.adapter.GuidePagerAdapter;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItem;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItemAdapter;
@@ -29,13 +27,11 @@ import com.yfy.app.welcome.utils.v4.FragmentPagerItems;
 
 import com.yfy.base.R;
 import com.yfy.db.UserPreferences;
-import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.data.ColorRgbUtil;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.ConfirmAlbumWindow;
 import com.yfy.final_tag.glide.BitmapLess;
 import com.yfy.final_tag.stringtool.StringJudge;
-import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.greendao.tool.GreenDaoManager;
 import com.yfy.jpush.ExampleUtil;
 import com.yfy.jpush.LocalBroadcastManager;
@@ -61,7 +57,8 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        splashBitmap = BitmapLess.$drawableColor(this,R.drawable.rectangle_square10_gray,ColorRgbUtil.getBaseColor());
+//        splashBitmap = BitmapLess.$drawableColor(this,R.mipmap.icon_launcher,ColorRgbUtil.getBaseColor());
+        splashBitmap = BitmapLess.$drawable(this,R.mipmap.icon_launcher);
 //        if (UserPreferences.getInstance().getIsFirstTimeOpen()) {
         if (false) {
             showGuide();//显示引导内容

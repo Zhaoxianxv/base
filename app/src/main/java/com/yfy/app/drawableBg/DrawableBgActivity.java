@@ -84,6 +84,15 @@ public class DrawableBgActivity extends BaseActivity {
                     case "ListViewActivity":
                         startActivity(new Intent(mActivity,ListViewActivity.class));
                         break;
+                    case "TableLayoutActivity":
+                        startActivity(new Intent(mActivity,TableLayoutActivity.class));
+                        break;
+                    case "MaterialMainActivity":
+                        startActivity(new Intent(mActivity,MaterialMainActivity.class));
+                        break;
+                    case "SingleActivity":
+                        startActivity(new Intent(mActivity,SingleActivity.class));
+                        break;
                     default:
                         break;
                 }
@@ -95,6 +104,9 @@ public class DrawableBgActivity extends BaseActivity {
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
         keyValue_adapter.clear();
+        list.add("TableLayoutActivity");
+        list.add("MaterialMainActivity");
+        list.add("SingleActivity");
         for (String s:list){
             KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
             one.setTitle(s);

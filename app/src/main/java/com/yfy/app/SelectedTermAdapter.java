@@ -11,7 +11,7 @@ import com.yfy.app.bean.TermBean;
 import com.yfy.base.R;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 
@@ -67,11 +67,11 @@ public class SelectedTermAdapter extends BaseRecyclerAdapter {
             SelectedTermH selectedTermH = (SelectedTermH) holder;
             selectedTermH.bean=dataList.get(position);
             selectedTermH.name.setText(selectedTermH.bean.getName());
-            if (selectedTermH.bean.getIsnow().equalsIgnoreCase("1")){
-                selectedTermH.name.setTextColor(ColorRgbUtil.getBaseColor());
-            }else{
-                selectedTermH.name.setTextColor(ColorRgbUtil.getGray());
-            }
+//            if (selectedTermH.bean.getIsnow().equalsIgnoreCase("1")){
+//                selectedTermH.name.setTextColor(ColorRgbUtil.getBaseColor());
+//            }else{
+//                selectedTermH.name.setTextColor(ColorRgbUtil.getGray());
+//            }
         }
     }
 

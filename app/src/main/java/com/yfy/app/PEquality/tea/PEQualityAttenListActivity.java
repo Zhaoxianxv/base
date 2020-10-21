@@ -21,7 +21,7 @@ import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.view.SQToolBar;
@@ -91,12 +91,14 @@ public class PEQualityAttenListActivity extends BaseActivity {
 
         String list_content="感冒,走亲访友,发烧";
         List<String> list=StringUtils.listToStringSplitCharacters(list_content,",");
+
         for (String s:list){
             KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
             one.setContent(s);
             one.setTitle("2020.5.21");
             one.setLeft_title("下午第二节课");
             one.setRight("记录人：张丹");
+            one.setRes_image(R.mipmap.home_header_1);
             keyValue_adapter.add(one);
         }
 

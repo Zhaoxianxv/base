@@ -19,7 +19,7 @@ import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
 
@@ -78,7 +78,7 @@ public class SelectStuAdapter extends BaseRecyclerAdapter {
             iHolder.index=position;
             iHolder.user_name.setText(iHolder.bean.getName());
             iHolder.user_score.setText(iHolder.bean.getRight_value());
-            GlideTools.chanCircle(mContext,iHolder.bean.getValue(),iHolder.user_head,R.drawable.ic_parent_head);
+            GlideTools.chanCircle(mContext,R.mipmap.head,iHolder.user_head);
             if (iHolder.bean.isIs_selected()){
                 iHolder.select_state.setVisibility(View.VISIBLE);
             }else{

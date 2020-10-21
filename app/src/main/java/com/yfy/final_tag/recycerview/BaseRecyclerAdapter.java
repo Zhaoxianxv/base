@@ -2,11 +2,16 @@ package com.yfy.final_tag.recycerview;
 
 
 import android.app.Activity;
+import android.content.Context;
+import android.provider.SyncStateContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.yfy.app.welcome.Utils;
 import com.yfy.base.R;
 
 public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<ReViewHolder> {
@@ -14,9 +19,12 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<ReViewHol
     public int loadState = 2;
     public Activity mContext;
 
+
+
     public BaseRecyclerAdapter(Activity context) {
         this.mContext=context;
         inflater=LayoutInflater.from(mContext);
+
     }
 
 
@@ -33,6 +41,17 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<ReViewHol
         bindHolder(reViewHolder,position);
     }
     public abstract void bindHolder(ReViewHolder reViewHolder, int position);
+
+
+
+
+
+
+
+
+
+
+
 
     public class ErrorHolder extends ReViewHolder{
 

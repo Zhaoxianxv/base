@@ -171,7 +171,7 @@ import com.yfy.app.net.seal.SealUserListRes;
 import com.yfy.app.net.vote.VoteGetItemDetailRes;
 import com.yfy.app.net.vote.VoteGetMainListRes;
 import com.yfy.app.net.vote.VoteSubmitRes;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 
 import org.simpleframework.xml.Element;

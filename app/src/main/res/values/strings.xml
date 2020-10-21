@@ -30,7 +30,7 @@
     <string name="xlist_loadmore_bottom_toast" translatable="false">到底了</string>
     <string name="xlist_loadmore_end_toast" translatable="false">没有了</string>
 
-    <string name="app_name" translatable="false">Dome</string>
+    <string name="app_name" translatable="false">体质健康</string>
     <string name="hello_world" translatable="false">Hello world!</string>
 
     <string name="phone_tips" translatable="false">联系方式为预留家长的手机号;如忘记请致电学校查询</string>

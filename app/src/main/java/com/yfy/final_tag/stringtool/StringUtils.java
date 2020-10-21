@@ -7,8 +7,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 
 
-import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.base.Base;
 
 import java.io.File;
 import java.io.IOException;

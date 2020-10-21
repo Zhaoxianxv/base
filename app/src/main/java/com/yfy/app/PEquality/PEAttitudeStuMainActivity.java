@@ -22,7 +22,7 @@ import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
@@ -89,8 +89,8 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
 
 
         setAdapterData(true);
-        attend_txt.setText("请假记录:5条");
-        attitude_txt.setText("学习态度:88分");
+        attend_txt.setText("请假记录");
+        attitude_txt.setText("学习态度");
     }
 
 
@@ -191,7 +191,6 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
             ResBody b=respEnvelope.body;
             if (b.userGetTermListRes !=null){
                 String result=b.userGetTermListRes.result;
-                Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
                     Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));

@@ -10,11 +10,11 @@
         android:layout_height="match_parent"
         >
 
-        <com.yfy.banner.BaseViewPager
+        <com.yfy.final_tag.banner.BaseViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
-        </com.yfy.banner.BaseViewPager>
+        </com.yfy.final_tag.banner.BaseViewPager>
 
         <LinearLayout
             android:id="@+id/layout_viewpager_indicator"

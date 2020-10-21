@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.yfy.app.bean.BaseRes;
+import com.yfy.app.bean.KeyValue;
 import com.yfy.app.bean.TermBean;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
@@ -16,7 +17,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.stringtool.Logger;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
@@ -25,6 +26,7 @@ import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -42,7 +44,8 @@ public class SelectedTermActivity extends BaseActivity {
         setContentView(R.layout.public_recycler_view);
         initRecycler();
         initSQToolbar();
-        getTerm();
+//        getTerm();
+        setAdapterData();
     }
 
 
@@ -76,15 +79,17 @@ public class SelectedTermActivity extends BaseActivity {
 
     }
 
+    public List<TermBean> dataList=new ArrayList<>();
+    public void setAdapterData(){
 
-    public void setAdapterData(List<TermBean> list){
-        if (StringJudge.isEmpty(list)){
-
-
-        }else{
-
+        dataList.clear();
+        List<String> list=StringUtils.listToStringSplitCharacters("19期-上,19期-下,20期-上,20期-下,",",");
+        for (String s:list){
+            TermBean one=new TermBean();
+            one.setName(s);
+            dataList.add(one);
         }
-        adapter.setDataList(list);
+        adapter.setDataList(dataList);
         adapter.setLoadState(TagFinal.LOADING_END);
     }
 
@@ -114,10 +119,10 @@ public class SelectedTermActivity extends BaseActivity {
             ResBody b=respEnvelope.body;
             if (b.userGetTermListRes !=null){
                 String result=b.userGetTermListRes.result;
-                Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
-                   setAdapterData(res.getTerm());
+//                   setAdapterData(res.getTerm());
+                    Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 }else{
                     toastShow("error");
                 }

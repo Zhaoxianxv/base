@@ -13,7 +13,6 @@ import com.yfy.base.R;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.final_tag.stringtool.StringJudge;
-import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.view.multi.MultiPictureView;
 
@@ -69,8 +68,8 @@ public class PEAttendListAdapter extends BaseRecyclerAdapter {
             iHolder.right_state.setText(iHolder.bean.getRight());
             if (StringJudge.isEmpty(iHolder.bean.getListValue())){
                 List<String> list=new ArrayList<>();
-                list.add(Base.user.getHeadPic());
-                list.add(Base.user.getHeadPic());
+                list.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=200590967,3273073279&fm=26&gp=0.jpg");
+                list.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603268993434&di=7c286b802c6604c28ebc8f6c9ce220f6&imgtype=0&src=http%3A%2F%2Fpic1.997788.com%2Fpic_auction%2F00%2F05%2F38%2F28%2Fau5382835.jpg");
                 iHolder.multi.setList(list);
             }else{
                 iHolder.multi.setVisibility(View.VISIBLE);

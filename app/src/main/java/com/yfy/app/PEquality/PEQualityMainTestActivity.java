@@ -1,13 +1,11 @@
 package com.yfy.app.PEquality;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.internal.FlowLayout;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,21 +14,15 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yfy.app.PEquality.adapter.PEQualityMainAdapter;
-import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.bean.TermBean;
-import com.yfy.app.login.LoginActivity;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -43,7 +35,6 @@ import com.yfy.base.RadarUtil;
 import com.yfy.base.XAxisFormatter;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.charting_mp_test.charts.RadarChart;
-import com.yfy.charting_mp_test.components.Legend;
 import com.yfy.charting_mp_test.components.XAxis;
 import com.yfy.charting_mp_test.components.YAxis;
 import com.yfy.charting_mp_test.data.RadarData;
@@ -51,11 +42,10 @@ import com.yfy.charting_mp_test.data.RadarDataSet;
 import com.yfy.charting_mp_test.data.RadarEntry;
 import com.yfy.charting_mp_test.interfaces.datasets.IRadarDataSet;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.glide.BitmapLess;
 import com.yfy.final_tag.glide.DrawableLess;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.data.TagFinal;
@@ -63,7 +53,6 @@ import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
 import com.yfy.final_tag.stringtool.TextToolSpan;
 import com.yfy.view.SQToolBar;
-import com.yfy.view.multi.MultiPictureView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -208,7 +197,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
 
     private void initView(){
         Typeface mTypeface=Typeface.createFromAsset(getAssets(),"OpenSans-Bold.ttf");
-        GlideTools.chanCircle(mActivity, Base.user.getHeadPic(), user_head, R.drawable.ic_parent_head);
+        GlideTools.chanCircle(mActivity, R.mipmap.user_head, user_head);
         user_name.setText(Base.user.getName());
         user_class.setText("三年级二十五班");
         grade_title.setText("优");
@@ -368,7 +357,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
     private Typeface tf;
     private RadarChart mChart;
     private void initChartView(){
-        GlideTools.chanCircle(mActivity, Base.user.getHeadPic(),user_head,R.drawable.ic_parent_head);
+        GlideTools.chanCircle(mActivity, R.mipmap.user_head,user_head);
 
         mChart = (RadarChart) findViewById(R.id.stu_main_pie_test);
 

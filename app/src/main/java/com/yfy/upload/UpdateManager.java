@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.yfy.base.App;
 import com.yfy.base.R;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.FileTools;
 import com.yfy.final_tag.stringtool.Logger;
 

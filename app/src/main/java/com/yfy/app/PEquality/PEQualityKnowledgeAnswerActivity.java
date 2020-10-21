@@ -2,9 +2,7 @@ package com.yfy.app.PEquality;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
-import android.widget.Button;
 
 import com.yfy.app.PEquality.adapter.KnowledgeLibraryPagerAdapter;
 import com.yfy.app.bean.BaseRes;
@@ -24,7 +22,7 @@ import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
