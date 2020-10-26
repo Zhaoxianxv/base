@@ -112,19 +112,20 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //初始化登录信息
-                startActivity(new Intent(WelcomeActivity.this,SelectedModeTypeActivity.class));
-                finish();
-//
-//                String userID=UserPreferences.getInstance().getUserID();
-//                if (StringJudge.isEmpty(userID)){
-//                    Base.user = null;
-//                }else{
-//                    if (StringJudge.isEmpty(GreenDaoManager.getInstance().loadAllUser())){
-//                        Base.user = null;
-//                    }else{
-//                        Base.user =  GreenDaoManager.getInstance().loadAllUser().get(0);
-//                    }
-//                }
+//                startActivity(new Intent(WelcomeActivity.this,SelectedModeTypeActivity.class));
+//                finish();
+
+                String userID=UserPreferences.getInstance().getUserID();
+                if (StringJudge.isEmpty(userID)){
+                    Base.user = null;
+                }else{
+                    if (StringJudge.isEmpty(GreenDaoManager.getInstance().loadAllUser())){
+                        Base.user = null;
+                    }else{
+                        Base.user =  GreenDaoManager.getInstance().loadAllUser().get(0);
+                    }
+                }
+                album_select.showAtCenter();
 //                if (Base.user==null){
 //                    Intent intent=new Intent(WelcomeActivity.this,LoginActivity.class);
 //                    startActivityForResult(intent,TagFinal.UI_ADD);

@@ -8,7 +8,9 @@ import com.yfy.greendao.User;
  * 产量们
  */
 public class Base {
-    public static String DB_NAME="yfydb";
+//    public static String DB_NAME="yfydb";
+    public static String DB_NAME="yfydbone";
+//    public static String DB_NAME="yfydbtea";
 
 
     //app地址

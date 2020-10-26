@@ -14,7 +14,6 @@ import com.yfy.greendao.DaoSession;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.jpush.android.api.JPushInterface;
 
 
 /**
@@ -26,7 +25,6 @@ import cn.jpush.android.api.JPushInterface;
 public class App extends MultiDexApplication {
     private List<Activity> activities = new ArrayList<Activity>();
     private static App app;
-    public static String DB_NAME="name";
     public DaoSession mDaoSession;
     public SQLiteDatabase db;
     public Helper mHelper;
@@ -39,8 +37,8 @@ public class App extends MultiDexApplication {
         setupDatabase();
         app = this;
         initLesscode();
-        JPushInterface.setDebugMode(false); 	// 设置开启日志,发布时请关闭日志
-        JPushInterface.init(this);     		// 初始化 JPush
+//        JPushInterface.setDebugMode(false); 	// 设置开启日志,发布时请关闭日志
+//        JPushInterface.init(this);     		// 初始化 JPush
 
 //        分析工具初始化
 //        LeakCanary.install(this);

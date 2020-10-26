@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.yfy.app.PEquality.adapter.PERecipeAdapter;
@@ -27,6 +28,7 @@ import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.EndlessRecyclerOnScrollListener;
+import com.yfy.video_jcv.JCVideoPlayer;
 import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
@@ -140,9 +142,16 @@ public class PERecipeActivity extends BaseActivity {
 
 
         keyValue_adapter.add(new KeyValue("给我的处方","建议加强体能锻炼这是系统生成，，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字","",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("长跑","其他处方","",TagFinal.TYPE_TXT_LEFT_TITLE));
-        keyValue_adapter.add(new KeyValue("长跑","建议加强体能锻炼","",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("跳高","建议加大腿弹跳能力","",TagFinal.TYPE_ITEM));
+        keyValue_adapter.add(new KeyValue(
+                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603269209118&di=b3b911cc2c6b8e07f7ff9b163a58a641&imgtype=0&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D2404852592%2C1529663443%26fm%3D214%26gp%3D0.jpg",
+                "http://gslb.miaopai.com/stream/ed5HCfnhovu3tyIQAiv60Q__.mp4",
+                "强体能锻炼",
+                TagFinal.TYPE_TXT_LEFT_TITLE));
+        keyValue_adapter.add(new KeyValue(
+                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603269209118&di=b3b911cc2c6b8e07f7ff9b163a58a641&imgtype=0&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D2404852592%2C1529663443%26fm%3D214%26gp%3D0.jpg",
+                "http://gslb.miaopai.com/stream/ed5HCfnhovu3tyIQAiv60Q__.mp4",
+                "短跑锻炼",
+                TagFinal.TYPE_TXT_LEFT_TITLE));
 
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);
@@ -207,5 +216,32 @@ public class PERecipeActivity extends BaseActivity {
     @Override
     public boolean isActivity() {
         return AppLess.isTopActivy(TAG);
+    }
+
+
+
+    //配置video_jvc
+    @Override
+    public void onBackPressed() {
+        if (JCVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        JCVideoPlayer.releaseAllVideos();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

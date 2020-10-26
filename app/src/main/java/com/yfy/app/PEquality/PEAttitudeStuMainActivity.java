@@ -20,6 +20,7 @@ import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
+import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.base.Base;
@@ -49,6 +50,8 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
     AppCompatTextView attitude_txt;
     @Bind(R.id.attitude_card)
     CardView attitude_card;
+    @Bind(R.id.attitude_add_card)
+    CardView attitude_add_card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +106,21 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
     void setAttitude(){
         setAdapterData(true);
     }
+    @OnClick(R.id.attitude_add_txt)
+    void setAddAttitude(){
+        setAdapterData(true,"");
+    }
 
+
+    private void setAdapterData(boolean is,String add){
+
+//            recyclerView.addItemDecoration(divider);
+        attitude_add_card.setVisibility(View.VISIBLE);
+        attitude_card.setVisibility(View.GONE);
+        attend_card.setVisibility(View.GONE);
+        recyclerView.setAdapter(adapter_attitude);
+        setAddAttitudeData();
+    }
 
     private void setAdapterData(boolean is){
 
@@ -112,11 +129,13 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
 //            recyclerView.addItemDecoration(divider);
             attitude_card.setVisibility(View.VISIBLE);
             attend_card.setVisibility(View.GONE);
+            attitude_add_card.setVisibility(View.GONE);
             recyclerView.setAdapter(adapter_attitude);
             setAttitudeData();
         }else{
 //            recyclerView.removeItemDecoration(divider);
             attitude_card.setVisibility(View.GONE);
+            attitude_add_card.setVisibility(View.GONE);
             attend_card.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(adapter_attend);
             setAttendData();
@@ -124,6 +143,9 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
     }
     private void setAttitudeData(){
         keyValue_adapter.clear();
+
+
+
 
         KeyValue two=new KeyValue("","",TagFinal.TYPE_ITEM);
         KeyValue one=new KeyValue("","",TagFinal.TYPE_ITEM);
@@ -140,6 +162,30 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
         keyValue_adapter.add(one);
         keyValue_adapter.add(two);
         keyValue_adapter.add(one);
+
+
+
+        adapter_attitude.setDataList(keyValue_adapter);
+        adapter_attitude.setLoadState(TagFinal.LOADING_END);
+
+
+    }
+    private void setAddAttitudeData(){
+        keyValue_adapter.clear();
+
+
+
+        String list_content="组织能力优异,短跑能力优异,乒乓表现优异";
+        List<String> list=StringUtils.listToStringSplitCharacters(list_content,",");
+        for (String s:list){
+            KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
+            one.setContent(s);
+            one.setTitle("2020.5.21·下午第二节课");
+
+            one.setLeft_title(StringUtils.stringToGetTextJoint("+%1$s分",String.valueOf(MathTool.getRandomInt(1,5))));
+            one.setRight("记录人：张丹");
+            keyValue_adapter.add(one);
+        }
 
 
 

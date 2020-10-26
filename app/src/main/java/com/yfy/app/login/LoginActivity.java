@@ -48,7 +48,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import cn.jpush.android.api.JPushInterface;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -272,7 +271,8 @@ public class LoginActivity extends BaseActivity {
 	}
 	private void login_(String token) {
 		//登陆时传的Constants.APP_ID：
-		String apikey=JPushInterface.getRegistrationID(mActivity);
+//		String apikey=JPushInterface.getRegistrationID(mActivity);
+		String apikey="";
 		if(apikey==null){
 			apikey="";
 		}

@@ -95,7 +95,6 @@ public class PEQualityMainTestActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.p_e_quality_stu_main_test);
         initSQToolbar();
-        if (Base.user==null)return;
         initView();
         initChartView();
         setData();
@@ -198,7 +197,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
     private void initView(){
         Typeface mTypeface=Typeface.createFromAsset(getAssets(),"OpenSans-Bold.ttf");
         GlideTools.chanCircle(mActivity, R.mipmap.user_head, user_head);
-        user_name.setText(Base.user.getName());
+        user_name.setText("张三");
         user_class.setText("三年级二十五班");
         grade_title.setText("优");
         grade_sub.setText("95.5");
@@ -298,7 +297,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
                         intent.putExtra(Base.content,"苦瓜、桑叶、洋葱、香菇、柚子、可降低血糖，是糖尿病人最理想食物，如能长期食用，则降血糖和预防并发症的效果会更好。");
                         startActivity(intent);
                         break;
-                    case "课堂表现":
+                    case "我的健康":
                         intent=new Intent(mActivity,PEAttendClassActivity.class);
                         intent.putExtra(Base.title,bean.getName());
                         startActivity(intent);
@@ -306,7 +305,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
                 }
             }
         });
-        List<String> list=StringUtils.listToStringSplitCharacters("荣誉比赛,课堂表现,膳食建议",",");
+        List<String> list=StringUtils.listToStringSplitCharacters("荣誉比赛,我的健康,膳食建议",",");
         for (String s:list){
             KeyValue keyValue;
             switch (s){

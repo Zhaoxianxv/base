@@ -109,7 +109,7 @@ public class SelectStuActivity extends BaseActivity {
         keyValue_adapter.clear();
         List<String> list=StringUtils.listToStringSplitCharacters("张三,李四,王五",",");
         for (String s:list){
-            KeyValue one=new KeyValue(s,Base.user.getHeadPic(),TagFinal.TYPE_ITEM);
+            KeyValue one=new KeyValue(s,"",TagFinal.TYPE_ITEM);
             one.setType(type);
             switch (type){
                 case "运动技能":

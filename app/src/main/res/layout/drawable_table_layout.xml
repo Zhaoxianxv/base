@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/margin_10dp"
     android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
@@ -12,7 +13,8 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:shrinkColumns="0,1,2">
+        android:stretchColumns="0,1,2"
+        >
         <TableRow>
             <TextView
                 android:layout_width="match_parent"
@@ -103,27 +105,61 @@
         android:text="拉伸 stretchColumns"/>
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="1,0">
+        android:layout_height="40dp"
+        android:stretchColumns="1,0,2">
+        <TableRow>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_marginRight="1dp"
+                android:background="@drawable/radius_left_top5"
+                android:backgroundTint="@color/white"
+                android:text="1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@color/white"
+                android:text="2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginLeft="1dp"
+                android:background="@drawable/radius_right_top5"
+                android:backgroundTint="@color/white"
+                android:text="3"/>
+        </TableRow>
+
+    </TableLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+       android:layout_marginTop="@dimen/margin_1dp"
+        android:stretchColumns="1,0,2">
 
         <TableRow>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:background="#00ff00"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_marginRight="1dp"
+                android:background="@drawable/radius_left_bottom5"
+                android:backgroundTint="@color/white"
                 android:text="1"/>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:background="#201e5d"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@color/white"
                 android:text="2"/>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:background="#ff0004"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginLeft="1dp"
+                android:background="@drawable/radius_right_bottom5"
                 android:text="3"/>
         </TableRow>
 

@@ -2,7 +2,7 @@ package com.yfy.greendao.tool;
 
 import android.content.Context;
 
-import com.yfy.base.App;
+import com.yfy.base.Base;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.greendao.DaoMaster;
 import com.yfy.greendao.DaoSession;
@@ -17,7 +17,7 @@ public class Helper extends DaoMaster.OpenHelper {
 
 
     public Helper(Context context){
-        super(context,App.DB_NAME,null);
+        super(context,Base.DB_NAME,null);
     }
 
 
@@ -41,7 +41,7 @@ public class Helper extends DaoMaster.OpenHelper {
      */
     public static DaoMaster getDaoMaster(Context context) {
         if (daoMaster == null) {
-            DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context, App.DB_NAME, null);
+            DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context, Base.DB_NAME, null);
             daoMaster = new DaoMaster(helper.getWritableDatabase());
         }
         return daoMaster;

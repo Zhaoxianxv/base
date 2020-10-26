@@ -8,6 +8,19 @@ import java.text.DecimalFormat;
  */
 public class MathTool {
 
+// Collections.sort(list, new Comparator<IllGroup>() {
+//            @Override
+//            public int compare(IllGroup p1, IllGroup p2) {
+//                if(p1.getPosition() > p2.getPosition()){
+//                    return 1;//-1从大到小
+//                }
+//                if(p1.getPosition() == p2.getPosition()){
+//                    return 0;
+//                }
+//                return -1;
+//                //可以按User对象的其他属性排序，只要属性支持compareTo方法
+//            }
+//        });
     //Math.sqrt() : 计算平方根
     //Math.cbrt() : 计算立方根
     //Math.pow(a, b) : 计算a的b次方

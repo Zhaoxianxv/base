@@ -19,6 +19,10 @@
     <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
     <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
 
+    <string name="tips_not_wifi">You are currently using the mobile network, the player will continue to consume traffic</string>
+    <string name="tips_not_wifi_confirm">Resume</string>
+    <string name="tips_not_wifi_cancel">Stop play</string>
+    <string name="no_url">No mUrl</string>
 
     <!--xlist-->
     <string name="xlistview_header_hint_normal" translatable="false">下拉刷新</string>
@@ -31,6 +35,8 @@
     <string name="xlist_loadmore_end_toast" translatable="false">没有了</string>
 
     <string name="app_name" translatable="false">体质健康</string>
+    <!--<string name="app_dome_name" translatable="false">DOME</string>-->
+    <string name="app_name_one" translatable="false">体质健康1.1</string>
     <string name="hello_world" translatable="false">Hello world!</string>
 
     <string name="phone_tips" translatable="false">联系方式为预留家长的手机号;如忘记请致电学校查询</string>

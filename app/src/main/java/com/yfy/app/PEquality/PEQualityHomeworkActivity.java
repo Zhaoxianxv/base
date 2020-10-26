@@ -96,11 +96,7 @@ public class PEQualityHomeworkActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
-        keyValue_adapter.add(new KeyValue("总分:","90","",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("长跑作业:","56","",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("短跑作业","67","",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("游泳作业:","78","",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("跳绳:","23","",TagFinal.TYPE_ITEM));
+        keyValue_adapter.add(new KeyValue("总分:","100","",TagFinal.TYPE_ITEM));
 
 
 

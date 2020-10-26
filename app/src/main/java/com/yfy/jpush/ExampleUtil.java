@@ -15,7 +15,6 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cn.jpush.android.api.JPushInterface;
 
 public class ExampleUtil {
     public static final String PREFS_NAME = "JPUSH_EXAMPLE";
@@ -100,20 +99,6 @@ public class ExampleUtil {
         return (info != null && info.isConnected());
     }
 
-//    public static String getImei(Context context, String imei) {
-//        String ret = null;
-//        try {
-//            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-//            ret = telephonyManager.getDeviceId();
-//        } catch (Exception e) {
-//            Logger.e(ExampleUtil.class.getSimpleName(), e.getMessage());
-//        }
-//        if (isReadableASCII(ret)){
-//            return ret;
-//        } else {
-//            return imei;
-//        }
-//    }
 
     private static boolean isReadableASCII(CharSequence string){
         if (TextUtils.isEmpty(string)) return false;
@@ -125,7 +110,5 @@ public class ExampleUtil {
         }
     }
 
-    public static String getDeviceId(Context context) {
-        return JPushInterface.getUdid(context);
-    }
+
 }

@@ -11,13 +11,17 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.video_jcv.JCVideoPlayer;
+import com.yfy.video_jcv.JCVideoPlayerStandard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,8 +71,8 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
 
         }
         if (position == TagFinal.TYPE_TXT_LEFT_TITLE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_txt_left_title, parent, false);
-            return new TxtLeftTitleH(view);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_video_jcv, parent, false);
+            return new VideoJvcH(view);
 
         }
 
@@ -86,10 +90,15 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
             iHolder.title.setText(iHolder.bean.getKey());
             iHolder.title_sub.setText(iHolder.bean.getValue());
         }
-        if (holder instanceof TxtLeftTitleH) {
-            TxtLeftTitleH txtLeftTitleH = (TxtLeftTitleH) holder;
-            txtLeftTitleH.bean=dataList.get(position);
-            txtLeftTitleH.title.setText(txtLeftTitleH.bean.getValue());
+        if (holder instanceof VideoJvcH) {
+            VideoJvcH videoJvcH = (VideoJvcH) holder;
+            videoJvcH.bean=dataList.get(position);
+//            videoJvcH.title.setText(videoJvcH.bean.getValue());
+            videoJvcH.jcVideoPlayer.setUp(videoJvcH.bean.getValue(), JCVideoPlayer.SCREEN_LAYOUT_LIST, videoJvcH.bean.getName()
+
+            );
+            GlideTools.loadImage(mContext, videoJvcH.bean.getKey(), videoJvcH.jcVideoPlayer.thumbImageView);
+
         }
         if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;
@@ -120,14 +129,16 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
         return dataList.size() + 1;
     }
 
-    private class TxtLeftTitleH extends ReViewHolder {
+    private class VideoJvcH extends ReViewHolder {
 
 
         AppCompatTextView title;
+        JCVideoPlayerStandard jcVideoPlayer;
         KeyValue bean;
-        TxtLeftTitleH(View itemView) {
+        VideoJvcH(View itemView) {
             super(itemView);
-            title =  itemView.findViewById(R.id.public_type_txt_left_title);
+            title =  itemView.findViewById(R.id.public_type_video_jvc_name);
+            jcVideoPlayer =  itemView.findViewById(R.id.public_type_video_jvc_play);
         }
     }
 

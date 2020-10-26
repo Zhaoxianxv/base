@@ -18,6 +18,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 
+
+
+
 public class StringUtils {
 
 
@@ -34,6 +37,15 @@ public class StringUtils {
 			return new ArrayList<>();
 		}else{
 			return stringList;
+		}
+	}
+	public static String listToStringSplitCharactersAt0(String content, String tag){
+		if (StringJudge.isEmpty(content)){
+			return "";
+		}else{
+			List<String> list = Arrays.asList(content.split(Pattern.quote(tag)));
+			List<String> stringList=new ArrayList<>(list);
+			return stringList.get(0);
 		}
 	}
 	public static List<String> listToArrays(String[] content){
