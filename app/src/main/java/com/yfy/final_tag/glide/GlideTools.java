@@ -121,6 +121,13 @@ public class GlideTools {
                 .apply(RequestOptions.bitmapTransform(multi))
                 .into(imageView);
     }
+    public static void chanMult(Context mContxt, int url, ImageView imageView){
+        MultiTransformation multi = new MultiTransformation(new CenterCrop(), new RoundedCorners(10));
+        Glide.with(mContxt)
+                .load(url)
+                .apply(RequestOptions.bitmapTransform(multi))
+                .into(imageView);
+    }
     public static void chanMult(Context mContxt, String url, ImageView imageView,int res){
         MultiTransformation multi = new MultiTransformation(new CenterCrop(), new RoundedCorners(10));
         Glide.with(mContxt)

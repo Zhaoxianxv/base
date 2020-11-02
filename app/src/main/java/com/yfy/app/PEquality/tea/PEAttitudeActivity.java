@@ -1,18 +1,13 @@
-package com.yfy.app.PEquality;
+package com.yfy.app.PEquality.tea;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
-import com.yfy.app.PEquality.adapter.PERecipeAdapter;
-import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
+import com.yfy.app.PEquality.adapter.PEQualityAttitudeAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
@@ -28,30 +23,34 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.recycerview.EndlessRecyclerOnScrollListener;
-import com.yfy.video_jcv.JCVideoPlayer;
+import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
+import butterknife.Bind;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class PERecipeActivity extends BaseActivity {
-    private static final String TAG = PERecipeActivity.class.getSimpleName();
+public class PEAttitudeActivity extends BaseActivity {
+    private static final String TAG = PEAttitudeActivity.class.getSimpleName();
 
+    private PEQualityAttitudeAdapter adapter;
+
+    @Bind(R.id.public_recycler_del)
+    Button del_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.swip_recycler_main);
+        setContentView(R.layout.public_recycler_del_view);
         getData();
-        initSQToolbar();
         initRecycler();
+
+        initView();
         setAdapterData();
     }
 
@@ -60,6 +59,7 @@ public class PERecipeActivity extends BaseActivity {
     private void getData(){
         title=getIntent().getStringExtra(Base.title);
         type=getIntent().getStringExtra(Base.type);
+        initSQToolbar();
     }
     private void initSQToolbar() {
         assert toolbar!=null;
@@ -79,87 +79,73 @@ public class PERecipeActivity extends BaseActivity {
     }
 
 
-    public SwipeRefreshLayout swipeRefreshLayout;
+    private void initView(){
+        if (type.equalsIgnoreCase(TagFinal.TRUE)){
+            del_button.setVisibility(View.GONE);
+        }else{
+            del_button.setText("请假记录");
+        }
+
+    }
+
+    @OnClick(R.id.public_recycler_del)
+    void setDel(){
+        Intent intent=new Intent(mActivity,PEAttendListActivity.class);
+        intent.putExtra(Base.title,"请假记录");
+        intent.putExtra(Base.type,TagFinal.FALSE);
+        startActivity(intent);
+    }
+    public List<KeyValue> keyValue_adapter=new ArrayList<>();
     public RecyclerView recyclerView;
-    public PERecipeAdapter adapter;
     public void initRecycler(){
-
         recyclerView =  findViewById(R.id.public_recycler);
-        swipeRefreshLayout =  findViewById(R.id.public_swip);
-        // 设置刷新控件颜色
-        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#4DB6AC"));
-        // 设置下拉刷新
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                // 刷新数据
-                closeSwipeRefresh();
-            }
-        });
-        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
-            @Override
-            public void onLoadMore() {
-                adapter.setLoadState(TagFinal.LOADING);
-                adapter.setLoadState(TagFinal.LOADING_END);
-            }
-        });
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        xlist.setLayoutManager(new GridLayoutManager(this, 1));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //添加分割线
 //        recyclerView.addItemDecoration(new RecycleViewDivider(
 //                mActivity,
 //                LinearLayoutManager.HORIZONTAL,
 //                1,
-//                getResources().getColor(R.color.Gray)));
-        adapter=new PERecipeAdapter(mActivity);
+//                getResources().getColor(R.color.gray)));
+        adapter=new PEQualityAttitudeAdapter(mActivity);
         recyclerView.setAdapter(adapter);
-        adapter.setType(type);
-
     }
 
 
-
-
-
-
-    public void closeSwipeRefresh(){
-        if (swipeRefreshLayout!=null){
-            swipeRefreshLayout.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                }
-            }, 200);
-        }
-    }
-
-    public List<KeyValue> keyValue_adapter=new ArrayList<>();
 
     private void setAdapterData(){
         keyValue_adapter.clear();
 
+        KeyValue two=new KeyValue("","",TagFinal.TYPE_ITEM);
+        KeyValue detail=new KeyValue("本期满分100分，已扣除12分当前88分","",TagFinal.TYPE_DETAIL);
+        KeyValue one=new KeyValue("","",TagFinal.TYPE_ITEM);
+        one.setTitle("2020.5.21·下午第二节课");
+        one.setLeft_title("学生1");
+        one.setContent("旷课");
+        one.setRight("张丹");
+        one.setValue("-6分");
+
+        two.setTitle("2020.5.21·下午第二节课");
+        two.setLeft_title("学生2");
+        two.setContent("组织能力优异");
+        two.setRight("张丹");
+        two.setValue("+3分");
+
+        if (type.equalsIgnoreCase(TagFinal.FALSE))
+        keyValue_adapter.add(detail);
+        keyValue_adapter.add(one);
+        keyValue_adapter.add(one);
+        keyValue_adapter.add(two);
+        keyValue_adapter.add(two);
+        keyValue_adapter.add(one);
 
 
-        keyValue_adapter.add(new KeyValue("给我的处方","建议加强体能锻炼这是系统生成，，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字","",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue(
-                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603269209118&di=b3b911cc2c6b8e07f7ff9b163a58a641&imgtype=0&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D2404852592%2C1529663443%26fm%3D214%26gp%3D0.jpg",
-                "http://gslb.miaopai.com/stream/ed5HCfnhovu3tyIQAiv60Q__.mp4",
-                "强体能锻炼",
-                TagFinal.TYPE_TXT_LEFT_TITLE));
-        keyValue_adapter.add(new KeyValue(
-                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603269209118&di=b3b911cc2c6b8e07f7ff9b163a58a641&imgtype=0&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D2404852592%2C1529663443%26fm%3D214%26gp%3D0.jpg",
-                "http://gslb.miaopai.com/stream/ed5HCfnhovu3tyIQAiv60Q__.mp4",
-                "短跑锻炼",
-                TagFinal.TYPE_TXT_LEFT_TITLE));
 
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);
-    }
 
+
+    }
     /**
      * ----------------------------retrofit-----------------------
      */
@@ -196,7 +182,7 @@ public class PERecipeActivity extends BaseActivity {
 
         }else{
             try {
-                assert response.errorBody() != null;
+                assert response.errorBody()!=null;
                 String s=response.errorBody().string();
                 Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
             } catch (IOException e) {
@@ -220,55 +206,4 @@ public class PERecipeActivity extends BaseActivity {
     public boolean isActivity() {
         return AppLess.isTopActivy(TAG);
     }
-
-
-
-    //配置video_jvc
-    @Override
-    public void onBackPressed() {
-
-        Logger.e("onBackPressed");
-        if (JCVideoPlayer.backPress()) {
-            return;
-        }
-        super.onBackPressed();
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Logger.e("onOptionsItemSelected");
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
-
-    /**
-     * 双击退出函数
-     */
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exitBy2Click();
-        }
-        return false;
-    }
-
-
-    private void exitBy2Click() {
-//        Logger.e(String.valueOf(JCVideoPlayer.backPress()));//不能重复调用
-        if (!JCVideoPlayer.backPress()) {
-            JCVideoPlayer.releaseAllVideos();
-            finish();
-        }
-    }
-
-
 }

@@ -1,7 +1,7 @@
 package com.yfy.final_tag.viewtools;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.VectorDrawable;
 import android.os.Build;
@@ -13,8 +13,6 @@ import android.text.Editable;
 import android.text.Selection;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -45,19 +43,23 @@ public class ViewTool {
 
     public static void alterGradientDrawableStrokeColor(Context context,View view, int color) {
         GradientDrawable one = (GradientDrawable) view.getBackground();
-        one.setStroke(px2dip(context,1),color);
+        one.setStroke(pxPointDp(context,1),color);
     }
 
 
     /**
      * 将px值转换为dip或dp值，保证尺寸大小不变
      * @param pxValue （DisplayMetrics类中属性density）
+     * 控件1dp=2dip
      */
-    public static int px2dip(Context context, float pxValue) {
+    public static int pxPointDp(Context context, float pxValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, pxValue, context.getResources().getDisplayMetrics());
     }
 
-    public static int dip2px(Context context, float dipValue) {
+    public static int dpPointPx(Context context, float dipValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, dipValue, context.getResources().getDisplayMetrics());
+    }
+    public static int dpPointPx(Activity context, float dipValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, dipValue, context.getResources().getDisplayMetrics());
     }
 
@@ -72,6 +74,9 @@ public class ViewTool {
      * ---------------ScreenWidth--------------
      */
     public static int getScreenWidth(Context context){
+        return context.getResources().getDisplayMetrics().widthPixels;
+    }
+    public static int getScreenWidth(Activity context){
         return context.getResources().getDisplayMetrics().widthPixels;
     }
     /**

@@ -84,6 +84,7 @@ public class PETeaStandardListAdapter extends BaseRecyclerAdapter {
 
     private class ItemHolder extends ReViewHolder {
         AppCompatTextView left_title;
+//        AppCompatTextView stu_name;
         AppCompatTextView left_sub;
         AppCompatTextView left_score;
         AppCompatTextView left_weight;
@@ -94,14 +95,13 @@ public class PETeaStandardListAdapter extends BaseRecyclerAdapter {
         KeyValue bean;
         ItemHolder(View itemView) {
             super(itemView);
+//            stu_name =  itemView.findViewById(R.id.p_e_standard_stu_name);
             left_title =  itemView.findViewById(R.id.p_e_standard_title);
             left_sub =  itemView.findViewById(R.id.p_e_standard_value);
             left_weight =  itemView.findViewById(R.id.p_e_standard_score);
             left_score =  itemView.findViewById(R.id.p_e_standard_weight);
-            right_title =  itemView.findViewById(R.id.p_e_standard_end_score_title);
             right_value =  itemView.findViewById(R.id.p_e_standard_end_score_value);
             event_grade =  itemView.findViewById(R.id.p_e_standard_end_event_grade);
-            event_title =  itemView.findViewById(R.id.p_e_standard_end_event_title);
 
         }
     }

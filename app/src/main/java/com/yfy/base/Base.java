@@ -62,6 +62,7 @@ public class Base {
     public static final String title = "title";//
     public static final String content = "content";//
     public static final String image = "image";//
+    public static final String value = "value";//
     public static final String voice = "voice";//
     public static final String count = "count";//
     public static final String can_edit = "can_edit";//

@@ -7,44 +7,73 @@
 
     <com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
 
-    <RelativeLayout
-        android:background="@drawable/radius5_fbg"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="@dimen/margin_8dp"
-        android:layout_marginRight="@dimen/margin_8dp"
-        android:layout_marginBottom="5dp"
-        android:backgroundTint="@color/Gainsboro"
-        android:layout_height="45dp">
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/margin_45dp"
+        android:layout_marginTop="@dimen/margin_45dp">
 
-        <android.support.v7.widget.GridLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:alignmentMode="alignBounds"
-            app:columnCount="3"
-            app:orientation="horizontal"
-            app:rowCount="1"
-            app:useDefaultMargins="false">
+
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <RelativeLayout
-                app:layout_columnSpan="1"
-                app:layout_columnWeight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                >
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_5dp">
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/attitude_txt"
+                <TextView
+                    android:id="@+id/p_e_score_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/margin_20dp"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_3dp"
+                    android:gravity="center_vertical"
+                    android:text="小结"
+                    android:textSize="@dimen/textsize7" />
+
+                <com.yfy.charting_mp.charts.LineChart
+                    android:id="@+id/p_e_score_line_chart"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="扣分"
-                    android:textSize="@dimen/textsize6"
-                    />
+                    android:layout_height="@dimen/margin_200dp"
+                    android:layout_below="@+id/p_e_score_title" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_5dp">
+
+                <com.yfy.charting_mp.charts.BarChart
+                    android:id="@+id/p_e_attend_class_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+
+        android:layout_height="45dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="0,1"
+            >
+            <TableRow>
                 <android.support.v7.widget.CardView
                     android:id="@+id/attitude_card"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/margin_40dp"
                     android:visibility="visible"
                     android:layout_margin="@dimen/margin_3dp"
                     app:cardCornerRadius="@dimen/margin_3dp"
@@ -53,67 +82,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="扣分"
+                        android:text="学习态度"
                         android:textColor="@color/White"
                         android:textSize="@dimen/textsize6"
                         android:textStyle="bold"
                         />
                 </android.support.v7.widget.CardView>
 
-            </RelativeLayout>
-            <RelativeLayout
-                app:layout_columnSpan="1"
-                app:layout_columnWeight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                >
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/attitude_add_txt"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="加分"
-                    android:textSize="@dimen/textsize6"
-                    />
-                <android.support.v7.widget.CardView
-                    android:id="@+id/attitude_add_card"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="visible"
-                    android:layout_margin="@dimen/margin_3dp"
-                    app:cardCornerRadius="@dimen/margin_3dp"
-                    app:cardBackgroundColor="@color/main_red">
-                    <android.support.v7.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="加分"
-                        android:textColor="@color/White"
-                        android:textSize="@dimen/textsize6"
-                        android:textStyle="bold"
-                        />
-                </android.support.v7.widget.CardView>
-
-            </RelativeLayout>
-            <RelativeLayout
-                app:layout_columnSpan="1"
-                app:layout_columnWeight="1"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                >
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/attend_txt"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="请假"
-                    android:textSize="@dimen/textsize6"
-                    />
                 <android.support.v7.widget.CardView
                     android:id="@+id/attend_card"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/margin_40dp"
                     android:visibility="visible"
                     android:layout_margin="@dimen/margin_3dp"
                     app:cardCornerRadius="@dimen/margin_3dp"
@@ -122,23 +101,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="请假"
+                        android:text="请假记录"
                         android:textSize="@dimen/textsize6"
                         android:textColor="@color/White"
                         android:textStyle="bold"
                         />
                 </android.support.v7.widget.CardView>
+            </TableRow>
 
 
-            </RelativeLayout>
-
-        </android.support.v7.widget.GridLayout>
+        </TableLayout>
     </RelativeLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/public_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100dp">
-    </android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>
 

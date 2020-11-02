@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.chart.BarChartActivity;
 import com.yfy.app.drawableBg.DrawableBgActivity;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
@@ -82,6 +83,9 @@ public class SelectedModeTypeActivity extends BaseActivity {
                     case "SpannableStringMainActivity":
                         startActivity(new Intent(mActivity,SpannableStringMainActivity.class));
                         break;
+                    case "BarChartActivity":
+                        startActivity(new Intent(mActivity,BarChartActivity.class));
+                        break;
                         default:
                             break;
                 }
@@ -95,6 +99,7 @@ public class SelectedModeTypeActivity extends BaseActivity {
         list.add("视频");
         list.add("drawable");
         list.add("SpannableStringMainActivity");
+        list.add("BarChartActivity");
         keyValue_adapter.clear();
         for (String s:list){
             KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);

@@ -28,6 +28,11 @@ public class StringUtils {
 	public static byte[] arraysByteToString(String content ){
 		return content.getBytes();
 	}
+	public static String arraysByteToStringAt0(String content){
+		if (StringJudge.isEmpty(content))return "";
+		return content.substring(0,1);
+	}
+
 
 	//---------------------返回List<String>-----------------
 	public static List<String> listToStringSplitCharacters(String content, String tag){

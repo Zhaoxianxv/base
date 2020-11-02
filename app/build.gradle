@@ -41,19 +41,19 @@ android {
 
 
     //多渠道打包（注意数据库之类东西明成冲突）
-    flavorDimensions "version"
-    productFlavors {
-        tea {
-            applicationId "com.yfy.base.tea"
-            versionCode 12
-            versionName "1.2"
-        }
-        one {
-            applicationId "com.yfy.base.one"
-            versionCode 12
-            versionName "1.2"
-        }
-    }
+//    flavorDimensions "version"
+//    productFlavors {
+//        tea {
+//            applicationId "com.yfy.base.tea"
+//            versionCode 13
+//            versionName "1.3"
+//        }
+//        one {
+//            applicationId "com.yfy.base.one"
+//            versionCode 12
+//            versionName "1.2"
+//        }
+//    }
 }
 greendao {
     schemaVersion 2

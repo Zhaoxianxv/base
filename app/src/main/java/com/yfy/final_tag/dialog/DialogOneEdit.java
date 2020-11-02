@@ -42,7 +42,6 @@ public class DialogOneEdit extends AlertDialog implements OnClickListener{
 //        editText.setInputType();
         edit.setWidth(RecyclerView.LayoutParams.MATCH_PARENT);
         edit.setHeight(RecyclerView.LayoutParams.WRAP_CONTENT);
-//        edit.setMinHeight(dip2px(context,150f));
 //        edit.setPadding(15, 0, 15, 0);//会影响布局
         edit.setSingleLine(true);
 //        edit.setBackgroundColor(Color.TRANSPARENT);

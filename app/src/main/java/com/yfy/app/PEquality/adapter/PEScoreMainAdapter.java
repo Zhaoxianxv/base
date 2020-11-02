@@ -53,7 +53,7 @@ public class PEScoreMainAdapter extends BaseRecyclerAdapter {
             return new ItemHolder(inflater.inflate(R.layout.p_e_score_item_layout, parent, false));
         }
         if (position == TagFinal.TYPE_SELECT_GROUP) {
-            return new LineChartH(inflater.inflate(R.layout.p_e_score_year_layout, parent, false));
+            return new LineChartH(inflater.inflate(R.layout.public_type_line_chart, parent, false));
         }
 
         return new ErrorHolder(parent);

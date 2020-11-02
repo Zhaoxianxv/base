@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.yfy.app.PEquality.PEHonorMainActivity;
-import com.yfy.app.PEquality.PEQualityAttitudeActivity;
 import com.yfy.app.PEquality.adapter.PETeaMainAdapter;
 import com.yfy.app.SelectStuActivity;
 import com.yfy.app.SelectedClassActivity;
@@ -120,7 +119,7 @@ public class PETeaMainActivity extends BaseActivity {
                 Intent intent;
                 switch (type){
                     case "学习态度采集":
-                        intent=new Intent(mActivity,PEQualityAttitudeActivity.class  );
+                        intent=new Intent(mActivity,PEAttitudeActivity.class  );
                         intent.putExtra(Base.title,type);
                         intent.putExtra(Base.type,TagFinal.TRUE);
                         mActivity.startActivity(intent);

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/p_e_recipe_layout"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/margin_5dp"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/margin_50dp"
+        android:layout_margin="@dimen/margin_5dp"
+        app:cardCornerRadius="@dimen/margin_5dp"
+        app:cardBackgroundColor="@color/white">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/p_e_recipe_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="体重指数"
+                android:layout_marginLeft="@dimen/margin_5dp"
+                android:layout_marginRight="@dimen/margin_5dp"
+                android:layout_marginTop="@dimen/margin_5dp"
+                android:paddingTop="@dimen/margin_5dp"
+                android:paddingBottom="@dimen/margin_5dp"
+                android:maxLines="1"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="@dimen/textsize5"
+                android:textSize="@dimen/textsize8"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_below="@id/p_e_recipe_title"
+                android:layout_height="0.5dp"
+                android:background="@color/c3_gray"/>
+
+
+
+            <android.support.design.internal.FlowLayout
+                android:id="@+id/public_type_flow_flow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:layout_marginBottom="@dimen/margin_5dp"
+                android:layout_marginLeft="@dimen/margin_5dp"
+                android:layout_marginRight="@dimen/margin_5dp"
+                app:lineSpacing="@dimen/margin_3dp"
+                app:itemSpacing="@dimen/margin_10dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:foregroundGravity="center"
+
+                />
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

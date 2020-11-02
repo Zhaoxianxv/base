@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/margin_10dp"
     android:orientation="vertical">
     <TextView
@@ -195,4 +196,197 @@
             android:background="#ff0004"
             android:text="3"/>
     </TableLayout>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/margin_5dp"
+        android:layout_marginTop="@dimen/margin_1dp"
+        app:cardBackgroundColor="@color/white"
+        >
+
+
+    </android.support.v7.widget.CardView>
+
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_width="match_parent"
+        android:background="@color/dark_gray"
+        android:layout_height="wrap_content">
+
+
+
+        <android.support.v7.widget.GridLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:alignmentMode="alignBounds"
+            app:columnCount="4"
+            android:layout_margin="@dimen/margin_1dp"
+            app:orientation="horizontal"
+            app:useDefaultMargins="false">
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_30dp"
+                app:layout_row="0"
+                app:layout_column="0"
+                app:layout_columnWeight="1"
+                app:layout_columnSpan="1"
+                android:text="项目名称"
+                android:background="@color/WhiteSmoke"
+                android:gravity="center"
+                android:textSize="@dimen/textsize7"/>
+            <android.support.v7.widget.AppCompatTextView
+
+
+                android:text="成绩"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_30dp"
+                app:layout_row="0"
+                app:layout_column="1"
+                app:layout_columnWeight="1"
+                app:layout_columnSpan="1"
+                android:background="@color/WhiteSmoke"
+                android:layout_marginLeft="@dimen/margin_1dp"
+                android:gravity="center"
+                android:textSize="@dimen/textsize7"/>
+            <android.support.v7.widget.AppCompatTextView
+
+                android:text="得分"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_30dp"
+                app:layout_row="0"
+                app:layout_column="2"
+                app:layout_columnWeight="1"
+                app:layout_columnSpan="1"
+                android:gravity="center"
+                android:background="@color/WhiteSmoke"
+                android:layout_marginLeft="@dimen/margin_1dp"
+                android:textSize="@dimen/textsize7"
+                />
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/p_e_standard_title"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_30dp"
+                app:layout_row="1"
+                app:layout_column="0"
+                app:layout_columnWeight="1"
+                app:layout_columnSpan="1"
+                android:text="体重指数"
+                android:background="@color/white"
+                android:gravity="center"
+                android:textSize="@dimen/textsize5"/>
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/p_e_standard_value"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_30dp"
+                app:layout_row="1"
+                app:layout_column="1"
+                app:layout_columnWeight="1"
+                app:layout_columnSpan="1"
+                android:text="18.24310926"
+                android:background="@color/white"
+                android:gravity="center"
+                android:textSize="@dimen/textsize5"
+                />
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/p_e_standard_score"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_30dp"
+                app:layout_row="1"
+                app:layout_column="2"
+                app:layout_columnWeight="1"
+                app:layout_columnSpan="1"
+                android:text="80.00"
+                android:background="@color/white"
+                android:gravity="center"
+                android:textColor="@color/app_base_text_color"
+                android:textSize="@dimen/textsize5"
+                />
+
+
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_30dp"
+                app:layout_row="2"
+                app:layout_column="0"
+                app:layout_columnWeight="1"
+                app:layout_columnSpan="1"
+                android:layout_marginTop="@dimen/margin_1dp"
+                android:text="占比"
+                android:background="@color/WhiteSmoke"
+                android:gravity="center"
+                android:textSize="@dimen/textsize7"
+                />
+
+
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_30dp"
+                app:layout_row="2"
+                app:layout_column="1"
+                app:layout_columnWeight="1"
+                app:layout_columnSpan="1"
+                android:gravity="center"
+                android:text="计入得分"
+                android:background="@color/WhiteSmoke"
+                android:layout_marginTop="@dimen/margin_1dp"
+                android:textSize="@dimen/textsize7"
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/p_e_standard_weight"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_30dp"
+                app:layout_row="3"
+                app:layout_column="0"
+                app:layout_columnWeight="1"
+                app:layout_columnSpan="1"
+                android:background="@color/white"
+                android:text="15%"
+                android:gravity="center"
+                android:textColor="@color/app_base_text_color"
+                android:textSize="@dimen/textsize5"
+                />
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/p_e_standard_end_score_value"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_30dp"
+                app:layout_row="3"
+                app:layout_column="1"
+                app:layout_columnWeight="1"
+                app:layout_columnSpan="1"
+                android:gravity="center"
+                android:background="@color/white"
+                android:text="45.5"
+                android:textSize="@dimen/textsize5"
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/p_e_standard_end_event_grade"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_30dp"
+                app:layout_row="2"
+                app:layout_column="2"
+                app:layout_rowSpan="2"
+                app:layout_columnWeight="1"
+                android:background="@color/white"
+                app:layout_gravity="fill_vertical"
+                android:layout_marginTop="@dimen/margin_1dp"
+                android:gravity="center"
+                android:text="超重"
+                android:textSize="@dimen/textsize5"
+                />
+
+        </android.support.v7.widget.GridLayout>
+
+    </RelativeLayout>
 </LinearLayout>

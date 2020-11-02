@@ -10,13 +10,13 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.yfy.app.PEquality.PEHonorMainActivity;
-import com.yfy.app.PEquality.tea.PEQualityAttenListActivity;
-import com.yfy.app.PEquality.PEQualityAttitudeActivity;
+import com.yfy.app.PEquality.tea.PEAttendListActivity;
 import com.yfy.app.PEquality.PEQualityHomeworkActivity;
 import com.yfy.app.PEquality.PERecipeActivity;
 import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
+import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.base.Base;
@@ -84,6 +84,12 @@ public class SelectStuAdapter extends BaseRecyclerAdapter {
             }else{
                 iHolder.select_state.setVisibility(View.GONE);
             }
+            if(iHolder.bean.getRight_value().equalsIgnoreCase("异常")){
+                iHolder.user_score.setTextColor(ColorRgbUtil.getBaseColor());
+            }
+            if(iHolder.bean.getRight_value().equalsIgnoreCase("正常")){
+                iHolder.user_score.setTextColor(ColorRgbUtil.getForestGreen());
+            }
         }
     }
 
@@ -128,41 +134,19 @@ public class SelectStuAdapter extends BaseRecyclerAdapter {
                             mContext.finish();
                             break;
                         case "请假":
-                            intent=new Intent(mContext,PEQualityAttenListActivity.class);
+                            intent=new Intent(mContext,PEAttendListActivity.class);
                             intent.putExtra(Base.title,type);
                             intent.putExtra(Base.type,TagFinal.TRUE);
                             mContext.startActivity(intent);
                             break;
-                        case "学习态度采集":
-                            intent=new Intent(mContext,PEQualityAttitudeActivity.class);
-                            intent.putExtra(Base.title,type);
-                            intent.putExtra(Base.type,TagFinal.TRUE);
-                            mContext.startActivity(intent);
-                            break;
-//                        case "健康教育知识"://PEQualityKnowledgeActivity
-//                            intent=new Intent(mContext,PEQualityKnowledgeActivity.class);
-//                            intent.putExtra(Base.title,type);
-//                            mContext.startActivity(intent);
-//                            break;
 
-//                        case "体能":
-//                            intent=new Intent(mContext,PEQualityTeaSuggestActivity.class);
-//                            intent.putExtra(Base.title,type);
-//                            intent.putExtra(Base.type,"体能");
-//                            mContext.startActivity(intent);
-//                            break;
                         case "课后作业":
                             intent=new Intent(mContext,PEQualityHomeworkActivity.class);
                             intent.putExtra(Base.title,type);
                             intent.putExtra(Base.type,TagFinal.TRUE);
                             mContext.startActivity(intent);
                             break;
-//                        case "国家体质标准":
-//                            intent=new Intent(mContext,PEQualityStandardListActivity.class);
-//                            intent.putExtra(Base.title,type);
-//                            intent.putExtra(Base.type,TagFinal.TRUE);
-//                            mContext.startActivity(intent);
-//                            break;
+
                         case "膳食建议":
                             intent=new Intent(mContext,PEQualityTeaSuggestActivity.class);
                             intent.putExtra(Base.title,type);

@@ -84,10 +84,8 @@ public class PEQualityStandardListAdapter extends RecyclerView.Adapter<RecyclerV
         AppCompatTextView left_sub;
         AppCompatTextView left_score;
         AppCompatTextView left_weight;
-        AppCompatTextView right_title;
         AppCompatTextView right_value;
         AppCompatTextView event_grade;
-        AppCompatTextView event_title;
         KeyValue bean;
         ItemHolder(View itemView) {
             super(itemView);
@@ -95,10 +93,8 @@ public class PEQualityStandardListAdapter extends RecyclerView.Adapter<RecyclerV
             left_sub =  itemView.findViewById(R.id.p_e_standard_value);
             left_weight =  itemView.findViewById(R.id.p_e_standard_score);
             left_score =  itemView.findViewById(R.id.p_e_standard_weight);
-            right_title =  itemView.findViewById(R.id.p_e_standard_end_score_title);
             right_value =  itemView.findViewById(R.id.p_e_standard_end_score_value);
             event_grade =  itemView.findViewById(R.id.p_e_standard_end_event_grade);
-            event_title =  itemView.findViewById(R.id.p_e_standard_end_event_title);
 
         }
     }

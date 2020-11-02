@@ -23,6 +23,7 @@ import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.bean.TermBean;
+import com.yfy.app.chart.BarChartActivity;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -298,7 +299,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
                         startActivity(intent);
                         break;
                     case "我的健康":
-                        intent=new Intent(mActivity,PEAttendClassActivity.class);
+                        intent=new Intent(mActivity,PEStuHealthActivity.class);
                         intent.putExtra(Base.title,bean.getName());
                         startActivity(intent);
                         break;

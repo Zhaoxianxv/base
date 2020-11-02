@@ -224,7 +224,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         two.setGroup_id(TagFinal.FALSE);
 
         KeyValue three=new KeyValue(TagFinal.TYPE_SELECT_SINGLE);
-        three.setTitle("扣分项目");
+        three.setTitle("项目");
         three.setRight_value("");
         three.setRight_name("");
         three.setRight_key("未选择");

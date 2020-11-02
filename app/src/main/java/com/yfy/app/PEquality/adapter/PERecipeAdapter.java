@@ -2,25 +2,28 @@ package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.internal.FlowLayout;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.video.PlayDirectlyActivity;
 import com.yfy.base.R;
+import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.video_jcv.JCVideoPlayer;
+import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.video_jcv.JCVideoPlayerStandard;
 
 import java.util.ArrayList;
@@ -43,7 +46,6 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
     public void setDataList(List<KeyValue> dataList) {
 
         this.dataList = dataList;
-//        getRandomHeights(dataList);
     }
 
     public PERecipeAdapter(Activity mContext) {
@@ -66,16 +68,11 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
     public ReViewHolder initViewHolder(ViewGroup parent, int position) {
         //进行判断显示类型，来创建返回不同的View
         if (position == TagFinal.TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.p_e_recipe_item_layout, parent, false);
-            return new IHolder(view);
-
+            return new IHolder(inflater.inflate(R.layout.p_e_recipe_item_layout, parent, false));
         }
         if (position == TagFinal.TYPE_TXT_LEFT_TITLE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_video_jcv, parent, false);
-            return new VideoJvcH(view);
-
+            return new VideoJvcH(inflater.inflate(R.layout.p_e_recipe_video, parent, false));
         }
-
         if (position == TagFinal.TYPE_FOOTER) {
             return new FootViewHolder(inflater.inflate(R.layout.recyclerview_refresh_footer, parent, false));
         }
@@ -93,12 +90,7 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
         if (holder instanceof VideoJvcH) {
             VideoJvcH videoJvcH = (VideoJvcH) holder;
             videoJvcH.bean=dataList.get(position);
-//            videoJvcH.title.setText(videoJvcH.bean.getValue());
-            videoJvcH.jcVideoPlayer.setUp(videoJvcH.bean.getValue(), JCVideoPlayer.SCREEN_LAYOUT_LIST, videoJvcH.bean.getName()
-
-            );
-            GlideTools.loadImage(mContext, videoJvcH.bean.getKey(), videoJvcH.jcVideoPlayer.thumbImageView);
-
+            videoJvcH.setFlowLayoutTop(videoJvcH.bean.getCpwBeanArrayList(),position%2);
         }
         if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;
@@ -133,13 +125,50 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
 
 
         AppCompatTextView title;
-        JCVideoPlayerStandard jcVideoPlayer;
+        FlowLayout flow;
         KeyValue bean;
         VideoJvcH(View itemView) {
             super(itemView);
             title =  itemView.findViewById(R.id.public_type_video_jvc_name);
-            jcVideoPlayer =  itemView.findViewById(R.id.public_type_video_jvc_play);
+            flow =  itemView.findViewById(R.id.public_type_flow_flow);
         }
+
+
+        private void setFlowLayoutTop(List<CPWBean> top_jz,int position){
+
+            LayoutInflater mInflater = LayoutInflater.from(mContext);
+            if (flow.getChildCount()!=0){
+                flow.removeAllViews();
+            }
+            for (int i=0;i<=position;i++){
+                RelativeLayout flow_view = (RelativeLayout) mInflater.inflate(R.layout.p_e_recipe_video_item,flow, false);
+                ImageView bg=flow_view.findViewById(R.id.video_play_icon);
+
+                int width=ViewTool.getScreenWidth(mContext)-ViewTool.pxPointDp(mContext,30);
+                Logger.e(String.valueOf(width));
+                RelativeLayout.LayoutParams p= (RelativeLayout.LayoutParams) bg.getLayoutParams();
+                p.width=width/2;
+                flow_view.setLayoutParams(p);
+                GlideTools.chanMult(mContext,R.mipmap.home_header_2,bg);
+                bg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String url="https://www.w3school.com.cn/example/html5/mov_bbb.mp4";
+                        String title="title";
+
+                        JCVideoPlayerStandard.startFullscreen(mContext, JCVideoPlayerStandard.class, url, title);
+
+
+//                        Intent intent=new Intent(mContext,PlayDirectlyActivity.class);
+//                        intent.putExtra(Base.value,"http://gslb.miaopai.com/stream/ed5HCfnhovu3tyIQAiv60Q__.mp4");
+//                        intent.putExtra(Base.title,"video");
+//                        mContext.startActivity(intent);
+                    }
+                });
+                flow.addView(flow_view);
+            }
+        }
+
     }
 
     private class IHolder extends ReViewHolder {

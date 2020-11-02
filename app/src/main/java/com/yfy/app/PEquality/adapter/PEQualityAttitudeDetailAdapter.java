@@ -1,15 +1,12 @@
 package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.yfy.app.PEquality.PEQualityAttitudeDetailActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.TagFinal;

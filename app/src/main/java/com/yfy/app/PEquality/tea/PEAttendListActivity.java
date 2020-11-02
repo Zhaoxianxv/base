@@ -1,10 +1,12 @@
-package com.yfy.app.PEquality;
+package com.yfy.app.PEquality.tea;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
-import com.yfy.app.PEquality.adapter.PEQualityAttitudeDetailAdapter;
+import com.yfy.app.PEquality.adapter.PEAttendListAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
@@ -17,11 +19,12 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
-import com.yfy.final_tag.recycerview.RecycleViewDivider;
+import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,10 +33,10 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class PEQualityAttitudeDetailActivity extends BaseActivity {
-    private static final String TAG = PEQualityAttitudeDetailActivity.class.getSimpleName();
+public class PEAttendListActivity extends BaseActivity {
+    private static final String TAG = PEAttendListActivity.class.getSimpleName();
 
-    private PEQualityAttitudeDetailAdapter adapter;
+    private PEAttendListAdapter adapter;
 
 
     @Override
@@ -43,18 +46,31 @@ public class PEQualityAttitudeDetailActivity extends BaseActivity {
         getData();
         initRecycler();
         initSQToolbar();
-
         setAdapterData();
     }
 
 
-    private String title;
+    private String title,type;
     private void getData(){
         title=getIntent().getStringExtra(Base.title);
+        type=getIntent().getStringExtra(Base.type);
     }
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle(title);
+        if (StringJudge.isEmpty(type))return;
+        if (type.equalsIgnoreCase(TagFinal.FALSE))return;
+        toolbar.addMenuText(TagFinal.ONE_INT,"新增");
+        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+
+                Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
+                intent.putExtra(Base.title,"新增请假");
+                intent.putExtra(Base.type,title);
+                startActivity(intent);
+            }
+        });
 
     }
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
@@ -63,13 +79,8 @@ public class PEQualityAttitudeDetailActivity extends BaseActivity {
         recyclerView =  findViewById(R.id.public_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //添加分割线
-        recyclerView.addItemDecoration(new RecycleViewDivider(
-                mActivity,
-                LinearLayoutManager.HORIZONTAL,
-                1,
-                getResources().getColor(R.color.gray)));
-        adapter=new PEQualityAttitudeDetailAdapter(mActivity);
+
+        adapter=new PEAttendListAdapter(mActivity);
         recyclerView.setAdapter(adapter);
     }
 
@@ -78,13 +89,18 @@ public class PEQualityAttitudeDetailActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
+        String list_content="感冒,走亲访友,发烧";
+        List<String> list=StringUtils.listToStringSplitCharacters(list_content,",");
 
-
-        keyValue_adapter.add(new KeyValue("扣分:","-6","",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("原因:","test","",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("时间:","2020.2.25","",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("节数:","下午·第一节","",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("记录人:","张三","",TagFinal.TYPE_ITEM));
+        for (String s:list){
+            KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
+            one.setContent(s);
+            one.setTitle("2020.5.21");
+            one.setLeft_title("下午第二节课");
+            one.setRight("记录人：张丹");
+            one.setRes_image(R.mipmap.home_header_1);
+            keyValue_adapter.add(one);
+        }
 
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);

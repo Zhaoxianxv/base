@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yfy.app.PEquality.PEHonorMainActivity;
-import com.yfy.app.PEquality.PEQualityAttitudeActivity;
 import com.yfy.app.PEquality.tea.PETeaScoreTypeActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
@@ -85,12 +84,7 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
                     //单/多选
                     Intent intent;
                     switch (bean.getType()){
-                        case "学习态度采集":
-                            intent=new Intent(mContext,PEQualityAttitudeActivity.class  );
-                            intent.putExtra(Base.title,bean.getType());
-                            intent.putExtra(Base.type,TagFinal.TRUE);
-                            mContext.startActivity(intent);
-                            break;
+
                         case "成绩录入":
                             intent=new Intent(mContext,PETeaScoreTypeActivity.class  );
                             intent.putExtra(Base.title,bean.getTitle());

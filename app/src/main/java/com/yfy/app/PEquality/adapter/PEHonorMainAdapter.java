@@ -44,7 +44,6 @@ import com.yfy.final_tag.dialog.CPWListBeanView;
 import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.stringtool.RegexUtils;
 import com.yfy.final_tag.stringtool.StringJudge;
-import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
@@ -186,7 +185,7 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
             mChart=  itemView.findViewById(R.id.public_chart_pie_chart);
 
             //----------重新设置card_View高度--------
-            int width=ViewTool.getScreenWidth(mContext)-ViewTool.dip2px(mContext,20);
+            int width=ViewTool.getScreenWidth(mContext)-ViewTool.dpPointPx(mContext,20);
             RelativeLayout.LayoutParams params= (RelativeLayout.LayoutParams) cardView.getLayoutParams();
 //            params.height=width;
 //            cardView.setLayoutParams(params);

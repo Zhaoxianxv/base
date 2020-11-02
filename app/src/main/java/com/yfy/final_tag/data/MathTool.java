@@ -21,6 +21,30 @@ public class MathTool {
 //                //可以按User对象的其他属性排序，只要属性支持compareTo方法
 //            }
 //        });
+
+
+
+
+    public static boolean isLastRowToFirstColumn(int all_num, int position, int column){
+
+        if (position % column == 0 && (all_num - 1) / column == position / column) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public static boolean isLastRowToLastColumn(int all_num, int position, int column) {
+        if (all_num == 0) return false;
+        if ((all_num-1) == position && all_num % column == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
     //Math.sqrt() : 计算平方根
     //Math.cbrt() : 计算立方根
     //Math.pow(a, b) : 计算a的b次方

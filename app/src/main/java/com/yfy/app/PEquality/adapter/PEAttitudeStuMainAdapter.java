@@ -5,10 +5,9 @@ import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.yfy.app.PEquality.PEQualityAttitudeDetailActivity;
+import com.yfy.app.PEquality.PEAttitudeDetailActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.ColorRgbUtil;
@@ -92,7 +91,7 @@ public class PEAttitudeStuMainAdapter extends BaseRecyclerAdapter {
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(mContext,PEQualityAttitudeDetailActivity.class);
+                    Intent intent=new Intent(mContext,PEAttitudeDetailActivity.class);
                     mContext.startActivity(intent);
                 }
             });

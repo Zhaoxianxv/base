@@ -5,10 +5,9 @@ import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.yfy.app.PEquality.PEQualityAttitudeDetailActivity;
+import com.yfy.app.PEquality.PEAttitudeDetailActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
@@ -70,6 +69,13 @@ public class PEQualityAttitudeAdapter extends BaseRecyclerAdapter {
             iHolder.attitude_tea.setVisibility(View.VISIBLE);
             iHolder.attitude_tea.setText(StringUtils.stringToGetTextJoint("记录人:%1$s",iHolder.bean.getRight()));
             iHolder.attitude_state.setTextColor(ColorRgbUtil.getBaseColor());
+            if (StringUtils.arraysByteToStringAt0(iHolder.bean.getValue()).equalsIgnoreCase("+")){
+                iHolder.attitude_state.setTextColor(ColorRgbUtil.getForestGreen());
+            }else{
+                iHolder.attitude_state.setTextColor(ColorRgbUtil.getBaseColor());
+            }
+
+
         }
         if (holder instanceof DetailH) {
             DetailH detailH = (DetailH) holder;
@@ -105,7 +111,7 @@ public class PEQualityAttitudeAdapter extends BaseRecyclerAdapter {
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(mContext,PEQualityAttitudeDetailActivity.class);
+                    Intent intent=new Intent(mContext,PEAttitudeDetailActivity.class);
                     mContext.startActivity(intent);
                 }
             });

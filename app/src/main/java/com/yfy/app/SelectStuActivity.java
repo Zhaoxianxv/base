@@ -116,7 +116,11 @@ public class SelectStuActivity extends BaseActivity {
                     one.setRight_value("总分：88");
                     break;
                 case "请假":
-                    one.setRight_value("请假次数：8");
+                    if (s.equalsIgnoreCase("李四")){
+                        one.setRight_value("异常");
+                    }else{
+                        one.setRight_value("正常");
+                    }
                     break;
                 case "课后作业":
                     one.setRight_value("总分：88");

@@ -1,4 +1,4 @@
-package com.yfy.app.PEquality;
+package com.yfy.app.chart;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -36,8 +36,8 @@ import butterknife.Bind;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class PEAttendClassActivity extends BaseActivity {
-    private static final String TAG = PEAttendClassActivity.class.getSimpleName();
+public class BarChartActivity extends BaseActivity {
+    private static final String TAG = BarChartActivity.class.getSimpleName();
 
     @Bind(R.id.p_e_attend_class_chart)
     BarChart barChart;
@@ -46,18 +46,16 @@ public class PEAttendClassActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.p_e_attend_class_main);
+        setContentView(R.layout.chart_bar_main);
         getData();
         initSQToolbar();
         initView();
-        attend_title.setText("本学期课堂表现得分：88");
+        attend_title.setText("");
 
     }
 
 
-    private String title;
     private void getData(){
-        title=getIntent().getStringExtra(Base.title);
         values.clear();
 
         String list_content="18-上,18-下,19-上,19-下,20-上";
@@ -73,7 +71,7 @@ public class PEAttendClassActivity extends BaseActivity {
     }
     private void initSQToolbar() {
         assert toolbar!=null;
-        toolbar.setTitle(title);
+        toolbar.setTitle("BarChartActivity");
 
 
     }
