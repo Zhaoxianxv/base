@@ -635,4 +635,9 @@
     <string name="drawable_buttom_describe">buttom:</string>
     <string name="drawer_open">drawer_open</string>
     <string name="drawer_close">drawer_close</string>
+
+    <!--voice-->
+    <string name="str_recorder_normal">按住   说话</string>
+    <string name="str_recorder_recording">松开   结束</string>
+    <string name="str_recorder_want_cancel">滑动手指，取消录音</string>
 </resources>

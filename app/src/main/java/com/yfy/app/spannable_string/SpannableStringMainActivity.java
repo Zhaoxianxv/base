@@ -1,8 +1,13 @@
 package com.yfy.app.spannable_string;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.widget.TextView;
 
 import com.yfy.app.bean.BaseRes;
@@ -12,6 +17,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.data.ColorRgbUtil;
+import com.yfy.final_tag.glide.DrawableLess;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.stringtool.TextToolSpan;
@@ -46,12 +52,25 @@ public class SpannableStringMainActivity extends BaseActivity {
                 R.drawable.rectangle_square10_gray,
                 ColorRgbUtil.getBaseColor()
         );
-        TextToolSpan.$spannableAddIconColor(mActivity,
-                one,
-                StringUtils.stringToGetTextJoint("0%1$s","萨福克速度快"),
-                R.drawable.ic_check_box_outline_blank_black_24dp,
-                ColorRgbUtil.getBaseColor()
-        );
+
+
+        Drawable drawable_two=DrawableLess.$tint(mActivity.getResources().getDrawable(R.drawable.ic_check_box_outline_blank_black_24dp),Color.parseColor("#942328"));
+        Drawable drawable_one=DrawableLess.$tint(mActivity.getResources().getDrawable(R.drawable.ic_check_box_outline_blank_black_24dp),Color.parseColor("#3182c4"));
+        drawable_two.setBounds(0, 0, one.getLineHeight(),one.getLineHeight());//让图片与文字对齐
+        drawable_one.setBounds(0, 0, one.getLineHeight(),one.getLineHeight());//让图片与文字对齐
+        ImageSpan two = new ImageSpan(drawable_two);
+        ImageSpan imgSpan = new ImageSpan(drawable_one);
+
+        SpannableStringBuilder sb=new SpannableStringBuilder();
+        SpannableString sb_one = new SpannableString("0 我的成绩");
+        SpannableString sb_two = new SpannableString("0 班级平均成绩");
+        TextToolSpan.$spannableStringColor(sb_two,Color.parseColor("#942328"));
+        TextToolSpan.$spannableStringColor(sb_one,Color.parseColor("#3182c4"));
+
+        sb_one.setSpan(imgSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb_two.setSpan(two, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb.append(sb_one).append("\t").append(sb_two);
+        one.setText(sb);
 
 
     }

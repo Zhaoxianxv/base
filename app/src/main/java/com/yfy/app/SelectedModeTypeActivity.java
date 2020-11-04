@@ -12,6 +12,7 @@ import com.yfy.app.drawableBg.DrawableBgActivity;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
 import com.yfy.app.spannable_string.SpannableStringMainActivity;
+import com.yfy.app.voice.VoiceMainActivity;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
@@ -76,6 +77,7 @@ public class SelectedModeTypeActivity extends BaseActivity {
             public void modeItem(String name) {
                 switch (name){
                     case "视频":
+                        startActivity(new Intent(mActivity,BarChartActivity.class));
                         break;
                     case "drawable":
                         startActivity(new Intent(mActivity,DrawableBgActivity.class));
@@ -85,6 +87,9 @@ public class SelectedModeTypeActivity extends BaseActivity {
                         break;
                     case "BarChartActivity":
                         startActivity(new Intent(mActivity,BarChartActivity.class));
+                        break;
+                    case "Voice":
+                        startActivity(new Intent(mActivity,VoiceMainActivity.class));
                         break;
                         default:
                             break;
@@ -97,9 +102,11 @@ public class SelectedModeTypeActivity extends BaseActivity {
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
         list.add("视频");
+        list.add("Voice");
         list.add("drawable");
         list.add("SpannableStringMainActivity");
         list.add("BarChartActivity");
+
         keyValue_adapter.clear();
         for (String s:list){
             KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);

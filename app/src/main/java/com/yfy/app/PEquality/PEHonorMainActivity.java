@@ -175,7 +175,7 @@ public class PEHonorMainActivity extends BaseActivity {
         if (resultCode==RESULT_OK){
             switch (requestCode){
                 case TagFinal.UI_ADD:
-                    setAdapterData();
+//                    setAdapterData();
                     break;
             }
         }

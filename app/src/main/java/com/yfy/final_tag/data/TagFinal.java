@@ -76,6 +76,7 @@ public  class TagFinal {
     public static final int PHOTO_ALBUM = 1004;//调用相册
     public static final int NET_WIFI = 1005;//NET_WIFI
     public static final int CALL_PHONE = 1006;//NET_WIFI
+    public static final int VOICE_RECORD = 1007;//NET_WIFI
     public static final int UI_TAG = 1101;//tag
     public static final int UI_CONTENT = 1102;//content
     public static final int UI_REFRESH = 1201;//页面刷新

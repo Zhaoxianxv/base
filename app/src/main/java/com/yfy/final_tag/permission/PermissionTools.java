@@ -59,4 +59,14 @@ public class PermissionTools {
                 .request();
 
     }
+    public static void tryVoice(Activity mActivity){
+        PermissionGen
+                .needPermission(mActivity, TagFinal.VOICE_RECORD,
+                        new String[]{
+                                Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.RECORD_AUDIO,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        });
+
+    }
 }

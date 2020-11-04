@@ -103,7 +103,7 @@
 //
 //
 //
-//	//send msg to MainActivity
+//
 ////	private void processCustomMessage(Context context, Bundle bundle) {
 ////		initBadge(++badge_num);
 ////		if (true) {

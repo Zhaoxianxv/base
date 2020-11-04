@@ -34,8 +34,6 @@ public class PlayDirectlyActivity extends AppCompatActivity {
         Intent intent=getIntent();
         String url=intent.getStringExtra(Base.value);
         String title=intent.getStringExtra(Base.title);
-
-
         JCVideoPlayerStandard.startFullscreen(this, JCVideoPlayerStandard.class, url, title);
 
 
