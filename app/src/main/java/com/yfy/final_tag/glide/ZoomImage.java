@@ -8,6 +8,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.yfy.final_tag.FileTools;
+import com.yfy.final_tag.data.TagFinal;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -120,7 +121,7 @@ public class ZoomImage {
      */
 
     public static String saveImage(String old){
-        String path = Environment.getExternalStorageDirectory().toString() + "/yfy/" +  System.currentTimeMillis() + ".jpg";
+        String path =TagFinal.getAppFile(System.currentTimeMillis() + ".jpg");
         File file = new File(path);
         Bitmap bitMap=getSmallBitmap(old);
         FileOutputStream fos = null;

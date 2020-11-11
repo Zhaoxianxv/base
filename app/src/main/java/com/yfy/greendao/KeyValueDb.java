@@ -7,6 +7,8 @@ import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 
+import androidx.annotation.Nullable;
+
 @Entity
 public class KeyValueDb {
     @NotNull
@@ -32,15 +34,23 @@ public class KeyValueDb {
     @NotNull
     private String image="";//图片
     @NotNull
+    private String time="";
+    @NotNull
+    private String file_path="";
+
+    @NotNull
     private int num=-1;
+    @NotNull
+    private float time_duration=-1;
     @Id
     private Long id;
-    @Generated(hash = 123966101)
+    @Generated(hash = 1526645117)
     public KeyValueDb(@NotNull String type, @NotNull String model_type,
             @NotNull String parent_id, @NotNull String child_id, boolean required,
             int view_type, @NotNull String key_value_id, @NotNull String key,
             @NotNull String value, @NotNull String name, @NotNull String image,
-            int num, Long id) {
+            @NotNull String time, @NotNull String file_path, int num,
+            float time_duration, Long id) {
         this.type = type;
         this.model_type = model_type;
         this.parent_id = parent_id;
@@ -52,7 +62,10 @@ public class KeyValueDb {
         this.value = value;
         this.name = name;
         this.image = image;
+        this.time = time;
+        this.file_path = file_path;
         this.num = num;
+        this.time_duration = time_duration;
         this.id = id;
     }
     @Generated(hash = 980486890)
@@ -135,6 +148,24 @@ public class KeyValueDb {
     }
     public void setId(Long id) {
         this.id = id;
+    }
+    public String getTime() {
+        return this.time;
+    }
+    public void setTime(String time) {
+        this.time = time;
+    }
+    public String getFile_path() {
+        return this.file_path;
+    }
+    public void setFile_path(String file_path) {
+        this.file_path = file_path;
+    }
+    public float getTime_duration() {
+        return this.time_duration;
+    }
+    public void setTime_duration(float time_duration) {
+        this.time_duration = time_duration;
     }
 
 

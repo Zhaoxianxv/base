@@ -103,6 +103,7 @@ public class HonorDetailActivity extends BaseActivity {
         getData();
         dateBean=new DateBean(DateUtils.getCurrentDateName(),DateUtils.getCurrentDateValue());
 
+        Logger.e(dateBean.getName());
         initDialog();
     }
 
@@ -117,9 +118,9 @@ public class HonorDetailActivity extends BaseActivity {
     private boolean is_admin=false;
     private void getData(){
 
-        is_admin=getIntent().getExtras().getBoolean(Base.type);
-        getDetail();
-        initView();
+//        is_admin=getIntent().getExtras().getBoolean(Base.type);
+//        getDetail();
+//        initView();
         initSQtoobar("详情");
 
     }

@@ -62,7 +62,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.p_etea_add_score_main);
+        setContentView(R.layout.p_e_tea_add_score_main);
         dateBean=new DateBean();
         dateBean.setValue_long(System.currentTimeMillis(),true);
         stu=new KeyValue(TagFinal.TYPE_SELECT_STU);

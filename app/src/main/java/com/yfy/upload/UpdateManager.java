@@ -21,6 +21,7 @@ import com.yfy.base.App;
 import com.yfy.base.R;
 import com.yfy.base.Base;
 import com.yfy.final_tag.FileTools;
+import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.stringtool.Logger;
 
 import java.io.File;
@@ -37,7 +38,7 @@ public class  UpdateManager {
 	private Context mContext;
 	private String apkUrl = "";
 	private Dialog downloadDialog;
-	private static final String saveFileName = Environment.getExternalStorageDirectory().toString() + "/yfy/"+ System.currentTimeMillis() + ".apk";
+	private static final String saveFileName =TagFinal.getAppFile( System.currentTimeMillis() + ".apk") ;
 
 	private ProgressBar mProgress;
 	private TextView text;

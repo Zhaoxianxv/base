@@ -137,6 +137,7 @@
         <activity android:name="com.yfy.app.drawableBg.TableLayoutActivity" />
         <activity android:name="com.yfy.app.drawableBg.MaterialMainActivity" />
         <activity android:name="com.yfy.app.drawableBg.SingleActivity" />
+        <activity android:name="com.yfy.app.PEquality.HonorDetailActivity" />
         <!--mode-->
 
         <activity

@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -14,14 +15,17 @@ import android.widget.Toast;
 
 
 import com.yfy.app.voice.recorder.MediaManage;
-import com.yfy.app.voice.unite.CurrentTime;
 import com.yfy.app.voice.view.AudioRecorderButton;
 import com.yfy.base.R;
+import com.yfy.final_tag.DateUtils;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.permission.PermissionFail;
 import com.yfy.final_tag.permission.PermissionGen;
 import com.yfy.final_tag.permission.PermissionSuccess;
 import com.yfy.final_tag.permission.PermissionTools;
+import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.greendao.KeyValueDb;
+import com.yfy.greendao.tool.GreenDaoManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,9 +69,12 @@ public class VoiceMainActivity extends Activity {
 							flag = true;
 						}
 						
-						currentTimeString=CurrentTime.getCurrentTime();
+						currentTimeString=DateUtils.getCurrentTimeDefault();
 						
 						Recorder recorder = new Recorder(seconds, FilePath, currentTimeString);
+
+
+						saveRecorder(recorder);
 						mDatas.add(recorder);
 						mAdapter.notifyDataSetChanged();
 						mListView.setSelection(mDatas.size() - 1);
@@ -82,8 +89,7 @@ public class VoiceMainActivity extends Activity {
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				
 				if (mAnimView != null) {
 					mAnimView.setBackgroundResource(R.drawable.voice_right3);
@@ -110,15 +116,36 @@ public class VoiceMainActivity extends Activity {
 			}
 
 		});
-		
-		
-		
 
-		// TODO
-		
-		
+
+		List<KeyValueDb> db_index=GreenDaoManager.getInstance().getKeyValueDbList("where type = \"voice\"");
+
+		if (StringJudge.isNotEmpty(db_index)) {
+
+			for (KeyValueDb db:db_index){
+				Recorder recorder=new Recorder();
+				recorder.setFilePath(db.getFile_path());
+				recorder.setmCurrentTime(db.getTime());
+				recorder.setTime(db.getTime_duration());//语音时间长度
+				mDatas.add(recorder);
+			}
+		}
+
+		mAdapter.notifyDataSetChanged();
+
 	}
 
+
+
+
+    private void saveRecorder(Recorder recorder){
+        KeyValueDb keyValue=new KeyValueDb();
+        keyValue.setTime(recorder.getmCurrentTime());
+        keyValue.setTime_duration(recorder.getTime() );
+        keyValue.setType("voice");
+        keyValue.setFile_path(recorder.getFilePath());
+        GreenDaoManager.getInstance().saveKeyValueDb(keyValue);
+    }
 	/**
 	 * @author songshi
 	 *

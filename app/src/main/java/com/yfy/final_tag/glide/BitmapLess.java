@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
 import com.yfy.base.R;
+import com.yfy.final_tag.data.TagFinal;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -209,10 +210,9 @@ public final class BitmapLess {
             return null;
         }
 
-        File dir = new File(Environment.getExternalStorageDirectory() + "/" + context.getPackageName() + "/save/");
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
+//        File dir = new File(Environment.getExternalStorageDirectory() + "/" + context.getPackageName() + "/save/");
+        File dir = new File(TagFinal.getAppDir("save"));
+
         File destFile = new File(dir, UUID.randomUUID().toString());
         return $save(bitmap, format, quality, destFile);
     }

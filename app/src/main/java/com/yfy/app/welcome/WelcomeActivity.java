@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
+import com.yfy.app.PEquality.HonorDetailActivity;
 import com.yfy.app.PEquality.PEQualityMainTestActivity;
 import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.SelectedModeTypeActivity;
@@ -26,6 +27,7 @@ import com.yfy.app.welcome.utils.v4.FragmentPagerItemAdapter;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItems;
 
 import com.yfy.base.R;
+import com.yfy.base.activity.BaseActivity;
 import com.yfy.db.UserPreferences;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
@@ -37,7 +39,7 @@ import com.yfy.jpush.ExampleUtil;
 import com.yfy.jpush.LocalBroadcastManager;
 
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends BaseActivity {
 
     ImageView iv_splash;
     ViewPager vp_guide;
@@ -112,20 +114,16 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //初始化登录信息
+//                startActivity(new Intent(WelcomeActivity.this,HonorDetailActivity.class));
                 startActivity(new Intent(WelcomeActivity.this,SelectedModeTypeActivity.class));
                 finish();
 
-//                String userID=UserPreferences.getInstance().getUserID();
-//                if (StringJudge.isEmpty(userID)){
-//                    Base.user = null;
-//                }else{
-//                    if (StringJudge.isEmpty(GreenDaoManager.getInstance().loadAllUser())){
-//                        Base.user = null;
-//                    }else{
-//                        Base.user =  GreenDaoManager.getInstance().loadAllUser().get(0);
-//                    }
-//                }
+
 //                album_select.showAtCenter();
+
+
+
+
 //                if (Base.user==null){
 //                    Intent intent=new Intent(WelcomeActivity.this,LoginActivity.class);
 //                    startActivityForResult(intent,TagFinal.UI_ADD);

@@ -2,7 +2,6 @@ package com.yfy.app.voice.view;
 
 
 import android.content.Context;
-import android.os.Environment;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -14,6 +13,7 @@ import com.yfy.app.voice.recorder.AudioDialogManage;
 import com.yfy.app.voice.recorder.AudioManage;
 import com.yfy.app.voice.recorder.AudioManage.AudioStateListenter;
 import com.yfy.base.R;
+import com.yfy.final_tag.data.TagFinal;
 
 
 /**
@@ -62,8 +62,7 @@ public class AudioRecorderButton extends Button implements AudioStateListenter {
 		
 		audioDialogManage = new AudioDialogManage(getContext());
 
-		String dir = Environment.getExternalStorageDirectory()
-				+ "/VoiceRecorder";
+		String dir = TagFinal.getAppDir("voice");
 		mAudioManage = AudioManage.getInstance(dir);
 		mAudioManage.setOnAudioStateListenter(this);
 
@@ -177,7 +176,6 @@ public class AudioRecorderButton extends Button implements AudioStateListenter {
 				setBackgroundResource(R.drawable.voice_recorder_recordering);
 				setText(R.string.str_recorder_recording);
 				if (isRecordering) {
-					// ����Dialog.recording()
 					audioDialogManage.recording();
 				}
 				break;
@@ -185,7 +183,6 @@ public class AudioRecorderButton extends Button implements AudioStateListenter {
 			case STATE_WANT_TO_CALCEL:
 				setBackgroundResource(R.drawable.voice_recorder_recordering);
 				setText(R.string.str_recorder_want_cancel);
-				// ����Dialog.wantCancel()
 				audioDialogManage.wantToCancel();
 				break;
 			}
@@ -193,7 +190,6 @@ public class AudioRecorderButton extends Button implements AudioStateListenter {
 	}
 
 	/* 
-	 * ʵ�֡�׼����ϡ��ӿ�
 	 * (non-Javadoc)
 	 * @see songshi.voicenotes.recorder.AudioManage.AudioStateListenter#wellPrepared()
 	 */
@@ -203,14 +199,11 @@ public class AudioRecorderButton extends Button implements AudioStateListenter {
 		mHandler.sendEmptyMessage(MSG_AUDIO_PREPARED);
 	}
 	
-	private static final int MSG_AUDIO_PREPARED = 0x110;   //׼����ȫ
-	private static final int MSG_VOICE_CHANGE = 0x111;     //�����ı�
-	private static final int MSG_DIALOG_DIMISS = 0x112;    //���ٶԻ���
+	private static final int MSG_AUDIO_PREPARED = 0x110;
+	private static final int MSG_VOICE_CHANGE = 0x111;
+	private static final int MSG_DIALOG_DIMISS = 0x112;
 	
 	/**
-	 * �������߳����ݣ����ô�����������̸߳���UI
-	 * Handler���������̣߳�UI�̣߳��У��������߳�ͨ��Message���󴫵����ݡ�
-	 * Handler�������̴߳�������(���߳���sedMessage()��������)Message���󣬰���Щ��Ϣ�������̶߳����У�������߳̽��и���UI��
 	 */
 	private Handler mHandler = new Handler() {
 		
@@ -219,7 +212,6 @@ public class AudioRecorderButton extends Button implements AudioStateListenter {
 			case MSG_AUDIO_PREPARED:        //216:mHandler.sendEmptyMessage(MSG_AUDIO_PREPARED);
 				audioDialogManage.showRecorderingDialog();
 				isRecordering = true;
-				//�Ѿ���¼�ƣ�ͬʱ����һ����ȡ���������Ҽ�ʱ���߳�
 				new Thread(mGetVoiceLevelRunnable).start();
 				break;
 
@@ -228,7 +220,7 @@ public class AudioRecorderButton extends Button implements AudioStateListenter {
 						.getVoiceLevel(7));
 				break;
 
-			//������Handler���洦��DIALOG_DIMISS������Ϊ���øöԻ�����ʾһ��ʱ�䣬�ӳٹرգ��������125��
+
 			case MSG_DIALOG_DIMISS:         //125:mHandler.sendEmptyMessageDelayed(MSG_DIALOG_DIMISS, 1300);
 				audioDialogManage.dimissDialog();
 				break;
@@ -236,9 +228,8 @@ public class AudioRecorderButton extends Button implements AudioStateListenter {
 		};
 	};
 	
-	private float mTime;  //��ʼ¼��ʱ����ʱ������reset()���ÿգ�
+	private float mTime;
 	/**
-	 * ��ȡ������С��Runnable
 	 */
 	private Runnable mGetVoiceLevelRunnable = new Runnable() {
 

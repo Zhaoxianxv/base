@@ -176,6 +176,17 @@ public class StringUtils {
 	}
 
 
+	public static boolean booleanToInclude(String content,String include){
+		//返回指定字符在字符串中第一次出现处的索引，如果此字符串中没有这样的字符，则返回 -1。
+//		System.out.print("查找字符 o 第一次出现的位置 :" );
+//		System.out.println(Str.indexOf( 'o' ));
+//		System.out.print("从第14个位置查找字符 o 第一次出现的位置 :" );
+//		System.out.println(Str.indexOf( 'o', 14 ));
+		if (StringJudge.isEmpty(content))return false;
+		int i=content.indexOf(include);
+		return i != -1;
+	}
+
 	/**
 	 * 将子节数转换为Kb
 	 */

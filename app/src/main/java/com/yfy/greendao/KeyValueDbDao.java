@@ -33,8 +33,11 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
         public final static Property Value = new Property(8, String.class, "value", false, "VALUE");
         public final static Property Name = new Property(9, String.class, "name", false, "NAME");
         public final static Property Image = new Property(10, String.class, "image", false, "IMAGE");
-        public final static Property Num = new Property(11, int.class, "num", false, "NUM");
-        public final static Property Id = new Property(12, Long.class, "id", true, "_id");
+        public final static Property Time = new Property(11, String.class, "time", false, "TIME");
+        public final static Property File_path = new Property(12, String.class, "file_path", false, "FILE_PATH");
+        public final static Property Num = new Property(13, int.class, "num", false, "NUM");
+        public final static Property Time_duration = new Property(14, float.class, "time_duration", false, "TIME_DURATION");
+        public final static Property Id = new Property(15, Long.class, "id", true, "_id");
     }
 
 
@@ -61,8 +64,11 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
                 "\"VALUE\" TEXT NOT NULL ," + // 8: value
                 "\"NAME\" TEXT NOT NULL ," + // 9: name
                 "\"IMAGE\" TEXT NOT NULL ," + // 10: image
-                "\"NUM\" INTEGER NOT NULL ," + // 11: num
-                "\"_id\" INTEGER PRIMARY KEY );"); // 12: id
+                "\"TIME\" TEXT NOT NULL ," + // 11: time
+                "\"FILE_PATH\" TEXT NOT NULL ," + // 12: file_path
+                "\"NUM\" INTEGER NOT NULL ," + // 13: num
+                "\"TIME_DURATION\" REAL NOT NULL ," + // 14: time_duration
+                "\"_id\" INTEGER PRIMARY KEY );"); // 15: id
     }
 
     /** Drops the underlying database table. */
@@ -85,11 +91,14 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
         stmt.bindString(9, entity.getValue());
         stmt.bindString(10, entity.getName());
         stmt.bindString(11, entity.getImage());
-        stmt.bindLong(12, entity.getNum());
+        stmt.bindString(12, entity.getTime());
+        stmt.bindString(13, entity.getFile_path());
+        stmt.bindLong(14, entity.getNum());
+        stmt.bindDouble(15, entity.getTime_duration());
  
         Long id = entity.getId();
         if (id != null) {
-            stmt.bindLong(13, id);
+            stmt.bindLong(16, id);
         }
     }
 
@@ -107,17 +116,20 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
         stmt.bindString(9, entity.getValue());
         stmt.bindString(10, entity.getName());
         stmt.bindString(11, entity.getImage());
-        stmt.bindLong(12, entity.getNum());
+        stmt.bindString(12, entity.getTime());
+        stmt.bindString(13, entity.getFile_path());
+        stmt.bindLong(14, entity.getNum());
+        stmt.bindDouble(15, entity.getTime_duration());
  
         Long id = entity.getId();
         if (id != null) {
-            stmt.bindLong(13, id);
+            stmt.bindLong(16, id);
         }
     }
 
     @Override
     public Long readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 12) ? null : cursor.getLong(offset + 12);
+        return cursor.isNull(offset + 15) ? null : cursor.getLong(offset + 15);
     }    
 
     @Override
@@ -134,8 +146,11 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
             cursor.getString(offset + 8), // value
             cursor.getString(offset + 9), // name
             cursor.getString(offset + 10), // image
-            cursor.getInt(offset + 11), // num
-            cursor.isNull(offset + 12) ? null : cursor.getLong(offset + 12) // id
+            cursor.getString(offset + 11), // time
+            cursor.getString(offset + 12), // file_path
+            cursor.getInt(offset + 13), // num
+            cursor.getFloat(offset + 14), // time_duration
+            cursor.isNull(offset + 15) ? null : cursor.getLong(offset + 15) // id
         );
         return entity;
     }
@@ -153,8 +168,11 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
         entity.setValue(cursor.getString(offset + 8));
         entity.setName(cursor.getString(offset + 9));
         entity.setImage(cursor.getString(offset + 10));
-        entity.setNum(cursor.getInt(offset + 11));
-        entity.setId(cursor.isNull(offset + 12) ? null : cursor.getLong(offset + 12));
+        entity.setTime(cursor.getString(offset + 11));
+        entity.setFile_path(cursor.getString(offset + 12));
+        entity.setNum(cursor.getInt(offset + 13));
+        entity.setTime_duration(cursor.getFloat(offset + 14));
+        entity.setId(cursor.isNull(offset + 15) ? null : cursor.getLong(offset + 15));
      }
     
     @Override

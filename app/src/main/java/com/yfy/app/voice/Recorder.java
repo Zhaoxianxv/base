@@ -1,11 +1,14 @@
 package com.yfy.app.voice;
 
 public class Recorder {
-    float time;
-    String filePath;
-    String mCurrentTime;
+    public float time;
+    public String filePath;
+    public String mCurrentTime;
 
-    public Recorder(float time, String filePath ,String currentTime) {
+    public Recorder() {
+    }
+
+    public Recorder(float time, String filePath , String currentTime) {
         super();
         this.time = time;
         this.filePath = filePath;

@@ -31,7 +31,8 @@ public class PhotoChangeTools {
         }else{
             context.sendBroadcast(
                     new Intent(Intent.ACTION_MEDIA_MOUNTED,
-                            Uri.parse("file://" + Environment.getExternalStorageDirectory())));//uri 24
+                            Uri.parse("file://" + Environment.
+                                    getExternalStorageDirectory())));//uri 24
         }
 
     }

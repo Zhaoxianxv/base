@@ -53,7 +53,7 @@ public class CompressUtils {
      * @return
      */
     public static String compressFileSampleLibJpeg(Context context,String filePath) {
-        String path = TagFinal.getAppFile() +  System.currentTimeMillis() + ".jpg";
+        String path = TagFinal.getAppFile( System.currentTimeMillis() + ".jpg") ;
         File saveFile= FileTools.getFile(path);
         Uri uri=Uri.parse(filePath);
         Bitmap bitmap = null;
@@ -128,7 +128,7 @@ public class CompressUtils {
      * @return
      */
     public static File compressFileSample(String filePath) {
-        String path = TagFinal.getAppFile() +  System.currentTimeMillis() + ".jpg";
+        String path = TagFinal.getAppFile(System.currentTimeMillis() + ".jpg");
         File file= FileTools.getFile(path);
         compressSample(filePath, file);
         return file;
@@ -142,7 +142,7 @@ public class CompressUtils {
      * @return
      */
     public static String compressFileStringSample(String filePath) {
-        String path = TagFinal.getAppFile() +  System.currentTimeMillis() + ".jpg";
+        String path = TagFinal.getAppFile(System.currentTimeMillis() + ".jpg")  ;
         File file= FileTools.getFile(path);
         int inSampleSize = 8;//采样率设置
         BitmapFactory.Options options = new BitmapFactory.Options();

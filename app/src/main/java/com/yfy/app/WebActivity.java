@@ -50,6 +50,9 @@ public class WebActivity extends BaseActivity {
 
 
 	@Override
+
+
+
 	public void finish() {
 		if (index!=-1){
 			Intent intent=new Intent();

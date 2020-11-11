@@ -2,6 +2,10 @@ package com.yfy.final_tag.data;
 
 import android.os.Environment;
 
+import com.yfy.final_tag.stringtool.StringUtils;
+
+import java.io.File;
+
 /**
  * Created by yfyandr on 2017/9/12.
  */
@@ -9,8 +13,21 @@ import android.os.Environment;
 public  class TagFinal {
 
 
-    public static String getAppFile(){
-        return Environment.getExternalStorageDirectory().toString() + "/yfy/";
+    public static String getAppDir(){
+        return Environment.getExternalStorageDirectory().toString();
+    }
+    public static String getAppDir(String dir){
+        String dir_path=Environment.getExternalStorageDirectory().toString() + StringUtils.stringToGetTextJoint("/yfy/%1$s/",dir);
+        File file = new File(dir_path);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        return dir_path;
+    }
+
+    public static String getAppFile(String path){
+
+        return Environment.getExternalStorageDirectory().toString() + StringUtils.stringToGetTextJoint("/yfy/%1$s",path);
     }
     /**
      *   int final tag
