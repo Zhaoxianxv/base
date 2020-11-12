@@ -2,6 +2,8 @@ package com.yfy.final_tag.viewtools;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.VectorDrawable;
 import android.os.Build;
@@ -105,5 +107,30 @@ public class ViewTool {
     }
     public static void showToastShort(Context mContext,@StringRes int text) {
         showToastShort(mContext,mContext.getString(text));
+    }
+
+
+    //截取控件生产图片
+    public static Bitmap createImage(Activity activity, View view) {
+
+        //由于直接new出来的view是不会走测量、布局、绘制的方法的，所以需要我们手动去调这些方法，不然生成的图片就是黑色的。
+
+        //View.MeasureSpec.UNSPECIFIED不指定大小
+//        View.MeasureSpec.EXACTLY//屏幕大小
+//        View.MeasureSpec.AT_MOST
+        int measuredWidth = View.MeasureSpec.makeMeasureSpec(view.getMeasuredWidth(), View.MeasureSpec.EXACTLY);
+        int measuredHeight = View.MeasureSpec.makeMeasureSpec(view.getMeasuredHeight(), View.MeasureSpec.AT_MOST);
+        /* 当然，measure完后，并不会实际改变View的尺寸，需要调用View.layout方法去进行布局。
+         * 按示例调用layout函数后，View的大小将会变成你想要设置成的大小。
+         */
+//        view.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        view.measure(View.MeasureSpec.makeMeasureSpec(view.getMeasuredWidth(), View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        view.requestLayout();
+        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_4444);
+
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+        return bitmap;
     }
 }

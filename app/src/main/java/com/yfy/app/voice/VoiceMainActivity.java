@@ -122,6 +122,7 @@ public class VoiceMainActivity extends Activity {
 
 		if (StringJudge.isNotEmpty(db_index)) {
 
+
 			for (KeyValueDb db:db_index){
 				Recorder recorder=new Recorder();
 				recorder.setFilePath(db.getFile_path());
