@@ -246,35 +246,35 @@ public interface InterfaceApi {
     /**
      *----------------------atten-----------------------
      */
-    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTENDANCE_APPLY})
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_APPLY})
     @POST(Base.POST_URI)
     Call<ResEnv> atten_apply(@Body ReqEnv Envelope);
 
-    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTENDANCE_ADMIN_DO})
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_ADMIN_DO})
     @POST(Base.POST_URI)
     Call<ResEnv> atten_admin_set_state(@Body ReqEnv Envelope);
 
-    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTENDANCE_GET_USER_LIST})
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_GET_USER_LIST})
     @POST(Base.POST_URI)
     Call<ResEnv> atten_get_user_list(@Body ReqEnv Envelope);
 
-    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTENDANCE_GET_ADMIN_LIST})
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_GET_ADMIN_LIST})
     @POST(Base.POST_URI)
     Call<ResEnv> atten_get_admin_list(@Body ReqEnv Envelope);
 
-    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTENDANCE_DELETE})
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_DELETE})
     @POST(Base.POST_URI)
     Call<ResEnv> atten_del_item(@Body ReqEnv Envelope);
 
-    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTENDANCE_GET_COUNT})
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_GET_COUNT})
     @POST(Base.POST_URI)
     Call<ResEnv> atten_get_count(@Body ReqEnv Envelope);
 
-    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTENDANCE_GET_TYPE})
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_GET_TYPE})
     @POST(Base.POST_URI)
     Call<ResEnv> atten_get_type(@Body ReqEnv Envelope);
 
-    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTENDANCE_GET_AUDITOR_LIST})
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_GET_AUDITOR_LIST})
     @POST(Base.POST_URI)
     Call<ResEnv> atten_get_auditor_list(@Body ReqEnv Envelope);
 

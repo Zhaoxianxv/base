@@ -11,7 +11,7 @@ import org.simpleframework.xml.Root;
 /**
  * Created by yfyandr on 2018/4/27.
  */
-@Root(name = TagFinal.ATTENDANCE_APPLY, strict = false)
+@Root(name = TagFinal.ATTEND_APPLY, strict = false)
 @Namespace(reference = TagFinal.NAMESPACE)
 @Order(elements = {
         Base.session_key,

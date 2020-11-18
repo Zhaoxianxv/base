@@ -129,12 +129,12 @@ public class PEStuHealthActivity extends BaseActivity {
         keyValue_adapter.add(new KeyValue("cm","135","身高",TagFinal.TYPE_ITEM));
         keyValue_adapter.add(new KeyValue("cm","40","体重",TagFinal.TYPE_ITEM));
         keyValue_adapter.add(new KeyValue("kg/m²","40","BMI",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("","4.0","左眼视力",TagFinal.TYPE_ITEM));
+        keyValue_adapter.add(new KeyValue("","","左眼视力",TagFinal.TYPE_ITEM));
         keyValue_adapter.add(new KeyValue("","4.0","右眼视力",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("","4.0","右眼视力",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("","4.0","右眼视力",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("","4.0","右眼视力",TagFinal.TYPE_ITEM));
-        keyValue_adapter.add(new KeyValue("","4.0","右眼视力",TagFinal.TYPE_ITEM));
+        keyValue_adapter.add(new KeyValue("","良好","心",TagFinal.TYPE_ITEM));
+        keyValue_adapter.add(new KeyValue("","良好","肺",TagFinal.TYPE_ITEM));
+        keyValue_adapter.add(new KeyValue("","良好","肝",TagFinal.TYPE_ITEM));
+        keyValue_adapter.add(new KeyValue("","良好","脾",TagFinal.TYPE_ITEM));
 
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);

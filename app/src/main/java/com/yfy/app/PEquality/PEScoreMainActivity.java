@@ -32,7 +32,8 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 
-public class PEScoreMainActivity extends BaseActivity {
+public class
+PEScoreMainActivity extends BaseActivity {
     private static final String TAG = PEScoreMainActivity.class.getSimpleName();
 
     private PEScoreMainAdapter adapter;
@@ -75,24 +76,40 @@ public class PEScoreMainActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
-        KeyValue three=new KeyValue(TagFinal.TYPE_ITEM);
-        KeyValue two=new KeyValue(TagFinal.TYPE_ITEM);
-        KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
 
+        KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
         one.setTitle("学习态度");
         one.setRight_name("90");
-        one.setRight_value("10%");
-        one.setLeft_title("最终得分：9");
+        one.setRight_value("30%");
+        one.setLeft_title("最终得分：27");
 
+
+        KeyValue two=new KeyValue(TagFinal.TYPE_ITEM);
         two.setTitle("健康教育知识");
         two.setRight_name("90");
-        two.setRight_value("10%");
-        two.setLeft_title("最终得分：9");
+        two.setRight_value("20%");
+        two.setLeft_title("最终得分：18");
 
+        KeyValue three=new KeyValue(TagFinal.TYPE_ITEM);
         three.setTitle("运动技能");
-        three.setRight_name("90");
-        three.setRight_value("10%");
-        three.setLeft_title("最终得分：9");
+        three.setRight_name("95");
+        three.setRight_value("30%");
+        three.setLeft_title("最终得分：28.5");
+
+
+        KeyValue four=new KeyValue(TagFinal.TYPE_ITEM);
+        four.setTitle("体育课后作业");
+        four.setRight_name("100");
+        four.setRight_value("10%");
+        four.setLeft_title("最终得分：10");
+
+        KeyValue f=new KeyValue(TagFinal.TYPE_ITEM);
+        f.setTitle("体能");
+        f.setRight_name("90");
+        f.setRight_value("10%");
+        f.setLeft_title("最终得分：9");
+
+
 
         KeyValue chart=new KeyValue(TagFinal.TYPE_SELECT_GROUP);
         chart.setTitle("各学期分数");
@@ -102,7 +119,8 @@ public class PEScoreMainActivity extends BaseActivity {
         keyValue_adapter.add(one);
         keyValue_adapter.add(two);
         keyValue_adapter.add(three);
-        keyValue_adapter.add(one);
+        keyValue_adapter.add(four);
+        keyValue_adapter.add(f);
 
 
 
@@ -117,7 +135,9 @@ public class PEScoreMainActivity extends BaseActivity {
             switch (requestCode){
                 case TagFinal.UI_ADD:
                     setAdapterData();
+
                     break;
+
             }
         }
     }

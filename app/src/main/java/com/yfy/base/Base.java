@@ -17,6 +17,7 @@ public class Base {
 //    public final static String RETROFIT_URI = "https://www.cdpx.net/";
 //    public static final String SOAP_ACTION = "SOAPAction: http://tempuri.org/Service2/";//
 //    public static final String POST_URI = "/Service2.svc";//
+    //http://192.168.50.232:5000/system/getname?name=sdfsdf
 
     public static final String RETROFIT_URI = "https://www.cdeps.sc.cn/";
     public static final String SOAP_ACTION = "SOAPAction: http://tempuri.org/AppService/";//

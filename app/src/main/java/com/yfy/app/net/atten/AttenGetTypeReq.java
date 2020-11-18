@@ -10,7 +10,7 @@ import org.simpleframework.xml.Root;
 /**
  * Created by yfyandr on 2018/4/27.
  */
-@Root(name = TagFinal.ATTENDANCE_GET_TYPE, strict = false)
+@Root(name = TagFinal.ATTEND_GET_TYPE, strict = false)
 @Namespace(reference = TagFinal.NAMESPACE)
 public class AttenGetTypeReq {
     @Namespace(reference = TagFinal.NAMESPACE)

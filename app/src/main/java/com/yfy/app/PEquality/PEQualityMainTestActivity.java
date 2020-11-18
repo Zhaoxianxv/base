@@ -198,10 +198,10 @@ public class PEQualityMainTestActivity extends BaseActivity {
     private void initView(){
         Typeface mTypeface=Typeface.createFromAsset(getAssets(),"OpenSans-Bold.ttf");
         GlideTools.chanCircle(mActivity, R.mipmap.user_head, user_head);
-        user_name.setText("张三");
-        user_class.setText("三年级二十五班");
+        user_name.setText("李霞");
+        user_class.setText("一年级7班");
         grade_title.setText("优");
-        grade_sub.setText("95.5");
+        grade_sub.setText("92.5");
         user_height.setText(StringUtils.getTextJoint("身高:\t%1$scm",145,39));
         user_weight.setText(StringUtils.getTextJoint("体重:\t%2$skg",145,39));
         recipe_title.setText("运动处方");

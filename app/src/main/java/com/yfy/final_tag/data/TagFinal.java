@@ -132,8 +132,6 @@ public  class TagFinal {
 
 
 
-
-
     public static final String TRUE="true";
     public static final String FALSE="false";
     public static final String REFRESH="refresh";
@@ -163,15 +161,28 @@ public  class TagFinal {
     public static final String ZXX="zxx";
 
     /**
-     *   ------------base------------------------
+     *   ------------base-------------------------------------------user相关-------------------
      */
+    public static final String BASE_GET_TOKEN ="gettooken";//获取登录验证token
+    public static final String USER_LOGIN ="login";//登录
+    public static final String USER_GET_DUPLICATION_LIST = "user_duplication";//获取登录重名学生列表
+    public static final String USER_DUPLICATION_LOGIN = "logstu";//重名学生登录
+    public static final String USER_LOGOUT="logout";//用户退出登录logout
+    public static final String USER_CHANGE_PASSWORD ="password_reset";//修改密码（晓得原密码）
+    public static final String USER_RESET_PASSWORD ="reset_password_password";//重置密码
+    public static final String USER_GET_CODE_TO_EDIT_PHONE ="reset_password_vcode";//重置密码获取验证码
+    public static final String USER_ADD_HEAD="addphoto";//用户添加头像
+
+
+    public static final String USER_GET_MOBILE = "get_Mobile";//获取电话
+    public static final String USER_SET_MOBILE = "set_Mobile";//置电话
+    public static final String USER_GET_CURRENT_TERM = "getCurrentTermnew";//获取当前学期
+    public static final String USER_GET_TERM_LIST = "gettermlistnew";//获取学期
+    public static final String USER_GET_ADMIN ="user_right";//获取权限
+    public static final String USER_GET_CODE_TO_SYSTEM_PHONE ="get_phone_code";//给用户绑定号码发送验证码（返回有code）
 
 
     public static final String BASE_SAVE_IMG ="saveimg";//获取个人中心基础数据
-    public static final String BASE_GET_TOKEN ="gettooken";//获取登录验证token
-
-
-
 
 
     public static final String USER_BASE_DATA="get_stu_baseinfo";//获取个人中心基础数据
@@ -181,31 +192,10 @@ public  class TagFinal {
     public static final String AUTHEN_SET_STU="setstuxx";//设置学生信息
     public static final String BASE_GET_CLASS_ALL="setstuxx";//获取全部班级
 
-
-    /**
-     * -------------------user相关-------------------
-     */
-    public static final String USER_LOGIN ="login";//登录
-    public static final String USER_GET_DUPLICATION_LIST = "user_duplication";//获取登录重名学生列表
-    public static final String USER_DUPLICATION_LOGIN = "logstu";//重名学生登录
-    public static final String USER_LOGOUT="logout";//用户退出登录logout
-    public static final String USER_CHANGE_PASSWORD ="password_reset";//修改密码（晓得原密码）
-    public static final String USER_RESET_PASSWORD ="reset_password_password";//重置密码
-    public static final String USER_GET_CODE_TO_EDIT_PHONE ="reset_password_vcode";//重置密码获取验证码
-    public static final String USER_ADD_HEAD="addphoto";//用户添加头像
-    public static final String USER_GET_ADMIN ="user_right";//获取权限
-
-    public static final String USER_GET_CODE_TO_SYSTEM_PHONE ="get_phone_code";//给用户绑定号码发送验证码（返回有code）
-
-
     public static final String GETNOTICENUM = "getnoticenum";//小红点
     public static final String CLEAR_NOTICE_NUM = "clearnoticenum";//清除红点
     public static final String READNOTICE="readnotice";//阅读小红
     public static final String USER_SIGN ="sign";//登录签到
-    public static final String USER_GET_MOBILE = "get_Mobile";//获取电话
-    public static final String USER_SET_MOBILE = "set_Mobile";//置电话
-    public static final String USER_GET_CURRENT_TERM = "getCurrentTermnew";//获取当前学期
-    public static final String USER_GET_TERM_LIST = "gettermlistnew";//获取学期
     public static final String USER_INFO="user_info";//
     /**
      * -------------------vote--affice-----------------------------
@@ -249,7 +239,6 @@ public  class TagFinal {
     public final static String NOTICE_GET_TEA = "get_contacts_tea";// notice 获取联系人tea
     public final static String NOTICE_GET_STU = "get_contacts_stu";// notice 获取联系人stu
     public final static String NOTICE_SEND = "send_notice";//发送消息
-    public final static String NOTICE_GET_TEA_CONTACTS = "get_contacts_tea";// notice 获取联系人tea get_gxxcnotice_user
 
 
     /**
@@ -263,60 +252,20 @@ public  class TagFinal {
     public final static String MAINTENANCE_GET_SECTION = "getMaintainclass";//获取部门分类
     public final static String MAINTENANCE_ADD = "addMaintainnewsyxx";//新增报修
     public final static String MAINTENANCE_ADMIN_SET_STATE = "setMaintain_syxx";//同意，拒绝， dealstate,//1,完成2，拒绝,3 维修中
-    public final static String MAINNEW_GET_DETAIL= "get_maintain";//获取需要处理次数
 
     /**
      *  审核列表 attendance
      */
-    public final static String ATTENDANCE_GET_COUNT ="get_attendance_review_count";//审核操作数量
-    public final static String ATTENDANCE_GET_USER_LIST = "attendance_list_syxx";//获取首页列表普通用户
-    public final static String ATTENDANCE_GET_ADMIN_LIST = "attendance_review_list_syxx";//获取首页审核列表
-    public final static String ATTENDANCE_GET_AUDITOR_LIST ="attendance_approve";//审核人列表
-    public final static String ATTENDANCE_GET_TYPE ="attendance_type";//请假type
-    public final static String ATTENDANCE_APPLY ="attendance_submit1";//新增提交cdpx
-    public final static String ATTENDANCE_ADMIN_DO ="attendance_did_review_syxx";//审核操作(同意1，申请2，驳回3，校长4)
-    public final static String ATTENDANCE_DELETE ="delete_attendance";//撤销申请
-
-    /**
-     * -----------------------shape----------------------
-     */
-    public final static String SHAPE_MAIN_LIST= "WB_get_class";//获取shape首页列表
-    public final static String SHAPE_DID_PRAISE= "WB_did_praise";//为Item praise
-    public final static String SHAPE_DID_DELETE= "WB_delete";//删除 Item
-    public final static String SHAPE_DID_ADD= "WB_add";//新增 Item
-    public final static String SHAPE_DID_DELETE_REPLY= "WB_delete_reply";//删除 Item 的回复
-    public final static String SHAPE_GET_TAG= "WB_get_tag";//获取tag
-    public final static String SHAPE_DID_REPLY= "WB_did_reply";//回复 WB_did_reply
-    public final static String SHAPE_PERSON_DETAIL= "WB_person_detail";//个人详情
-    public final static String SHAPE_PERSON_GET_CLASS= "WB_person_get_class";//个人详情
-
-    /**
-     * -----------------------个人成果---------------------------
-     * （学生自己上串）
-     */
-    public final static String HONOR_ADD = "add_reward";//个人添加个人成果
-    public final static String HONOR_GET_STU_REWARD = "get_stu_reward";//获取学生个人成果列表
-    public final static String HONOR_DELETE_ONE_REWARD = "del_reward";//delete单条个人成果
-    public final static String HONOR_TYPE="get_rewardtype";//个人成果荣誉类型
-    public final static String HONOR_RANK="get_rewardrank";//个人成果荣誉等级（省，市区）
+    public final static String ATTEND_GET_COUNT ="get_attendance_review_count";//审核操作数量
+    public final static String ATTEND_GET_USER_LIST = "attendance_list_syxx";//获取首页列表普通用户
+    public final static String ATTEND_GET_ADMIN_LIST = "attendance_review_list_syxx";//获取首页审核列表
+    public final static String ATTEND_GET_AUDITOR_LIST ="attendance_approve";//审核人列表
+    public final static String ATTEND_GET_TYPE ="attendance_type";//请假type
+    public final static String ATTEND_APPLY ="attendance_submit1";//新增提交cdpx
+    public final static String ATTEND_ADMIN_DO ="attendance_did_review_syxx";//审核操作(同意1，申请2，驳回3，校长4)
+    public final static String ATTEND_DELETE ="delete_attendance";//撤销申请
 
 
-    /**
-     * ------------------------学生奖励---------------------
-     */
-
-    public final static String AWARD_TEA_CLASS_LIST = "get_tea_course";//老师进入查看时班级列表
-    public final static String AWARD_CLASS_AWARD_DETAIL = "get_class_award";//老师进入班级详情列表
-    public final static String AWARD_GET_COURSE = "get_tea_award_self";//管理学生列表(添加学生奖励时选择学科后的学生列表)
-    public final static String AWARD_DEL_UTIL = "del_award_students";//取消学科优生
-    public final static String AWARD_ADD_UTIL = "set_award_students";//添加学生奖励
-    public final static String AWARD_STU_CLASS_LIST = "get_stu_award";//学生进入学科优生
-    public final static String AWARD_STU_GET_INFO="award_student_info_stu";//学生看自己
-    public final static String AWARD_TEA_GET_STU_INFO="award_student_info";//老师看学生
-    public final static String AWARD_TEA_ADD = "send_award";//老师发放奖励
-    public final static String AWARD_STU_ADD = "send_stu_award";//学生上传奖励
-    public final static String get_award_students="get_award_students";//
-    public final static String AWARD_GET_TYPE="get_award_type";//
 
     /**
      * ---------------------------功能室申请------------
@@ -463,11 +412,6 @@ public  class TagFinal {
     public final static String DELAY_ADMIN_GET_TODAY_LIST ="get_Elective_admin";//服务管理获取当天tea的考勤(isaddbyme代表是否是我添加的，如果是我添加的可以修改)
     public final static String DELAY_ADMIN_get_TO_CLASS_EVENT_DETAIL ="get_Elective_situation";//获取行政人员对班级的巡查考勤
 
-    //没有使用
-    public final static String DELAY_TIME_CHECK_LIST ="get_Elective_evaluatecheck";//
-    public final static String DELAY_TIME_CHECK_SET ="set_Elective_evaluatecheck";//
-    public final static String DELAY_DELIMAGE ="del_Elective_image";//删除图片
-    public final static String DELAY_NORMAL ="add_Elective_normal";//批量设置学生正常状态
 
     /**
      * -------------------boss-------------------

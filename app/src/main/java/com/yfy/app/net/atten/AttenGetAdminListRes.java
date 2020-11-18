@@ -10,11 +10,11 @@ import org.simpleframework.xml.Root;
 /**
  * Created by yfyandr on 2018/4/27.
  */
-@Root(name = TagFinal.ATTENDANCE_GET_ADMIN_LIST +"Response")
+@Root(name = TagFinal.ATTEND_GET_ADMIN_LIST +"Response")
 public class AttenGetAdminListRes {
     @Attribute(name = "xmlns", empty = Base.NAMESPACE, required = false)
     public String nameSpace;
 
-    @Element(name = TagFinal.ATTENDANCE_GET_ADMIN_LIST +"Result", required = false)
+    @Element(name = TagFinal.ATTEND_GET_ADMIN_LIST +"Result", required = false)
     public String result;
 }

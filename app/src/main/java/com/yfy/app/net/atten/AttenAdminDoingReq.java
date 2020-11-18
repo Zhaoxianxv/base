@@ -11,7 +11,7 @@ import org.simpleframework.xml.Root;
 /**
  * Created by yfyandr on 2018/4/27.
  */
-@Root(name = TagFinal.ATTENDANCE_ADMIN_DO, strict = false)
+@Root(name = TagFinal.ATTEND_ADMIN_DO, strict = false)
 @Namespace(reference = Base.NAMESPACE)
 @Order(elements = {Base.session_key,Base.id,"reply","table_plan","review_result"})
 public class AttenAdminDoingReq {

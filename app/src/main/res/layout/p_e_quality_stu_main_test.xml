@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_below="@id/p_e_user_grade_title"
-                        android:text="95.5"
+                        android:text=""
                         android:gravity="center"
                         android:maxLines="1"
                         android:textSize="@dimen/textsize12"/>
@@ -253,7 +253,7 @@
                         android:id="@+id/p_e_main_recipe_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="    建议加强体能锻炼这是系统生成，，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字"
+                        android:text="碳水化合物摄入不足 ,脂肪和蛋白质摄入过多 ,部分维生素摄入不足 ,三餐热能分配不合理 ,存在钙,铁,锌摄入不足及运动中脱水 ,补液不科学.同时分析了运动员膳食不科学的原因 ,并提出相应的改进建议"
                         android:textSize="@dimen/textsize6"
                         android:lineSpacingExtra="@dimen/margin_5dp"
                         android:maxLines="2"

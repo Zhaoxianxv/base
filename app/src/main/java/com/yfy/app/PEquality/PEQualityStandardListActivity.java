@@ -90,27 +90,62 @@ public class PEQualityStandardListActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
-        KeyValue one=new KeyValue("","",TagFinal.TYPE_ITEM);
+        KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
         one.setTitle("体重指数");
-        one.setRight("张丹");
-        one.setValue("18.24310926");
+        one.setValue("24.2 (BMI)");
+        one.setRight_name("10%");
+        one.setRight_value("8.5");
+        one.setRight_key("85");
+        one.setRight("过重");
 
-        KeyValue three=new KeyValue("","",TagFinal.TYPE_ITEM);
-        three.setTitle("50米");
-        three.setRight("张丹");
-        three.setValue("13.3");
+        KeyValue three=new KeyValue(TagFinal.TYPE_ITEM);
+        three.setTitle("100米短跑");
+        three.setValue("15.3 (秒)");
+        three.setRight_name("20%");
+        three.setRight_value("16");
+        three.setRight_key("80");
+        three.setRight("优秀");
 
-        KeyValue two=new KeyValue("","",TagFinal.TYPE_ITEM);
+        KeyValue two=new KeyValue(TagFinal.TYPE_ITEM);
         two.setTitle("一分钟跳绳");
-        two.setRight("张丹");
-        two.setValue("124");
+        two.setValue("124 (个)");
+        two.setRight_name("10%");
+        two.setRight_value("95");
+        two.setRight_key("9.5");
+        two.setRight("卓越");
+
+        KeyValue four=new KeyValue(TagFinal.TYPE_ITEM);
+        four.setTitle("肺活量");
+        four.setValue("3100");
+        four.setRight_name("10%");
+        four.setRight_value("95");
+        four.setRight_key("9.5");
+        four.setRight("卓越");
+
+
+        KeyValue five=new KeyValue(TagFinal.TYPE_ITEM);
+        five.setTitle("坐位体前屈");
+        five.setValue("124 (个)");
+        five.setRight_name("10%");
+        five.setRight_value("95");
+        five.setRight_key("9.5");
+        five.setRight("卓越");
+
+        KeyValue six=new KeyValue(TagFinal.TYPE_ITEM);
+        six.setTitle("一分钟仰卧起坐");
+        six.setValue("40 (个)");
+        six.setRight_name("10%");
+        six.setRight_value("70");
+        six.setRight_key("7");
+        six.setRight("良好");
 
         keyValue_adapter.add(new KeyValue("综合得分" ,"86.58分",TagFinal.TYPE_TOP));
         keyValue_adapter.add(one);
         keyValue_adapter.add(three);
         keyValue_adapter.add(two);
-        keyValue_adapter.add(one);
-        keyValue_adapter.add(two);
+        keyValue_adapter.add(five);
+        keyValue_adapter.add(four);
+        keyValue_adapter.add(six);
 
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);

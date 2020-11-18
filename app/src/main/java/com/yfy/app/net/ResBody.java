@@ -410,28 +410,28 @@ public class ResBody {
 
 //----------------------atten-----------------
 
-    @Element(name = TagFinal.ATTENDANCE_APPLY +Base.RESPONSE, required = false)
+    @Element(name = TagFinal.ATTEND_APPLY +Base.RESPONSE, required = false)
     public AttenApplyRes attenApplyRes;
 
-    @Element(name = TagFinal.ATTENDANCE_DELETE +Base.RESPONSE, required = false)
+    @Element(name = TagFinal.ATTEND_DELETE +Base.RESPONSE, required = false)
     public AttenDelItemRes attenDelItemRes;
 
-    @Element(name = TagFinal.ATTENDANCE_GET_COUNT +"Response", required = false)
+    @Element(name = TagFinal.ATTEND_GET_COUNT +"Response", required = false)
     public AttenGetCountRes attenGetCountRes;
 
-    @Element(name = TagFinal.ATTENDANCE_GET_TYPE +"Response", required = false)
+    @Element(name = TagFinal.ATTEND_GET_TYPE +"Response", required = false)
     public AttenGetTypeRes attenGetTypeRes;
 
-    @Element(name = TagFinal.ATTENDANCE_GET_AUDITOR_LIST +"Response", required = false)
+    @Element(name = TagFinal.ATTEND_GET_AUDITOR_LIST +"Response", required = false)
     public AttenGetAuditorListRes attenGetAuditorListRes;
 
-    @Element(name = TagFinal.ATTENDANCE_GET_USER_LIST +"Response", required = false)
+    @Element(name = TagFinal.ATTEND_GET_USER_LIST +"Response", required = false)
     public AttenGetUserListRes attenGetUserListRes;
 
-    @Element(name = TagFinal.ATTENDANCE_GET_ADMIN_LIST +"Response", required = false)
+    @Element(name = TagFinal.ATTEND_GET_ADMIN_LIST +"Response", required = false)
     public AttenGetAdminListRes attenGetAdminListRes;
 
-    @Element(name = TagFinal.ATTENDANCE_ADMIN_DO + Base.RESPONSE, required = false)
+    @Element(name = TagFinal.ATTEND_ADMIN_DO + Base.RESPONSE, required = false)
     public AttenAdminDoingRes attenAdminDoingRes;
 
     @Element(name = TagFinal.BOSS_ATTEN_LIST + Base.RESPONSE, required = false)

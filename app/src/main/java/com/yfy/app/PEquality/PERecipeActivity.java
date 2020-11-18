@@ -144,7 +144,7 @@ public class PERecipeActivity extends BaseActivity {
 
 
 
-        keyValue_adapter.add(new KeyValue("给我的处方","建议加强体能锻炼这是系统生成，，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字，很长文字的一段文字","",TagFinal.TYPE_ITEM));
+        keyValue_adapter.add(new KeyValue("给我的处方","碳水化合物摄入不足 ,脂肪和蛋白质摄入过多 ,部分维生素摄入不足 ,三餐热能分配不合理 ,存在钙,铁,锌摄入不足及运动中脱水 ,补液不科学.同时分析了运动员膳食不科学的原因 ,并提出相应的改进建议","",TagFinal.TYPE_ITEM));
         keyValue_adapter.add(new KeyValue(
                 "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603269209118&di=b3b911cc2c6b8e07f7ff9b163a58a641&imgtype=0&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D2404852592%2C1529663443%26fm%3D214%26gp%3D0.jpg",
                 "http://gslb.miaopai.com/stream/ed5HCfnhovu3tyIQAiv60Q__.mp4",

@@ -63,7 +63,13 @@ public class PEQualityStandardListAdapter extends RecyclerView.Adapter<RecyclerV
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
             iHolder.left_title.setText(iHolder.bean.getTitle());
-            iHolder.left_sub.setText(iHolder.bean.getValue());
+            iHolder.left_value.setText(iHolder.bean.getValue());
+            iHolder.right.setText(iHolder.bean.getRight());
+            iHolder.right_key.setText(iHolder.bean.getRight_key());
+            iHolder.right_name.setText(iHolder.bean.getRight_name());
+            iHolder.right_value.setText(iHolder.bean.getRight_value());
+
+
         }
         if (holder instanceof TopHolder){
             TopHolder topHolder = (TopHolder) holder;
@@ -81,20 +87,21 @@ public class PEQualityStandardListAdapter extends RecyclerView.Adapter<RecyclerV
 
     private class ItemHolder extends RecyclerView.ViewHolder {
         AppCompatTextView left_title;
-        AppCompatTextView left_sub;
-        AppCompatTextView left_score;
-        AppCompatTextView left_weight;
+        AppCompatTextView left_value;
+
+        AppCompatTextView right_name;
+        AppCompatTextView right_key;
         AppCompatTextView right_value;
-        AppCompatTextView event_grade;
+        AppCompatTextView right;
         KeyValue bean;
         ItemHolder(View itemView) {
             super(itemView);
             left_title =  itemView.findViewById(R.id.p_e_standard_title);
-            left_sub =  itemView.findViewById(R.id.p_e_standard_value);
-            left_weight =  itemView.findViewById(R.id.p_e_standard_score);
-            left_score =  itemView.findViewById(R.id.p_e_standard_weight);
+            left_value =  itemView.findViewById(R.id.p_e_standard_value);
+            right_key =  itemView.findViewById(R.id.p_e_standard_score);
+            right_name =  itemView.findViewById(R.id.p_e_standard_weight);
             right_value =  itemView.findViewById(R.id.p_e_standard_end_score_value);
-            event_grade =  itemView.findViewById(R.id.p_e_standard_end_event_grade);
+            right =  itemView.findViewById(R.id.p_e_standard_end_event_grade);
 
         }
     }

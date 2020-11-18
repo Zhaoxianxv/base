@@ -418,28 +418,28 @@ public class ReqBody {
     //    -------------------------atten---------------
 
 
-    @Element(name = TagFinal.ATTENDANCE_APPLY, required = false)
+    @Element(name = TagFinal.ATTEND_APPLY, required = false)
     public AttenApplyReq attenApplyReq;
 
-    @Element(name = TagFinal.ATTENDANCE_GET_COUNT, required = false)
+    @Element(name = TagFinal.ATTEND_GET_COUNT, required = false)
     public AttenGetCountReq attenGetCountReq;
 
-    @Element(name = TagFinal.ATTENDANCE_ADMIN_DO, required = false)
+    @Element(name = TagFinal.ATTEND_ADMIN_DO, required = false)
     public AttenAdminDoingReq attenAdminDoingReq;
 
-    @Element(name = TagFinal.ATTENDANCE_DELETE, required = false)
+    @Element(name = TagFinal.ATTEND_DELETE, required = false)
     public AttenDelItemReq attenDelItemReq;
 
-    @Element(name = TagFinal.ATTENDANCE_GET_TYPE, required = false)
+    @Element(name = TagFinal.ATTEND_GET_TYPE, required = false)
     public AttenGetTypeReq attenGetTypeReq;
 
-    @Element(name = TagFinal.ATTENDANCE_GET_AUDITOR_LIST, required = false)
+    @Element(name = TagFinal.ATTEND_GET_AUDITOR_LIST, required = false)
     public AttenGetAuditorListReq attenGetAuditorListReq;
 
-    @Element(name = TagFinal.ATTENDANCE_GET_ADMIN_LIST, required = false)
+    @Element(name = TagFinal.ATTEND_GET_ADMIN_LIST, required = false)
     public AttenGetAdminListReq attenGetAdminListReq;
 
-    @Element(name = TagFinal.ATTENDANCE_GET_USER_LIST, required = false)
+    @Element(name = TagFinal.ATTEND_GET_USER_LIST, required = false)
     public AttenGetUserListReq attenGetUserListReq;
 
     @Element(name = TagFinal.BOSS_ATTEN_LIST, required = false)

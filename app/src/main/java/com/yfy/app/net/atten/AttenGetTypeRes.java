@@ -9,11 +9,11 @@ import org.simpleframework.xml.Root;
 /**
  * Created by yfyandr on 2018/4/27.
  */
-@Root(name = TagFinal.ATTENDANCE_GET_TYPE +"Response")
+@Root(name = TagFinal.ATTEND_GET_TYPE +"Response")
 public class AttenGetTypeRes {
     @Attribute(name = "xmlns",  empty = TagFinal.NAMESPACE, required = false)
     public String nameSpace;
 
-    @Element(name = TagFinal.ATTENDANCE_GET_TYPE +"Result", required = false)
+    @Element(name = TagFinal.ATTEND_GET_TYPE +"Result", required = false)
     public String result;
 }

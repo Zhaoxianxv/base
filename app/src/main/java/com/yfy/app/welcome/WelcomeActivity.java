@@ -10,16 +10,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
-import com.yfy.app.PEquality.HonorDetailActivity;
 import com.yfy.app.PEquality.PEQualityMainTestActivity;
 import com.yfy.app.PEquality.tea.PETeaMainActivity;
-import com.yfy.app.SelectedModeTypeActivity;
 import com.yfy.app.login.LoginActivity;
 import com.yfy.app.welcome.adapter.GuidePagerAdapter;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItem;
@@ -33,8 +30,6 @@ import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.ConfirmAlbumWindow;
 import com.yfy.final_tag.glide.BitmapLess;
-import com.yfy.final_tag.stringtool.StringJudge;
-import com.yfy.greendao.tool.GreenDaoManager;
 import com.yfy.jpush.ExampleUtil;
 import com.yfy.jpush.LocalBroadcastManager;
 
@@ -115,11 +110,11 @@ public class WelcomeActivity extends BaseActivity {
             public void run() {
                 //初始化登录信息
 //                startActivity(new Intent(WelcomeActivity.this,HonorDetailActivity.class));
-                startActivity(new Intent(WelcomeActivity.this,SelectedModeTypeActivity.class));
-                finish();
+//                startActivity(new Intent(WelcomeActivity.this,SelectedModeTypeActivity.class));
+//                finish();
 
 
-//                album_select.showAtCenter();
+                album_select.showAtCenter();
 
 
 

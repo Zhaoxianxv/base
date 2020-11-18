@@ -90,7 +90,9 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
         if (holder instanceof VideoJvcH) {
             VideoJvcH videoJvcH = (VideoJvcH) holder;
             videoJvcH.bean=dataList.get(position);
+            videoJvcH.title.setText(videoJvcH.bean.getName());
             videoJvcH.setFlowLayoutTop(videoJvcH.bean.getCpwBeanArrayList(),position%2);
+
         }
         if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;
@@ -129,7 +131,7 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
         KeyValue bean;
         VideoJvcH(View itemView) {
             super(itemView);
-            title =  itemView.findViewById(R.id.public_type_video_jvc_name);
+            title =  itemView.findViewById(R.id.p_e_recipe_title);
             flow =  itemView.findViewById(R.id.public_type_flow_flow);
         }
 
@@ -143,6 +145,7 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
             for (int i=0;i<=position;i++){
                 RelativeLayout flow_view = (RelativeLayout) mInflater.inflate(R.layout.p_e_recipe_video_item,flow, false);
                 ImageView bg=flow_view.findViewById(R.id.video_play_icon);
+                TextView sub_title=flow_view.findViewById(R.id.video_play_name);
 
                 int width=ViewTool.getScreenWidth(mContext)-ViewTool.pxPointDp(mContext,30);
                 Logger.e(String.valueOf(width));
@@ -150,11 +153,13 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
                 p.width=width/2;
                 flow_view.setLayoutParams(p);
                 GlideTools.chanMult(mContext,R.mipmap.home_header_2,bg);
+
+                sub_title.setText(bean.getName());
                 bg.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         String url="https://www.w3school.com.cn/example/html5/mov_bbb.mp4";
-                        String title="title";
+                        String title=bean.getName();
 
                         JCVideoPlayerStandard.startFullscreen(mContext, JCVideoPlayerStandard.class, url, title);
 
