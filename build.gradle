@@ -4,20 +4,21 @@ buildscript {
     ext.kotlin_version = '1.2.71'
     repositories {
         google()
+        // An alternative URL is 'https://dl.google.com/dl/android/maven2/'
+        jcenter()
         // If you're using a version of Gradle lower than 4.1, you must instead use:
         maven {
             url 'https://maven.google.com'
         }
-        // An alternative URL is 'https://dl.google.com/dl/android/maven2/'
-        jcenter()
-        mavenLocal()
-        mavenCentral()  // GPUImage for Android
+
+
 
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2' // add plugin
+
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.6'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -29,7 +30,8 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
-        mavenCentral()
+        mavenLocal()
+        mavenCentral()  // GPUImage for Android
     }
 }
 

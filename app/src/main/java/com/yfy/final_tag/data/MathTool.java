@@ -132,6 +132,7 @@ public class MathTool {
             int position=stringToInt(str);
             new_list.add(stringList.get(position));
             stringList.remove(position);
+
         }
         return new_list;
     }

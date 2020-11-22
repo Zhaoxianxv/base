@@ -117,6 +117,22 @@ public class SelectedModeTypeActivity extends BaseActivity {
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);
     }
+//
+//    private void initTest(){
+//        HelloWorldClient client = new HelloWorldClient("10.102.54.2", 50051);
+//        try {
+//            client.greet("World!");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                client.shutdown();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+
     /**
      * ----------------------------retrofit-----------------------
      */

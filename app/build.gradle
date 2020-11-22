@@ -34,14 +34,7 @@ android {
         }
 
     }
-    //gRpc
-    sourceSets {
-        main {
-            proto {
-                srcDir 'src/main/proto-src'
-            }
-        }
-    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -52,6 +45,12 @@ android {
         exclude 'META-INF/proguard/androidx-annotations.pro'
     }
 
+
+    lintOptions {
+        disable 'GoogleAppIndexingWarning', 'HardcodedText', 'InvalidPackage'
+        textReport true
+        textOutput "stdout"
+    }
 
     //多渠道打包（注意数据库之类东西明成冲突）
 //    flavorDimensions "version"
@@ -74,35 +73,26 @@ greendao {
     targetGenDir 'src/main/java'
 }
 //gRPC
-
 protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:3.4.0"
-    }
+    protoc { artifact = 'com.google.protobuf:protoc:3.12.0' }
     plugins {
-        javalite {
-            artifact = "com.google.protobuf:protoc-gen-javalite:3.0.0"
-        }
-        grpc {
-            artifact = 'io.grpc:protoc-gen-grpc-java:1.7.0'
+        grpc { artifact = 'io.grpc:protoc-gen-grpc-java:1.35.0-SNAPSHOT' // CURRENT_GRPC_VERSION
         }
     }
     generateProtoTasks {
         all().each { task ->
+            task.builtins {
+                java { option 'lite' }
+            }
             task.plugins {
-                javalite {}
-                grpc {
-                    // Options added to --grpc_out
-                    option 'lite'
-                }
+                grpc { // Options added to --grpc_out
+                    option 'lite' }
             }
         }
     }
-    configurations.all {
-        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
-    }
-    generatedFilesBaseDir = "$projectDir/src/generated"
 }
+
+
 
 dependencies {
     //multiDex 配置原因。让应用的 Application 继承 MultiDexApplication
@@ -160,8 +150,12 @@ dependencies {
 
 
     //gRPC
-    implementation 'io.grpc:grpc-okhttp:1.15.1'
-    implementation 'io.grpc:grpc-protobuf-lite:1.15.1'
-    implementation 'io.grpc:grpc-stub:1.15.1'
-    implementation 'javax.annotation:javax.annotation-api:1.2'
+//    implementation 'io.grpc:grpc-netty-shaded:1.15.1'
+//    implementation 'io.grpc:grpc-netty:1.15.1'
+//    implementation 'io.grpc:grpc-core:1.15.1'
+//    implementation 'io.grpc:grpc-protobuf:1.15.1'
+//    implementation 'io.grpc:grpc-stub:1.15.1'
+//    implementation 'io.grpc:grpc-alts:1.15.1'
+//    implementation 'io.netty:netty-tcnative-boringssl-static:2.0.18.Final'
+//    implementation 'com.google.protobuf:protobuf-java-util:3.0.0-beta-1'
 }
