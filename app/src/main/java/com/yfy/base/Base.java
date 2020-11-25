@@ -34,10 +34,10 @@ public class Base {
     public static final String SCHEDULE="http://www.cdeps.sc.cn/kcb.aspx?sessionkey=";//教师课程表url+sessionkey
     public static final String DEYU_KEY="http://www.cdeps.sc.cn/showdykp.aspx?sessionkey=";//班级评比
     public static final String POINT_PATH="http://www.cdeps.sc.cn/detail.aspx?id=241342";
-    /*
+    /**
      * wcf json字符串
      */
-    public static String wcfInfo = "";
+    public static final String wcfInfo = "";
 
     public static final String TEM = "tem";//
     public static final String ARR = "arr";//

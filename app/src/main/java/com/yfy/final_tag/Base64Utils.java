@@ -207,7 +207,7 @@ public class Base64Utils {
 			bos = new ByteArrayOutputStream();
 			zos = new ZipOutputStream(bos);
 			for (String path : pathList) {
-				Bitmap bitmap = ratio(path, 480f, 800f);
+				Bitmap bitmap = ratio(path, 1000f);
 				Bitmap bitmap_ang=rotaingImageView(readPictureDegree(path),bitmap);
 				addStreamToZip(zos, getStreamFromBitmap(bitmap_ang), curPath + getNameFromPath(path));
 			}
@@ -237,16 +237,15 @@ public class Base64Utils {
 	public static ByteArrayOutputStream getStreamFromBitmap(Bitmap bitmap) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bos);
-		int p = 100;
-		while (bos.toByteArray().length > TagFinal.UPLOAD_LIMIT) {
-			bos.reset();
-			p -= 10;
-			bitmap.compress(Bitmap.CompressFormat.JPEG, p, bos);
-		}
+//		int p = 100;
+//		while (bos.toByteArray().length > TagFinal.UPLOAD_LIMIT) {
+//			bos.reset();
+//			p -= 10;
+//			bitmap.compress(Bitmap.CompressFormat.JPEG, p, bos);
+//		}
 
 		if (!bitmap.isRecycled()) {
 			bitmap.recycle();
-			bitmap = null;
 		}
 
 		return bos;
@@ -309,9 +308,9 @@ public class Base64Utils {
 
 		Bitmap bitmap = ratio(path, 1000f);
 //		Bitmap bitmap = BitmapFactory.decodeFile(path, options);
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		bitmap.compress(Bitmap.CompressFormat.JPEG, 70, baos);//quality  图片精度
-		byte[] bytes = baos.toByteArray();
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bos);//quality  图片精度
+		byte[] bytes = bos.toByteArray();
 		//base64 encode
 		byte[] encode = Base64.encode(bytes,Base64.DEFAULT);
 		return  new String(encode);
@@ -349,14 +348,10 @@ public class Base64Utils {
 		BitmapFactory.Options newOpts = new BitmapFactory.Options();
 		newOpts.inJustDecodeBounds = true;
 		newOpts.inPreferredConfig = Config.RGB_565;
-		Bitmap bitmap = BitmapFactory.decodeFile(imgPath, newOpts);
-
 		newOpts.inJustDecodeBounds = false;
-		int h = newOpts.outHeight;
 		int w = newOpts.outWidth;
 		//        float hh = pixelH;// 设置高度为240f时，可以明显看到图片缩小了
 		//        float ww = pixelW;// 设置宽度为120f，可以明显看到图片缩小了
-		float ww = pixelW;
 		int be = 1;//be=1表示不缩放:> 1，请求解码器对原始文件进行子采样
 
 		//      if (w > h && w > ww) {//如果宽度大的话根据宽度固定大小缩放
@@ -364,12 +359,12 @@ public class Base64Utils {
 		//        } else if (w < h && h > hh) {//如果高度高的话根据宽度固定大小缩放
 		//            be = (int) (newOpts.outHeight / hh);
 		//        }
-		if (w > ww) {
-			be = (int) (w / ww);
+		if (w > pixelW) {
+			be = (int) (w / pixelW);
 		}
 		if (be <= 0) be = 1;
 		newOpts.inSampleSize = be;
-		bitmap = BitmapFactory.decodeFile(imgPath, newOpts);
+		Bitmap bitmap = BitmapFactory.decodeFile(imgPath, newOpts);
 		return bitmap;
 	}
 

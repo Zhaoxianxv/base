@@ -12,11 +12,9 @@ import java.util.List;
 
 public class KeyValue implements Parcelable {
     private String key;//描述值
-
     private String type="";//用于判断value取那个字段
     private String user_type;
     private String activity_type;
-
     private String value;//值
     private String name;//值名称
     private String title;//

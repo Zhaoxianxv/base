@@ -36,7 +36,7 @@ public class StringUtils {
 
 	//---------------------返回List<String>-----------------
 	public static List<String> listToStringSplitCharacters(String content, String tag){
-		List<String> list = Arrays.asList(content.split(Pattern.quote(tag)));
+		List<String> list = Arrays.asList(content.split(stringToSpecialASCIICharacters(tag)));
 		List<String> stringList=new ArrayList<>(list);
 		if (StringJudge.isEmpty(content)){
 			return new ArrayList<>();
@@ -44,15 +44,7 @@ public class StringUtils {
 			return stringList;
 		}
 	}
-	public static String listToStringSplitCharactersAt0(String content, String tag){
-		if (StringJudge.isEmpty(content)){
-			return "";
-		}else{
-			List<String> list = Arrays.asList(content.split(Pattern.quote(tag)));
-			List<String> stringList=new ArrayList<>(list);
-			return stringList.get(0);
-		}
-	}
+
 	public static List<String> listToArrays(String[] content){
 		if (content==null)return new ArrayList<>();
 		List<String> list = Arrays.asList(content);
@@ -65,7 +57,7 @@ public class StringUtils {
 	}
 
 	public static List<String> listToStringSplitCharactersHttp(String content, String tag, String http){
-		List<String> list = Arrays.asList(content.split(Pattern.quote(tag)));
+		List<String> list = Arrays.asList(content.split(stringToSpecialASCIICharacters(tag)));
 		List<String> data = new ArrayList<>();
 		for (String s:list){
 			data.add(http+s);
@@ -75,7 +67,7 @@ public class StringUtils {
 	//---------------------返回String[]-----------------
 
 	public static String[] arraysToStringSplitCharacters(String content, String tag){
-		List<String> list = Arrays.asList(content.split(Pattern.quote(tag)));
+		List<String> list = Arrays.asList(content.split(stringToSpecialASCIICharacters(tag)));
 		return arraysToListString(list);
 	}
 
@@ -91,6 +83,16 @@ public class StringUtils {
 		return Pattern.quote(name);
 	}
 
+
+	public static String listToStringSplitCharactersAt0(String content, String tag){
+		if (StringJudge.isEmpty(content)){
+			return "";
+		}else{
+			List<String> list = Arrays.asList(content.split(stringToSpecialASCIICharacters(tag)));
+			List<String> stringList=new ArrayList<>(list);
+			return stringList.get(0);
+		}
+	}
 	public static String stringToUpJson(String name) {
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < name.length(); i++) {

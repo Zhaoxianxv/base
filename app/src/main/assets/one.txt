@@ -1,0 +1,192 @@
+
+https://www.w3school.com.cn/example/html5/mov_bbb.mp4
+   @Override
+    public void finish() {
+        setResult(RESULT_OK);//在super后面无效
+        super.finish();
+    }
+
+ List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
+ String name=names.get(names.size()-1);
+ Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
+  
+          try {
+        assert response.errorBody() != null;
+                String s=response.errorBody().string();
+                Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
+            } catch (IOException e) {
+                Logger.e(TagFinal.ZXX, "onResponse: IOException");
+                e.printStackTrace();
+            }
+            toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
+
+Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+Typeface mtypeface=Typeface.createFromAsset(getAssets(),"huawencaiyunv.TTF");
+mTextViewContent.setTypeface(mtypeface);
+
+    @Namespace(reference = TagFinal.NAMESPACE)
+    @ElementArray(entry="arr:string")
+    private String[] ids;
+
+
+
+
+ Logger.e("onFailure  :"+call.request().headers().toString());
+
+if (StringJudge.isEmpty(res.getCount())){
+     coor_count.setVisibility(View.GONE);
+}else{
+     coor_count.setVisibility(View.VISIBLE);
+     if (res.getCount().length()>2) coor_count.setText("99");
+     coor_count.setText(res.getCount());
+     if (res.getCount().equals("0")) coor_count.setVisibility(View.GONE);
+ }
+
+                if (res.getResult().equalsIgnoreCase(TagFinal.TRUE)){
+                    if (pager==0){
+                        mainBeens.clear();
+                        mainBeens=res.getAttendance_lists();
+                    }else{
+                        mainBeens.addAll(res.getAttendance_lists());
+                    }
+                    adapter.setDataList(mainBeens);
+                    if (res.getAttendance_lists().size()!=TagFinal.TEN_INT){
+                        toastShow(R.string.success_loadmore_end);
+                        adapter.setLoadState(TagFinal.LOADING_END);
+                    }else{
+                        adapter.setLoadState(TagFinal.LOADING_COMPLETE);
+                    }
+                }else {
+                    toastShow(res.getError_code());
+                }
+
+   @Override
+    public void onFailure(Call<ResEnv> call, Throwable t) {
+        if (!isActivity())return;
+        Logger.e("onFailure  :"+call.request().headers().toString());
+        toast(R.string.fail_do_not);
+        closeSwipeRefresh();
+        dismissProgressDialog();
+    }
+
+
+         switch (loadState) {
+                case TagFinal.LOADING: // 正在加载
+                    footViewHolder.pbLoading.setVisibility(View.VISIBLE);
+                    footViewHolder.tvLoading.setVisibility(View.VISIBLE);
+                    footViewHolder.llEnd.setVisibility(View.GONE);
+                    break;
+                case TagFinal.LOADING_COMPLETE: // 加载完成
+                    footViewHolder.pbLoading.setVisibility(View.INVISIBLE);
+                    footViewHolder.tvLoading.setVisibility(View.INVISIBLE);
+                    footViewHolder.llEnd.setVisibility(View.GONE);
+                    break;
+                case TagFinal.LOADING_END: // 加载到底
+                    footViewHolder.pbLoading.setVisibility(View.GONE);
+                    footViewHolder.tvLoading.setVisibility(View.GONE);
+                    footViewHolder.llEnd.setVisibility(View.GONE);
+                    break;
+                default:
+                    break;
+            }
+
+
+
+
+
+
+
+          <android.support.design.internal.FlowLayout
+                android:id="@+id/seal_detail_top_flow_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5dp"
+                android:layout_marginBottom="@dimen/margin_5dp"
+                app:lineSpacing="@dimen/margin_3dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:foregroundGravity="center"
+                />
+
+
+
+
+
+
+                    mtask=new MyAsyncTask();
+                    mtask.execute();
+
+
+    private MyAsyncTask mtask;
+    private String name_s="",content_s="";
+    private List<Photo> photo_list=new ArrayList<>();
+    public class MyAsyncTask extends AsyncTask<String, Integer, Void> {
+        //内部执行后台任务,不可在此方法内修改UI
+        @Override
+        protected Void doInBackground(String... arg0) {
+            if (isCancelled()) {
+                return null;
+            }
+            name_s="";
+            content_s="";
+            int i=0;
+            for (String uri:add_mult.getList()){
+                Photo p=new Photo();
+                i++;
+                String picName = String.valueOf(System.currentTimeMillis())+String.valueOf(i);
+                p.setFileName(picName+".jpg");
+                p.setPath(uri);
+                photo_list.add(p);
+            }
+            if (StringJudge.isEmpty(photo_list)){
+            }else{
+                name_s= Base64Utils.getZipTitleNotice(photo_list);
+                content_s=  Base64Utils.filesToZipBase64Notice(photo_list);
+            }
+            return null;
+        }
+        //onPostExecute方法用于在执行完后台任务doInBackground后更新UI,显示结果
+        @Override
+        protected void onPostExecute(Void result) {
+            // TODO Auto-generated method stub
+            super.onPostExecute(result);
+            sendNotice();
+        }
+        //onProgressUpdate方法用于更新进度信息
+        protected void onProgressUpdate(Integer... integers) {
+            super.onProgressUpdate(integers);
+
+        }
+        //onPreExecute方法用于在执行后台任务前做一些UI操作
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showProgressDialog("");
+        }
+    }
+    @Override
+    public void onPause() {
+        // TODO Auto-generated method stub
+        super.onPause();
+        //判断AsyncTask不为null且Status.RUNNING在运行状态
+        if (mtask!=null&&mtask.getStatus()==AsyncTask.Status.RUNNING) {//为mtask标记cancel(true)状态
+            mtask.cancel(true);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
