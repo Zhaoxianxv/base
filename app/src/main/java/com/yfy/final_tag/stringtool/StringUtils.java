@@ -25,7 +25,7 @@ public class StringUtils {
 
 
 	//---------------------返回byte[]-----------------
-	public static byte[] arraysByteToString(String content ){
+	public static byte[] arraysByteToString(String content){
 		return content.getBytes();
 	}
 	public static String arraysByteToStringAt0(String content){
@@ -68,6 +68,10 @@ public class StringUtils {
 
 	public static String[] arraysToStringSplitCharacters(String content, String tag){
 		List<String> list = Arrays.asList(content.split(stringToSpecialASCIICharacters(tag)));
+		return arraysToListString(list);
+	}
+	public static String[] arraysToString(String content){
+		List<String> list = Arrays.asList(content);
 		return arraysToListString(list);
 	}
 

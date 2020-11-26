@@ -164,7 +164,12 @@
             android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator"
             android:theme="@style/AppThemeInitial" />
-
+        <!--g rpc-->
+        <activity
+            android:name="com.yfy.app.gRPC.GRpcMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator"/>
         <!--PEquality-->
         <activity
             android:name="com.yfy.app.PEquality.PEScoreMainActivity"

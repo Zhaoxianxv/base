@@ -112,7 +112,7 @@ public  class TagFinal {
     public static final String NET_SOAP_ACTION = "http://tempuri.org/AppService/";
     public static final int TIME_OUT = 10000;
     public final static String WCF_TXT = "wcf.txt";
-    public static final int UPLOAD_LIMIT = 100 * 1024;
+    public static final int UPLOAD_LIMIT = 200 * 1024;
     public static final long TOTAL_UPLOAD_LIMIT = 4 * 1024 * 1024;
 
     //常用字段名称

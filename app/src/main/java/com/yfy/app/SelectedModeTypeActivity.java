@@ -9,6 +9,7 @@ import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.chart.BarChartActivity;
 import com.yfy.app.drawableBg.DrawableBgActivity;
+import com.yfy.app.gRPC.GRpcMainActivity;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
 import com.yfy.app.spannable_string.SpannableStringMainActivity;
@@ -91,6 +92,9 @@ public class SelectedModeTypeActivity extends BaseActivity {
                     case "Voice":
                         startActivity(new Intent(mActivity,VoiceMainActivity.class));
                         break;
+                    case "GRpcMainActivity":
+                        startActivity(new Intent(mActivity,GRpcMainActivity.class));
+                        break;
                         default:
                             break;
                 }
@@ -106,6 +110,7 @@ public class SelectedModeTypeActivity extends BaseActivity {
         list.add("drawable");
         list.add("SpannableStringMainActivity");
         list.add("BarChartActivity");
+        list.add("GRpcMainActivity");
 
         keyValue_adapter.clear();
         for (String s:list){
@@ -117,21 +122,8 @@ public class SelectedModeTypeActivity extends BaseActivity {
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);
     }
-//
-//    private void initTest(){
-//        HelloWorldClient client = new HelloWorldClient("10.102.54.2", 50051);
-//        try {
-//            client.greet("World!");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                client.shutdown();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+
+
 
     /**
      * ----------------------------retrofit-----------------------

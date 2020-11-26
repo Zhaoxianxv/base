@@ -66,32 +66,41 @@ android {
 //            versionName "1.2"
 //        }
 //    }
+
+
+
+    //gRPC
+
+    protobuf {
+        protoc {
+            artifact = 'com.google.protobuf:protoc:3.5.1'
+        }
+        plugins {
+            javalite {
+                artifact = "com.google.protobuf:protoc-gen-javalite:3.0.0" //java lite版本
+            }
+            grpc {
+                artifact = 'io.grpc:protoc-gen-grpc-java:1.13.1' //g rpc-java版本
+            }
+        }
+        generateProtoTasks {
+            all().each { task ->
+                task.plugins {
+                    javalite {}
+                    grpc {
+                        // Options added to --g.rpc_out
+                        option 'lite' //生成类型
+                    }
+                }
+            }
+        }
+    }
 }
 greendao {
     schemaVersion 4
     daoPackage 'com.yfy.greendao'
     targetGenDir 'src/main/java'
 }
-//gRPC
-protobuf {
-    protoc { artifact = 'com.google.protobuf:protoc:3.12.0' }
-    plugins {
-        grpc { artifact = 'io.grpc:protoc-gen-grpc-java:1.35.0-SNAPSHOT' // CURRENT_GRPC_VERSION
-        }
-    }
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                java { option 'lite' }
-            }
-            task.plugins {
-                grpc { // Options added to --grpc_out
-                    option 'lite' }
-            }
-        }
-    }
-}
-
 
 
 dependencies {
@@ -100,7 +109,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support.constraint:constraint-layout:2.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -113,7 +122,7 @@ dependencies {
     implementation 'com.android.support:gridlayout-v7:28.0.0'
     implementation 'com.android.support:support-vector-drawable:28.0.0'
 
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'org.greenrobot:greendao:3.2.2'
     //glide依赖,加载圆角图
     implementation 'com.github.bumptech.glide:glide:4.7.1'
@@ -137,7 +146,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.4.1'
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'//gRPC也使用
     implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     implementation('com.squareup.retrofit2:converter-simplexml:2.1.0') {
@@ -149,13 +158,26 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.1'//图片
 
 
-    //gRPC
-//    implementation 'io.grpc:grpc-netty-shaded:1.15.1'
-//    implementation 'io.grpc:grpc-netty:1.15.1'
-//    implementation 'io.grpc:grpc-core:1.15.1'
-//    implementation 'io.grpc:grpc-protobuf:1.15.1'
-//    implementation 'io.grpc:grpc-stub:1.15.1'
-//    implementation 'io.grpc:grpc-alts:1.15.1'
-//    implementation 'io.netty:netty-tcnative-boringssl-static:2.0.18.Final'
-//    implementation 'com.google.protobuf:protobuf-java-util:3.0.0-beta-1'
+    //  GRPC dependencies
+
+
+//    implementation 'io.grpc:grpc-netty-shaded:1.33.1'
+
+
+    implementation 'io.grpc:grpc-okhttp:1.15.1'
+    implementation 'io.grpc:grpc-protobuf-lite:1.0.0'
+//    implementation 'io.grpc:grpc-protobuf:1.0.0'
+    implementation 'io.grpc:grpc-stub:1.15.1'
+    implementation 'javax.annotation:javax.annotation-api:1.2'
+
+
+//
+//    //  rx java
+//    implementation "io.reactivex.rxjava2:rxjava:$rx_java_verstion"
+//    implementation "io.reactivex.rxjava2:rxandroid:$rx_android"
+//
+//    //  dialog library
+//    implementation 'com.github.d-max:spots-dialog:0.7@aar'
+
+
 }

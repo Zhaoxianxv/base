@@ -52,7 +52,7 @@ public class PieData extends ChartData<PieDataSet> {
     }
 
     /**
-     * Returns the DataSet this PieData object represents. A PieData object can
+     * Returns the DataSet this PieData object represents.  PieData object can
      * only contain one DataSet.
      * 
      * @return
