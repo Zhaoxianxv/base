@@ -93,6 +93,23 @@ public class Base64Utils {
 		byte[] encode = Base64.encode(bytes,Base64.DEFAULT);
 		return  new String(encode);
 	}
+	// Logger.e("http://192.168.50.232:5000/system/getname");
+	//Base64Utils.fileToBase64ByteString("/storage/emulated/0/kugou/lyrics_video/default_res/defaultVideo/1.jpg")
+	public static byte[] fileToBase64ByteString(String path) {
+		int inSampleSize = 7;//采样率设置
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = false;
+		options.inSampleSize = inSampleSize;
+
+		Bitmap bitmap = ratio(path, 1000f);
+//		Bitmap bitmap = BitmapFactory.decodeFile(path, options);
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bos);//quality  图片精度
+		byte[] bytes = bos.toByteArray();
+		//base64 encode
+
+		return Base64.encode(bytes,Base64.DEFAULT);
+	}
 
 
 

@@ -10,6 +10,7 @@ import com.yfy.app.bean.KeyValue;
 import com.yfy.app.chart.BarChartActivity;
 import com.yfy.app.drawableBg.DrawableBgActivity;
 import com.yfy.app.gRPC.GRpcMainActivity;
+import com.yfy.app.gRPC.HttpPostMainActivity;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
 import com.yfy.app.spannable_string.SpannableStringMainActivity;
@@ -95,6 +96,9 @@ public class SelectedModeTypeActivity extends BaseActivity {
                     case "GRpcMainActivity":
                         startActivity(new Intent(mActivity,GRpcMainActivity.class));
                         break;
+                        case "HttpPostMainActivity":
+                        startActivity(new Intent(mActivity,HttpPostMainActivity.class));
+                        break;
                         default:
                             break;
                 }
@@ -111,6 +115,7 @@ public class SelectedModeTypeActivity extends BaseActivity {
         list.add("SpannableStringMainActivity");
         list.add("BarChartActivity");
         list.add("GRpcMainActivity");
+        list.add("HttpPostMainActivity");
 
         keyValue_adapter.clear();
         for (String s:list){

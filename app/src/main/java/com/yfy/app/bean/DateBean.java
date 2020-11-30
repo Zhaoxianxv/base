@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class DateBean implements Parcelable {
+    private static final long DAY_LONG=86400000;
     private String name;
     private String name_year_month;
     private String value;
@@ -60,6 +62,18 @@ public class DateBean implements Parcelable {
     }
 
 
+    public void addOneDay(){
+        value_long+=DAY_LONG;
+        Date date = new Date(value_long);
+        if (is_time){
+            name=name_f.format(date);
+            value=value_f.format(date);
+        }else{
+            name=name_f.format(date);
+            value=value_f.format(date);
+        }
+    }
+
 
     public String getWeekOfDate() {
         String[] weekOfDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
@@ -89,6 +103,29 @@ public class DateBean implements Parcelable {
 
     public void setValue(String value) {
         this.value = value;
+        Date date;
+        try {
+            if (is_time){
+                date= value_f.parse(value);
+                name=name_f.format(date);
+            }else{
+                date= value_f.parse(value);
+                name=name_f.format(date);
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            value_long=0;
+            date=new Date(value_long);
+            if (is_time){
+                name=name_f.format(date);
+            }else{
+                name=name_f.format(date);
+            }
+            return;
+        }
+        assert date != null;
+        this.value_long= date.getTime();
     }
 
     @Override

@@ -33,6 +33,8 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 
 
 /**
@@ -126,18 +128,25 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
         super.onPause();
     }
 
+
     /**
      * 保存Subscription對象到compositeSubscription里面，
      * 当Activity销毁的时候，会在onDestory()方法调用 compositeSubscription.unsubscribe();
      */
+    private CompositeSubscription compositeSubscription = new CompositeSubscription();
 
+    public void addToCompositeSubscription(Subscription s) {
+        compositeSubscription.add(s);
+    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
-
+//        BusProvider.getBusInstance().unregister(this);
+        compositeSubscription.unsubscribe();
     }
+
 
 
 
