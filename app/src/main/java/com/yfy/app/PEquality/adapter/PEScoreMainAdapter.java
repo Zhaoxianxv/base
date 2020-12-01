@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by yfyandr on 2017/12/27.
+ * Created by yfy on 2017/12/27.
  */
 
 public class PEScoreMainAdapter extends BaseRecyclerAdapter {
@@ -53,7 +53,8 @@ public class PEScoreMainAdapter extends BaseRecyclerAdapter {
             return new ItemHolder(inflater.inflate(R.layout.p_e_score_item_layout, parent, false));
         }
         if (position == TagFinal.TYPE_SELECT_GROUP) {
-            return new LineChartH(inflater.inflate(R.layout.public_type_line_chart, parent, false));
+            return new LineChartH(inflater.inflate(R.layout.public_type_line_chart_h
+                    , parent, false));
         }
 
         return new ErrorHolder(parent);
@@ -115,7 +116,7 @@ public class PEScoreMainAdapter extends BaseRecyclerAdapter {
 
         private void setData(float range) {
 
-            List<String> yearlist=StringUtils.listToStringSplitCharacters("18年-上,18年-下,19年-上,19年-下,20年-上",",");
+            List<String> yearlist=StringUtils.listToStringSplitCharacters("18年-上,18年-下,19年-上,19年-下,20年-上,21,22,23",",");
             ArrayList<String> xVals = new ArrayList<>();
             for (String s:yearlist) {
                 xVals.add(s);
@@ -156,28 +157,31 @@ public class PEScoreMainAdapter extends BaseRecyclerAdapter {
             LineData data = new LineData(xVals, dataSets);
 
 
+            float ratio = (float) xVals.size()/(float) 6;
+            //显示的时候是按照多大的比率缩放显示,1f表示不放大缩小
+            mChart.zoom(ratio,1f,0,0);
             // set data
             mChart.setData(data);
         }
-//
-        public void initChart(LineChart mChart){
+        //
+        private void initChart(LineChart mChart){
 
             // set this to true to draw the grid background, false if not
             mChart.setDrawGridBackground(false);
             mChart.setDescription("");
-            mChart.setTouchEnabled(false);
-            // if true, dragging is enabled for the chart
-            mChart.setDragEnabled(false);
-
+            mChart.setTouchEnabled(true);
+            //设置是否可以拖拽
+            mChart.setDragEnabled(true);
             // if disabled, scaling can be done on x- and y-axis separately
 
             //
             mChart.setPinchZoom(false);
 
-           //Set this to true to enable scaling (zooming in and out by gesture)
-            mChart.setScaleEnabled(false);
-            mChart.setScaleXEnabled(false);
-            mChart.setScaleYEnabled(false);
+
+            //Set this to true to enable scaling (zooming in and out by gesture)
+//            mChart.setScaleEnabled(false);
+//            mChart.setScaleXEnabled(false);
+//            mChart.setScaleYEnabled(false);
             //绘制边框4边
             mChart.setDrawBorders(false);
 //            mChart.setBorderColor(ColorRgbUtil.getBaseColor());

@@ -93,7 +93,7 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
 
 
 
-        String list_content="18-上,18-下,19-上,19-下,20-上";
+        String list_content="18-上,18-下,19-上,19-下,20-上,1,2,3,4";
         List<String> list=StringUtils.listToStringSplitCharacters(list_content,",");
         for (String s:list){
             KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
@@ -115,7 +115,7 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
 
     private void setData(float range) {
 
-        List<String> yearlist=StringUtils.listToStringSplitCharacters("9月,10月,11月,12月,1月",",");
+        List<String> yearlist=StringUtils.listToStringSplitCharacters("9月,10月,11月,12月,1月,2,3,4",",");
         ArrayList<String> xVals = new ArrayList<>();
         for (String s:yearlist) {
             xVals.add(s);
@@ -158,7 +158,9 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
         // create a data object with the datasets
         LineData data = new LineData(xVals, dataSets);
 
-
+        float ratio = (float) xVals.size()/(float) 6;
+        //显示的时候是按照多大的比率缩放显示,1f表示不放大缩小
+        mChart.zoom(ratio,1f,0,0);
         // set data
         mChart.setData(data);
     }
@@ -168,9 +170,9 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
         // set this to true to draw the grid background, false if not
         mChart.setDrawGridBackground(false);
         mChart.setDescription("");
-        mChart.setTouchEnabled(false);
-        // if true, dragging is enabled for the chart
-        mChart.setDragEnabled(false);
+        mChart.setTouchEnabled(true);
+        //设置是否可以拖拽
+        mChart.setDragEnabled(true);
 
         // if disabled, scaling can be done on x- and y-axis separately
 
@@ -239,7 +241,9 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
         barChart.setDescription("");
         barChart.setDrawGridBackground(false);
         barChart.setPinchZoom(false);
-        barChart.setTouchEnabled(false);
+        barChart.setTouchEnabled(true);
+        //设置是否可以拖拽
+        barChart.setDragEnabled(true);
         barChart.setDoubleTapToZoomEnabled(false);//双击zoom
         barChart.getLegend().setEnabled(true);//显示标注说明
         barChart.setDrawBorders(false);//绘制边框4边
@@ -269,9 +273,12 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
         rightAxis.setDrawGridLines(false);
 
 //        rightAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+
+        float ratio = (float) values.size()/(float) 6;
+        //显示的时候是按照多大的比率缩放显示,1f表示不放大缩小
+        barChart.zoom(ratio,1f,0,0);
         // set data
         barChart.setData(data);
-
         // do not forget to refresh the chart
         barChart.invalidate();
 //            chart.animateY(700, Easing.EasingOption.EaseInCubic);

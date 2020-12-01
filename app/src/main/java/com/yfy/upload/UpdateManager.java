@@ -35,13 +35,13 @@ import java.net.URL;
 
 public class  UpdateManager {
 
-	private Context mContext;
-	private String apkUrl = "";
-	private Dialog downloadDialog;
+	public Context mContext;
+	public String apkUrl = "";
+	public Dialog downloadDialog;
 	private static final String saveFileName =TagFinal.getAppFile( System.currentTimeMillis() + ".apk") ;
 
 	private ProgressBar mProgress;
-	private TextView text;
+	public TextView text;
 
 
 	private static final int DOWN_UPDATE = 1;
@@ -50,7 +50,7 @@ public class  UpdateManager {
 
 	private int progress;
 
-	private Thread downLoadThread;
+	public Thread downLoadThread;
 
 	private boolean interceptFlag = false;
 

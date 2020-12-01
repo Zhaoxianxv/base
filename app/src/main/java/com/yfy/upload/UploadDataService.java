@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.Handler;
 import android.os.IBinder;
 
 import com.yfy.base.App;
@@ -24,14 +23,13 @@ import java.net.URL;
  * Created by yfy1 on 2016/9/20.
  */
 public class UploadDataService extends Service{
-    private String name,oldname,packagename,packagenameurl;
-    private int code,oldcode;
+    public String name,oldname,packagename,packagenameurl;
+    public int code,oldcode;
     String lines;
     private static String url="";
     public static String getUrl() {
 		return url;
 	}
-    Handler handler=new Handler();
 
 
     @Override
@@ -64,11 +62,10 @@ public class UploadDataService extends Service{
         @Override
         public void run() {
             StringBuffer sb = new StringBuffer();
-            String s="";
+
             try {
-                HttpURLConnection conn = null;
                 URL url = new URL(Base.AUTO_UPDATE_URI);
-                conn = (HttpURLConnection)url.openConnection();
+                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setConnectTimeout(5000);
                 conn.setRequestProperty("conn","Keep-Alive");
@@ -86,14 +83,13 @@ public class UploadDataService extends Service{
             }
           
             try {
-            	  
+                String s="";
             	if (sb.toString()!=null&&sb.toString().length()!=0) {
                     Logger.e("zxx","-conn-2-");
             		s=sb.toString();
 				}else {
 					return;
 				}
-                Logger.e("zxx","-conn-3-"+s);
                 JSONObject json= new JSONObject(s);
                 name=  json.getString("versionName");
                 url=  json.getString("url");
@@ -101,20 +97,15 @@ public class UploadDataService extends Service{
                 packagenameurl=  json.getString("packagename");
                 Logger.e("zxx",">>"+name+">>>>"+url);
                 if (code>oldcode&&packagename.equals(packagenameurl)){
-                    Logger.e("zxx",">>"+name+">>>>");
-                    Logger.e("zxx",">>"+oldcode+">>>>");
                     Intent i=new Intent();
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.setClass(getApplicationContext(),UpDataDialogActivity.class);
                     startActivity(i);
-                  
-                }else{
-                   
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            //packagename.equals(packagenameurl)
+
             
            
         }

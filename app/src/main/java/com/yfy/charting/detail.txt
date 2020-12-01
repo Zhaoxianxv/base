@@ -1,0 +1,2 @@
+1、折线图可水平滑动
+https://github.com/PhilJay/MPAndroidChart/pull/3317/files

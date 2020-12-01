@@ -9,7 +9,8 @@ public class ServerApiUrl {
 
 
     //服务器根目录 http://192.168.50.232:5000/system/getname
-    public final static String SERVER_ROOT = "http://192.168.50.232:5000/";
+//    public final static String SERVER_ROOT = "http://192.168.50.232:5000/";
+    public final static String SERVER_ROOT = "http://h5future.com/";
 
     /**
      * ===============================================

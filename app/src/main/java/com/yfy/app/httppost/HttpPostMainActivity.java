@@ -9,7 +9,10 @@ import android.widget.Toast;
 import com.squareup.okhttp.internal.http.HttpConnection;
 import com.yfy.app.album.AlbumOneActivity;
 import com.yfy.app.netHttp.RestClient;
+import com.yfy.app.netHttp.RestHelpter;
 import com.yfy.app.netHttp.ServerApiUrl;
+import com.yfy.app.netHttp.result.BaseRes;
+import com.yfy.app.netHttp.result.BaseResResult;
 import com.yfy.app.netHttp.service.AccountService;
 import com.yfy.base.Base;
 import com.yfy.base.R;
@@ -24,6 +27,7 @@ import com.yfy.final_tag.permission.PermissionGen;
 import com.yfy.final_tag.permission.PermissionSuccess;
 import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.upload.UpDataDialogActivity;
 
 import org.json.JSONException;
@@ -38,6 +42,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.OnClick;
 import okhttp3.MultipartBody;
@@ -50,6 +55,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import rx.Observable;
+import rx.functions.Action1;
 
 public class HttpPostMainActivity extends BaseActivity {
     @Override
@@ -65,7 +71,8 @@ public class HttpPostMainActivity extends BaseActivity {
 
     @OnClick(R.id.send_button)
     void setSendButton(View view){
-        album_select.showAtBottom();
+//        album_select.showAtBottom();
+        getReultForHttpPost();
     }
 
 
@@ -75,123 +82,117 @@ public class HttpPostMainActivity extends BaseActivity {
 
 
 
-//    private String Verification;
-//    public void getReultForHttpPost() {
-//        //服务器  ：服务器项目  ：servlet名称
-//
-//
-//
-//
-//
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(ServerApiUrl.SERVER_ROOT)
-//                .build();
-//
-//
-//
-//
+    public void getReultForHttpPost() {
+        //服务器  ：服务器项目  ：servlet名称
+
+
+
+
+
+
 //        //retrofit.create来生成一个接口实现类
-//        AccountService apiService=retrofit.create(AccountService.class);
+//        AccountService apiService=RestClient.instance.getAccountService().updateFile();
 //        //调用指定方法
-//        Call<ResponseBody> gitHubBeanCall=
-//                apiService.updateFile(Base64Utils.fileToBase64ByteString("/storage/emulated/0/kugou/lyrics_video/default_res/defaultVideo/1.jpg"));
+//        Observable<BaseResResult> gitHubBeanCall= apiService.updateFile();
 //        //执行请求
-//        gitHubBeanCall.enqueue(new Callback<ResponseBody>() {
+//        RestHelpter.subscribeResult(mActivity, gitHubBeanCall, new Action1<List<BaseRes>>() {
 //            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-////                String authorizations_url= response.body().getAuthorizations_url();
-////                String team_url= response.body().getTeam_url();
+//            public void call(List<BaseRes> newDataItems) {
 //            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                Logger.e("zfq", t.getMessage());
-//            }
-//        });
-//
-//    }
+//        }, networkThrowable);
 
-
-
-
-
-
-    private void httpUrlConnection(){
-        try{
-            String pathUrl = "http://api.yfyit.com/system/getname";
-            //建立连接
-            URL url=new URL(pathUrl);
-            HttpURLConnection httpConn=(HttpURLConnection)url.openConnection();
-
-            ////设置连接属性
-            httpConn.setDoOutput(true);//使用 URL 连接进行输出
-            httpConn.setDoInput(true);//使用 URL 连接进行输入
-            httpConn.setUseCaches(false);//忽略缓存
-            httpConn.setRequestMethod("POST");//设置URL请求方法
-            String requestString = Base64Utils.fileToBase64Str(image_path);
-
-
-            //获得数据字节数据，请求数据流的编码，必须和下面服务器端处理请求流的编码一致
-            byte[] requestStringBytes = requestString.getBytes("UTF-8");
-
-
-            //设置请求属性
-            httpConn.setRequestProperty("Connection", "Keep-Alive");// 维持长连接
-            httpConn.setRequestProperty("Charset", "UTF-8");
-//            httpConn.setRequestProperty("Content-length", "" + requestStringBytes.length);
-//            httpConn.addRequestProperty("Content-Disposition", "form-data; filename=" + "1.jpg");//文件名
-            //            httpConn.setRequestProperty("Content-Type", "application/octet-stream");
-            httpConn.setRequestProperty("Content-Type", "multipart/form-data");
-            httpConn.setRequestProperty("Content-Disposition","form-data; boundary=" +requestStringBytes);
-
-//            String name=URLEncoder.encode("黄武艺","utf-8");
-//            httpConn.setRequestProperty("NAME", name);
-
-            //建立输出流，并写入数据
-//            OutputStream outputStream = httpConn.getOutputStream();
-//            // httpConn.getOutputStream(); 获得输出流对象（其实通过这个就可以往这个请求里面写数据，这样网站那就可以获得数据了）
-//            outputStream.write(requestStringBytes,0,requestStringBytes.length);
-//            outputStream.close();
-
-
-//            formData.append(name, file, filename);
-
-//            PrintWriter pw = new PrintWriter(httpConn.getOutputStream());
-//            pw.print(requestString);
-//            pw.flush();
-//            pw.close();
-
-            //获得响应状态
-//            Logger.e(httpConn.hea());
-            int responseCode = httpConn.getResponseCode();
-            if(HttpURLConnection.HTTP_OK == responseCode){//连接成功
-
-                //当正确响应时处理数据
-                StringBuffer sb = new StringBuffer();
-                String readLine;
-                BufferedReader responseReader;
-                //处理响应流，必须与服务器响应流输出的编码一致
-                //httpConn.getInputStream()//获得输入流对象（其实就是最后网站返回过来的数据）
-                responseReader = new BufferedReader(new InputStreamReader(httpConn.getInputStream(),"UTF-8"));
-                while ((readLine = responseReader.readLine()) != null) {
-                    sb.append(readLine).append("\n");
-                }
-                responseReader.close();
-                Logger.e(sb.toString());
-            }else{
-                Logger.e(""+responseCode);
-            }
-        }catch(Exception ex){
-            ex.printStackTrace();
-            Logger.e("Exception"+ex.toString());
-        }
     }
+
+
+
+    Action1<Throwable> networkThrowable = new Action1<Throwable>() {
+        @Override
+        public void call(Throwable throwable) {
+            dismissProgressDialog();
+            Logger.e("网络错误");
+        }
+    };
+
+
+
+
+//
+//    private void httpUrlConnection(){
+//        try{
+//            String pathUrl = "http://api.yfyit.com/system/getname";
+//            //建立连接
+//            URL url=new URL(pathUrl);
+//            HttpURLConnection httpConn=(HttpURLConnection)url.openConnection();
+//
+//            ////设置连接属性
+//            httpConn.setDoOutput(true);//使用 URL 连接进行输出
+//            httpConn.setDoInput(true);//使用 URL 连接进行输入
+//            httpConn.setUseCaches(false);//忽略缓存
+//            httpConn.setRequestMethod("POST");//设置URL请求方法
+//            String requestString = Base64Utils.fileToBase64Str(image_path);
+//
+//
+//            //获得数据字节数据，请求数据流的编码，必须和下面服务器端处理请求流的编码一致
+//            byte[] requestStringBytes = requestString.getBytes("UTF-8");
+//
+//
+//            //设置请求属性
+//            httpConn.setRequestProperty("Connection", "Keep-Alive");// 维持长连接
+//            httpConn.setRequestProperty("Charset", "UTF-8");
+////            httpConn.setRequestProperty("Content-length", "" + requestStringBytes.length);
+////            httpConn.addRequestProperty("Content-Disposition", "form-data; filename=" + "1.jpg");//文件名
+//            //            httpConn.setRequestProperty("Content-Type", "application/octet-stream");
+//            httpConn.setRequestProperty("Content-Type", "multipart/form-data");
+//            httpConn.setRequestProperty("Content-Disposition","form-data; boundary=" +requestStringBytes);
+//            httpConn.addRequestProperty("Content-Disposition", "form-data; filename=" + StringUtils.stringToGetTextJoint("%1$s.jpg",System.currentTimeMillis()));//文件名
+////            String name=URLEncoder.encode("黄武艺","utf-8");
+////            httpConn.setRequestProperty("NAME", name);
+//
+//            //建立输出流，并写入数据
+////            OutputStream outputStream = httpConn.getOutputStream();
+////            // httpConn.getOutputStream(); 获得输出流对象（其实通过这个就可以往这个请求里面写数据，这样网站那就可以获得数据了）
+////            outputStream.write(requestStringBytes,0,requestStringBytes.length);
+////            outputStream.close();
+//
+//
+////            formData.append(name, file, filename);
+//
+////            PrintWriter pw = new PrintWriter(httpConn.getOutputStream());
+////            pw.print(requestString);
+////            pw.flush();
+////            pw.close();
+//
+//            //获得响应状态
+////            Logger.e(httpConn.hea());
+//            int responseCode = httpConn.getResponseCode();
+//            if(HttpURLConnection.HTTP_OK == responseCode){//连接成功
+//
+//                //当正确响应时处理数据
+//                StringBuffer sb = new StringBuffer();
+//                String readLine;
+//                BufferedReader responseReader;
+//                //处理响应流，必须与服务器响应流输出的编码一致
+//                //httpConn.getInputStream()//获得输入流对象（其实就是最后网站返回过来的数据）
+//                responseReader = new BufferedReader(new InputStreamReader(httpConn.getInputStream(),"UTF-8"));
+//                while ((readLine = responseReader.readLine()) != null) {
+//                    sb.append(readLine).append("\n");
+//                }
+//                responseReader.close();
+//                Logger.e(sb.toString());
+//            }else{
+//                Logger.e(""+responseCode);
+//            }
+//        }catch(Exception ex){
+//            ex.printStackTrace();
+//            Logger.e("Exception"+ex.toString());
+//        }
+//    }
 
 
     private Thread thread=new Thread(new Runnable() {
         @Override
         public void run() {
-            httpUrlConnection();
+//            httpUrlConnection();
 
         }
     });
@@ -277,7 +278,9 @@ public class HttpPostMainActivity extends BaseActivity {
                     if (photo_a==null)return;
                     if (photo_a.size()==0)return;
                     image_path=photo_a.get(0).getPath();
-                    thread.start();
+//                    thread.start();
+
+                    getReultForHttpPost();
                     break;
             }
         }

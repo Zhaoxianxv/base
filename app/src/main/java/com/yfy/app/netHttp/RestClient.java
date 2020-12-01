@@ -13,16 +13,14 @@ public enum RestClient {
     private AccountService accountService;
 
     RestClient() {
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(ServerApiUrl.SERVER_ROOT)
-//                .client(CustomerOkHttpClient.getClient())
-//                .addConverterFactory(ScalarsConverterFactory.create()) //设置 Json 转换器
-////                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-//                .build();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ServerApiUrl.SERVER_ROOT)
+                .client(CustomerOkHttpClient.getClient())
+                .addConverterFactory(ScalarsConverterFactory.create()) //设置 Json 转换器
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
+
+
         /*
          * 实例化Service们
          */

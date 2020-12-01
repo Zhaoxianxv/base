@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.yfy.app.PEquality.adapter.PEScoreAlterMainAdapter;
 import com.yfy.app.PEquality.adapter.PEScoreMainAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
@@ -32,10 +33,10 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 
-public class
-PEScoreMainActivity extends BaseActivity {
+public class PEScoreMainActivity extends BaseActivity {
     private static final String TAG = PEScoreMainActivity.class.getSimpleName();
 
+//    private PEScoreAlterMainAdapter adapter;
     private PEScoreMainAdapter adapter;
 
 
@@ -67,6 +68,7 @@ PEScoreMainActivity extends BaseActivity {
         recyclerView =  findViewById(R.id.public_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        adapter=new PEScoreAlterMainAdapter(mActivity);
         adapter=new PEScoreMainAdapter(mActivity);
         recyclerView.setAdapter(adapter);
     }

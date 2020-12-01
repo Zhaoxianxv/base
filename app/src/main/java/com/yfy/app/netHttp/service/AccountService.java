@@ -3,10 +3,12 @@ package com.yfy.app.netHttp.service;
 
 
 import com.yfy.app.netHttp.ServerApiUrl;
+import com.yfy.app.netHttp.result.BaseResResult;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -17,8 +19,9 @@ import rx.Observable;
 public interface AccountService {
     /**
      */
+    @FormUrlEncoded
     @POST(ServerApiUrl.Get_Code)
-    Call<ResponseBody> updateFile( byte[] phone);
+    Observable<BaseResResult> updateFile();
 
 
 

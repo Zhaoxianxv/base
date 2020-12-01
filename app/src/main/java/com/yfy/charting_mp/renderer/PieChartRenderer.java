@@ -406,7 +406,7 @@ public class PieChartRenderer extends DataRenderer {
 
             /**
              * Make the box containing current arc larger equally in every
-             * dimension, to preserve shape of arc. Code provided by:
+             * dimension, to preserve shape of arc.  provided by:
              * 
              * @link https://github.com/wogg
              */

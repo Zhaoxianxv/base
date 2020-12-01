@@ -127,13 +127,10 @@ public class UpDataDialogActivity extends BaseActivity {
         }
     }
 
-    @PermissionSuccess(requestCode = TagFinal.CAMERA)
-    private void takePhoto() {
 
-    }
 
     @PermissionSuccess(requestCode = TagFinal.PHOTO_ALBUM)
-    private void photoAlbum() {
+    public void photoAlbum() {
 //        launchAppDetail(getPackageName(),"");
         mUpdateManager = new UpdateManager(this);
         layout.setVisibility(View.GONE);
@@ -141,12 +138,12 @@ public class UpDataDialogActivity extends BaseActivity {
         stopService(new Intent(App.getApp().getApplicationContext(),UploadDataService.class));
     }
     @PermissionFail(requestCode = TagFinal.CAMERA)
-    private void showCamere() {
+    public void showCamere() {
         Toast.makeText(getApplicationContext(), R.string.permission_fail_camere, Toast.LENGTH_SHORT).show();
     }
 
     @PermissionFail(requestCode = TagFinal.PHOTO_ALBUM)
-    private void showTip1() {
+    public void showTip1() {
         Toast.makeText(getApplicationContext(), R.string.permission_fail_album, Toast.LENGTH_SHORT).show();
     }
 
