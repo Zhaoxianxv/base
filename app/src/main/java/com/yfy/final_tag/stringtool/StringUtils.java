@@ -83,7 +83,7 @@ public class StringUtils {
 
 
 	//---------------------返回String-----------------
-	public static String stringToSpecialASCIICharacters(String name) {
+	private static String stringToSpecialASCIICharacters(String name) {
 		return Pattern.quote(name);
 	}
 

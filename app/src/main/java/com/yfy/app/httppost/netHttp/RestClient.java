@@ -1,7 +1,7 @@
-package com.yfy.app.netHttp;
+package com.yfy.app.httppost.netHttp;
 
 
-import com.yfy.app.netHttp.service.AccountService;
+import com.yfy.app.httppost.netHttp.service.AccountService;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 

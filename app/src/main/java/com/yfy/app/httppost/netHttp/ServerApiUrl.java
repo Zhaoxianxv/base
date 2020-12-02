@@ -1,4 +1,4 @@
-package com.yfy.app.netHttp;
+package com.yfy.app.httppost.netHttp;
 
 /**
  * Created by AJ

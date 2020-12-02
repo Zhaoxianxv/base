@@ -11,6 +11,7 @@ import com.yfy.app.chart.BarChartActivity;
 import com.yfy.app.drawableBg.DrawableBgActivity;
 import com.yfy.app.gRPC.GRpcMainActivity;
 import com.yfy.app.httppost.HttpPostMainActivity;
+import com.yfy.app.httppost.retrofitclient.RetrofitMainActivity;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
 import com.yfy.app.spannable_string.SpannableStringMainActivity;
@@ -96,11 +97,14 @@ public class SelectedModeTypeActivity extends BaseActivity {
                     case "GRpcMainActivity":
                         startActivity(new Intent(mActivity,GRpcMainActivity.class));
                         break;
-                        case "HttpPostMainActivity":
+                    case "HttpPostMainActivity":
                         startActivity(new Intent(mActivity,HttpPostMainActivity.class));
                         break;
-                        default:
-                            break;
+                    case "RetrofitMainActivity":
+                        startActivity(new Intent(mActivity,RetrofitMainActivity.class));
+                        break;
+                    default:
+                        break;
                 }
             }
         });
@@ -116,6 +120,7 @@ public class SelectedModeTypeActivity extends BaseActivity {
         list.add("BarChartActivity");
         list.add("GRpcMainActivity");
         list.add("HttpPostMainActivity");
+        list.add("RetrofitMainActivity");
 
         keyValue_adapter.clear();
         for (String s:list){

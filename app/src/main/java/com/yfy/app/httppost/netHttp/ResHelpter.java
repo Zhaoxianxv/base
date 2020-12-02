@@ -1,10 +1,9 @@
-package com.yfy.app.netHttp;
+package com.yfy.app.httppost.netHttp;
 
 
 
 
-import com.yfy.app.netHttp.action.EmptyAction;
-import com.yfy.app.netHttp.result.Result;
+import com.yfy.app.httppost.netHttp.result.Result;
 import com.yfy.base.activity.BaseActivity;
 
 import rx.Observable;
@@ -17,7 +16,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by Aj Liao
  */
-public class RestHelpter {
+public class ResHelpter {
 
     /**
      * 订阅帮助类 拦截errcode的处理

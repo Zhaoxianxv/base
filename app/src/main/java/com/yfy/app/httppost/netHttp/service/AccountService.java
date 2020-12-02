@@ -1,13 +1,10 @@
-package com.yfy.app.netHttp.service;
+package com.yfy.app.httppost.netHttp.service;
 
 
 
-import com.yfy.app.netHttp.ServerApiUrl;
-import com.yfy.app.netHttp.result.BaseResResult;
+import com.yfy.app.httppost.netHttp.ServerApiUrl;
+import com.yfy.app.httppost.netHttp.result.BaseResResult;
 
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import rx.Observable;

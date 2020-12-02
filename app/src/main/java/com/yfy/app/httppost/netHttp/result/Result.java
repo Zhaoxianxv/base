@@ -1,4 +1,4 @@
-package com.yfy.app.netHttp.result;
+package com.yfy.app.httppost.netHttp.result;
 
 
 public abstract class Result {
