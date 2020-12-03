@@ -48,9 +48,7 @@ public interface BaseApiService {
             @QueryMap Map<String, String> maps);
 
     @POST("{url}")
-    Observable<ResponseBody> json(
-            @Path("url") String url,
-            @Body RequestBody jsonStr);
+    Observable<ResponseBody> json(@Path("url") String url, @Body RequestBody jsonStr);
 
     @Multipart
     @POST("{url}")
