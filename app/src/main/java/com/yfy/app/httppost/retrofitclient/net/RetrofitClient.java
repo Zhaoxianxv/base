@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.yfy.app.httppost.retrofitclient.IpResult;
+import com.yfy.final_tag.stringtool.Logger;
 
 import java.io.File;
 import java.util.Map;
@@ -116,9 +117,17 @@ public class RetrofitClient {
         } catch (Exception e) {
             Log.e("OKHttp", "Could not create http cache", e);
         }
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(String message) {
+                //打印retrofit日志
+                Logger.e(message);
+            }
+        });
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
         okHttpClient = new OkHttpClient.Builder()
-                .addNetworkInterceptor(
-                        new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addNetworkInterceptor(loggingInterceptor)
                 .cookieJar(new NovateCookieManger(context))
                 .cache(cache)
                 .addInterceptor(new BaseInterceptor(headers))
