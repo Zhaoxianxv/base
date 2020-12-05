@@ -87,6 +87,37 @@ public class HttpPostMainActivity extends BaseActivity {
 
     private void retrofitPostImage(String fileUrl){
         Logger.e(fileUrl);
+        //获得数据字节数据，请求数据流的编码，必须和下面服务器端处理请求流的编码一致
+        byte[] requestStringBytes = Base64Utils.fileToBase64ByteString(fileUrl);
+
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), requestStringBytes);
+
+        // MultipartBody.Part  和后端约定好Key，这里的partName是用file
+        MultipartBody.Part body = MultipartBody.Part.createFormData(
+                "file",
+                StringUtils.stringToGetTextJoint("%1$s.%2$s",System.currentTimeMillis(),"jpg"),
+                requestFile);
+
+        // 执行请求
+        RestClient.instance.getAccountApi().getGetNameApi(body).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
+
+
+
+
+
+    private void retrofitPostImageTest(String fileUrl){
+        Logger.e(fileUrl);
 
         File file = new File(fileUrl);
         //获得数据字节数据，请求数据流的编码，必须和下面服务器端处理请求流的编码一致
@@ -180,12 +211,10 @@ public class HttpPostMainActivity extends BaseActivity {
             //设置请求属性
             httpConn.setRequestProperty("Connection", "Keep-Alive");// 维持长连接
             httpConn.setRequestProperty("Charset", "UTF-8");
-//            httpConn.setRequestProperty("Content-length", "" + requestStringBytes.length);
-//            httpConn.addRequestProperty("Content-Disposition", "form-data; filename=" + "1.jpg");//文件名
-            //            httpConn.setRequestProperty("Content-Type", "application/octet-stream");
             httpConn.setRequestProperty("Content-Type", "multipart/form-data");
             httpConn.setRequestProperty("Content-Disposition","form-data; boundary=" +requestStringBytes);
             httpConn.addRequestProperty("Content-Disposition", "form-data; filename=" + StringUtils.stringToGetTextJoint("%1$s.jpg",System.currentTimeMillis()));//文件名
+            loggerHttpHead(httpConn);
 //            String name=URLEncoder.encode("黄武艺","utf-8");
 //            httpConn.setRequestProperty("NAME", name);
 
@@ -235,6 +264,17 @@ public class HttpPostMainActivity extends BaseActivity {
 
 
 
+    private void loggerHttpHead(HttpURLConnection httpConn){
+
+        Logger.e(""+httpConn.getRequestMethod());
+        Logger.e("Host"+httpConn.getRequestProperty("Host"));
+        Logger.e("Connection"+httpConn.getRequestProperty("Connection"));
+        Logger.e("Accept"+httpConn.getRequestProperty("Accept"));
+        Logger.e("User-Agent"+httpConn.getRequestProperty("User-Agent"));
+        Logger.e("Accept-Encoding"+httpConn.getRequestProperty("Accept-Encoding"));
+        Logger.e("Content-Disposition"+httpConn.getRequestProperty("Content-Disposition"));
+        System.out.print("Content-Disposition"+httpConn.getRequestProperty("Content-Disposition"));
+    }
 
 
 
@@ -286,8 +326,8 @@ public class HttpPostMainActivity extends BaseActivity {
                     if (photo_a==null)return;
                     if (photo_a.size()==0)return;
                     image_path=photo_a.get(0).getPath();
-//                    thread.start();
-                    retrofitPostImage(image_path);
+                    thread.start();
+//                    retrofitPostImage(image_path);
                     break;
             }
         }

@@ -29,11 +29,15 @@ public interface AccountApi {
     Call<ResponseBody> getCodeApi(@Field("gradeid") String gradeid,
                                   @Field("fxid") String fxid);
 
+//
+//    @Multipart
+//    @POST(ApiUrl.Get_Name)
+//    Call<ResponseBody> getGetNameApi(@Part("description") RequestBody description,
+//                                     @Part MultipartBody.Part file);
 
     @Multipart
     @POST(ApiUrl.Get_Name)
-    Call<ResponseBody> getGetNameApi(@Part("description") RequestBody description,
-                                     @Part MultipartBody.Part file);
+    Call<ResponseBody> getGetNameApi(@Part MultipartBody.Part file);
 
 
     @Multipart
