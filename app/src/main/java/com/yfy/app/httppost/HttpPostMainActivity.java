@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.yfy.app.album.AlbumOneActivity;
 import com.yfy.app.httppost.netHttp.ApiUrl;
+import com.yfy.app.httppost.netHttp.RestClient;
 import com.yfy.app.httppost.netHttp.service.AccountApi;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
@@ -24,15 +25,16 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.OnClick;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -44,7 +46,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.POST;
 
 public class HttpPostMainActivity extends BaseActivity {
     @Override
@@ -71,7 +72,7 @@ public class HttpPostMainActivity extends BaseActivity {
 
     @OnClick(R.id.retrofit_image)
     void setImage(View view){
-        retrofitPostImage();
+       album_select.showAtCenter();
     }
 
 
@@ -84,127 +85,61 @@ public class HttpPostMainActivity extends BaseActivity {
 
 
 
+    private void retrofitPostImage(String fileUrl){
+        Logger.e(fileUrl);
 
+        File file = new File(fileUrl);
+        //获得数据字节数据，请求数据流的编码，必须和下面服务器端处理请求流的编码一致
+        byte[] requestStringBytes = Base64Utils.fileToBase64ByteString(fileUrl);
 
-    private void retrofitPostImage(){
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-            @Override
-            public void log(String message) {
-                //打印retrofit日志
-                Logger.e("retrofitBack = "+message);
-            }
-        });
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        // 创建 RequestBody，用于封装构建RequestBody
+        // RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+//        RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpg"), file);
+        RequestBody requestFile = RequestBody.create(MediaType.parse("boundary"), requestStringBytes);
 
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .connectTimeout(10000, TimeUnit.SECONDS)
-                .readTimeout(10000, TimeUnit.SECONDS)
-                .writeTimeout(10000, TimeUnit.SECONDS)
-                .build();
+        // MultipartBody.Part  和后端约定好Key，这里的partName是用file
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", StringUtils.stringToGetTextJoint("%1$s.%2$s",System.currentTimeMillis(),"jpg"), requestFile);
 
+        // 添加描述
+//        String descriptionString = "hello, 这是文件描述";
+//        RequestBody description = RequestBody.create(MediaType.parse("multipart/form-data"), descriptionString);
 
-
-
-
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(client)
-                .baseUrl(ApiUrl.SERVER_ROOT)
-                .addConverterFactory(GsonConverterFactory.create()) //设置 Json 转换器
-                .build();
-
-
-        //拼接地址
-        AccountApi accountApi = retrofit.create(AccountApi.class);
-
-        Call<ResponseBody> bodyCall = accountApi.getGetNameApi();
-
-//               .addHeader("Content-Type", "multipart/form-data")
-//                .addHeader("Content-Disposition", "form-data; boundary="+"");
-        Request request =bodyCall.request();
-
-
-        bodyCall.enqueue(new Callback<ResponseBody>() {
+        // 执行请求
+        RestClient.instance.getAccountApi().getGetNameImage(requestFile).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    assert response.body()!=null;
-                    String string = response.body().string();
-                    Logger.e(string);
-                    Toast.makeText(mActivity, string, Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Logger.e("onFailure  :"+call.request().headers().toString());
+
             }
         });
-
-
     }
 
 
 
 
     public void retrofitPostParam() {
-        //服务器  ：服务器项目  ：servlet名称
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-            @Override
-            public void log(String message) {
-                //打印retrofit日志
-                Logger.e("retrofitBack = "+message);
-            }
-        });
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .connectTimeout(10000, TimeUnit.SECONDS)
-                .readTimeout(10000, TimeUnit.SECONDS)
-                .writeTimeout(10000, TimeUnit.SECONDS)
-                .build();
-
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(client)
-                .baseUrl(ApiUrl.SERVER_ROOT)
-                .addConverterFactory(GsonConverterFactory.create()) //设置 Json 转换器
-                .build();
-
-        //拼接地址
-        AccountApi accountApi = retrofit.create(AccountApi.class);
-
-
-
-
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("gradeid", "1");
-        map.put("fxid", "11");
-        Call<ResponseBody> bodyCall = accountApi.getCodeApi(map);
-
-
+        Call<ResponseBody> bodyCall = RestClient.instance.getAccountApi().getCodeApi("1","11");
         bodyCall.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    assert response.body()!=null;
-                    String string = response.body().string();
-                    Logger.e(string);
-                    Toast.makeText(mActivity, string, Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    assert response.body()!=null;
+//                    String string = response.body().string();
+//                    Logger.e(string);
+//                    Toast.makeText(mActivity, string, Toast.LENGTH_SHORT).show();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
 
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Logger.e("onFailure  :"+call.request().headers().toString());
+//                Logger.e("onFailure  :"+call.request().headers().toString());
             }
         });
 
@@ -269,7 +204,8 @@ public class HttpPostMainActivity extends BaseActivity {
 //            pw.close();
 
             //获得响应状态
-//            Logger.e(httpConn.hea());
+//            Logger.e(httpConn.get());
+
             int responseCode = httpConn.getResponseCode();
             if(HttpURLConnection.HTTP_OK == responseCode){//连接成功
 
@@ -350,7 +286,8 @@ public class HttpPostMainActivity extends BaseActivity {
                     if (photo_a==null)return;
                     if (photo_a.size()==0)return;
                     image_path=photo_a.get(0).getPath();
-                    thread.start();
+//                    thread.start();
+                    retrofitPostImage(image_path);
                     break;
             }
         }
