@@ -1,17 +1,18 @@
 package com.yfy.app;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.yfy.app.PEquality.PEHonorMainActivity;
-import com.yfy.app.PEquality.tea.PETeaScoreTypeActivity;
+import android.widget.RelativeLayout;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.duty_evaluate.DutyEvaluateTeaDoActivity;
 import com.yfy.base.R;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
-import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.List;
 public class SelectedClassAdapter extends BaseRecyclerAdapter {
 
 
+    private String mode_type;
 
     private List<KeyValue> dataList;
 
@@ -30,9 +32,11 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
         this.dataList = dataList;
     }
 
+    public void setMode_type(String mode_type) {
+        this.mode_type = mode_type;
+    }
 
-
-    public SelectedClassAdapter(SelectedClassActivity mContext){
+    public SelectedClassAdapter(Activity mContext){
         super(mContext);
         this.dataList = new ArrayList<>();
     }
@@ -48,9 +52,7 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
     public ReViewHolder initViewHolder(ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TagFinal.TYPE_ITEM) {
-
-            return new SelectedClassH(inflater.inflate(R.layout.selected_singe_item_layout, parent, false));
-
+            return new SelectedClassH(inflater.inflate(R.layout.public_txt_check_layout, parent, false));
         }
         return new ErrorHolder(parent);
     }
@@ -59,9 +61,10 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
     public void bindHolder(ReViewHolder holder, int position) {
 
         if (holder instanceof SelectedClassH) {
-            SelectedClassH selectedTermH = (SelectedClassH) holder;
-            selectedTermH.bean=dataList.get(position);
-            selectedTermH.name.setText(selectedTermH.bean.getTitle());
+            SelectedClassH selectedClassH = (SelectedClassH) holder;
+            selectedClassH.bean=dataList.get(position);
+            selectedClassH.lift_title.setText(selectedClassH.bean.getTitle());
+            selectedClassH.right_value.setVisibility(View.GONE);
         }
     }
 
@@ -71,51 +74,30 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
     }
 
     private class SelectedClassH extends ReViewHolder {
-        TextView name;
-        TextView type;
+        AppCompatTextView lift_title;
+        AppCompatImageView right_value;
+        RelativeLayout layout;
         KeyValue bean;
         SelectedClassH(View itemView) {
             super(itemView);
-            name=  itemView.findViewById(R.id.selected_item_name);
-            type=  itemView.findViewById(R.id.selected_item_type);
-            name.setOnClickListener(new View.OnClickListener() {
+            lift_title=  itemView.findViewById(R.id.public_txt_check_layout_left_title);
+            right_value=  itemView.findViewById(R.id.public_txt_check_right_value);
+            layout=  itemView.findViewById(R.id.public_txt_check_layout);
+            layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //单/多选
-                    Intent intent;
-                    switch (bean.getType()){
-
-                        case "成绩录入":
-                            intent=new Intent(mContext,PETeaScoreTypeActivity.class  );
-                            intent.putExtra(Base.title,bean.getTitle());
-                            intent.putExtra(Base.type,bean.getType());
+                    switch (mode_type){
+                        case "duty_evaluate":
+                            Intent intent=new Intent(mContext,DutyEvaluateTeaDoActivity.class);
+                            intent.putExtra(Base.class_bean,bean);
                             mContext.startActivity(intent);
                             break;
-                        case "荣誉比赛":
-                            intent=new Intent(mContext,PEHonorMainActivity.class);
-                            intent.putExtra(Base.title,bean.getType());
-                            intent.putExtra(Base.type,TagFinal.TRUE);
-                            mContext.startActivity(intent);
-                            break;
-                            default:
-                                intent=new Intent(mContext,SelectStuActivity.class);
-                                intent.putExtra(Base.index,1);
-                                intent.putExtra(Base.title,"选择学生");
-                                intent.putExtra(Base.type,bean.getType());
-                                mContext.startActivity(intent);
-                                break;
                     }
                 }
             });
 
         }
-
-
-
     }
-
-
-
 
 
 

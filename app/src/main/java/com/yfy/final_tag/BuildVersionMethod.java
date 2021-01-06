@@ -6,7 +6,7 @@ import android.support.v4.content.FileProvider;
 import android.text.Html;
 
 import com.yfy.base.App;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 
 import java.io.File;
 

@@ -24,7 +24,7 @@ import com.yfy.base.R;
 import com.yfy.greendao.tool.GreenDaoManager;
 import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.stringtool.Logger;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.view.SQToolBar;
 
@@ -69,7 +69,6 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
 
     /**
      * 重写onCreate，从新定义Activity的初始时的生命周期
-     * <p/>
      * 包括：初始化变量-> 初始化控件-> 加载数据
      * 好处：职责单一
      */
@@ -143,7 +142,6 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
-//        BusProvider.getBusInstance().unregister(this);
         compositeSubscription.unsubscribe();
     }
 
@@ -253,35 +251,6 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
         finish();
     }
 
-//
-//    /**
-//     * -----
-//     */
-//    private long lastClickTime = 0;
-//    //设置拦截的时间间隔 500毫秒
-//    private long RESTRICT_TIME = 500;
-//
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent ev) {
-//        /**
-//         * 拦截两次时间差小于RESTRICT_TIME
-//         */
-//        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-//            if (isFrequentlyClick()) {
-//                //可以在这里给点提示
-//                //ToastUtils.showShort("不要频繁点击！");
-//                return true;
-//            }
-//        }
-//        return super.dispatchTouchEvent(ev);
-//    }
-//    public boolean isFrequentlyClick() {
-//        long clickTime = System.currentTimeMillis();
-//        long value = clickTime - lastClickTime;
-//        lastClickTime = clickTime;
-//        return value <= RESTRICT_TIME;
-//    }
-
 
 
 
@@ -299,71 +268,9 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
         reqEnv.body = reqBody;
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().base_get_tooken(reqEnv);
         call.enqueue(this);
-        Logger.e(s);
         Logger.e(reqEnv.toString());
 
     }
-//
-//    public void login(String token) {
-//        if (Base.user==null)return;
-//        //登陆时传的Constants.APP_ID：
-//        String apikey=JPushInterface.getRegistrationID(mActivity);
-//        if(apikey==null){
-//            apikey="";
-//        }
-//        String user_name,password_name;
-//        user_name=AES.decrypTToString(Base.user.getName());
-//        password_name=AES.decrypTToString(Base.user.getPwd());
-//
-//        ReqEnv reqEnv = new ReqEnv();
-//        ReqBody reqBody = new ReqBody();
-//        UserLoginReq req = new UserLoginReq();
-//        //获取参数
-//        req.setUsername(user_name);
-//        req.setPassword(password_name);
-//        req.setRole_id(Base.user.getUsertype().equals(TagFinal.USER_TYPE_TEA)?"2":"1");
-//        req.setAppid(apikey);
-//        req.setFirsttoken(token);
-//
-//        reqBody.userLoginReq = req;
-//        reqEnv.body = reqBody;
-//        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_login(reqEnv);
-//        call.enqueue(this);
-//        Logger.e(reqEnv.toString());
-//
-//    }
-//    public void duplicationLogin(String token) {
-//        //登陆时传的Constants.APP_ID：
-//        if (Base.user==null)return;
-//        String apikey=JPushInterface.getRegistrationID(mActivity);
-//        if(apikey==null){
-//            apikey="";
-//        }
-//        String user_name,password_name;
-//
-//
-//        user_name=AES.decrypTToString(Base.user.getName());
-//        password_name=AES.decrypTToString(Base.user.getPwd());
-//
-//
-//        ReqEnv reqEnv = new ReqEnv();
-//        ReqBody reqBody = new ReqBody();
-//        UserDuplicationLoginReq req = new UserDuplicationLoginReq();
-//        //获取参数
-//
-//        req.setUsername(user_name);
-//        req.setPassword(password_name);
-//        req.setRole_id(Base.user.getUsertype().equals(TagFinal.USER_TYPE_TEA)?"2":"1");
-//        req.setAppid(apikey);
-//        req.setFirsttoken(token);
-//        req.setStuid(ConvertObjtect.getInstance().getInt(Base.user.getIdU()));
-//
-//        reqBody.userDuplicationLoginReq = req;
-//        reqEnv.body = reqBody;
-//        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_duplication_login(reqEnv);
-//        call.enqueue(this);
-//        Logger.e(reqEnv.toString());
-//    }
 
 
     @Override

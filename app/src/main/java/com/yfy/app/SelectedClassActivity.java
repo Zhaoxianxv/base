@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.yfy.app.bean.BaseClass;
+import com.yfy.app.bean.BaseGrade;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.bean.TermBean;
@@ -16,17 +18,21 @@ import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
 import com.yfy.app.net.RetrofitGenerator;
+import com.yfy.app.net.base.UserGetClassListReq;
 import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
+import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.stringtool.Logger;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
+import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
@@ -39,7 +45,7 @@ import retrofit2.Response;
 public class SelectedClassActivity extends BaseActivity {
     private static final String TAG = SelectedClassActivity.class.getSimpleName();
 
-    private SelectedClassAdapter adapter;
+    public SelectedClassAdapter adapter;
 
 
     @Override
@@ -47,22 +53,27 @@ public class SelectedClassActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_recycler_view);
         getData();
+        select_term=new TermBean();
+        select_term.setName(UserPreferences.getInstance().getTermName());
+        select_term.setId(UserPreferences.getInstance().getTermId());
         initRecycler();
         initSQToolbar();
-        setAdapterData();
+        getClassList();
+        getTerm();
     }
 
-    private String title,type;
+    private String mode_type;
     private void getData(){
-        title=getIntent().getStringExtra(Base.title);
-        type=getIntent().getStringExtra(Base.type);
+        mode_type=getIntent().getStringExtra(Base.mode_type);
     }
 
+
+    public TermBean select_term;
     private TextView menu_one;
     private void initSQToolbar() {
         assert toolbar!=null;
-        toolbar.setTitle(title);
-        menu_one =toolbar.addMenuText(TagFinal.ONE_INT,"19-20上期");
+        toolbar.setTitle("班级列表");
+        menu_one =toolbar.addMenuText(TagFinal.ONE_INT,"");
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -70,16 +81,21 @@ public class SelectedClassActivity extends BaseActivity {
                 startActivityForResult(intent,TagFinal.UI_TAG);
             }
         });
+        if (StringJudge.isEmpty(select_term.getId())){
+            menu_one.setText("选择学期");
+        }else{
+            menu_one.setText(select_term.getName());
+        }
 
     }
 
-    public TermBean select_term;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode==RESULT_OK){
             switch (requestCode){
                 case TagFinal.UI_TAG:
+                    assert data!=null;
                     select_term=data.getParcelableExtra(Base.data);
                     menu_one.setText(select_term.getName());
                     break;
@@ -104,43 +120,39 @@ public class SelectedClassActivity extends BaseActivity {
                 LinearLayoutManager.HORIZONTAL,
                 1,
                 ColorRgbUtil.getGainsboro()));
-        adapter=new SelectedClassAdapter(this);
+        adapter=new SelectedClassAdapter(mActivity);
         recyclerView.setAdapter(adapter);
+        adapter.setMode_type(mode_type);
 
     }
 
-    public List<KeyValue> keyValue_adapter=new ArrayList<>();
-    private void setAdapterData(){
-        keyValue_adapter.clear();
 
-
-
-        List<String> list=StringUtils.listToStringSplitCharacters("一年级1班,一年级2班,一年级3班",",");
-        for (String s:list){
-            KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
-            one.setTitle(s);
-            one.setType(type);
-            keyValue_adapter.add(one);
-        }
-
-
-
-
-        adapter.setDataList(keyValue_adapter);
-        adapter.setLoadState(TagFinal.LOADING_END);
-    }
     /**
      * ----------------------------retrofit-----------------------
      */
+
+    private  List<KeyValue> adapter_data_list=new ArrayList<>();
+    public void getClassList() {
+        ReqEnv env = new ReqEnv();
+        ReqBody reqBody = new ReqBody();
+        UserGetClassListReq req = new UserGetClassListReq();
+        //获取参数
+        req.setSession_key(Base.user.getSession_key());
+        reqBody.userGetClassListReq = req;
+        env.body = reqBody;
+        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_class_list_api(env);
+        call.enqueue(this);
+    }
     public void getTerm() {
         ReqEnv env = new ReqEnv();
         ReqBody reqBody = new ReqBody();
         UserGetTermListReq req = new UserGetTermListReq();
         //获取参数
         req.setSession_key(Base.user.getSession_key());
+
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
+        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_term_list_api(env);
         call.enqueue(this);
     }
     @Override
@@ -152,17 +164,42 @@ public class SelectedClassActivity extends BaseActivity {
         ResEnv respEnvelope = response.body();
         if (respEnvelope != null) {
             ResBody b=respEnvelope.body;
-            if (b.userGetTermListRes !=null){
-                String result=b.userGetTermListRes.result;
+            if (b.userGetClassListRes !=null){
+                String result=b.userGetClassListRes.result;
                 Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
-                    Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
+                    adapter_data_list.clear();
+                    List<BaseGrade> list=res.getGradelist();
+                    for (BaseGrade s:list){
+                        for (BaseClass bean:s.getClasslist()){
+                            KeyValue keyValue=new KeyValue(StringUtils.stringToGetTextJoint("%1$s-%2$s",s.getGradename(),bean.getClassname()),bean.getClassid());
+                            adapter_data_list.add(keyValue);
+                        }
+                    }
+                    adapter.setDataList(adapter_data_list);
+                    adapter.setLoadState(TagFinal.LOADING_END);
                 }else{
-                    toastShow("error");
+                    ViewTool.showToastShort(mActivity,res.getError_code());
                 }
             }
-
+            if (b.userGetTermListRes !=null){
+                String result=b.userGetTermListRes.result;
+                BaseRes res=gson.fromJson(result, BaseRes.class);
+                if (res.getResult().equals("true")){
+                    for (TermBean bean:res.getTerm()){
+                        if (bean.getIsnow().equalsIgnoreCase("1")){
+                            UserPreferences.getInstance().saveTermId(bean.getId());
+                            UserPreferences.getInstance().saveTermName(bean.getName());
+                            select_term.setId(bean.getId());
+                            select_term.setName(bean.getName());
+                            menu_one.setText(select_term.getName());
+                        }
+                    }
+                }else{
+                    ViewTool.showToastShort(mActivity,res.getError_code());
+                }
+            }
         }else{
             try {
                 assert response.errorBody()!=null;

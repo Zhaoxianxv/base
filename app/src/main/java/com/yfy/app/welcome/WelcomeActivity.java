@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.yfy.app.PEquality.PEQualityMainTestActivity;
 import com.yfy.app.PEquality.tea.PETeaMainActivity;
-import com.yfy.app.SelectedModeTypeActivity;
+import com.yfy.app.SelectedUserTypeActivity;
 import com.yfy.app.login.LoginActivity;
 import com.yfy.app.welcome.adapter.GuidePagerAdapter;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItem;
@@ -27,7 +27,7 @@ import com.yfy.app.welcome.utils.v4.FragmentPagerItems;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.db.UserPreferences;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.ConfirmAlbumWindow;
 import com.yfy.final_tag.glide.BitmapLess;
@@ -51,7 +51,6 @@ public class WelcomeActivity extends BaseActivity {
         setContentView(R.layout.initial_welcome);
         registerMessageReceiver();
         initView();
-        initDialog();
     }
 
     private void initView() {
@@ -110,12 +109,11 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void run() {
                 //初始化登录信息
-//                startActivity(new Intent(WelcomeActivity.this,HonorDetailActivity.class));
-                startActivity(new Intent(WelcomeActivity.this,SelectedModeTypeActivity.class));
+                startActivity(new Intent(WelcomeActivity.this,SelectedUserTypeActivity.class));
+//                startActivity(new Intent(WelcomeActivity.this,SelectedModeTypeActivity.class));
                 finish();
 
 
-//                album_select.showAtCenter();
 
 
 
@@ -131,46 +129,6 @@ public class WelcomeActivity extends BaseActivity {
         }, 1000);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RESULT_OK){
-            switch (requestCode){
-                case TagFinal.UI_ADD:
-                    if (Base.user==null){
-                        Intent intent=new Intent(WelcomeActivity.this,LoginActivity.class);
-                        startActivityForResult(intent,TagFinal.UI_ADD);
-                    }else{
-                        album_select.showAtCenter();
-                    }
-                    break;
-            }
-        }
-    }
-
-    ConfirmAlbumWindow album_select;
-    private void initDialog() {
-        album_select = new ConfirmAlbumWindow(this);
-        album_select.setOne_select("教师");
-        album_select.setTwo_select("学生");
-        album_select.setName("请选择账号类型");
-        album_select.setOnPopClickListenner(new ConfirmAlbumWindow.OnPopClickListenner() {
-            @Override
-            public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.popu_select_one:
-                        Intent intent=new Intent(WelcomeActivity.this,PETeaMainActivity.class);
-                        intent.putExtra(Base.title,"体育素质评价");
-                        startActivity(intent);
-                        break;
-                    case R.id.popu_select_two:
-                        startActivity(new Intent(WelcomeActivity.this,PEQualityMainTestActivity.class));
-                        break;
-                }
-                finish();
-            }
-        });
-    }
 
     private FragmentPagerItemAdapter createFragmentPagerItemAdapter() {
         FragmentPagerItems pages = new FragmentPagerItems(WelcomeActivity.this);

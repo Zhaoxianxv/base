@@ -1,6 +1,5 @@
 package com.yfy.app.PEquality;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -8,7 +7,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.yfy.app.PEquality.adapter.PERecipeAdapter;
 import com.yfy.app.PEquality.adapter.PEStuHealthAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
@@ -18,7 +16,7 @@ import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
 import com.yfy.app.net.RetrofitGenerator;
 import com.yfy.app.net.base.UserGetTermListReq;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
@@ -152,7 +150,7 @@ public class PEStuHealthActivity extends BaseActivity {
         //获取参数
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
+        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_term_list_api(env);
         call.enqueue(this);
     }
     @Override

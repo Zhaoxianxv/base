@@ -23,7 +23,7 @@ import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWListBeanView;
 import com.yfy.final_tag.stringtool.Logger;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.stringtool.StringJudge;
@@ -80,11 +80,7 @@ public class PETeaMainActivity extends BaseActivity {
         adapter.setItemOnc(new PETeaMainAdapter.ItemOnc() {
             @Override
             public void onc(KeyValue bean) {
-                String title=bean.getTitle();
-                Intent intent=new Intent(mActivity,SelectedClassActivity.class);
-                intent.putExtra(Base.title,title);
-                intent.putExtra(Base.type,bean.getTitle());
-//                startActivity(intent);
+
                 cpwListBeanView.setType(bean.getTitle());
                 setCPWlListBeanData();
             }
@@ -119,7 +115,7 @@ public class PETeaMainActivity extends BaseActivity {
                 Intent intent;
                 switch (type){
                     case "学习态度采集":
-                        intent=new Intent(mActivity,PEAttitudeActivity.class  );
+                        intent=new Intent(mActivity,PETeaAttitudeActivity.class  );
                         intent.putExtra(Base.title,type);
                         intent.putExtra(Base.type,TagFinal.TRUE);
                         mActivity.startActivity(intent);
@@ -194,7 +190,7 @@ public class PETeaMainActivity extends BaseActivity {
         //获取参数
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
+        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_term_list_api(env);
         call.enqueue(this);
     }
     @Override

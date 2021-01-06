@@ -137,11 +137,15 @@
         <activity android:name="com.yfy.app.drawableBg.TableLayoutActivity" />
         <activity android:name="com.yfy.app.drawableBg.MaterialMainActivity" />
         <activity android:name="com.yfy.app.drawableBg.SingleActivity" />
-        <activity android:name="com.yfy.app.PEquality.HonorDetailActivity" />
         <!--mode-->
 
         <activity
             android:name="com.yfy.app.SelectedModeTypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            />
+        <activity
+            android:name="com.yfy.app.SelectedUserTypeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             />
@@ -192,7 +196,7 @@
             tools:ignore="InnerclassSeparator"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.yfy.app.PEquality.tea.PEAttitudeActivity"
+            android:name="com.yfy.app.PEquality.tea.PETeaAttitudeActivity"
             android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator"
             android:theme="@style/AppTheme" />
@@ -292,6 +296,14 @@
             android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator"
             android:theme="@style/AppTheme" />
+
+        <!--duty evaluate-->
+        <activity
+            android:name="com.yfy.app.duty_evaluate.DutyEvaluateTeaDoActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>

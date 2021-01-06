@@ -16,7 +16,7 @@ import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.view.SQToolBar;
@@ -172,16 +172,12 @@ public class SelectStuActivity extends BaseActivity {
         if (respEnvelope != null) {
             ResBody b=respEnvelope.body;
 
-            if (b.checkGetStuRes!=null) {
-                String result = b.checkGetStuRes.result;
-                Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
+//            if (b.checkGetStuRes!=null) {
+//                String result = b.checkGetStuRes.result;
+//                Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
+//
+//            }
 
-            }
-            if (b.checkSubimtYesRes!=null){
-                String result = b.checkSubimtYesRes.result;
-                Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
-
-            }
         }else{
             try {
                 assert response.errorBody()!=null;

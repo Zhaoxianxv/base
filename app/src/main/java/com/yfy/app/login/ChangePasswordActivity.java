@@ -13,19 +13,20 @@ import com.yfy.app.net.base.UserChangePasswordReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.view.SQToolBar;
 
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.Bind;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ChangePasswordActivity extends BaseActivity implements Callback<ResEnv> {
+public class ChangePasswordActivity extends BaseActivity  {
     private static final String TAG = ChangePasswordActivity.class.getSimpleName();
     @Bind(R.id.alter_old_password)
     EditText old;
@@ -76,9 +77,7 @@ public class ChangePasswordActivity extends BaseActivity implements Callback<Res
             toastShow("请再次输入新密码");
             return false;
         }
-        if (firstpass.equals(againpass)){
-
-        }else{
+        if (!firstpass.equals(againpass)){
             toastShow("新密码输入不一致");
             return false;
         }
@@ -98,11 +97,13 @@ public class ChangePasswordActivity extends BaseActivity implements Callback<Res
         ReqBody reqBody = new ReqBody();
         UserChangePasswordReq req = new UserChangePasswordReq();
         //获取参数
+        req.setSession_key(Base.user.getSession_key());
         req.setNewpassword(firstpass);
         req.setOldpassword(oldpass);
+
         reqBody.userChangePasswordReq = req;
         reqEnv.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_change_password(reqEnv);
+        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_change_password_api(reqEnv);
         call.enqueue(this);
         showProgressDialog("");
     }
@@ -131,7 +132,15 @@ public class ChangePasswordActivity extends BaseActivity implements Callback<Res
 //                }
             }
         }else{
-            Logger.e(StringUtils.getTextJoint("%1$s:%2$d",name,response.code()));
+            try {
+                assert response.errorBody()!=null;
+                String s=response.errorBody().string();
+                Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
+            } catch (IOException e) {
+                Logger.e("onResponse: IOException");
+                e.printStackTrace();
+            }
+            toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
         }
 
     }

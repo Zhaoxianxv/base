@@ -1,5 +1,6 @@
 package com.yfy.app.net;
 
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 
 import org.simpleframework.xml.Element;
@@ -21,7 +22,7 @@ import java.io.OutputStream;
 @Namespace(reference = "http://schemas.xmlsoap.org/soap/envelope/", prefix = "s")
 public class ResEnv {
     @Namespace(reference = "http://schemas.xmlsoap.org/soap/envelope/")
-    @Element(name = TagFinal.BODY)
+    @Element(name = Base.BODY)
     public ResBody body;
 
 

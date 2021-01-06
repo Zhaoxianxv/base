@@ -1,6 +1,6 @@
 package com.yfy.app.net;
 
-import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.data.Base;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -23,12 +23,12 @@ import java.io.OutputStream;
 @NamespaceList({
         @Namespace(reference = "http://schemas.xmlsoap.org/soap/envelope/", prefix = "soapenv"),
         @Namespace(reference = "http://schemas.microsoft.com/2003/10/Serialization/Arrays" ,prefix = "arr"),
-        @Namespace(reference = TagFinal.NAMESPACE, prefix=TagFinal.TEM)
+        @Namespace(reference = Base.NAMESPACE, prefix=Base.TEM)
 })
 
 public class ReqEnv {
     @Namespace(reference = "http://schemas.xmlsoap.org/soap/envelope/")
-    @Element(name = TagFinal.BODY, required = false)
+    @Element(name = Base.BODY, required = false)
     public ReqBody body;
 
     @Namespace(reference = "http://schemas.xmlsoap.org/soap/envelope/")

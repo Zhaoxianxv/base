@@ -26,6 +26,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.keyboard.password.KeyboardTouchListener;
 import com.yfy.final_tag.keyboard.password.KeyboardUtil;
+import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.greendao.tool.GreenDaoManager;
 import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
@@ -33,16 +34,16 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.glide.RxCaptcha;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWListBeanView;
 import com.yfy.final_tag.dialog.ConfirmAlbumWindow;
 import com.yfy.final_tag.rsa.AES;
-import com.yfy.greendao.AdminDb;
 import com.yfy.greendao.User;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +58,8 @@ import static com.yfy.final_tag.glide.RxCaptcha.TYPE.NUMBER;
 /**
  * @version 1.0
  */
-public class LoginActivity extends BaseActivity {
+public class
+LoginActivity extends BaseActivity {
 
 	private final static String TAG =LoginActivity.class.getSimpleName();
 
@@ -125,12 +127,12 @@ public class LoginActivity extends BaseActivity {
 				switch (view.getId()) {
 					case R.id.popu_select_one:
 						type = "2";
-						showProgressDialog("");
+						ViewTool.showProgressDialog(mActivity,"");
 						getToken("login");
 						break;
 					case R.id.popu_select_two:
 						type = "1";
-						showProgressDialog("");
+						ViewTool.showProgressDialog(mActivity,"");
 						getToken("login");
 						break;
 				}
@@ -243,7 +245,7 @@ public class LoginActivity extends BaseActivity {
 		reqEnv.body = reqBody;
 		Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_duplication_user(reqEnv);
 		call.enqueue(this);
-		showProgressDialog("");
+		ViewTool.showProgressDialog(mActivity,"");
 		Logger.e(reqEnv.toString());
 	}
 	private void duplicationLogin_(String stu_id) {
@@ -272,10 +274,9 @@ public class LoginActivity extends BaseActivity {
 	private void login_(String token) {
 		//登陆时传的Constants.APP_ID：
 //		String apikey=JPushInterface.getRegistrationID(mActivity);
-		String apikey="";
-		if(apikey==null){
-			apikey="";
-		}
+//		if(apikey==null){
+//			apikey="";
+//		}
 		String user_name,password_name;
 		String ANDROID_ID = Settings.System.getString(getContentResolver(), Settings.System.ANDROID_ID);
 
@@ -313,7 +314,7 @@ public class LoginActivity extends BaseActivity {
 				Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
 				UserRes res= gson.fromJson(result,UserRes.class);
 				if (res.getResult().equalsIgnoreCase(TagFinal.TRUE)) {
-					dismissProgressDialog();
+					ViewTool.dismissProgressDialog();
 					saveUser(res,TagFinal.FALSE);
 				} else {
 					switch (res.getError_code()){
@@ -321,13 +322,13 @@ public class LoginActivity extends BaseActivity {
 							getDuplicationList();
 							break;
 						case "password":
-							dismissProgressDialog();
+							ViewTool.dismissProgressDialog();
 							Intent intent=new Intent(mActivity,ResetPasswordToHavePasswordActivity.class);
-							intent.putExtra(Base.id, type.equals("1") ? TagFinal.USER_TYPE_STU + "_" + res.getUserid() : TagFinal.USER_TYPE_TEA + "_" + res.getUserid());
+							intent.putExtra(Base.id, type.equals("1") ? Base.USER_TYPE_STU + "_" + res.getUserid() : Base.USER_TYPE_TEA + "_" + res.getUserid());
 							startActivity(intent);
 							break;
 							default:
-								dismissProgressDialog();
+								ViewTool.dismissProgressDialog();
 								toastShow(res.getError_code());
 								break;
 					}
@@ -339,12 +340,12 @@ public class LoginActivity extends BaseActivity {
 				Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
 				UserRes res= gson.fromJson(result,UserRes.class);
 				setCPWlListBeanData(res.getStunlist());
-				dismissProgressDialog();
+				ViewTool.dismissProgressDialog();
 			}
 			if (b.userDuplicationLoginRes !=null){
 				String result=b.userDuplicationLoginRes.result;
 				Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
-				dismissProgressDialog();
+				ViewTool.dismissProgressDialog();
 				UserRes res= gson.fromJson(result,UserRes.class);
 				if (res.getResult().equalsIgnoreCase(TagFinal.TRUE)) {
 					saveUser(res,TagFinal.TRUE);
@@ -352,7 +353,7 @@ public class LoginActivity extends BaseActivity {
 					switch (res.getError_code()){
 						case "password":
 							Intent intent=new Intent(mActivity,ResetPasswordToHavePasswordActivity.class);
-							intent.putExtra(Base.id, type.equals("1") ? TagFinal.USER_TYPE_STU + "_" + res.getUserid() : TagFinal.USER_TYPE_TEA + "_" + res.getUserid());
+							intent.putExtra(Base.id, type.equals("1") ? Base.USER_TYPE_STU + "_" + res.getUserid() : Base.USER_TYPE_TEA + "_" + res.getUserid());
 							startActivity(intent);
 							break;
 						default:
@@ -361,8 +362,8 @@ public class LoginActivity extends BaseActivity {
 					}
 				}
 			}
-			if (b.baseGetTookenRes !=null){
-				String result=b.baseGetTookenRes.result;
+			if (b.baseGetTokenRes !=null){
+				String result=b.baseGetTokenRes.result;
 				Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
 				BaseRes res=gson.fromJson(result,BaseRes.class);
 				if (res.getResult().equalsIgnoreCase(TagFinal.TRUE)){
@@ -374,91 +375,26 @@ public class LoginActivity extends BaseActivity {
 				}
 			}
 		}else{
-			dismissProgressDialog();
-			Logger.e(StringUtils.stringToGetTextJoint("%1$s:%2$d",name,response.code()));
-			toastShow(StringUtils.stringToGetTextJoint("数据错误:%1$d",response.code()));
-		}
-
-	}
-
-	private void saveUser(UserRes res, String login_type){
-		toastShow("登录成功");
-		GreenDaoManager.getInstance().clearUser();
-		User user=new User();
-		user.setSession_key(res.getSession_key());
-		user.setHeadPic(res.getHeadPic());
-		user.setFxid(res.getFxid());
-		user.setName(res.getName());
-		user.setPwd(edit_password);
-		user.setUsertype( type.equals("1")? TagFinal.USER_TYPE_STU : TagFinal.USER_TYPE_TEA);
-		user.setIdU(res.getId());
-		user.setClassid(res.getClassid());
-		user.setUsername(res.getUsername());
-		user.setRightlist(res.getRightlist());
-//		user.setToken(res.getToken());
-		user.setIsDuplication(login_type);
-		Base.user=user;
-		UserPreferences.getInstance().saveUserID(user.getIdU());
-		GreenDaoManager.getInstance().saveUser(user);
-		if (!StringJudge.isEmpty(res.getRightlist())){
-			saveAdmin(res.getRightlist());
-		}
-		setResult(RESULT_OK);
-		finish();
-	}
-
-	private void saveAdmin(String res){
-		GreenDaoManager.getInstance().clearAdminDb();
-		AdminDb adminDb=new AdminDb();
-		setAdminString(adminDb,"");
-		if (!StringJudge.isEmpty(res)){
-
-		List<String>  names=StringUtils.listToStringSplitCharacters(res,",");
-
-
-		for (String s:names){
-			switch (s){
-				case "attendance":
-					adminDb.setIsqjadmin(TagFinal.TRUE);
-					break;
-				case "logisticsrepair":
-					adminDb.setIshqadmin(TagFinal.TRUE);
-					break;
+			ViewTool.dismissProgressDialog();
+			try {
+				assert response.errorBody()!=null;
+				String s=response.errorBody().string();
+				Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
+			} catch (IOException e) {
+				Logger.e("onResponse: IOException");
+				e.printStackTrace();
 			}
-		}
-
+			toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
 		}
 
 
 	}
-	private void setAdminString(AdminDb adminDb, String value){
 
-		adminDb.setIsassessadmin(value);
-		adminDb.setIsheadmasters(value);
-		adminDb.setIsclassmaster(value);
-		adminDb.setIsstuillcheck(value);
-		adminDb.setIshqadmin(value);
-		adminDb.setIsnoticeadmin(value);
-		adminDb.setIsqjadmin(value);
-		adminDb.setIsxcadmin(value);
-		adminDb.setIsfuncRoom(value);
-		adminDb.setIshqlader(value);
-		adminDb.setIslogistics(value);
-		adminDb.setClassinfo("");
-		adminDb.setIsdutyreport(value);
-		adminDb.setIseventadmin(value);
-		adminDb.setIsoffice_supply(value);
-		adminDb.setIsoffice_supply_master(value);
-		adminDb.setIssupplycount(value);
-		adminDb.setIssignetadmin(value);
-
-		adminDb.setIselectiveadmin(value);
-	}
 
 	@Override
 	public void onFailure(Call<ResEnv> call, Throwable t) {
 		if (!isActivity())return;
-		dismissProgressDialog();
+		ViewTool.dismissProgressDialog();
 		Logger.e( "onFailure  "+call.request().headers().toString() );
 		toastShow(R.string.fail_do_not);
 
@@ -467,6 +403,29 @@ public class LoginActivity extends BaseActivity {
 	@Override
 	public boolean isActivity() {
 		return AppLess.isTopActivy(TAG);
+	}
+
+	private void saveUser(UserRes res, String login_type){
+		ViewTool.showToastShort(mActivity,"登录成功");
+		GreenDaoManager.getInstance().clearUser();
+		User user=new User();
+		user.setSession_key(res.getSession_key());
+		user.setHeadPic(res.getHeadPic());
+		user.setFxid(res.getFxid());
+		user.setName(res.getName());
+		user.setPwd(edit_password);
+		user.setUsertype( type.equals("1")? Base.USER_TYPE_STU : Base.USER_TYPE_TEA);
+		user.setIdU(res.getId());
+		user.setClassid(res.getClassid());
+		user.setUsername(res.getUsername());
+		user.setRightlist(res.getRightlist());
+		user.setIsDuplication(login_type);
+		Base.user=user;
+		UserPreferences.getInstance().saveUserID(user.getIdU());
+		GreenDaoManager.getInstance().saveUser(user);
+
+		setResult(RESULT_OK);
+		finish();
 	}
 
 

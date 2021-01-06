@@ -37,7 +37,7 @@ public class KeyValue implements Parcelable {
     private int span_size;
     private int item_id;
     private boolean required=true;//用于判断是否必填
-    private boolean is_selected=false;//用于判断是否必填
+    private boolean is_selected=false;//用于判断
     private List<String> listValue=new ArrayList<String>();
     private List<CPWBean> cpwBeanArrayList =new ArrayList<>();
 
@@ -55,8 +55,8 @@ public class KeyValue implements Parcelable {
         this.id = id;
     }
 
-    public KeyValue(String key, String value) {
-        this.key = key;
+    public KeyValue(String title, String value) {
+        this.title = title;
         this.value = value;
     }
 

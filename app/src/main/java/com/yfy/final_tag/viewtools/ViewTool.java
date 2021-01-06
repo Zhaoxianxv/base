@@ -1,12 +1,15 @@
 package com.yfy.final_tag.viewtools;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.VectorDrawable;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.support.annotation.ColorRes;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.StringRes;
@@ -96,18 +99,6 @@ public class ViewTool {
         swipeRefreshLayout.setColorSchemeResources(colorResIds);
     }
 
-    /**
-     * 显示Toast
-     */
-    public static void showToastLong(Context mContext,String content){
-        Toast.makeText(mContext,content,Toast.LENGTH_LONG).show();
-    }
-    public static void showToastShort(Context mContext,String content){
-        Toast.makeText(mContext,content,Toast.LENGTH_SHORT).show();
-    }
-    public static void showToastShort(Context mContext,@StringRes int text) {
-        showToastShort(mContext,mContext.getString(text));
-    }
 
 
     //截取控件生产图片
@@ -133,4 +124,125 @@ public class ViewTool {
         view.draw(canvas);
         return bitmap;
     }
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 显示Toast
+     */
+    public static void showToastLong(Context mContext,String content){
+        Toast.makeText(mContext,content,Toast.LENGTH_LONG).show();
+    }
+    public static void showToastShort(Context mContext,String content){
+        Toast.makeText(mContext,content,Toast.LENGTH_SHORT).show();
+    }
+    public static void showToastShort(Context mContext,@StringRes int text) {
+        showToastShort(mContext,mContext.getString(text));
+    }
+
+
+    /**
+     * 显示一个ProgressDialog
+     */
+    public static ProgressDialog dialog;
+    @SuppressLint("StaticFieldLeak")
+    public static Context mContext;
+
+    public static void  showProgressDialog(Context context,String message) {
+        mContext=context;
+        showProgressDialog(mContext,null, message);
+        getInstance();
+        mycount.start();
+    }
+    public static void dismissProgressDialog() {
+        if ( mycount != null){
+            mycount.cancel();
+            mycount = null;
+        }
+        if (dialog != null) {
+            if (dialog.isShowing()){
+                dialog.dismiss();
+            }
+            dialog=null;
+        }
+
+    }
+    public static void showProgressDialog(Context context,String title, String message) {
+        if (dialog == null) {
+            dialog = new ProgressDialog(context);
+        }
+        dialog.setCancelable(false);
+        if (title != null && !title.equals("")) {
+            dialog.setTitle(title);
+        }
+        if (message != null && !message.equals("")) {
+            dialog.setMessage(message);
+        }
+        if (!dialog.isShowing()){
+            dialog.show();
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 倒计时
+     */
+    private static MyCountDownTimer mycount;
+
+    public static MyCountDownTimer getInstance() {
+        if (mycount == null) {
+            mycount = new MyCountDownTimer(20000,10000);
+        }
+        return mycount;
+    }
+
+
+    private static class MyCountDownTimer extends CountDownTimer {
+        private MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        //计时器结束
+        @Override
+        public void onFinish() {
+            ViewTool.showToastShort(mContext,"网络超时");
+            dismissProgressDialog();
+
+        }
+
+        //计时器开始
+        @Override
+        public void onTick(long millisUntilFinished) {
+
+
+        }
+    }
+
 }

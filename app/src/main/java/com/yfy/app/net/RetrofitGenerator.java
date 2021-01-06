@@ -1,7 +1,7 @@
 package com.yfy.app.net;
 
 
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.convert.AnnotationStrategy;

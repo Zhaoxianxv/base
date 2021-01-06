@@ -8,7 +8,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.FileProvider;
@@ -19,7 +18,7 @@ import android.widget.TextView;
 
 import com.yfy.base.App;
 import com.yfy.base.R;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.FileTools;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.stringtool.Logger;

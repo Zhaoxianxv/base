@@ -10,7 +10,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 
 import butterknife.Bind;
@@ -66,7 +66,7 @@ public class VersionDetailActivity extends BaseActivity {
 
         Intent intent = new Intent(mActivity, WebActivity.class);
         Bundle b = new Bundle();
-        b.putString(TagFinal.URI_TAG, Base.HUAWEI_PRIVATE);
+        b.putString(TagFinal.URI_TAG, Base.HUA_WEI_PRIVATE);
         b.putString(TagFinal.TITLE_TAG, "隐私声明");
         intent.putExtras(b);
         startActivity(intent);
@@ -76,7 +76,7 @@ public class VersionDetailActivity extends BaseActivity {
 
         Intent intent = new Intent(mActivity, WebActivity.class);
         Bundle b = new Bundle();
-        b.putString(TagFinal.URI_TAG, Base.HUAWEI_AGREEMENT);
+        b.putString(TagFinal.URI_TAG, Base.HUA_WEI_AGREEMENT);
         b.putString(TagFinal.TITLE_TAG, "用户协议");
         intent.putExtras(b);
         startActivity(intent);

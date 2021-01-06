@@ -5,15 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.base.R;
-import com.yfy.base.activity.BaseActivity;
-import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.video_jcv.JCVideoPlayer;
 import com.yfy.video_jcv.JCVideoPlayerStandard;
-
-import butterknife.Bind;
 
 
 /**

@@ -66,12 +66,15 @@ public class ZoomImage {
         }
     }
 
-
+    //newOpts.inJustDecodeBounds 如果将这个值置为true，那么在解码的时候将不会返回bitmap，只会返回这个bitmap的尺寸。
+    // 这个属性的目的是，如果你只想知道一个bitmap的尺寸，但又不想将其加载到内存时。这是一个非常有用的属性
+    //inSampleSize=2，那么就会将bitmap处理为，width=50，height=50，宽高降为1 / 2，像素数降为1 / 4。
+    //newOpts.inPreferredConfig 默认值ARGB_8888，一个像素点占用4bytes空间，透明度不做要求，RGB_565模式，这个模式像素点占用2bytes
+    //inPremultiplied 这个值和透明度通道有关，默认值是true，如果设置为true，则返回的bitmap的颜色通道上会预先附加上透明度通道
+    //outWidth和outHeight：表示这个Bitmap的宽和高，一般和inJustDecodeBounds一起使用来获得Bitmap的宽高，但是不加载到内存
     public static Bitmap ratio(String imgPath, float pixelW) {
         BitmapFactory.Options newOpts = new BitmapFactory.Options();
-        newOpts.inJustDecodeBounds = true;
         newOpts.inPreferredConfig = Bitmap.Config.RGB_565;
-        Bitmap bitmap = BitmapFactory.decodeFile(imgPath, newOpts);
 
         newOpts.inJustDecodeBounds = false;
         int h = newOpts.outHeight;
@@ -91,7 +94,7 @@ public class ZoomImage {
         }
         if (be <= 0) be = 1;
         newOpts.inSampleSize = be;
-        bitmap = BitmapFactory.decodeFile(imgPath, newOpts);
+        Bitmap bitmap = BitmapFactory.decodeFile(imgPath, newOpts);
         return bitmap;
     }
 

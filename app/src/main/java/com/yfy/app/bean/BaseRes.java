@@ -153,5 +153,15 @@ public class BaseRes {
         Verification_Code = verification_Code;
     }
 
+    //----------------base grade----------
+    private List<BaseGrade> gradelist;
+
+    public List<BaseGrade> getGradelist() {
+        return gradelist;
+    }
+
+    public void setGradelist(List<BaseGrade> gradelist) {
+        this.gradelist = gradelist;
+    }
 
 }

@@ -23,7 +23,6 @@ import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.bean.TermBean;
-import com.yfy.app.chart.BarChartActivity;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -46,7 +45,7 @@ import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.glide.DrawableLess;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.data.TagFinal;
@@ -261,11 +260,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
 
     public void initRecyclerView(){
         recycler_view =findViewById(R.id.p_e_main_type_recycler_view);
-        GridLayoutManager manager = new GridLayoutManager(this,3
-
-
-
-        );
+        GridLayoutManager manager = new GridLayoutManager(this,3);
         recycler_view.setLayoutManager(manager);
 //        recycler_view.setItemAnimator(new RecycAnimator());
         //添加线
@@ -531,7 +526,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
         req.setSession_key(Base.user.getSession_key());
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
+        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_term_list_api(env);
         call.enqueue(this);
     }
     @Override

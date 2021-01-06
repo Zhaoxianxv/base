@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.yfy.app.album.AlbumOneActivity;
-import com.yfy.app.httppost.netHttp.ApiUrl;
-import com.yfy.app.httppost.netHttp.RestClient;
-import com.yfy.app.httppost.netHttp.service.AccountApi;
+import com.yfy.app.netHttp.RestClient;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.Base64Utils;
@@ -26,26 +24,19 @@ import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.OnClick;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpPostMainActivity extends BaseActivity {
     @Override

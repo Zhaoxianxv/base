@@ -11,8 +11,7 @@ import com.yfy.app.bean.TermBean;
 import com.yfy.base.R;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
-import com.yfy.base.Base;
-import com.yfy.final_tag.data.ColorRgbUtil;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 
 import org.jetbrains.annotations.NotNull;
