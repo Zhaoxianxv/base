@@ -34,6 +34,10 @@ public interface InterfaceApi {
     @POST(Base.POST_URI)
     Call<ResEnv> user_get_class_list_api(@Body ReqEnv Envelope);
 
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.USER_GET_CLASS_TO_ALL_STU})
+    @POST(Base.POST_URI)
+    Call<ResEnv> user_get_class_all_stu_api(@Body ReqEnv Envelope);
+
 
 
     //----------------------------user--------------------

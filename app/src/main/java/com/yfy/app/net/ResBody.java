@@ -2,6 +2,7 @@ package com.yfy.app.net;
 
 import com.yfy.app.net.base.BaseGetTokenRes;
 import com.yfy.app.net.base.UserChangePasswordRes;
+import com.yfy.app.net.base.UserGetClassAllStuRes;
 import com.yfy.app.net.base.UserGetClassListRes;
 import com.yfy.app.net.base.UserGetTermListRes;
 import com.yfy.app.net.base.UserResetCallRes;
@@ -29,13 +30,14 @@ public class ResBody {
     @Element(name = TagFinal.BASE_GET_TOKEN +Base.RESPONSE, required = false)
     public BaseGetTokenRes baseGetTokenRes;
 
-
     @Element(name = TagFinal.USER_GET_CODE_TO_EDIT_PHONE +Base.RESPONSE, required = false)
     public ResetPasswordGetCodeRes resetPasswordGetCodeRes;
 
-
     @Element(name = TagFinal.USER_GET_CLASS_LIST+Base.RESPONSE, required = false)
     public UserGetClassListRes userGetClassListRes;
+
+    @Element(name = TagFinal.USER_GET_CLASS_TO_ALL_STU+Base.RESPONSE, required = false)
+    public UserGetClassAllStuRes userGetClassAllStuRes;
 
     @Element(name = TagFinal.USER_GET_TERM_LIST +Base.RESPONSE, required = false)
     public UserGetTermListRes userGetTermListRes;
@@ -52,14 +54,11 @@ public class ResBody {
     @Element(name = TagFinal.USER_DUPLICATION_LOGIN +Base.RESPONSE, required = false)
     public UserDuplicationLoginRes userDuplicationLoginRes;
 
-
     @Element(name = TagFinal.USER_CHANGE_PASSWORD +Base.RESPONSE, required = false)
     public UserChangePasswordRes userChangePasswordRes;
 
     @Element(name = TagFinal.USER_RESET_PASSWORD +Base.RESPONSE, required = false)
     public UserResetPasswordRes userResetPasswordRes;
-
-
 
 
 

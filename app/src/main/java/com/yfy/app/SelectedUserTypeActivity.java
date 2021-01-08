@@ -10,6 +10,7 @@ import com.yfy.app.PEquality.PEQualityMainTestActivity;
 import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.app.login.bean.UserRes;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
@@ -228,7 +229,7 @@ public class SelectedUserTypeActivity extends BaseActivity {
 
 
     private void saveUser(UserRes res, String login_type){
-        ViewTool.showToastShort(mActivity,"登录成功");
+//        ViewTool.showToastShort(mActivity,"登录成功");
         GreenDaoManager.getInstance().clearUser();
         User user=new User();
         user.setSession_key(res.getSession_key());
@@ -260,6 +261,7 @@ public class SelectedUserTypeActivity extends BaseActivity {
         //--------------德育评价----------
         switch (user.getUsertype()) {
             case Base.USER_TYPE_STU:
+                startActivity(new Intent(mActivity,DutyEvaluateStuMainActivity.class));
                 break;
             case Base.USER_TYPE_TEA:
                 Intent intent=new Intent(mActivity,SelectedClassActivity.class);

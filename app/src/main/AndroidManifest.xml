@@ -64,6 +64,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>
         <activity
+            android:name="com.yfy.app.AppShapeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
+        <activity
             android:name="com.yfy.app.SelectedTermActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
@@ -300,6 +304,16 @@
         <!--duty evaluate-->
         <activity
             android:name="com.yfy.app.duty_evaluate.DutyEvaluateTeaDoActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.duty_evaluate.DutyEvaluateRecordActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity"
             android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator"
             android:theme="@style/AppTheme" />

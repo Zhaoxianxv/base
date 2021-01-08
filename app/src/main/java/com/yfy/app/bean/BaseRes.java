@@ -9,7 +9,16 @@ public class BaseRes {
     private String img;
     private String stuid;
     private String classname;
+    private String url;
 
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getStuid() {
         return stuid;
@@ -164,4 +173,16 @@ public class BaseRes {
         this.gradelist = gradelist;
     }
 
+
+    //--------------incomplete stu---------------
+
+    private List<StuBean> incompletestu;
+
+    public List<StuBean> getIncompletestu() {
+        return incompletestu;
+    }
+
+    public void setIncompletestu(List<StuBean> incompletestu) {
+        this.incompletestu = incompletestu;
+    }
 }

@@ -11,6 +11,7 @@ import com.yfy.app.bean.KeyValue;
 import com.yfy.app.duty_evaluate.DutyEvaluateTeaDoActivity;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.final_tag.data.TagFinal;
@@ -83,9 +84,9 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
             lift_title=  itemView.findViewById(R.id.public_txt_check_layout_left_title);
             right_value=  itemView.findViewById(R.id.public_txt_check_right_value);
             layout=  itemView.findViewById(R.id.public_txt_check_layout);
-            layout.setOnClickListener(new View.OnClickListener() {
+            layout.setOnClickListener(new NoFastClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void fastClick(View view) {
                     switch (mode_type){
                         case "duty_evaluate":
                             Intent intent=new Intent(mContext,DutyEvaluateTeaDoActivity.class);
@@ -95,7 +96,6 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
                     }
                 }
             });
-
         }
     }
 

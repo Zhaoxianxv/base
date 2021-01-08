@@ -2,6 +2,7 @@ package com.yfy.app.net;
 
 import com.yfy.app.net.base.BaseGetTokenReq;
 import com.yfy.app.net.base.UserChangePasswordReq;
+import com.yfy.app.net.base.UserGetClassAllStuReq;
 import com.yfy.app.net.base.UserGetClassListReq;
 import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.app.net.base.UserResetCallReq;
@@ -33,6 +34,9 @@ public class ReqBody {
 
     @Element(name = TagFinal.USER_GET_CLASS_LIST, required = false)
     public UserGetClassListReq userGetClassListReq;
+
+    @Element(name = TagFinal.USER_GET_CLASS_TO_ALL_STU, required = false)
+    public UserGetClassAllStuReq userGetClassAllStuReq;
 
     @Element(name = TagFinal.USER_GET_TERM_LIST, required = false)
     public UserGetTermListReq userGetTermListReq;
