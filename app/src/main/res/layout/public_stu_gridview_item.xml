@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/layer_bottom_right_grayline_whitebg"
+    android:background="@drawable/layer_bottom_right_gray_line_white_bg"
     android:id="@+id/stu_grid_layout"
     >
     <android.support.v7.widget.AppCompatImageView

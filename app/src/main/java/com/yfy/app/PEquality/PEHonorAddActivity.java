@@ -30,7 +30,7 @@ import com.yfy.final_tag.permission.PermissionSuccess;
 import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
@@ -207,7 +207,7 @@ public class PEHonorAddActivity extends BaseActivity {
         //获取参数
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
+        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_term_list_api(env);
         call.enqueue(this);
     }
     @Override

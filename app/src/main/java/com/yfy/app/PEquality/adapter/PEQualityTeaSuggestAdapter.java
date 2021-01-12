@@ -15,7 +15,7 @@ import com.yfy.app.SelectStuActivity;
 import com.yfy.app.album.SingePicShowActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
@@ -82,31 +82,31 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TagFinal.TYPE_DATE_TIME) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_choice, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_choice_interval, parent, false);
             return new DateTimeHolder(view);
         }
         if (viewType == TagFinal.TYPE_DATE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_choice, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_choice_interval, parent, false);
             return new DateHolder(view);
         }
         if (viewType == TagFinal.TYPE_SELECT_SINGLE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_choice, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_choice_interval, parent, false);
             return new ChoiceListHolder(view);
         }
         if (viewType == TagFinal.TYPE_SELECT_STU) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_choice, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_choice_interval, parent, false);
             return new SelectStuHolder(view);
         }
         if (viewType == TagFinal.TYPE_LONG_TXT_EDIT) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_long_txt_edit, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_long_txt_edit_interval, parent, false);
             return new LongTxtEditHolder(view);
         }
         if (viewType == TagFinal.TYPE_TXT_EDIT) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_txt_edit, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_txt_edit_interval, parent, false);
             return new TxtEditHolder(view);
         }
         if (viewType == TagFinal.TYPE_IMAGE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_multi_add, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_multi_add_interval, parent, false);
             return new MultiHolder(view);
         }
         return null;

@@ -18,7 +18,7 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.RegexUtils;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.rsa.AES;
 

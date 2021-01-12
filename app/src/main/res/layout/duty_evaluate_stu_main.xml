@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/WhiteSmoke">
+
+    <com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_45dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/confirm_tab_layout_one"
+
+            android:layout_width="match_parent"
+            android:background="@color/GhostWhite"
+            app:tabTextColor="@color/app_base_text_color"
+            app:tabIndicatorColor="@color/GhostWhite"
+            android:layout_height="@dimen/margin_45dp"
+            app:tabMode="scrollable"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_05dp"
+            android:background="@color/gray"/>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/confirm_tab_layout_two"
+            android:layout_width="match_parent"
+            android:background="@color/GhostWhite"
+            android:layout_height="@dimen/margin_45dp"
+            app:tabMode="scrollable"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_05dp"
+            android:background="@color/gray"/>
+    </LinearLayout>
+
+
+</RelativeLayout>
+

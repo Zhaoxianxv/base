@@ -3,11 +3,6 @@ package com.yfy.app.PEquality;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.TextView;
 
 import com.yfy.app.PEquality.adapter.PEAttendListAdapter;
@@ -41,10 +36,8 @@ import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.recycerview.DefaultItemAnimator;
-import com.yfy.final_tag.recycerview.RecycleViewDivider;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -353,7 +346,7 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
         //获取参数
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
+        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_term_list_api(env);
         call.enqueue(this);
     }
     @Override

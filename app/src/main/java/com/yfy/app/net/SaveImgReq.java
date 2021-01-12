@@ -1,6 +1,6 @@
 package com.yfy.app.net;
 
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 
 import org.simpleframework.xml.Element;
@@ -9,24 +9,24 @@ import org.simpleframework.xml.Order;
 import org.simpleframework.xml.Root;
 
 /**
- * Created by yfyandr on 2018/4/26.
+ * Created by yfy on 2018/4/26.
  */
 @Root(name = TagFinal.BASE_SAVE_IMG, strict = false)
-@Namespace(reference = TagFinal.NAMESPACE)
+@Namespace(reference = Base.NAMESPACE)
 @Order(elements = {Base.session_key,"fileext","image_file"})
 public class SaveImgReq {
 
 
-    @Namespace(reference = TagFinal.NAMESPACE)
+    @Namespace(reference = Base.NAMESPACE)
     @Element(name = Base.session_key, required = false)
     private String session_key=Base.user.getSession_key();
 
 
-    @Namespace(reference = TagFinal.NAMESPACE)
+    @Namespace(reference = Base.NAMESPACE)
     @Element(name = "fileext", required = false)
     private String fileext;
 
-    @Namespace(reference = TagFinal.NAMESPACE)
+    @Namespace(reference = Base.NAMESPACE)
     @Element(name = "image_file", required = false)
     private String image_file;
 

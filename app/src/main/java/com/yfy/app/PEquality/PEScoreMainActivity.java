@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.yfy.app.PEquality.adapter.PEScoreAlterMainAdapter;
 import com.yfy.app.PEquality.adapter.PEScoreMainAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
@@ -20,7 +19,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.stringtool.Logger;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.stringtool.StringUtils;
@@ -156,7 +155,7 @@ public class PEScoreMainActivity extends BaseActivity {
         req.setSession_key(Base.user.getSession_key());
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
+        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_term_list_api(env);
         call.enqueue(this);
     }
     @Override

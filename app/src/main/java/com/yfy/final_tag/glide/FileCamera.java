@@ -9,7 +9,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 
 
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.FileTools;
 
 import java.io.File;

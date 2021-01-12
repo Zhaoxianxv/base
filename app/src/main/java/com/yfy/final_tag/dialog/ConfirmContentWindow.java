@@ -57,6 +57,13 @@ public class ConfirmContentWindow extends PopupWindow  {
 		content = view.findViewById(R.id.pop_dialog_content);//发起群聊
 		ok = view.findViewById(R.id.pop_dialog_ok);//发起群聊
         ok.setOnClickListener(onClickListener);
+		TextView cancel = view.findViewById(R.id.pop_dialog_cancel);
+		cancel.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				dismiss();
+			}
+		});
 		setContentView(view);
 		initWindow();
 	}

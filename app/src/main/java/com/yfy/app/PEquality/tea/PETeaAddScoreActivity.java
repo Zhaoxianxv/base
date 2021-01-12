@@ -20,12 +20,12 @@ import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
-import com.yfy.final_tag.dialog.CPWMatchListView;
+import com.yfy.final_tag.dialog.CPWMatchListMinWidthView;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
@@ -118,6 +118,8 @@ public class PETeaAddScoreActivity extends BaseActivity {
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
+
+                closeKeyWord();
                 String name=stu_name.getText().toString().trim();
                 for (CPWBean bean:scanStateList){
                     if (bean.getName().equalsIgnoreCase(name)){
@@ -126,9 +128,9 @@ public class PETeaAddScoreActivity extends BaseActivity {
                         bean.setIs_select(false);
                     }
                 }
-                CPWMatchListView confirmPopWindow=new CPWMatchListView(mActivity);
+                CPWMatchListMinWidthView confirmPopWindow=new CPWMatchListMinWidthView(mActivity);
                 confirmPopWindow.setAnimationStyle(R.style.pop_window_anim_style);
-                confirmPopWindow.setOnPopClickListener(new CPWMatchListView.OnPopClickListener() {
+                confirmPopWindow.setOnPopClickListener(new CPWMatchListMinWidthView.OnPopClickListener() {
                     @Override
                     public void onClick(String type, CPWBean bean) {
                         stu_name.setText(bean.getName());
@@ -143,6 +145,8 @@ public class PETeaAddScoreActivity extends BaseActivity {
 
 
     private List<CPWBean> scanStateList=new ArrayList<>();
+
+
 
 
     @OnClick(R.id.p_e_tea_add_score_stu_name)
@@ -271,7 +275,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
         req.setSession_key(Base.user.getSession_key());
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
+        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_term_list_api(env);
         call.enqueue(this);
     }
 

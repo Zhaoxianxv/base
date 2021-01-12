@@ -1,13 +1,11 @@
 package com.yfy.app.PEquality;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 import com.yfy.app.PEquality.adapter.PEAttendListAdapter;
 import com.yfy.app.PEquality.adapter.PEAttitudeStuMainAdapter;
@@ -19,24 +17,10 @@ import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
 import com.yfy.app.net.RetrofitGenerator;
 import com.yfy.app.net.base.UserGetTermListReq;
-import com.yfy.base.Base;
+import com.yfy.final_tag.data.Base;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.charting_mp.animation.Easing;
-import com.yfy.charting_mp.charts.BarChart;
-import com.yfy.charting_mp.charts.LineChart;
-import com.yfy.charting_mp.components.Legend;
-import com.yfy.charting_mp.components.XAxis;
-import com.yfy.charting_mp.components.YAxis;
-import com.yfy.charting_mp.data.BarData;
-import com.yfy.charting_mp.data.BarDataSet;
-import com.yfy.charting_mp.data.BarEntry;
-import com.yfy.charting_mp.data.Entry;
-import com.yfy.charting_mp.data.LineData;
-import com.yfy.charting_mp.data.LineDataSet;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.data.ColorRgbUtil;
-import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
@@ -237,7 +221,7 @@ public class PEAttitudeStuActivity extends BaseActivity {
         //获取参数
         reqBody.userGetTermListReq = req;
         env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().get_term_list(env);
+        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_term_list_api(env);
         call.enqueue(this);
     }
     @Override

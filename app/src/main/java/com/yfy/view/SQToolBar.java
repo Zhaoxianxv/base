@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yfy.base.R;
+import com.yfy.listener.NoFastClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class SQToolBar extends RelativeLayout {
     List<View> menus;
 
 
-    OnMenuClickListener onMenuClickListener = null;
+
 
     public SQToolBar(Context context) {
         this(context, null);
@@ -281,9 +282,9 @@ public class SQToolBar extends RelativeLayout {
     }
 
     private void setMenuListener(View menu) {
-        menu.setOnClickListener(new OnClickListener() {
+        menu.setOnClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View v) {
+            public void fastClick(View v) {
                 if (onMenuClickListener != null) {
                     onMenuClickListener.onClick(v, (int) v.getTag());
                 }
@@ -417,15 +418,22 @@ public class SQToolBar extends RelativeLayout {
     /**
      * 按钮的点击事件
      */
-    public interface OnMenuClickListener {
-        void onClick(View view, int position);
-    }
 
-    public OnMenuClickListener getOnMenuClickListener() {
-        return onMenuClickListener;
+    public OnMenuClickListener onMenuClickListener = null;
+    public interface OnMenuClickListener {
+
+        void onClick(View view, int position);
     }
 
     public void setOnMenuClickListener(OnMenuClickListener onMenuClickListener) {
         this.onMenuClickListener = onMenuClickListener;
     }
+
+//    private long lastClickTime = 0;//上次点击的时间
+//    private boolean isFastClick() {
+//        long currentTime = System.currentTimeMillis();//当前系统时间
+//        boolean isAllowClick = currentTime - lastClickTime >= 500;      //是否允许点击
+//        lastClickTime = currentTime;
+//        return isAllowClick;
+//    }
 }

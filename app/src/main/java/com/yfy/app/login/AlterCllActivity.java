@@ -15,6 +15,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.RegexUtils;
 import com.yfy.final_tag.stringtool.StringJudge;
@@ -103,6 +104,7 @@ public class AlterCllActivity extends BaseActivity implements Callback<ResEnv> {
         ReqBody reqBody = new ReqBody();
         UserResetCallReq req = new UserResetCallReq();
         //获取参数
+        req.setSession_key(Base.user.getSession_key());
         req.setNo(no);
         reqBody.userResetCallReq = req;
         reqEnv.body = reqBody;

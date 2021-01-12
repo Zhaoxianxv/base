@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.util.Base64;
 
+import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.Photo;
 import com.yfy.final_tag.stringtool.StringUtils;
@@ -299,7 +300,7 @@ public class Base64Utils {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bos);
 		int p = 100;
-		while (bos.toByteArray().length > TagFinal.UPLOAD_LIMIT) {
+		while (bos.toByteArray().length > Base.UPLOAD_LIMIT) {
 			bos.reset();
 			p -= 10;
 			bitmap.compress(Bitmap.CompressFormat.JPEG, p, bos);
