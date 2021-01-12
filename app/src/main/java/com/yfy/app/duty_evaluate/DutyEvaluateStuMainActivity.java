@@ -25,10 +25,14 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.view.SQToolBar;
+import com.yfy.view.time.CustomDatePicker;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.Bind;
 import retrofit2.Call;
@@ -65,6 +69,62 @@ public class DutyEvaluateStuMainActivity extends BaseActivity {
 
 
     }
+
+
+
+    private String year_s,month_s;
+    private CustomDatePicker customDatePicker1, customDatePicker2;
+    private void initDatePicker() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
+        String now = sdf.format(new Date());
+//        time_text=now.split(" ")[0];
+//        String data=now.split(" ")[0].substring(0,now.split(" ")[0].lastIndexOf("-"));
+//        year_s=data.split("-")[0];
+//        month_s=data.split("-")[1];
+//        munetv.setText(data);
+//        refresh();
+//        customDatePicker1 = new CustomDatePicker(this, new CustomDatePicker.ResultHandler() {
+//            @Override
+//            public void handle(String time) { // 回调接口，获得选中的时间
+////				currentDate.setText(time.split(" ")[0]);
+//                time_text=time.split(" ")[0];
+//                String data=time.split(" ")[0].substring(0,time.split(" ")[0].lastIndexOf("-"));
+//                year_s=data.split("-")[0];
+//                month_s=data.split("-")[1];
+//                munetv.setText(data);
+//                refresh();
+////                getTerm(Variables.userInfo.getSession_key(),year_s+"/"+month_s);
+//            }
+//        }, "2000-01-01 00:00", now); // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
+        customDatePicker1.showSpecificTime(false); // 不显示时和分
+        customDatePicker1.setIsLoop(true); // 不允许循环滚动
+
+        customDatePicker2 = new CustomDatePicker(this, new CustomDatePicker.ResultHandler() {
+            @Override
+            public void handle(String time) { // 回调接口，获得选中的时间
+            }
+        }, "2010-01-01 00:00", now); // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
+        customDatePicker2.showSpecificTime(true); // 显示时和分
+        customDatePicker2.setIsLoop(true); // 允许循环滚动
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void initView(){
         one.setTabTextColors(Color.GRAY,ColorRgbUtil.getBlue());

@@ -536,6 +536,11 @@
     <string name="maintain_audit_hint" translatable="false">点击编写审批意见</string>
 
     <!--基础词-->
+    <string name="year" translatable="false">年</string>
+    <string name="month" translatable="false">月</string>
+    <string name="day" translatable="false">日</string>
+    <string name="hour" translatable="false">时</string>
+    <string name="minute" translatable="false">分</string>
     <string name="chioce" translatable="false">选择</string>
     <string name="publish" translatable="false">发表</string>
     <string name="notice" translatable="false">通知</string>

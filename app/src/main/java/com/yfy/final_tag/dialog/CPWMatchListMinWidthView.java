@@ -29,13 +29,13 @@ import java.util.List;
 /**
  * 弹窗视图
  */
-public class CPWMatchListView extends PopupWindow  {
+public class CPWMatchListMinWidthView extends PopupWindow  {
 	private Activity context;
 	public ListView listview;
 	private PopListAdapter adapter;
 	private String type;
 
-	public CPWMatchListView(Activity context) {
+	public CPWMatchListMinWidthView(Activity context) {
 		super(context);
 		this.context = context;
 		initalize();
@@ -181,14 +181,14 @@ public class CPWMatchListView extends PopupWindow  {
 							context,
 							viewHolder.name,
 							StringUtils.stringToGetTextJoint("0\t%1$s",bean.getName()),
-							R.drawable.ic_check_box_black_24dp,
+							R.drawable.ic_check_selected,
 							ColorRgbUtil.getBaseColor());
 				}else{
 					TextToolSpan.$spannableAddIconColor(
 							context,
 							viewHolder.name,
 							StringUtils.stringToGetTextJoint("0\t%1$s",bean.getName()),
-							R.drawable.ic_check_box_outline_blank_black_24dp,
+							R.drawable.ic_check_unselect,
 							ColorRgbUtil.getGray());
 				}
 			}

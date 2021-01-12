@@ -82,6 +82,16 @@ public class SelectedUserTypeActivity extends BaseActivity {
         adapter.setModeItem(new SelectedUserTypeAdapter.UserTypeItem() {
             @Override
             public void modeItem(KeyValue bean) {
+//                switch (bean.getType()) {
+//                    case Base.USER_TYPE_TEA:
+//                        Intent intent=new Intent(mActivity,PETeaMainActivity.class);
+//                        intent.putExtra(Base.title,"体育素质评价");
+//                        startActivity(intent);
+//                        break;
+//                    case Base.USER_TYPE_STU:
+//                        startActivity(new Intent(mActivity,PEQualityMainTestActivity.class));
+//                        break;
+//                }
                 switch (bean.getType()) {
 
                     case Base.USER_TYPE_STU:
