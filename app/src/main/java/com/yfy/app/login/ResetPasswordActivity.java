@@ -72,7 +72,7 @@ public class ResetPasswordActivity extends BaseActivity implements Callback<ResE
                         user_type="stu";
                         type_two.setTextColor(ColorRgbUtil.getBaseColor());
                         type_one.setTextColor(ColorRgbUtil.getWhite());
-                        type_one.setBackgroundResource(R.drawable.radius_rigth_bottom4_top4);
+                        type_one.setBackgroundResource(R.drawable.radius_right_bottom4_top4);
                         type_two.setBackgroundColor(Color.TRANSPARENT);
 
                         break;

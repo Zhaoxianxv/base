@@ -98,7 +98,7 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
             return new SelectStuHolder(view);
         }
         if (viewType == TagFinal.TYPE_LONG_TXT_EDIT) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_long_txt_edit_interval, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_txt_long_edit_interval, parent, false);
             return new LongTxtEditHolder(view);
         }
         if (viewType == TagFinal.TYPE_TXT_EDIT) {

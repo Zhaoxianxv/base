@@ -1,15 +1,397 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/WhiteSmoke"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/WhiteSmoke">
 
     <com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
+    <View
+        android:id="@+id/p_e_tea_add_score_line"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_gravity="right"
+        android:layout_alignParentRight="true"
+        android:background="@color/main_red"/>
+    <ScrollView
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="@dimen/margin_50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/duty_evaluate_select_date_relative_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_45dp"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:background="@drawable/layer_top_bottom_gray_line_white_bg">
+
+                <TextView
+                    android:id="@+id/duty_evaluate_select_date_key"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/textsize7"
+                    android:text="时间："/>
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/duty_evaluate_select_date_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/gray_text"
+                    android:gravity="center_vertical|right"
+                    android:drawableRight="@drawable/ic_arrow_right_gray_24dp"
+                    android:text="未选择"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/duty_evaluate_select_stu_relative_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_45dp"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:background="@drawable/layer_top_bottom_gray_line_white_bg">
+
+                <TextView
+                    android:id="@+id/public_type_choice_key"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_10dp"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/textsize7"
+                    android:text="选择学生："/>
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/public_type_choice_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/gray_text"
+                    android:gravity="center_vertical|right"
+                    android:drawableRight="@drawable/ic_arrow_right_gray_24dp"
+                    android:text="未选择"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:padding="@dimen/margin_5dp"
+                android:background="@drawable/layer_top_bottom_gray_line_white_bg">
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/confirm_tab_layout_one"
+                    android:layout_height="@dimen/margin_35dp"
+                    android:layout_width="match_parent"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabIndicatorColor="@color/transparent"
+                    app:tabTextColor="@color/app_base_text_color"
+                    app:tabBackground="@drawable/select_state_selected_white_un_light_pink"
+                    app:tabMode="scrollable"/>
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/confirm_tab_layout_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_35dp"
+                    android:layout_marginTop="@dimen/margin_5dp"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabIndicatorColor="@color/transparent"
+                    android:layout_below="@id/confirm_tab_layout_one"
+                    app:tabBackground="@drawable/select_state_selected_white_un_light_pink"
+                    app:tabMode="scrollable"/>
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/duty_evaluate_stu_tab_data_recycler_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:padding="5dp"
+                android:background="@drawable/layer_top_bottom_gray_line_white_bg">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/duty_evaluate_stu_tab_data_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    >
+
+                </android.support.v7.widget.RecyclerView>
+            </RelativeLayout>
 
 
 
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/margin_5dp"
+                android:paddingBottom="@dimen/margin_5dp"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:background="@drawable/layer_top_bottom_gray_line_white_bg">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_5dp"
+                    android:layout_marginLeft="@dimen/margin_5dp"
+                    android:stretchColumns="0,1,2,3,4,5,6,7,8,9,10"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/public_type_flow_star_layout"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="@dimen/margin_5dp"
+                            android:layout_marginTop="@dimen/margin_8dp"
+                            android:gravity="center"
+                            android:layout_height="wrap_content">
+                            <RatingBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/margin_10dp"
+                                android:numStars="3"
+                                android:rating="3"
+                                android:stepSize="1"
+                                android:isIndicator="true"
+                                style="@style/Base.Widget.AppCompat.RatingBar.Small" />
+                            <TextView
+                                android:id="@+id/public_type_flow_star_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/textsize6"
+                                android:textColor="@color/main_red"
+                                android:layout_marginRight="@dimen/margin_5dp"
+                                android:layout_marginLeft="@dimen/margin_5dp"
+                                android:text="老师认定评测打分"/>
+
+                            <RatingBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:numStars="3"
+                                android:rating="3"
+                                android:stepSize="1"
+                                android:isIndicator="true"
+                                style="@style/Base.Widget.AppCompat.RatingBar.Small" />
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@color/d3_gray"
+                            android:layout_marginRight="@dimen/margin_20dp"
+                            android:layout_marginLeft="@dimen/margin_20dp"
+                            android:layout_below="@id/public_type_flow_star_layout"
+                            />
+                    </RelativeLayout>
+
+                    <TableRow
+
+                        android:layout_marginTop="@dimen/margin_10dp">
+                        <TextView
+                            android:id="@+id/tea_evaluate_zero"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_marginRight="1dp"
+                            android:background="@drawable/radius_left_bottom4_top4"
+                            android:backgroundTint="@color/gray"
+                            android:textColor="@color/White"
+                            android:text="0"/>
+                        <TextView
+                            android:id="@+id/tea_evaluate_one"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_marginRight="1dp"
+                            android:backgroundTint="@color/light_gray"
+                            android:textColor="@color/White"
+                            android:background="@drawable/rectangle_square_gray_line"
+                            android:text="1"/>
+                        <TextView
+                            android:id="@+id/tea_evaluate_two"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_marginRight="1dp"
+                            android:textColor="@color/White"
+                            android:background="@drawable/rectangle_square_gray_line"
+                            android:backgroundTint="@color/MistyRose"
+                            android:text="2"/>
+                        <TextView
+                            android:id="@+id/tea_evaluate_three"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_marginRight="1dp"
+                            android:textColor="@color/White"
+                            android:background="@drawable/rectangle_square_gray_line"
+                            android:backgroundTint="@color/Pink"
+                            android:text="3"/>
+                        <TextView
+                            android:id="@+id/tea_evaluate_four"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_marginRight="1dp"
+                            android:textColor="@color/White"
+                            android:background="@drawable/rectangle_square_gray_line"
+                            android:backgroundTint="@color/Pink"
+                            android:text="4"/>
+                        <TextView
+                            android:id="@+id/tea_evaluate_five"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/White"
+                            android:gravity="center_horizontal"
+                            android:layout_marginRight="1dp"
+                            android:background="@drawable/rectangle_square_gray_line"
+                            android:backgroundTint="@color/DeepSkyBlue"
+                            android:text="5"/>
+
+                        <TextView
+                            android:id="@+id/tea_evaluate_six"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:textColor="@color/White"
+                            android:layout_marginRight="1dp"
+                            android:background="@drawable/rectangle_square_gray_line"
+                            android:backgroundTint="@color/DeepSkyBlue"
+                            android:text="6"/>
+                        <TextView
+                            android:id="@+id/tea_evaluate_seven"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_marginRight="1dp"
+                            android:textColor="@color/White"
+                            android:background="@drawable/rectangle_square_gray_line"
+                            android:backgroundTint="@color/IndianRed"
+                            android:text="7"/>
+                        <TextView
+                            android:id="@+id/tea_evaluate_eight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:background="@drawable/rectangle_square_gray_line"
+                            android:textColor="@color/White"
+                            android:layout_marginRight="1dp"
+                            android:backgroundTint="@color/Red"
+                            android:text="8"/>
+                        <TextView
+                            android:id="@+id/tea_evaluate_nine"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_marginRight="1dp"
+                            android:textColor="@color/White"
+                            android:background="@drawable/rectangle_square_gray_line"
+                            android:backgroundTint="@color/Red"
+                            android:text="9"/>
+                        <TextView
+                            android:id="@+id/tea_evaluate_ten"
+                            android:layout_width="match_parent"
+                            android:textColor="@color/White"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_marginRight="1dp"
+                            android:background="@drawable/radius_right_bottom4_top4"
+                            android:backgroundTint="@color/Red"
+                            android:text="10"/>
+                    </TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:textSize="@dimen/textsize7"
+                        android:textColor="@color/app_base_text_color"
+                        android:text="当前选择分数"/>
+                    <TextView
+                        android:id="@+id/tea_evaluate_select_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/White"
+                        android:gravity="center_horizontal"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:background="@drawable/radius4_radio_group"
+                        android:backgroundTint="@color/Red"
+                        android:layout_marginBottom="@dimen/margin_5dp"
+                        android:text="10"/>
+                </TableLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_30dp"
+                    android:layout_marginRight="@dimen/margin_5dp"
+                    android:layout_marginLeft="@dimen/margin_5dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/public_type_long_txt_edit_key"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/margin_20dp"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:layout_marginTop="@dimen/margin_3dp"
+                        android:gravity="center_vertical"
+                        android:layout_centerHorizontal="true"
+                        android:text="小项评语"
+                        android:textSize="@dimen/textsize7"
+                        />
+
+                    <EditText
+                        android:id="@+id/public_type_long_txt_edit_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_35dp"
+                        android:minHeight="@dimen/margin_100dp"
+                        android:background="@drawable/radius4_radio_group"
+                        android:hint="请填写小项评语(非必填)"
+                        android:padding="@dimen/margin_5dp"
+                        android:gravity="start"
+                        android:textSize="@dimen/textsize7"
+                        android:paddingLeft="@dimen/margin_10dp"
+                        android:paddingRight="@dimen/margin_10dp"
+                        android:paddingBottom="@dimen/margin_5dp"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/duty_evaluate_submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/margin_5dp"
+        android:layout_marginRight="@dimen/margin_5dp"
+        android:layout_marginBottom="@dimen/margin_5dp"
+        android:text="@string/submit"
+        android:textColor="@color/White"
+        android:backgroundTint="@color/Pink"
+        android:textStyle="bold"/>
 </RelativeLayout>
 

@@ -43,6 +43,9 @@ public class Base {
     public static final String class_id = "class_id";//
     public static final String class_name = "class_name";//
     public static final String class_bean = "class_bean";//
+    public static final String stu_bean = "stu_bean";//
+    public static final String stu_name = "stu_name";//
+    public static final String stu_id = "stu_id";//
     public static final String data = "data";//
     public static final String date = "date";//
 

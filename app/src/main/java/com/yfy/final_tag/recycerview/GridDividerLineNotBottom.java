@@ -22,7 +22,7 @@ public class GridDividerLineNotBottom extends RecyclerView.ItemDecoration {
 
     private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
     private Drawable mDivider;
-    private int lineWidth = 5;
+    private int lineWidth = 3;
 
     public GridDividerLineNotBottom(Context context) {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);

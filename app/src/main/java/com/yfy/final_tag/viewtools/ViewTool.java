@@ -26,10 +26,13 @@ import android.widget.Toast;
 public class ViewTool {
 
 
+
+    //改变Vector 图片颜色
     public static void alterVectorDrawableColor(View view, int color) {
         VectorDrawable one = (VectorDrawable) view.getBackground();
         one.setTint(color);
     }
+    //改变 Drawable(除开层叠Drawable) 颜色
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void alterGradientDrawableColor(View view, int color) {
         GradientDrawable one = (GradientDrawable) view.getBackground();
@@ -46,6 +49,7 @@ public class ViewTool {
 //    }
 
 
+    //strokeColor 层叠Drawable
     public static void alterGradientDrawableStrokeColor(Context context,View view, int color) {
         GradientDrawable one = (GradientDrawable) view.getBackground();
         one.setStroke(pxPointDp(context,1),color);
@@ -162,6 +166,12 @@ public class ViewTool {
         getInstance();
         mycount.start();
     }
+    public static void showProgressDialog(Context context,long time,String message) {
+        mContext=context;
+        showProgressDialog(mContext,null, message);
+        getInstance(time);
+        mycount.start();
+    }
     public static void dismissProgressDialog() {
         if ( mycount != null){
             mycount.cancel();
@@ -219,6 +229,12 @@ public class ViewTool {
     public static MyCountDownTimer getInstance() {
         if (mycount == null) {
             mycount = new MyCountDownTimer(20000,10000);
+        }
+        return mycount;
+    }
+    public static MyCountDownTimer getInstance(long time) {
+        if (mycount == null) {
+            mycount = new MyCountDownTimer(time,1000);
         }
         return mycount;
     }

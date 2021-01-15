@@ -140,10 +140,8 @@ public class MathTool {
     public static String randomStringAtList(List<String> list){
         if (StringJudge.isEmpty(list))return "not string ***";
         String str=String.valueOf(Math.random() * list.size());
-        int idx=str.lastIndexOf(Pattern.quote("."));
-        String strNum=str.substring(0,idx);
-        int num=Integer.valueOf(strNum);
-        return list.get(num);
+        int idx=stringToInt(str);
+        return list.get(idx);
     }
 
     public static boolean isLastRowToFirstColumn(int all_num, int position, int column){
