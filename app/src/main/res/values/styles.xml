@@ -102,11 +102,6 @@
     </style>
 
 
-    <!--按钮styly-->
-    <style name="Toggle_style" parent="@android:style/Widget.CompoundButton">
-        <item name="android:button">@drawable/bg_checked_color_greed_gray</item>
-    </style>
-
 
     <!--date dialog data-->
     <style name="time_dialog" parent="android:style/Theme.Dialog">
@@ -169,4 +164,17 @@
         <item name="android:windowIsFloating">true</item>
     </style>
 
+
+
+    <!--按钮styly-->
+    <style name="Toggle_style" parent="@android:style/Widget.CompoundButton">
+        <item name="android:button">@drawable/bg_checked_color_greed_gray</item>
+    </style>
+
+    <!--TabLayout 选中背景-->
+    <style name="TabLayout_Background_style" parent="android:Widget">
+        <!--<item name="tabBackground">@drawable/tab_background</item>-->
+        <!--<item name="tabIndicatorColor">#ff00ff</item>-->
+        <!--<item name="tabIndicatorHeight">2dp</item>-->
+    </style>
 </resources>

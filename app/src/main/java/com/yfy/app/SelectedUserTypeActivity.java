@@ -10,6 +10,7 @@ import com.yfy.app.PEquality.PEQualityMainTestActivity;
 import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.duty_evaluate.DutyEvaluateStuDetailActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.app.login.bean.UserRes;
 import com.yfy.app.net.ReqBody;
@@ -269,12 +270,18 @@ public class SelectedUserTypeActivity extends BaseActivity {
 //                break;
 //        }
         //--------------德育评价----------
+        Intent intent;
         switch (user.getUsertype()) {
             case Base.USER_TYPE_STU:
-                startActivity(new Intent(mActivity,DutyEvaluateStuMainActivity.class));
+                KeyValue stu=new KeyValue();
+                stu.setName(Base.user.getName());
+                stu.setId(Base.user.getIdU());
+                intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
+                intent.putExtra(Base.stu_bean,stu);
+                startActivity(intent);
                 break;
             case Base.USER_TYPE_TEA:
-                Intent intent=new Intent(mActivity,SelectedClassActivity.class);
+                intent=new Intent(mActivity,SelectedClassActivity.class);
                 intent.putExtra(Base.mode_type,"duty_evaluate");
                 startActivity(intent);
                 break;

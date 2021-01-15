@@ -2,25 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yfy.base">
+
     <!-- Required 一些系统要求的权限，如访问网络等 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <!---->
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--  -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 8.0 允许安装未知来源权限 -->
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
-    <!--tell-->
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <!--voice-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <!-- tell -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- voice -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
-        android:name="com.yfy.base.App"
-        android:icon="@mipmap/ic_launcher"
+        android:name=".App"
         android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name_one"
         android:networkSecurityConfig="@xml/network_security_config"
         android:persistent="true"
@@ -33,9 +35,11 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
-        <activity android:name="com.yfy.app.welcome.WelcomeActivity"
+
+        <activity
+            android:name="com.yfy.app.welcome.WelcomeActivity"
             android:theme="@style/AppThemeInitial">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,7 +56,7 @@
         <service
             android:name="com.yfy.upload.UploadDataService"
             android:exported="false" />
-        <!--app-->
+        <!-- app -->
         <activity
             android:name="com.yfy.app.WebActivity"
             android:exported="false"
@@ -62,11 +66,11 @@
         <activity
             android:name="com.yfy.app.VersionDetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name="com.yfy.app.AppShapeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name="com.yfy.app.SelectedTermActivity"
             android:screenOrientation="portrait"
@@ -79,7 +83,7 @@
             android:name="com.yfy.app.SelectStuActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--album-->
+        <!-- album -->
         <activity
             android:name="com.yfy.app.album.AlbumAllActivity"
             android:exported="false"
@@ -96,18 +100,17 @@
             android:name="com.yfy.app.album.MultPicShowActivity"
             android:exported="false"
             android:theme="@style/AppThemeWindow" />
-
         <activity
-            android:name="com.yfy.base.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <!--spannable_string-->
+        <!-- spannable_string -->
         <activity
             android:name="com.yfy.app.spannable_string.SpannableStringMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!--login-->
+        <!-- login -->
         <activity
             android:name="com.yfy.app.login.LoginActivity"
             android:screenOrientation="portrait"
@@ -141,183 +144,186 @@
         <activity android:name="com.yfy.app.drawableBg.TableLayoutActivity" />
         <activity android:name="com.yfy.app.drawableBg.MaterialMainActivity" />
         <activity android:name="com.yfy.app.drawableBg.SingleActivity" />
-        <!--mode-->
+        <!-- mode -->
 
         <activity
             android:name="com.yfy.app.SelectedModeTypeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            />
+            android:theme="@style/AppTheme" />
         <activity
             android:name="com.yfy.app.SelectedUserTypeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            />
-        <!--chart-->
+            android:theme="@style/AppTheme" />
+        <!-- chart -->
         <activity
             android:name="com.yfy.app.chart.BarChartActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
-        <!--video-->
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
+        <!-- video -->
         <activity
             android:name="com.yfy.app.video.PlayDirectlyActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppThemeInitial" />
-        <!--voice-->
+            android:theme="@style/AppThemeInitial"
+            tools:ignore="InnerclassSeparator" />
+        <!-- voice -->
 
         <activity
             android:name="com.yfy.app.voice.VoiceMainActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppThemeInitial" />
-        <!--g rpc-->
+            android:theme="@style/AppThemeInitial"
+            tools:ignore="InnerclassSeparator" />
+        <!-- g rpc -->
         <activity
             android:name="com.yfy.app.gRPC.GRpcMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.httppost.HttpPostMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.httppost.retrofitclient.RetrofitMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            tools:ignore="InnerclassSeparator"/>
-        <!--PEquality-->
+            tools:ignore="InnerclassSeparator" />
+        <!-- PEquality -->
         <activity
             android:name="com.yfy.app.PEquality.PEScoreMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            tools:ignore="InnerclassSeparator"/>
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEQualityMainTestActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.tea.PETeaAttitudeActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEAttitudeDetailActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.tea.PEAttendListActivity"
-            tools:ignore="InnerclassSeparator"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEQualityStandardListActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEQualityKnowledgeActivity"
-            tools:ignore="InnerclassSeparator"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEQualityKnowledgeLibraryActivity"
-            tools:ignore="InnerclassSeparator"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEQualityKnowledgeAnswerActivity"
-            tools:ignore="InnerclassSeparator"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEQualityHomeworkActivity"
-            tools:ignore="InnerclassSeparator"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEAttitudeStuMainActivity"
-            tools:ignore="InnerclassSeparator"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEAttitudeStuActivity"
-            tools:ignore="InnerclassSeparator"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEHonorMainActivity"
-            tools:ignore="InnerclassSeparator"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEHonorAddActivity"
-            tools:ignore="InnerclassSeparator"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity
             android:name="com.yfy.app.PEquality.PEQualitySuggestActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity"
-            tools:ignore="InnerclassSeparator"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PERecipeActivity"
-            tools:ignore="InnerclassSeparator"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.tea.PETeaMainActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.tea.PETeaScoreTypeActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.tea.PETeaStandardListActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
-
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.tea.PETeaAddScoreActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEStuHealthActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
 
-        <!--duty evaluate-->
+        <!-- duty evaluate -->
         <activity
             android:name="com.yfy.app.duty_evaluate.DutyEvaluateTeaDoActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity
             android:name="com.yfy.app.duty_evaluate.DutyEvaluateRecordActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity"
             android:screenOrientation="portrait"
-            tools:ignore="InnerclassSeparator"
-            android:theme="@style/AppTheme" />
-
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.yfy.app.duty_evaluate.DutyEvaluateStuDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
     </application>
 
 </manifest>

@@ -630,9 +630,6 @@
     <string name="title_activity_check_main">CheckMainActivity</string>
 
 
-
-
-
     <!--drawable /widget-->
     <string name="drawable_orthogon_describe">corners:圆角/stroke:边线/solid:填充色sssss</string>
     <string name="drawable_edit_describe">edit:inputType \t date:时间输入 \t numbar：numberPassword:

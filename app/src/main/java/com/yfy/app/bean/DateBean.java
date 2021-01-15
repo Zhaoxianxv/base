@@ -62,6 +62,20 @@ public class DateBean implements Parcelable {
     }
 
 
+
+    public int getYearName(){
+        Calendar calendar = Calendar.getInstance();
+        Date date = new Date(value_long);
+        calendar.setTime(date);
+        return calendar.get(Calendar.YEAR);
+    }
+    public int getMonthName(){
+        Calendar calendar = Calendar.getInstance();
+        Date date = new Date(value_long);
+        calendar.setTime(date);
+        return calendar.get(Calendar.MONTH)+1;
+    }
+
     public void addOneDay(){
         value_long+=DAY_LONG;
         Date date = new Date(value_long);

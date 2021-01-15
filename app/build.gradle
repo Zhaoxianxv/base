@@ -67,8 +67,6 @@ android {
 //        }
 //    }
 
-
-
     //gRPC
 
     protobuf {
@@ -167,16 +165,10 @@ dependencies {
 //    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
 
-
-
-
-
     implementation 'com.zhangzheng.superxml:library:1.1.0'//虚线
     implementation 'com.squareup.picasso:picasso:2.5.1'//图片
 
-
     //  GRPC dependencies
-
 
 //    implementation 'io.grpc:grpc-netty-shaded:1.33.1'
     implementation 'io.grpc:grpc-okhttp:1.15.1'
@@ -184,9 +176,6 @@ dependencies {
 //    implementation 'io.grpc:grpc-protobuf:1.0.0'
     implementation 'io.grpc:grpc-stub:1.15.1'
     implementation 'javax.annotation:javax.annotation-api:1.2'
-
-
-
 
 
 }

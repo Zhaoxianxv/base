@@ -62,6 +62,8 @@ public class ColorRgbUtil {
     public static int getSilver(){ return Color.rgb(192,192,192); }
 
     public static int getMaroon(){ return Color.rgb(128,0,0); }
+    public static int getLightPink(){
+        return Color.parseColor("#FFB6C1"); }
 
     //   <!--淡珊瑚色	-->
     public static int getLightCoral(){ return Color.rgb(240,128,128); }
