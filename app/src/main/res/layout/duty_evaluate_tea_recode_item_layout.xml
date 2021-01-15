@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:alignmentMode="alignBounds"
+        app:orientation="horizontal"
+        app:useDefaultMargins="false">
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/duty_evaluate_tea_do_tab_item_title"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_50dp"
+            app:layout_row="0"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_columnSpan="1"
+            android:text="老师"
+            android:background="@color/LightPink"
+            android:gravity="center"
+            android:textSize="@dimen/textsize7"/>
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/duty_evaluate_tea_do_tab_item_value"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_35dp"
+            app:layout_row="1"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_columnSpan="1"
+            android:text="23"
+            android:background="@color/WhiteSmoke"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:textSize="@dimen/textsize5"/>
+
+
+
+
+
+
+
+    </android.support.v7.widget.GridLayout>
+
+
+</RelativeLayout>
