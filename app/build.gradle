@@ -95,7 +95,7 @@ android {
     }
 }
 greendao {
-    schemaVersion 4
+    schemaVersion 5
     daoPackage 'com.yfy.greendao'
     targetGenDir 'src/main/java'
 }

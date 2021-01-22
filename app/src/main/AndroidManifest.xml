@@ -324,6 +324,27 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.yfy.app.duty_evaluate.DutyEvaluateStuAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.yfy.app.duty_evaluate.DutyEvaluatePracticeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.yfy.app.duty_evaluate.DutyEvaluateSchoolActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.yfy.app.duty_evaluate.PracticeAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
     </application>
 
 </manifest>

@@ -22,22 +22,25 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Type = new Property(0, String.class, "type", false, "TYPE");
-        public final static Property Model_type = new Property(1, String.class, "model_type", false, "MODEL_TYPE");
-        public final static Property Parent_id = new Property(2, String.class, "parent_id", false, "PARENT_ID");
-        public final static Property Child_id = new Property(3, String.class, "child_id", false, "CHILD_ID");
-        public final static Property Required = new Property(4, boolean.class, "required", false, "REQUIRED");
-        public final static Property View_type = new Property(5, int.class, "view_type", false, "VIEW_TYPE");
-        public final static Property Key_value_id = new Property(6, String.class, "key_value_id", false, "KEY_VALUE_ID");
-        public final static Property Key = new Property(7, String.class, "key", false, "KEY");
-        public final static Property Value = new Property(8, String.class, "value", false, "VALUE");
-        public final static Property Name = new Property(9, String.class, "name", false, "NAME");
-        public final static Property Image = new Property(10, String.class, "image", false, "IMAGE");
-        public final static Property Time = new Property(11, String.class, "time", false, "TIME");
-        public final static Property File_path = new Property(12, String.class, "file_path", false, "FILE_PATH");
-        public final static Property Num = new Property(13, int.class, "num", false, "NUM");
-        public final static Property Time_duration = new Property(14, float.class, "time_duration", false, "TIME_DURATION");
-        public final static Property Id = new Property(15, Long.class, "id", true, "_id");
+        public final static Property Model_type = new Property(0, String.class, "model_type", false, "MODEL_TYPE");
+        public final static Property Type = new Property(1, String.class, "type", false, "TYPE");
+        public final static Property Type_id = new Property(2, String.class, "type_id", false, "TYPE_ID");
+        public final static Property Type_parent_id = new Property(3, String.class, "type_parent_id", false, "TYPE_PARENT_ID");
+        public final static Property Type_user_id = new Property(4, String.class, "type_user_id", false, "TYPE_USER_ID");
+        public final static Property Key = new Property(5, String.class, "key", false, "KEY");
+        public final static Property Value = new Property(6, String.class, "value", false, "VALUE");
+        public final static Property Name = new Property(7, String.class, "name", false, "NAME");
+        public final static Property Image = new Property(8, String.class, "image", false, "IMAGE");
+        public final static Property Time = new Property(9, String.class, "time", false, "TIME");
+        public final static Property File_path = new Property(10, String.class, "file_path", false, "FILE_PATH");
+        public final static Property Parent_id = new Property(11, String.class, "parent_id", false, "PARENT_ID");
+        public final static Property Child_id = new Property(12, String.class, "child_id", false, "CHILD_ID");
+        public final static Property Key_value_id = new Property(13, String.class, "key_value_id", false, "KEY_VALUE_ID");
+        public final static Property Num = new Property(14, int.class, "num", false, "NUM");
+        public final static Property Time_duration = new Property(15, float.class, "time_duration", false, "TIME_DURATION");
+        public final static Property Required = new Property(16, boolean.class, "required", false, "REQUIRED");
+        public final static Property View_type = new Property(17, int.class, "view_type", false, "VIEW_TYPE");
+        public final static Property Id = new Property(18, Long.class, "id", true, "_id");
     }
 
 
@@ -53,22 +56,25 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"KEY_VALUE_DB\" (" + //
-                "\"TYPE\" TEXT NOT NULL ," + // 0: type
-                "\"MODEL_TYPE\" TEXT NOT NULL ," + // 1: model_type
-                "\"PARENT_ID\" TEXT NOT NULL ," + // 2: parent_id
-                "\"CHILD_ID\" TEXT NOT NULL ," + // 3: child_id
-                "\"REQUIRED\" INTEGER NOT NULL ," + // 4: required
-                "\"VIEW_TYPE\" INTEGER NOT NULL ," + // 5: view_type
-                "\"KEY_VALUE_ID\" TEXT NOT NULL ," + // 6: key_value_id
-                "\"KEY\" TEXT NOT NULL ," + // 7: key
-                "\"VALUE\" TEXT NOT NULL ," + // 8: value
-                "\"NAME\" TEXT NOT NULL ," + // 9: name
-                "\"IMAGE\" TEXT NOT NULL ," + // 10: image
-                "\"TIME\" TEXT NOT NULL ," + // 11: time
-                "\"FILE_PATH\" TEXT NOT NULL ," + // 12: file_path
-                "\"NUM\" INTEGER NOT NULL ," + // 13: num
-                "\"TIME_DURATION\" REAL NOT NULL ," + // 14: time_duration
-                "\"_id\" INTEGER PRIMARY KEY );"); // 15: id
+                "\"MODEL_TYPE\" TEXT NOT NULL ," + // 0: model_type
+                "\"TYPE\" TEXT NOT NULL ," + // 1: type
+                "\"TYPE_ID\" TEXT NOT NULL ," + // 2: type_id
+                "\"TYPE_PARENT_ID\" TEXT NOT NULL ," + // 3: type_parent_id
+                "\"TYPE_USER_ID\" TEXT NOT NULL ," + // 4: type_user_id
+                "\"KEY\" TEXT NOT NULL ," + // 5: key
+                "\"VALUE\" TEXT NOT NULL ," + // 6: value
+                "\"NAME\" TEXT NOT NULL ," + // 7: name
+                "\"IMAGE\" TEXT NOT NULL ," + // 8: image
+                "\"TIME\" TEXT NOT NULL ," + // 9: time
+                "\"FILE_PATH\" TEXT NOT NULL ," + // 10: file_path
+                "\"PARENT_ID\" TEXT NOT NULL ," + // 11: parent_id
+                "\"CHILD_ID\" TEXT NOT NULL ," + // 12: child_id
+                "\"KEY_VALUE_ID\" TEXT NOT NULL ," + // 13: key_value_id
+                "\"NUM\" INTEGER NOT NULL ," + // 14: num
+                "\"TIME_DURATION\" REAL NOT NULL ," + // 15: time_duration
+                "\"REQUIRED\" INTEGER NOT NULL ," + // 16: required
+                "\"VIEW_TYPE\" INTEGER NOT NULL ," + // 17: view_type
+                "\"_id\" INTEGER PRIMARY KEY );"); // 18: id
     }
 
     /** Drops the underlying database table. */
@@ -80,99 +86,111 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
     @Override
     protected final void bindValues(DatabaseStatement stmt, KeyValueDb entity) {
         stmt.clearBindings();
-        stmt.bindString(1, entity.getType());
-        stmt.bindString(2, entity.getModel_type());
-        stmt.bindString(3, entity.getParent_id());
-        stmt.bindString(4, entity.getChild_id());
-        stmt.bindLong(5, entity.getRequired() ? 1L: 0L);
-        stmt.bindLong(6, entity.getView_type());
-        stmt.bindString(7, entity.getKey_value_id());
-        stmt.bindString(8, entity.getKey());
-        stmt.bindString(9, entity.getValue());
-        stmt.bindString(10, entity.getName());
-        stmt.bindString(11, entity.getImage());
-        stmt.bindString(12, entity.getTime());
-        stmt.bindString(13, entity.getFile_path());
-        stmt.bindLong(14, entity.getNum());
-        stmt.bindDouble(15, entity.getTime_duration());
+        stmt.bindString(1, entity.getModel_type());
+        stmt.bindString(2, entity.getType());
+        stmt.bindString(3, entity.getType_id());
+        stmt.bindString(4, entity.getType_parent_id());
+        stmt.bindString(5, entity.getType_user_id());
+        stmt.bindString(6, entity.getKey());
+        stmt.bindString(7, entity.getValue());
+        stmt.bindString(8, entity.getName());
+        stmt.bindString(9, entity.getImage());
+        stmt.bindString(10, entity.getTime());
+        stmt.bindString(11, entity.getFile_path());
+        stmt.bindString(12, entity.getParent_id());
+        stmt.bindString(13, entity.getChild_id());
+        stmt.bindString(14, entity.getKey_value_id());
+        stmt.bindLong(15, entity.getNum());
+        stmt.bindDouble(16, entity.getTime_duration());
+        stmt.bindLong(17, entity.getRequired() ? 1L: 0L);
+        stmt.bindLong(18, entity.getView_type());
  
         Long id = entity.getId();
         if (id != null) {
-            stmt.bindLong(16, id);
+            stmt.bindLong(19, id);
         }
     }
 
     @Override
     protected final void bindValues(SQLiteStatement stmt, KeyValueDb entity) {
         stmt.clearBindings();
-        stmt.bindString(1, entity.getType());
-        stmt.bindString(2, entity.getModel_type());
-        stmt.bindString(3, entity.getParent_id());
-        stmt.bindString(4, entity.getChild_id());
-        stmt.bindLong(5, entity.getRequired() ? 1L: 0L);
-        stmt.bindLong(6, entity.getView_type());
-        stmt.bindString(7, entity.getKey_value_id());
-        stmt.bindString(8, entity.getKey());
-        stmt.bindString(9, entity.getValue());
-        stmt.bindString(10, entity.getName());
-        stmt.bindString(11, entity.getImage());
-        stmt.bindString(12, entity.getTime());
-        stmt.bindString(13, entity.getFile_path());
-        stmt.bindLong(14, entity.getNum());
-        stmt.bindDouble(15, entity.getTime_duration());
+        stmt.bindString(1, entity.getModel_type());
+        stmt.bindString(2, entity.getType());
+        stmt.bindString(3, entity.getType_id());
+        stmt.bindString(4, entity.getType_parent_id());
+        stmt.bindString(5, entity.getType_user_id());
+        stmt.bindString(6, entity.getKey());
+        stmt.bindString(7, entity.getValue());
+        stmt.bindString(8, entity.getName());
+        stmt.bindString(9, entity.getImage());
+        stmt.bindString(10, entity.getTime());
+        stmt.bindString(11, entity.getFile_path());
+        stmt.bindString(12, entity.getParent_id());
+        stmt.bindString(13, entity.getChild_id());
+        stmt.bindString(14, entity.getKey_value_id());
+        stmt.bindLong(15, entity.getNum());
+        stmt.bindDouble(16, entity.getTime_duration());
+        stmt.bindLong(17, entity.getRequired() ? 1L: 0L);
+        stmt.bindLong(18, entity.getView_type());
  
         Long id = entity.getId();
         if (id != null) {
-            stmt.bindLong(16, id);
+            stmt.bindLong(19, id);
         }
     }
 
     @Override
     public Long readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 15) ? null : cursor.getLong(offset + 15);
+        return cursor.isNull(offset + 18) ? null : cursor.getLong(offset + 18);
     }    
 
     @Override
     public KeyValueDb readEntity(Cursor cursor, int offset) {
         KeyValueDb entity = new KeyValueDb( //
-            cursor.getString(offset + 0), // type
-            cursor.getString(offset + 1), // model_type
-            cursor.getString(offset + 2), // parent_id
-            cursor.getString(offset + 3), // child_id
-            cursor.getShort(offset + 4) != 0, // required
-            cursor.getInt(offset + 5), // view_type
-            cursor.getString(offset + 6), // key_value_id
-            cursor.getString(offset + 7), // key
-            cursor.getString(offset + 8), // value
-            cursor.getString(offset + 9), // name
-            cursor.getString(offset + 10), // image
-            cursor.getString(offset + 11), // time
-            cursor.getString(offset + 12), // file_path
-            cursor.getInt(offset + 13), // num
-            cursor.getFloat(offset + 14), // time_duration
-            cursor.isNull(offset + 15) ? null : cursor.getLong(offset + 15) // id
+            cursor.getString(offset + 0), // model_type
+            cursor.getString(offset + 1), // type
+            cursor.getString(offset + 2), // type_id
+            cursor.getString(offset + 3), // type_parent_id
+            cursor.getString(offset + 4), // type_user_id
+            cursor.getString(offset + 5), // key
+            cursor.getString(offset + 6), // value
+            cursor.getString(offset + 7), // name
+            cursor.getString(offset + 8), // image
+            cursor.getString(offset + 9), // time
+            cursor.getString(offset + 10), // file_path
+            cursor.getString(offset + 11), // parent_id
+            cursor.getString(offset + 12), // child_id
+            cursor.getString(offset + 13), // key_value_id
+            cursor.getInt(offset + 14), // num
+            cursor.getFloat(offset + 15), // time_duration
+            cursor.getShort(offset + 16) != 0, // required
+            cursor.getInt(offset + 17), // view_type
+            cursor.isNull(offset + 18) ? null : cursor.getLong(offset + 18) // id
         );
         return entity;
     }
      
     @Override
     public void readEntity(Cursor cursor, KeyValueDb entity, int offset) {
-        entity.setType(cursor.getString(offset + 0));
-        entity.setModel_type(cursor.getString(offset + 1));
-        entity.setParent_id(cursor.getString(offset + 2));
-        entity.setChild_id(cursor.getString(offset + 3));
-        entity.setRequired(cursor.getShort(offset + 4) != 0);
-        entity.setView_type(cursor.getInt(offset + 5));
-        entity.setKey_value_id(cursor.getString(offset + 6));
-        entity.setKey(cursor.getString(offset + 7));
-        entity.setValue(cursor.getString(offset + 8));
-        entity.setName(cursor.getString(offset + 9));
-        entity.setImage(cursor.getString(offset + 10));
-        entity.setTime(cursor.getString(offset + 11));
-        entity.setFile_path(cursor.getString(offset + 12));
-        entity.setNum(cursor.getInt(offset + 13));
-        entity.setTime_duration(cursor.getFloat(offset + 14));
-        entity.setId(cursor.isNull(offset + 15) ? null : cursor.getLong(offset + 15));
+        entity.setModel_type(cursor.getString(offset + 0));
+        entity.setType(cursor.getString(offset + 1));
+        entity.setType_id(cursor.getString(offset + 2));
+        entity.setType_parent_id(cursor.getString(offset + 3));
+        entity.setType_user_id(cursor.getString(offset + 4));
+        entity.setKey(cursor.getString(offset + 5));
+        entity.setValue(cursor.getString(offset + 6));
+        entity.setName(cursor.getString(offset + 7));
+        entity.setImage(cursor.getString(offset + 8));
+        entity.setTime(cursor.getString(offset + 9));
+        entity.setFile_path(cursor.getString(offset + 10));
+        entity.setParent_id(cursor.getString(offset + 11));
+        entity.setChild_id(cursor.getString(offset + 12));
+        entity.setKey_value_id(cursor.getString(offset + 13));
+        entity.setNum(cursor.getInt(offset + 14));
+        entity.setTime_duration(cursor.getFloat(offset + 15));
+        entity.setRequired(cursor.getShort(offset + 16) != 0);
+        entity.setView_type(cursor.getInt(offset + 17));
+        entity.setId(cursor.isNull(offset + 18) ? null : cursor.getLong(offset + 18));
      }
     
     @Override
