@@ -1,12 +1,16 @@
 package com.yfy.final_tag.viewtools;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.ClipDrawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.VectorDrawable;
 import android.os.Build;
 import android.os.CountDownTimer;
@@ -19,6 +23,7 @@ import android.text.Selection;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -26,7 +31,59 @@ import android.widget.Toast;
 public class ViewTool {
 
 
+    /**<item android:id="@android:id/background">
+     <shape>
+     <solid android:color="@color/gray" />
+     </shape>
+     </item>
+     <item android:id="@android:id/progress">
+     <clip>
+     <shape>
+     <solid android:color="@color/Green" />
+     </shape>
+     </clip>
+     </item>
 
+     */
+    //改变 progressbar 的 progress 图层颜色
+    @TargetApi(Build.VERSION_CODES.M)
+    public static void alterProgressBarFirstBackgroundColor(ProgressBar progressBar, int progressColor,int backgroundColor) {
+        //progress
+        LayerDrawable layerDrawable = (LayerDrawable) progressBar.getProgressDrawable();
+        ClipDrawable clipDrawable_progress = (ClipDrawable) layerDrawable.findDrawableByLayerId(android.R.id.progress);
+        GradientDrawable gradientDrawable_progress= new GradientDrawable();
+        gradientDrawable_progress.setColor(progressColor);
+        clipDrawable_progress.setDrawable(gradientDrawable_progress);
+        layerDrawable.setDrawableByLayerId(android.R.id.progress, clipDrawable_progress);
+
+        //background
+        GradientDrawable clipDrawable_background = (GradientDrawable) layerDrawable.findDrawableByLayerId(android.R.id.background);
+        clipDrawable_background.setTint(backgroundColor);
+        layerDrawable.setDrawableByLayerId(android.R.id.background, clipDrawable_background);
+    }
+    @TargetApi(Build.VERSION_CODES.M)
+    public static void alterProgressSecondaryBackgroundColor(ProgressBar progressBar, int secondaryProgress,int progressColor,int backgroundColor) {
+
+        LayerDrawable layerDrawable = (LayerDrawable) progressBar.getProgressDrawable();
+        //progressColor
+        ClipDrawable clipDrawable_progress = (ClipDrawable) layerDrawable.findDrawableByLayerId(android.R.id.progress);
+        GradientDrawable gradientDrawable_progress= new GradientDrawable();
+        gradientDrawable_progress.setColor(progressColor);
+        clipDrawable_progress.setDrawable(gradientDrawable_progress);
+        layerDrawable.setDrawableByLayerId(android.R.id.progress, clipDrawable_progress);
+
+        //secondaryProgress
+        ClipDrawable clipDrawable_secondaryProgress = (ClipDrawable) layerDrawable.findDrawableByLayerId(android.R.id.secondaryProgress);
+        GradientDrawable gradientDrawable_secondaryProgress= new GradientDrawable();
+        gradientDrawable_secondaryProgress.setColor(secondaryProgress);
+        clipDrawable_secondaryProgress.setDrawable(gradientDrawable_secondaryProgress);
+        layerDrawable.setDrawableByLayerId(android.R.id.secondaryProgress, clipDrawable_secondaryProgress);
+
+        //background
+        GradientDrawable clipDrawable_background = (GradientDrawable) layerDrawable.findDrawableByLayerId(android.R.id.background);
+        clipDrawable_background.setTint(backgroundColor);
+        layerDrawable.setDrawableByLayerId(android.R.id.background, clipDrawable_background);
+    }
     //改变Vector 图片颜色
     public static void alterVectorDrawableColor(View view, int color) {
         VectorDrawable one = (VectorDrawable) view.getBackground();

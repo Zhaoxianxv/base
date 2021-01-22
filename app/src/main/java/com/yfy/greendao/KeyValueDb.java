@@ -11,20 +11,20 @@ import androidx.annotation.Nullable;
 
 @Entity
 public class KeyValueDb {
-    @NotNull
-    private String type="";//用于判断数据类型
+    /**
+     *  查询数据 功能model_type\type\type_user_id\type
+     */
     @NotNull
     private String model_type="";//用于判断了个功能木快5.7
     @NotNull
-    private String parent_id="";//7.9
+    private String type="";//用于判断查询数据类型
     @NotNull
-    private String child_id="";
+    private String type_id="";//用于判断查询数据类型
     @NotNull
-    private boolean required=true;//用于判断是否必填
+    private String type_parent_id="";//用于判断查询数据类型
     @NotNull
-    private int view_type=TagFinal.TYPE_ITEM;
-    @NotNull
-    private String key_value_id="";//id
+    private String type_user_id="";//用于判断查询数据类型
+    //用于保存数据
     @NotNull
     private String key="";//描述值
     @NotNull
@@ -37,35 +37,49 @@ public class KeyValueDb {
     private String time="";
     @NotNull
     private String file_path="";
-
+    @NotNull
+    private String parent_id="";//7.9
+    @NotNull
+    private String child_id="";
+    @NotNull
+    private String key_value_id="";//id
     @NotNull
     private int num=-1;
     @NotNull
     private float time_duration=-1;
+    @NotNull
+    private boolean required=true;//用于判断是否必填
+    @NotNull
+    private int view_type=TagFinal.TYPE_ITEM;
     @Id
     private Long id;
-    @Generated(hash = 1526645117)
-    public KeyValueDb(@NotNull String type, @NotNull String model_type,
-            @NotNull String parent_id, @NotNull String child_id, boolean required,
-            int view_type, @NotNull String key_value_id, @NotNull String key,
+    @Generated(hash = 1331742474)
+    public KeyValueDb(@NotNull String model_type, @NotNull String type,
+            @NotNull String type_id, @NotNull String type_parent_id,
+            @NotNull String type_user_id, @NotNull String key,
             @NotNull String value, @NotNull String name, @NotNull String image,
-            @NotNull String time, @NotNull String file_path, int num,
-            float time_duration, Long id) {
-        this.type = type;
+            @NotNull String time, @NotNull String file_path,
+            @NotNull String parent_id, @NotNull String child_id,
+            @NotNull String key_value_id, int num, float time_duration,
+            boolean required, int view_type, Long id) {
         this.model_type = model_type;
-        this.parent_id = parent_id;
-        this.child_id = child_id;
-        this.required = required;
-        this.view_type = view_type;
-        this.key_value_id = key_value_id;
+        this.type = type;
+        this.type_id = type_id;
+        this.type_parent_id = type_parent_id;
+        this.type_user_id = type_user_id;
         this.key = key;
         this.value = value;
         this.name = name;
         this.image = image;
         this.time = time;
         this.file_path = file_path;
+        this.parent_id = parent_id;
+        this.child_id = child_id;
+        this.key_value_id = key_value_id;
         this.num = num;
         this.time_duration = time_duration;
+        this.required = required;
+        this.view_type = view_type;
         this.id = id;
     }
     @Generated(hash = 980486890)
@@ -166,6 +180,24 @@ public class KeyValueDb {
     }
     public void setTime_duration(float time_duration) {
         this.time_duration = time_duration;
+    }
+    public String getType_user_id() {
+        return this.type_user_id;
+    }
+    public void setType_user_id(String type_user_id) {
+        this.type_user_id = type_user_id;
+    }
+    public String getType_id() {
+        return this.type_id;
+    }
+    public void setType_id(String type_id) {
+        this.type_id = type_id;
+    }
+    public String getType_parent_id() {
+        return this.type_parent_id;
+    }
+    public void setType_parent_id(String type_parent_id) {
+        this.type_parent_id = type_parent_id;
     }
 
 

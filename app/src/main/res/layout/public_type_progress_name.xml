@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/moral_convention_item_layout"
+    xmlns:tools="http://schemas.android.com/tools">
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_1dp"
+        android:paddingBottom="@dimen/margin_1dp"
+        android:layout_marginRight="@dimen/margin_5dp"
+        android:layout_marginLeft="@dimen/margin_5dp"
+        app:alignmentMode="alignBounds"
+        app:columnCount="2"
+        app:rowCount="1"
+        app:orientation="horizontal"
+        app:useDefaultMargins="false">
+        <TextView
+            android:id="@+id/moral_convention_item_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_gravity="center_vertical"
+            android:gravity="right|center_vertical"
+            app:layout_row="0"
+            app:layout_column="0"
+            app:layout_columnWeight="2"
+            app:layout_columnSpan="1"
+            tools:text="健康体魄"
+            android:textColor="@color/Gray"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_row="0"
+            app:layout_column="1"
+            app:layout_gravity="center_vertical"
+            app:layout_columnWeight="2"
+            app:layout_columnSpan="1">
+            <ProgressBar
+                android:id="@+id/moral_convention_item_progressbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="45"
+                android:secondaryProgress="24"
+                android:minHeight="@dimen/margin_8dp"
+                android:maxHeight="@dimen/margin_8dp"
+                android:progressDrawable="@drawable/progressbar"
+                android:progressTint="@color/PaleGodenrod"
+                android:progressTintMode="src_over"
+                android:layout_centerInParent="true"
+                android:background="@color/transparent"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                />
+            <ProgressBar
+                android:id="@+id/moral_convention_item_progressbar_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="15"
+                android:minHeight="@dimen/margin_8dp"
+                android:maxHeight="@dimen/margin_8dp"
+                android:progressDrawable="@drawable/progressbar"
+                android:progressTint="@color/colorAccent"
+                android:progressTintMode="src_over"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                />
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.GridLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/ic_line_24dp"
+        android:layout_alignParentTop="true"
+        android:backgroundTint="@color/gray"
+        android:layout_marginLeft="@dimen/margin_5dp"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

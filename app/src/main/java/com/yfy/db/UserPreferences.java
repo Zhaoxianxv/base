@@ -62,32 +62,6 @@ public class UserPreferences extends Preferences {
     }
 
 
-    /**
-     * 保存MD5
-     */
-
-
-    public void saveClassIds(String code){
-        saveString("app_class_id",code);
-    }
-    public String getClassIds(){
-        return getString("app_class_id","");
-    }
-    /**
-     * 保存学期
-     */
-    public void saveTermId(String code){
-        saveString("time_term_id",code);
-    }
-    public String getTermId(){
-        return getString("time_term_id","");
-    }
-    public void saveTermName(String name){
-        saveString("time_term_name",name);
-    }
-    public String getTermName(){
-        return getString("time_term_name","");
-    }
 
 
 

@@ -1,208 +1,249 @@
 package com.yfy.app.duty_evaluate;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
-import com.yfy.app.bean.BaseRes;
-import com.yfy.app.bean.StuBean;
-import com.yfy.app.net.ReqBody;
-import com.yfy.app.net.ReqEnv;
-import com.yfy.app.net.ResBody;
-import com.yfy.app.net.ResEnv;
-import com.yfy.app.net.RetrofitGenerator;
-import com.yfy.app.net.base.UserGetClassAllStuReq;
+import com.yfy.app.SelectedTermActivity;
+import com.yfy.app.bean.DateBean;
+import com.yfy.app.bean.KeyValue;
+import com.yfy.app.bean.TermBean;
+import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuDevelopAdapter;
+import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuNormalAdapter;
+import com.yfy.app.duty_evaluate.bean.DutyEvaluateRes;
+import com.yfy.app.duty_evaluate.bean.InfoBean;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.db.UserPreferences;
-import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.data.ColorRgbUtil;
-import com.yfy.final_tag.data.ConvertObjtect;
+import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.final_tag.glide.GlideTools;
+import com.yfy.final_tag.hander.AssetsAsyncTask;
+import com.yfy.final_tag.hander.AssetsGetFileData;
+import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
+import com.yfy.greendao.NormalDataSaveTools;
 import com.yfy.view.SQToolBar;
-import com.yfy.view.time.CustomDatePicker;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.Bind;
-import retrofit2.Call;
-import retrofit2.Response;
 
-public class DutyEvaluateStuMainActivity extends BaseActivity {
+public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsGetFileData {
     private static final String TAG = DutyEvaluateStuMainActivity.class.getSimpleName();
 
 
-    @Bind(R.id.confirm_tab_layout_one)
-    TabLayout one;
-    @Bind(R.id.confirm_tab_layout_two)
-    TabLayout two;
+    @Bind(R.id.duty_evaluate_stu_name)
+    TextView stu_name_tv;
+    @Bind(R.id.duty_evaluate_stu_head)
+    AppCompatImageView stu_head_iv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.duty_evaluate_stu_main);
         initSQToolbar("五育评价");
         initView();
+        initRecyclerView();
+        initRecyclerViewDevelop();
+        getAssetsData("duty_evaluate_get_stu_develop_detail.txt");
     }
 
 
 
+
+    public TextView menu_title;
+    public TermBean selected_termBean;
     public void initSQToolbar(String title) {
+        selected_termBean = NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
+
         assert toolbar!=null;
         toolbar.setTitle(title);
-        toolbar.addMenuText(TagFinal.ONE_INT,"选择周");
+        menu_title=toolbar.addMenuText(TagFinal.ONE_INT, "");
+        if (selected_termBean.getName().equalsIgnoreCase("")){
+            menu_title.setText("选择学期");
+        }else{
+            menu_title.setText(selected_termBean.getName());
+        }
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
+                switch (position){
+                    case TagFinal.ONE_INT:
+                        Intent intent=new Intent(mActivity,SelectedTermActivity.class);
+                        startActivityForResult(intent,TagFinal.UI_TAG);
+                        break;
+                }
 
             }
         });
 
 
     }
-
-
-
-    private String year_s,month_s;
-    private CustomDatePicker customDatePicker1, customDatePicker2;
-    private void initDatePicker() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
-        String now = sdf.format(new Date());
-//        time_text=now.split(" ")[0];
-//        String data=now.split(" ")[0].substring(0,now.split(" ")[0].lastIndexOf("-"));
-//        year_s=data.split("-")[0];
-//        month_s=data.split("-")[1];
-//        munetv.setText(data);
-//        refresh();
-//        customDatePicker1 = new CustomDatePicker(this, new CustomDatePicker.ResultHandler() {
-//            @Override
-//            public void handle(String time) { // 回调接口，获得选中的时间
-////				currentDate.setText(time.split(" ")[0]);
-//                time_text=time.split(" ")[0];
-//                String data=time.split(" ")[0].substring(0,time.split(" ")[0].lastIndexOf("-"));
-//                year_s=data.split("-")[0];
-//                month_s=data.split("-")[1];
-//                munetv.setText(data);
-//                refresh();
-////                getTerm(Variables.userInfo.getSession_key(),year_s+"/"+month_s);
-//            }
-//        }, "2000-01-01 00:00", now); // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
-        customDatePicker1.showSpecificTime(false); // 不显示时和分
-        customDatePicker1.setIsLoop(true); // 不允许循环滚动
-
-        customDatePicker2 = new CustomDatePicker(this, new CustomDatePicker.ResultHandler() {
-            @Override
-            public void handle(String time) { // 回调接口，获得选中的时间
-            }
-        }, "2010-01-01 00:00", now); // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
-        customDatePicker2.showSpecificTime(true); // 显示时和分
-        customDatePicker2.setIsLoop(true); // 允许循环滚动
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
     private void initView(){
-        one.setTabTextColors(Color.GRAY,ColorRgbUtil.getBlue());
-        two.setTabTextColors(Color.GRAY,ColorRgbUtil.getBlue());
-        initCreatOne();
-        initCreatTwo();
-        one.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int index = tab.getPosition();
-//                if (index==0){
-//                    two.removeAllTabs();
-//                    two.setVisibility(View.GONE);
-//                    if (listenner != null) {
-//                        listenner.onClick(tab.getText().toString(),"0");
-//                    }
-//                    dismiss();
-//                }else{
-//                    two.setVisibility(View.VISIBLE);
-//                    initCreatTwo(groups.get(index-1).getGradeid());
-//                }
 
-
-                two.setVisibility(View.VISIBLE);
-                initCreatTwo();
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        two.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int index = tab.getPosition();
-
-//                ClassGrade class_bean=twoclass.get(index);
-//                Logger.e(""+index);
-//                if (listenner != null) {
-//                    listenner.onClick(StringUtils.stringToGetTextJoint("%1$s-%2$s",class_bean.getGradename(),class_bean.getClassname()),class_bean.getClassid());
-//                }
-//                dismiss();
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+        GlideTools.chanMult(mActivity,Base.user.getHeadPic(),stu_head_iv,R.drawable.icon_account_fill);
+        stu_name_tv.setText(StringUtils.stringToGetTextJoint("%1$s\t·\t%2$s",Base.user.getName(),"35"));
     }
-    private void initCreatOne(){
-        List<String> list=StringUtils.listToStringSplitCharacters("遵守纪律,热爱学习,强健体魄,表率文雅,勤于劳动",",");
+
+    public DutyEvaluateStuNormalAdapter adapter_normal;
+    public RecyclerView normal_recycler;
+    public List<KeyValue> adapter_data_list=new ArrayList<>();
+    private void initRecyclerView(){
+        normal_recycler =findViewById(R.id.duty_evaluate_stu_normal_recycler);
+        GridLayoutManager manager = new GridLayoutManager(mActivity,3);
+        normal_recycler.setLayoutManager(manager);
+
+        normal_recycler.addItemDecoration(new GridDividerLineNotBottom(Color.TRANSPARENT));
+        adapter_normal =new DutyEvaluateStuNormalAdapter(mActivity);
+        normal_recycler.setAdapter(adapter_normal);
+
+        List<String> list=StringUtils.listToStringSplitCharacters("9月·35分,10月·30分,11月·38分,12月·未完成,1月·未完成",",");
+        List<String> stu_score=StringUtils.listToStringSplitCharacters("0,1,2",",");
         for (String s:list){
+            KeyValue keyValue=new KeyValue(s,R.mipmap.main_delay_service);
+            keyValue.setTitle(s);
+            keyValue.setRight_name("2020");
+            keyValue.setRight_key("2020");
 
-            one.addTab(one.newTab().setText(s),s.equalsIgnoreCase("遵守纪律")?true:false);
+            switch (s){
+                case "9月·35分":
+                    keyValue.setRight_name("2020");
+                    keyValue.setRight_key("9");
+                    break;
+                case "10月·30分":
+                    keyValue.setRight_name("2020");
+                    keyValue.setRight_key("10");
+                    break;
+                case "11月·38分":
+                    keyValue.setRight_name("2020");
+                    keyValue.setRight_key("11");
+                    break;
+                case "12月·未完成":
+                    keyValue.setRight_name("2020");
+                    keyValue.setRight_key("12");
+                    break;
+                case "1月·未完成":
+                    keyValue.setRight_name("2021");
+                    keyValue.setRight_key("1");
+                    break;
+                default:
+                    keyValue.setValue(MathTool.randomStringAtList(stu_score));
+                    break;
+            }
+            adapter_data_list.add(keyValue);
         }
+        adapter_normal.setDataList(adapter_data_list);
+        adapter_normal.setLoadState(TagFinal.LOADING_END);
+
+
+        adapter_normal.setOnClieckAdapterLayout(new DutyEvaluateStuNormalAdapter.OnClickAdapterLayout() {
+            @Override
+            public void layoutOnClick(KeyValue keyValue) {
+
+                Intent intent;
+                if (keyValue.getTitle().equalsIgnoreCase("1月·未完成")){
+                    intent=new Intent(mActivity,DutyEvaluateStuAddActivity.class);
+
+                    intent.putExtra(Base.year_value,keyValue.getRight_name());
+                    intent.putExtra(Base.month_value,keyValue.getRight_key());
+                    startActivity(intent);
+                }else{
+                    KeyValue stu=new KeyValue();
+                    stu.setName(Base.user.getName());
+                    stu.setId(Base.user.getIdU());
+
+                    intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
+                    intent.putExtra(Base.stu_bean, stu);
+                    intent.putExtra(Base.year_value,keyValue.getRight_name());
+                    intent.putExtra(Base.month_value,keyValue.getRight_key());
+                    startActivity(intent);
+
+                }
+            }
+        });
     }
 
 
-    private void initCreatTwo(){
-        List<String> list=StringUtils.listToStringSplitCharacters("守时守信,遵纪尊规,广播体操,会值日,会服务",",");
+    public RecyclerView develop_recycler;
+    public DutyEvaluateStuDevelopAdapter adapter_develop;
+    public List<KeyValue> adapter_develop_data=new ArrayList<>();
+    private void initRecyclerViewDevelop(){
+        develop_recycler =findViewById(R.id.duty_evaluate_stu_develop_recycler);
+        GridLayoutManager manager = new GridLayoutManager(mActivity,3);
+        develop_recycler.setLayoutManager(manager);
 
-        two.removeAllTabs();
-        for (String bean:list){
-            two.addTab(two.newTab().setText(bean),bean.equalsIgnoreCase("守时守信")?true:false);
+        develop_recycler.addItemDecoration(new GridDividerLineNotBottom(Color.TRANSPARENT));
+        adapter_develop =new DutyEvaluateStuDevelopAdapter(mActivity);
+        develop_recycler.setAdapter(adapter_develop);
+        adapter_develop.setOnClieckAdapterLayout(new DutyEvaluateStuDevelopAdapter.OnClickAdapterLayout() {
+            @Override
+            public void layoutOnClick(KeyValue keyValue) {
+                KeyValue stu=new KeyValue();
+                stu.setName(Base.user.getName());
+                stu.setId(Base.user.getIdU());
+
+                Intent intent;
+                switch(keyValue.getTitle()){
+                    case "班级认定":
+                    case "家长认定":
+
+                        DateBean dateBean=new DateBean();
+                        dateBean.setValue_long(System.currentTimeMillis(),true);
+
+                        intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
+                        intent.putExtra(Base.stu_bean, stu);
+                        intent.putExtra(Base.year_value,dateBean.getYearName());
+                        intent.putExtra(Base.month_value,dateBean.getMonthName());
+                        startActivity(intent);
+                        break;
+                    case "校内活动":
+                    case "校外实践":
+                    case "比赛成绩":
+                        intent=new Intent(mActivity,DutyEvaluatePracticeActivity.class);
+                        intent.putExtra(Base.title,keyValue.getTitle());
+                        intent.putExtra(Base.term_bean,selected_termBean);
+                        startActivity(intent);
+                        break;
+                        default:
+                            break;
+                }
+
+            }
+        });
+    }
+
+
+
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK){
+            switch (requestCode){
+                case TagFinal.UI_TAG:
+                    assert data!=null;
+                    selected_termBean=data.getParcelableExtra(Base.data);
+                    menu_title.setText(selected_termBean.getName());
+                    break;
+
+            }
         }
-
     }
 
 
@@ -211,66 +252,64 @@ public class DutyEvaluateStuMainActivity extends BaseActivity {
      * ----------------------------retrofit-----------------------
      */
 
-    public List<StuBean> stuBeanList=new ArrayList<>();
-    public void getClassAllStu() {
-        ReqEnv env = new ReqEnv();
-        ReqBody reqBody = new ReqBody();
-        UserGetClassAllStuReq req = new UserGetClassAllStuReq();
-        //获取参数
-        req.setSession_key(Base.user.getSession_key());
-        req.setTermid(ConvertObjtect.getInstance().getInt(UserPreferences.getInstance().getTermId()));
+
+    /**
+     * -------------------------async task----------
+     */
 
 
-        reqBody.userGetClassAllStuReq = req;
-        env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_class_all_stu_api(env);
-        call.enqueue(this);
+
+
+
+
+    //async task
+
+    AssetsAsyncTask mTask;
+    public void getAssetsData(String file_name){
+        showProgressDialog("");
+        mTask=new AssetsAsyncTask(this);
+        mTask.execute(file_name);
     }
 
-    @Override
-    public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
-        if (!isActivity())return;
-        dismissProgressDialog();
-        List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
-        String name=names.get(names.size()-1);
-        ResEnv respEnvelope = response.body();
-        if (respEnvelope != null) {
-            ResBody b=respEnvelope.body;
-            if (b.userGetClassAllStuRes !=null){
-                String result=b.userGetClassAllStuRes.result;
-                Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
-                BaseRes res=gson.fromJson(result, BaseRes.class);
-                if (res.getResult().equals("true")){
-                    stuBeanList=res.getIncompletestu();
-                }else{
-                    ViewTool.showToastShort(mActivity,res.getError_code());
-                }
-            }
-        }else{
-            try {
-                assert response.errorBody()!=null;
-                String s=response.errorBody().string();
-                Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
-            } catch (IOException e) {
-                Logger.e("onResponse: IOException");
-                e.printStackTrace();
-            }
-            toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
+
+
+    private void initAdapterData(DutyEvaluateRes res){
+        adapter_develop_data.clear();
+
+
+        for (InfoBean info:res.getInfo()){
+            KeyValue bean=new KeyValue();
+            bean.setView_type(TagFinal.TYPE_ITEM);
+            bean.setTitle(info.getParent_title());
+            bean.setValue(info.getParent_all_score());
+
+            adapter_develop_data.add(bean);
         }
 
+
+        adapter_develop.setDataList(adapter_develop_data);
+        adapter_develop.setLoadState(TagFinal.LOADING_END);
+
     }
 
+
     @Override
-    public void onFailure(Call<ResEnv> call, Throwable t) {
-        if (!isActivity())return;
-        toastShow(R.string.fail_do_not);
-        Logger.e("onFailure  :"+call.request().headers().toString());
+    public void doUpData(String content) {
         dismissProgressDialog();
+        if (StringJudge.isEmpty(content)){
+            ViewTool.showToastShort(mActivity,"没有数据，请从新尝试");
+        }else{
+            DutyEvaluateRes res=gson.fromJson(content,DutyEvaluateRes.class);
+            initAdapterData(res);
+        }
     }
 
     @Override
-    public boolean isActivity() {
-        return AppLess.isTopActivy(TAG);
+    public void onPause() {
+        super.onPause();
+        if (mTask!=null&&mTask.getStatus()==AsyncTask.Status.RUNNING) {
+            mTask.cancel(true);
+        }
     }
 }
 

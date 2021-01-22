@@ -22,7 +22,6 @@ import com.yfy.app.net.base.UserGetClassListReq;
 import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.data.Base;
@@ -33,6 +32,7 @@ import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.final_tag.viewtools.ViewTool;
+import com.yfy.greendao.NormalDataSaveTools;
 import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
@@ -53,9 +53,7 @@ public class SelectedClassActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_recycler_view);
         getData();
-        select_term=new TermBean();
-        select_term.setName(UserPreferences.getInstance().getTermName());
-        select_term.setId(UserPreferences.getInstance().getTermId());
+        select_term= NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
         initRecycler();
         initSQToolbar();
         getClassList();
@@ -189,10 +187,9 @@ public class SelectedClassActivity extends BaseActivity {
                 if (res.getResult().equals("true")){
                     for (TermBean bean:res.getTerm()){
                         if (bean.getIsnow().equalsIgnoreCase("1")){
-                            UserPreferences.getInstance().saveTermId(bean.getId());
-                            UserPreferences.getInstance().saveTermName(bean.getName());
                             select_term.setId(bean.getId());
                             select_term.setName(bean.getName());
+                            NormalDataSaveTools.getInstance().saveCurrentTerm(bean);
                             menu_one.setText(select_term.getName());
                         }
                     }

@@ -91,6 +91,7 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
                         case "duty_evaluate":
                             Intent intent=new Intent(mContext,DutyEvaluateTeaDoActivity.class);
                             intent.putExtra(Base.class_bean,bean);
+                            intent.putExtra(Base.term_bean,bean);
                             mContext.startActivity(intent);
                             break;
                     }

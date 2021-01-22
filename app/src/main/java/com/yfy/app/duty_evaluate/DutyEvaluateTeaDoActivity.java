@@ -16,6 +16,7 @@ import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.bean.StuBean;
+import com.yfy.app.bean.TermBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateTeaDoTabAdapter;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
@@ -25,7 +26,6 @@ import com.yfy.app.net.RetrofitGenerator;
 import com.yfy.app.net.base.UserGetClassAllStuReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.DateUtils;
 import com.yfy.final_tag.data.Base;
@@ -40,6 +40,7 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
+import com.yfy.greendao.NormalDataSaveTools;
 import com.yfy.view.SQToolBar;
 import com.yfy.view.time.CustomDatePicker;
 
@@ -109,7 +110,6 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
             }
         });
 
-
     }
 
 
@@ -151,6 +151,8 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
     private List<KeyValue> score_list=new ArrayList<>();
 
     public KeyValue select_score_data;
+    List<String> list=StringUtils.listToStringSplitCharacters("守时守信,遵纪尊规,广播体操,会值日,会服务",",");
+
     private void initView(){
         score_list.add(new KeyValue("0",R.color.gray));
         score_list.add(new KeyValue("1",R.color.light_gray));
@@ -172,7 +174,7 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
         one.setTabTextColors(Color.BLACK,Color.WHITE);
         two.setTabTextColors(Color.BLACK,Color.WHITE);
         initCreateOne();
-        initCreateTwo();
+        initCreateTwo(MathTool.randomLIstAtList(list,2,3));
         one.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -180,7 +182,7 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
 
 
                 two.setVisibility(View.VISIBLE);
-                initCreateTwo();
+                initCreateTwo(MathTool.randomLIstAtList(list,2,3));
             }
 
             @Override
@@ -220,14 +222,13 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
     }
 
 
-    private void initCreateTwo(){
-        List<String> list=StringUtils.listToStringSplitCharacters("守时守信,遵纪尊规,广播体操,会值日,会服务",",");
-
+    private void initCreateTwo(List<String> list){
         two.removeAllTabs();
+        boolean is_select=true;
         for (String bean:list){
-            two.addTab(two.newTab().setText(bean),bean.equalsIgnoreCase("守时守信")?true:false);
+            two.addTab(two.newTab().setText(bean),is_select);
+            is_select=false;
         }
-
     }
 
 
@@ -291,7 +292,7 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
         bean.setValue_long(System.currentTimeMillis(),false);
 
         year_s=String.valueOf(bean.getYearName());
-        month_s=String.valueOf(bean.getMonthName());
+        month_s=bean.getMonthNameTwo();
 
         selected_date.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s",year_s,month_s));
         select_date_value=StringUtils.stringToGetTextJoint("%1$s-%2$s-01",year_s,month_s);
@@ -355,14 +356,16 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
      * ----------------------------retrofit-----------------------
      */
 
+    public TermBean selected_term;
     public void getClassAllStu() {
+        selected_term= NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
         ReqEnv env = new ReqEnv();
         ReqBody reqBody = new ReqBody();
         UserGetClassAllStuReq req = new UserGetClassAllStuReq();
         //获取参数
         req.setSession_key(Base.user.getSession_key());
         req.setClassid(ConvertObjtect.getInstance().getInt(class_id));
-        req.setTermid(ConvertObjtect.getInstance().getInt(UserPreferences.getInstance().getTermId()));
+        req.setTermid(MathTool.stringToInt(selected_term.getId()));
 
 
         reqBody.userGetClassAllStuReq = req;

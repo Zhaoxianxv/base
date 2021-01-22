@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:alignmentMode="alignBounds"
+        android:background="@color/colorAccent"
+        app:columnCount="3"
+        app:rowCount="2"
+        app:orientation="horizontal"
+        app:useDefaultMargins="false">
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/duty_evaluate_stu_add_child_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_row="0"
+            app:layout_column="0"
+            app:layout_rowSpan="2"
+            app:layout_columnWeight="1"
+            android:background="@color/WhiteSmoke"
+            app:layout_gravity="fill_vertical"
+            android:gravity="center"
+            android:text="尽职尽责"
+            android:textSize="@dimen/textsize8"
+            android:textStyle="bold"
+            />
+        <RelativeLayout
+            android:layout_width="@dimen/margin_0dp"
+            android:layout_height="@dimen/margin_30dp"
+            android:background="@color/WhiteSmoke"
+            android:layout_marginLeft="@dimen/margin_1dp"
+            app:layout_row="0"
+            app:layout_column="1"
+            app:layout_rowSpan="1"
+            app:layout_columnWeight="2"
+            >
+
+
+            <TextView
+                android:id="@+id/duty_evaluate_stu_type_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginRight="@dimen/margin_5dp"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="学生:  "/>
+            <RatingBar
+                android:id="@+id/duty_evaluate_stu_do_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:numStars="2"
+                android:rating="2"
+                android:stepSize="1"
+                android:isIndicator="false"
+                android:layout_toRightOf="@id/duty_evaluate_stu_type_name"
+                style="@style/RatingBar.Small"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="@dimen/margin_0dp"
+            android:layout_height="@dimen/margin_30dp"
+            android:background="@color/WhiteSmoke"
+            android:layout_marginLeft="@dimen/margin_1dp"
+            android:layout_marginTop="1dp"
+            app:layout_row="1"
+            app:layout_column="1"
+            app:layout_rowSpan="1"
+            app:layout_columnWeight="2"
+            >
+
+            <TextView
+                android:id="@+id/duty_evaluate_family_type_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginRight="@dimen/margin_5dp"
+                android:layout_centerVertical="true"
+                android:text="家长:  "
+                />
+
+            <RatingBar
+                android:id="@+id/duty_evaluate_family_do_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="2"
+                android:rating="2"
+                android:stepSize="1"
+                android:isIndicator="false"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/duty_evaluate_family_type_name"
+                style="@style/RatingBar.Family"
+                />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.GridLayout>
+</RelativeLayout>
+

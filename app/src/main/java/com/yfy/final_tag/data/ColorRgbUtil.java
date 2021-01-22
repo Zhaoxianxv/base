@@ -1,5 +1,7 @@
 package com.yfy.final_tag.data;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 
 /**
@@ -8,6 +10,11 @@ import android.graphics.Color;
 
 public class ColorRgbUtil {
     //
+    public static int getResourceColor(Activity mActivity,int color_id){
+        return mActivity.getResources().getColor(color_id);
+    }
+
+
     public static int getBaseColor(){
         return Color.rgb(148,35,40);
     }

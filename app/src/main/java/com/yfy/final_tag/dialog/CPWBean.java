@@ -8,6 +8,9 @@ public class CPWBean implements Parcelable {
     private String id;
     private String value;
     private String type;
+    private String one;
+    private String two;
+    private String three;
     private boolean is_select;
     private boolean is_show=false;
 
@@ -22,6 +25,31 @@ public class CPWBean implements Parcelable {
 
     public String getValue() {
         return value;
+    }
+
+
+    public String getOne() {
+        return one;
+    }
+
+    public void setOne(String one) {
+        this.one = one;
+    }
+
+    public String getTwo() {
+        return two;
+    }
+
+    public void setTwo(String two) {
+        this.two = two;
+    }
+
+    public String getThree() {
+        return three;
+    }
+
+    public void setThree(String three) {
+        this.three = three;
     }
 
     public void setValue(String value) {

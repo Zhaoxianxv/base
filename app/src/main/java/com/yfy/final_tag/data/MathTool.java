@@ -89,15 +89,33 @@ public class MathTool {
     //System.out.println(Math.floor(-0.7)); // -1.0；System.out.println(Math.floor(0.0)); // 0.0
     //System.out.println(Math.floor(-0.0)); // -0.0
 
+
+    /**
+     * 小数处理
+     */
     public static String stringToGetTwoToDecimals(float f){
-        //构造方法的字符格式这里如果小数不足2位,会以0补足.
-        DecimalFormat decimalFormat=new DecimalFormat(".00");
+        //构造方法的字符格式这里如果小数不足2位,会以0补足.(不包括 0)
+        DecimalFormat decimalFormat=new DecimalFormat("0.00");
+
         //format 返回的是字符串
         return decimalFormat.format(f);
     }
 
+    public static int getIntToDecimals(float f){
+        return stringToInt(stringToGetTwoToDecimals(f));
+    }
 
 
+
+    public static int stringToInt(String str){
+        int idx=str.lastIndexOf(".");//注意不能用转义符
+        if (idx==-1){
+            return Integer.valueOf(str);
+        }else{
+            String strNum=str.substring(0,idx);
+            return Integer.valueOf(strNum);
+        }
+    }
     /** 在 list数据中随机选出 [min,max]范围个数的 list
      *
      *
@@ -109,15 +127,7 @@ public class MathTool {
 
         return stringToInt(str);
     }
-    public static int stringToInt(String str){
-        int idx=str.lastIndexOf(".");//注意不能用转义符
-        if (idx==-1){
-            return Integer.valueOf(str);
-        }else{
-            String strNum=str.substring(0,idx);
-            return Integer.valueOf(strNum);
-        }
-    }
+
 
     public static List<String> randomLIstAtList(List<String> list,int min,int max){
         List<String> new_list=new ArrayList<>();
