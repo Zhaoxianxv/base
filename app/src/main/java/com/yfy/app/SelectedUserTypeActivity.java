@@ -270,8 +270,8 @@ public class SelectedUserTypeActivity extends BaseActivity {
         Intent intent;
         switch (user.getUsertype()) {
             case Base.USER_TYPE_STU:
-
                 intent=new Intent(mActivity,DutyEvaluateStuMainActivity.class);
+
                 startActivity(intent);
                 break;
             case Base.USER_TYPE_TEA:
