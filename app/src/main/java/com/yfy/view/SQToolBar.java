@@ -20,7 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yfy.base.R;
-import com.yfy.listener.NoFastClickListener;
+import com.yfy.final_tag.listener.NoFastClickListener;
 
 import java.util.ArrayList;
 import java.util.List;

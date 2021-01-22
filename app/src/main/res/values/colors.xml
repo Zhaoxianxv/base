@@ -245,4 +245,11 @@
     <color name="rating_store_1">#e54314</color>
     <color name="rating_store_0">#cc0000</color>
 
+
+    <!--区分用户颜色-->
+    <color name="user_type_tea">@color/main_red</color>
+    <color name="user_type_stu">@color/Gold</color>
+    <color name="user_type_family">@color/Tomato</color>
+
+
 </resources>

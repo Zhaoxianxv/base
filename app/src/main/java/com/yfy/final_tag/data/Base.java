@@ -67,8 +67,11 @@ public class Base {
     public static final String title = "title";//
     public static final String type = "type";//
     public static final String token = "token";//
+    public static final String term_bean = "term_bean";//
     public static final String value = "value";//
     public static final String voice = "voice";//
+    public static final String year_value="year_value";
+    public static final String month_value="month_value";
 
     public static final String error_code = "session_key不正确";
 

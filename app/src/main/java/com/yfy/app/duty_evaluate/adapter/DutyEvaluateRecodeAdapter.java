@@ -2,19 +2,44 @@ package com.yfy.app.duty_evaluate.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.design.internal.FlowLayout;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuDetailActivity;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.data.ColorRgbUtil;
+import com.yfy.final_tag.data.ConvertObjtect;
+import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.dialog.CPWBean;
+import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
+import com.yfy.final_tag.stringtool.RegexUtils;
+import com.yfy.final_tag.stringtool.StringUtils;
+import com.yfy.final_tag.viewtools.ViewTool;
+import com.yfy.view.multi.MultiPictureView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +50,16 @@ import java.util.List;
  */
 public class DutyEvaluateRecodeAdapter extends BaseRecyclerAdapter {
 
+
+    public String year_s,month_s;
+
+    public void setYear_s(String year_s) {
+        this.year_s = year_s;
+    }
+
+    public void setMonth_s(String month_s) {
+        this.month_s = month_s;
+    }
 
     private List<KeyValue> dataList;
     public DutyEvaluateRecodeAdapter(Activity mContext) {
@@ -59,8 +94,8 @@ public class DutyEvaluateRecodeAdapter extends BaseRecyclerAdapter {
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
             iHolder.index=position;
-            iHolder.title.setText(iHolder.bean.getName());
-
+            iHolder.title.setText(StringUtils.stringToGetTextJoint("%1$s\t·总分:%3$d·第%2$s名",iHolder.bean.getName(),position+1,MathTool.randomIntMinMax(40,30)));
+            iHolder.setFlowLayoutTop(new ArrayList<CPWBean>());
 
         }
 
@@ -73,24 +108,81 @@ public class DutyEvaluateRecodeAdapter extends BaseRecyclerAdapter {
 
 
     private class ItemHolder extends ReViewHolder {
-
-        AppCompatTextView title;
-        AppCompatTextView value;
+        RelativeLayout layout;
+        TextView title;
+        FlowLayout flow;
         int index;
         KeyValue bean;
         public ItemHolder(View itemView) {
             super(itemView);
-            title =  itemView.findViewById(R.id.duty_evaluate_tea_do_tab_item_title);
-            value =  itemView.findViewById(R.id.duty_evaluate_tea_do_tab_item_value);
-            title.setOnClickListener(new View.OnClickListener() {
+            layout =  itemView.findViewById(R.id.duty_evaluate_stu_item_layout);
+            title =  itemView.findViewById(R.id.public_type_flow_star_title);
+            flow =  itemView.findViewById(R.id.public_type_flow_flow);
+            layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent=new Intent(mContext,DutyEvaluateStuDetailActivity.class);
                     intent.putExtra(Base.stu_bean,bean);
+                    intent.putExtra(Base.year_value,year_s);
+                    intent.putExtra(Base.month_value,month_s);
                     mContext.startActivity(intent);
                 }
             });
 
+        }
+
+
+        private void setFlowLayoutTop(List<CPWBean> top_jz){
+
+
+            top_jz.add(new CPWBean("遵守纪律",""));
+            top_jz.add(new CPWBean("热爱学习",""));
+            top_jz.add(new CPWBean("强健体魄",""));
+            top_jz.add(new CPWBean("表率文雅",""));
+            top_jz.add(new CPWBean("勤于劳动",""));
+
+            LayoutInflater mInflater = LayoutInflater.from(mContext);
+            if (flow.getChildCount()!=0){
+                flow.removeAllViews();
+            }
+            int position=0;
+            for (CPWBean bean:top_jz){
+                RelativeLayout view_layout = (RelativeLayout) mInflater.inflate(R.layout.public_type_progress_name,flow, false);
+                TextView title=view_layout.findViewById(R.id.moral_convention_item_name);
+                ProgressBar ratingBar=view_layout.findViewById(R.id.moral_convention_item_progressbar);
+                ratingBar.setVisibility(View.GONE);
+
+                ProgressBar se_progressbar=view_layout.findViewById(R.id.moral_convention_item_progressbar_two);
+
+                title.setTextColor(ColorRgbUtil.getGrayText());
+                switch (position){
+                    case 0:
+                        ViewTool.alterProgressBarFirstBackgroundColor(se_progressbar,Color.parseColor("#ECA742"),Color.TRANSPARENT);
+                        break;
+                    case 1:
+                        ViewTool.alterProgressBarFirstBackgroundColor(se_progressbar,Color.parseColor("#62D0F5"),Color.TRANSPARENT);
+                        break;
+                    case 2:
+                        ViewTool.alterProgressBarFirstBackgroundColor(se_progressbar,Color.parseColor("#F6E155"),Color.TRANSPARENT);
+                        break;
+                    case 3:
+                        ViewTool.alterProgressBarFirstBackgroundColor(se_progressbar,Color.parseColor("#E8958B"),Color.TRANSPARENT);
+                        break;
+                    case 4:
+                        ViewTool.alterProgressBarFirstBackgroundColor(se_progressbar,Color.parseColor("#7BE8BC"),Color.TRANSPARENT);
+                        break;
+                    default:
+                        ViewTool.alterProgressBarFirstBackgroundColor(se_progressbar,Color.parseColor("#ECA742"),Color.TRANSPARENT);
+                        break;
+                }
+                position++;
+                se_progressbar.setMax(100);
+                se_progressbar.setVisibility(View.VISIBLE);
+                int score=MathTool.randomIntMinMax(40,30);
+                se_progressbar.setProgress(score);
+                title.setText(StringUtils.stringToGetTextJoint("%1$s%2$s-%3$s:\t",score,"%",bean.getName()));
+                flow.addView(view_layout);
+            }
         }
     }
 

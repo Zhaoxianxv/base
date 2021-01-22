@@ -177,4 +177,20 @@
         <!--<item name="tabIndicatorColor">#ff00ff</item>-->
         <!--<item name="tabIndicatorHeight">2dp</item>-->
     </style>
+
+    <!--rating star-->
+    <style name="RatingBar.Small" parent="android:Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/rating_star_stu</item>
+        <item name="android:indeterminateDrawable">@drawable/rating_star_stu</item>
+        <item name="android:minHeight">24dp</item>
+        <item name="android:maxHeight">24dp</item>
+        <item name="android:thumb">@null</item>
+    </style>
+    <style name="RatingBar.Family" parent="android:Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/rating_star_family</item>
+        <item name="android:indeterminateDrawable">@drawable/rating_star_family</item>
+        <item name="android:minHeight">24dp</item>
+        <item name="android:maxHeight">24dp</item>
+        <item name="android:thumb">@null</item>
+    </style>
 </resources>

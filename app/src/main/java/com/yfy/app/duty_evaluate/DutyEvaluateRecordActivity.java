@@ -19,19 +19,18 @@ import com.yfy.app.net.RetrofitGenerator;
 import com.yfy.app.net.base.UserGetClassAllStuReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.DateUtils;
 import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.ConvertObjtect;
+import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
-import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
+import com.yfy.greendao.NormalDataSaveTools;
 import com.yfy.view.SQToolBar;
 import com.yfy.view.time.CustomDatePicker;
 
@@ -56,7 +55,7 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
         initRecycler();
         initSQToolbar();
         initDatePicker();
-
+        getClassAllStu();
     }
 
     public String class_id;
@@ -64,7 +63,7 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
     public void getData(){
         classBean=getIntent().getParcelableExtra(Base.class_bean);
         class_id=classBean.getValue();
-        getClassAllStu();
+
     }
 
     private TextView select_date_tv;
@@ -75,7 +74,10 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
-                customDatePicker1.show(DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
+                customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01",year_s,month_s));
+//                Logger.e(DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
+//                Logger.e(StringUtils.stringToGetTextJoint("%1$s-%2$s-00 00:01",year_s,month_s));
+//                customDatePicker1.show(DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
 
             }
         });
@@ -95,11 +97,11 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //添加分割线
-        recyclerView.addItemDecoration(new RecycleViewDivider(
-                mActivity,
-                LinearLayoutManager.HORIZONTAL,
-                1,
-                ColorRgbUtil.getGainsboro()));
+//        recyclerView.addItemDecoration(new RecycleViewDivider(
+//                mActivity,
+//                LinearLayoutManager.HORIZONTAL,
+//                1,
+//                ColorRgbUtil.getGainsboro()));
         adapter=new DutyEvaluateRecodeAdapter(mActivity);
         recyclerView.setAdapter(adapter);
 
@@ -116,7 +118,7 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
         bean.setValue_long(System.currentTimeMillis(),false);
 
         year_s=String.valueOf(bean.getYearName());
-        month_s=String.valueOf(bean.getMonthName());
+        month_s=bean.getMonthNameTwo();
 
         select_date_tv.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s",year_s,month_s));
         customDatePicker1 = new CustomDatePicker(mActivity, new CustomDatePicker.ResultHandler() {
@@ -128,7 +130,7 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
                 select_date_tv.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s",year_s,month_s));
                 getClassAllStu();
             }
-        }, "2000-01-01 00:00", DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
+        }, "2000-01-01 01:01", DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
         // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
         customDatePicker1.showSpecificTime(false); // 不显示时和分
         customDatePicker1.setIsLoop(true); // 不允许循环滚动
@@ -170,13 +172,16 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
      */
 
     public void getClassAllStu() {
+        adapter.setYear_s(year_s);
+        adapter.setMonth_s(month_s);
+
         ReqEnv env = new ReqEnv();
         ReqBody reqBody = new ReqBody();
         UserGetClassAllStuReq req = new UserGetClassAllStuReq();
         //获取参数
         req.setSession_key(Base.user.getSession_key());
         req.setClassid(ConvertObjtect.getInstance().getInt(class_id));
-        req.setTermid(ConvertObjtect.getInstance().getInt(UserPreferences.getInstance().getTermId()));
+        req.setTermid(MathTool.stringToInt( NormalDataSaveTools.getInstance().getTermBeanToGreenDao().getId()));
 
 
         reqBody.userGetClassAllStuReq = req;

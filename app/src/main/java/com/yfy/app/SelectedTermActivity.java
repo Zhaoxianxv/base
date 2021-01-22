@@ -16,7 +16,6 @@ import com.yfy.app.net.RetrofitGenerator;
 import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.final_tag.stringtool.Logger;
@@ -24,6 +23,7 @@ import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.viewtools.ViewTool;
+import com.yfy.greendao.NormalDataSaveTools;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -144,8 +144,7 @@ public class SelectedTermActivity extends BaseActivity {
                     adapter.setLoadState(TagFinal.LOADING_END);
                     for (TermBean bean:res.getTerm()){
                         if (bean.getIsnow().equalsIgnoreCase("1")){
-                            UserPreferences.getInstance().saveTermId(bean.getId());
-                            UserPreferences.getInstance().saveTermName(bean.getName());
+                            NormalDataSaveTools.getInstance().saveCurrentTerm(bean);
                         }
                     }
                 }else{

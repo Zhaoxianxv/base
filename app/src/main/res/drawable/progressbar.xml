@@ -3,13 +3,20 @@
 
     <item android:id="@android:id/background">
         <shape>
-            <solid android:color="@color/app_base_color" />
+            <solid android:color="@color/user_type_tea" />
         </shape>
     </item>
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <solid android:color="@color/Green" />
+                <solid android:color="@color/user_type_family" />
+            </shape>
+        </clip>
+    </item>
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <solid android:color="@color/user_type_stu" />
             </shape>
         </clip>
     </item>

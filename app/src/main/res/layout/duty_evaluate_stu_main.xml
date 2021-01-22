@@ -3,40 +3,289 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/WhiteSmoke">
+    android:background="@color/white">
 
     <com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
 
-    <LinearLayout
-        android:layout_marginTop="@dimen/margin_45dp"
-        android:orientation="vertical"
+
+    <com.yfy.final_tag.recycerview.FullScrollview
+        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <android.support.design.widget.TabLayout
-            android:id="@+id/confirm_tab_layout_one"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_45dp"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:layout_width="match_parent"
-            android:background="@color/GhostWhite"
-            app:tabTextColor="@color/app_base_text_color"
-            app:tabIndicatorColor="@color/GhostWhite"
-            android:layout_height="@dimen/margin_45dp"
-            app:tabMode="scrollable"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_05dp"
-            android:background="@color/gray"/>
-        <android.support.design.widget.TabLayout
-            android:id="@+id/confirm_tab_layout_two"
-            android:layout_width="match_parent"
-            android:background="@color/GhostWhite"
-            android:layout_height="@dimen/margin_45dp"
-            app:tabMode="scrollable"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_05dp"
-            android:background="@color/gray"/>
-    </LinearLayout>
+                android:paddingTop="@dimen/margin_10dp"
+                android:paddingBottom="@dimen/margin_10dp"
+                android:background="@color/OldLace">
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/duty_evaluate_stu_head"
+                    android:layout_width="@dimen/margin_70dp"
+                    android:layout_height="@dimen/margin_70dp"
+                    android:layout_marginLeft="@dimen/margin_20dp"
+                    android:src="@drawable/radius5_ffbg"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_70dp"
+                    android:layout_marginLeft="105dp"
+
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        >
+                        <TextView
+                            android:id="@+id/duty_evaluate_stu_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="元庆 · 35"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/app_base_color"
+                            android:textSize="@dimen/textsize10"
+                            />
+                        <android.support.v7.widget.AppCompatImageView
+                            android:id="@+id/duty_evaluate_stu_elegant_coin_icon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/elegant_coin_selected"
+                            android:padding="@dimen/margin_8dp"
+                            android:layout_toRightOf="@id/duty_evaluate_stu_name"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/margin_30dp"
+                        android:gravity="center_vertical"
+                        >
+                        <TextView
+
+                            android:id="@+id/duty_evaluate_elegant_stu_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="雅生徽章等级："
+                            android:gravity="center_vertical"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/textsize7"
+                            />
+                        <android.support.v7.widget.GridLayout
+                            android:layout_toRightOf="@id/duty_evaluate_elegant_stu_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            app:alignmentMode="alignBounds"
+                            app:columnCount="5"
+                            app:rowCount="1"
+                            android:layout_margin="@dimen/margin_1dp"
+                            app:orientation="horizontal"
+                            app:useDefaultMargins="false">
+                            <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/duty_evaluate_elegant_stu_badge_one"
+                                android:layout_width="24dp"
+                                android:layout_height="30dp"
+                                app:layout_row="0"
+                                app:layout_column="0"
+                                android:src="@drawable/elegant_stu_badge"
+                                />
+                            <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/duty_evaluate_elegant_stu_badge_two"
+                                android:layout_width="24dp"
+                                android:layout_height="30dp"
+                                app:layout_row="0"
+                                app:layout_column="1"
+                                android:src="@drawable/elegant_stu_badge"
+                                />
+                            <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/duty_evaluate_elegant_stu_badge_three"
+                                android:layout_width="24dp"
+                                android:layout_height="30dp"
+                                app:layout_row="0"
+                                app:layout_column="2"
+                                android:tint="@color/gray"
+                                android:src="@drawable/elegant_stu_badge"
+                                />
+                            <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/duty_evaluate_elegant_stu_badge_four"
+                                android:layout_width="24dp"
+                                android:layout_height="30dp"
+                                app:layout_row="0"
+                                app:layout_column="3"
+                                android:src="@drawable/elegant_stu_badge"
+                                android:tint="@color/gray"
+                                />
+                            <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/duty_evaluate_elegant_stu_badge_five"
+                                android:layout_width="24dp"
+                                android:layout_height="30dp"
+                                app:layout_row="0"
+                                app:layout_column="4"
+                                android:src="@drawable/elegant_stu_badge"
+                                android:tint="@color/gray"
+                                />
+                        </android.support.v7.widget.GridLayout>
+
+                    </RelativeLayout>
+
+
+
+
+                </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/duty_evaluate_stu_head"
+                    android:text="这是一长串很励志的文字（限制50字）"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/textsize7"
+                    android:padding="@dimen/margin_5dp"
+                    android:layout_marginLeft="@dimen/margin_15dp"
+
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:descendantFocusability="blocksDescendants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:paddingLeft="@dimen/margin_5dp"
+                android:paddingRight="@dimen/margin_5dp"
+                android:paddingBottom="@dimen/margin_10dp"
+                android:background="@color/OldLace">
+
+
+                <RelativeLayout
+                    android:id="@+id/duty_evaluate_stu_normal_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/duty_evaluate_stu_normal_title"
+                        android:text="五育常规性评价 · 4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/textsize10"
+                        android:textColor="@color/app_base_color"
+
+                        />
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/elegant_coin_selected"
+                        android:padding="@dimen/margin_8dp"
+                        android:layout_toRightOf="@id/duty_evaluate_stu_normal_title"
+                        android:layout_centerVertical="true"
+                        />
+                </RelativeLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/duty_evaluate_stu_normal_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/duty_evaluate_stu_normal_layout"
+                    android:background="@color/white"
+                    android:paddingRight="2dp"
+                    android:paddingLeft="2dp"
+                    android:scrollbars="none"
+                    >
+
+                </android.support.v7.widget.RecyclerView>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10dp"
+
+                android:paddingLeft="@dimen/margin_5dp"
+                android:paddingRight="@dimen/margin_5dp"
+                android:paddingBottom="@dimen/margin_10dp"
+                android:layout_marginBottom="@dimen/margin_10dp"
+                android:background="@color/OldLace">
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        >
+                        <TextView
+                            android:id="@+id/duty_evaluate_stu"
+                            android:text="五育发展性评价 · 8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:textSize="@dimen/textsize10"
+                            android:textColor="@color/app_base_color"
+
+                            />
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/elegant_coin_selected"
+                            android:padding="@dimen/margin_8dp"
+                            android:layout_toRightOf="@id/duty_evaluate_stu"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/margin_10dp"
+                        >
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/duty_evaluate_stu_develop_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:paddingRight="2dp"
+                            android:paddingLeft="2dp"
+                            android:scrollbars="none"
+                            >
+
+                        </android.support.v7.widget.RecyclerView>
+                    </RelativeLayout>
+
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </com.yfy.final_tag.recycerview.FullScrollview>
+
+
+
 
 
 </RelativeLayout>

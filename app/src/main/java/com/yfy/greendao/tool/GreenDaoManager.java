@@ -130,27 +130,38 @@ public class GreenDaoManager {
     /**
      * ------------------key value-------------
      */
+    //刪除
     public void clearKeyValue() {
         getKeyValueDbDao().deleteAll();
     }
+    public void removeKeyValue(KeyValueDb db) {
+        getKeyValueDbDao().delete(db);
+    }
+    public void removeWhereTypeKeyValue(String type) {
+//        getKeyValueDbDao().delete(db);
+    }
 
+    //获取
     public List<KeyValueDb> loadAllKeyValueDb(){
         return getKeyValueDbDao().loadAll();
     }
 
-    public long saveKeyValueDb(KeyValueDb keyValueDb){
-        return getKeyValueDbDao().insertOrReplace(keyValueDb);
-    }
-
-    //"where key = \""+key+"\""
     public List<KeyValueDb> getKeyValueDbList(String  key){
-        Logger.e(key);
         return getKeyValueDbDao().queryRaw(key);
     }
+
     public List<KeyValueDb> getKeyValueDbList(String where, String... params){
         return getKeyValueDbDao().queryRaw(where,params);
     }
 
+    //infoDao.queryBuilder().where(infosDao.Properties.TypeId.eq(typeid)).offset(pageNum-1).limit(pageSize).list();
+
+
+
+    //保存
+    public long saveKeyValueDb(KeyValueDb keyValueDb){
+        return getKeyValueDbDao().insertOrReplace(keyValueDb);
+    }
     public void saveAllKeyValueDb(final List<KeyValueDb> list){
         if(list == null || list.isEmpty()){
             return;
@@ -165,7 +176,6 @@ public class GreenDaoManager {
                 }
             }
         });
-
     }
 
     /**

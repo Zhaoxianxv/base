@@ -6,11 +6,8 @@ import android.provider.Settings;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.yfy.app.PEquality.PEQualityMainTestActivity;
-import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.duty_evaluate.DutyEvaluateStuDetailActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.app.login.bean.UserRes;
 import com.yfy.app.net.ReqBody;
@@ -273,11 +270,8 @@ public class SelectedUserTypeActivity extends BaseActivity {
         Intent intent;
         switch (user.getUsertype()) {
             case Base.USER_TYPE_STU:
-                KeyValue stu=new KeyValue();
-                stu.setName(Base.user.getName());
-                stu.setId(Base.user.getIdU());
-                intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
-                intent.putExtra(Base.stu_bean,stu);
+
+                intent=new Intent(mActivity,DutyEvaluateStuMainActivity.class);
                 startActivity(intent);
                 break;
             case Base.USER_TYPE_TEA:

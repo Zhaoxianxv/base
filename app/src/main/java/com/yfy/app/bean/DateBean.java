@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.yfy.final_tag.stringtool.StringUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -74,6 +76,19 @@ public class DateBean implements Parcelable {
         Date date = new Date(value_long);
         calendar.setTime(date);
         return calendar.get(Calendar.MONTH)+1;
+    }
+    public String getMonthNameTwo(){
+        Calendar calendar = Calendar.getInstance();
+        Date date = new Date(value_long);
+        calendar.setTime(date);
+        int num=calendar.get(Calendar.MONTH)+1;
+        String content="";
+        if (num<10){
+            content=StringUtils.stringToGetTextJoint("0%1$d",num);
+        }else{
+            content=String.valueOf(num);
+        }
+        return content;
     }
 
     public void addOneDay(){

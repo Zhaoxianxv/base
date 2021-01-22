@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yfy.base">
-
+    
     <!-- Required 一些系统要求的权限，如访问网络等 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- voice -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
+    
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -37,22 +37,22 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
+        
         <activity
             android:name="com.yfy.app.welcome.WelcomeActivity"
             android:theme="@style/AppThemeInitial">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        
         <!-- </>?????????????????????????????????AppKey -->
         <activity
             android:name="com.yfy.upload.UpDataDialogActivity"
             android:theme="@style/AppThemeDialog" />
-
+        
         <service
             android:name="com.yfy.upload.UploadDataService"
             android:exported="false" />
@@ -145,7 +145,7 @@
         <activity android:name="com.yfy.app.drawableBg.MaterialMainActivity" />
         <activity android:name="com.yfy.app.drawableBg.SingleActivity" />
         <!-- mode -->
-
+        
         <activity
             android:name="com.yfy.app.SelectedModeTypeActivity"
             android:screenOrientation="portrait"
@@ -167,7 +167,7 @@
             android:theme="@style/AppThemeInitial"
             tools:ignore="InnerclassSeparator" />
         <!-- voice -->
-
+        
         <activity
             android:name="com.yfy.app.voice.VoiceMainActivity"
             android:screenOrientation="portrait"
@@ -259,8 +259,8 @@
             android:name="com.yfy.app.PEquality.PEHonorAddActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            tools:ignore="InnerclassSeparator"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEQualitySuggestActivity"
             android:screenOrientation="portrait"
@@ -301,14 +301,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />
-
+        
         <!-- duty evaluate -->
         <activity
             android:name="com.yfy.app.duty_evaluate.DutyEvaluateTeaDoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            tools:ignore="InnerclassSeparator"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.duty_evaluate.DutyEvaluateRecordActivity"
             android:screenOrientation="portrait"
