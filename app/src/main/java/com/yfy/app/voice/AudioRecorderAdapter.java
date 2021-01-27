@@ -19,7 +19,7 @@ public class AudioRecorderAdapter extends ArrayAdapter<Recorder> {
 
 	private List<Recorder> mDatas;
 	private Context mContext;
-	
+
 	private int mMinItemWidth;
 	private int mMaxItemWidth;
 
@@ -31,15 +31,15 @@ public class AudioRecorderAdapter extends ArrayAdapter<Recorder> {
 		super(context, -1, datas);
 		mContext=context;
 		mDatas=datas;
-		
+
 		mInflater=LayoutInflater.from(context);
-		
+
 		WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 		DisplayMetrics outMetrics = new DisplayMetrics();
 		windowManager.getDefaultDisplay().getMetrics(outMetrics);
 		mMaxItemWidth = (int) (outMetrics.widthPixels * 0.8f);
 		mMinItemWidth = (int) (outMetrics.widthPixels * 0.15f);
-		
+
 	}
 
 	/* *
@@ -51,30 +51,30 @@ public class AudioRecorderAdapter extends ArrayAdapter<Recorder> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		ViewHolder holder = null;
-		
+
 
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.voicenotes_recorder_item, parent, false);
-			
+
 			holder=new ViewHolder();
 			holder.currentTime=(TextView) convertView.findViewById(R.id.currentTime_text);
 			holder.seconds=(TextView) convertView.findViewById(R.id.recorder_time);
 			holder.mLength=convertView.findViewById(R.id.recorder_length);
 
 			convertView.setTag(holder);
-			
+
 			//Recorder recorder = mDatas.get(position);
 			//convertView.setTag(recorder.getmCurrentTime());
 		}else{
 			holder=(ViewHolder) convertView.getTag();
 		}
-		
+
 
 		holder.currentTime.setText(getItem(position).getmCurrentTime());
 		holder.seconds.setText(Math.round(getItem(position).getTime())+"\"");
 		ViewGroup.LayoutParams lp=holder.mLength.getLayoutParams();
 		lp.width=(int) (mMinItemWidth + (mMaxItemWidth/60f * getItem(position).getTime()));
-		
+
 
 		return convertView;
 	}
@@ -90,6 +90,6 @@ public class AudioRecorderAdapter extends ArrayAdapter<Recorder> {
 		public View mLength;
 
 	}
-	
+
 
 }

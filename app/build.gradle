@@ -39,6 +39,8 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationIdSuffix kotlin_version
+            versionNameSuffix kotlin_version
         }
     }
 
@@ -65,6 +67,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
 
 }
 greendao {
@@ -148,7 +151,10 @@ dependencies {
     implementation 'io.grpc:grpc-protobuf-lite:1.0.0'
 //    implementation 'io.grpc:grpc-protobuf:1.0.0'
     implementation 'io.grpc:grpc-stub:1.15.1'
-    implementation 'javax.annotation:javax.annotation-api:1.2'
 
+    //Facebook Spring动画库
+    api 'com.facebook.rebound:rebound:0.3.8'
+    //权限申请
+    api 'com.yanzhenjie:permission:2.0.0-rc11'
 
 }

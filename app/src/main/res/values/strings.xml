@@ -606,9 +606,15 @@
 	<string name="proprety_main" translatable="false">校产</string>
 	
 	
-	<string name="permission_fail_camere" translatable="false">调用摄像头 权限被拒绝，无法打开相机</string>
+	<string name="permission_fail_camera" translatable="false">调用摄像头 权限被拒绝，无法打开相机</string>
 	<string name="permission_fail_album" translatable="false">文件读写 权限被拒绝，无法访问文件</string>
 	<string name="permission_fail_call" translatable="false">权限禁止，无法拨号</string>
+	<!--权限申请-->
+	<string name="permission_camera">相机权限被禁用，请前往权限管理设置相机权限</string>
+	<string name="permission_audio">录音权限被禁用，请前往权限管理设置录音权限</string>
+	<string name="permission_storage">文件读取权限被禁用，请前往权限管理设置文件读取权限</string>
+	<string name="permission_camra_storage">文件读取权限或相机权限被禁用，请前往权限管理设置文件读取或相机权限</string>
+	<string name="permission_audio_storage">文件读取权限或录音权限被禁用，请前往权限管理设置文件读取或录音权限</string>
 	<!--<string name="title_activity_goods_do">GoodsDoActivity</string>-->
 	<!--duty-->
 	<string name="duty_title" translatable="false">行政值周</string>

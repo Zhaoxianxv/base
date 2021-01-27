@@ -342,7 +342,7 @@ public class HttpPostMainActivity extends BaseActivity {
     }
     @PermissionFail(requestCode = TagFinal.CAMERA)
     public void showCamere() {
-        Toast.makeText(getApplicationContext(), R.string.permission_fail_camere, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), R.string.permission_fail_camera, Toast.LENGTH_SHORT).show();
     }
     @PermissionFail(requestCode = TagFinal.PHOTO_ALBUM)
     public void showTip1() {

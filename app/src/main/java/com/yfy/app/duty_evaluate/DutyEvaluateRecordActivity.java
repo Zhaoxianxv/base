@@ -69,15 +69,13 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
     private TextView select_date_tv;
     private void initSQToolbar() {
         assert toolbar!=null;
-        toolbar.setTitle("记录");
+        toolbar.setTitle(classBean.getTitle());
         select_date_tv=toolbar.addMenuText(TagFinal.ONE_INT,"");
         toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
             @Override
             public void onClick(View view, int position) {
                 customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01",year_s,month_s));
-//                Logger.e(DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
-//                Logger.e(StringUtils.stringToGetTextJoint("%1$s-%2$s-00 00:01",year_s,month_s));
-//                customDatePicker1.show(DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
+
 
             }
         });

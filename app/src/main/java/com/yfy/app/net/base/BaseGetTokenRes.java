@@ -8,7 +8,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 /**
- * Created by yfyandr on 2018/4/26.
+ * Created by yfy on 2018/4/26.
  */
 @Root(name = TagFinal.BASE_GET_TOKEN +Base.RESPONSE)
 public class BaseGetTokenRes {
@@ -19,3 +19,5 @@ public class BaseGetTokenRes {
     @Element(name =  TagFinal.BASE_GET_TOKEN +Base.RESULT, required = false)
     public String result;
 }
+
+

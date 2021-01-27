@@ -18,7 +18,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- voice -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    
+    <!-- 闪光灯权限 -->
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -57,6 +58,10 @@
             android:name="com.yfy.upload.UploadDataService"
             android:exported="false" />
         <!-- app -->
+
+        <!--<activity-->
+            <!--android:name="com.yfy.camera.CameraActivity"-->
+            <!--android:configChanges="orientation|keyboardHidden" />-->
         <activity
             android:name="com.yfy.app.WebActivity"
             android:exported="false"
@@ -168,11 +173,11 @@
             tools:ignore="InnerclassSeparator" />
         <!-- voice -->
         
-        <activity
-            android:name="com.yfy.app.voice.VoiceMainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeInitial"
-            tools:ignore="InnerclassSeparator" />
+        <!--<activity-->
+            <!--android:name="com.yfy.app.voice.VoiceMainActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@style/AppThemeInitial"-->
+            <!--tools:ignore="InnerclassSeparator" />-->
         <!-- g rpc -->
 <!--        <activity-->
 <!--            android:name="com.yfy.app.gRPC.GRpcMainActivity"-->
