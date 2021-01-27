@@ -4,10 +4,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -37,15 +38,15 @@ import com.yfy.view.SQToolBar;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsGetFileData {
     private static final String TAG = DutyEvaluateStuMainActivity.class.getSimpleName();
 
 
-    @Bind(R.id.duty_evaluate_stu_name)
+    @BindView(R.id.duty_evaluate_stu_name)
     TextView stu_name_tv;
-    @Bind(R.id.duty_evaluate_stu_head)
+    @BindView(R.id.duty_evaluate_stu_head)
     AppCompatImageView stu_head_iv;
 
     @Override

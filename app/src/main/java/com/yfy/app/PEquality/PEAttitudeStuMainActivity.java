@@ -43,7 +43,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -55,13 +55,13 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
     public PEAttendListAdapter adapter_attend;
 
 
-    @Bind(R.id.p_e_score_line_chart)
+    @BindView(R.id.p_e_score_line_chart)
     LineChart mChart;
-    @Bind(R.id.p_e_score_title)
+    @BindView(R.id.p_e_score_title)
     TextView left_title;
 
 
-    @Bind(R.id.p_e_attend_class_chart)
+    @BindView(R.id.p_e_attend_class_chart)
     BarChart barChart;
 
     @Override

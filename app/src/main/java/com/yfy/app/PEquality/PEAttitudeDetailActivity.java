@@ -1,8 +1,8 @@
 package com.yfy.app.PEquality;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.yfy.app.PEquality.adapter.PEQualityAttitudeDetailAdapter;
 import com.yfy.app.bean.BaseRes;

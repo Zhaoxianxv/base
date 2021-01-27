@@ -7,7 +7,7 @@
     android:id="@+id/p_e_honor_item_layout">
 
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/margin_90dp"
@@ -33,7 +33,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="@dimen/margin_5dp"
                     android:layout_height="wrap_content">
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/p_e_honor_right_state"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/margin_25dp"
@@ -49,7 +49,7 @@
                         android:layout_alignParentRight="true"
                         android:background="@color/red"
                         />
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/p_e_honor_right_score"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/margin_25dp"
@@ -59,7 +59,7 @@
                         android:textColor="@color/red"
                         android:textSize="@dimen/textsize5"/>
                 </LinearLayout>
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/p_e_honor_left_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
                 />
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>

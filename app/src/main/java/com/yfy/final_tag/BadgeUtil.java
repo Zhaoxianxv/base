@@ -9,12 +9,13 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
 
 import com.yfy.final_tag.stringtool.Logger;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+
+import androidx.core.app.NotificationCompat;
 
 /**
  * Created by yfyandr on 2017/9/26.

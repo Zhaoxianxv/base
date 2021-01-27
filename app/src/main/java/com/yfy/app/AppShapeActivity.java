@@ -25,12 +25,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 public class AppShapeActivity extends BaseActivity {
 
 
-    @Bind(R.id.app_shape_icon)
+    @BindView(R.id.app_shape_icon)
     ImageView icon;
 
     @Override

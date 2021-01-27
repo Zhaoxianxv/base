@@ -1,9 +1,6 @@
 package com.yfy.app.album;
 
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,6 +13,10 @@ import com.yfy.view.image.PinchImageView;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 
 public class MultPicShowActivity extends BaseActivity {

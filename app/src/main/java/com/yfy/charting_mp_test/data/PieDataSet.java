@@ -1,9 +1,9 @@
 
 package com.yfy.charting_mp_test.data;
+import androidx.annotation.Nullable;
 
 import com.yfy.charting_mp_test.interfaces.datasets.IPieDataSet;
 import com.yfy.charting_mp_test.utils.Utils;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;

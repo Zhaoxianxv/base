@@ -5,13 +5,14 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.annotation.StringRes;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
+
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
 
 
 /**
@@ -65,7 +66,7 @@ public class DialogTools {
      * @param details
      * @param okListener
      */
-    public void showDialog(Activity mActivity,String title,@StringRes int details, DialogInterface.OnClickListener okListener){
+    public void showDialog(Activity mActivity, String title, @StringRes int details, DialogInterface.OnClickListener okListener){
         showDialog(mActivity,title,mActivity.getResources().getString(details),okListener);
     }
 

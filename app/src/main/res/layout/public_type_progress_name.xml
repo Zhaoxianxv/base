@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/moral_convention_item_layout"
     xmlns:tools="http://schemas.android.com/tools">
-    <android.support.v7.widget.GridLayout
+    <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/margin_1dp"
@@ -72,7 +72,7 @@
         </RelativeLayout>
 
 
-    </android.support.v7.widget.GridLayout>
+    </androidx.gridlayout.widget.GridLayout>
 
 
     <ImageView

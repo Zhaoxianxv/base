@@ -30,7 +30,7 @@ import com.yfy.final_tag.rsa.AES;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,15 +42,15 @@ public class ResetPasswordActivity extends BaseActivity implements Callback<ResE
     RadioGroup group;
     RadioButton type_one;
     RadioButton type_two;
-    @Bind(R.id.reset_edit_phone)
+    @BindView(R.id.reset_edit_phone)
     EditText edit_phone;
-    @Bind(R.id.reset_edit_code)
+    @BindView(R.id.reset_edit_code)
     EditText edit_code;
-    @Bind(R.id.send_code)
+    @BindView(R.id.send_code)
     TextView send_code;
-    @Bind(R.id.reset_edit_new_password)
+    @BindView(R.id.reset_edit_new_password)
     EditText edit_new_pass;
-    @Bind(R.id.reset_alter_edit_new_password)
+    @BindView(R.id.reset_alter_edit_new_password)
     EditText alter_edit_pass;
     MyCountDownTimer mycount;
     private String code,user_id;

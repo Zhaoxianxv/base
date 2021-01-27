@@ -22,17 +22,17 @@ import com.yfy.view.SQToolBar;
 import java.io.IOException;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Response;
 
 public class ChangePasswordActivity extends BaseActivity  {
     private static final String TAG = ChangePasswordActivity.class.getSimpleName();
-    @Bind(R.id.alter_old_password)
+    @BindView(R.id.alter_old_password)
     EditText old;
-    @Bind(R.id.alter_new_first_password)
+    @BindView(R.id.alter_new_first_password)
     EditText first;
-    @Bind(R.id.alter_new_again_password)
+    @BindView(R.id.alter_new_again_password)
     EditText again;
     public String oldpass,firstpass,againpass;
 

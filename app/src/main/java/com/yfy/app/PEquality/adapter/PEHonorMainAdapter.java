@@ -4,12 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.design.internal.FlowLayout;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.CardView;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -23,6 +17,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.material.internal.FlowLayout;
 import com.yfy.app.PEquality.PEHonorMainActivity;
 import com.yfy.app.album.MultPicShowActivity;
 import com.yfy.app.bean.KeyValue;
@@ -53,6 +48,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.cardview.widget.CardView;
 
 /**
  * Created by

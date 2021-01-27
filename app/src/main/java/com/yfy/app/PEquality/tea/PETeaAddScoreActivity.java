@@ -2,8 +2,6 @@ package com.yfy.app.PEquality.tea;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.EditText;
 
@@ -35,7 +33,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.cardview.widget.CardView;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -45,19 +45,19 @@ public class PETeaAddScoreActivity extends BaseActivity {
     KeyValue stu;
     DateBean dateBean;
 
-    @Bind(R.id.p_e_tea_add_score_stu_name)
+    @BindView(R.id.p_e_tea_add_score_stu_name)
     AppCompatTextView stu_name;
-    @Bind(R.id.p_e_tea_add_score_name)
+    @BindView(R.id.p_e_tea_add_score_name)
     AppCompatTextView project_name;
-    @Bind(R.id.p_e_tea_add_score_line)
+    @BindView(R.id.p_e_tea_add_score_line)
     View line;
 
-    @Bind(R.id.p_e_tea_add_score_forward)
+    @BindView(R.id.p_e_tea_add_score_forward)
     CardView forward;
-    @Bind(R.id.p_e_tea_add_score_next)
+    @BindView(R.id.p_e_tea_add_score_next)
     CardView next;
 
-    @Bind(R.id.p_e_tea_add_score_edit_content)
+    @BindView(R.id.p_e_tea_add_score_edit_content)
     EditText score_edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

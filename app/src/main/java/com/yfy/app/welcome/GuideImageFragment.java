@@ -3,7 +3,6 @@ package com.yfy.app.welcome;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,8 @@ import android.widget.ImageView;
 
 import com.yfy.app.welcome.utils.v4.FragmentPagerItem;
 import com.yfy.base.R;
+
+import androidx.fragment.app.Fragment;
 
 public class GuideImageFragment extends Fragment {
     ImageView iv_image;

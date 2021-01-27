@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.multidex.MultiDexApplication;
 
 import com.yfy.greendao.tool.Helper;
 import com.yfy.final_tag.$;
@@ -14,6 +13,7 @@ import com.yfy.greendao.DaoSession;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.multidex.MultiDexApplication;
 
 
 /**

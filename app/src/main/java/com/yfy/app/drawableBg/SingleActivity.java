@@ -1,8 +1,9 @@
 package com.yfy.app.drawableBg;
 
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import butterknife.BindView;
 
 
 import com.yfy.base.R;
@@ -12,16 +13,15 @@ import com.yfy.final_tag.banner.ADInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 
 public class SingleActivity extends BaseActivity {
 
 
 
     private CounselAdpater adpater;
-    @Bind(R.id.show_swiperefreshlayout)
+    @BindView(R.id.show_swiperefreshlayout)
     SwipeRefreshLayout swiperefreshlayout;
-    @Bind(R.id.show_recycierview_news)
+    @BindView(R.id.show_recycierview_news)
     RecyclerView recyclerView;
 
 

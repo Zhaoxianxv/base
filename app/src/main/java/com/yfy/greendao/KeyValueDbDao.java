@@ -27,20 +27,23 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
         public final static Property Type_id = new Property(2, String.class, "type_id", false, "TYPE_ID");
         public final static Property Type_parent_id = new Property(3, String.class, "type_parent_id", false, "TYPE_PARENT_ID");
         public final static Property Type_user_id = new Property(4, String.class, "type_user_id", false, "TYPE_USER_ID");
-        public final static Property Key = new Property(5, String.class, "key", false, "KEY");
-        public final static Property Value = new Property(6, String.class, "value", false, "VALUE");
-        public final static Property Name = new Property(7, String.class, "name", false, "NAME");
-        public final static Property Image = new Property(8, String.class, "image", false, "IMAGE");
-        public final static Property Time = new Property(9, String.class, "time", false, "TIME");
-        public final static Property File_path = new Property(10, String.class, "file_path", false, "FILE_PATH");
-        public final static Property Parent_id = new Property(11, String.class, "parent_id", false, "PARENT_ID");
-        public final static Property Child_id = new Property(12, String.class, "child_id", false, "CHILD_ID");
-        public final static Property Key_value_id = new Property(13, String.class, "key_value_id", false, "KEY_VALUE_ID");
-        public final static Property Num = new Property(14, int.class, "num", false, "NUM");
-        public final static Property Time_duration = new Property(15, float.class, "time_duration", false, "TIME_DURATION");
-        public final static Property Required = new Property(16, boolean.class, "required", false, "REQUIRED");
-        public final static Property View_type = new Property(17, int.class, "view_type", false, "VIEW_TYPE");
-        public final static Property Id = new Property(18, Long.class, "id", true, "_id");
+        public final static Property Term = new Property(5, String.class, "term", false, "TERM");
+        public final static Property Key = new Property(6, String.class, "key", false, "KEY");
+        public final static Property Value = new Property(7, String.class, "value", false, "VALUE");
+        public final static Property Name = new Property(8, String.class, "name", false, "NAME");
+        public final static Property Title = new Property(9, String.class, "title", false, "TITLE");
+        public final static Property Rank = new Property(10, String.class, "rank", false, "RANK");
+        public final static Property Image = new Property(11, String.class, "image", false, "IMAGE");
+        public final static Property Time = new Property(12, String.class, "time", false, "TIME");
+        public final static Property File_path = new Property(13, String.class, "file_path", false, "FILE_PATH");
+        public final static Property Parent_id = new Property(14, String.class, "parent_id", false, "PARENT_ID");
+        public final static Property Child_id = new Property(15, String.class, "child_id", false, "CHILD_ID");
+        public final static Property Key_value_id = new Property(16, String.class, "key_value_id", false, "KEY_VALUE_ID");
+        public final static Property Num = new Property(17, int.class, "num", false, "NUM");
+        public final static Property Time_duration = new Property(18, float.class, "time_duration", false, "TIME_DURATION");
+        public final static Property Required = new Property(19, boolean.class, "required", false, "REQUIRED");
+        public final static Property View_type = new Property(20, int.class, "view_type", false, "VIEW_TYPE");
+        public final static Property Id = new Property(21, Long.class, "id", true, "_id");
     }
 
 
@@ -61,20 +64,23 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
                 "\"TYPE_ID\" TEXT NOT NULL ," + // 2: type_id
                 "\"TYPE_PARENT_ID\" TEXT NOT NULL ," + // 3: type_parent_id
                 "\"TYPE_USER_ID\" TEXT NOT NULL ," + // 4: type_user_id
-                "\"KEY\" TEXT NOT NULL ," + // 5: key
-                "\"VALUE\" TEXT NOT NULL ," + // 6: value
-                "\"NAME\" TEXT NOT NULL ," + // 7: name
-                "\"IMAGE\" TEXT NOT NULL ," + // 8: image
-                "\"TIME\" TEXT NOT NULL ," + // 9: time
-                "\"FILE_PATH\" TEXT NOT NULL ," + // 10: file_path
-                "\"PARENT_ID\" TEXT NOT NULL ," + // 11: parent_id
-                "\"CHILD_ID\" TEXT NOT NULL ," + // 12: child_id
-                "\"KEY_VALUE_ID\" TEXT NOT NULL ," + // 13: key_value_id
-                "\"NUM\" INTEGER NOT NULL ," + // 14: num
-                "\"TIME_DURATION\" REAL NOT NULL ," + // 15: time_duration
-                "\"REQUIRED\" INTEGER NOT NULL ," + // 16: required
-                "\"VIEW_TYPE\" INTEGER NOT NULL ," + // 17: view_type
-                "\"_id\" INTEGER PRIMARY KEY );"); // 18: id
+                "\"TERM\" TEXT NOT NULL ," + // 5: term
+                "\"KEY\" TEXT NOT NULL ," + // 6: key
+                "\"VALUE\" TEXT NOT NULL ," + // 7: value
+                "\"NAME\" TEXT NOT NULL ," + // 8: name
+                "\"TITLE\" TEXT NOT NULL ," + // 9: title
+                "\"RANK\" TEXT NOT NULL ," + // 10: rank
+                "\"IMAGE\" TEXT NOT NULL ," + // 11: image
+                "\"TIME\" TEXT NOT NULL ," + // 12: time
+                "\"FILE_PATH\" TEXT NOT NULL ," + // 13: file_path
+                "\"PARENT_ID\" TEXT NOT NULL ," + // 14: parent_id
+                "\"CHILD_ID\" TEXT NOT NULL ," + // 15: child_id
+                "\"KEY_VALUE_ID\" TEXT NOT NULL ," + // 16: key_value_id
+                "\"NUM\" INTEGER NOT NULL ," + // 17: num
+                "\"TIME_DURATION\" REAL NOT NULL ," + // 18: time_duration
+                "\"REQUIRED\" INTEGER NOT NULL ," + // 19: required
+                "\"VIEW_TYPE\" INTEGER NOT NULL ," + // 20: view_type
+                "\"_id\" INTEGER PRIMARY KEY );"); // 21: id
     }
 
     /** Drops the underlying database table. */
@@ -91,23 +97,26 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
         stmt.bindString(3, entity.getType_id());
         stmt.bindString(4, entity.getType_parent_id());
         stmt.bindString(5, entity.getType_user_id());
-        stmt.bindString(6, entity.getKey());
-        stmt.bindString(7, entity.getValue());
-        stmt.bindString(8, entity.getName());
-        stmt.bindString(9, entity.getImage());
-        stmt.bindString(10, entity.getTime());
-        stmt.bindString(11, entity.getFile_path());
-        stmt.bindString(12, entity.getParent_id());
-        stmt.bindString(13, entity.getChild_id());
-        stmt.bindString(14, entity.getKey_value_id());
-        stmt.bindLong(15, entity.getNum());
-        stmt.bindDouble(16, entity.getTime_duration());
-        stmt.bindLong(17, entity.getRequired() ? 1L: 0L);
-        stmt.bindLong(18, entity.getView_type());
+        stmt.bindString(6, entity.getTerm());
+        stmt.bindString(7, entity.getKey());
+        stmt.bindString(8, entity.getValue());
+        stmt.bindString(9, entity.getName());
+        stmt.bindString(10, entity.getTitle());
+        stmt.bindString(11, entity.getRank());
+        stmt.bindString(12, entity.getImage());
+        stmt.bindString(13, entity.getTime());
+        stmt.bindString(14, entity.getFile_path());
+        stmt.bindString(15, entity.getParent_id());
+        stmt.bindString(16, entity.getChild_id());
+        stmt.bindString(17, entity.getKey_value_id());
+        stmt.bindLong(18, entity.getNum());
+        stmt.bindDouble(19, entity.getTime_duration());
+        stmt.bindLong(20, entity.getRequired() ? 1L: 0L);
+        stmt.bindLong(21, entity.getView_type());
  
         Long id = entity.getId();
         if (id != null) {
-            stmt.bindLong(19, id);
+            stmt.bindLong(22, id);
         }
     }
 
@@ -119,29 +128,32 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
         stmt.bindString(3, entity.getType_id());
         stmt.bindString(4, entity.getType_parent_id());
         stmt.bindString(5, entity.getType_user_id());
-        stmt.bindString(6, entity.getKey());
-        stmt.bindString(7, entity.getValue());
-        stmt.bindString(8, entity.getName());
-        stmt.bindString(9, entity.getImage());
-        stmt.bindString(10, entity.getTime());
-        stmt.bindString(11, entity.getFile_path());
-        stmt.bindString(12, entity.getParent_id());
-        stmt.bindString(13, entity.getChild_id());
-        stmt.bindString(14, entity.getKey_value_id());
-        stmt.bindLong(15, entity.getNum());
-        stmt.bindDouble(16, entity.getTime_duration());
-        stmt.bindLong(17, entity.getRequired() ? 1L: 0L);
-        stmt.bindLong(18, entity.getView_type());
+        stmt.bindString(6, entity.getTerm());
+        stmt.bindString(7, entity.getKey());
+        stmt.bindString(8, entity.getValue());
+        stmt.bindString(9, entity.getName());
+        stmt.bindString(10, entity.getTitle());
+        stmt.bindString(11, entity.getRank());
+        stmt.bindString(12, entity.getImage());
+        stmt.bindString(13, entity.getTime());
+        stmt.bindString(14, entity.getFile_path());
+        stmt.bindString(15, entity.getParent_id());
+        stmt.bindString(16, entity.getChild_id());
+        stmt.bindString(17, entity.getKey_value_id());
+        stmt.bindLong(18, entity.getNum());
+        stmt.bindDouble(19, entity.getTime_duration());
+        stmt.bindLong(20, entity.getRequired() ? 1L: 0L);
+        stmt.bindLong(21, entity.getView_type());
  
         Long id = entity.getId();
         if (id != null) {
-            stmt.bindLong(19, id);
+            stmt.bindLong(22, id);
         }
     }
 
     @Override
     public Long readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 18) ? null : cursor.getLong(offset + 18);
+        return cursor.isNull(offset + 21) ? null : cursor.getLong(offset + 21);
     }    
 
     @Override
@@ -152,20 +164,23 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
             cursor.getString(offset + 2), // type_id
             cursor.getString(offset + 3), // type_parent_id
             cursor.getString(offset + 4), // type_user_id
-            cursor.getString(offset + 5), // key
-            cursor.getString(offset + 6), // value
-            cursor.getString(offset + 7), // name
-            cursor.getString(offset + 8), // image
-            cursor.getString(offset + 9), // time
-            cursor.getString(offset + 10), // file_path
-            cursor.getString(offset + 11), // parent_id
-            cursor.getString(offset + 12), // child_id
-            cursor.getString(offset + 13), // key_value_id
-            cursor.getInt(offset + 14), // num
-            cursor.getFloat(offset + 15), // time_duration
-            cursor.getShort(offset + 16) != 0, // required
-            cursor.getInt(offset + 17), // view_type
-            cursor.isNull(offset + 18) ? null : cursor.getLong(offset + 18) // id
+            cursor.getString(offset + 5), // term
+            cursor.getString(offset + 6), // key
+            cursor.getString(offset + 7), // value
+            cursor.getString(offset + 8), // name
+            cursor.getString(offset + 9), // title
+            cursor.getString(offset + 10), // rank
+            cursor.getString(offset + 11), // image
+            cursor.getString(offset + 12), // time
+            cursor.getString(offset + 13), // file_path
+            cursor.getString(offset + 14), // parent_id
+            cursor.getString(offset + 15), // child_id
+            cursor.getString(offset + 16), // key_value_id
+            cursor.getInt(offset + 17), // num
+            cursor.getFloat(offset + 18), // time_duration
+            cursor.getShort(offset + 19) != 0, // required
+            cursor.getInt(offset + 20), // view_type
+            cursor.isNull(offset + 21) ? null : cursor.getLong(offset + 21) // id
         );
         return entity;
     }
@@ -177,20 +192,23 @@ public class KeyValueDbDao extends AbstractDao<KeyValueDb, Long> {
         entity.setType_id(cursor.getString(offset + 2));
         entity.setType_parent_id(cursor.getString(offset + 3));
         entity.setType_user_id(cursor.getString(offset + 4));
-        entity.setKey(cursor.getString(offset + 5));
-        entity.setValue(cursor.getString(offset + 6));
-        entity.setName(cursor.getString(offset + 7));
-        entity.setImage(cursor.getString(offset + 8));
-        entity.setTime(cursor.getString(offset + 9));
-        entity.setFile_path(cursor.getString(offset + 10));
-        entity.setParent_id(cursor.getString(offset + 11));
-        entity.setChild_id(cursor.getString(offset + 12));
-        entity.setKey_value_id(cursor.getString(offset + 13));
-        entity.setNum(cursor.getInt(offset + 14));
-        entity.setTime_duration(cursor.getFloat(offset + 15));
-        entity.setRequired(cursor.getShort(offset + 16) != 0);
-        entity.setView_type(cursor.getInt(offset + 17));
-        entity.setId(cursor.isNull(offset + 18) ? null : cursor.getLong(offset + 18));
+        entity.setTerm(cursor.getString(offset + 5));
+        entity.setKey(cursor.getString(offset + 6));
+        entity.setValue(cursor.getString(offset + 7));
+        entity.setName(cursor.getString(offset + 8));
+        entity.setTitle(cursor.getString(offset + 9));
+        entity.setRank(cursor.getString(offset + 10));
+        entity.setImage(cursor.getString(offset + 11));
+        entity.setTime(cursor.getString(offset + 12));
+        entity.setFile_path(cursor.getString(offset + 13));
+        entity.setParent_id(cursor.getString(offset + 14));
+        entity.setChild_id(cursor.getString(offset + 15));
+        entity.setKey_value_id(cursor.getString(offset + 16));
+        entity.setNum(cursor.getInt(offset + 17));
+        entity.setTime_duration(cursor.getFloat(offset + 18));
+        entity.setRequired(cursor.getShort(offset + 19) != 0);
+        entity.setView_type(cursor.getInt(offset + 20));
+        entity.setId(cursor.isNull(offset + 21) ? null : cursor.getLong(offset + 21));
      }
     
     @Override

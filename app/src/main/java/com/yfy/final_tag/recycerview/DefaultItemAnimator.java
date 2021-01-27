@@ -1,8 +1,9 @@
 package com.yfy.final_tag.recycerview;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by yfyandr on 2017/12/5.

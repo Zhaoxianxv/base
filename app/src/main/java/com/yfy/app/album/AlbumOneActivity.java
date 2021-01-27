@@ -2,7 +2,6 @@ package com.yfy.app.album;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +22,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import butterknife.Bind;
+import androidx.appcompat.widget.Toolbar;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 
@@ -33,14 +33,14 @@ import butterknife.OnClick;
  */
 public class AlbumOneActivity extends BaseActivity implements OnEndListenner,CheckedListenner {
 
-	@Bind(R.id.pic_gridview)
+	@BindView(R.id.pic_gridview)
 	GridView pic_gridview;
-	@Bind(R.id.pic_total_size)
+	@BindView(R.id.pic_total_size)
 	TextView pic_total_size;
-	@Bind(R.id.ok_tv)
+	@BindView(R.id.ok_tv)
 	TextView ok_tv;
-	@Bind(R.id.album_one_title_bar)
-    Toolbar toolbar;
+	@BindView(R.id.album_one_title_bar)
+	Toolbar toolbar;
 
 	private AlbumOneAdapter adapter;
 	private ArrayList<Photo> photoList;//相册分类组

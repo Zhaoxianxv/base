@@ -24,7 +24,7 @@ import com.yfy.view.SQToolBar;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,9 +33,9 @@ public class AlterCllActivity extends BaseActivity implements Callback<ResEnv> {
 
 
     private static final String TAG = AlterCllActivity.class.getSimpleName();
-    @Bind(R.id.call_edit_first)
+    @BindView(R.id.call_edit_first)
     EditText first;
-    @Bind(R.id.call_edit_again)
+    @BindView(R.id.call_edit_again)
     EditText again;
     private String first_editor,again_editor;
     @Override

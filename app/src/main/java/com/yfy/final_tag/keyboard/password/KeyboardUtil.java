@@ -8,7 +8,6 @@ import android.inputmethodservice.Keyboard.Key;
 import android.inputmethodservice.KeyboardView.OnKeyboardActionListener;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.AppCompatImageView;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.Selection;
@@ -31,6 +30,8 @@ import com.yfy.base.R;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 public class KeyboardUtil {
 

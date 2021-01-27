@@ -26,7 +26,7 @@
                 android:paddingTop="@dimen/margin_10dp"
                 android:background="@color/white"
                 >
-                <android.support.v7.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/p_e_main_user_head"
                     android:layout_width="@dimen/margin_60dp"
                     android:layout_height="@dimen/margin_60dp"
@@ -44,7 +44,7 @@
                     android:layout_marginBottom="@dimen/margin_5dp"
                     android:layout_height="80dp">
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/p_e_user_grade_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                         android:maxLines="1"
                         android:gravity="center"
                         android:textSize="@dimen/textsize14"/>
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/p_e_user_grade_sub"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:textSize="@dimen/textsize12"/>
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/margin_15dp"
                         android:layout_alignParentBottom="true"
@@ -85,14 +85,14 @@
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-                        <android.support.v7.widget.AppCompatTextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/p_e_main_user_name"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/margin_20dp"
                             android:gravity="center"
                             android:text="张三李四"
                             />
-                        <android.support.v7.widget.AppCompatTextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/p_e_main_user_class"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/margin_20dp"
@@ -100,7 +100,7 @@
                             android:layout_below="@id/p_e_main_user_name"
                             android:textSize="@dimen/textsize5"
                             android:text="三年级二十五班" />
-                        <android.support.v7.widget.AppCompatTextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/p_e_main_user_height"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/margin_20dp"
@@ -109,7 +109,7 @@
                             android:textSize="@dimen/textsize5"
                             android:layout_below="@id/p_e_main_user_class"
                             />
-                        <android.support.v7.widget.AppCompatTextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/p_e_main_user_weight"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/margin_20dp"
@@ -136,14 +136,14 @@
                 android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/p_e_main_type_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_3dp"
                     android:layout_marginBottom="@dimen/margin_3dp"
                     android:scrollbars="none">
-                </android.support.v7.widget.RecyclerView>
+                </androidx.recyclerview.widget.RecyclerView>
 
             </RelativeLayout>
             <RelativeLayout
@@ -225,7 +225,7 @@
                     android:textColor="@color/app_base_color"
                     android:layout_marginTop="@dimen/margin_20dp"
                     android:text="点击图表文字查看详情"/>
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/p_e_main_chart_reason"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -249,7 +249,7 @@
                     >
 
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/p_e_main_recipe_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -263,7 +263,7 @@
                         android:layout_marginTop="@dimen/margin_10dp"
                         android:layout_marginLeft="@dimen/margin_5dp"
                         android:layout_marginRight="@dimen/margin_5dp"/>
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/p_e_main_recipe_content"
@@ -275,7 +275,7 @@
                         android:layout_marginRight="@dimen/margin_5dp"
                         android:textSize="@dimen/textsize4"/>
                 </RelativeLayout>
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/p_e_main_recipe"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/margin_20dp"

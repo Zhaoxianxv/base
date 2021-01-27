@@ -1,8 +1,6 @@
 package com.yfy.app.PEquality.adapter;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
-import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +15,9 @@ import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.util.LinkedList;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.viewpager.widget.PagerAdapter;
 
 public class KnowledgeLibraryPagerAdapter extends PagerAdapter {
     private Context mcontext;

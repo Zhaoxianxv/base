@@ -1,7 +1,6 @@
 package com.yfy.app.PEquality;
 
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatTextView;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
@@ -19,7 +18,8 @@ import com.yfy.final_tag.data.Base;
 import java.io.IOException;
 import java.util.List;
 
-import butterknife.Bind;
+import androidx.appcompat.widget.AppCompatTextView;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -27,10 +27,10 @@ public class PEQualitySuggestActivity extends BaseActivity {
     private static final String TAG = PEQualitySuggestActivity.class.getSimpleName();
 
 
-    @Bind(R.id.p_e_suggest_title)
+    @BindView(R.id.p_e_suggest_title)
     AppCompatTextView suggest_title;
 
-    @Bind(R.id.p_e_suggest_reason)
+    @BindView(R.id.p_e_suggest_reason)
     AppCompatTextView suggest_subtitle;
 
     @Override

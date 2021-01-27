@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.GridLayout
+    <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:alignmentMode="alignBounds"
@@ -15,7 +15,7 @@
         app:useDefaultMargins="false">
 
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/duty_evaluate_stu_add_child_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -102,6 +102,6 @@
 
 
         </RelativeLayout>
-    </android.support.v7.widget.GridLayout>
+    </androidx.gridlayout.widget.GridLayout>
 </RelativeLayout>
 

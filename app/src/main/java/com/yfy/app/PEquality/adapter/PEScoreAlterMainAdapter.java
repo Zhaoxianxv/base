@@ -1,7 +1,6 @@
 package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -25,6 +24,8 @@ import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.stringtool.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by yfy on 2017/12/27.

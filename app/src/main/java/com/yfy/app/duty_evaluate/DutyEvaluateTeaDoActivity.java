@@ -3,15 +3,16 @@ package com.yfy.app.duty_evaluate;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
@@ -48,7 +49,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -58,22 +59,22 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
 
 
 
-    @Bind(R.id.confirm_tab_layout_one)
+    @BindView(R.id.confirm_tab_layout_one)
     TabLayout one;
-    @Bind(R.id.confirm_tab_layout_two)
+    @BindView(R.id.confirm_tab_layout_two)
     TabLayout two;
-    @Bind(R.id.public_type_choice_value)
+    @BindView(R.id.public_type_choice_value)
     AppCompatTextView selected_stu;
-    @Bind(R.id.duty_evaluate_select_date_value)
+    @BindView(R.id.duty_evaluate_select_date_value)
     AppCompatTextView selected_date;
 
 
-    @Bind(R.id.tea_evaluate_select_score)
+    @BindView(R.id.tea_evaluate_select_score)
     TextView select_score_tv;
 
-    @Bind(R.id.duty_evaluate_stu_tab_data_recycler_layout)
+    @BindView(R.id.duty_evaluate_stu_tab_data_recycler_layout)
     RelativeLayout recycler_layout;
-    @Bind(R.id.p_e_tea_add_score_line)
+    @BindView(R.id.p_e_tea_add_score_line)
     View line;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

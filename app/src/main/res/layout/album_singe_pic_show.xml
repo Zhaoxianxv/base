@@ -12,14 +12,14 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         />
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/show_pic_one_title_bar"
         android:layout_width="match_parent"
         app:titleTextColor="@android:color/darker_gray"
         app:title=""
         android:layout_marginTop="20dp"
         android:layout_height="46dp">
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
 
 </RelativeLayout>

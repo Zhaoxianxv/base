@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.content.FileProvider;
 
 
 import com.yfy.final_tag.data.Base;
@@ -14,8 +13,10 @@ import com.yfy.final_tag.FileTools;
 
 import java.io.File;
 
+import androidx.core.content.FileProvider;
+
 /**
- * Created by yfyandr on 2017/9/12.
+ * Created by yfy on 2017/9/12.
  */
 
 public class FileCamera {

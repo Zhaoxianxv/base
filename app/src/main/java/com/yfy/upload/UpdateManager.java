@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -30,6 +29,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import androidx.core.content.FileProvider;
 
 
 public class  UpdateManager {
@@ -177,7 +178,7 @@ public class  UpdateManager {
 			if (mContext==null){
 				Logger.e("zxx","mContext null");
 			}
-			Uri contentUri = FileProvider.getUriForFile(App.getApp().getApplicationContext(), Base.AUTHORITY, apkfile);
+			Uri contentUri = FileProvider.getUriForFile(mContext, Base.AUTHORITY, apkfile);
 			intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
 
 		} else {

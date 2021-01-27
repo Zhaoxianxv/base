@@ -8,7 +8,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -32,6 +31,8 @@ import com.yfy.base.R;
 import java.lang.reflect.Constructor;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import androidx.appcompat.app.ActionBar;
 
 /**
  * Created by Nathen on 16/7/30.
@@ -842,6 +843,7 @@ public abstract class JCVideoPlayer extends FrameLayout implements View.OnClickL
         if (ACTION_BAR_EXIST) {
             ActionBar ab = JCUtils.getAppCompActivity(context).getSupportActionBar();
             if (ab != null) {
+//                ab.setShowHideAnimationEnabled(false);
                 ab.setShowHideAnimationEnabled(false);
                 ab.hide();
             }

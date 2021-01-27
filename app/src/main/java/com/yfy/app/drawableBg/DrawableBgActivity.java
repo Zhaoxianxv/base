@@ -2,8 +2,6 @@ package com.yfy.app.drawableBg;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 
 import com.yfy.app.SelectedModeTypeAdapter;
@@ -23,6 +21,9 @@ import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class DrawableBgActivity extends BaseActivity {

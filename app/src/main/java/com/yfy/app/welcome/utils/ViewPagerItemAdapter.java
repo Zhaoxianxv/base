@@ -1,8 +1,8 @@
 package com.yfy.app.welcome.utils;
 
 
-import android.support.v4.util.SparseArrayCompat;
-import android.support.v4.view.PagerAdapter;
+import androidx.collection.SparseArrayCompat;
+import androidx.viewpager.widget.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -3,9 +3,6 @@ package com.yfy.final_tag.banner;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,12 +18,16 @@ import com.yfy.base.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 
 /**
  * 实现可循环，可轮播的viewpager
  */
 @SuppressLint("NewApi")
-public class CycleViewPager extends Fragment implements OnPageChangeListener {
+public class CycleViewPager extends Fragment implements ViewPager.OnPageChangeListener {
 
     private List<ImageView> imageViews = new ArrayList<ImageView>();
     private ImageView[] indicators;

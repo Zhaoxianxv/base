@@ -2,8 +2,6 @@ package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -19,6 +17,8 @@ import com.yfy.final_tag.viewtools.ViewTool;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.AppCompatImageView;
 
 
 public class PEQualityMainAdapter extends BaseRecyclerAdapter {

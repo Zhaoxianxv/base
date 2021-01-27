@@ -1,8 +1,6 @@
 package com.yfy.app.duty_evaluate;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -38,6 +36,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Response;
 

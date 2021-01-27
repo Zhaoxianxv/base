@@ -2,13 +2,14 @@ package com.yfy.final_tag;
 
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.content.FileProvider;
 import android.text.Html;
 
 import com.yfy.base.App;
 import com.yfy.final_tag.data.Base;
 
 import java.io.File;
+
+import androidx.core.content.FileProvider;
 
 /**
  * Created by yfyandr on 2018/5/7.

@@ -5,8 +5,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -135,7 +136,7 @@ public class UpDataDialogActivity extends BaseActivity {
         mUpdateManager = new UpdateManager(this);
         layout.setVisibility(View.GONE);
         mUpdateManager.checkUpdateInfo();
-        stopService(new Intent(App.getApp().getApplicationContext(),UploadDataService.class));
+        stopService(new Intent(mActivity,UploadDataService.class));
     }
     @PermissionFail(requestCode = TagFinal.CAMERA)
     public void showCamere() {

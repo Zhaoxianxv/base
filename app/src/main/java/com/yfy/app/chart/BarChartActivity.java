@@ -32,16 +32,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Response;
 
 public class BarChartActivity extends BaseActivity {
     private static final String TAG = BarChartActivity.class.getSimpleName();
 
-    @Bind(R.id.p_e_attend_class_chart)
+    @BindView(R.id.p_e_attend_class_chart)
     BarChart barChart;
-    @Bind(R.id.p_e_attend_class_title)
+    @BindView(R.id.p_e_attend_class_title)
     TextView attend_title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

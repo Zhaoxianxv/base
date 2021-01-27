@@ -2,7 +2,6 @@ package com.yfy.app.httppost;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Toast;
 
@@ -29,6 +28,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import butterknife.OnClick;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;

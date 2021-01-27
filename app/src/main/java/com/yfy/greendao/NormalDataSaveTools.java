@@ -13,6 +13,7 @@ import java.util.List;
 public class NormalDataSaveTools {
 
     private final String TERM_TYPE_GREEN_DAO = "term_bean_data";
+    private final String HONOR_TYPE_GREEN_DAO = "honor_bean_data";
 
     private static NormalDataSaveTools normalDataSaveApi;
 
@@ -56,5 +57,12 @@ public class NormalDataSaveTools {
             termBean.setIsnow(db.getValue());
         }
         return termBean;
+    }
+
+
+    public void saveHonor(KeyValueDb keyValue){
+
+        keyValue.setType(HONOR_TYPE_GREEN_DAO);
+        GreenDaoManager.getInstance().saveKeyValueDb(keyValue);
     }
 }

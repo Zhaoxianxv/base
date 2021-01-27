@@ -1,7 +1,6 @@
 package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -17,6 +16,8 @@ import com.yfy.final_tag.data.TagFinal;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 public class PEKnowledgeLibAdapter extends BaseRecyclerAdapter {
 

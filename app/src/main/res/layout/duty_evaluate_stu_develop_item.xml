@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:id="@+id/duty_evaluate_normal_item_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <android.support.v7.widget.GridLayout
+    <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -15,7 +15,7 @@
         app:useDefaultMargins="false">
 
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/duty_evaluate_normal_item_title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_35dp"
@@ -54,7 +54,7 @@
 
 
 
-    </android.support.v7.widget.GridLayout>
+    </androidx.gridlayout.widget.GridLayout>
 
 
 </RelativeLayout>
