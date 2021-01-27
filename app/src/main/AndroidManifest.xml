@@ -195,6 +195,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />
+        
         <activity
             android:name="com.yfy.app.PEquality.PEQualityMainTestActivity"
             android:screenOrientation="portrait"
