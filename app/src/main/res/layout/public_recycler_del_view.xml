@@ -17,12 +17,11 @@
         android:textColor="@color/White"
         android:backgroundTint="@color/Maroon"/>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/public_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/public_recycler_del"
-        android:layout_marginTop="@dimen/margin_45dp">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_marginTop="@dimen/margin_45dp"/>
 </RelativeLayout>
 

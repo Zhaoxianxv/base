@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by yfyandr on 2017/12/27.
+ * Created by yfy on 2017/12/27.
  */
 
 public class PEAttendListAdapter extends BaseRecyclerAdapter {

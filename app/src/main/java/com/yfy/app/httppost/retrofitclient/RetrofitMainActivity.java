@@ -1,7 +1,6 @@
 package com.yfy.app.httppost.retrofitclient;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -18,6 +17,7 @@ import com.yfy.final_tag.stringtool.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 

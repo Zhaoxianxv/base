@@ -3,7 +3,7 @@ package com.yfy.app.spannable_string;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatTextView;
+import androidx.appcompat.widget.AppCompatTextView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -25,7 +25,7 @@ import com.yfy.final_tag.stringtool.TextToolSpan;
 import java.io.IOException;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -34,9 +34,9 @@ public class SpannableStringMainActivity extends BaseActivity {
 
 
 
-    @Bind(R.id.public_text)
+    @BindView(R.id.public_text)
     TextView text;
-    @Bind(R.id.public_text_one)
+    @BindView(R.id.public_text_one)
     TextView one;
 
     @Override

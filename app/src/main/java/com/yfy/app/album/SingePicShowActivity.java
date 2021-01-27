@@ -1,7 +1,6 @@
 package com.yfy.app.album;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.yfy.base.R;
@@ -9,6 +8,8 @@ import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.view.image.PinchImageView;
+
+import androidx.appcompat.widget.Toolbar;
 
 public class SingePicShowActivity extends BaseActivity {
 

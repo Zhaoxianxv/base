@@ -27,7 +27,7 @@
                 android:paddingTop="@dimen/margin_10dp"
                 android:paddingBottom="@dimen/margin_10dp"
                 android:background="@color/OldLace">
-                <android.support.v7.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/duty_evaluate_stu_head"
                     android:layout_width="@dimen/margin_70dp"
                     android:layout_height="@dimen/margin_70dp"
@@ -57,7 +57,7 @@
                             android:textColor="@color/app_base_color"
                             android:textSize="@dimen/textsize10"
                             />
-                        <android.support.v7.widget.AppCompatImageView
+                        <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/duty_evaluate_stu_elegant_coin_icon"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
@@ -82,7 +82,7 @@
                             android:textColor="@color/red"
                             android:textSize="@dimen/textsize7"
                             />
-                        <android.support.v7.widget.GridLayout
+                        <androidx.gridlayout.widget.GridLayout
                             android:layout_toRightOf="@id/duty_evaluate_elegant_stu_title"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -92,7 +92,7 @@
                             android:layout_margin="@dimen/margin_1dp"
                             app:orientation="horizontal"
                             app:useDefaultMargins="false">
-                            <android.support.v7.widget.AppCompatImageView
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/duty_evaluate_elegant_stu_badge_one"
                                 android:layout_width="24dp"
                                 android:layout_height="30dp"
@@ -100,7 +100,7 @@
                                 app:layout_column="0"
                                 android:src="@drawable/elegant_stu_badge"
                                 />
-                            <android.support.v7.widget.AppCompatImageView
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/duty_evaluate_elegant_stu_badge_two"
                                 android:layout_width="24dp"
                                 android:layout_height="30dp"
@@ -108,7 +108,7 @@
                                 app:layout_column="1"
                                 android:src="@drawable/elegant_stu_badge"
                                 />
-                            <android.support.v7.widget.AppCompatImageView
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/duty_evaluate_elegant_stu_badge_three"
                                 android:layout_width="24dp"
                                 android:layout_height="30dp"
@@ -117,7 +117,7 @@
                                 android:tint="@color/gray"
                                 android:src="@drawable/elegant_stu_badge"
                                 />
-                            <android.support.v7.widget.AppCompatImageView
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/duty_evaluate_elegant_stu_badge_four"
                                 android:layout_width="24dp"
                                 android:layout_height="30dp"
@@ -126,7 +126,7 @@
                                 android:src="@drawable/elegant_stu_badge"
                                 android:tint="@color/gray"
                                 />
-                            <android.support.v7.widget.AppCompatImageView
+                            <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/duty_evaluate_elegant_stu_badge_five"
                                 android:layout_width="24dp"
                                 android:layout_height="30dp"
@@ -135,7 +135,7 @@
                                 android:src="@drawable/elegant_stu_badge"
                                 android:tint="@color/gray"
                                 />
-                        </android.support.v7.widget.GridLayout>
+                        </androidx.gridlayout.widget.GridLayout>
 
                     </RelativeLayout>
 
@@ -187,7 +187,7 @@
                         android:textColor="@color/app_base_color"
 
                         />
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/elegant_coin_selected"
@@ -198,7 +198,7 @@
                 </RelativeLayout>
 
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/duty_evaluate_stu_normal_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -209,7 +209,7 @@
                     android:scrollbars="none"
                     >
 
-                </android.support.v7.widget.RecyclerView>
+                </androidx.recyclerview.widget.RecyclerView>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -246,7 +246,7 @@
                             android:textColor="@color/app_base_color"
 
                             />
-                        <android.support.v7.widget.AppCompatImageView
+                        <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/elegant_coin_selected"
@@ -263,7 +263,7 @@
                         android:gravity="center_vertical"
                         android:layout_marginBottom="@dimen/margin_10dp"
                         >
-                        <android.support.v7.widget.RecyclerView
+                        <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/duty_evaluate_stu_develop_recycler"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -273,7 +273,7 @@
                             android:scrollbars="none"
                             >
 
-                        </android.support.v7.widget.RecyclerView>
+                        </androidx.recyclerview.widget.RecyclerView>
                     </RelativeLayout>
 
 

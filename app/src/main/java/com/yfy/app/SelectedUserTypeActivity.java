@@ -3,8 +3,8 @@ package com.yfy.app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;

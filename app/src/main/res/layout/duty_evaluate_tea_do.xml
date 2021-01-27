@@ -40,7 +40,7 @@
                     android:textStyle="bold"
                     android:textSize="@dimen/textsize7"
                     android:text="时间："/>
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/duty_evaluate_select_date_value"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -66,7 +66,7 @@
                     android:textStyle="bold"
                     android:textSize="@dimen/textsize7"
                     android:text="选择学生："/>
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/public_type_choice_value"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -116,14 +116,14 @@
                 android:layout_marginTop="@dimen/margin_10dp"
                 android:padding="5dp"
                 android:background="@drawable/layer_top_bottom_gray_line_white_bg">
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/duty_evaluate_stu_tab_data_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     >
 
-                </android.support.v7.widget.RecyclerView>
+                </androidx.recyclerview.widget.RecyclerView>
             </RelativeLayout>
 
 

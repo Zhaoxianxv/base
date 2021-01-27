@@ -2,8 +2,6 @@ package com.yfy.app.PEquality;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.widget.Toast;
 
@@ -45,7 +43,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
+import butterknife.BindView;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -55,12 +56,12 @@ public class PEHonorAddActivity extends BaseActivity {
 
 
 
-    @Bind(R.id.p_e_honor_add_choose_date)
+    @BindView(R.id.p_e_honor_add_choose_date)
     AppCompatTextView choose_date;
-    @Bind(R.id.p_e_honor_add_choose_course)
+    @BindView(R.id.p_e_honor_add_choose_course)
     AppCompatTextView choose_course;
 
-    @Bind(R.id.public_add_multi)
+    @BindView(R.id.public_add_multi)
     MultiPictureView add_multi;
 
     private DateBean dateBean;

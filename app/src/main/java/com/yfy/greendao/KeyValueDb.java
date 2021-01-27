@@ -7,7 +7,6 @@ import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 
-import androidx.annotation.Nullable;
 
 @Entity
 public class KeyValueDb {
@@ -24,6 +23,8 @@ public class KeyValueDb {
     private String type_parent_id="";//用于判断查询数据类型
     @NotNull
     private String type_user_id="";//用于判断查询数据类型
+    @NotNull
+    private String term="";
     //用于保存数据
     @NotNull
     private String key="";//描述值
@@ -31,6 +32,11 @@ public class KeyValueDb {
     private String value="";//值
     @NotNull
     private String name="";//值名
+    @NotNull
+    private String title="";
+    @NotNull
+    private String rank="";
+
     @NotNull
     private String image="";//图片
     @NotNull
@@ -53,23 +59,26 @@ public class KeyValueDb {
     private int view_type=TagFinal.TYPE_ITEM;
     @Id
     private Long id;
-    @Generated(hash = 1331742474)
+    @Generated(hash = 740160533)
     public KeyValueDb(@NotNull String model_type, @NotNull String type,
             @NotNull String type_id, @NotNull String type_parent_id,
-            @NotNull String type_user_id, @NotNull String key,
-            @NotNull String value, @NotNull String name, @NotNull String image,
-            @NotNull String time, @NotNull String file_path,
-            @NotNull String parent_id, @NotNull String child_id,
-            @NotNull String key_value_id, int num, float time_duration,
-            boolean required, int view_type, Long id) {
+            @NotNull String type_user_id, @NotNull String term, @NotNull String key,
+            @NotNull String value, @NotNull String name, @NotNull String title,
+            @NotNull String rank, @NotNull String image, @NotNull String time,
+            @NotNull String file_path, @NotNull String parent_id,
+            @NotNull String child_id, @NotNull String key_value_id, int num,
+            float time_duration, boolean required, int view_type, Long id) {
         this.model_type = model_type;
         this.type = type;
         this.type_id = type_id;
         this.type_parent_id = type_parent_id;
         this.type_user_id = type_user_id;
+        this.term = term;
         this.key = key;
         this.value = value;
         this.name = name;
+        this.title = title;
+        this.rank = rank;
         this.image = image;
         this.time = time;
         this.file_path = file_path;
@@ -198,6 +207,24 @@ public class KeyValueDb {
     }
     public void setType_parent_id(String type_parent_id) {
         this.type_parent_id = type_parent_id;
+    }
+    public String getTerm() {
+        return this.term;
+    }
+    public void setTerm(String term) {
+        this.term = term;
+    }
+    public String getTitle() {
+        return this.title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getRank() {
+        return this.rank;
+    }
+    public void setRank(String rank) {
+        this.rank = rank;
     }
 
 

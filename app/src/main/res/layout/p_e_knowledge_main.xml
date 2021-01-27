@@ -11,7 +11,7 @@
         android:background="@color/WhiteSmoke"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.GridLayout
+        <androidx.gridlayout.widget.GridLayout
 
 
             android:id="@+id/grid_layout"
@@ -25,7 +25,7 @@
             app:rowCount="2"
             app:useDefaultMargins="false">
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/p_e_knowledge_library"
                 app:layout_columnSpan="2"
                 app:layout_columnWeight="1"
@@ -37,7 +37,7 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/margin_90dp">
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/p_e_knowledge_icon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -45,7 +45,7 @@
                         android:layout_centerHorizontal="true"
                         android:tint="@color/main_red"
                         android:layout_marginTop="@dimen/margin_5dp"/>
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/p_e_knowledge_name"
                         android:layout_width="wrap_content"
                         android:layout_below="@id/p_e_knowledge_icon"
@@ -60,8 +60,8 @@
                         android:padding="@dimen/margin_3dp"/>
                 </RelativeLayout>
 
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
                 android:id="@+id/p_e_knowledge_answer_end"
                 app:layout_columnSpan="2"
                 app:layout_columnWeight="1"
@@ -73,7 +73,7 @@
                     android:layout_margin="@dimen/margin_5dp"
                     android:layout_width="match_parent">
 
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/knowledge_end_icon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -83,7 +83,7 @@
 
                         android:src="@mipmap/goods_seven" />
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/knowledge_end_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -97,8 +97,8 @@
 
                 </RelativeLayout>
 
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
                 android:id="@+id/p_e_knowledge_answer_start"
                 app:layout_columnWeight="1"
                 app:layout_columnSpan="2"
@@ -109,7 +109,7 @@
                     android:layout_margin="@dimen/margin_5dp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/margin_90dp">
-                    <android.support.v7.widget.AppCompatImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/knowledge_start_icon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -118,7 +118,7 @@
                         android:tint="@color/main_red"
                         android:layout_marginTop="@dimen/margin_5dp"/>
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/p_e_knowledge_answer_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -133,8 +133,8 @@
 
                 </RelativeLayout>
 
-            </android.support.v7.widget.CardView>
-        </android.support.v7.widget.GridLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.gridlayout.widget.GridLayout>
 
     </RelativeLayout>
 </RelativeLayout>

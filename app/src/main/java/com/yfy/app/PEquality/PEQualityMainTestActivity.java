@@ -5,11 +5,12 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -59,7 +60,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -68,24 +69,24 @@ public class PEQualityMainTestActivity extends BaseActivity {
     private static final String TAG = PEQualityMainTestActivity.class.getSimpleName();
 
 
-    @Bind(R.id.p_e_main_user_head)
+    @BindView(R.id.p_e_main_user_head)
     AppCompatImageView user_head;
-    @Bind(R.id.p_e_main_user_name)
+    @BindView(R.id.p_e_main_user_name)
     AppCompatTextView user_name;
-    @Bind(R.id.p_e_main_user_class)
+    @BindView(R.id.p_e_main_user_class)
     AppCompatTextView user_class;
-    @Bind(R.id.p_e_main_user_height)
+    @BindView(R.id.p_e_main_user_height)
     AppCompatTextView user_height;
-    @Bind(R.id.p_e_main_user_weight)
+    @BindView(R.id.p_e_main_user_weight)
     AppCompatTextView user_weight;
-    @Bind(R.id.p_e_user_grade_title)
+    @BindView(R.id.p_e_user_grade_title)
     AppCompatTextView grade_title;
-    @Bind(R.id.p_e_user_grade_sub)
+    @BindView(R.id.p_e_user_grade_sub)
     AppCompatTextView grade_sub;
-    @Bind(R.id.p_e_main_recipe)
+    @BindView(R.id.p_e_main_recipe)
     AppCompatTextView recipe_title;
 
-    @Bind(R.id.p_e_main_chart_reason)
+    @BindView(R.id.p_e_main_chart_reason)
     AppCompatTextView chart_sup_reason;
 //    @Bind(R.id.p_e_main_recipe_flow_layout)
 //    FlowLayout recipe_flowlayout;

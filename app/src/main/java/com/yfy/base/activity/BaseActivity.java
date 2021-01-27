@@ -5,9 +5,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
@@ -29,7 +26,10 @@ import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.view.SQToolBar;
 
-import butterknife.Bind;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,8 +50,7 @@ import rx.subscriptions.CompositeSubscription;
  * <p/>
  * 4、还封装了onPageBack()
  * <p/>
- * 5、封装了toast()方法
- * 注：依赖： compile 'com.jakewharton:butterknife:7.0.1'
+
  */
 public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> {
 
@@ -65,7 +64,7 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
 
 
     @Nullable
-    @Bind(R.id.sq_toolbar)
+    @BindView(R.id.sq_toolbar)
     public SQToolBar toolbar;
 
     /**
@@ -142,7 +141,7 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ButterKnife.unbind(this);
+
         compositeSubscription.unsubscribe();
     }
 

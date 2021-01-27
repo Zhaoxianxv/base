@@ -2,8 +2,8 @@ package com.yfy.app.PEquality.tea;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.yfy.app.PEquality.adapter.PETeaMainAdapter;
 import com.yfy.app.bean.BaseRes;

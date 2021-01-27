@@ -14,10 +14,6 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.VectorDrawable;
 import android.os.Build;
 import android.os.CountDownTimer;
-import android.support.annotation.ColorRes;
-import android.support.annotation.RequiresApi;
-import android.support.annotation.StringRes;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.Selection;
 import android.util.TypedValue;
@@ -26,6 +22,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.RequiresApi;
+import androidx.annotation.StringRes;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class ViewTool {
@@ -156,7 +157,7 @@ public class ViewTool {
     /**
      * 設置SwipeRefreshLayout颜色
      */
-    public static void setSwipeRefreshLayoutColor(SwipeRefreshLayout swipeRefreshLayout,@ColorRes int... colorResIds) {
+    public static void setSwipeRefreshLayoutColor(SwipeRefreshLayout swipeRefreshLayout, @ColorRes int... colorResIds) {
         swipeRefreshLayout.setColorSchemeResources(colorResIds);
     }
 

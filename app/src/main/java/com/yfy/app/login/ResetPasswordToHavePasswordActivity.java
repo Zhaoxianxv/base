@@ -24,7 +24,7 @@ import com.yfy.final_tag.rsa.AES;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,9 +32,9 @@ import retrofit2.Response;
 
 public class ResetPasswordToHavePasswordActivity extends BaseActivity implements Callback<ResEnv> {
     private static final String TAG = ResetPasswordToHavePasswordActivity.class.getSimpleName();
-    @Bind(R.id.reset_edit_new_password)
+    @BindView(R.id.reset_edit_new_password)
     EditText edit_new_pass;
-    @Bind(R.id.reset_alter_edit_new_password)
+    @BindView(R.id.reset_alter_edit_new_password)
     EditText alter_edit_pass;
 
 

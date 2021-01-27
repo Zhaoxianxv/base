@@ -9,7 +9,7 @@
     tools:context="com.yfy.app.duty_evaluate.DutyEvaluatePracticeActivity">
 
 	
-	<android.support.v7.widget.AppCompatImageView
+	<androidx.appcompat.widget.AppCompatImageView
 		android:id="@+id/practice_score_id_icon"
 		android:layout_width="140dp"
 		android:layout_height="@dimen/margin_100dp"

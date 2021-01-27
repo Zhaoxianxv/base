@@ -1,6 +1,6 @@
 package com.yfy.app.welcome;
 
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by Aj Liao on 2016/2/17.

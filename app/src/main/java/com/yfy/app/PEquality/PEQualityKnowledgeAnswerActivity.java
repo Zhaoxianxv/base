@@ -1,7 +1,6 @@
 package com.yfy.app.PEquality;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.yfy.app.PEquality.adapter.KnowledgeLibraryPagerAdapter;
@@ -30,7 +29,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import butterknife.Bind;
+import androidx.viewpager.widget.ViewPager;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -97,7 +97,7 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         confirmContentWindow.showAtCenter();
     }
 
-    @Bind(R.id.knowledge_answer_pager)
+    @BindView(R.id.knowledge_answer_pager)
     ViewPager pager;
     public LinkedList<KeyValue> data_list = new LinkedList<>();
     public KnowledgeLibraryPagerAdapter pager_adapter;

@@ -13,24 +13,24 @@ import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class VersionDetailActivity extends BaseActivity {
 
 
-    @Bind(R.id.version)
+    @BindView(R.id.version)
     TextView version;
 
-    @Bind(R.id.version_school_weight)
+    @BindView(R.id.version_school_weight)
     TextView version_weiht;
-    @Bind(R.id.version_school_name)
+    @BindView(R.id.version_school_name)
     TextView version_name;
-    @Bind(R.id.version_school_site)
+    @BindView(R.id.version_school_site)
     TextView version_site;
-    @Bind(R.id.version_school_tell)
+    @BindView(R.id.version_school_tell)
     TextView version_tell;
-    @Bind(R.id.version_admin)
+    @BindView(R.id.version_admin)
     TextView version_admin;
 
     @Override

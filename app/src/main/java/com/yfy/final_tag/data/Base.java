@@ -10,10 +10,11 @@ public class Base {
     public static String DB_NAME="yfydbone";
 
 
+    // http post:https://new.cdeps.sc.cn/yfyoa/apitest
     public static final String AUTHORITY = "com.yfy.base.fileProvider";//android 7.0文件访问权限Tag（要和Provider一直）
 
 
-    public static final String RETROFIT_URI = "http://testeps.yfyit.com/";
+    public static final String RETROFIT_URI = "https://new.cdeps.sc.cn/";
     public static final String SOAP_ACTION = "SOAPAction: http://tempuri.org/AppService/";//
     public static final String POST_URI = "/AppService.svc";//
 

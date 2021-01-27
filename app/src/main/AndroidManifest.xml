@@ -30,7 +30,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileProvider"
             android:grantUriPermissions="true">
             <meta-data
@@ -174,11 +174,11 @@
             android:theme="@style/AppThemeInitial"
             tools:ignore="InnerclassSeparator" />
         <!-- g rpc -->
-        <activity
-            android:name="com.yfy.app.gRPC.GRpcMainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            tools:ignore="InnerclassSeparator" />
+<!--        <activity-->
+<!--            android:name="com.yfy.app.gRPC.GRpcMainActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/AppTheme"-->
+<!--            tools:ignore="InnerclassSeparator" />-->
         <activity
             android:name="com.yfy.app.httppost.HttpPostMainActivity"
             android:screenOrientation="portrait"
@@ -195,6 +195,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />
+        
         <activity
             android:name="com.yfy.app.PEquality.PEQualityMainTestActivity"
             android:screenOrientation="portrait"

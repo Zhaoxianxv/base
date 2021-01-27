@@ -8,7 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_5dp"
@@ -59,7 +59,7 @@
                     style="@style/Base.Widget.AppCompat.RatingBar.Small" />
             </LinearLayout>
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/public_type_flow_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                 android:visibility="gone"
                 android:textSize="@dimen/textsize9"
                 tools:ignore="RelativeOverlap" />
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/public_type_flow_arrow"
                 app:srcCompat="@drawable/ic_arrow_right_gray_24dp"
                 android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                 android:layout_above="@id/public_type_flow_flow"
                 />
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 

@@ -14,7 +14,6 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.yfy.base.R;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.viewtools.ViewUtils;

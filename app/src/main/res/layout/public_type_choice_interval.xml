@@ -20,7 +20,7 @@
             android:textStyle="bold"
             android:textSize="@dimen/textsize7"
             android:text="印章类型："/>
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/public_type_choice_value"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

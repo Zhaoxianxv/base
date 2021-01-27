@@ -1,10 +1,11 @@
 package com.yfy.app.PEquality;
 
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import com.yfy.app.PEquality.adapter.PEAttendListAdapter;
@@ -32,7 +33,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -42,15 +43,15 @@ public class PEAttitudeStuActivity extends BaseActivity {
 
     public PEAttitudeStuMainAdapter adapter_attitude;
     public PEAttendListAdapter adapter_attend;
-    @Bind(R.id.attend_txt)
+    @BindView(R.id.attend_txt)
     AppCompatTextView attend_txt;
-    @Bind(R.id.attend_card)
+    @BindView(R.id.attend_card)
     CardView attend_card;
-    @Bind(R.id.attitude_txt)
+    @BindView(R.id.attitude_txt)
     AppCompatTextView attitude_txt;
-    @Bind(R.id.attitude_card)
+    @BindView(R.id.attitude_card)
     CardView attitude_card;
-    @Bind(R.id.attitude_add_card)
+    @BindView(R.id.attitude_add_card)
     CardView attitude_add_card;
 
     @Override

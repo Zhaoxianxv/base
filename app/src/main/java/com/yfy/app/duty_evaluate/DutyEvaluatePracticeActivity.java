@@ -2,9 +2,6 @@ package com.yfy.app.duty_evaluate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,14 +20,17 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.view.SQToolBar;
 
-import butterknife.Bind;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class DutyEvaluatePracticeActivity extends BaseActivity {
     private static final String TAG = DutyEvaluatePracticeActivity.class.getSimpleName();
 
 
-    @Bind(R.id.public_recycler_del)
+    @BindView(R.id.public_recycler_del)
     Button bottom_bt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

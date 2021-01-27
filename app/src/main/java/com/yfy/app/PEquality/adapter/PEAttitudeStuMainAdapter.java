@@ -2,7 +2,6 @@ package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -19,8 +18,10 @@ import com.yfy.final_tag.stringtool.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.cardview.widget.CardView;
+
 /**
- * Created by yfyandr on 2017/12/27.
+ * Created by yfy on 2017/12/27.
  */
 
 public class PEAttitudeStuMainAdapter extends BaseRecyclerAdapter {

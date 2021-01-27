@@ -2,14 +2,13 @@ package com.yfy.app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.chart.BarChartActivity;
 import com.yfy.app.drawableBg.DrawableBgActivity;
-import com.yfy.app.gRPC.GRpcMainActivity;
 import com.yfy.app.httppost.HttpPostMainActivity;
 import com.yfy.app.httppost.retrofitclient.RetrofitMainActivity;
 import com.yfy.app.net.ResBody;
@@ -94,9 +93,9 @@ public class SelectedModeTypeActivity extends BaseActivity {
                     case "Voice":
                         startActivity(new Intent(mActivity,VoiceMainActivity.class));
                         break;
-                    case "GRpcMainActivity":
-                        startActivity(new Intent(mActivity,GRpcMainActivity.class));
-                        break;
+//                    case "GRpcMainActivity":
+//                        startActivity(new Intent(mActivity,GRpcMainActivity.class));
+//                        break;
                     case "HttpPostMainActivity":
                         startActivity(new Intent(mActivity,HttpPostMainActivity.class));
                         break;

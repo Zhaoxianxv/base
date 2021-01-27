@@ -4,15 +4,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/knowledge_library_pager"
         android:layout_marginTop="@dimen/margin_45dp"
         android:layout_width="match_parent"
         android:visibility="gone"
         android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
-    <android.support.v7.widget.AppCompatTextView
+    </androidx.recyclerview.widget.RecyclerView>
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/public_detail_bg_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -47,7 +47,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -65,13 +65,13 @@ LoginActivity extends BaseActivity {
 
 
 
-	@Bind(R.id.login_phone)
+	@BindView(R.id.login_phone)
 	EditText account;
-	@Bind(R.id.login_password)
+	@BindView(R.id.login_password)
 	EditText password;
-	@Bind(R.id.login_code)
+	@BindView(R.id.login_code)
 	EditText code;
-	@Bind(R.id.login_code_image)
+	@BindView(R.id.login_code_image)
 	ImageView code_icon;
 	private String edit_name = "";
 	private String edit_password = "";
@@ -432,9 +432,9 @@ LoginActivity extends BaseActivity {
 
 
 	//password edit keyboard
-	@Bind(R.id.all_ed)
+	@BindView(R.id.all_ed)
 	LinearLayout rootView;
-	@Bind(R.id.sv_main)
+	@BindView(R.id.sv_main)
 	ScrollView scrollView;
 	private KeyboardUtil keyboardUtil;
 	@Override

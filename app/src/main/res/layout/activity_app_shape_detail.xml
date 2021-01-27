@@ -8,7 +8,7 @@
     <com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
 
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/app_shape_icon"
         android:layout_width="@dimen/margin_150dp"
         android:layout_height="@dimen/margin_150dp"

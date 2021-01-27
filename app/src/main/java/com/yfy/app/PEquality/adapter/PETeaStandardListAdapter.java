@@ -1,7 +1,6 @@
 package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
-import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,8 +15,10 @@ import com.yfy.final_tag.stringtool.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.widget.AppCompatTextView;
+
 /**
- * Created by yfyandr on 2017/12/27.
+ * Created by yfy on 2017/12/27.
  */
 
 public class PETeaStandardListAdapter extends BaseRecyclerAdapter {

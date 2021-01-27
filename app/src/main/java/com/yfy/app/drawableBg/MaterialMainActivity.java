@@ -1,13 +1,14 @@
 package com.yfy.app.drawableBg;
 
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 
 public class MaterialMainActivity extends BaseActivity {
@@ -40,7 +41,7 @@ public class MaterialMainActivity extends BaseActivity {
         toggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDrawerLayout.openDrawer(Gravity.START);
+                mDrawerLayout.openDrawer(0);
             }
         });
     }

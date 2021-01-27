@@ -9,14 +9,14 @@ import android.widget.ToggleButton;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 public class ButtomActivity extends BaseActivity {
 
 
-    @Bind(R.id.buttom_toggebuttom)
+    @BindView(R.id.buttom_toggebuttom)
     ToggleButton toggle;
-    @Bind(R.id.buttom_toggebuttom_text)
+    @BindView(R.id.buttom_toggebuttom_text)
     TextView toggle_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

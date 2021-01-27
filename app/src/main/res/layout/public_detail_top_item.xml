@@ -19,7 +19,7 @@
             android:layout_marginLeft="@dimen/margin_10dp"
             android:textSize="@dimen/textsize7"
             android:text="用章时间："/>
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/seal_detail_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

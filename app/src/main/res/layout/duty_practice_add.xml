@@ -9,11 +9,126 @@
 	tools:context="com.yfy.app.duty_evaluate.PracticeAddActivity">
 
 	<com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="45dp"
+		android:layout_marginTop="10dp"
+		android:paddingBottom="@dimen/margin_1dp"
+		android:paddingTop="@dimen/margin_1dp"
+		android:background="@drawable/layer_top_bottom_gray_line_white_bg">
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:text="获奖日期"
+			android:layout_centerVertical="true"
+			android:paddingLeft="10dp"
+			android:paddingRight="10dp"
+			android:textColor="@color/base_color" />
+		
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/p_e_honor_add_choose_date"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:text=""
+			android:gravity="right|center_vertical"
+			android:textColor="@android:color/black"
+			android:drawablePadding="@dimen/margin_10dp"
+			android:paddingRight="@dimen/margin_10dp"
+			android:drawableRight="@drawable/ic_arrow_right_gray_24dp"
+			/>
 	
-	<android.support.v7.widget.AppCompatImageView
-		android:layout_width="280dp"
-		android:layout_height="@dimen/margin_200dp"
-		android:background="@drawable/radius5_solid_goldenrod"
-		android:layout_marginTop="@dimen/margin_40dp"
-		android:layout_gravity="center_horizontal"/>
+	</RelativeLayout>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="45dp"
+		android:layout_marginTop="10dp"
+		android:paddingBottom="@dimen/margin_1dp"
+		android:paddingTop="@dimen/margin_1dp"
+		android:background="@drawable/layer_top_bottom_gray_line_white_bg">
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:text="获奖级别"
+			android:layout_centerVertical="true"
+			android:paddingLeft="10dp"
+			android:paddingRight="10dp"
+			android:textColor="@color/base_color" />
+		
+		<androidx.appcompat.widget.AppCompatTextView
+			android:id="@+id/p_e_honor_add_choose_course"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:text=""
+			android:gravity="right|center_vertical"
+			android:textColor="@android:color/black"
+			android:drawablePadding="@dimen/margin_10dp"
+			android:paddingRight="@dimen/margin_10dp"
+			android:drawableRight="@drawable/ic_arrow_right_gray_24dp"
+			/>
+	</RelativeLayout>
+	
+	<RelativeLayout
+		android:background="@drawable/layer_top_bottom_gray_line_white_bg"
+		android:layout_marginTop="@dimen/margin_10dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<TextView
+			android:id="@+id/public_type_txt_edit_key"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="@dimen/margin_10dp"
+			android:textSize="@dimen/textsize7"
+			android:text="获奖项目"
+			android:textStyle="bold"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="@dimen/margin_10dp"/>
+		
+		<EditText
+			android:id="@+id/public_type_txt_edit_value"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:minHeight="@dimen/margin_45dp"
+			android:background="@color/white"
+			android:hint="请填写获奖项目"
+			android:gravity="center_vertical|right"
+			android:paddingRight="@dimen/margin_10dp"
+			android:textSize="@dimen/textsize7"
+			android:layout_toRightOf="@id/public_type_txt_edit_key"
+			android:imeOptions="actionDone"
+			/>
+	</RelativeLayout>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/layer_top_bottom_gray_line_white_bg"
+		android:layout_marginTop="@dimen/margin_10dp">
+		
+		<TextView
+			android:id="@+id/public_add_multi_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="@dimen/margin_10dp"
+			android:layout_marginTop="@dimen/margin_3dp"
+			android:textSize="@dimen/textsize7"
+			android:textStyle="bold"
+			android:text="获奖证书"/>
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/practice_add_icon"
+			android:layout_width="280dp"
+			android:layout_height="@dimen/margin_200dp"
+			android:background="@drawable/radius5_solid_goldenrod"
+			android:layout_marginTop="@dimen/margin_40dp"
+			android:layout_gravity="center_horizontal"
+			android:layout_centerHorizontal="true"
+			android:layout_marginBottom="@dimen/margin_10dp"/>
+	
+	
+	</RelativeLayout>
+	
+
 </LinearLayout>

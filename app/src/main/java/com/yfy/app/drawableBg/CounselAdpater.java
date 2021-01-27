@@ -2,7 +2,6 @@ package com.yfy.app.drawableBg;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +26,8 @@ import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Date: 2016-05-03
