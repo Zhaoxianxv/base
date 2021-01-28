@@ -59,9 +59,9 @@
             android:exported="false" />
         <!-- app -->
 
-        <!--<activity-->
-            <!--android:name="com.yfy.camera.CameraActivity"-->
-            <!--android:configChanges="orientation|keyboardHidden" />-->
+        <activity
+            android:name="com.yfy.camera.CameraActivity"
+            android:configChanges="orientation|keyboardHidden" />
         <activity
             android:name="com.yfy.app.WebActivity"
             android:exported="false"

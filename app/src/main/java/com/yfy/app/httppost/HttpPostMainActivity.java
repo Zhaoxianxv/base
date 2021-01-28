@@ -1,14 +1,18 @@
 package com.yfy.app.httppost;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.yfy.app.album.AlbumOneActivity;
+import com.yfy.app.netHttp.ApiUrl;
+import com.yfy.app.netHttp.HttpNetHelpInterface;
+import com.yfy.app.netHttp.HttpPostActivity;
 import com.yfy.app.netHttp.RestClient;
+import com.yfy.app.netHttp.RestHelper;
 import com.yfy.base.R;
-import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.Base64Utils;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.ConfirmAlbumWindow;
@@ -20,6 +24,7 @@ import com.yfy.final_tag.permission.PermissionSuccess;
 import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -35,14 +40,18 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import rx.Observable;
+import rx.functions.Action1;
 
-public class HttpPostMainActivity extends BaseActivity {
+
+@SuppressLint("NonConstantResourceId")
+public class HttpPostMainActivity extends HttpPostActivity implements HttpNetHelpInterface {
+    private static final String TAG = HttpPostMainActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.http_main);
+        Logger.e(TAG);
         initAlbumDialog();
     }
 
@@ -56,7 +65,7 @@ public class HttpPostMainActivity extends BaseActivity {
 
     @OnClick(R.id.retrofit_param)
     void setParam(View view){
-        retrofitPostParam();
+        retrofitPostParamToString();
     }
 
 
@@ -90,17 +99,17 @@ public class HttpPostMainActivity extends BaseActivity {
                 requestFile);
 
         // 执行请求
-        RestClient.instance.getAccountApi().getGetNameApi(body).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
+//        RestClient.instance.getAccountApi().getGetNameApi(body).enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//        });
     }
 
 
@@ -127,48 +136,73 @@ public class HttpPostMainActivity extends BaseActivity {
 //        RequestBody description = RequestBody.create(MediaType.parse("multipart/form-data"), descriptionString);
 
         // 执行请求
-        RestClient.instance.getAccountApi().getGetNameImage(requestFile).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
+//        RestClient.instance.getAccountApi().getGetNameImage(requestFile).enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//        });
     }
 
 
 
 
-    public void retrofitPostParam() {
-        Call<ResponseBody> bodyCall = RestClient.instance.getAccountApi().getCodeApi("1","11");
-        bodyCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                try {
-//                    assert response.body()!=null;
-//                    String string = response.body().string();
-//                    Logger.e(string);
-//                    Toast.makeText(mActivity, string, Toast.LENGTH_SHORT).show();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
 
-            }
+    public void retrofitPostParamToString() {
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                Logger.e("onFailure  :"+call.request().headers().toString());
-            }
-        });
-
-
+        Call<ResponseBody> bodyCall = RestClient.instance.getAccountApi().school_get_news_menu_api_string("02","13");
+        setNetHelper(this,bodyCall,true);
 
     }
 
+
+    @Override
+    public void success(String api_name, String result) {
+        ViewTool.dismissProgressDialog();
+        switch (api_name){
+            case ApiUrl.SCHOOL_GET_NEWS_MENU:
+
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
+    @Override
+    public void fail(String api_name) {
+
+    }
+
+
+
+
+
+    public void retrofitPostParamToObservable() {
+        ViewTool.showProgressDialog(mActivity,"");
+        Observable<String> bodyCall = RestClient.instance.getAccountApi().school_get_news_menu_api("02","13");
+        RestHelper.subscribeResult(mActivity, bodyCall, new Action1<String>() {
+            @Override
+            public void call(String code) {
+                ViewTool.dismissProgressDialog();
+                Logger.e(code);
+
+            }
+        }, networkThrowable);
+    }
+
+    Action1<Throwable> networkThrowable = new Action1<Throwable>() {
+        @Override
+        public void call(Throwable throwable) {
+            ViewTool.dismissProgressDialog();
+        }
+    };
 
 
 
@@ -266,7 +300,6 @@ public class HttpPostMainActivity extends BaseActivity {
         Logger.e("Content-Disposition"+httpConn.getRequestProperty("Content-Disposition"));
         System.out.print("Content-Disposition"+httpConn.getRequestProperty("Content-Disposition"));
     }
-
 
 
 

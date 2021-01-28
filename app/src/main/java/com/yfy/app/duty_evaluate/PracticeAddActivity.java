@@ -1,18 +1,30 @@
 package com.yfy.app.duty_evaluate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.yfy.app.album.AlbumOneActivity;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.TermBean;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
+import com.yfy.camera.CameraActivity;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWListBeanView;
+import com.yfy.final_tag.dialog.ConfirmAlbumWindow;
 import com.yfy.final_tag.dialog.ConfirmDateWindow;
+import com.yfy.final_tag.glide.FileCamera;
+import com.yfy.final_tag.glide.GlideTools;
+import com.yfy.final_tag.glide.Photo;
+import com.yfy.final_tag.permission.PermissionFail;
+import com.yfy.final_tag.permission.PermissionGen;
+import com.yfy.final_tag.permission.PermissionSuccess;
+import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.viewtools.ViewTool;
@@ -23,6 +35,7 @@ import com.yfy.view.SQToolBar;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import butterknife.BindView;
@@ -54,6 +67,7 @@ public class PracticeAddActivity extends BaseActivity {
 
         initDateDialog();
         initDialogList();
+        initAlbumDialog();
     }
 
 
@@ -132,12 +146,21 @@ public class PracticeAddActivity extends BaseActivity {
 
     @OnClick(R.id.p_e_honor_add_choose_course)
     void setCourse(){
+        closeKeyWord();
         setCPWlListBeanData();
         cpwListBeanView.showAtCenter();
     }
     @OnClick(R.id.p_e_honor_add_choose_date)
     void setDate(){
+        closeKeyWord();
         date_dialog.showAtBottom();
+
+    }
+
+    @OnClick(R.id.practice_add_icon)
+    void setAddPic(){
+        closeKeyWord();
+        album_select.showAtBottom();
 
     }
 
@@ -178,4 +201,84 @@ public class PracticeAddActivity extends BaseActivity {
         NormalDataSaveTools.getInstance().saveHonor(keyValue);
     }
 
+
+
+
+
+
+
+
+
+    ConfirmAlbumWindow album_select;
+    private void initAlbumDialog() {
+        album_select = new ConfirmAlbumWindow(mActivity);
+        album_select.setTwo_select(mActivity.getResources().getString(R.string.album));
+        album_select.setOne_select(mActivity.getResources().getString(R.string.take_photo));
+        album_select.setName(mActivity.getResources().getString(R.string.upload_type));
+        album_select.setOnPopClickListenner(new ConfirmAlbumWindow.OnPopClickListenner() {
+            @Override
+            public void onClick(View view) {
+
+                switch (view.getId()) {
+                    case R.id.popu_select_one:
+                        PermissionTools.tryCameraPerm(mActivity);
+                        break;
+                    case R.id.popu_select_two:
+                        PermissionTools.tryWRPerm(mActivity);
+                        break;
+                }
+            }
+        });
+    }
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case TagFinal.CAMERA:
+                    String img=data.getStringExtra(CameraActivity.KEY_IMAGE_PATH);
+                    GlideTools.chanMult(mActivity,img,honnor_icon_iv,R.drawable.album_default_loading_pic);
+                    break;
+                case TagFinal.PHOTO_ALBUM:
+                    ArrayList<Photo> photo_a=data.getParcelableArrayListExtra(TagFinal.ALBUM_TAG);
+                    if (photo_a==null)return;
+                    if (photo_a.size()==0)return;
+
+
+            }
+        }
+    }
+
+
+
+
+    @PermissionSuccess(requestCode = TagFinal.CAMERA)
+    private void takePhoto() {
+        CameraActivity.startMe(mActivity,TagFinal.CAMERA, CameraActivity.MongolianLayerType.BANK_CARD);
+    }
+    @PermissionSuccess(requestCode = TagFinal.PHOTO_ALBUM)
+    private void photoAlbum() {
+        Intent intent;
+        intent = new Intent(mActivity, AlbumOneActivity.class);
+        Bundle b = new Bundle();
+        b.putInt(TagFinal.ALBUM_LIST_INDEX, 0);
+        b.putBoolean(TagFinal.ALBUM_SINGLE, false);
+        intent.putExtras(b);
+        startActivityForResult(intent,TagFinal.PHOTO_ALBUM);
+    }
+    @PermissionFail(requestCode = TagFinal.CAMERA)
+    private void showCamere() {
+        Toast.makeText(getApplicationContext(), R.string.permission_fail_camera, Toast.LENGTH_SHORT).show();
+    }
+    @PermissionFail(requestCode = TagFinal.PHOTO_ALBUM)
+    private void showTip1() {
+        Toast.makeText(getApplicationContext(), R.string.permission_fail_album, Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+    }
 }

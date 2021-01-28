@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.yfy.app.PEquality.PEQualityMainTestActivity;
 import com.yfy.app.PEquality.tea.PETeaMainActivity;
+import com.yfy.app.SelectedModeTypeActivity;
 import com.yfy.app.SelectedUserTypeActivity;
 import com.yfy.app.login.LoginActivity;
 import com.yfy.app.welcome.adapter.GuidePagerAdapter;
@@ -109,21 +110,14 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void run() {
                 //初始化登录信息
-                startActivity(new Intent(WelcomeActivity.this,SelectedUserTypeActivity.class));
-//                startActivity(new Intent(WelcomeActivity.this,SelectedModeTypeActivity.class));
+//                startActivity(new Intent(WelcomeActivity.this,SelectedUserTypeActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, SelectedModeTypeActivity.class));
                 finish();
 
 
 
 
 
-
-//                if (Base.user==null){
-//                    Intent intent=new Intent(WelcomeActivity.this,LoginActivity.class);
-//                    startActivityForResult(intent,TagFinal.UI_ADD);
-//                }else{
-//                    album_select.showAtCenter();
-//                }
             }
 
         }, 1000);

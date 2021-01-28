@@ -1,5 +1,7 @@
 package com.yfy.app.netHttp;
 
+import com.yfy.final_tag.stringtool.StringUtils;
+
 /**
  * Created by AJ
  * <p/>
@@ -8,7 +10,9 @@ package com.yfy.app.netHttp;
 public class ApiUrl {
 
 
-    public final static String SERVER_ROOT = "http://api.yfyit.com/";
+    public final static String SERVER_ROOT = "http://new.cdeps.sc.cn/";
+
+    public final String normal = "AppService";
 
     /**
      * ===============================================
@@ -16,6 +20,11 @@ public class ApiUrl {
      * ===============================================
      */
     //
-    public final static String Get_Code = "system/classlist";
-    public final static String Get_Name= "system/getname";
+    public final static String Get_Name= "AppService/getname";
+    //--------------------------user--------------------------
+
+    public final static String USER_GET_TOKEN= "AppService/gettoken";
+    public final static String USER_LOGIN= "AppService/login";
+    //--------------------school news-------------------------
+    public final static String SCHOOL_GET_NEWS_MENU= "AppService/get_newslist_menu";
 }

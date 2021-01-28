@@ -1,5 +1,6 @@
 package com.yfy.camera;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,9 +23,9 @@ import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
-import com.yanzhenjie.permission.AndPermission;
-import com.yanzhenjie.permission.Permission;
 import com.yfy.base.R;
+import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 
 import java.io.File;
@@ -32,6 +33,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 /**
  * @author 郭翰林
@@ -145,23 +147,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
      * @param type
      */
     public static void startMe(final Activity activity,final int requestCode, final MongolianLayerType type) {
-        PermissionUtils.applicationPermissions(activity, new PermissionUtils.PermissionListener() {
-            @Override
-            public void onSuccess(Context context) {
-                Intent intent = new Intent(activity, CameraActivity.class);
-                intent.putExtra("MongolianLayerType", type);
-                activity.startActivityForResult(intent, requestCode);
-            }
-
-            @Override
-            public void onFailed(Context context) {
-                if (AndPermission.hasAlwaysDeniedPermission(context, Permission.Group.CAMERA)
-                        && AndPermission.hasAlwaysDeniedPermission(context, Permission.Group.STORAGE)) {
-                    AndPermission.with(context).runtime().setting().start();
-                }
-                Toast.makeText(context, context.getString(R.string.permission_camra_storage), Toast.LENGTH_SHORT);
-            }
-        }, Permission.Group.STORAGE, Permission.Group.CAMERA);
+        Intent intent = new Intent(activity, CameraActivity.class);
+        intent.putExtra("MongolianLayerType", type);
+        activity.startActivityForResult(intent, requestCode);
     }
 
 

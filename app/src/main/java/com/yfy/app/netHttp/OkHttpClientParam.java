@@ -25,6 +25,7 @@ public class OkHttpClientParam {
     }
 
     private static void create() {
+        //缓存
 //        int maxCacheSize = 10 * 1024 * 1024;
 //        Cache cache = new Cache(App.getApp().getCacheDir(), maxCacheSize);
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
@@ -34,7 +35,8 @@ public class OkHttpClientParam {
                 Logger.e(message);
             }
         });
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        // set your desired log level:BASIC,HEADERS,BODY.
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
 
         Interceptor cacheInterceptor = new Interceptor() {
             @Override

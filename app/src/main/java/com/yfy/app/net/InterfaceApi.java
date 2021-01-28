@@ -23,8 +23,7 @@ public interface InterfaceApi {
 
     @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.BASE_GET_TOKEN})
     @POST(Base.POST_URI)
-    Call<ResEnv> base_get_tooken(@Body ReqEnv Envelope);
-
+    Call<ResEnv> base_get_token(@Body ReqEnv Envelope);
 
     @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.USER_GET_TERM_LIST})
     @POST(Base.POST_URI)

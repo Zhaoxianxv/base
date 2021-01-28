@@ -1,5 +1,6 @@
-package com.yfy.base.activity;
+package com.yfy.app.netHttp;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -9,27 +10,26 @@ import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
-import com.google.gson.Gson;
-import com.yfy.app.net.ReqBody;
-import com.yfy.app.net.ReqEnv;
-import com.yfy.app.net.ResEnv;
-import com.yfy.app.net.RetrofitGenerator;
-import com.yfy.app.net.base.BaseGetTokenReq;
-import com.yfy.base.App;
-import com.yfy.base.R;
-import com.yfy.greendao.tool.GreenDaoManager;
-import com.yfy.db.UserPreferences;
-import com.yfy.final_tag.stringtool.Logger;
-import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.stringtool.StringJudge;
-import com.yfy.view.SQToolBar;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.gson.Gson;
+import com.yfy.base.App;
+import com.yfy.base.R;
+import com.yfy.db.UserPreferences;
+import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.stringtool.StringUtils;
+import com.yfy.final_tag.viewtools.ViewTool;
+import com.yfy.greendao.tool.GreenDaoManager;
+import com.yfy.view.SQToolBar;
+import java.io.IOException;
+import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,28 +38,19 @@ import rx.subscriptions.CompositeSubscription;
 
 
 /**
- * Created by Daniel on 2016/3/8.
- * <p/>
- * 说明：
- * 1、封裝Toolbar，我參考了v4.Toolbar, 重写写了一个Toolbar(SQToolbar类)，用法很简单。
- * <p/>
- * 2、封装了ProgressDialog的显示和隐藏
- * <p/>
- * 3、重写了setContentView()方法，并在里面添加ButterKnife,这样就不用在每个子Activity里调用ButterKnife.bind(this)了
- * <p/>
- * 4、还封装了onPageBack()
- * <p/>
-
+ *
  */
-public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> {
+@SuppressLint("NonConstantResourceId")
+public class HttpPostActivity extends AppCompatActivity implements  Callback<ResponseBody> {
 
     public ProgressDialog dialog;
-    public BaseActivity mActivity;
+    public HttpPostActivity mActivity;
     public Gson gson;
 
     public static float mDensity = 0;
     public static int mScreenWidth = 0;
     public static int mScreenHeight = 0;
+
 
 
     @Nullable
@@ -128,11 +119,19 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
 
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        compositeSubscription.unsubscribe();
+    }
+
+
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            onPageBack();
+            finish();
             return true;
         } else {
             return super.onKeyDown(keyCode, event);
@@ -144,38 +143,6 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
 
 
 
-    /**
-     * 全局Toast,log,ProgressDialog
-     */
-
-    public void toastShow(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-    }
-    public void toastShow(@StringRes int text) {
-       toastShow(mActivity.getString(text));
-    }
-    // 显示一个ProgressDialog
-    public void showProgressDialog(String title, String message) {
-        if (dialog == null) {
-            dialog = new ProgressDialog(this);
-        }
-        dialog.setCancelable(false);
-        if (title != null && !title.equals("")) {
-            dialog.setTitle(title);
-        }
-        if (message != null && !message.equals("")) {
-            dialog.setMessage(message);
-        }
-        dialog.show();
-    }
-    public void showProgressDialog(String message) {
-        showProgressDialog(null, message);
-    }
-    public void dismissProgressDialog() {
-        if (dialog != null) {
-            dialog.dismiss();
-        }
-    }
     //隐藏软键盘
     public void closeKeyWord() {
         View view = getWindow().peekDecorView();
@@ -224,45 +191,81 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
     public boolean isActivity(){
         return true;
     }
+
+
+
     /**
-     * 尽量使用onPageBack()方法来销毁页面，不要直接调用finish()，
-     * 这种方式的好处有2种：1、方便添加退出动画。2、方便做Umeng统计。
+     * 保存Subscription對象到compositeSubscription里面，当Activity销毁的时候，会在onDestory()方法调用 compositeSubscription.unsubscribe();
      */
-    public void onPageBack() {
-        finish();
+    public CompositeSubscription compositeSubscription = new CompositeSubscription();
+
+    public void addToCompositeSubscription(Subscription s) {
+        compositeSubscription.add(s);
     }
 
+    /**
+     * ------------------------------------关于网络请求------------------------------------------
+     */
 
 
 
 
-    protected String token="";
-
-    public void getToken(String s) {
-        token=s;
-        ReqEnv reqEnv = new ReqEnv();
-        ReqBody reqBody = new ReqBody();
-        BaseGetTokenReq req = new BaseGetTokenReq();
-        //获取参数
-        reqBody.baseGetTookenReq = req;
-        reqEnv.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().base_get_token(reqEnv);
-        call.enqueue(this);
-        Logger.e(reqEnv.toString());
-
+    //上次点击的时间
+    private long lastClickTime = 0;
+    //true可以点击（距离上次点击大于500有效）
+    private boolean isFastClick() {
+        //当前系统时间
+        long currentTime = System.currentTimeMillis();
+        //是否允许点击
+        boolean isAllowClick = currentTime - lastClickTime >= 500;
+        lastClickTime = currentTime;
+        return isAllowClick;
     }
 
+    public HttpNetHelpInterface netHelper;
+    public void setNetHelper(HttpNetHelpInterface api,Call<ResponseBody> bodyCall,boolean is) {
+        if (netHelper == null) {
+            netHelper = api;
+        }
+        if (isFastClick()){
+            if (is){
+                ViewTool.showProgressDialog(mActivity,"");
+            }
+            bodyCall.enqueue(this);
+        }
+    }
+    @Override
+    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        List<String> names= StringUtils.listToStringSplitCharacters(call.request().url().toString().trim(), "/");
+        String api_name=StringUtils.stringToGetTextJoint("%1$s/%2$s",names.get(names.size()-2),names.get(names.size()-1));
+        try {
+            Logger.e(StringUtils.stringToGetTextJoint("%1$s:%2$s",names.get(names.size()-1),response.message()));
+            assert response.body()!=null;
+            String result= response.body().string();
+            if (StringJudge.isEmpty(result)){
+                ViewTool.showToastShort(mActivity,"没有数据");
+                return;
+            }
+            if (netHelper !=null){
+                netHelper.success(api_name,result);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Logger.e(StringUtils.stringToGetTextJoint("%1$s:%2$s",names.get(names.size()-1),"没有数据:IOException"));
+        }
+
+    }
 
     @Override
-    public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
-
-
+    public void onFailure(Call<ResponseBody> call, Throwable t) {
+        List<String> names=StringUtils.listToStringSplitCharacters(call.request().url().toString().trim(), "/");
+        String api_name=StringUtils.stringToGetTextJoint("%1$s/%2$s",names.get(names.size()-2),names.get(names.size()-1));
+        ViewTool.dismissProgressDialog();
+        ViewTool.showToastShort(mActivity,R.string.fail_do_not);
+        Logger.e(names.get(names.size()-1));
+        if (netHelper !=null){
+            netHelper.fail(api_name);
+        }
     }
-
-    @Override
-    public void onFailure(Call<ResEnv> call, Throwable t) {
-
-    }
-
 
 }

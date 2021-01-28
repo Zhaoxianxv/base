@@ -3,16 +3,19 @@ package com.yfy.app.netHttp.service;
 
 
 import com.yfy.app.netHttp.ApiUrl;
+import com.yfy.app.netHttp.bean.CodeRes;
+import com.yfy.app.netHttp.bean.Result;
 
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import rx.Observable;
 
 /**
  * Created
@@ -20,25 +23,43 @@ import retrofit2.http.Part;
  */
 public interface AccountApi {
 
+
+    //-------------------------------user----------------------
     @FormUrlEncoded
-    @POST(ApiUrl.Get_Code)
-    Call<ResponseBody> getCodeApi(@Field("gradeid") String gradeid,
-                                  @Field("fxid") String fxid);
+    @POST(ApiUrl.USER_GET_TOKEN)
+    Observable<String> base_get_token_api(
+            @Field("staffid") int staffid,
+            @Field("usertype") String usertype,
+            @Field("appid") String appid,
+            @Field("andios") String andios
+    );
+    @FormUrlEncoded
+    @POST(ApiUrl.USER_LOGIN)
+    Observable<String> base_user_login_api(
+            @Field("staffid") int staffid,
+            @Field("usertype") String usertype,
+            @Field("appid") String appid,
+            @Field("andios") String andios
+    );
 
-//
-//    @Multipart
-//    @POST(ApiUrl.Get_Name)
-//    Call<ResponseBody> getGetNameApi(@Part("description") RequestBody description,
-//                                     @Part MultipartBody.Part file);
+    //-------------------------------school news-----------------------
+    @FormUrlEncoded
+    @POST(ApiUrl.SCHOOL_GET_NEWS_MENU)
+    Observable<String> school_get_news_menu_api(
+            @Field("no") String no,
+            @Field("fxid") String fxid
+    );
+    @FormUrlEncoded
+    @POST(ApiUrl.SCHOOL_GET_NEWS_MENU)
+    Call<ResponseBody> school_get_news_menu_api_string(
+            @Field("no") String no,
+            @Field("fxid") String fxid
+    );
+
 
     @Multipart
     @POST(ApiUrl.Get_Name)
-    Call<ResponseBody> getGetNameApi(@Part MultipartBody.Part file);
-
-
-    @Multipart
-    @POST(ApiUrl.Get_Name)
-    Call<ResponseBody> getGetNameImage(@Part("description") RequestBody description);
+    Observable<String> getGetNameImage(@Part("description") RequestBody description);
 
 
 
