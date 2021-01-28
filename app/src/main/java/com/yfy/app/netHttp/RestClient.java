@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public enum RestClient {
     instance;
-    private AccountApi accountService;
+    public AccountApi accountService;
 
     RestClient() {
         Retrofit retrofit = new Retrofit.Builder()

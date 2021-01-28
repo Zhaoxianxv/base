@@ -1,10 +1,8 @@
 package com.yfy.app.netHttp;
 
-import com.yfy.final_tag.stringtool.StringUtils;
 
 /**
- * Created by AJ
- * <p/>
+ * Created by
  * 服务器接口地址
  */
 public class ApiUrl {

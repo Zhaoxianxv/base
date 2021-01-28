@@ -43,10 +43,5 @@ public class RestHelper {
         context.addToCompositeSubscription(subscription);
     }
 
-    /**
-     * 处理对返回结果不感兴趣的请求
-     */
-//    public static void noResultSubscribe(BaseActivity context, Observable<SellmanageResult> observable) {
-//        subscribe(context, observable, new EmptyAction(), new EmptyAction<Throwable>());
-//    }
+
 }

@@ -1,7 +1,6 @@
 package com.yfy.app.net;
 
 import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.data.TagFinal;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -27,8 +26,8 @@ public class ResEnv {
 
 
 
-    private static Strategy strategy = new AnnotationStrategy();
-    private static Serializer serializer = new Persister(strategy);
+    public static Strategy strategy = new AnnotationStrategy();
+    public static Serializer serializer = new Persister(strategy);
     @Override
     public String toString() {
         OutputStream out = new ByteArrayOutputStream();
