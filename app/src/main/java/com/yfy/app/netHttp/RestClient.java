@@ -1,8 +1,6 @@
 package com.yfy.app.netHttp;
 
 
-import com.yfy.app.netHttp.service.AccountApi;
-
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
