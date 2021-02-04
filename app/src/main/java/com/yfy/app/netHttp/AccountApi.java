@@ -6,6 +6,7 @@ import com.yfy.app.netHttp.ApiUrl;
 import com.yfy.app.netHttp.bean.CodeRes;
 import com.yfy.app.netHttp.bean.Result;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -57,10 +58,17 @@ public interface AccountApi {
     );
 
 
+
+
     @Multipart
     @POST(ApiUrl.Get_Name)
-    Observable<String> getGetNameImage(@Part("description") RequestBody description);
+    Call<ResponseBody> getGetNameApi(
+            @Part MultipartBody.Part file);
 
+
+    @Multipart
+    @POST(ApiUrl.Get_Name)
+    Call<ResponseBody> getGetNameImage(@Part("description") RequestBody description);
 
 
 

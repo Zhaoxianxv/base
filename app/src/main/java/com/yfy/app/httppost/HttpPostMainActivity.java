@@ -40,6 +40,8 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import rx.Observable;
 import rx.functions.Action1;
 
@@ -89,65 +91,27 @@ public class HttpPostMainActivity extends HttpPostActivity implements HttpNetHel
         Logger.e(fileUrl);
         //获得数据字节数据，请求数据流的编码，必须和下面服务器端处理请求流的编码一致
         byte[] requestStringBytes = Base64Utils.fileToBase64ByteString(fileUrl);
-
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), requestStringBytes);
-
         // MultipartBody.Part  和后端约定好Key，这里的partName是用file
         MultipartBody.Part body = MultipartBody.Part.createFormData(
                 "file",
                 StringUtils.stringToGetTextJoint("%1$s.%2$s",System.currentTimeMillis(),"jpg"),
                 requestFile);
+        //执行请求
+        RestClient.instance.getAccountApi().getGetNameApi(body).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-        // 执行请求
-//        RestClient.instance.getAccountApi().getGetNameApi(body).enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//            }
-//        });
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
     }
 
 
 
-
-
-    private void retrofitPostImageTest(String fileUrl){
-        Logger.e(fileUrl);
-
-        File file = new File(fileUrl);
-        //获得数据字节数据，请求数据流的编码，必须和下面服务器端处理请求流的编码一致
-        byte[] requestStringBytes = Base64Utils.fileToBase64ByteString(fileUrl);
-
-        // 创建 RequestBody，用于封装构建RequestBody
-        // RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//        RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpg"), file);
-        RequestBody requestFile = RequestBody.create(MediaType.parse("boundary"), requestStringBytes);
-
-        // MultipartBody.Part  和后端约定好Key，这里的partName是用file
-        MultipartBody.Part body = MultipartBody.Part.createFormData("file", StringUtils.stringToGetTextJoint("%1$s.%2$s",System.currentTimeMillis(),"jpg"), requestFile);
-
-        // 添加描述
-//        String descriptionString = "hello, 这是文件描述";
-//        RequestBody description = RequestBody.create(MediaType.parse("multipart/form-data"), descriptionString);
-
-        // 执行请求
-//        RestClient.instance.getAccountApi().getGetNameImage(requestFile).enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//            }
-//        });
-    }
 
 
 
@@ -350,8 +314,8 @@ public class HttpPostMainActivity extends HttpPostActivity implements HttpNetHel
                     if (photo_a==null)return;
                     if (photo_a.size()==0)return;
                     image_path=photo_a.get(0).getPath();
-                    thread.start();
-//                    retrofitPostImage(image_path);
+//                    thread.start();
+                    retrofitPostImage(image_path);
                     break;
             }
         }
