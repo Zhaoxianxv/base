@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.design.internal.FlowLayout
+            <com.google.android.material.internal.FlowLayout
 
                 android:id="@+id/public_type_flow_flow"
                 android:layout_width="match_parent"

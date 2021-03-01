@@ -114,7 +114,7 @@
                 android:layout_marginTop="@dimen/margin_5dp"
                 android:layout_marginBottom="@dimen/margin_5dp"
                 android:textSize="@dimen/textsize9"/>
-            <android.support.design.internal.FlowLayout
+            <com.google.android.material.internal.FlowLayout
                 android:id="@+id/public_detail_top_flow_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
                 android:textColor="@color/orange"
                 android:paddingBottom="@dimen/margin_5dp"
                 android:background="@color/Gainsboro"/>
-            <android.support.design.internal.FlowLayout
+            <com.google.android.material.internal.FlowLayout
                 android:id="@+id/public_detail_item_flow_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -120,7 +120,7 @@ if (StringJudge.isEmpty(res.getCount())){
 
 
 
-            <android.support.design.internal.FlowLayout
+            <com.google.android.material.internal.FlowLayout
                 android:id="@+id/seal_detail_top_flow_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

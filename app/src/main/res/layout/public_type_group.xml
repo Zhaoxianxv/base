@@ -11,11 +11,10 @@
         android:layout_height="wrap_content"
         android:text="name"
         android:layout_marginLeft="@dimen/margin_10dp"
-        android:layout_toRightOf="@id/public_detail_head"
         android:layout_marginTop="@dimen/margin_5dp"
         android:layout_marginBottom="@dimen/margin_5dp"
         android:textSize="@dimen/textsize9"/>
-    <android.support.design.internal.FlowLayout
+    <com.google.android.material.internal.FlowLayout
         android:id="@+id/public_type_group_flow_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

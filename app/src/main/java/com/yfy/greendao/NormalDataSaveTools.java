@@ -1,9 +1,11 @@
 package com.yfy.greendao;
 
+import com.yfy.app.bean.StuBean;
 import com.yfy.app.bean.TermBean;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.greendao.tool.GreenDaoManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +15,7 @@ import java.util.List;
 public class NormalDataSaveTools {
 
     private final String TERM_TYPE_GREEN_DAO = "term_bean_data";
+    private final String TYPE_GREEN_STU_DATA = "type_green_stu_data";
     private final String HONOR_TYPE_GREEN_DAO = "honor_bean_data";
 
     private static NormalDataSaveTools normalDataSaveApi;
@@ -24,6 +27,26 @@ public class NormalDataSaveTools {
         return normalDataSaveApi;
     }
 
+    //--------------------保存
+    public void saveStuData(StuBean stu) {
+
+        KeyValueDb keyValue = new KeyValueDb();
+        keyValue.setName(stu.getStuname());
+        keyValue.setKey_value_id(stu.getStuid());
+        keyValue.setType(TYPE_GREEN_STU_DATA);
+        GreenDaoManager.getInstance().saveKeyValueDb(keyValue);
+
+    }
+    public List<StuBean> getStuBeanToGreenDao() {
+        List<KeyValueDb> db_index = GreenDaoManager.getInstance().getKeyValueDbList("where type = ?", TYPE_GREEN_STU_DATA);
+        List<StuBean> stuBeanList=new ArrayList<>();
+        if (StringJudge.isNotEmpty(db_index)) {
+            for (KeyValueDb db : db_index) {
+                GreenDaoManager.getInstance().removeKeyValue(db);
+            }
+        }
+        return stuBeanList;
+    }
 
     //---------------------保存当前学期、提取当前学期-------------------
 
@@ -39,7 +62,7 @@ public class NormalDataSaveTools {
         keyValue.setName(term.getName());
         keyValue.setKey_value_id(term.getId());
         keyValue.setValue(term.getIsnow());
-        keyValue.setType("term_bean_data");
+        keyValue.setType(TERM_TYPE_GREEN_DAO);
         GreenDaoManager.getInstance().saveKeyValueDb(keyValue);
     }
 

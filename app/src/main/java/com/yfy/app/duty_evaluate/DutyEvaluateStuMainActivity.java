@@ -1,5 +1,6 @@
 package com.yfy.app.duty_evaluate;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -40,6 +41,8 @@ import java.util.List;
 
 import butterknife.BindView;
 
+
+@SuppressLint("NonConstantResourceId")
 public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsGetFileData {
     private static final String TAG = DutyEvaluateStuMainActivity.class.getSimpleName();
 
@@ -95,7 +98,6 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
     private void initView(){
-
         GlideTools.chanMult(mActivity,Base.user.getHeadPic(),stu_head_iv,R.drawable.icon_account_fill);
         stu_name_tv.setText(StringUtils.stringToGetTextJoint("%1$s\t·\t%2$s",Base.user.getName(),"35"));
     }

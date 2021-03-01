@@ -110,8 +110,8 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void run() {
                 //初始化登录信息
-//                startActivity(new Intent(WelcomeActivity.this,SelectedUserTypeActivity.class));
-                startActivity(new Intent(WelcomeActivity.this, SelectedModeTypeActivity.class));
+                startActivity(new Intent(WelcomeActivity.this,SelectedUserTypeActivity.class));
+//
                 finish();
 
 
