@@ -180,7 +180,8 @@ public class HttpPostMainActivity extends HttpPostActivity implements HttpNetHel
 
     private void httpUrlConnection(){
         try{
-            String pathUrl = "http://api.yfyit.com/system/getname";
+            String pathUrl = "http://api.yfyit.com/" +
+                    "system/getname";
             //建立连接
             URL url=new URL(pathUrl);
             HttpURLConnection httpConn=(HttpURLConnection)url.openConnection();

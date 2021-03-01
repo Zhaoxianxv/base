@@ -1,9 +1,9 @@
-package com.yfy.greendao;
+package com.yfy.greendao.tool;
 
-import com.yfy.app.bean.StuBean;
-import com.yfy.app.bean.TermBean;
+import com.yfy.greendao.bean.StuBean;
+import com.yfy.greendao.bean.TermBean;
 import com.yfy.final_tag.stringtool.StringJudge;
-import com.yfy.greendao.tool.GreenDaoManager;
+import com.yfy.greendao.KeyValueDb;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +81,6 @@ public class NormalDataSaveTools {
         }
         return termBean;
     }
-
 
     public void saveHonor(KeyValueDb keyValue){
 

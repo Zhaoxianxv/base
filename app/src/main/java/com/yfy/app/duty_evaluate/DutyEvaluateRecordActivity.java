@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.bean.StuBean;
+import com.yfy.greendao.bean.StuBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateRecodeAdapter;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
@@ -28,7 +28,7 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
-import com.yfy.greendao.NormalDataSaveTools;
+import com.yfy.greendao.tool.NormalDataSaveTools;
 import com.yfy.view.SQToolBar;
 import com.yfy.view.time.CustomDatePicker;
 

@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.bean.TermBean;
+import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuDevelopAdapter;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuNormalAdapter;
 import com.yfy.app.duty_evaluate.bean.DutyEvaluateRes;
@@ -33,7 +33,7 @@ import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
-import com.yfy.greendao.NormalDataSaveTools;
+import com.yfy.greendao.tool.NormalDataSaveTools;
 import com.yfy.view.SQToolBar;
 
 import java.util.ArrayList;

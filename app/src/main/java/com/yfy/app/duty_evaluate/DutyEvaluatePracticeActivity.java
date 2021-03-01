@@ -7,8 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.yfy.app.SelectedTermActivity;
-import com.yfy.app.bean.TermBean;
-import com.yfy.app.duty_evaluate.adapter.DutyEvaluateRecodeAdapter;
+import com.yfy.greendao.bean.TermBean;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.data.Base;

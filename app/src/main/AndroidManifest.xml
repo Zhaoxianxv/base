@@ -48,6 +48,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.yfy.greendao.view.AddStuActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.greendao.view.TypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         
         <!-- </>?????????????????????????????????AppKey -->
         <activity

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yfy.app.bean.BaseRes;
-import com.yfy.app.bean.TermBean;
+import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -22,7 +22,7 @@ import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.viewtools.ViewTool;
-import com.yfy.greendao.NormalDataSaveTools;
+import com.yfy.greendao.tool.NormalDataSaveTools;
 
 import java.io.IOException;
 import java.util.ArrayList;

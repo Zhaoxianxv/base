@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.yfy.app.album.AlbumOneActivity;
 import com.yfy.app.bean.DateBean;
-import com.yfy.app.bean.TermBean;
+import com.yfy.greendao.bean.TermBean;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.camera.CameraActivity;
@@ -18,7 +18,6 @@ import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWListBeanView;
 import com.yfy.final_tag.dialog.ConfirmAlbumWindow;
 import com.yfy.final_tag.dialog.ConfirmDateWindow;
-import com.yfy.final_tag.glide.FileCamera;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.glide.Photo;
 import com.yfy.final_tag.permission.PermissionFail;
@@ -29,7 +28,7 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.greendao.KeyValueDb;
-import com.yfy.greendao.NormalDataSaveTools;
+import com.yfy.greendao.tool.NormalDataSaveTools;
 import com.yfy.view.SQToolBar;
 
 import java.util.ArrayList;

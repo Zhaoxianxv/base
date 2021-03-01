@@ -1,12 +1,12 @@
-package com.yfy.app;
+package com.yfy.greendao.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.yfy.app.PEquality.PEQualityMainTestActivity;
 import com.yfy.app.PEquality.tea.PETeaMainActivity;
+import com.yfy.app.SelectedClassActivity;
+import com.yfy.app.SelectedModeTypeAdapter;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.chart.BarChartActivity;
@@ -28,17 +28,18 @@ import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.greendao.view.TypeActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class SelectedModeTypeActivity extends BaseActivity {
-    private static final String TAG = SelectedModeTypeActivity.class.getSimpleName();
+public class TypeActivity extends BaseActivity {
+    private static final String TAG = TypeActivity.class.getSimpleName();
 
     private SelectedModeTypeAdapter adapter;
 
@@ -85,52 +86,15 @@ public class SelectedModeTypeActivity extends BaseActivity {
             public void modeItem(String name) {
                 Intent intent;
                 switch (name){
-                    case "TypeActivity":
-                        startActivity(new Intent(mActivity, TypeActivity.class));
-                        break;
-                    case "视频":
-                        startActivity(new Intent(mActivity,BarChartActivity.class));
-                        break;
-                    case "drawable":
-                        startActivity(new Intent(mActivity,DrawableBgActivity.class));
-                        break;
-                    case "SpannableStringMainActivity":
-                        startActivity(new Intent(mActivity,SpannableStringMainActivity.class));
-                        break;
-                    case "BarChartActivity":
-                        startActivity(new Intent(mActivity,BarChartActivity.class));
-                        break;
-                    case "Voice":
-                        startActivity(new Intent(mActivity,VoiceMainActivity.class));
-                        break;
-//                    case "GRpcMainActivity":
-//                        startActivity(new Intent(mActivity,GRpcMainActivity.class));
-//                        break;
-                    case "HttpPostMainActivity":
-                        startActivity(new Intent(mActivity,HttpPostMainActivity.class));
-                        break;
-                    case "RetrofitMainActivity":
-                        startActivity(new Intent(mActivity,RetrofitMainActivity.class));
-                        break;
-                    case "体育素质(tea)":
-                        intent=new Intent(mActivity, PETeaMainActivity.class);
-                        intent.putExtra(Base.title,"体育素质评价");
+                    case "stu":
+                        intent=new Intent(mActivity,AddStuActivity.class);
+                        intent.putExtra(Base.type,name);
+                        intent.putExtra(Base.title,"添加学生");
                         startActivity(intent);
                         break;
-                    case "体育素质(stu)":
-                        startActivity(new Intent(mActivity, PEQualityMainTestActivity.class));
+                    case "":
                         break;
-                    case "德育评价(tea)":
-                        intent=new Intent(mActivity,SelectedClassActivity.class);
-                        intent.putExtra(Base.mode_type,"duty_evaluate");
-                        startActivity(intent);
-                        break;
-                    case "德育评价(stu)":
-                        intent=new Intent(mActivity, DutyEvaluateStuMainActivity.class);
-                        startActivity(intent);
-                        break;
-                    default:
-                        break;
+
                 }
             }
         });
@@ -139,19 +103,8 @@ public class SelectedModeTypeActivity extends BaseActivity {
     private List<String> list=new ArrayList<>();
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
-        list.add("TypeActivity");
-        list.add("视频");
-        list.add("Voice");
-        list.add("drawable");
-        list.add("SpannableStringMainActivity");
-        list.add("BarChartActivity");
-        list.add("GRpcMainActivity");
-        list.add("HttpPostMainActivity");
-        list.add("RetrofitMainActivity");
-        list.add("体育素质(tea)");
-        list.add("体育素质(stu)");
-        list.add("德育评价(tea)");
-        list.add("德育评价(stu)");
+        list.add("stu");
+
 
         keyValue_adapter.clear();
         for (String s:list){

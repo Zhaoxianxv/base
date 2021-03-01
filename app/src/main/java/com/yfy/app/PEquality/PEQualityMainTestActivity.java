@@ -1,5 +1,6 @@
 package com.yfy.app.PEquality;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -23,7 +24,7 @@ import com.yfy.app.PEquality.adapter.PEQualityMainAdapter;
 import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.bean.TermBean;
+import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -65,6 +66,7 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
+@SuppressLint("NonConstantResourceId")
 public class PEQualityMainTestActivity extends BaseActivity {
     private static final String TAG = PEQualityMainTestActivity.class.getSimpleName();
 

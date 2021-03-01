@@ -74,29 +74,19 @@ public class SelectedUserTypeActivity extends BaseActivity {
             @Override
             public void modeItem(KeyValue bean) {
                 Intent intent;
-                //--------------体育素质----------
+
+//                --------------德育评价----------
                 switch (bean.getType()) {
-                    case Base.USER_TYPE_TEA:
-                        intent=new Intent(mActivity, PETeaMainActivity.class);
-                        intent.putExtra(Base.title,"体育素质评价");
+                    case Base.USER_TYPE_STU:
+                        intent=new Intent(mActivity,DutyEvaluateStuMainActivity.class);
                         startActivity(intent);
                         break;
-                    case Base.USER_TYPE_STU:
-                        startActivity(new Intent(mActivity, PEQualityMainTestActivity.class));
+                    case Base.USER_TYPE_TEA:
+                        intent=new Intent(mActivity,SelectedClassActivity.class);
+                        intent.putExtra(Base.mode_type,"duty_evaluate");
+                        startActivity(intent);
                         break;
                 }
-                //--------------德育评价----------
-//                switch (bean.getType()) {
-//                    case Base.USER_TYPE_STU:
-//                        intent=new Intent(mActivity,DutyEvaluateStuMainActivity.class);
-//                        startActivity(intent);
-//                        break;
-//                    case Base.USER_TYPE_TEA:
-//                        intent=new Intent(mActivity,SelectedClassActivity.class);
-//                        intent.putExtra(Base.mode_type,"duty_evaluate");
-//                        startActivity(intent);
-//                        break;
-//                }
 
             }
         });

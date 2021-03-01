@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.yfy.app.bean.BaseClass;
-import com.yfy.app.bean.BaseGrade;
+import com.yfy.greendao.bean.BaseClass;
+import com.yfy.greendao.bean.BaseGrade;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.bean.TermBean;
+import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
@@ -32,7 +32,7 @@ import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.final_tag.viewtools.ViewTool;
-import com.yfy.greendao.NormalDataSaveTools;
+import com.yfy.greendao.tool.NormalDataSaveTools;
 import com.yfy.view.SQToolBar;
 
 import java.io.IOException;

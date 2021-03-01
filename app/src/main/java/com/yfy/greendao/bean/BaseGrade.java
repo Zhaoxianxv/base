@@ -1,4 +1,4 @@
-package com.yfy.app.bean;
+package com.yfy.greendao.bean;
 
 
 
