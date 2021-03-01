@@ -10,7 +10,10 @@ public class ApiUrl {
 
     public final static String SERVER_ROOT = "http://new.cdeps.sc.cn/";
 
-    public final String normal = "AppService";
+    public final static String normal = "AppService";
+    public final static String DIALOG = "dialog";
+    public final static String DATA_ERROR = "data_error";
+    public final static String DATA_IOE = "data_ioe";
 
     /**
      * ===============================================
@@ -25,4 +28,6 @@ public class ApiUrl {
     public final static String USER_LOGIN= "AppService/login";
     //--------------------school news-------------------------
     public final static String SCHOOL_GET_NEWS_MENU= "AppService/get_newslist_menu";
+    public static final String BASE_SAVE_IMG ="AppService/saveimg";//
+    public static final String USER_GET_TERM_LIST = "AppService/gettermlistnew";//获取学期
 }

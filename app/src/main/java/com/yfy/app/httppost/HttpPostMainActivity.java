@@ -120,7 +120,7 @@ public class HttpPostMainActivity extends HttpPostActivity implements HttpNetHel
     public void retrofitPostParamToString() {
 
         Call<ResponseBody> bodyCall = RestClient.instance.getAccountApi().school_get_news_menu_api_string("02","13");
-        setNetHelper(this,bodyCall,true);
+        setNetHelper(this,bodyCall,true,ApiUrl.SCHOOL_GET_NEWS_MENU,false);
 
     }
 

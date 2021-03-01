@@ -5,6 +5,7 @@ package com.yfy.app.netHttp;
 import com.yfy.app.netHttp.ApiUrl;
 import com.yfy.app.netHttp.bean.CodeRes;
 import com.yfy.app.netHttp.bean.Result;
+import com.yfy.final_tag.data.Base;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -24,6 +25,20 @@ import rx.Observable;
  */
 public interface AccountApi {
 
+
+    @FormUrlEncoded
+    @POST(ApiUrl.USER_GET_TERM_LIST)
+    Call<ResponseBody> user_get_term_list_api(
+            @Field(Base.session_key) String session_key
+    );
+
+    @FormUrlEncoded
+    @POST(ApiUrl.BASE_SAVE_IMG)
+    Call<ResponseBody> base_save_img_api(
+            @Field(Base.session_key) String session_key,
+            @Field("fileext") String fileext,
+            @Field("image_file") String image_file
+    );
 
     //-------------------------------user----------------------
     @FormUrlEncoded

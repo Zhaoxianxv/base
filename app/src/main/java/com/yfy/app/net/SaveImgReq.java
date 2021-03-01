@@ -14,7 +14,7 @@ import org.simpleframework.xml.Root;
 @Root(name = TagFinal.BASE_SAVE_IMG, strict = false)
 @Namespace(reference = Base.NAMESPACE)
 @Order(elements = {Base.session_key,"fileext","image_file"})
-public class SaveImgReq {
+public class SaveImgReq extends ElementToString{
 
 
     @Namespace(reference = Base.NAMESPACE)
@@ -37,5 +37,21 @@ public class SaveImgReq {
 
     public void setImage_file(String image_file) {
         this.image_file = image_file;
+    }
+
+    public String getSession_key() {
+        return session_key;
+    }
+
+    public void setSession_key(String session_key) {
+        this.session_key = session_key;
+    }
+
+    public String getFileext() {
+        return fileext;
+    }
+
+    public String getImage_file() {
+        return image_file;
     }
 }

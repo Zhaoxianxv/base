@@ -15,18 +15,23 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.yfy.app.bean.ResultRes;
 import com.yfy.base.App;
 import com.yfy.base.R;
+import com.yfy.greendao.tool.GreenDaoManager;
 import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
-import com.yfy.greendao.tool.GreenDaoManager;
+import com.yfy.json.JsonParser;
 import com.yfy.view.SQToolBar;
+
 import java.io.IOException;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.ResponseBody;
@@ -78,7 +83,7 @@ public class HttpPostActivity extends AppCompatActivity implements  Callback<Res
     }
 
     private void checkWcfInit() {
-        String userID=UserPreferences.getInstance().getUserID();
+        String userID= UserPreferences.getInstance().getUserID();
         if (StringJudge.isEmpty(userID)){
             Base.user = null;
         }else{
@@ -223,34 +228,78 @@ public class HttpPostActivity extends AppCompatActivity implements  Callback<Res
     }
 
     public HttpNetHelpInterface netHelper;
-    public void setNetHelper(HttpNetHelpInterface api,Call<ResponseBody> bodyCall,boolean is) {
+    //is progressbar
+    public void setNetHelper(HttpNetHelpInterface api, Call<ResponseBody> bodyCall, boolean is,String type) {
         if (netHelper == null) {
             netHelper = api;
         }
-        if (isFastClick()){
-            if (is){
-                ViewTool.showProgressDialog(mActivity,"");
+        if (is){
+            ViewTool.showProgressDialog(mActivity,"");
+        }
+        Logger.e(type);
+        if (type.equalsIgnoreCase(ApiUrl.DIALOG)){
+            if (isFastClick()){
+                bodyCall.enqueue(this);
             }
+        }else{
+            bodyCall.enqueue(this);
+        }
+    }
+    public void setNetHelper(HttpNetHelpInterface api, Call<ResponseBody> bodyCall, boolean is,String type,boolean ismore) {
+        if (netHelper == null) {
+            netHelper = api;
+        }
+        if (is){
+            ViewTool.showProgressDialog(mActivity,"");
+        }
+        //控制反复加载 ismore
+        if (ismore){
+            if (isFastClick()){
+                bodyCall.enqueue(this);
+            }
+        }else{
             bodyCall.enqueue(this);
         }
     }
     @Override
     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
         List<String> names= StringUtils.listToStringSplitCharacters(call.request().url().toString().trim(), "/");
-        String api_name=StringUtils.stringToGetTextJoint("%1$s/%2$s",names.get(names.size()-2),names.get(names.size()-1));
+        String api_name= StringUtils.stringToGetTextJoint("%1$s/%2$s",names.get(names.size()-2),names.get(names.size()-1));
         try {
-            Logger.e(StringUtils.stringToGetTextJoint("%1$s:%2$s",names.get(names.size()-1),response.message()));
-            assert response.body()!=null;
-            String result= response.body().string();
-            if (StringJudge.isEmpty(result)){
-                ViewTool.showToastShort(mActivity,"没有数据");
-                return;
-            }
-            if (netHelper !=null){
-                netHelper.success(api_name,result);
+            if (response.body()==null){
+                ViewTool.showToastShort(mActivity,"数据出错");
+                Logger.e(StringUtils.getTextJoint("--%1$s--:%2$s",api_name,response.message()));
+                if (netHelper !=null){
+                    netHelper.success(ApiUrl.DATA_ERROR,"");
+                }
+            }else{
+                String result= response.body().string();
+                if (JsonParser.isSuccess(result)){
+//                    Logger.e(StringUtils.getTextJoint("http:%1$s",names.get(names.size()-1)));
+//                    Logger.e(StringUtils.getTextJoint("http:%1$s:\n%2$s",names.get(names.size()-1),result));
+                    ResultRes res=gson.fromJson(result,ResultRes.class);
+                    if (res.getResult().equalsIgnoreCase(TagFinal.FALSE)){
+                        if (res.getError_code().equalsIgnoreCase(Base.login_error_code)){
+                            ViewTool.showToastShort(mActivity,"登录过期");
+                            Base.user=null;
+                            GreenDaoManager.getInstance().clearUser();
+                        }
+                    }
+                    if (netHelper !=null){
+                        netHelper.success(api_name,result);
+                    }
+                }else{
+                    ViewTool.dismissProgressDialog();
+                    Logger.e(StringUtils.stringToGetTextJoint("%1$s:jSON错误",names.get(names.size()-1)));
+                    ViewTool.showToastShort(mActivity,JsonParser.getErrorCode(result));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
+//            if (netHelper !=null){
+//                netHelper.success(ApiUrl.DATA_IOE,"");
+//            }
+            ViewTool.dismissProgressDialog();
             Logger.e(StringUtils.stringToGetTextJoint("%1$s:%2$s",names.get(names.size()-1),"没有数据:IOException"));
         }
 
@@ -258,8 +307,8 @@ public class HttpPostActivity extends AppCompatActivity implements  Callback<Res
 
     @Override
     public void onFailure(Call<ResponseBody> call, Throwable t) {
-        List<String> names=StringUtils.listToStringSplitCharacters(call.request().url().toString().trim(), "/");
-        String api_name=StringUtils.stringToGetTextJoint("%1$s/%2$s",names.get(names.size()-2),names.get(names.size()-1));
+        List<String> names= StringUtils.listToStringSplitCharacters(call.request().url().toString().trim(), "/");
+        String api_name= StringUtils.stringToGetTextJoint("%1$s/%2$s",names.get(names.size()-2),names.get(names.size()-1));
         ViewTool.dismissProgressDialog();
         ViewTool.showToastShort(mActivity,R.string.fail_do_not);
         Logger.e(names.get(names.size()-1));

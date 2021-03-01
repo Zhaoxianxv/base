@@ -30,7 +30,7 @@ public class Base {
     /**
      *  json字符串
      */
-
+    public static final String login_error_code = "session_key不正确";
     public static final String TEM = "tem";//
     public static final String ARR = "arr";//
     public static final String BODY = "Body";//
