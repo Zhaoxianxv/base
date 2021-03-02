@@ -1,8 +1,6 @@
 package com.yfy.camera;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,8 +22,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.yfy.base.R;
-import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.viewtools.ViewTool;
 
 
 import java.io.File;

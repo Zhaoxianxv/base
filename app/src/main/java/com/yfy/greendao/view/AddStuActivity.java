@@ -9,12 +9,13 @@ import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
+import com.yfy.greendao.bean.BaseClass;
 import com.yfy.greendao.bean.StuBean;
+import com.yfy.greendao.bean.TermBean;
 import com.yfy.greendao.tool.NormalDataSaveTools;
 import com.yfy.view.SQToolBar;
 
@@ -39,8 +40,14 @@ public class AddStuActivity extends BaseActivity {
         getData();
 
     }
+    public List<StuBean> stu_list;
     public String type,title;
     private void getData(){
+        stu_list=NormalDataSaveTools.getInstance().getStuBeanToGreenDao();
+        if (StringJudge.isEmpty(stu_list)){
+            stu_list=new ArrayList<>();
+        }
+
         type=getIntent().getStringExtra(Base.type);
         title=getIntent().getStringExtra(Base.title);
         initSQToolbar(title);
@@ -80,7 +87,11 @@ public class AddStuActivity extends BaseActivity {
             case "stu":
                 saveStu();
                 break;
-            case "":
+            case "class":
+                saveClass();
+                break;
+            case "term":
+                saveTerm();
                 break;
 
         }
@@ -107,7 +118,11 @@ public class AddStuActivity extends BaseActivity {
             case "stu":
                 setStuView();
                 break;
-            case "":
+            case "class":
+                setClassView();
+                break;
+            case "term":
+                setTermView();
                 break;
 
         }
@@ -123,6 +138,40 @@ public class AddStuActivity extends BaseActivity {
         two.setTitle("id");
         two.setValue("");
         two.setKey("请输入id(100开头)");
+
+        keyValueAdapterData.add(one);
+        keyValueAdapterData.add(two);
+        adapter.setDataList(keyValueAdapterData);
+        adapter.setLoadState(TagFinal.LOADING_END);
+    }
+    private void setClassView(){
+        keyValueAdapterData.clear();
+        KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
+        KeyValue two=new KeyValue(TagFinal.TYPE_TXT_EDIT);
+        one.setTitle("name");
+        one.setValue("");
+        one.setKey("请输入班级名称");
+
+        two.setTitle("id");
+        two.setValue("");
+        two.setKey("请输入id(200开头)");
+
+        keyValueAdapterData.add(one);
+        keyValueAdapterData.add(two);
+        adapter.setDataList(keyValueAdapterData);
+        adapter.setLoadState(TagFinal.LOADING_END);
+    }
+    private void setTermView(){
+        keyValueAdapterData.clear();
+        KeyValue one=new KeyValue(TagFinal.TYPE_TXT_EDIT);
+        KeyValue two=new KeyValue(TagFinal.TYPE_TXT_EDIT);
+        one.setTitle("name");
+        one.setValue("");
+        one.setKey("请输入学期名称");
+
+        two.setTitle("id");
+        two.setValue("");
+        two.setKey("请输入id(200开头)");
 
         keyValueAdapterData.add(one);
         keyValueAdapterData.add(two);
@@ -146,6 +195,52 @@ public class AddStuActivity extends BaseActivity {
             }
         }
         NormalDataSaveTools.getInstance().saveStuData(stuBean);
+        ViewTool.showToastShort(mActivity,R.string.success_do);
+        finish();
+    }
+
+
+
+    private void saveClass(){
+        BaseClass baseClass =new BaseClass();
+        for (KeyValue value:adapter.getDataList()){
+            if (StringJudge.isEmpty(value.getValue())){
+                ViewTool.showToastShort(mActivity, StringUtils.getTextJoint("%1$s!没有填写",value.getTitle()));
+                return;
+            }
+            switch (value.getTitle()){
+                case "name":
+                    baseClass.setClassname(value.getValue());
+                    break;
+                case "id":
+                    baseClass.setClassid(value.getValue());
+                    break;
+            }
+        }
+        NormalDataSaveTools.getInstance().saveClassData(baseClass);
+        ViewTool.showToastShort(mActivity,R.string.success_do);
+        finish();
+    }
+
+
+    private void saveTerm(){
+        TermBean term =new TermBean();
+        for (KeyValue value:adapter.getDataList()){
+            if (StringJudge.isEmpty(value.getValue())){
+                ViewTool.showToastShort(mActivity, StringUtils.getTextJoint("%1$s!没有填写",value.getTitle()));
+                return;
+            }
+            switch (value.getTitle()){
+                case "name":
+                    term.setName(value.getValue());
+                    break;
+                case "id":
+                    term.setId(value.getValue());
+                    break;
+            }
+        }
+        term.setIsnow("1");
+        NormalDataSaveTools.getInstance().saveCurrentTerm(term);
         ViewTool.showToastShort(mActivity,R.string.success_do);
         finish();
     }

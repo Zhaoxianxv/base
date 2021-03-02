@@ -92,7 +92,17 @@ public class TypeActivity extends BaseActivity {
                         intent.putExtra(Base.title,"添加学生");
                         startActivity(intent);
                         break;
-                    case "":
+                    case "class":
+                        intent=new Intent(mActivity,AddStuActivity.class);
+                        intent.putExtra(Base.type,name);
+                        intent.putExtra(Base.title,"添加班级");
+                        startActivity(intent);
+                        break;
+                    case "term":
+                        intent=new Intent(mActivity,AddStuActivity.class);
+                        intent.putExtra(Base.type,name);
+                        intent.putExtra(Base.title,"添加学期");
+                        startActivity(intent);
                         break;
 
                 }
@@ -104,6 +114,8 @@ public class TypeActivity extends BaseActivity {
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
         list.add("stu");
+        list.add("class");
+        list.add("term");
 
 
         keyValue_adapter.clear();

@@ -56,8 +56,8 @@ public class SelectedClassActivity extends BaseActivity {
         select_term= NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
         initRecycler();
         initSQToolbar();
-        getClassList();
-        getTerm();
+//        getClassList();
+//        getTerm();
     }
 
     private String mode_type;

@@ -1,5 +1,6 @@
 package com.yfy.app.duty_evaluate;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -40,6 +41,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+@SuppressLint("NonConstantResourceId")
 public class PracticeAddActivity extends BaseActivity {
     private static final String TAG = PracticeAddActivity.class.getSimpleName();
 
@@ -239,7 +241,8 @@ public class PracticeAddActivity extends BaseActivity {
             switch (requestCode) {
                 case TagFinal.CAMERA:
                     String img=data.getStringExtra(CameraActivity.KEY_IMAGE_PATH);
-                    GlideTools.chanMult(mActivity,img,honnor_icon_iv,R.drawable.album_default_loading_pic);
+                    Logger.e(img);
+                    GlideTools.chanMult(mActivity,img,honnor_icon_iv,R.drawable.ic_add_black_24dp);
                     break;
                 case TagFinal.PHOTO_ALBUM:
                     ArrayList<Photo> photo_a=data.getParcelableArrayListExtra(TagFinal.ALBUM_TAG);
@@ -256,7 +259,7 @@ public class PracticeAddActivity extends BaseActivity {
 
     @PermissionSuccess(requestCode = TagFinal.CAMERA)
     private void takePhoto() {
-        CameraActivity.startMe(mActivity,TagFinal.CAMERA, CameraActivity.MongolianLayerType.BANK_CARD);
+        CameraActivity.startMe(mActivity,TagFinal.CAMERA, CameraActivity.MongolianLayerType.IDCARD_NEGATIVE);
     }
     @PermissionSuccess(requestCode = TagFinal.PHOTO_ALBUM)
     private void photoAlbum() {

@@ -98,8 +98,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
     private void initView(){
-        GlideTools.chanMult(mActivity,Base.user.getHeadPic(),stu_head_iv,R.drawable.icon_account_fill);
-        stu_name_tv.setText(StringUtils.stringToGetTextJoint("%1$s\t·\t%2$s",Base.user.getName(),"35"));
+//        GlideTools.chanMult(mActivity,Base.user.getHeadPic(),stu_head_iv,R.drawable.icon_account_fill);
+//        stu_name_tv.setText(StringUtils.stringToGetTextJoint("%1$s\t·\t%2$s",Base.user.getName(),"35"));
     }
 
     public DutyEvaluateStuNormalAdapter adapter_normal;
@@ -166,8 +166,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
                     startActivity(intent);
                 }else{
                     KeyValue stu=new KeyValue();
-                    stu.setName(Base.user.getName());
-                    stu.setId(Base.user.getIdU());
+//                    stu.setName(Base.user.getName());
+//                    stu.setId(Base.user.getIdU());
 
                     intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
                     intent.putExtra(Base.stu_bean, stu);
@@ -196,8 +196,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
             @Override
             public void layoutOnClick(KeyValue keyValue) {
                 KeyValue stu=new KeyValue();
-                stu.setName(Base.user.getName());
-                stu.setId(Base.user.getIdU());
+//                stu.setName(Base.user.getName());
+//                stu.setId(Base.user.getIdU());
 
                 Intent intent;
                 switch(keyValue.getTitle()){

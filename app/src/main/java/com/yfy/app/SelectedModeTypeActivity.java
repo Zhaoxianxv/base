@@ -12,6 +12,7 @@ import com.yfy.app.bean.KeyValue;
 import com.yfy.app.chart.BarChartActivity;
 import com.yfy.app.drawableBg.DrawableBgActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
+import com.yfy.app.duty_evaluate.PracticeAddActivity;
 import com.yfy.app.httppost.HttpPostMainActivity;
 import com.yfy.app.httppost.retrofitclient.RetrofitMainActivity;
 import com.yfy.app.net.ResBody;
@@ -88,6 +89,9 @@ public class SelectedModeTypeActivity extends BaseActivity {
                     case "TypeActivity":
                         startActivity(new Intent(mActivity, TypeActivity.class));
                         break;
+                    case "CameraActivity":
+                        intent=new Intent(mActivity, PracticeAddActivity.class);
+                        startActivityForResult(intent,TagFinal.UI_ADD);                        break;
                     case "视频":
                         startActivity(new Intent(mActivity,BarChartActivity.class));
                         break;
@@ -140,6 +144,7 @@ public class SelectedModeTypeActivity extends BaseActivity {
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
         list.add("TypeActivity");
+        list.add("CameraActivity");
         list.add("视频");
         list.add("Voice");
         list.add("drawable");

@@ -15,10 +15,13 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
+import com.yfy.greendao.bean.StuBean;
+import com.yfy.greendao.tool.NormalDataSaveTools;
 import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
@@ -106,47 +109,18 @@ public class SelectStuActivity extends BaseActivity {
 
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
+        List<StuBean> stu_list= NormalDataSaveTools.getInstance().getStuBeanToGreenDao();
+        if (StringJudge.isEmpty(stu_list)){
+            stu_list=new ArrayList<>();
+        }
+        Logger.e(""+stu_list.size());
         keyValue_adapter.clear();
-        List<String> list=StringUtils.listToStringSplitCharacters("张三,李四,王五",",");
-        for (String s:list){
-            KeyValue one=new KeyValue(s,"",TagFinal.TYPE_ITEM);
+        for (StuBean s:stu_list){
+            KeyValue one=new KeyValue(s.getStuname(),"",TagFinal.TYPE_ITEM);
+            one.setId(s.getStuid());
             one.setType(type);
-            switch (type){
-                case "运动技能":
-                    one.setRight_value("总分：88");
-                    break;
-                case "请假":
-                    if (s.equalsIgnoreCase("李四")){
-                        one.setRight_value("异常");
-                    }else{
-                        one.setRight_value("正常");
-                    }
-                    break;
-                case "课后作业":
-                    one.setRight_value("总分：88");
-                    break;
-                case "体能":
-                    one.setRight_value("总分：88");
-                    break;
-                case "国家体质标准":
-                    one.setRight_value("总分：88");
-                    break;
-                case "学习态度采集":
-                    one.setRight_value("总分：88");
-                    break;
-                case "膳食建议":
-                    one.setRight_value("膳食建议:无");
-                    break;
-                case "运动处方":
-                    one.setRight_value("运动处方:无");
-                    break;
-                case "课堂表现":
-                    one.setRight_value("得分：88");
-                    break;
-                case "荣誉比赛":
-                    one.setRight_value("荣誉比赛:5次");
-                    break;
-            }
+            one.setRight_value("");
+
             keyValue_adapter.add(one);
         }
 
