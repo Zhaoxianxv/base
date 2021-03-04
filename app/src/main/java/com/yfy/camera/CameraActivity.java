@@ -349,6 +349,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         mSaveButton = findViewById(R.id.save_button);
         mFlashButton = findViewById(R.id.flash_button);
         mMaskImage = findViewById(R.id.mask_img);
+
         rlCameraTip = findViewById(R.id.camera_tip);
         mPassportEntryAndExitImage = findViewById(R.id.passport_entry_and_exit_img);
         if (mMongolianLayerType == null) {
