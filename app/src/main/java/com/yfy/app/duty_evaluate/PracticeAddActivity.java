@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.yfy.app.album.AlbumOneActivity;
 import com.yfy.app.bean.DateBean;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
@@ -29,7 +30,6 @@ import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.greendao.KeyValueDb;
 import com.yfy.greendao.tool.NormalDataSaveTools;
-import com.yfy.view.SQToolBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,9 +76,9 @@ public class PracticeAddActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle("上传奖状");
         toolbar.addMenuText(TagFinal.ONE_INT,"提交");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
 
                 saveHonor();
             }
@@ -131,7 +131,7 @@ public class PracticeAddActivity extends BaseActivity {
 
     private void initDialogList(){
         cpwListBeanView = new CPWListBeanView(mActivity);
-        cpwListBeanView.setOnPopClickListenner(new CPWListBeanView.OnPopClickListenner() {
+        cpwListBeanView.setOnPopClickListener(new NoFastClickListener() {
             @Override
             public void onClick(CPWBean cpwBean,String type) {
                 selected_rank=cpwBean.getName();
@@ -214,9 +214,9 @@ public class PracticeAddActivity extends BaseActivity {
         album_select.setTwo_select(mActivity.getResources().getString(R.string.album));
         album_select.setOne_select(mActivity.getResources().getString(R.string.take_photo));
         album_select.setName(mActivity.getResources().getString(R.string.upload_type));
-        album_select.setOnPopClickListenner(new ConfirmAlbumWindow.OnPopClickListenner() {
+        album_select.setOnPopClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view) {
+            public void fastClick(View view) {
 
                 switch (view.getId()) {
                     case R.id.popu_select_one:

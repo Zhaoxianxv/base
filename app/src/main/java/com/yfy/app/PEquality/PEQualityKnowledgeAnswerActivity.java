@@ -16,6 +16,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.dialog.ConfirmContentWindow;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
@@ -61,9 +62,9 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         toolbar.setTitle(title);
         if(type.equalsIgnoreCase(TagFinal.FALSE))return;
         toolbar.addMenuText(TagFinal.ONE_INT,"结束答题");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                 showDialog("提示","结束本次答题并计算最终分数","确定");
             }
         });

@@ -24,6 +24,7 @@ import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWMatchListMinWidthView;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
@@ -115,9 +116,9 @@ public class PETeaAddScoreActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle(title);
         toolbar.addMenu(TagFinal.ONE_INT,R.drawable.ic_parent_head,ColorRgbUtil.getWhite());
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
 
                 closeKeyWord();
                 String name=stu_name.getText().toString().trim();
@@ -130,9 +131,9 @@ public class PETeaAddScoreActivity extends BaseActivity {
                 }
                 CPWMatchListMinWidthView confirmPopWindow=new CPWMatchListMinWidthView(mActivity);
                 confirmPopWindow.setAnimationStyle(R.style.pop_window_anim_style);
-                confirmPopWindow.setOnPopClickListener(new CPWMatchListMinWidthView.OnPopClickListener() {
+                confirmPopWindow.setOnPopClickListener(new NoFastClickListener() {
                     @Override
-                    public void onClick(String type, CPWBean bean) {
+                    public void onClick( CPWBean bean,String type) {
                         stu_name.setText(bean.getName());
                         score_edit.setText(bean.getValue());
                     }

@@ -1,5 +1,6 @@
 package com.yfy.app;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.yfy.final_tag.data.TagFinal;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+@SuppressLint("NonConstantResourceId")
 public class VersionDetailActivity extends BaseActivity {
 
 

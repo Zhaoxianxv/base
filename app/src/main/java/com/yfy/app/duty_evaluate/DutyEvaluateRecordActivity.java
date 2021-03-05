@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.greendao.bean.StuBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateRecodeAdapter;
 import com.yfy.app.net.ReqBody;
@@ -71,9 +72,9 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle(classBean.getTitle());
         select_date_tv=toolbar.addMenuText(TagFinal.ONE_INT,"");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                 customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01",year_s,month_s));
 
 

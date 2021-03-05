@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuDevelopAdapter;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuNormalAdapter;
@@ -26,7 +26,6 @@ import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.hander.AssetsAsyncTask;
 import com.yfy.final_tag.hander.AssetsGetFileData;
 import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
@@ -34,7 +33,6 @@ import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.greendao.tool.NormalDataSaveTools;
-import com.yfy.view.SQToolBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,10 +45,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     private static final String TAG = DutyEvaluateStuMainActivity.class.getSimpleName();
 
 
-    @BindView(R.id.duty_evaluate_stu_name)
-    TextView stu_name_tv;
-    @BindView(R.id.duty_evaluate_stu_head)
-    AppCompatImageView stu_head_iv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,15 +74,11 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         }else{
             menu_title.setText(selected_termBean.getName());
         }
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
-                switch (position){
-                    case TagFinal.ONE_INT:
-                        Intent intent=new Intent(mActivity,SelectedTermActivity.class);
-                        startActivityForResult(intent,TagFinal.UI_TAG);
-                        break;
-                }
+            public void fastClick(View view) {
+                Intent intent=new Intent(mActivity,SelectedTermActivity.class);
+                startActivityForResult(intent,TagFinal.UI_TAG);
 
             }
         });
@@ -98,8 +89,6 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
     private void initView(){
-        GlideTools.chanMult(mActivity,Base.user.getHeadPic(),stu_head_iv,R.drawable.icon_account_fill);
-        stu_name_tv.setText(StringUtils.stringToGetTextJoint("%1$s\t·\t%2$s",Base.user.getName(),"35"));
     }
 
     public DutyEvaluateStuNormalAdapter adapter_normal;

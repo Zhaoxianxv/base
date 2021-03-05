@@ -24,6 +24,7 @@ import com.yfy.app.PEquality.adapter.PEQualityMainAdapter;
 import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
@@ -182,9 +183,9 @@ public class PEQualityMainTestActivity extends BaseActivity {
 
 //        toolbar.cancelNavi();
 //        toolbar.setNaviText("教师");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                 Intent intent=new Intent(mActivity,SelectedTermActivity.class);
                 startActivityForResult(intent,TagFinal.UI_TAG);
             }

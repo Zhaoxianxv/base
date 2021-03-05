@@ -20,6 +20,7 @@ import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
@@ -59,9 +60,9 @@ public class PETeaStandardListActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle(title);
         toolbar.addMenuText(TagFinal.ONE_INT,"添加");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
 
                 Intent intent=new Intent(mActivity,PETeaAddScoreActivity.class);
                 intent.putExtra(Base.title,title);

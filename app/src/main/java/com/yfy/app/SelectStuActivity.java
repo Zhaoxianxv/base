@@ -14,6 +14,7 @@ import com.yfy.app.net.ResEnv;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
@@ -68,9 +69,9 @@ public class SelectStuActivity extends BaseActivity {
         });
         if (type.equalsIgnoreCase("select_stu")){
             toolbar.addMenuText(TagFinal.ONE_INT,"确定");
-            toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+            toolbar.setOnMenuClickListener(new NoFastClickListener() {
                 @Override
-                public void onClick(View view, int position) {
+                public void fastClick(View view) {
 
                     List<String> nameList=new ArrayList<>();
                     List<KeyValue> stuList=adapter.getDataList();

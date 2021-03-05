@@ -1,6 +1,5 @@
 package com.yfy.greendao.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.app.SelectStuActivity;
 import com.yfy.app.album.SingePicShowActivity;
 import com.yfy.app.bean.KeyValue;
@@ -25,6 +23,7 @@ import com.yfy.final_tag.dialog.CPWListBeanView;
 import com.yfy.final_tag.dialog.ConfirmAlbumWindow;
 import com.yfy.final_tag.dialog.ConfirmDateAndTimeWindow;
 import com.yfy.final_tag.dialog.ConfirmDateWindow;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
@@ -377,7 +376,7 @@ public class AddStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         private List<CPWBean> dialog_name_list=new ArrayList<>();
         private void initListDialog(){
             cpwListView = new CPWListBeanView(mContext);
-            cpwListView.setOnPopClickListenner(new CPWListBeanView.OnPopClickListenner() {
+            cpwListView.setOnPopClickListener(new NoFastClickListener() {
                 @Override
                 public void onClick(CPWBean cpwBean, String type) {
                     switch (type){
@@ -502,9 +501,9 @@ public class AddStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             album_select.setTwo_select(mContext.getResources().getString(R.string.album));
             album_select.setOne_select(mContext.getResources().getString(R.string.take_photo));
             album_select.setName(mContext.getResources().getString(R.string.upload_type));
-            album_select.setOnPopClickListenner(new ConfirmAlbumWindow.OnPopClickListenner() {
+            album_select.setOnPopClickListener(new NoFastClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void fastClick(View view) {
                     if (sealChoice!=null){
                         sealChoice.refresh(bean, position_index);
                     }

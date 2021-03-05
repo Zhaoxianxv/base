@@ -18,6 +18,7 @@ import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.ConfirmAlbumWindow;
 import com.yfy.final_tag.glide.FileCamera;
 import com.yfy.final_tag.glide.Photo;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.permission.PermissionFail;
 import com.yfy.final_tag.permission.PermissionGen;
 import com.yfy.final_tag.permission.PermissionSuccess;
@@ -27,7 +28,6 @@ import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -275,9 +275,9 @@ public class HttpPostMainActivity extends HttpPostActivity implements HttpNetHel
         album_select.setTwo_select(mActivity.getResources().getString(R.string.album));
         album_select.setOne_select(mActivity.getResources().getString(R.string.take_photo));
         album_select.setName(mActivity.getResources().getString(R.string.upload_type));
-        album_select.setOnPopClickListenner(new ConfirmAlbumWindow.OnPopClickListenner() {
+        album_select.setOnPopClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view) {
+            public void fastClick(View view) {
 
                 switch (view.getId()) {
                     case R.id.popu_select_one:

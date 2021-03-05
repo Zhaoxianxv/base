@@ -26,6 +26,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.keyboard.password.KeyboardTouchListener;
 import com.yfy.final_tag.keyboard.password.KeyboardUtil;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.greendao.tool.GreenDaoManager;
 import com.yfy.db.UserPreferences;
@@ -121,9 +122,9 @@ LoginActivity extends BaseActivity {
 		album_select.setOne_select("教师");
 		album_select.setTwo_select("学生");
 		album_select.setName("请选择账号类型");
-		album_select.setOnPopClickListenner(new ConfirmAlbumWindow.OnPopClickListenner() {
+		album_select.setOnPopClickListener(new NoFastClickListener() {
 			@Override
-			public void onClick(View view) {
+			public void fastClick(View view) {
 				switch (view.getId()) {
 					case R.id.popu_select_one:
 						type = "2";
@@ -182,7 +183,7 @@ LoginActivity extends BaseActivity {
 	}
 	private void initDialogList(){
 		cpwListBeanView = new CPWListBeanView(mActivity);
-		cpwListBeanView.setOnPopClickListenner(new CPWListBeanView.OnPopClickListenner() {
+		cpwListBeanView.setOnPopClickListener(new NoFastClickListener() {
 			@Override
 			public void onClick(CPWBean cpwBean, String type) {
 				duplicationLogin_(cpwBean.getId());

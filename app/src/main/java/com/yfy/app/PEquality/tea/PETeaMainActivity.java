@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.yfy.app.PEquality.PEHonorMainActivity;
 import com.yfy.app.PEquality.adapter.PETeaMainAdapter;
 import com.yfy.app.SelectStuActivity;
-import com.yfy.app.SelectedClassActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.net.ReqBody;
@@ -22,6 +21,7 @@ import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWListBeanView;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
@@ -109,7 +109,7 @@ public class PETeaMainActivity extends BaseActivity {
 
     private void initDialogList(){
         cpwListBeanView = new CPWListBeanView(mActivity);
-        cpwListBeanView.setOnPopClickListenner(new CPWListBeanView.OnPopClickListenner() {
+        cpwListBeanView.setOnPopClickListener(new NoFastClickListener() {
             @Override
             public void onClick(CPWBean cpwBean,String type) {
                 Intent intent;

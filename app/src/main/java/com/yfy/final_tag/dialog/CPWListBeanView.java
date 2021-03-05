@@ -28,10 +28,10 @@ import java.util.List;
  * 弹窗视图
  */
 public class CPWListBeanView extends PopupWindow  {
-	private Activity context;
-	private ListView listview;
-	private PopListAdapter adapter;
-    private List<CPWBean> datas;
+    public Activity context;
+    public ListView listview;
+    public PopListAdapter adapter;
+    public List<CPWBean> datas;
 
     public void setDatas(List<CPWBean> datas) {
         this.datas = datas;
@@ -62,8 +62,8 @@ public class CPWListBeanView extends PopupWindow  {
 //                int index = state_list .getCheckedItemPosition();     // 即获取选中位置
                 if(ListView.INVALID_POSITION != position) {
 
-                    if (listenner!=null){
-                        listenner.onClick(datas.get(position),type);
+                    if (listener !=null){
+                        listener.popClick(datas.get(position),type);
                     }
                 }
             }
@@ -127,8 +127,8 @@ public class CPWListBeanView extends PopupWindow  {
 
 
     public class PopListAdapter extends BaseAdapter {
-        private Context context;
-        private List<CPWBean> datas;
+        public Context context;
+        public List<CPWBean> datas;
         public void setDatas(List<CPWBean> datas) {
             this.datas = datas;
             notifyDataSetChanged();
@@ -189,13 +189,10 @@ public class CPWListBeanView extends PopupWindow  {
         return type;
     }
 
-	private OnPopClickListenner listenner = null;
+	private PopClickListener listener;
 
-	public void setOnPopClickListenner(OnPopClickListenner listenner) {
-		this.listenner = listenner;
+	public void setOnPopClickListener(PopClickListener listener) {
+		this.listener = listener;
 	}
 
-	public static interface OnPopClickListenner {
-		public void onClick(CPWBean cpwBean, String type);
-	}
 }

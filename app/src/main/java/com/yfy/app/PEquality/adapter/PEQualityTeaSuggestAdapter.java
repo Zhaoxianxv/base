@@ -16,6 +16,7 @@ import com.yfy.app.album.SingePicShowActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
@@ -373,7 +374,7 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
         private List<CPWBean> dialog_name_list=new ArrayList<>();
         private void initListDialog(){
             cpwListView = new CPWListBeanView(mContext);
-            cpwListView.setOnPopClickListenner(new CPWListBeanView.OnPopClickListenner() {
+            cpwListView.setOnPopClickListener(new NoFastClickListener() {
                 @Override
                 public void onClick(CPWBean cpwBean, String type) {
                     switch (type){
@@ -498,9 +499,9 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
             album_select.setTwo_select(mContext.getResources().getString(R.string.album));
             album_select.setOne_select(mContext.getResources().getString(R.string.take_photo));
             album_select.setName(mContext.getResources().getString(R.string.upload_type));
-            album_select.setOnPopClickListenner(new ConfirmAlbumWindow.OnPopClickListenner() {
+            album_select.setOnPopClickListener(new NoFastClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void fastClick(View view) {
                     if (sealChoice!=null){
                         sealChoice.refresh(bean, position_index);
                     }

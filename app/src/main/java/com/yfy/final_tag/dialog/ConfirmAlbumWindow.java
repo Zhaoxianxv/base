@@ -20,9 +20,9 @@ import com.yfy.final_tag.stringtool.StringJudge;
  * 弹窗视图
  */
 public class ConfirmAlbumWindow extends PopupWindow  {
-	private Activity context;
-	private TextView title, one, two,cancel;
-	private String name,one_select,two_select;
+	public Activity context;
+	public TextView title, one, two,cancel;
+	public String name,one_select,two_select;
 
 	public ConfirmAlbumWindow(Activity context) {
 		super(context);
@@ -78,7 +78,7 @@ public class ConfirmAlbumWindow extends PopupWindow  {
 
 	private void initWindow() {
 		DisplayMetrics d = context.getResources().getDisplayMetrics();
-		this.setWidth((int) (d.widthPixels * 1));//width比例
+		this.setWidth((int) (d.widthPixels * 1.0));//width比例
 
 		this.setHeight(LayoutParams.WRAP_CONTENT);
 		this.setFocusable(true);
@@ -129,24 +129,23 @@ public class ConfirmAlbumWindow extends PopupWindow  {
 
 
 
-	private View.OnClickListener onClickListener = new View.OnClickListener() {
+	public View.OnClickListener onClickListener = new View.OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
-			if (listenner != null) {
-				listenner.onClick(v);
+			if (listener != null) {
+				listener.popClick(v);
 			}
 			dismiss();
 		}
 	};
 
-	private OnPopClickListenner listenner = null;
+	private PopClickListener listener = null;
 
-	public void setOnPopClickListenner(OnPopClickListenner listenner) {
-		this.listenner = listenner;
+	public void setOnPopClickListener(PopClickListener listener) {
+		this.listener = listener;
 	}
 
-	public static interface OnPopClickListenner {
-		public void onClick(View view);
-	}
+
+
 }

@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.greendao.bean.StuBean;
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateTeaDoTabAdapter;
@@ -101,9 +102,9 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle(title);
         toolbar.addMenuText(TagFinal.ONE_INT,"记录");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
 
                 Intent intent=new Intent(mActivity,DutyEvaluateRecordActivity.class);
                 intent.putExtra(Base.class_bean,classBean);
@@ -247,9 +248,9 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
 
         CPWMatchListMinWidthView confirmPopWindow=new CPWMatchListMinWidthView(mActivity);
         confirmPopWindow.setAnimationStyle(R.style.pop_window_anim_style);
-        confirmPopWindow.setOnPopClickListener(new CPWMatchListMinWidthView.OnPopClickListener() {
+        confirmPopWindow.setOnPopClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(String type, CPWBean bean) {
+            public void onClick( CPWBean bean,String type) {
                 select_stu=bean;
                 selected_stu.setText(select_stu.getName());
                 selected_stu.setTextColor(ColorRgbUtil.getBaseText());
