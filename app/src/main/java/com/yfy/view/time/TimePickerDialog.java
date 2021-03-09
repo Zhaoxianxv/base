@@ -20,7 +20,7 @@ import java.util.List;
 import androidx.appcompat.app.AlertDialog;
 
 /**
- * Created by yfyandr on 2017/8/23.
+ * Created by yfy on 2017/8/23.
  */
 public class TimePickerDialog {
 

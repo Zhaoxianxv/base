@@ -26,6 +26,7 @@ import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
@@ -83,9 +84,9 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle(title);
         toolbar.addMenuText(TagFinal.ONE_INT,R.string.submit);
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                 mActivity.showProgressDialog("");
                 recyclerView.postDelayed(new Runnable() {
                     @Override

@@ -14,6 +14,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
@@ -50,9 +51,9 @@ public class ChangePasswordActivity extends BaseActivity  {
 
         toolbar.addMenuText(1,R.string.ok);
 
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                 if (isSend()){
                     alterPass();
                 }

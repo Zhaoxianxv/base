@@ -71,9 +71,9 @@ public class AddStuActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle(title);
         toolbar.addMenuText(TagFinal.ONE_INT,"确定");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                 addKeyValue();
             }
         });

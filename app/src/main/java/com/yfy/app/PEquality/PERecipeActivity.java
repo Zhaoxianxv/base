@@ -23,6 +23,7 @@ import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
@@ -64,9 +65,9 @@ public class PERecipeActivity extends BaseActivity {
         toolbar.setTitle(title);
         if (type.equalsIgnoreCase(TagFinal.FALSE))return;
         toolbar.addMenuText(TagFinal.ONE_INT,"添加");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                 Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                 intent.putExtra(Base.title,title);
                 intent.putExtra(Base.type,title);

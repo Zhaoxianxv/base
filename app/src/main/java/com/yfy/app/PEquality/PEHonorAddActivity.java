@@ -18,6 +18,7 @@ import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.dialog.ConfirmAlbumWindow;
 import com.yfy.final_tag.glide.FileCamera;
@@ -34,7 +35,6 @@ import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWListBeanView;
 import com.yfy.final_tag.dialog.ConfirmDateWindow;
-import com.yfy.view.SQToolBar;
 import com.yfy.view.multi.MultiPictureView;
 
 import org.jetbrains.annotations.NotNull;
@@ -45,7 +45,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
-import butterknife.BindView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -95,9 +94,9 @@ public class PEHonorAddActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle(title);
         toolbar.addMenuText(TagFinal.ONE_INT,"确定");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                 finish();
             }
         });
@@ -156,7 +155,7 @@ public class PEHonorAddActivity extends BaseActivity {
 
     private void initDialogList(){
         cpwListBeanView = new CPWListBeanView(mActivity);
-        cpwListBeanView.setOnPopClickListenner(new CPWListBeanView.OnPopClickListenner() {
+        cpwListBeanView.setOnPopClickListener(new NoFastClickListener() {
             @Override
             public void onClick(CPWBean cpwBean,String type) {
                 choose_course.setText(cpwBean.getName());
@@ -297,9 +296,9 @@ public class PEHonorAddActivity extends BaseActivity {
         album_select.setTwo_select(mActivity.getResources().getString(R.string.album));
         album_select.setOne_select(mActivity.getResources().getString(R.string.take_photo));
         album_select.setName(mActivity.getResources().getString(R.string.upload_type));
-        album_select.setOnPopClickListenner(new ConfirmAlbumWindow.OnPopClickListenner() {
+        album_select.setOnPopClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view) {
+            public void fastClick(View view) {
 
                 switch (view.getId()) {
                     case R.id.popu_select_one:

@@ -18,6 +18,7 @@ import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.hander.AssetsAsyncTask;
 import com.yfy.final_tag.hander.AssetsGetFileData;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.viewtools.ViewTool;
@@ -66,9 +67,9 @@ public class DutyEvaluateStuAddActivity extends BaseActivity implements AssetsGe
         assert toolbar!=null;
         toolbar.setTitle(title);
         toolbar.addMenuText(TagFinal.ONE_INT,"完成");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                finish();
             }
         });

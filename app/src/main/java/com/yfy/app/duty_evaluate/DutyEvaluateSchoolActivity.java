@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yfy.app.SelectedTermActivity;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
@@ -38,9 +39,9 @@ public class DutyEvaluateSchoolActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle(barTitle);
         menu_one =toolbar.addMenuText(TagFinal.ONE_INT,"");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                 Intent intent=new Intent(mActivity,SelectedTermActivity.class);
                 startActivityForResult(intent,TagFinal.UI_TAG);
             }

@@ -30,6 +30,7 @@ import com.yfy.charting_mp.data.PieData;
 import com.yfy.charting_mp.data.PieDataSet;
 import com.yfy.charting_mp.utils.PercentFormatter;
 import com.yfy.final_tag.data.MathTool;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.ReViewHolder;
 import com.yfy.final_tag.data.ColorRgbUtil;
@@ -356,7 +357,7 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
         }
         private void initDialogList(){
             cpwListBeanView = new CPWListBeanView(mActivity);
-            cpwListBeanView.setOnPopClickListenner(new CPWListBeanView.OnPopClickListenner() {
+            cpwListBeanView.setOnPopClickListener(new NoFastClickListener() {
                 @Override
                 public void onClick(CPWBean cpwBean, String type) {
                     cpwListBeanView.dismiss();

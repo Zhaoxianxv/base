@@ -16,6 +16,7 @@ import com.yfy.base.activity.BaseActivity;
 import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.data.Base;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.RegexUtils;
 import com.yfy.final_tag.stringtool.StringJudge;
@@ -55,9 +56,9 @@ public class AlterCllActivity extends BaseActivity implements Callback<ResEnv> {
         assert toolbar!=null;
         TextView titlebar=toolbar.setTitle("联系电话");
         TextView menuOne=toolbar.addMenuText(1,R.string.ok);
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                 closeKeyWord();
                 isSend();
 

@@ -14,7 +14,25 @@ public class BaseRes {
     private String stuid;
     private String classname;
     private String url;
+    private String packagename;
+    private int versionCode;
 
+
+    public int getVersionCode() {
+        return versionCode;
+    }
+
+    public void setVersionCode(int versionCode) {
+        this.versionCode = versionCode;
+    }
+
+    public String getPackagename() {
+        return packagename;
+    }
+
+    public void setPackagename(String packagename) {
+        this.packagename = packagename;
+    }
 
     public String getUrl() {
         return url;

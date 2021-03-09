@@ -21,6 +21,7 @@ import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.hander.AssetsAsyncTask;
 import com.yfy.final_tag.hander.AssetsGetFileData;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
@@ -66,14 +67,10 @@ public class DutyEvaluateStuDetailActivity extends BaseActivity implements Asset
         assert toolbar!=null;
         toolbar.setTitle(title);
         select_date_tv=toolbar.addMenuText(TagFinal.TWO_INT,"");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
-                switch (position){
-                    case TagFinal.TWO_INT:
-                        customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01",year_s,month_s));
-                        break;
-                }
+            public void fastClick(View view) {
+                customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01",year_s,month_s));
 
             }
         });

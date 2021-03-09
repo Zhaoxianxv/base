@@ -20,10 +20,10 @@ import androidx.viewpager.widget.ViewPager;
 
 
 public class MultPicShowActivity extends BaseActivity {
-    private List<String> list=new ArrayList<>();
-    private String title;
-    private ViewPager pager;
-    private int index=-1;
+    public List<String> list=new ArrayList<>();
+    public String title;
+    public ViewPager pager;
+    public int index=-1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

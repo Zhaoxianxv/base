@@ -17,6 +17,7 @@ import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.view.SQToolBar;
@@ -44,9 +45,9 @@ public class SelectedUserTypeActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle("选择用户类型");
         toolbar.addMenuText(TagFinal.ONE_INT,"zxx");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                 startActivity(new Intent(SelectedUserTypeActivity.this, SelectedModeTypeActivity.class));
             }
         });

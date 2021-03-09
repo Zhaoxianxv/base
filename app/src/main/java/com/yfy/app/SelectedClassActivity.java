@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.greendao.bean.BaseClass;
 import com.yfy.greendao.bean.BaseGrade;
 import com.yfy.app.bean.BaseRes;
@@ -52,6 +53,7 @@ public class SelectedClassActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_recycler_view);
+        Logger.e(TAG);
         getData();
         select_term= NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
         initRecycler();
@@ -62,6 +64,7 @@ public class SelectedClassActivity extends BaseActivity {
 
     private String mode_type;
     private void getData(){
+        select_term=NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
         mode_type=getIntent().getStringExtra(Base.mode_type);
     }
 
@@ -72,9 +75,9 @@ public class SelectedClassActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle("班级列表");
         menu_one =toolbar.addMenuText(TagFinal.ONE_INT,"");
-        toolbar.setOnMenuClickListener(new SQToolBar.OnMenuClickListener() {
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastClick(View view) {
                 Intent intent=new Intent(mActivity,SelectedTermActivity.class);
                 startActivityForResult(intent,TagFinal.UI_TAG);
             }
@@ -96,6 +99,8 @@ public class SelectedClassActivity extends BaseActivity {
                     assert data!=null;
                     select_term=data.getParcelableExtra(Base.data);
                     menu_one.setText(select_term.getName());
+                    break;
+                case -1:
                     break;
 
             }
@@ -129,7 +134,7 @@ public class SelectedClassActivity extends BaseActivity {
      * ----------------------------retrofit-----------------------
      */
 
-    private  List<KeyValue> adapter_data_list=new ArrayList<>();
+    public  List<KeyValue> adapter_data_list=new ArrayList<>();
     public void getClassList() {
         ReqEnv env = new ReqEnv();
         ReqBody reqBody = new ReqBody();

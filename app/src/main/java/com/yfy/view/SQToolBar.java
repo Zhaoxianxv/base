@@ -37,11 +37,11 @@ public class SQToolBar extends RelativeLayout {
 
 
     //图标菜单的图标显示大小
-    private int MENU_ICON_SIZE = 0;
+    public int MENU_ICON_SIZE = 0;
     //菜单项的宽高
-    private int MENU_ITEM_SIZE = 0;
+    public int MENU_ITEM_SIZE = 0;
     //文字菜单的Padding
-    private int TEXT_PADDING_LEFT_RIGHT = 0;
+    public int TEXT_PADDING_LEFT_RIGHT = 0;
 
     //導航
     TextView tv_navi;
@@ -284,11 +284,11 @@ public class SQToolBar extends RelativeLayout {
     }
 
     private void setMenuListener(View menu) {
-        menu.setOnClickListener(new NoFastClickListener() {
+        menu.setOnClickListener(new OnClickListener() {
             @Override
-            public void fastClick(View v) {
+            public void onClick(View v) {
                 if (onMenuClickListener != null) {
-                    onMenuClickListener.onClick(v, (int) v.getTag());
+                    onMenuClickListener.onMenuClick(v, (int) v.getTag());
                 }
             }
         });
@@ -421,21 +421,11 @@ public class SQToolBar extends RelativeLayout {
      * 按钮的点击事件
      */
 
-    public OnMenuClickListener onMenuClickListener = null;
-    public interface OnMenuClickListener {
+    public OnMenuClickListener onMenuClickListener ;
 
-        void onClick(View view, int position);
-    }
 
     public void setOnMenuClickListener(OnMenuClickListener onMenuClickListener) {
         this.onMenuClickListener = onMenuClickListener;
     }
 
-//    private long lastClickTime = 0;//上次点击的时间
-//    private boolean isFastClick() {
-//        long currentTime = System.currentTimeMillis();//当前系统时间
-//        boolean isAllowClick = currentTime - lastClickTime >= 500;      //是否允许点击
-//        lastClickTime = currentTime;
-//        return isAllowClick;
-//    }
 }

@@ -30,10 +30,10 @@ import java.util.List;
  * 弹窗视图
  */
 public class CPWMatchListMinWidthView extends PopupWindow  {
-	private Activity context;
+	public Activity context;
 	public ListView listview;
-	private PopListAdapter adapter;
-	private String type;
+	public PopListAdapter adapter;
+	public String type;
 
 	public CPWMatchListMinWidthView(Activity context) {
 		super(context);
@@ -50,17 +50,14 @@ public class CPWMatchListMinWidthView extends PopupWindow  {
 		listview = view.findViewById(R.id.pop_list);//发起群聊
 		adapter=new PopListAdapter(context);
 		listview.setAdapter(adapter);
-		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				//获取选中的参数
+		listview.setOnItemClickListener((parent, view1, position, id) -> {
+			//获取选中的参数
 //                int index = state_list .getCheckedItemPosition();     // 即获取选中位置
-				if(ListView.INVALID_POSITION != position) {
-					if (listener !=null){
-						listener.onClick(type, adapter.datas.get(position));
-					}
-					dismiss();
+			if(ListView.INVALID_POSITION != position) {
+				if (listener !=null){
+					listener.popClick(adapter.datas.get(position),type);
 				}
+				dismiss();
 			}
 		});
 		setContentView(view);
@@ -110,17 +107,6 @@ public class CPWMatchListMinWidthView extends PopupWindow  {
 		adapter.setDatas(groups);
 	}
 
-	private OnPopClickListener listener = null;
-
-	public void setOnPopClickListener(OnPopClickListener listener) {
-		this.listener = listener;
-	}
-
-	public interface OnPopClickListener {
-		void onClick(String type, CPWBean bean);
-	}
-
-
 
 
 	//----------------------------data--------------------
@@ -128,8 +114,8 @@ public class CPWMatchListMinWidthView extends PopupWindow  {
 
 
 	public class PopListAdapter extends BaseAdapter {
-		private Context context;
-		List<CPWBean> datas;
+		public Context context;
+		public List<CPWBean> datas;
 		PopListAdapter(Context context) {
 			this.context = context;
 			this.datas = new ArrayList<>();
@@ -205,4 +191,17 @@ public class CPWMatchListMinWidthView extends PopupWindow  {
 			TextView name;
 		}
 	}
+
+
+
+
+	private PopClickListener listener = null;
+
+	public void setOnPopClickListener(PopClickListener listener) {
+		this.listener = listener;
+	}
+
+
+
+
 }
