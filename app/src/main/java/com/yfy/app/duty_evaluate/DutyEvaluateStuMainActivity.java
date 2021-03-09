@@ -1,21 +1,26 @@
 package com.yfy.app.duty_evaluate;
 
 import android.annotation.SuppressLint;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.TintTypedArray;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
-import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuDevelopAdapter;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuNormalAdapter;
@@ -32,12 +37,13 @@ import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
-import com.yfy.greendao.tool.NormalDataSaveTools;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 
 @SuppressLint("NonConstantResourceId")
@@ -46,50 +52,82 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
+    @BindView(R.id.duty_evaluate_stu_rank)
+    TextView stu_rank;
+    @BindView(R.id.duty_evaluate_bg)
+    AppCompatImageView top_bg;
+
+    @BindView(R.id.duty_evaluate_stu_head)
+    AppCompatImageView top_head;
+
+    @BindView(R.id.duty_evaluate_bottom_left_bg)
+    AppCompatImageView bg_left;
+    @BindView(R.id.duty_evaluate_bottom_right_bg)
+    AppCompatImageView bg_right;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.duty_evaluate_stu_main);
-        initSQToolbar("五育评价");
-        initView();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+
+        }
+//        initSQToolbar("五育评价");
+        stu_rank.setText("雅生四星勋章\n总计25雅币");
         initRecyclerView();
         initRecyclerViewDevelop();
         getAssetsData("duty_evaluate_get_stu_develop_detail.txt");
     }
 
 
-
+    @Override
+    public void finish() {
+        setResult(RESULT_OK);
+        super.finish();
+    }
 
     public TextView menu_title;
     public TermBean selected_termBean;
-    public void initSQToolbar(String title) {
-        selected_termBean = NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
 
-        assert toolbar!=null;
-        toolbar.setTitle(title);
-        menu_title=toolbar.addMenuText(TagFinal.ONE_INT, "");
-        if (selected_termBean.getName().equalsIgnoreCase("")){
-            menu_title.setText("选择学期");
-        }else{
-            menu_title.setText(selected_termBean.getName());
-        }
-        toolbar.setOnMenuClickListener(new NoFastClickListener() {
+    @OnClick(R.id.main_navi)
+    void setNavi(){
+//        finish();
+//        changeBgColor(R.color.count_color);
+        showTimePickerAndTimeDialog(mActivity, new TimePickerDialog.OnTimeSetListener() {
             @Override
-            public void fastClick(View view) {
-                Intent intent=new Intent(mActivity,SelectedTermActivity.class);
-                startActivityForResult(intent,TagFinal.UI_TAG);
+            public void onTimeSet(TimePicker timePicker, int i, int i1) {
 
             }
         });
+    }
+
+
+    public void showTimePickerAndTimeDialog(Context mActivity, TimePickerDialog.OnTimeSetListener liste){
+
+        int hourOfDay = 0;
+        int minute = 0;
+
+
+        TimePickerDialog picker = new TimePickerDialog(
+                mActivity,
+                android.app.AlertDialog.THEME_HOLO_LIGHT,
+                liste ,
+                hourOfDay,
+                minute,
+                true);
+        picker.setCancelable(true);
+        picker.setCanceledOnTouchOutside(true);
+        picker.show();
+
 
 
     }
 
 
 
-    private void initView(){
-    }
 
     public DutyEvaluateStuNormalAdapter adapter_normal;
     public RecyclerView normal_recycler;
@@ -119,6 +157,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
                 case "10月·30分":
                     keyValue.setRight_name("2020");
                     keyValue.setRight_key("10");
+
                     break;
                 case "11月·38分":
                     keyValue.setRight_name("2020");
@@ -222,6 +261,12 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
+    private void changeBgColor(int color){
+
+        ViewTool.alterVectorDrawableColor(bg_left,color);
+        ViewTool.alterVectorDrawableColor(bg_right,color);
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -233,10 +278,13 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
                     selected_termBean=data.getParcelableExtra(Base.data);
                     menu_title.setText(selected_termBean.getName());
                     break;
+                case -1:
+                    break;
 
             }
         }
     }
+
 
 
 

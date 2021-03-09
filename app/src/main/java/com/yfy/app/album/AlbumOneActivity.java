@@ -1,5 +1,6 @@
 package com.yfy.app.album;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,6 +32,7 @@ import butterknife.OnClick;
  * @author yfy
  * @version 1.0
  */
+@SuppressLint("NonConstantResourceId")
 public class AlbumOneActivity extends BaseActivity implements OnEndListenner,CheckedListenner {
 
 	@BindView(R.id.pic_gridview)
