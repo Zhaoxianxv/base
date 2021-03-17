@@ -101,6 +101,21 @@ public class MathTool {
         return decimalFormat.format(f);
     }
 
+
+    public static String stringToGetToDecimals(String str,int num){
+        if (StringJudge.isEmpty(str)){
+            return "0";
+        }
+        int length=str.length();
+        int idx=str.lastIndexOf(".");//注意不能用转义符
+        if (length-idx<=num){
+            return str;
+        }else{
+            return str.substring(0,idx+num);
+        }
+
+    }
+
     public static int getIntToDecimals(float f){
         return stringToInt(stringToGetTwoToDecimals(f));
     }

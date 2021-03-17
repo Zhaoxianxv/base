@@ -9,8 +9,8 @@ import com.yfy.base.R;
 
 import com.yfy.charting.formatter.IndexAxisValueFormatter;
 import com.yfy.charting.formatter.ValueFormatter;
-import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
-import com.yfy.final_tag.recycerview.ReViewHolder;
+import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 import com.yfy.charting.animation.Easing;
 import com.yfy.charting.charts.LineChart;
 import com.yfy.charting.components.Legend;

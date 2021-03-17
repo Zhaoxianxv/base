@@ -61,7 +61,7 @@ public class CustomDatePicker {
     private int startYear, startMonth, startDay, startHour, startMinute, endYear, endMonth, endDay, endHour, endMinute;
     private boolean spanYear, spanMon, spanDay, spanHour, spanMin;
     private Calendar selectedCalender, startCalendar, endCalendar;
-    private TextView tv_cancle, tv_select, hour_text, minute_text;
+    public TextView tv_cancle, tv_select, hour_text, minute_text;
 
     public CustomDatePicker(Context context, ResultHandler resultHandler, String startDate, String endDate) {
         if (isValidDate(startDate, "yyyy-MM-dd HH:mm") && isValidDate(endDate, "yyyy-MM-dd HH:mm")) {
@@ -101,15 +101,15 @@ public class CustomDatePicker {
     }
 
     private void initView() {
-        year_pv = (DatePickerView) datePickerDialog.findViewById(R.id.year_pv);
-        month_pv = (DatePickerView) datePickerDialog.findViewById(R.id.month_pv);
-        day_pv = (DatePickerView) datePickerDialog.findViewById(R.id.day_pv);
-        hour_pv = (DatePickerView) datePickerDialog.findViewById(R.id.hour_pv);
-        minute_pv = (DatePickerView) datePickerDialog.findViewById(R.id.minute_pv);
-        tv_cancle = (TextView) datePickerDialog.findViewById(R.id.tv_cancle);
-        tv_select = (TextView) datePickerDialog.findViewById(R.id.tv_select);
-        hour_text = (TextView) datePickerDialog.findViewById(R.id.hour_text);
-        minute_text = (TextView) datePickerDialog.findViewById(R.id.minute_text);
+        year_pv =  datePickerDialog.findViewById(R.id.year_pv);
+        month_pv =  datePickerDialog.findViewById(R.id.month_pv);
+        day_pv =  datePickerDialog.findViewById(R.id.day_pv);
+        hour_pv =  datePickerDialog.findViewById(R.id.hour_pv);
+        minute_pv =  datePickerDialog.findViewById(R.id.minute_pv);
+        tv_cancle =  datePickerDialog.findViewById(R.id.tv_cancle);
+        tv_select =  datePickerDialog.findViewById(R.id.tv_select);
+        hour_text =  datePickerDialog.findViewById(R.id.hour_text);
+        minute_text =  datePickerDialog.findViewById(R.id.minute_text);
 
         tv_cancle.setOnClickListener(new View.OnClickListener() {
             @Override

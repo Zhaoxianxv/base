@@ -1,17 +1,13 @@
-package com.yfy.final_tag.recycerview;
+package com.yfy.final_tag.recycerview.adapter;
 
 
 import android.app.Activity;
-import android.content.Context;
-import android.provider.SyncStateContract;
+
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import com.yfy.app.welcome.Utils;
 import com.yfy.base.R;
 
 public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<ReViewHolder> {
@@ -53,7 +49,7 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<ReViewHol
 
 
 
-    public class ErrorHolder extends ReViewHolder{
+    public class ErrorHolder extends ReViewHolder {
 
         public ErrorHolder(ViewGroup parent) {
             super(inflater.inflate(R.layout.public_type_error, parent, false));

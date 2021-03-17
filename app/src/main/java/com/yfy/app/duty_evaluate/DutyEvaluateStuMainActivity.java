@@ -1,8 +1,6 @@
 package com.yfy.app.duty_evaluate;
 
 import android.annotation.SuppressLint;
-import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -11,16 +9,14 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.TintTypedArray;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuDevelopAdapter;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuNormalAdapter;
@@ -39,7 +35,6 @@ import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -64,6 +59,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     AppCompatImageView bg_left;
     @BindView(R.id.duty_evaluate_bottom_right_bg)
     AppCompatImageView bg_right;
+    @BindView(R.id.card_background)
+    AppCompatImageView card_bg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +75,15 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 //        initSQToolbar("五育评价");
         stu_rank.setText("雅生四星勋章\n总计25雅币");
         initRecyclerView();
+
         initRecyclerViewDevelop();
         getAssetsData("duty_evaluate_get_stu_develop_detail.txt");
+        changeBgColor(
+                ColorRgbUtil.getColor("#8CCFFA"),
+                "一",
+                "12",
+                ColorRgbUtil.getColor("#BEE7FE"),
+                ColorRgbUtil.getColor("#3EAAF8"));
     }
 
 
@@ -94,39 +98,38 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
     @OnClick(R.id.main_navi)
     void setNavi(){
-//        finish();
-//        changeBgColor(R.color.count_color);
-        showTimePickerAndTimeDialog(mActivity, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int i, int i1) {
-
-            }
-        });
-    }
-
-
-    public void showTimePickerAndTimeDialog(Context mActivity, TimePickerDialog.OnTimeSetListener liste){
-
-        int hourOfDay = 0;
-        int minute = 0;
-
-
-        TimePickerDialog picker = new TimePickerDialog(
-                mActivity,
-                android.app.AlertDialog.THEME_HOLO_LIGHT,
-                liste ,
-                hourOfDay,
-                minute,
-                true);
-        picker.setCancelable(true);
-        picker.setCanceledOnTouchOutside(true);
-        picker.show();
-
-
+        finish();
 
     }
 
+    @OnClick(R.id.duty_evaluate_stu_head)
+    void setHead(){
+//        ViewTool.alterGradientStartEndColor(card_bg,ColorRgbUtil.getColor("#BEE7FE"),ColorRgbUtil.getColor("#3EAAF8"));
+        int num=1;
+        switch (num%5){
+            case 0:
+                changeBgColor(
+                        ColorRgbUtil.getColor("#8CCFFA"),
+                        "一",
+                        "12",
+                        ColorRgbUtil.getColor("#BEE7FE"),
+                        ColorRgbUtil.getColor("#3EAAF8"));
+                break;
+            case 1:
+                changeBgColor(
+                        ColorRgbUtil.getColor("#EECE95"),
+                        "二",
+                        "26",
+                        ColorRgbUtil.getColor("#FFDDCA"),
+                        ColorRgbUtil.getColor("#D68259"));
+                break;
+            default:
+                break;
 
+        }
+        num++;
+
+    }
 
 
     public DutyEvaluateStuNormalAdapter adapter_normal;
@@ -261,10 +264,13 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
-    private void changeBgColor(int color){
-
+    public void changeBgColor(int color,String content,String num,int startColor,int endColor){
+        stu_rank.setText(StringUtils.stringToGetTextJoint("雅生%1$s星勋章\n总计%2$s雅币",content,num));
         ViewTool.alterVectorDrawableColor(bg_left,color);
         ViewTool.alterVectorDrawableColor(bg_right,color);
+        ViewTool.alterGradientStartEndColor(card_bg,startColor,endColor);
+//
+        stu_rank.setTextColor(endColor);
     }
 
 

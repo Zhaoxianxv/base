@@ -12,8 +12,8 @@ import com.yfy.app.duty_evaluate.DutyEvaluateTeaDoActivity;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.listener.NoFastClickListener;
-import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
-import com.yfy.final_tag.recycerview.ReViewHolder;
+import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.util.ArrayList;
@@ -93,6 +93,8 @@ public class SelectedClassAdapter extends BaseRecyclerAdapter {
                             intent.putExtra(Base.class_bean,bean);
                             intent.putExtra(Base.term_bean,bean);
                             mContext.startActivity(intent);
+                            break;
+                        case "":
                             break;
                     }
                 }

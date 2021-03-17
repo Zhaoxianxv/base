@@ -56,7 +56,6 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
         initRecycler();
         initSQToolbar();
         initDatePicker();
-        getClassAllStu();
     }
 
     public String class_id;
@@ -127,7 +126,7 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
                 year_s=data.split("-")[0];
                 month_s=data.split("-")[1];
                 select_date_tv.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s",year_s,month_s));
-                getClassAllStu();
+//                getClassAllStu();
             }
         }, "2000-01-01 01:01", DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
         // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
@@ -165,63 +164,6 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
     }
 
 
-
-    /**
-     * ----------------------------retrofit-----------------------
-     */
-
-    public void getClassAllStu() {
-        adapter.setYear_s(year_s);
-        adapter.setMonth_s(month_s);
-
-        ReqEnv env = new ReqEnv();
-        ReqBody reqBody = new ReqBody();
-        UserGetClassAllStuReq req = new UserGetClassAllStuReq();
-        //获取参数
-        req.setSession_key(Base.user.getSession_key());
-        req.setClassid(ConvertObjtect.getInstance().getInt(class_id));
-        req.setTermid(MathTool.stringToInt( NormalDataSaveTools.getInstance().getTermBeanToGreenDao().getId()));
-
-
-        reqBody.userGetClassAllStuReq = req;
-        env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_class_all_stu_api(env);
-        call.enqueue(this);
-        ViewTool.showProgressDialog(mActivity,"");
-    }
-
-    @Override
-    public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
-        if (!isActivity())return;
-        ViewTool.dismissProgressDialog();
-        List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
-        String name=names.get(names.size()-1);
-        ResEnv respEnvelope = response.body();
-        if (respEnvelope != null) {
-            ResBody b=respEnvelope.body;
-            if (b.userGetClassAllStuRes !=null){
-                String result=b.userGetClassAllStuRes.result;
-                Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
-                BaseRes res=gson.fromJson(result, BaseRes.class);
-                if (res.getResult().equals("true")){
-                    initStuCpData(res);
-                }else{
-                    ViewTool.showToastShort(mActivity,res.getError_code());
-                }
-            }
-        }else{
-            try {
-                assert response.errorBody()!=null;
-                String s=response.errorBody().string();
-                Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
-            } catch (IOException e) {
-                Logger.e("onResponse: IOException");
-                e.printStackTrace();
-            }
-            toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
-        }
-
-    }
 
     @Override
     public void onFailure(Call<ResEnv> call, Throwable t) {

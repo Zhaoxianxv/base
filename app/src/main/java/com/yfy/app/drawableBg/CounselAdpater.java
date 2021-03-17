@@ -3,7 +3,6 @@ package com.yfy.app.drawableBg;
 import android.app.Activity;
 import android.content.Context;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,8 +18,8 @@ import com.yfy.final_tag.banner.ADInfo;
 import com.yfy.final_tag.banner.CycleViewPager;
 import com.yfy.final_tag.banner.ViewFactory;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
-import com.yfy.final_tag.recycerview.ReViewHolder;
+import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.viewtools.ViewTool;
 

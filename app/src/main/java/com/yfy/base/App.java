@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
+import android.util.Log;
 
 import com.yfy.greendao.tool.Helper;
 import com.yfy.final_tag.$;
 import com.yfy.greendao.DaoMaster;
 import com.yfy.greendao.DaoSession;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +26,7 @@ import androidx.multidex.MultiDexApplication;
  */
 
 public class App extends MultiDexApplication {
-    private List<Activity> activities = new ArrayList<Activity>();
+    public List<Activity> activities = new ArrayList<Activity>();
     private static App app;
     public DaoSession mDaoSession;
     public SQLiteDatabase db;
@@ -82,6 +85,23 @@ public class App extends MultiDexApplication {
     }
 
 
+
+
+
+    @Override
+    public File getCacheDir() {
+        Log.i("getCacheDir", "cache sdcard state: " + Environment.getExternalStorageState());
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File cacheDir = getExternalCacheDir();
+            if (cacheDir != null && (cacheDir.exists() || cacheDir.mkdirs())) {
+                Log.i("getCacheDir", "cache dir: " + cacheDir.getAbsolutePath());
+                return cacheDir;
+            }
+        }
+        File cacheDir = super.getCacheDir();
+        Log.i("getCacheDir", "cache dir: " + cacheDir.getAbsolutePath());
+        return cacheDir;
+    }
 
 
 

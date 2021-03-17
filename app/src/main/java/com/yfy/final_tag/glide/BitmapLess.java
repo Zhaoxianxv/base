@@ -209,10 +209,7 @@ public final class BitmapLess {
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             return null;
         }
-
-//        File dir = new File(Environment.getExternalStorageDirectory() + "/" + context.getPackageName() + "/save/");
         File dir = new File(TagFinal.getAppDir("save"));
-
         File destFile = new File(dir, UUID.randomUUID().toString());
         return $save(bitmap, format, quality, destFile);
     }

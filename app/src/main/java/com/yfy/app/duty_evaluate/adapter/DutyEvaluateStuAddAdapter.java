@@ -1,12 +1,10 @@
 package com.yfy.app.duty_evaluate.adapter;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,11 +16,10 @@ import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
-import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
-import com.yfy.final_tag.recycerview.ReViewHolder;
+import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.ArrayList;
 import java.util.List;

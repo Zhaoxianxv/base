@@ -32,20 +32,18 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 public class ViewTool {
 
 
-    /**<item android:id="@android:id/background">
-     <shape>
-     <solid android:color="@color/gray" />
-     </shape>
-     </item>
-     <item android:id="@android:id/progress">
-     <clip>
-     <shape>
-     <solid android:color="@color/Green" />
-     </shape>
-     </clip>
-     </item>
+    //修改 渐变色 gradient 中属性值
+    public static void alterGradientStartEndColor(View view, int startColor, int endColor){
+        GradientDrawable one = (GradientDrawable) view.getBackground();
+        one.setColors(new int[]{startColor, endColor});
 
-     */
+
+    }
+
+
+
+
+
     //改变 progressbar 的 progress 图层颜色
     @TargetApi(Build.VERSION_CODES.M)
     public static void alterProgressBarFirstBackgroundColor(ProgressBar progressBar, int progressColor,int backgroundColor) {
@@ -62,6 +60,7 @@ public class ViewTool {
         clipDrawable_background.setTint(backgroundColor);
         layerDrawable.setDrawableByLayerId(android.R.id.background, clipDrawable_background);
     }
+    //改变 progressbar 的 progress Secondary 图层颜色
     @TargetApi(Build.VERSION_CODES.M)
     public static void alterProgressSecondaryBackgroundColor(ProgressBar progressBar, int secondaryProgress,int progressColor,int backgroundColor) {
 

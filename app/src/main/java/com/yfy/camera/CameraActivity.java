@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.yfy.base.R;
+import com.yfy.final_tag.data.TagFinal;
 
 
 import java.io.File;
@@ -77,7 +78,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     /**
      * Handle
      */
-    private Handler mHandler = new Handler();
+    public Handler mHandler = new Handler();
     private Runnable mRunnable;
     /**
      * 取消按钮
@@ -106,15 +107,15 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     /**
      * 蒙版图片
      */
-    private ImageView mMaskImage;
+    public ImageView mMaskImage;
     /**
      * 护照出入境蒙版
      */
-    private ImageView mPassportEntryAndExitImage;
+    public ImageView mPassportEntryAndExitImage;
     /**
      * 提示文案容器
      */
-    private RelativeLayout rlCameraTip;
+    public RelativeLayout rlCameraTip;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -373,16 +374,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
      */
     private void savePhoto() {
         FileOutputStream fos = null;
-        String cameraPath = Environment.getExternalStorageDirectory().getPath() + File.separator + "DCIM" + File.separator + "Camera";
+        String cameraPath = TagFinal.getAppFile("save");
         //相册文件夹
-        File cameraFolder = new File(cameraPath);
-        if (!cameraFolder.exists()) {
-            cameraFolder.mkdirs();
-        }
-        //保存的图片文件
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
-        String imagePath = cameraFolder.getAbsolutePath() + File.separator + "IMG_" + simpleDateFormat.format(new Date()) + ".jpg";
-        File imageFile = new File(imagePath);
+        File imageFile = new File(cameraPath);
         try {
             fos = new FileOutputStream(imageFile);
             fos.write(imageData);
@@ -392,11 +386,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             if (fos != null) {
                 try {
                     fos.close();
-                    Bitmap retBitmap = BitmapFactory.decodeFile(imagePath);
+                    Bitmap retBitmap = BitmapFactory.decodeFile(cameraPath);
                     retBitmap = BitmapUtils.setTakePicktrueOrientation(Camera.CameraInfo.CAMERA_FACING_BACK, retBitmap);
-                    BitmapUtils.saveBitmap(retBitmap, imagePath);
+                    BitmapUtils.saveBitmap(retBitmap, cameraPath);
                     Intent intent = new Intent();
-                    intent.putExtra(KEY_IMAGE_PATH, imagePath);
+                    intent.putExtra(KEY_IMAGE_PATH, cameraPath);
                     setResult(RESULT_OK, intent);
                 } catch (IOException e) {
                     setResult(RESULT_FIRST_USER);

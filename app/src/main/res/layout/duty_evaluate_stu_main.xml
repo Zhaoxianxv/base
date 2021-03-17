@@ -50,15 +50,22 @@
                         android:layout_marginRight="@dimen/margin_50dp"
                         android:layout_marginTop="@dimen/margin_120dp"
                         android:layout_marginBottom="@dimen/margin_1dp"
-                        app:cardCornerRadius="@dimen/margin_10dp"
+                     
+                        app:cardCornerRadius="@dimen/margin_8dp"
                         app:cardElevation="@dimen/margin_10dp"
                         app:cardBackgroundColor="@color/blue"
                         >
                         <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/card_background"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/gradient_rectangle_315"
+                           />
+                        <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/radius5_line_white"
-                            android:layout_margin="@dimen/margin_5dp"/>
+                            android:layout_margin="7dp"/>
                     </androidx.cardview.widget.CardView>
                 </RelativeLayout>
           
@@ -374,7 +381,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:layout_marginTop="@dimen/margin_1dp"
+                        android:layout_marginTop="@dimen/margin_5dp"
                         android:background="@drawable/radius5_white"
                         android:layout_marginRight="@dimen/margin_5dp"
                         android:layout_marginLeft="@dimen/margin_5dp"
@@ -429,7 +436,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:layout_marginTop="@dimen/margin_1dp"
+                        android:layout_marginTop="@dimen/margin_5dp"
                         android:background="@drawable/radius5_white"
                         android:layout_marginRight="@dimen/margin_5dp"
                         android:layout_marginLeft="@dimen/margin_5dp"

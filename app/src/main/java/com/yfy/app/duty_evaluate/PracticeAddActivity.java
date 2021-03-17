@@ -74,6 +74,7 @@ public class PracticeAddActivity extends BaseActivity {
 
 
 
+    //一年级2班
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle("上传奖状");
@@ -258,11 +259,11 @@ public class PracticeAddActivity extends BaseActivity {
 
 
     @PermissionSuccess(requestCode = TagFinal.CAMERA)
-    private void takePhoto() {
-        CameraActivity.startMe(mActivity,TagFinal.CAMERA, CameraActivity.MongolianLayerType.IDCARD_NEGATIVE);
+    public void takePhoto() {
+        CameraActivity.startMe(mActivity,TagFinal.CAMERA, CameraActivity.MongolianLayerType.HK_MACAO_TAIWAN_PASSES_NEGATIVE);
     }
     @PermissionSuccess(requestCode = TagFinal.PHOTO_ALBUM)
-    private void photoAlbum() {
+    public void photoAlbum() {
         Intent intent;
         intent = new Intent(mActivity, AlbumOneActivity.class);
         Bundle b = new Bundle();
@@ -272,11 +273,11 @@ public class PracticeAddActivity extends BaseActivity {
         startActivityForResult(intent,TagFinal.PHOTO_ALBUM);
     }
     @PermissionFail(requestCode = TagFinal.CAMERA)
-    private void showCamere() {
+    public void showCamere() {
         Toast.makeText(getApplicationContext(), R.string.permission_fail_camera, Toast.LENGTH_SHORT).show();
     }
     @PermissionFail(requestCode = TagFinal.PHOTO_ALBUM)
-    private void showTip1() {
+    public void showTip1() {
         Toast.makeText(getApplicationContext(), R.string.permission_fail_album, Toast.LENGTH_SHORT).show();
     }
     @Override

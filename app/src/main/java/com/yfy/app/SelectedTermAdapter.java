@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.base.R;
-import com.yfy.final_tag.recycerview.BaseRecyclerAdapter;
-import com.yfy.final_tag.recycerview.ReViewHolder;
+import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.TagFinal;
 
@@ -36,7 +36,7 @@ public class SelectedTermAdapter extends BaseRecyclerAdapter {
 
     }
 
-    SelectedTermAdapter(Activity mContext){
+    public SelectedTermAdapter(Activity mContext){
         super(mContext);
         this.dataList = new ArrayList<>();
 

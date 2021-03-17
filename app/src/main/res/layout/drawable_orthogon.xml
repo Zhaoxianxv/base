@@ -61,21 +61,23 @@
                     android:layout_width="@dimen/margin_50dp"
                     android:layout_height="@dimen/margin_100dp"
                     android:layout_marginLeft="@dimen/margin_10dp"
-                    android:src="@drawable/drawable_shape_oval"
+                    android:src="@drawable/gradient_rectangle_315"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="shape属性：\t android: \t shape= oval "
+                    android:text="angle=integer: centerX=integer:centerY=integer ：centerColor=integer：endColor=color :gradientRadius=integer:startColor=color :type=[linear| radial | sweep] :useLevel=[true | false]"
+                    android:textSize="@dimen/textsize2"
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
                     android:layout_marginLeft="@dimen/margin_30dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="shape= oval \t shape=rectangle (长方形) \t "
+                    android:text="gradient:(type=linear angle有用)angle=90,"
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
+                    android:textSize="@dimen/textsize3"
                     android:layout_marginLeft="@dimen/margin_30dp"/>
             </TableRow>
             <TableRow

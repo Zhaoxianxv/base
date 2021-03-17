@@ -14,9 +14,11 @@ import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
+import com.yfy.final_tag.FileTools;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.glide.FileCamera;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
@@ -87,6 +89,9 @@ public class SelectedUserTypeActivity extends BaseActivity {
                         intent.putExtra(Base.mode_type,"duty_evaluate");
                         startActivity(intent);
                         break;
+                    case Base.type:
+                        FileCamera.scanMediaAllFile(mActivity);
+                        break;
                 }
 
             }
@@ -116,6 +121,10 @@ public class SelectedUserTypeActivity extends BaseActivity {
         two.setTitle("教师");
         two.setType(Base.USER_TYPE_TEA);
         keyValue_adapter.add(two);
+        KeyValue three=new KeyValue(TagFinal.TYPE_ITEM);
+        three.setTitle("更新QQMail图片");
+        three.setType(Base.type);
+        keyValue_adapter.add(three);
 
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);

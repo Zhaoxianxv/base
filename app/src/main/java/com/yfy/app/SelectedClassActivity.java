@@ -13,6 +13,7 @@ import com.yfy.greendao.bean.BaseClass;
 import com.yfy.greendao.bean.BaseGrade;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.greendao.bean.StuBean;
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
@@ -58,8 +59,6 @@ public class SelectedClassActivity extends BaseActivity {
         select_term= NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
         initRecycler();
         initSQToolbar();
-//        getClassList();
-//        getTerm();
     }
 
     private String mode_type;
@@ -127,9 +126,32 @@ public class SelectedClassActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
         adapter.setMode_type(mode_type);
 
+        setAdapterData();
     }
 
 
+
+    public List<KeyValue> keyValue_adapter=new ArrayList<>();
+
+    private void setAdapterData(){
+        List<BaseClass> class_list=NormalDataSaveTools.getInstance().getClassBeanToGreenDao();
+        if (StringJudge.isEmpty(class_list)){
+            class_list=new ArrayList<>();
+        }
+        Logger.e(""+class_list.size());
+        keyValue_adapter.clear();
+        for (BaseClass s:class_list){
+            KeyValue one=new KeyValue(s.getClassname(),"",TagFinal.TYPE_ITEM);
+            one.setId(s.getClassid());
+            one.setTitle(s.getClassname());
+            one.setRight_value("");
+
+            keyValue_adapter.add(one);
+        }
+
+        adapter.setDataList(keyValue_adapter);
+        adapter.setLoadState(TagFinal.LOADING_END);
+    }
     /**
      * ----------------------------retrofit-----------------------
      */
