@@ -15,6 +15,7 @@ import android.graphics.drawable.VectorDrawable;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.Selection;
 import android.util.TypedValue;
 import android.view.View;
@@ -22,6 +23,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.yfy.final_tag.tool_textwatcher.MyWatcher;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.RequiresApi;
@@ -317,5 +320,48 @@ public class ViewTool {
 
         }
     }
+
+
+
+
+
+    /**
+     * ------------------------edit 控件输入限制--------------------------
+     */
+//    public static void editControlInputType(EditText edit,String type){
+//
+//        switch (type){
+//            case "decimal":
+//                edit.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_CLASS_NUMBER);
+//                break;
+//            case "number":
+//                edit.setInputType(InputType.TYPE_CLASS_NUMBER);
+//                break;
+//        }
+//    }
+    //限制num位小数.
+    public static void editControlDecimalLength(EditText edit,int num){
+        edit.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_CLASS_NUMBER);
+        edit.addTextChangedListener(new MyWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                String edit_String=s.toString();
+                int posDot=edit_String.indexOf(".");
+                if (posDot<0){
+                    return;
+                }
+                if (posDot==0){
+                    s.delete(0,edit_String.length());
+                    return;
+                }
+                if (edit_String.length()-posDot-1>num)
+                    s.delete(posDot+num+1,edit_String.length());
+            }
+        });
+
+
+    }
+
+
 
 }

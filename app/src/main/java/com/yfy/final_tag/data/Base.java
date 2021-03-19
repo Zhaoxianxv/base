@@ -8,35 +8,46 @@ import com.yfy.greendao.User;
  */
 public class Base {
     public static String DB_NAME="yfydbone";
-    public static final String AUTHORITY = "com.yfy.base.fileProvider";//android 7.0文件访问权限Tag（要和Provider一直）
-
-
-    // http post:https://new.cdeps.sc.cn/yfyoa/apitest
-    //    public static final String RETROFIT_URI = "https://www.cdeps.sc.cn/";
-    public static final String RETROFIT_URI = "http://testeps.yfyit.com/";
-//    public static final String RETROFIT_URI = "https://new.cdeps.sc.cn/";
-
-    public static final String SOAP_ACTION = "SOAPAction: http://tempuri.org/AppService/";//
-    public static final String POST_URI = "/AppService.svc";//
-
-    public static final String NAMESPACE = "http://tempuri.org/";//
-    public static final String Content_Type = "Content-Type: text/xml;charset=UTF-8";//
-    //app更新地址
-    public static final String AUTO_UPDATE_URI = "http://www.yfyit.com/apk/cdsyxx.txt";
-    public static final String HUA_WEI_PRIVATE = "http://www.yfyit.com/yszc.html";//
-    public static final String HUA_WEI_AGREEMENT = "http://www.yfyit.com/yhxy.html";//
-
+    public static final String AUTHORITY = "${applicationId}.fileProvider";//android 7.0文件访问权限Tag（要和Provider一直）
 
     /**
-     *  json字符串
+     *
+     * --------------------url tag---------------------
      */
-    public static final String login_error_code = "session_key不正确";
+    public static final String NAMESPACE = "http://tempuri.org/";//
+    //retrofit
+    public static final String RETROFIT_URI = "http://testeps.yfyit.com/";
+    public static final String SOAP_ACTION = "SOAPAction: http://tempuri.org/AppService/";//
+    public static final String POST_URI = "/AppService.svc";//
+    public static final String Content_Type = "Content-Type: text/xml;charset=UTF-8";//
+
     public static final String TEM = "tem";//
     public static final String ARR = "arr";//
     public static final String BODY = "Body";//
     public static final String RESPONSE = "Response";//
     public static final String RESULT = "Result";//
     public static final String XMLNS = "xmlns";//
+
+
+    //-------wcf-------
+    public static final String WCF_URL = "http://www.ptsdjy.com/Service2.svc";
+    public static final String WCF_SOAP_ACTION = "http://tempuri.org/Service2/";
+
+
+
+
+    //app更新地址
+    public static final String AUTO_UPDATE_URI = "http://www.yfyit.com/apk/cdsyxx.txt";
+    public static final String HUA_WEI_PRIVATE = "http://www.yfyit.com/yszc.html";//
+    public static final String HUA_WEI_AGREEMENT = "http://www.yfyit.com/yhxy.html";//
+
+
+    public static final String USER_TYPE_STU="stu";
+    public static final String USER_TYPE_TEA="tea";
+    /**
+     *  json字符串
+     */
+    public static final String login_error_code = "session_key不正确";
 
 
     public static final String can_edit = "can_edit";//
@@ -89,8 +100,7 @@ public class Base {
 
     //tea
     public static String user_check_type="stu";
-    public static final String USER_TYPE_STU="stu";
-    public static final String USER_TYPE_TEA="tea";
+
     public static String year="";
     public static String process_type="";
 
