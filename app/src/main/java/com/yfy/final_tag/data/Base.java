@@ -32,7 +32,7 @@ public class Base {
     //-------wcf-------
     public static final String WCF_URL = "http://www.ptsdjy.com/Service2.svc";
     public static final String WCF_SOAP_ACTION = "http://tempuri.org/Service2/";
-
+    public static String wcfInfo = "";
 
 
 
