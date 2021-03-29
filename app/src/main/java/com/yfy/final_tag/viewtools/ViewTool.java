@@ -87,17 +87,8 @@ public class ViewTool {
         clipDrawable_background.setTint(backgroundColor);
         layerDrawable.setDrawableByLayerId(android.R.id.background, clipDrawable_background);
     }
-    //改变Vector 图片颜色
-    public static void alterVectorDrawableColor(View view, int color) {
-        VectorDrawable one = (VectorDrawable) view.getBackground();
-        one.setTint(color);
-    }
-    //改变 Drawable(除开层叠Drawable) 颜色
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static void alterGradientDrawableColor(View view, int color) {
-        GradientDrawable one = (GradientDrawable) view.getBackground();
-        one.setTint(color);
-    }
+
+
 //   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 //    public static void alterButtonColor(Button view, int color) {
 //       int[] colors = new int[]{0xfff8513f, 0xffe43d2b};
@@ -109,7 +100,19 @@ public class ViewTool {
 //    }
 
 
-    //strokeColor 层叠Drawable
+    //改变Vector 图片颜色
+    public static void alterVectorDrawableColor(View view, int color) {
+        VectorDrawable one = (VectorDrawable) view.getBackground();
+        one.setTint(color);
+    }
+    //改变 Drawable(除开层叠Drawable) 颜色
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static void alterGradientDrawableColor(View view, int color) {
+        GradientDrawable one = (GradientDrawable) view.getBackground();
+        one.setTint(color);
+    }
+
+    //改变 shape  <stroke android:width="1dp" android:color="#D4D4D4"/>
     public static void alterGradientDrawableStrokeColor(Context context,View view, int color) {
         GradientDrawable one = (GradientDrawable) view.getBackground();
         one.setStroke(pxPointDp(context,1),color);

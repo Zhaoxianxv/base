@@ -27,8 +27,6 @@ public class MediaScanner implements MediaScannerConnection.MediaScannerConnecti
 
     /**
      * 扫描文件
-     * @param filepaths
-     * @param mimeTypes
      */
     public void scanFiles(String[] filePaths, String[] mimeTypes) {
         this.filePaths = filePaths;
@@ -37,7 +35,7 @@ public class MediaScanner implements MediaScannerConnection.MediaScannerConnecti
     }
 
     /**
-     * @author
+     *
      */
     @Override
     public void onMediaScannerConnected() {
@@ -53,8 +51,6 @@ public class MediaScanner implements MediaScannerConnection.MediaScannerConnecti
     /**
      * 扫描一个文件完成
      *
-     * @param path
-     * @param uri
      */
     @Override
     public void onScanCompleted(String path, Uri uri) {

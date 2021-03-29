@@ -34,10 +34,10 @@ public class AlbumOneAdapter extends BaseAdapter {
 
 	public List<Photo> selectedPhotoList = new ArrayList<>();
 	private List<Photo> photoList = new ArrayList<>();
-	private LayoutInflater inflater;
+	public LayoutInflater inflater;
 	private boolean single;
-	private Context context;
-	private int mScreenWidth;
+	public Context context;
+	public int mScreenWidth;
 	private int itemWidth = 10;
 
 	public AlbumOneAdapter(Context context, List<Photo> list) {
@@ -159,10 +159,7 @@ public class AlbumOneAdapter extends BaseAdapter {
 	}
 
 	public void initItemSize(GridView gridView) {
-		int columnNum = ViewUtils.getNumColumn(gridView);
-		itemWidth = (mScreenWidth - gridView.getPaddingLeft()
-				- gridView.getPaddingRight() - ViewUtils
-				.getHorizontalSpacing(gridView)) / columnNum;
+		itemWidth = (mScreenWidth - gridView.getPaddingLeft() - gridView.getPaddingRight() - ViewUtils.getHorizontalSpacing(gridView)) / 3;
 	}
 
 	public void notifyDataSetChanged(List<Photo> list) {

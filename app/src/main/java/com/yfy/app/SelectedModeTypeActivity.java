@@ -10,6 +10,7 @@ import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.chart.BarChartActivity;
+import com.yfy.app.chart.EChartSActivity;
 import com.yfy.app.drawableBg.DrawableBgActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.app.duty_evaluate.PracticeAddActivity;
@@ -104,12 +105,15 @@ public class SelectedModeTypeActivity extends BaseActivity {
                     case "BarChartActivity":
                         startActivity(new Intent(mActivity,BarChartActivity.class));
                         break;
+                    case "EChartSActivity":
+                        startActivity(new Intent(mActivity, EChartSActivity.class));
+                        break;
                     case "Voice":
                         startActivity(new Intent(mActivity,VoiceMainActivity.class));
                         break;
-//                    case "GRpcMainActivity":
-//                        startActivity(new Intent(mActivity,GRpcMainActivity.class));
-//                        break;
+                    case "Version":
+                        startActivity(new Intent(mActivity,VersionDetailActivity.class));
+                        break;
                     case "HttpPostMainActivity":
                         startActivity(new Intent(mActivity,HttpPostMainActivity.class));
                         break;
@@ -146,10 +150,12 @@ public class SelectedModeTypeActivity extends BaseActivity {
         list.add("TypeActivity");
         list.add("CameraActivity");
         list.add("视频");
+        list.add("Version");
         list.add("Voice");
         list.add("drawable");
         list.add("SpannableStringMainActivity");
         list.add("BarChartActivity");
+        list.add("EChartSActivity");
         list.add("GRpcMainActivity");
         list.add("HttpPostMainActivity");
         list.add("RetrofitMainActivity");

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -46,8 +47,8 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
-                        android:layout_marginLeft="@dimen/margin_50dp"
-                        android:layout_marginRight="@dimen/margin_50dp"
+                        android:layout_marginStart="@dimen/margin_50dp"
+                        android:layout_marginEnd="@dimen/margin_50dp"
                         android:layout_marginTop="@dimen/margin_120dp"
                         android:layout_marginBottom="@dimen/margin_1dp"
                      
@@ -278,14 +279,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/margin_45dp"
                     >
-
                     <ImageView
                         android:layout_width="5dp"
                         android:layout_height="20dp"
                         android:layout_centerVertical="true"
-    
                         android:background="@color/app_base_color"
-                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:layout_marginStart="@dimen/margin_10dp"
                         />
                     <androidx.appcompat.widget.AppCompatTextView
                         android:text="发展性评价"
@@ -298,7 +297,7 @@
                         android:autoSizeMaxTextSize="@dimen/textsize10"
                         android:autoSizeTextType="uniform"
                         android:textColor="@color/app_base_color"
-                        android:layout_marginLeft="@dimen/margin_25dp"
+                        android:layout_marginStart="@dimen/margin_25dp"
                         
         
                         />
@@ -306,8 +305,8 @@
                     <TextView
                         android:id="@+id/value"
                         android:text="120分3雅币"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/margin_10dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/margin_10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/textsize6"
@@ -327,8 +326,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:background="@drawable/radius5_white"
-                        android:layout_marginRight="@dimen/margin_5dp"
-                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginEnd="@dimen/margin_5dp"
+                        android:layout_marginStart="@dimen/margin_5dp"
                         >
         
                         <ImageView
@@ -345,7 +344,7 @@
                             android:textStyle="bold"
                             android:textSize="@dimen/textsize7"
                             android:textColor="@color/app_base_text_color"
-                            android:layout_marginLeft="@dimen/margin_60dp"
+                            android:layout_marginStart="@dimen/margin_60dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:text="校内活动（10/20）"
@@ -355,13 +354,13 @@
                             android:textSize="@dimen/textsize5"
                             android:textColor="@color/gray_text"
                             android:textStyle="bold"
-                            android:layout_marginLeft="@dimen/margin_60dp"
+                            android:layout_marginStart="@dimen/margin_60dp"
                             android:layout_alignParentBottom="true"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:text="去查看"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/margin_10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/margin_10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/textsize5"
@@ -383,8 +382,8 @@
                         android:layout_height="60dp"
                         android:layout_marginTop="@dimen/margin_5dp"
                         android:background="@drawable/radius5_white"
-                        android:layout_marginRight="@dimen/margin_5dp"
-                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginEnd="@dimen/margin_5dp"
+                        android:layout_marginStart="@dimen/margin_5dp"
                         >
         
                         <ImageView
@@ -401,7 +400,7 @@
                             android:textStyle="bold"
                             android:textSize="@dimen/textsize7"
                             android:textColor="@color/app_base_text_color"
-                            android:layout_marginLeft="@dimen/margin_60dp"
+                            android:layout_marginStart="@dimen/margin_60dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:text="校内活动（10/20）"
@@ -411,13 +410,13 @@
                             android:textSize="@dimen/textsize5"
                             android:textColor="@color/gray_text"
                             android:textStyle="bold"
-                            android:layout_marginLeft="@dimen/margin_60dp"
+                            android:layout_marginStart="@dimen/margin_60dp"
                             android:layout_alignParentBottom="true"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:text="去查看"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/margin_10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/margin_10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/textsize5"
@@ -438,8 +437,8 @@
                         android:layout_height="60dp"
                         android:layout_marginTop="@dimen/margin_5dp"
                         android:background="@drawable/radius5_white"
-                        android:layout_marginRight="@dimen/margin_5dp"
-                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginEnd="@dimen/margin_5dp"
+                        android:layout_marginStart="@dimen/margin_5dp"
                         >
         
                         <ImageView
@@ -456,7 +455,7 @@
                             android:textStyle="bold"
                             android:textSize="@dimen/textsize7"
                             android:textColor="@color/app_base_text_color"
-                            android:layout_marginLeft="@dimen/margin_60dp"
+                            android:layout_marginStart="@dimen/margin_60dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:text="校内活动（10/20）"
@@ -466,13 +465,13 @@
                             android:textSize="@dimen/textsize5"
                             android:textColor="@color/gray_text"
                             android:textStyle="bold"
-                            android:layout_marginLeft="@dimen/margin_60dp"
+                            android:layout_marginStart="@dimen/margin_60dp"
                             android:layout_alignParentBottom="true"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:text="去查看"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/margin_10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/margin_10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/textsize5"
@@ -488,6 +487,231 @@
                             />
                     </RelativeLayout>
 
+                </LinearLayout>
+    
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10dp"
+        
+                android:paddingBottom="@dimen/margin_5dp"
+                android:layout_marginBottom="@dimen/margin_10dp"
+                android:background="@color/OldLace">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_45dp"
+                    >
+            
+                    <ImageView
+                        android:layout_width="5dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                
+                        android:background="@color/app_base_color"
+                        android:layout_marginStart="@dimen/margin_10dp"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:text="补充性评价"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                
+                        android:autoSizeMaxTextSize="@dimen/textsize10"
+                        android:autoSizeTextType="uniform"
+                        android:textColor="@color/app_base_color"
+                        android:layout_marginStart="@dimen/margin_25dp"
+                
+                
+                        />
+            
+                    <TextView
+                       
+                        android:text="第五期"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/margin_10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/textsize6"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/app_base_text_color"
+                        />
+                </RelativeLayout>
+        
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_45dp">
+            
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:background="@drawable/radius5_white"
+                        android:layout_marginEnd="@dimen/margin_5dp"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        >
+                
+                        <ImageView
+                            android:layout_width="@dimen/margin_60dp"
+                            android:layout_height="@dimen/margin_60dp"
+                            android:src="@mipmap/icon_score"
+                            android:padding="@dimen/margin_15dp"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="家庭劳动（10/20）"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:gravity="bottom"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/textsize7"
+                            android:textColor="@color/app_base_text_color"
+                            android:layout_marginStart="@dimen/margin_60dp"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="家庭劳动（10/20）"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:gravity="top"
+                            android:textSize="@dimen/textsize5"
+                            android:textColor="@color/gray_text"
+                            android:textStyle="bold"
+                            android:layout_marginStart="@dimen/margin_60dp"
+                            android:layout_alignParentBottom="true"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="家长评"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/margin_10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/textsize5"
+                            android:gravity="center"
+                    
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/radius10_re"
+                            android:textColor="@color/white"
+                            android:paddingLeft="@dimen/margin_8dp"
+                            android:paddingRight="@dimen/margin_8dp"
+                            android:paddingBottom="@dimen/margin_2dp"
+                            android:paddingTop="@dimen/margin_2dp"
+                            android:backgroundTint="@color/Peru"
+                            />
+                    </RelativeLayout>
+            
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="@dimen/margin_5dp"
+                        android:background="@drawable/radius5_white"
+                        android:layout_marginEnd="@dimen/margin_5dp"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        >
+                
+                        <ImageView
+                            android:layout_width="@dimen/margin_60dp"
+                            android:layout_height="@dimen/margin_60dp"
+                            android:src="@mipmap/icon_score"
+                            android:padding="@dimen/margin_15dp"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="文雅少年（10/20）"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:gravity="bottom"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/textsize7"
+                            android:textColor="@color/app_base_text_color"
+                            android:layout_marginStart="@dimen/margin_60dp"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="文雅少年（10/20）"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:gravity="top"
+                            android:textSize="@dimen/textsize5"
+                            android:textColor="@color/gray_text"
+                            android:textStyle="bold"
+                            android:layout_marginStart="@dimen/margin_60dp"
+                            android:layout_alignParentBottom="true"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="家长评"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/margin_10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/textsize5"
+                            android:gravity="center"
+                    
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/radius10_re"
+                            android:textColor="@color/white"
+                            android:paddingLeft="@dimen/margin_8dp"
+                            android:paddingRight="@dimen/margin_8dp"
+                            android:paddingBottom="@dimen/margin_2dp"
+                            android:paddingTop="@dimen/margin_2dp"
+                            android:backgroundTint="@color/Peru"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="@dimen/margin_5dp"
+                        android:background="@drawable/radius5_white"
+                        android:layout_marginEnd="@dimen/margin_5dp"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        >
+                
+                        <ImageView
+                            android:layout_width="@dimen/margin_60dp"
+                            android:layout_height="@dimen/margin_60dp"
+                            android:src="@mipmap/icon_score"
+                            android:padding="@dimen/margin_15dp"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="更多项目（10/20）"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:gravity="bottom"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/textsize7"
+                            android:textColor="@color/app_base_text_color"
+                            android:layout_marginStart="@dimen/margin_60dp"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="更多项目（10/20）"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:gravity="top"
+                            android:textSize="@dimen/textsize5"
+                            android:textColor="@color/gray_text"
+                            android:textStyle="bold"
+                            android:layout_marginStart="@dimen/margin_60dp"
+                            android:layout_alignParentBottom="true"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="家长评"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/margin_10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/textsize5"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/radius10_re"
+                            android:textColor="@color/white"
+                            android:paddingLeft="@dimen/margin_8dp"
+                            android:paddingRight="@dimen/margin_8dp"
+                            android:paddingBottom="@dimen/margin_2dp"
+                            android:paddingTop="@dimen/margin_2dp"
+                            android:backgroundTint="@color/Peru"
+                            />
+                    </RelativeLayout>
+        
                 </LinearLayout>
     
             </RelativeLayout>

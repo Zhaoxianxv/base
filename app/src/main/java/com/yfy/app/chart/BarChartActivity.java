@@ -1,5 +1,6 @@
 package com.yfy.app.chart;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Response;
 
+@SuppressLint("NonConstantResourceId")
 public class BarChartActivity extends BaseActivity {
     private static final String TAG = BarChartActivity.class.getSimpleName();
 

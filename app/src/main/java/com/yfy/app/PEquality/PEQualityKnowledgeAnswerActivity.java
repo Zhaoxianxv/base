@@ -23,7 +23,6 @@ import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.Base;
-import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -75,7 +74,7 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
     private void initDialog(){
 
         confirmContentWindow = new ConfirmContentWindow(mActivity);
-        confirmContentWindow.setOnPopClickListenner(new ConfirmContentWindow.OnPopClickListenner() {
+        confirmContentWindow.setPopClickListener(new NoFastClickListener() {
             @Override
             public void onClick(View view) {
 

@@ -124,20 +124,18 @@ public class ConfirmContentWindow extends PopupWindow  {
 
 		@Override
 		public void onClick(View v) {
-			if (listenner != null) {
-				listenner.onClick(v);
+			if (listener != null) {
+				listener.popClick(v);
 			}
 			dismiss();
 		}
 	};
 
-	private OnPopClickListenner listenner = null;
+	private PopClickListener listener;
 
-	public void setOnPopClickListenner(OnPopClickListenner listenner) {
-		this.listenner = listenner;
+	public void setPopClickListener(PopClickListener listener) {
+		this.listener = listener;
 	}
 
-	public static interface OnPopClickListenner {
-		public void onClick(View view);
-	}
+
 }

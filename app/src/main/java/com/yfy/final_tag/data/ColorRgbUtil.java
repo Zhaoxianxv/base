@@ -13,7 +13,7 @@ public class ColorRgbUtil {
     public static int getResourceColor(Activity mActivity,int color_id){
         return mActivity.getResources().getColor(color_id);
     }
-    public static int getColor(String color_s){
+    public static int getParseColor(String color_s){
         return Color.parseColor(color_s);
     }
 

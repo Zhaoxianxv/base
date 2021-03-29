@@ -75,7 +75,6 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 		super.finish();
 	}
 
-	private TextView onemenu;
 	private void initSQToolbar() {
 
 		setSupportActionBar(toolbar);

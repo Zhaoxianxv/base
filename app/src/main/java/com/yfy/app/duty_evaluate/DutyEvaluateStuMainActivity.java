@@ -79,11 +79,11 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         initRecyclerViewDevelop();
         getAssetsData("duty_evaluate_get_stu_develop_detail.txt");
         changeBgColor(
-                ColorRgbUtil.getColor("#8CCFFA"),
+                ColorRgbUtil.getParseColor("#8CCFFA"),
                 "一",
                 "12",
-                ColorRgbUtil.getColor("#BEE7FE"),
-                ColorRgbUtil.getColor("#3EAAF8"));
+                ColorRgbUtil.getParseColor("#BEE7FE"),
+                ColorRgbUtil.getParseColor("#3EAAF8"));
     }
 
 
@@ -109,19 +109,27 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         switch (num%5){
             case 0:
                 changeBgColor(
-                        ColorRgbUtil.getColor("#8CCFFA"),
+                        ColorRgbUtil.getParseColor("#8CCFFA"),
                         "一",
                         "12",
-                        ColorRgbUtil.getColor("#BEE7FE"),
-                        ColorRgbUtil.getColor("#3EAAF8"));
+                        ColorRgbUtil.getParseColor("#BEE7FE"),
+                        ColorRgbUtil.getParseColor("#3EAAF8"));
                 break;
             case 1:
                 changeBgColor(
-                        ColorRgbUtil.getColor("#EECE95"),
+                        ColorRgbUtil.getParseColor("#EECE95"),
                         "二",
                         "26",
-                        ColorRgbUtil.getColor("#FFDDCA"),
-                        ColorRgbUtil.getColor("#D68259"));
+                        ColorRgbUtil.getParseColor("#FFDDCA"),
+                        ColorRgbUtil.getParseColor("#D68259"));
+                break;
+            case 2:
+                changeBgColor(
+                        ColorRgbUtil.getParseColor("#EECE95"),
+                        "二",
+                        "26",
+                        ColorRgbUtil.getParseColor("#FFDDCA"),
+                        ColorRgbUtil.getParseColor("#D68259"));
                 break;
             default:
                 break;
