@@ -22,7 +22,6 @@ import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.viewtools.ViewTool;
-import com.yfy.view.SQToolBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,12 +54,12 @@ public class DutyEvaluateStuAddActivity extends BaseActivity implements AssetsGe
         super.finish();
     }
 
-    private String year_value,month_value;
+    public String year_value,month_value;
     public void getData(){
         Intent intent=getIntent();
         year_value=intent.getStringExtra(Base.year_value);
         month_value=intent.getStringExtra(Base.month_value);
-        initSQToolbar(Base.user.getName());
+        initSQToolbar("stu");
     }
 
     public void initSQToolbar(String title) {
@@ -159,7 +158,7 @@ public class DutyEvaluateStuAddActivity extends BaseActivity implements AssetsGe
     }
 
 
-    private List<KeyValue> adapter_data_list=new ArrayList<>();
+    public List<KeyValue> adapter_data_list=new ArrayList<>();
 
     private void initAdapterData(DutyEvaluateRes res){
         adapter_data_list.clear();

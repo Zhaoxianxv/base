@@ -337,8 +337,9 @@ public class PEQualityMainTestActivity extends BaseActivity {
                     menu_one.setText(select_term.getName());
                     break;
                 case TagFinal.UI_ADD:
-                    if (Base.user==null)return;
-                    initView();
+
+
+                     initView();
                     initChartView();
                     setData();
                     initRecyclerView();
@@ -520,19 +521,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
     /**
      * ----------------------------retrofit-----------------------
      */
-    public void getTerm() {
-        if (Base.user==null)return;
-        ReqEnv env = new ReqEnv();
-        ReqBody reqBody = new ReqBody();
-        UserGetTermListReq req = new UserGetTermListReq();
 
-        //获取参数
-        req.setSession_key(Base.user.getSession_key());
-        reqBody.userGetTermListReq = req;
-        env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_term_list_api(env);
-        call.enqueue(this);
-    }
     @Override
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
         if (!isActivity())return;

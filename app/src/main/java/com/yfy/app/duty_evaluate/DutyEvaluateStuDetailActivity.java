@@ -57,7 +57,8 @@ public class DutyEvaluateStuDetailActivity extends BaseActivity implements Asset
         year_s=getIntent().getStringExtra(Base.year_value);
         month_s=getIntent().getStringExtra(Base.month_value);
 
-        initSQToolbar(stu_bean.getName());
+        initSQToolbar("");
+
         select_date_tv.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s",year_s,month_s));
         initDatePicker();
     }
@@ -200,7 +201,7 @@ public class DutyEvaluateStuDetailActivity extends BaseActivity implements Asset
     }
 
 
-    private List<KeyValue> adapter_data_list=new ArrayList<>();
+    public List<KeyValue> adapter_data_list=new ArrayList<>();
 
     private void initAdapterData(DutyEvaluateRes res){
         adapter_data_list.clear();

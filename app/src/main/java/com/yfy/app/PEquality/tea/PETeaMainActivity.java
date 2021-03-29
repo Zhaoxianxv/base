@@ -181,18 +181,6 @@ public class PETeaMainActivity extends BaseActivity {
     /**
      * ----------------------------retrofit-----------------------
      */
-    public void getTerm() {
-        if (Base.user==null)return;
-        ReqEnv env = new ReqEnv();
-        ReqBody reqBody = new ReqBody();
-        UserGetTermListReq req = new UserGetTermListReq();
-        req.setSession_key(Base.user.getSession_key());
-        //获取参数
-        reqBody.userGetTermListReq = req;
-        env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_term_list_api(env);
-        call.enqueue(this);
-    }
     @Override
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
         if (!isActivity())return;

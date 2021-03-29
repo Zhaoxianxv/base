@@ -204,12 +204,11 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
                     intent.putExtra(Base.month_value,keyValue.getRight_key());
                     startActivity(intent);
                 }else{
-                    KeyValue stu=new KeyValue();
-                    stu.setName(Base.user.getName());
-                    stu.setId(Base.user.getIdU());
+
+
 
                     intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
-                    intent.putExtra(Base.stu_bean, stu);
+
                     intent.putExtra(Base.year_value,keyValue.getRight_name());
                     intent.putExtra(Base.month_value,keyValue.getRight_key());
                     startActivity(intent);
