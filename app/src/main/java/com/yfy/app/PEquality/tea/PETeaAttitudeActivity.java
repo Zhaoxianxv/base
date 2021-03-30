@@ -1,5 +1,6 @@
 package com.yfy.app.PEquality.tea;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,6 +37,7 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
+@SuppressLint("NonConstantResourceId")
 public class PETeaAttitudeActivity extends BaseActivity {
     private static final String TAG = PETeaAttitudeActivity.class.getSimpleName();
 

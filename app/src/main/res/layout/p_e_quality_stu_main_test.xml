@@ -30,17 +30,17 @@
                     android:id="@+id/p_e_main_user_head"
                     android:layout_width="@dimen/margin_60dp"
                     android:layout_height="@dimen/margin_60dp"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
                     android:src="@drawable/ic_parent_head"
-                    android:layout_marginLeft="@dimen/margin_10dp"
-                    android:layout_marginRight="@dimen/margin_10dp"/>
+                    android:layout_marginStart="@dimen/margin_10dp"
+                    android:layout_marginEnd="@dimen/margin_10dp"/>
                 <RelativeLayout
                     android:id="@+id/p_e_main_grade_layout"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/radius4_line_gray"
                     android:layout_width="75dp"
-                    android:layout_marginRight="@dimen/margin_10dp"
+                    android:layout_marginEnd="@dimen/margin_10dp"
                     android:layout_marginBottom="@dimen/margin_5dp"
                     android:layout_height="80dp">
 
@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="80dp"
                     android:layout_toLeftOf="@id/p_e_main_grade_layout"
-                    android:layout_marginRight="@dimen/margin_5dp">
+                    android:layout_marginEnd="@dimen/margin_5dp">
                     <RelativeLayout
                         android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
@@ -176,16 +176,16 @@
                         android:src="@drawable/radius_oval_gray"
                         android:scaleY="5"
                         android:scaleX="-5"
-                        android:tint="@color/main_red"/>
+                        />
                     <ImageView
                         android:layout_width="4dp"
                         android:layout_height="@dimen/margin_20dp"
                         android:src="@drawable/radius_oval_gray"
                         android:scaleY="5"
                         android:scaleX="-5"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
 
-                        android:tint="@color/main_red"/>
+                        />
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -206,15 +206,15 @@
                         android:src="@drawable/radius_oval_gray"
                         android:scaleY="5"
                         android:scaleX="-5"
-                        android:tint="@color/main_red"/>
+                        />
                     <ImageView
                         android:layout_width="4dp"
                         android:layout_height="@dimen/margin_20dp"
                         android:src="@drawable/radius_oval_gray"
                         android:scaleY="5"
                         android:scaleX="-5"
-                        android:layout_alignParentRight="true"
-                        android:tint="@color/main_red"/>
+                        android:layout_alignParentEnd="true"
+                        />
                 </RelativeLayout>
 
                 <TextView
@@ -261,18 +261,18 @@
                         android:textColor="@color/app_base_text_color"
 
                         android:layout_marginTop="@dimen/margin_10dp"
-                        android:layout_marginLeft="@dimen/margin_5dp"
-                        android:layout_marginRight="@dimen/margin_5dp"/>
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        android:layout_marginEnd="@dimen/margin_5dp"/>
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/p_e_main_recipe_content"
                         android:text="点击查看更多处方！"
                         android:textColor="@color/gray"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginBottom="@dimen/margin_3dp"
                         android:layout_marginTop="@dimen/margin_3dp"
-                        android:layout_marginRight="@dimen/margin_5dp"
+                        android:layout_marginEnd="@dimen/margin_5dp"
                         android:textSize="@dimen/textsize4"/>
                 </RelativeLayout>
                 <androidx.appcompat.widget.AppCompatTextView

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.final_tag.data.ColorRgbUtil;
+import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuDevelopAdapter;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuNormalAdapter;
@@ -78,12 +79,13 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
         initRecyclerViewDevelop();
         getAssetsData("duty_evaluate_get_stu_develop_detail.txt");
+        GlideTools.loadImage(mActivity,R.mipmap.honor_one,top_head);
         changeBgColor(
-                ColorRgbUtil.getParseColor("#8CCFFA"),
+                ColorRgbUtil.getParseColor(parse_color[0]),
                 "一",
                 "12",
-                ColorRgbUtil.getParseColor("#BEE7FE"),
-                ColorRgbUtil.getParseColor("#3EAAF8"));
+                ColorRgbUtil.getParseColor(parse_color_start[0]),
+                ColorRgbUtil.getParseColor(parse_color_end[0]));
     }
 
 
@@ -101,41 +103,66 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         finish();
 
     }
-
+    int num=0;
     @OnClick(R.id.duty_evaluate_stu_head)
     void setHead(){
-//        ViewTool.alterGradientStartEndColor(card_bg,ColorRgbUtil.getColor("#BEE7FE"),ColorRgbUtil.getColor("#3EAAF8"));
-        int num=1;
+        num++;
         switch (num%5){
             case 0:
+                GlideTools.loadImage(mActivity,R.mipmap.honor_one,top_head);
+                GlideTools.loadImage(mActivity,R.mipmap.rank_one,top_bg);
                 changeBgColor(
-                        ColorRgbUtil.getParseColor("#8CCFFA"),
+                        ColorRgbUtil.getParseColor(parse_color[0]),
                         "一",
                         "12",
-                        ColorRgbUtil.getParseColor("#BEE7FE"),
-                        ColorRgbUtil.getParseColor("#3EAAF8"));
+                        ColorRgbUtil.getParseColor(parse_color_start[0]),
+                        ColorRgbUtil.getParseColor(parse_color_end[0]));
                 break;
             case 1:
+                GlideTools.loadImage(mActivity,R.mipmap.honor_two,top_head);
+                GlideTools.loadImage(mActivity,R.mipmap.rank_two,top_bg);
                 changeBgColor(
-                        ColorRgbUtil.getParseColor("#EECE95"),
+                        ColorRgbUtil.getParseColor(parse_color[1]),
                         "二",
                         "26",
-                        ColorRgbUtil.getParseColor("#FFDDCA"),
-                        ColorRgbUtil.getParseColor("#D68259"));
+                        ColorRgbUtil.getParseColor(parse_color_start[1]),
+                        ColorRgbUtil.getParseColor(parse_color_end[1]));
                 break;
             case 2:
+                GlideTools.loadImage(mActivity,R.mipmap.rank_three,top_bg);
+                GlideTools.loadImage(mActivity,R.mipmap.honor_three,top_head);
                 changeBgColor(
-                        ColorRgbUtil.getParseColor("#EECE95"),
+                        ColorRgbUtil.getParseColor(parse_color[2]),
                         "二",
                         "26",
-                        ColorRgbUtil.getParseColor("#FFDDCA"),
-                        ColorRgbUtil.getParseColor("#D68259"));
+                        ColorRgbUtil.getParseColor(parse_color_start[2]),
+                        ColorRgbUtil.getParseColor(parse_color_end[2]));
+                break;
+            case 3:
+                GlideTools.loadImage(mActivity,R.mipmap.rank_four,top_bg);
+                GlideTools.loadImage(mActivity,R.mipmap.honor_four,top_head);
+                changeBgColor(
+                        ColorRgbUtil.getParseColor(parse_color[3]),
+                        "二",
+                        "26",
+                        ColorRgbUtil.getParseColor(parse_color_start[3]),
+                        ColorRgbUtil.getParseColor(parse_color_end[3]));
+                break;
+            case 4:
+                GlideTools.loadImage(mActivity,R.mipmap.rank_five,top_bg);
+                GlideTools.loadImage(mActivity,R.mipmap.honor_five,top_head);
+                changeBgColor(
+                        ColorRgbUtil.getParseColor(parse_color[4]),
+                        "二",
+                        "26",
+                        ColorRgbUtil.getParseColor(parse_color_start[4]),
+                        ColorRgbUtil.getParseColor(parse_color_end[4]));
                 break;
             default:
                 break;
 
         }
-        num++;
+
 
     }
 
@@ -145,7 +172,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     public List<KeyValue> adapter_data_list=new ArrayList<>();
     private void initRecyclerView(){
         normal_recycler =findViewById(R.id.duty_evaluate_stu_normal_recycler);
-        GridLayoutManager manager = new GridLayoutManager(mActivity,3);
+        GridLayoutManager manager = new GridLayoutManager(mActivity, 3);
         normal_recycler.setLayoutManager(manager);
 
         normal_recycler.addItemDecoration(new GridDividerLineNotBottom(Color.TRANSPARENT));
@@ -271,13 +298,19 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
+
+
+    public String[] parse_color=new String[]{"#B88256","#A0B8DA","#CD9D99","#8CCFFA","#8CCFFA"};
+    public String[] parse_color_start=new String[]{"#EBB77B","#FDFDFD","#824834","#8CCFFA","#8CCFFA"};
+    public String[] parse_color_end=new String[]{"#A16948","#7195C9","#B67571","#8CCFFA","#8CCFFA"};
+
     public void changeBgColor(int color,String content,String num,int startColor,int endColor){
         stu_rank.setText(StringUtils.stringToGetTextJoint("雅生%1$s星勋章\n总计%2$s雅币",content,num));
         ViewTool.alterVectorDrawableColor(bg_left,color);
         ViewTool.alterVectorDrawableColor(bg_right,color);
         ViewTool.alterGradientStartEndColor(card_bg,startColor,endColor);
 //
-        stu_rank.setTextColor(endColor);
+        stu_rank.setTextColor(ColorRgbUtil.getWhite());
     }
 
 

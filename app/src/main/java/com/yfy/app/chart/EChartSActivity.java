@@ -41,7 +41,7 @@ public class EChartSActivity extends BaseActivity {
         assert toolbar!=null;
         toolbar.setTitle("EChartActivity");
 
-        wv_analysis = (EchartView) findViewById(R.id.webView);
+        wv_analysis =  findViewById(R.id.e_chart_web);
         wv_analysis.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
 
         WebSettings webSettings = wv_analysis.getSettings();
