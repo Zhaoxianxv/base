@@ -5,8 +5,9 @@ import android.util.AttributeSet;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import com.github.abel533.echarts.json.GsonOption;
 import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.stringtool.StringUtils;
 
 /**
  * Created by zxx.
@@ -41,12 +42,13 @@ public class EchartView extends WebView {
      * java调用js的loadEcharts方法刷新echart
      * 不能在第一时间就用此方法来显示图表，因为第一时间html的标签还未加载完成，不能获取到标签值
      */
-    public void refreshEchartsWithOption(GsonOption option) {
-        if (option == null) {
+    public void refreshEchartsWithOption(String option) {
+        if (StringJudge.isEmpty(option) ) {
+
             return;
         }
-        String optionString = option.toString();
-        String call = "javascript:loadEcharts('" + optionString + "')";
+
+        String call = StringUtils.stringToGetTextJoint("javascript:loadEcharts('%1$s')",option) ;
 
         Logger.e(call);
         loadUrl(call);

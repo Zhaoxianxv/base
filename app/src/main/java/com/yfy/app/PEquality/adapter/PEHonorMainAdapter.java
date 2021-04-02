@@ -63,7 +63,7 @@ import androidx.cardview.widget.CardView;
 public class PEHonorMainAdapter extends BaseRecyclerAdapter {
 
     private List<KeyValue> dataList;
-    private PEHonorMainActivity mActivity;
+    public PEHonorMainActivity mActivity;
     private boolean is_stu=false;
     public PEHonorMainAdapter(PEHonorMainActivity mContext) {
         super(mContext);

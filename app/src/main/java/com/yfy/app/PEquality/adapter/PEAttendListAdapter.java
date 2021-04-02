@@ -11,6 +11,7 @@ import com.yfy.app.album.MultPicShowActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.adapter.ItemIntentStart;
 import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.data.TagFinal;
@@ -123,5 +124,14 @@ public class PEAttendListAdapter extends BaseRecyclerAdapter {
     public void setLoadState(int loadState) {
         this.loadState = loadState;
         notifyDataSetChanged();
+    }
+
+
+
+
+    public ItemIntentStart intentStart;
+
+    public void setIntentStart(ItemIntentStart intentStart) {
+        this.intentStart = intentStart;
     }
 }

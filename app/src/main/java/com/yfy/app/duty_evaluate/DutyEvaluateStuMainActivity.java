@@ -9,11 +9,13 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.final_tag.data.ColorRgbUtil;
@@ -63,6 +65,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     @BindView(R.id.card_background)
     AppCompatImageView card_bg;
 
+    //https://echarts.apache.org/v4/examples/zh/editor.html?c=sunburst-label-rotate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +78,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         }
 //        initSQToolbar("五育评价");
         stu_rank.setText("雅生四星勋章\n总计25雅币");
+        initCollapsing();
+        initToolbar();
         initRecyclerView();
 
         initRecyclerViewDevelop();
@@ -95,8 +100,16 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         super.finish();
     }
 
+
+
+
+
+
+
+
     public TextView menu_title;
     public TermBean selected_termBean;
+
 
     @OnClick(R.id.main_navi)
     void setNavi(){
@@ -165,6 +178,39 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
     }
+
+
+
+
+
+
+
+
+
+    /**
+     * Toolbar 的NavigationIcon大小控制mipmap
+     */
+    public void initToolbar() {
+//        Toolbar mToolbar =  findViewById(R.id.tool_bar);
+//        setSupportActionBar(mToolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        mToolbar.setNavigationIcon(R.drawable.ic_navi_back);
+        //隐藏掉返回键比如首页，可以调用
+    }
+
+    //配置CollapsingToolbarLayout布局
+    public void initCollapsing() {
+        CollapsingToolbarLayout mCollapsingToolbarLayout =  findViewById(R.id.answer_collapsing);
+        mCollapsingToolbarLayout.setTitle("返回");
+        mCollapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
+        //设置还没收缩时状态下字体颜色
+        mCollapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+        //设置收缩后Toolbar上字体的颜色
+    }
+
+
+
+
 
 
     public DutyEvaluateStuNormalAdapter adapter_normal;

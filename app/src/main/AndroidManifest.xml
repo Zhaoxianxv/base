@@ -337,7 +337,7 @@
         <activity
             android:name="com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/dutyAppTheme"
+            android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.duty_evaluate.DutyEvaluateStuDetailActivity"

@@ -1,6 +1,7 @@
 package com.yfy.app.PEquality;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatTextView;
@@ -20,6 +21,7 @@ import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
+import com.yfy.final_tag.recycerview.adapter.ItemIntentStart;
 import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.util.ArrayList;
@@ -82,6 +84,13 @@ public class PEAttitudeStuActivity extends BaseActivity {
 
 
         setAdapterData(true);
+
+        adapter_attitude.setIntentStart(new ItemIntentStart() {
+            @Override
+            public void startIntent(Intent intent) {
+                startActivity(intent);
+            }
+        });
 //        attend_txt.setText("请假记录");
 //        attitude_txt.setText("学习态度");
     }

@@ -11,7 +11,9 @@ import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.adapter.ItemIntentStart;
 import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 import com.yfy.final_tag.stringtool.StringUtils;
 
@@ -89,11 +91,14 @@ public class PEAttitudeStuMainAdapter extends BaseRecyclerAdapter {
             attitude_sub = itemView.findViewById(R.id.p_e_attitude_sub);
             attitude_content = itemView.findViewById(R.id.p_e_attitude_content);
             layout = itemView.findViewById(R.id.p_e_attitude_layout);
-            layout.setOnClickListener(new View.OnClickListener() {
+            layout.setOnClickListener(new NoFastClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void fastClick(View v) {
                     Intent intent=new Intent(mContext,PEAttitudeDetailActivity.class);
-                    mContext.startActivity(intent);
+                    if (intentStart!=null){
+                        intentStart.startIntent(intent);
+                    }
+
                 }
             });
         }
@@ -106,5 +111,13 @@ public class PEAttitudeStuMainAdapter extends BaseRecyclerAdapter {
     public void setLoadState(int loadState) {
         this.loadState = loadState;
         notifyDataSetChanged();
+    }
+
+
+
+    public ItemIntentStart intentStart;
+
+    public void setIntentStart(ItemIntentStart intentStart) {
+        this.intentStart = intentStart;
     }
 }

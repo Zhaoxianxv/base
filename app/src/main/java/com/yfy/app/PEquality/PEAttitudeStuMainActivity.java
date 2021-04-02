@@ -1,5 +1,6 @@
 package com.yfy.app.PEquality;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -48,11 +49,11 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
+@SuppressLint("NonConstantResourceId")
 public class PEAttitudeStuMainActivity extends BaseActivity {
     private static final String TAG = PEAttitudeStuMainActivity.class.getSimpleName();
 
-    public PEAttitudeStuMainAdapter adapter_attitude;
-    public PEAttendListAdapter adapter_attend;
+
 
 
     @BindView(R.id.p_e_score_line_chart)

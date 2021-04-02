@@ -17,14 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by yfyandr on 2017/12/27.
+ * Created by yfy on 2017/12/27.
  */
 
 public class PEQualityStandardListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Activity mContext;
+    public Activity mContext;
     private List<KeyValue> dataList;
-    private int loadState = 2;
+    public int loadState = 2;
 
     public PEQualityStandardListAdapter(Activity mContext) {
         this.mContext = mContext;

@@ -1,6 +1,7 @@
 package com.yfy.app.PEquality.adapter;
 
 import android.app.Activity;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,24 +10,26 @@ import android.widget.TextView;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 /**
- * Created by yfyandr on 2017/12/27.
+ * Created by yfy on 2017/12/27.
  */
 
-public class PEQualityAttitudeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PEQualityAttitudeDetailAdapter extends BaseRecyclerAdapter {
 
-    private Activity mContext;
     private List<KeyValue> dataList;
-    private int loadState = 2;
+    public int loadState = 2;
 
     public PEQualityAttitudeDetailAdapter(Activity mContext) {
-        this.mContext = mContext;
+        super(mContext);
         this.dataList = new ArrayList<>();
 
     }
@@ -40,21 +43,21 @@ public class PEQualityAttitudeDetailAdapter extends RecyclerView.Adapter<Recycle
         // 最后一个item设置为FooterView
         return dataList.get(position).getView_type();
     }
-
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ReViewHolder initViewHolder( ViewGroup parent, int position) {
         //进行判断显示类型，来创建返回不同的View
-        if (viewType == TagFinal.TYPE_ITEM) {
+        if (position == TagFinal.TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.public_type_txt, parent, false);
             return new ItemHolder(view);
         }
 
-        return null;
+        return new ErrorHolder(parent);
     }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void bindHolder(ReViewHolder holder, int position) {
         if (holder instanceof ItemHolder) {
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
@@ -70,7 +73,7 @@ public class PEQualityAttitudeDetailAdapter extends RecyclerView.Adapter<Recycle
     }
 
 
-    private class ItemHolder extends RecyclerView.ViewHolder {
+    public class ItemHolder extends ReViewHolder {
         public TextView key;
         public TextView value;
         KeyValue bean;
