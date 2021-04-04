@@ -41,6 +41,7 @@ import retrofit2.Response;
 public class BarChartActivity extends BaseActivity {
     private static final String TAG = BarChartActivity.class.getSimpleName();
 
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.p_e_attend_class_chart)
     BarChart barChart;
     @BindView(R.id.p_e_attend_class_title)
