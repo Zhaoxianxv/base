@@ -29,76 +29,7 @@ public class EChartSActivity extends BaseActivity {
     private static final String TAG = EChartSActivity.class.getSimpleName();
 
     public EchartView wv_analysis;
-    String s="{\n" +
-            "    silent: true,\n" +
-            "    series: {\n" +
-            "        radius: ['15%', '80%'],\n" +
-            "        type: 'sunburst',\n" +
-            "        sort: null,\n" +
-            "        highlightPolicy: 'ancestor',\n" +
-            "        data: [{\n" +
-            "            value: 8,\n" +
-            "            children: [{\n" +
-            "                value: 4,\n" +
-            "                children: [{\n" +
-            "                    value: 2\n" +
-            "                }, {\n" +
-            "                    value: 1\n" +
-            "                }, {\n" +
-            "                    value: 1\n" +
-            "                }, {\n" +
-            "                    value: 0.5\n" +
-            "                }]\n" +
-            "            }, {\n" +
-            "                value: 2\n" +
-            "            }]\n" +
-            "        }, {\n" +
-            "            value: 4,\n" +
-            "            children: [{\n" +
-            "                children: [{\n" +
-            "                    value: 2\n" +
-            "                }]\n" +
-            "            }]\n" +
-            "        }, {\n" +
-            "            value: 4,\n" +
-            "            children: [{\n" +
-            "                children: [{\n" +
-            "                    value: 2\n" +
-            "                }]\n" +
-            "            }]\n" +
-            "        }, {\n" +
-            "            value: 3,\n" +
-            "            children: [{\n" +
-            "                children: [{\n" +
-            "                    value: 1\n" +
-            "                }]\n" +
-            "            }]\n" +
-            "        }],\n" +
-            "\n" +
-            "        levels: [{}, {\n" +
-            "            itemStyle: {\n" +
-            "                color: 'red'\n" +
-            "            },\n" +
-            "            label: {\n" +
-            "                rotate: 'radial'\n" +
-            "            }\n" +
-            "        }, {\n" +
-            "            itemStyle: {\n" +
-            "                color: 'orange'\n" +
-            "            },\n" +
-            "            label: {\n" +
-            "                rotate: 'tangential'\n" +
-            "            }\n" +
-            "        }, {\n" +
-            "            itemStyle: {\n" +
-            "                color: 'yellow'\n" +
-            "            },\n" +
-            "            label: {\n" +
-            "                rotate: 0\n" +
-            "            }\n" +
-            "        }]\n" +
-            "    }\n" +
-            "}";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,8 +91,8 @@ public class EChartSActivity extends BaseActivity {
                 data.put("name", "name"+i);
                 twoData.add(data);
             }
-//            GsonOption optionString = EchartOptionUtil.getBingTuChartOptions(oneData, twoData);//生成json
-            wv_analysis.refreshEchartsWithOption(s);
+            GsonOption optionString = EchartOptionUtil.getBingTuChartOptions(oneData, twoData);//生成json
+            wv_analysis.refreshEchartsWithOption(optionString.toString());
         }
 
 
@@ -228,6 +159,7 @@ public class EChartSActivity extends BaseActivity {
          */
         public static GsonOption getBingTuChartOptions(Object[] data, List<Map<String, Object>> yAxis) {
             GsonOption option = new GsonOption();
+
             option.title("支付方式占比");
             option.title().setX(X.center);
 
