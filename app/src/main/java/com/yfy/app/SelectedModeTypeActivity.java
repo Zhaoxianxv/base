@@ -10,7 +10,6 @@ import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.chart.BarChartActivity;
-import com.yfy.app.chart.EChartSActivity;
 import com.yfy.app.drawableBg.DrawableBgActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.app.duty_evaluate.PracticeAddActivity;
@@ -104,9 +103,7 @@ public class SelectedModeTypeActivity extends BaseActivity {
                         break;
                     case "BarChartActivity":
                         startActivity(new Intent(mActivity,BarChartActivity.class));
-                        break;
-                    case "EChartSActivity":
-                        startActivity(new Intent(mActivity, EChartSActivity.class));
+
                         break;
                     case "Voice":
                         startActivity(new Intent(mActivity,VoiceMainActivity.class));
@@ -144,7 +141,7 @@ public class SelectedModeTypeActivity extends BaseActivity {
         });
 
     }
-    private List<String> list=new ArrayList<>();
+    public List<String> list=new ArrayList<>();
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
         list.add("TypeActivity");
@@ -155,7 +152,7 @@ public class SelectedModeTypeActivity extends BaseActivity {
         list.add("drawable");
         list.add("SpannableStringMainActivity");
         list.add("BarChartActivity");
-        list.add("EChartSActivity");
+
         list.add("GRpcMainActivity");
         list.add("HttpPostMainActivity");
         list.add("RetrofitMainActivity");
