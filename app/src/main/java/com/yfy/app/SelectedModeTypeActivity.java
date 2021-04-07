@@ -141,7 +141,7 @@ public class SelectedModeTypeActivity extends BaseActivity {
         });
 
     }
-    public List<String> list=new ArrayList<>();
+    private List<String> list=new ArrayList<>();
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
         list.add("TypeActivity");

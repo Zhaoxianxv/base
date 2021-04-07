@@ -164,7 +164,6 @@ public class  UpdateManager {
 	}
 	/**
 	 * apk
-	 * @param
 	 */
 	private void installApk(){
 		File apkfile = new File(saveFileName);

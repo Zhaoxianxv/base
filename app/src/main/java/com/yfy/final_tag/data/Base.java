@@ -8,7 +8,9 @@ import com.yfy.greendao.User;
  */
 public class Base {
     public static String DB_NAME="yfydbone";
-    public static final String AUTHORITY = "${applicationId}.fileProvider";//android 7.0文件访问权限Tag（要和Provider一直）
+    //android 7.0文件访问权限Tag（要和Provider一直）
+    //android:requestLegacyExternalStorage="true"
+    public static final String AUTHORITY = "${applicationId}.fileProvider";
 
     /**
      *

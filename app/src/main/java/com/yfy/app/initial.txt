@@ -16,12 +16,12 @@ Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
         try {
             assert response.errorBody() != null;
             String s=response.errorBody().string();
-            Logger.e(StringUtils.getTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
+            Logger.e(StringUtils.stringToGetTextJoint("%1$s:%2$d:%3$s",name,response.code(),s));
         } catch (IOException e) {
             Logger.e(TagFinal.ZXX, "onResponse: IOException");
             e.printStackTrace();
         }
-        toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
+        toastShow(StringUtils.stringToGetTextJoint("数据错误:%1$d",response.code()));
 
 Logger.e("onFailure  :"+call.request().headers().toString());
 
