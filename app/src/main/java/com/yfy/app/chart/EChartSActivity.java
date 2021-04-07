@@ -17,6 +17,10 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.data.MathTool;
+import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.listener.NoFastClickListener;
+import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.json.JsonTool;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
@@ -37,10 +41,24 @@ public class EChartSActivity extends BaseActivity {
         initSQToolbar();
 
     }
+    private void initString(){
+        PileRes res=new PileRes("zxx",45);
+        PileBean bean=new PileBean();
+        bean.setSalary("salary_name");
+        res.setSalary_obj(bean);
+        Logger.e(JsonTool.objectToJson(res,gson));
+    }
 
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle("EChartActivity");
+        toolbar.addMenuText(TagFinal.ONE_INT,"Json");
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                initString();
+            }
+        });
 
         wv_analysis =  findViewById(R.id.e_chart_web);
         wv_analysis.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
