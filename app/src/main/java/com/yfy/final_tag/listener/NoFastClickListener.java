@@ -52,6 +52,7 @@ public abstract class NoFastClickListener implements View.OnClickListener , PopC
     /**
      *     --------------------------------------------------------------------------------
      */
+
     public  void fastClick(View view){
 
     }

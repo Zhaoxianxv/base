@@ -1,5 +1,6 @@
 package com.yfy.app.PEquality;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
@@ -33,7 +34,7 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Response;
-
+@SuppressLint("NonConstantResourceId")
 public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
     private static final String TAG = PEQualityKnowledgeAnswerActivity.class.getSimpleName();
 
@@ -64,7 +65,7 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
             public void fastClick(View view) {
-                showDialog("提示","结束本次答题并计算最终分数","确定");
+                showDialog("提示","结束本次答题并计算最终分数");
             }
         });
     }
@@ -75,25 +76,24 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
 
         confirmContentWindow = new ConfirmContentWindow(mActivity);
         confirmContentWindow.setPopClickListener(new NoFastClickListener() {
+
             @Override
-            public void onClick(View view) {
+            public void popClick(View view) {
 
                 switch (view.getId()){
                     case R.id.pop_dialog_title:
                         break;
-                    case R.id.pop_dialog_content:
-                        break;
                     case R.id.pop_dialog_ok:
-
+                        confirmContentWindow.dismiss();
                         break;
                 }
             }
         });
     }
 
-    private void showDialog(String title,String content,String ok){
+    private void showDialog(String title,String content){
         if (confirmContentWindow==null)return;
-        confirmContentWindow.setTitle_s(title,content,ok);
+        confirmContentWindow.setTitle_s(title,content);
         confirmContentWindow.showAtCenter();
     }
 

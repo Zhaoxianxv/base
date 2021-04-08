@@ -13,35 +13,26 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.yfy.base.R;
+import com.yfy.final_tag.listener.NoFastClickListener;
 
 
 /**
  * 弹窗视图
  */
 public class ConfirmContentWindow extends PopupWindow  {
-	private Activity context;
-	private TextView title, content,ok;
+	public Activity context;
+	public TextView title, content,ok;
 
-	private String title_s,content_s,ok_s;
+	public String title_s,content_s;
 
-	public void setTitle_s(String title_s,String content_s,String ok_s) {
+	public void setTitle_s(String title_s,String content_s) {
 		this.title_s = title_s;
 		this.content_s = content_s;
-		this.ok_s = ok_s;
+
 		title.setText(title_s);
 		content.setText(content_s);
-		ok.setText(ok_s);
 
-	}
 
-	private boolean is_type=false;
-
-	public boolean isIs_type() {
-		return is_type;
-	}
-
-	public void setIs_type(boolean is_type) {
-		this.is_type = is_type;
 	}
 
 	public ConfirmContentWindow(Activity context) {
@@ -53,17 +44,13 @@ public class ConfirmContentWindow extends PopupWindow  {
 	private void initalize() {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		View view = inflater.inflate(R.layout.confirm_dialog_content, null);
-		title = view.findViewById(R.id.pop_dialog_title);//发起群聊
-		content = view.findViewById(R.id.pop_dialog_content);//发起群聊
-		ok = view.findViewById(R.id.pop_dialog_ok);//发起群聊
+		title = view.findViewById(R.id.pop_dialog_title);//title
+		content = view.findViewById(R.id.pop_dialog_content);//content
+		ok = view.findViewById(R.id.pop_dialog_ok);//确定按钮
+		TextView cancel = view.findViewById(R.id.pop_dialog_cancel);//取消
         ok.setOnClickListener(onClickListener);
-		TextView cancel = view.findViewById(R.id.pop_dialog_cancel);
-		cancel.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				dismiss();
-			}
-		});
+		title.setOnClickListener(onClickListener);
+		cancel.setOnClickListener(onClickListener);
 		setContentView(view);
 		initWindow();
 	}
@@ -120,7 +107,7 @@ public class ConfirmContentWindow extends PopupWindow  {
 	}
 
 
-	private View.OnClickListener onClickListener = new View.OnClickListener() {
+	public View.OnClickListener onClickListener = new View.OnClickListener() {
 
 		@Override
 		public void onClick(View v) {

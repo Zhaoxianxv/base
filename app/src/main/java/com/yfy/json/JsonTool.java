@@ -2,7 +2,7 @@ package com.yfy.json;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.yfy.app.chart.PileRes;
+import com.yfy.app.chart.bean.PileRes;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
