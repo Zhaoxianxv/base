@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -176,7 +177,6 @@
             
             
             <RelativeLayout
-                android:descendantFocusability="blocksDescendants"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 
@@ -225,38 +225,36 @@
                         />
                 </RelativeLayout>
                 
-                <RelativeLayout
-                    
+                <LinearLayout
+                    android:id="@+id/container_view"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/margin_45dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/margin_45dp"
+                    android:orientation="vertical"
                     >
-                    
-                    <RelativeLayout
-                        android:id="@+id/duty_evaluate_stu_normal_chart_layout"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:visibility="visible"
-                        android:layout_height="300dp">
-                        <com.yfy.app.chart.EchartView
-                            
-                            android:id="@+id/e_chart_web"
+                        android:layout_height="wrap_content"
+                       
+                        >
+                        
+                        <com.yfy.app.chart.EChartView
+                            android:id="@+id/event_chart_web"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/margin_300dp"
-                            android:scrollbars="none" />
-                    </RelativeLayout>
-                    
+                            android:layout_height="300dp" />
+                    </FrameLayout>
+                   
+  
                     <RelativeLayout
-                        android:id="@+id/duty_evaluate_stu_normal_chart_title"
-                        android:layout_below="@id/duty_evaluate_stu_normal_chart_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        
+        
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0.5dp"
                             android:layout_marginStart="@dimen/margin_10dp"
                             android:layout_marginEnd="@dimen/margin_10dp"
+                            android:layout_marginTop="@dimen/margin_1dp"
                             android:background="@color/gray"/>
                         <View
                             android:layout_width="match_parent"
@@ -265,7 +263,7 @@
                             android:layout_marginEnd="@dimen/margin_10dp"
                             android:layout_alignParentBottom="true"
                             android:background="@color/gray"/>
-                        
+        
                         <TextView
                             android:id="@+id/duty_evaluate_stu_normal_title"
                             android:text="排名：23名"
@@ -277,7 +275,7 @@
                             android:layout_marginStart="@dimen/margin_20dp"
                             android:textSize="@dimen/textsize10"
                             android:textColor="@color/app_base_text_color"
-                            
+            
                             />
                         <TextView
                             android:layout_width="wrap_content"
@@ -289,30 +287,29 @@
                             android:textColor="@color/DarkGray"
                             android:textSize="@dimen/textsize8"
                             />
-                    
+    
                     </RelativeLayout>
                     <TableLayout
-                        android:layout_below="@id/duty_evaluate_stu_normal_chart_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        
                         android:stretchColumns="0,1">
                         <TableRow>
-                            
+            
                             <androidx.cardview.widget.CardView
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
                                 android:layout_margin="@dimen/margin_10dp"
                                 app:cardCornerRadius="@dimen/margin_8dp"
                                 app:cardElevation="@dimen/margin_10dp"
-                                app:cardBackgroundColor="@color/blue"
+                
                                 >
                                 <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/stu_self_event_bg"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/gradient_rectangle_315"
                                     />
-                                
+                
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
@@ -352,7 +349,7 @@
                                             android:alpha="0.3"
                                             />
                                     </LinearLayout>
-                                
+                
                                 </RelativeLayout>
                             </androidx.cardview.widget.CardView>
                             <androidx.cardview.widget.CardView
@@ -361,9 +358,10 @@
                                 android:layout_margin="@dimen/margin_10dp"
                                 app:cardCornerRadius="@dimen/margin_8dp"
                                 app:cardElevation="@dimen/margin_10dp"
-                                app:cardBackgroundColor="@color/blue"
+                
                                 >
                                 <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/tea_event_bg"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/gradient_rectangle_315"
@@ -379,7 +377,7 @@
                                         android:layout_marginStart="@dimen/margin_5dp"
                                         app:tint="@color/DarkGray"
                                         />
-                                    
+                    
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -396,8 +394,8 @@
                                             android:textColor="@color/White"
                                             android:drawableEnd="@drawable/ic_east"
                                             android:drawableTint="@color/White"
-                                            
-                                            
+                            
+                            
                                             />
                                         <TextView
                                             android:layout_width="match_parent"
@@ -411,103 +409,25 @@
                                             />
                                     </LinearLayout>
                                 </RelativeLayout>
-                            
+            
                             </androidx.cardview.widget.CardView>
-                        
+        
                         </TableRow>
-                    
+    
                     </TableLayout>
-                
-                </RelativeLayout>
-                
-                
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/duty_evaluate_stu_normal_recycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
                     
-                    android:visibility="gone"
-                    android:paddingRight="2dp"
-                    android:paddingLeft="2dp"
-                    android:scrollbars="none"
-                    >
-                
-                </androidx.recyclerview.widget.RecyclerView>
-            </RelativeLayout>
-            
-            
-            
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_10dp"
-                android:visibility="gone"
-                android:paddingLeft="@dimen/margin_5dp"
-                android:paddingRight="@dimen/margin_5dp"
-                android:paddingBottom="@dimen/margin_10dp"
-                android:layout_marginBottom="@dimen/margin_10dp"
-                android:background="@color/OldLace">
-                
-                
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    
-                    
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        >
-                        <TextView
-                            android:id="@+id/duty_evaluate_stu"
-                            android:text="五育发展性评价 · 8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:layout_centerVertical="true"
-                            android:textSize="@dimen/textsize10"
-                            android:textColor="@color/app_base_color"
-                            
-                            />
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/elegant_coin_selected"
-                            android:padding="@dimen/margin_8dp"
-                            android:layout_toRightOf="@id/duty_evaluate_stu"
-                            android:layout_centerVertical="true"
-                            />
-                    </RelativeLayout>
-                    
-                    
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="@dimen/margin_10dp"
-                        >
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/duty_evaluate_stu_develop_recycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:paddingRight="2dp"
-                            android:paddingLeft="2dp"
-                            android:scrollbars="none"
-                            >
-                        
-                        </androidx.recyclerview.widget.RecyclerView>
-                    </RelativeLayout>
-                
-                
+                 
+                  
                 
                 </LinearLayout>
-            
+                
+                
+ 
             </RelativeLayout>
+            
+            
+            
+        
             
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -16,7 +16,7 @@
         android:progress="0"
         android:progressDrawable="@drawable/progressbar" />
 
-    <com.yfy.app.chart.EchartView
+    <com.yfy.app.chart.EChartView
         
         android:id="@+id/e_chart_web"
         android:layout_width="match_parent"

@@ -1,5 +1,7 @@
 package com.yfy.app.chart.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -10,57 +12,67 @@ import java.util.List;
  */
 
 public class Series implements Serializable ,Type{
-    public String type;
-    public List<Integer> data;
-    public String coordinateSystem;
-    public String name;
-    public String stack;
+
+    @SerializedName(value = "type")
+    public String a;
+
+    @SerializedName(value = "data")
+    public List<Integer> b;
+
+    @SerializedName(value = "coordinateSystem")
+    public String c;
+
+    @SerializedName(value = "name")
+    public String d;
+
+    @SerializedName(value = "stack")
+    public String e;
 
 
-    public Series(String type, String coordinateSystem, String name, String stack) {
-        this.type = type;
-        this.coordinateSystem = coordinateSystem;
-        this.name = name;
-        this.stack = stack;
+    public Series(String a, String c, String d, String e) {
+        this.a = a;
+        this.c = c;
+        this.d = d;
+        this.e = e;
     }
 
-    public String getType() {
-        return type;
+    public String getA() {
+        return a;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setA(String a) {
+        this.a = a;
     }
 
-    public List<Integer> getData() {
-        return data;
+    public List<Integer> getB() {
+        return b;
     }
 
-    public void setData(List<Integer> data) {
-        this.data = data;
+    public void setB(List<Integer> b) {
+        this.b = b;
     }
 
-    public String getCoordinateSystem() {
-        return coordinateSystem;
+    public String getC() {
+        return c;
     }
 
-    public void setCoordinateSystem(String coordinateSystem) {
-        this.coordinateSystem = coordinateSystem;
+    public void setC(String c) {
+        this.c = c;
     }
 
-    public String getName() {
-        return name;
+    public String getD() {
+        return d;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setD(String d) {
+        this.d = d;
     }
 
-    public String getStack() {
-        return stack;
+    public String getE() {
+        return e;
     }
 
-    public void setStack(String stack) {
-        this.stack = stack;
+    public void setE(String e) {
+        this.e = e;
     }
 }

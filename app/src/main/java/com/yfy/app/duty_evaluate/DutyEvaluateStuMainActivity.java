@@ -13,11 +13,24 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.chart.EChartView;
+import com.yfy.app.chart.bean.AngleAxis;
+import com.yfy.app.chart.bean.Legend;
+import com.yfy.app.chart.bean.PileRes;
+import com.yfy.app.chart.bean.Polar;
+import com.yfy.app.chart.bean.RadiusAxis;
+import com.yfy.app.chart.bean.Series;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.greendao.bean.TermBean;
@@ -65,25 +78,36 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     @BindView(R.id.card_background)
     AppCompatImageView card_bg;
 
-    //https://echarts.apache.org/v4/examples/zh/editor.html?c=sunburst-label-rotate
+
+
+
+
+    @BindView(R.id.stu_self_event_bg)
+    AppCompatImageView stu_event_bg;
+    @BindView(R.id.tea_event_bg)
+    AppCompatImageView tea_event_bg;
+
+
+
+
+
+    @BindView(R.id.event_chart_web)
+    EChartView wv_analysis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.duty_evaluate_stu_main);
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             View decorView = getWindow().getDecorView();
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
 
         }
-//        initSQToolbar("五育评价");
+
         stu_rank.setText("雅生四星勋章\n总计25雅币");
         initCollapsing();
-        initToolbar();
-        initRecyclerView();
 
-        initRecyclerViewDevelop();
-        getAssetsData("duty_evaluate_get_stu_develop_detail.txt");
         GlideTools.loadImage(mActivity,R.mipmap.honor_one,top_head);
         changeBgColor(
                 ColorRgbUtil.getParseColor(parse_color[0]),
@@ -91,6 +115,17 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
                 "12",
                 ColorRgbUtil.getParseColor(parse_color_start[0]),
                 ColorRgbUtil.getParseColor(parse_color_end[0]));
+
+
+
+
+//        ViewTool.alterGradientStartEndColor(stu_event_bg,ColorRgbUtil.getParseColor("#F4A668"),ColorRgbUtil.getParseColor("#E94F4F"));
+//        ViewTool.alterGradientStartEndColor(
+//                tea_event_bg,
+//                ColorRgbUtil.getParseColor("#5FB0E8"),
+//                ColorRgbUtil.getParseColor("#2876E5"));
+
+        initEChart();
     }
 
 
@@ -98,6 +133,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     public void finish() {
         setResult(RESULT_OK);
         super.finish();
+
     }
 
 
@@ -187,16 +223,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
-    /**
-     * Toolbar 的NavigationIcon大小控制mipmap
-     */
-    public void initToolbar() {
-//        Toolbar mToolbar =  findViewById(R.id.tool_bar);
-//        setSupportActionBar(mToolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        mToolbar.setNavigationIcon(R.drawable.ic_navi_back);
-        //隐藏掉返回键比如首页，可以调用
-    }
+
 
     //配置CollapsingToolbarLayout布局
     public void initCollapsing() {
@@ -212,135 +239,135 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
-
-    public DutyEvaluateStuNormalAdapter adapter_normal;
-    public RecyclerView normal_recycler;
-    public List<KeyValue> adapter_data_list=new ArrayList<>();
-    private void initRecyclerView(){
-        normal_recycler =findViewById(R.id.duty_evaluate_stu_normal_recycler);
-        GridLayoutManager manager = new GridLayoutManager(mActivity, 3);
-        normal_recycler.setLayoutManager(manager);
-
-        normal_recycler.addItemDecoration(new GridDividerLineNotBottom(Color.TRANSPARENT));
-        adapter_normal =new DutyEvaluateStuNormalAdapter(mActivity);
-        normal_recycler.setAdapter(adapter_normal);
-
-        List<String> list=StringUtils.listToStringSplitCharacters("9月·35分,10月·30分,11月·38分,12月·未完成,1月·未完成",",");
-        List<String> stu_score=StringUtils.listToStringSplitCharacters("0,1,2",",");
-        for (String s:list){
-            KeyValue keyValue=new KeyValue(s,R.mipmap.main_delay_service);
-            keyValue.setTitle(s);
-            keyValue.setRight_name("2020");
-            keyValue.setRight_key("2020");
-
-            switch (s){
-                case "9月·35分":
-                    keyValue.setRight_name("2020");
-                    keyValue.setRight_key("9");
-                    break;
-                case "10月·30分":
-                    keyValue.setRight_name("2020");
-                    keyValue.setRight_key("10");
-
-                    break;
-                case "11月·38分":
-                    keyValue.setRight_name("2020");
-                    keyValue.setRight_key("11");
-                    break;
-                case "12月·未完成":
-                    keyValue.setRight_name("2020");
-                    keyValue.setRight_key("12");
-                    break;
-                case "1月·未完成":
-                    keyValue.setRight_name("2021");
-                    keyValue.setRight_key("1");
-                    break;
-                default:
-                    keyValue.setValue(MathTool.randomStringAtList(stu_score));
-                    break;
-            }
-            adapter_data_list.add(keyValue);
-        }
-        adapter_normal.setDataList(adapter_data_list);
-        adapter_normal.setLoadState(TagFinal.LOADING_END);
-
-
-        adapter_normal.setOnClieckAdapterLayout(new DutyEvaluateStuNormalAdapter.OnClickAdapterLayout() {
-            @Override
-            public void layoutOnClick(KeyValue keyValue) {
-
-                Intent intent;
-                if (keyValue.getTitle().equalsIgnoreCase("1月·未完成")){
-                    intent=new Intent(mActivity,DutyEvaluateStuAddActivity.class);
-
-                    intent.putExtra(Base.year_value,keyValue.getRight_name());
-                    intent.putExtra(Base.month_value,keyValue.getRight_key());
-                    startActivity(intent);
-                }else{
-
-
-
-                    intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
-
-                    intent.putExtra(Base.year_value,keyValue.getRight_name());
-                    intent.putExtra(Base.month_value,keyValue.getRight_key());
-                    startActivity(intent);
-
-                }
-            }
-        });
-    }
-
-
-    public RecyclerView develop_recycler;
-    public DutyEvaluateStuDevelopAdapter adapter_develop;
-    public List<KeyValue> adapter_develop_data=new ArrayList<>();
-    private void initRecyclerViewDevelop(){
-        develop_recycler =findViewById(R.id.duty_evaluate_stu_develop_recycler);
-        GridLayoutManager manager = new GridLayoutManager(mActivity,3);
-        develop_recycler.setLayoutManager(manager);
-
-        develop_recycler.addItemDecoration(new GridDividerLineNotBottom(Color.TRANSPARENT));
-        adapter_develop =new DutyEvaluateStuDevelopAdapter(mActivity);
-        develop_recycler.setAdapter(adapter_develop);
-        adapter_develop.setOnClieckAdapterLayout(new DutyEvaluateStuDevelopAdapter.OnClickAdapterLayout() {
-            @Override
-            public void layoutOnClick(KeyValue keyValue) {
-                KeyValue stu=new KeyValue();
-                stu.setName(Base.user.getName());
-                stu.setId(Base.user.getIdU());
-
-                Intent intent;
-                switch(keyValue.getTitle()){
-                    case "班级认定":
-                    case "家长认定":
-
-                        DateBean dateBean=new DateBean();
-                        dateBean.setValue_long(System.currentTimeMillis(),true);
-
-                        intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
-                        intent.putExtra(Base.stu_bean, stu);
-                        intent.putExtra(Base.year_value,dateBean.getYearName());
-                        intent.putExtra(Base.month_value,dateBean.getMonthName());
-                        startActivity(intent);
-                        break;
-                    case "校内活动":
-                    case "校外实践":
-                    case "比赛成绩":
-                        intent=new Intent(mActivity,DutyEvaluatePracticeActivity.class);
-                        intent.putExtra(Base.title,keyValue.getTitle());
-                        intent.putExtra(Base.term_bean,selected_termBean);
-                        startActivity(intent);
-                        break;
-                        default:
-                            break;
-                }
-
-            }
-        });
-    }
+//
+//    public DutyEvaluateStuNormalAdapter adapter_normal;
+//    public RecyclerView normal_recycler;
+//    public List<KeyValue> adapter_data_list=new ArrayList<>();
+//    private void initRecyclerView(){
+//        normal_recycler =findViewById(R.id.duty_evaluate_stu_normal_recycler);
+//        GridLayoutManager manager = new GridLayoutManager(mActivity, 3);
+//        normal_recycler.setLayoutManager(manager);
+//
+//        normal_recycler.addItemDecoration(new GridDividerLineNotBottom(Color.TRANSPARENT));
+//        adapter_normal =new DutyEvaluateStuNormalAdapter(mActivity);
+//        normal_recycler.setAdapter(adapter_normal);
+//
+//        List<String> list=StringUtils.listToStringSplitCharacters("9月·35分,10月·30分,11月·38分,12月·未完成,1月·未完成",",");
+//        List<String> stu_score=StringUtils.listToStringSplitCharacters("0,1,2",",");
+//        for (String s:list){
+//            KeyValue keyValue=new KeyValue(s,R.mipmap.main_delay_service);
+//            keyValue.setTitle(s);
+//            keyValue.setRight_name("2020");
+//            keyValue.setRight_key("2020");
+//
+//            switch (s){
+//                case "9月·35分":
+//                    keyValue.setRight_name("2020");
+//                    keyValue.setRight_key("9");
+//                    break;
+//                case "10月·30分":
+//                    keyValue.setRight_name("2020");
+//                    keyValue.setRight_key("10");
+//
+//                    break;
+//                case "11月·38分":
+//                    keyValue.setRight_name("2020");
+//                    keyValue.setRight_key("11");
+//                    break;
+//                case "12月·未完成":
+//                    keyValue.setRight_name("2020");
+//                    keyValue.setRight_key("12");
+//                    break;
+//                case "1月·未完成":
+//                    keyValue.setRight_name("2021");
+//                    keyValue.setRight_key("1");
+//                    break;
+//                default:
+//                    keyValue.setValue(MathTool.randomStringAtList(stu_score));
+//                    break;
+//            }
+//            adapter_data_list.add(keyValue);
+//        }
+//        adapter_normal.setDataList(adapter_data_list);
+//        adapter_normal.setLoadState(TagFinal.LOADING_END);
+//
+//
+//        adapter_normal.setOnClieckAdapterLayout(new DutyEvaluateStuNormalAdapter.OnClickAdapterLayout() {
+//            @Override
+//            public void layoutOnClick(KeyValue keyValue) {
+//
+//                Intent intent;
+//                if (keyValue.getTitle().equalsIgnoreCase("1月·未完成")){
+//                    intent=new Intent(mActivity,DutyEvaluateStuAddActivity.class);
+//
+//                    intent.putExtra(Base.year_value,keyValue.getRight_name());
+//                    intent.putExtra(Base.month_value,keyValue.getRight_key());
+//                    startActivity(intent);
+//                }else{
+//
+//
+//
+//                    intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
+//
+//                    intent.putExtra(Base.year_value,keyValue.getRight_name());
+//                    intent.putExtra(Base.month_value,keyValue.getRight_key());
+//                    startActivity(intent);
+//
+//                }
+//            }
+//        });
+//    }
 
 
+//    public RecyclerView develop_recycler;
+//    public DutyEvaluateStuDevelopAdapter adapter_develop;
+//    public List<KeyValue> adapter_develop_data=new ArrayList<>();
+//    private void initRecyclerViewDevelop(){
+//        develop_recycler =findViewById(R.id.duty_evaluate_stu_develop_recycler);
+//        GridLayoutManager manager = new GridLayoutManager(mActivity,3);
+//        develop_recycler.setLayoutManager(manager);
+//
+//        develop_recycler.addItemDecoration(new GridDividerLineNotBottom(Color.TRANSPARENT));
+//        adapter_develop =new DutyEvaluateStuDevelopAdapter(mActivity);
+//        develop_recycler.setAdapter(adapter_develop);
+//        adapter_develop.setOnClieckAdapterLayout(new DutyEvaluateStuDevelopAdapter.OnClickAdapterLayout() {
+//            @Override
+//            public void layoutOnClick(KeyValue keyValue) {
+//                KeyValue stu=new KeyValue();
+//                stu.setName(Base.user.getName());
+//                stu.setId(Base.user.getIdU());
+//
+//                Intent intent;
+//                switch(keyValue.getTitle()){
+//                    case "班级认定":
+//                    case "家长认定":
+//
+//                        DateBean dateBean=new DateBean();
+//                        dateBean.setValue_long(System.currentTimeMillis(),true);
+//
+//                        intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
+//                        intent.putExtra(Base.stu_bean, stu);
+//                        intent.putExtra(Base.year_value,dateBean.getYearName());
+//                        intent.putExtra(Base.month_value,dateBean.getMonthName());
+//                        startActivity(intent);
+//                        break;
+//                    case "校内活动":
+//                    case "校外实践":
+//                    case "比赛成绩":
+//                        intent=new Intent(mActivity,DutyEvaluatePracticeActivity.class);
+//                        intent.putExtra(Base.title,keyValue.getTitle());
+//                        intent.putExtra(Base.term_bean,selected_termBean);
+//                        startActivity(intent);
+//                        break;
+//                        default:
+//                            break;
+//                }
+//
+//            }
+//        });
+//    }
+//
+//
 
 
 
@@ -359,6 +386,154 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         stu_rank.setTextColor(ColorRgbUtil.getWhite());
     }
 
+
+
+
+
+
+
+
+    public void initEChart(){
+        wv_analysis.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
+
+
+
+        wv_analysis.removeJavascriptInterface("searchBoxJavaBridge_");
+        wv_analysis.removeJavascriptInterface("accessibility");
+        wv_analysis.removeJavascriptInterface("accessibilityTraversal");
+
+
+
+        initEChartData();
+
+    }
+
+
+    public String  initEChartData(){
+
+        List<String> title_name=StringUtils.listToStringSplitCharacters("遵纪守法,热爱学习,强健体魄,表率文雅,勤于劳动",",");
+        List<String> tag_name= StringUtils.listToStringSplitCharacters("教师,家长,学生",",");
+
+        List<Integer> datas=new ArrayList<>();
+        datas.add(3);
+        datas.add(1);
+        datas.add(2);
+        datas.add(3);
+        datas.add(2);
+
+
+
+
+
+
+
+
+        PileRes res=new PileRes();
+
+        AngleAxis angleAxis=new AngleAxis();
+        res.setA(angleAxis);
+
+        RadiusAxis radiusAxis=new RadiusAxis();
+        radiusAxis.setA("category");
+        radiusAxis.setB(title_name);
+        radiusAxis.setC(10);
+        res.setB(radiusAxis);
+
+        Polar polar=new Polar();
+        res.setC(polar);
+
+
+        List<Series> seriesList=new ArrayList<>();
+        for (String s:tag_name){
+            Series series=new Series("bar","polar",s,"a");
+            series.setB(datas);
+            seriesList.add(series);
+        }
+        res.setD(seriesList);
+
+
+
+
+        Legend legend=new Legend();
+        legend.setA(true);
+        legend.setD(tag_name);
+        res.setE(legend);
+
+
+
+        Gson gson= new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
+
+        String call = StringUtils.stringToGetTextJoint(
+                "javascript:loadEcharts('%1$s')",
+                gson.toJson(res,PileRes.class)) ;
+
+
+
+        wv_analysis.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+
+                view.loadUrl(call);
+            }
+        });
+        return call;
+    }
+
+
+
+
+
+    @OnClick(R.id.stu_self_event_bg)
+    void setStuEvent(){
+
+        Intent intent;
+        KeyValue keyValue=new KeyValue();
+        keyValue.setTitle("");
+        keyValue.setRight_name("2021");
+        keyValue.setRight_key("1");
+        if (true){
+            intent=new Intent(mActivity,DutyEvaluateStuAddActivity.class);
+            intent.putExtra(Base.year_value,keyValue.getRight_name());
+            intent.putExtra(Base.month_value,keyValue.getRight_key());
+            startActivity(intent);
+        }else{
+
+
+
+            intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
+
+            intent.putExtra(Base.year_value,keyValue.getRight_name());
+            intent.putExtra(Base.month_value,keyValue.getRight_key());
+            startActivity(intent);
+
+        }
+    }
+
+
+    @OnClick(R.id.tea_event_bg)
+    void setTea(){
+        Intent intent;
+        KeyValue keyValue=new KeyValue();
+        keyValue.setTitle("");
+        keyValue.setRight_name("2021");
+        keyValue.setRight_key("1");
+        if (true){
+            intent=new Intent(mActivity,DutyEvaluateStuAddActivity.class);
+            intent.putExtra(Base.year_value,keyValue.getRight_name());
+            intent.putExtra(Base.month_value,keyValue.getRight_key());
+            startActivity(intent);
+        }else{
+
+
+
+            intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
+
+            intent.putExtra(Base.year_value,keyValue.getRight_name());
+            intent.putExtra(Base.month_value,keyValue.getRight_key());
+            startActivity(intent);
+
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -380,9 +555,6 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
-    /**
-     * ----------------------------retrofit-----------------------
-     */
 
 
     /**
@@ -404,25 +576,25 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     }
 
 
-
-    private void initAdapterData(DutyEvaluateRes res){
-        adapter_develop_data.clear();
-
-
-        for (InfoBean info:res.getInfo()){
-            KeyValue bean=new KeyValue();
-            bean.setView_type(TagFinal.TYPE_ITEM);
-            bean.setTitle(info.getParent_title());
-            bean.setValue(info.getParent_all_score());
-
-            adapter_develop_data.add(bean);
-        }
-
-
-        adapter_develop.setDataList(adapter_develop_data);
-        adapter_develop.setLoadState(TagFinal.LOADING_END);
-
-    }
+//
+//    private void initAdapterData(DutyEvaluateRes res){
+//        adapter_develop_data.clear();
+//
+//
+//        for (InfoBean info:res.getInfo()){
+//            KeyValue bean=new KeyValue();
+//            bean.setView_type(TagFinal.TYPE_ITEM);
+//            bean.setTitle(info.getParent_title());
+//            bean.setValue(info.getParent_all_score());
+//
+//            adapter_develop_data.add(bean);
+//        }
+//
+//
+//        adapter_develop.setDataList(adapter_develop_data);
+//        adapter_develop.setLoadState(TagFinal.LOADING_END);
+//
+//    }
 
 
     @Override
@@ -432,7 +604,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
             ViewTool.showToastShort(mActivity,"没有数据，请从新尝试");
         }else{
             DutyEvaluateRes res=gson.fromJson(content,DutyEvaluateRes.class);
-            initAdapterData(res);
+//            initAdapterData(res);
         }
     }
 
@@ -442,7 +614,31 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         if (mTask!=null&&mTask.getStatus()==AsyncTask.Status.RUNNING) {
             mTask.cancel(true);
         }
+        wv_analysis.pauseTimers();
     }
+
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (wv_analysis != null) {
+            wv_analysis.removeAllViews();
+            wv_analysis.destroy();
+        }
+    }
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        wv_analysis.resumeTimers();
+    }
+
+
+
 }
 
 

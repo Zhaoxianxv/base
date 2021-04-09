@@ -16,58 +16,64 @@ import java.util.List;
 
 
 public class PileRes implements Serializable ,Type{
-    @SerializedName("angleAxis")
-    private AngleAxis angleAxis;
+
+    @SerializedName(value = "angleAxis")
+    private AngleAxis a;
 
     @SerializedName("radiusAxis")
-    private RadiusAxis radiusAxis;
+    private RadiusAxis b;
 
     @SerializedName("polar")
-    private Polar polar;
+    private Polar c;
 
     @SerializedName("series")
-    private List<Series> series;
+    private List<Series> d;
 
     @SerializedName("legend")
-    private Legend legend;
+    private Legend e;
 
-    public AngleAxis getAngleAxis() {
-        return angleAxis;
+
+    public PileRes() {
     }
 
-    public void setAngleAxis(AngleAxis angleAxis) {
-        this.angleAxis = angleAxis;
+
+    public AngleAxis getA() {
+        return a;
     }
 
-    public RadiusAxis getRadiusAxis() {
-        return radiusAxis;
+    public void setA(AngleAxis a) {
+        this.a = a;
     }
 
-    public void setRadiusAxis(RadiusAxis radiusAxis) {
-        this.radiusAxis = radiusAxis;
+    public RadiusAxis getB() {
+        return b;
     }
 
-    public Polar getPolar() {
-        return polar;
+    public void setB(RadiusAxis b) {
+        this.b = b;
     }
 
-    public void setPolar(Polar polar) {
-        this.polar = polar;
+    public Polar getC() {
+        return c;
     }
 
-    public Legend getLegend() {
-        return legend;
+    public void setC(Polar c) {
+        this.c = c;
     }
 
-    public void setLegend(Legend legend) {
-        this.legend = legend;
+    public List<Series> getD() {
+        return d;
     }
 
-    public List<Series> getSeries() {
-        return series;
+    public void setD(List<Series> d) {
+        this.d = d;
     }
 
-    public void setSeries(List<Series> series) {
-        this.series = series;
+    public Legend getE() {
+        return e;
+    }
+
+    public void setE(Legend e) {
+        this.e = e;
     }
 }

@@ -1,5 +1,7 @@
 package com.yfy.app.chart.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -9,25 +11,30 @@ import java.util.List;
  * Date: 2021/4/8
  */
 public class Legend implements Serializable ,Type{
-    public boolean show;
-    public List<String> data;
+
+    @SerializedName(value = "show")
+    public boolean a;
+    @SerializedName(value = "data")
+    public List<String> d;
 
 
-    public List<String> getData() {
-        return data;
+    public Legend() {
     }
 
-    public void setData(List<String> data) {
-        this.data = data;
+
+    public boolean isA() {
+        return a;
     }
 
-
-    public boolean isShow() {
-
-        return show;
+    public void setA(boolean a) {
+        this.a = a;
     }
 
-    public void setShow(boolean show) {
-        this.show = show;
+    public List<String> getD() {
+        return d;
+    }
+
+    public void setD(List<String> d) {
+        this.d = d;
     }
 }

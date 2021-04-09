@@ -3,17 +3,10 @@ package com.yfy.app.chart;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.github.abel533.echarts.code.Orient;
-import com.github.abel533.echarts.code.SeriesType;
-import com.github.abel533.echarts.code.Trigger;
-import com.github.abel533.echarts.code.X;
-import com.github.abel533.echarts.json.GsonOption;
-import com.github.abel533.echarts.series.Pie;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,25 +19,20 @@ import com.yfy.app.chart.bean.Series;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.ConfirmContentWindow;
 import com.yfy.final_tag.listener.NoFastClickListener;
-import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.json.JsonTool;
 
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @SuppressLint("NonConstantResourceId")
 public class EChartSActivity extends BaseActivity {
     private static final String TAG = EChartSActivity.class.getSimpleName();
 
-    public EchartView wv_analysis;
+    public EChartView wv_analysis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +40,7 @@ public class EChartSActivity extends BaseActivity {
         setContentView(R.layout.chart_e_main);
         initSQToolbar();
         initDialog();
+        initEChart();
 
     }
 
@@ -80,6 +69,48 @@ public class EChartSActivity extends BaseActivity {
         confirmContentWindow.setTitle_s(title,content);
         confirmContentWindow.showAtCenter();
     }
+
+
+    private void initSQToolbar() {
+        assert toolbar!=null;
+        toolbar.setTitle("EChartActivity");
+        toolbar.addMenuText(TagFinal.ONE_INT,"Json");
+        toolbar.setOnMenuClickListener(new NoFastClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                initString();
+            }
+        });
+
+
+    }
+
+
+    /**刷新图表
+     * java调用js的loadEcharts方法刷新echart
+     * 不能在第一时间就用此方法来显示图表，因为第一时间html的标签还未加载完成，不能获取到标签值
+     */
+    public void initEChart(){
+
+        wv_analysis =  findViewById(R.id.e_chart_web);
+        wv_analysis.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
+
+
+
+        wv_analysis.removeJavascriptInterface("searchBoxJavaBridge_");
+        wv_analysis.removeJavascriptInterface("accessibility");
+        wv_analysis.removeJavascriptInterface("accessibilityTraversal");
+        wv_analysis.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                view.loadUrl(initString());
+            }
+        });
+    }
+
+
+
     private String initString(){
 
         List<String> title_name=StringUtils.listToStringSplitCharacters("周一,周二,周三,周四",",");
@@ -100,90 +131,69 @@ public class EChartSActivity extends BaseActivity {
         PileRes res=new PileRes();
 
         AngleAxis angleAxis=new AngleAxis();
-        res.setAngleAxis(angleAxis);
+        res.setA(angleAxis);
 
         RadiusAxis radiusAxis=new RadiusAxis();
-        radiusAxis.setZ(10);
-        radiusAxis.setType("category");
-        radiusAxis.setData(title_name);
-        res.setRadiusAxis(radiusAxis);
+        radiusAxis.setA("category");
+        radiusAxis.setB(title_name);
+        radiusAxis.setC(10);
+        res.setB(radiusAxis);
 
         Polar polar=new Polar();
-        res.setPolar(polar);
+        res.setC(polar);
 
 
         List<Series> seriesList=new ArrayList<>();
         for (String s:tag_name){
             Series series=new Series("bar","polar",s,"a");
-            series.setData(datas);
+            series.setB(datas);
             seriesList.add(series);
         }
-        res.setSeries(seriesList);
+        res.setD(seriesList);
 
 
 
 
         Legend legend=new Legend();
-        legend.setShow(true);
-        legend.setData(tag_name);
-        res.setLegend(legend);
+        legend.setA(true);
+        legend.setD(tag_name);
+        res.setE(legend);
 
 
 
         Gson gson= new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
-        Logger.e(gson.toJson(res, PileRes.class));
-//        showDialog("title",JsonTool.objectToJson(res,gson));
 
-        return  gson.toJson(res, PileRes.class);
-    }
-
-    private void initSQToolbar() {
-        assert toolbar!=null;
-        toolbar.setTitle("EChartActivity");
-        toolbar.addMenuText(TagFinal.ONE_INT,"Json");
-        toolbar.setOnMenuClickListener(new NoFastClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                initString();
-            }
-        });
-
-        wv_analysis =  findViewById(R.id.e_chart_web);
-        wv_analysis.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
-
-        WebSettings webSettings = wv_analysis.getSettings();
+        String call = StringUtils.stringToGetTextJoint(
+                "javascript:loadEcharts('%1$s')",
+                gson.toJson(res,PileRes.class)) ;
 
 
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        webSettings.setBuiltInZoomControls(true);
-        webSettings.setAllowFileAccess(false);
-        webSettings.setAllowFileAccessFromFileURLs(false);
-        webSettings.setAllowUniversalAccessFromFileURLs(false);
-        webSettings.setDefaultTextEncodingName("gbk");
-
-        wv_analysis.removeJavascriptInterface("searchBoxJavaBridge_");
-        wv_analysis.removeJavascriptInterface("accessibility");
-        wv_analysis.removeJavascriptInterface("accessibilityTraversal");
-        wv_analysis.setWebViewClient(new MyWebViewClient());
-        wv_analysis.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        return call;
 
     }
 
-
-
-    /**
-     * ----------------------------retrofit-----------------------
-     */
-
-
-    public class MyWebViewClient extends WebViewClient {
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            wv_analysis.refreshEchartsWithOption(initString());
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (wv_analysis != null) {
+            wv_analysis.removeAllViews();
+            wv_analysis.destroy();
         }
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        wv_analysis.pauseTimers();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        wv_analysis.resumeTimers();
+    }
+
+
 
 
     @Override

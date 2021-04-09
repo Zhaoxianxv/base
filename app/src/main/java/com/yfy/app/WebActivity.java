@@ -50,9 +50,6 @@ public class WebActivity extends BaseActivity {
 
 
 	@Override
-
-
-
 	public void finish() {
 		if (index!=-1){
 			Intent intent=new Intent();
@@ -62,16 +59,6 @@ public class WebActivity extends BaseActivity {
 		super.finish();
 	}
 
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		if (webView != null) {
-			container_view.removeView(webView);
-			webView.removeAllViews();
-			webView.destroy();
-		}
-	}
 
 	private void initAll() {
 		getData();
@@ -124,6 +111,16 @@ public class WebActivity extends BaseActivity {
 	public void onResume() {
 		super.onResume();
 		webView.resumeTimers();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (webView != null) {
+			container_view.removeView(webView);
+			webView.removeAllViews();
+			webView.destroy();
+		}
 	}
 
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)

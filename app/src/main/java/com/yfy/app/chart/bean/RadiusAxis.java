@@ -1,5 +1,7 @@
 package com.yfy.app.chart.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -9,31 +11,41 @@ import java.util.List;
  * Date: 2021/4/8
  */
 public class RadiusAxis implements Serializable ,Type{
-    public String type;
-    public List<String> data;
-    public int z;
 
-    public String getType() {
-        return type;
+    @SerializedName(value = "type")
+    public String a;
+
+    @SerializedName(value = "data")
+    public List<String> b;
+
+    @SerializedName(value = "z")
+    public int c;
+
+
+    public RadiusAxis() {
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String getA() {
+        return a;
     }
 
-    public List<String> getData() {
-        return data;
+    public void setA(String a) {
+        this.a = a;
     }
 
-    public void setData(List<String> data) {
-        this.data = data;
+    public List<String> getB() {
+        return b;
     }
 
-    public int getZ() {
-        return z;
+    public void setB(List<String> b) {
+        this.b = b;
     }
 
-    public void setZ(int z) {
-        this.z = z;
+    public int getC() {
+        return c;
+    }
+
+    public void setC(int c) {
+        this.c = c;
     }
 }
