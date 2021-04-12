@@ -1,6 +1,7 @@
 package com.yfy.app.duty_evaluate;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -13,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -24,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.chart.EChartSActivity;
 import com.yfy.app.chart.EChartView;
 import com.yfy.app.chart.bean.AngleAxis;
 import com.yfy.app.chart.bean.Legend;
@@ -50,6 +53,7 @@ import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,8 +95,6 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
-    @BindView(R.id.event_chart_web)
-    EChartView wv_analysis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -393,20 +395,87 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
+    public WebView webView;
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @SuppressLint("SetJavaScriptEnabled")
     public void initEChart(){
-        wv_analysis.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
+
+        webView=findViewById(R.id.event_chart_web_view);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSettings.setSupportZoom(false);
+        webSettings.setDisplayZoomControls(false);
+        webSettings.setDefaultTextEncodingName("gbk");
+        webView.loadUrl("file:///android_asset/echarts.html");
 
 
+        webView.setHorizontalScrollBarEnabled(false);
+        webView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
+        webView.removeJavascriptInterface("searchBoxJavaBridge_");
+        webView.removeJavascriptInterface("accessibility");
+        webView.removeJavascriptInterface("accessibilityTraversal");
+//        webView.setWebViewClient(new WebViewClient());
 
-        wv_analysis.removeJavascriptInterface("searchBoxJavaBridge_");
-        wv_analysis.removeJavascriptInterface("accessibility");
-        wv_analysis.removeJavascriptInterface("accessibilityTraversal");
-
-
-
-        initEChartData();
+        webView.setWebViewClient(new MyWebViewClient());
+        webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
     }
+
+
+    public class MyWebViewClient extends WebViewClient {
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            view.loadUrl( initEChartData());
+        }
+
+        /**
+         * shouldInterceptRequest WebView
+         * 中调用的每个请求都会经过该拦截器，如果一个页面有超链接，那么依然会经过该拦截器
+         * 参数说明：
+         *
+         * @param view 接收WebViewClient的那个实例，前面看到webView.setWebViewClient(new
+         *             MyAndroidWebViewClient())，即是这个webview。
+         * @param url  raw url 制定的资源
+         * @return 返回WebResourceResponse包含数据对象，或者返回null
+         */
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view,
+                                                          String url) {
+            if (url.contains("http") || url.contains("www") || url.contains("https")) {
+                String response = "<html><body>该数据不存在</body></html>";
+                WebResourceResponse weResourceResponse = new WebResourceResponse("text/html", "utf-8", new ByteArrayInputStream(response.getBytes()));
+                return weResourceResponse;
+            } else {
+                return super.shouldInterceptRequest(view, url);
+            }
+        }
+
+        /**
+         * url重定向会执行此方法以及点击页面某些链接也会执行此方法
+         * 当加载的网页需要重定向的时候就会回调这个函数告知我们应用程序是否需要接管控制网页加载，如果应用程序接管，并且return
+         * true意味着主程序接管网页加载，如果返回false让webview自己处理。
+         *
+         * @param view 当前webview
+         *
+         * @param url 即将重定向的url
+         *
+         * @return true:表示当前url已经加载完成，即使url还会重定向都不会再进行加载, false
+         * 表示此url默认由系统处理，该重定向还是重定向，直到加载完成
+         */
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            if (url.contains("http") || url.contains("www") || url.contains("https")) {
+                return true;
+            } else {
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+        }
+    }
+
+
 
 
     public String  initEChartData(){
@@ -469,13 +538,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
-        wv_analysis.setWebViewClient(new WebViewClient(){
-            @Override
-            public void onPageFinished(WebView view, String url) {
 
-                view.loadUrl(call);
-            }
-        });
         return call;
     }
 
@@ -486,27 +549,27 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     @OnClick(R.id.stu_self_event_bg)
     void setStuEvent(){
 
-        Intent intent;
-        KeyValue keyValue=new KeyValue();
-        keyValue.setTitle("");
-        keyValue.setRight_name("2021");
-        keyValue.setRight_key("1");
-        if (true){
-            intent=new Intent(mActivity,DutyEvaluateStuAddActivity.class);
-            intent.putExtra(Base.year_value,keyValue.getRight_name());
-            intent.putExtra(Base.month_value,keyValue.getRight_key());
-            startActivity(intent);
-        }else{
-
-
-
-            intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
-
-            intent.putExtra(Base.year_value,keyValue.getRight_name());
-            intent.putExtra(Base.month_value,keyValue.getRight_key());
-            startActivity(intent);
-
-        }
+//        Intent intent;
+//        KeyValue keyValue=new KeyValue();
+//        keyValue.setTitle("");
+//        keyValue.setRight_name("2021");
+//        keyValue.setRight_key("1");
+//        if (true){
+//            intent=new Intent(mActivity,DutyEvaluateStuAddActivity.class);
+//            intent.putExtra(Base.year_value,keyValue.getRight_name());
+//            intent.putExtra(Base.month_value,keyValue.getRight_key());
+//            startActivity(intent);
+//        }else{
+//
+//
+//
+//            intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
+//
+//            intent.putExtra(Base.year_value,keyValue.getRight_name());
+//            intent.putExtra(Base.month_value,keyValue.getRight_key());
+//            startActivity(intent);
+//
+//        }
     }
 
 
@@ -614,7 +677,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         if (mTask!=null&&mTask.getStatus()==AsyncTask.Status.RUNNING) {
             mTask.cancel(true);
         }
-        wv_analysis.pauseTimers();
+//        webView.pauseTimers();
     }
 
 
@@ -623,19 +686,19 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (wv_analysis != null) {
-            wv_analysis.removeAllViews();
-            wv_analysis.destroy();
+        if (webView != null) {
+            webView.removeAllViews();
+            webView.destroy();
         }
     }
 
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        wv_analysis.resumeTimers();
-    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        webView.resumeTimers();
+//    }
 
 
 

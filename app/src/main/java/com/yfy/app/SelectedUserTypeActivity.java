@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.yfy.app.PEquality.PEQualityMainTestActivity;
 import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.chart.EChartSActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
@@ -90,7 +91,8 @@ public class SelectedUserTypeActivity extends BaseActivity {
                         startActivity(intent);
                         break;
                     case Base.type:
-                        FileCamera.scanMediaAllFile(mActivity);
+                        startActivity(new Intent(mActivity, EChartSActivity.class));
+//                        FileCamera.scanMediaAllFile(mActivity);
                         break;
                 }
 

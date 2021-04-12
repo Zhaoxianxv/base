@@ -124,7 +124,6 @@ public class WebActivity extends BaseActivity {
 	}
 
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-	@SuppressWarnings("deprecation")
 	@SuppressLint("SetJavaScriptEnabled")
 	private void initWeb() {
 		webView.setHorizontalScrollBarEnabled(false);

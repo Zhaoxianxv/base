@@ -234,14 +234,13 @@
                     >
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                       
+                        android:layout_height="400dp"
                         >
-                        
-                        <com.yfy.app.chart.EChartView
-                            android:id="@+id/event_chart_web"
+                        <WebView
+                            android:id="@+id/event_chart_web_view"
                             android:layout_width="match_parent"
-                            android:layout_height="300dp" />
+                            android:layout_height="match_parent"
+                            android:scrollbars="none" />
                     </FrameLayout>
                    
   

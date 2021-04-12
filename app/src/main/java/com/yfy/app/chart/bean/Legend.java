@@ -14,6 +14,7 @@ public class Legend implements Serializable ,Type{
 
     @SerializedName(value = "show")
     public boolean a;
+
     @SerializedName(value = "data")
     public List<String> d;
 
