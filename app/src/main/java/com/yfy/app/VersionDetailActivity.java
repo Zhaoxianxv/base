@@ -60,7 +60,7 @@ public class VersionDetailActivity extends BaseActivity {
 
 
         version_name.setText(R.string.app_school_name);
-        version_site.setText("地址：成都市青羊区青森小区南侧");
+//        version_site.setText("地址：成都市青羊区青森小区南侧");
         version_weiht.setText(StringUtils.stringToGetTextJoint(
                 "版权所有 © %1$s",
                 mActivity.getResources().getString(R.string.app_school_name)));

@@ -99,13 +99,13 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.duty_evaluate_stu_main);
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-
-        }
+//
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            View decorView = getWindow().getDecorView();
+//            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//
+//        }
 
         stu_rank.setText("雅生四星勋章\n总计25雅币");
         initCollapsing();
@@ -375,9 +375,9 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
-    public String[] parse_color=new String[]{"#B88256","#A0B8DA","#CD9D99","#8CCFFA","#8CCFFA"};
-    public String[] parse_color_start=new String[]{"#EBB77B","#FDFDFD","#824834","#8CCFFA","#8CCFFA"};
-    public String[] parse_color_end=new String[]{"#A16948","#7195C9","#B67571","#8CCFFA","#8CCFFA"};
+    public String[] parse_color=new String[]{"#B88256","#A0B8DA","#CFA4A1","#866AB5","#EECE95"};
+    public String[] parse_color_start=new String[]{"#EBB77B","#FDFDFD","#E3CECB","#D9D1E9","#F2D49D"};
+    public String[] parse_color_end=new String[]{"#A16948","#7195C9","#830D0B","#4A1F92","#A17A37"};
 
     public void changeBgColor(int color,String content,String num,int startColor,int endColor){
         stu_rank.setText(StringUtils.stringToGetTextJoint("雅生%1$s星勋章\n总计%2$s雅币",content,num));
@@ -549,27 +549,27 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     @OnClick(R.id.stu_self_event_bg)
     void setStuEvent(){
 
-//        Intent intent;
-//        KeyValue keyValue=new KeyValue();
-//        keyValue.setTitle("");
-//        keyValue.setRight_name("2021");
-//        keyValue.setRight_key("1");
-//        if (true){
-//            intent=new Intent(mActivity,DutyEvaluateStuAddActivity.class);
-//            intent.putExtra(Base.year_value,keyValue.getRight_name());
-//            intent.putExtra(Base.month_value,keyValue.getRight_key());
-//            startActivity(intent);
-//        }else{
-//
-//
-//
-//            intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
-//
-//            intent.putExtra(Base.year_value,keyValue.getRight_name());
-//            intent.putExtra(Base.month_value,keyValue.getRight_key());
-//            startActivity(intent);
-//
-//        }
+        Intent intent;
+        KeyValue keyValue=new KeyValue();
+        keyValue.setTitle("");
+        keyValue.setRight_name("2021");
+        keyValue.setRight_key("1");
+        if (true){
+            intent=new Intent(mActivity,DutyEvaluateStuAddActivity.class);
+            intent.putExtra(Base.year_value,keyValue.getRight_name());
+            intent.putExtra(Base.month_value,keyValue.getRight_key());
+            startActivity(intent);
+        }else{
+
+
+
+            intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
+
+            intent.putExtra(Base.year_value,keyValue.getRight_name());
+            intent.putExtra(Base.month_value,keyValue.getRight_key());
+            startActivity(intent);
+
+        }
     }
 
 
