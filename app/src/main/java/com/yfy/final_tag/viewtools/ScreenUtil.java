@@ -1,4 +1,4 @@
-package com.yfy.final_tag;
+package com.yfy.final_tag.viewtools;
 
 import android.content.Context;
 import android.content.res.Resources;

@@ -97,25 +97,8 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
         }
         if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;
-            switch (loadState) {
-                case TagFinal.LOADING: // 正在加载
-                    footViewHolder.pbLoading.setVisibility(View.VISIBLE);
-                    footViewHolder.tvLoading.setVisibility(View.VISIBLE);
-                    footViewHolder.llEnd.setVisibility(View.GONE);
-                    break;
-                case TagFinal.LOADING_COMPLETE: // 加载完成
-                    footViewHolder.pbLoading.setVisibility(View.INVISIBLE);
-                    footViewHolder.tvLoading.setVisibility(View.INVISIBLE);
-                    footViewHolder.llEnd.setVisibility(View.GONE);
-                    break;
-                case TagFinal.LOADING_END: // 加载到底
-                    footViewHolder.pbLoading.setVisibility(View.GONE);
-                    footViewHolder.tvLoading.setVisibility(View.GONE);
-                    footViewHolder.llEnd.setVisibility(View.GONE);
-                    break;
-                default:
-                    break;
-            }
+
+            footViewHolder.setView();
         }
     }
 
@@ -220,6 +203,27 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
             llEnd =  itemView.findViewById(R.id.ll_end);
             allEnd =  itemView.findViewById(R.id.recycler_bottom);
 
+        }
+        public void setView(){
+            switch (loadState) {
+                case TagFinal.LOADING: // 正在加载
+                    pbLoading.setVisibility(View.VISIBLE);
+                    tvLoading.setVisibility(View.VISIBLE);
+                    llEnd.setVisibility(View.GONE);
+                    break;
+                case TagFinal.LOADING_COMPLETE: // 加载完成
+                    pbLoading.setVisibility(View.INVISIBLE);
+                    tvLoading.setVisibility(View.INVISIBLE);
+                    llEnd.setVisibility(View.GONE);
+                    break;
+                case TagFinal.LOADING_END: // 加载到底
+                    pbLoading.setVisibility(View.GONE);
+                    tvLoading.setVisibility(View.GONE);
+                    llEnd.setVisibility(View.GONE);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

@@ -21,19 +21,26 @@ import com.yfy.final_tag.listener.NoFastClickListener;
  */
 public class ConfirmContentWindow extends PopupWindow  {
 	public Activity context;
-	public TextView title, content,ok;
+	public TextView title, content,ok,cancel;
 
 	public String title_s,content_s;
 
 	public void setTitle_s(String title_s,String content_s) {
 		this.title_s = title_s;
 		this.content_s = content_s;
-
 		title.setText(title_s);
 		content.setText(content_s);
-
-
 	}
+
+	public void setTitle(String title_s,String content_s,String ok_b,String cancel_b){
+		this.title_s = title_s;
+		this.content_s = content_s;
+		title.setText(title_s);
+		content.setText(content_s);
+		ok.setText(ok_b);
+		cancel.setText(cancel_b);
+	}
+
 
 	public ConfirmContentWindow(Activity context) {
 		super(context);
@@ -47,7 +54,7 @@ public class ConfirmContentWindow extends PopupWindow  {
 		title = view.findViewById(R.id.pop_dialog_title);//title
 		content = view.findViewById(R.id.pop_dialog_content);//content
 		ok = view.findViewById(R.id.pop_dialog_ok);//确定按钮
-		TextView cancel = view.findViewById(R.id.pop_dialog_cancel);//取消
+		cancel  = view.findViewById(R.id.pop_dialog_cancel);//取消
         ok.setOnClickListener(onClickListener);
 		title.setOnClickListener(onClickListener);
 		cancel.setOnClickListener(onClickListener);

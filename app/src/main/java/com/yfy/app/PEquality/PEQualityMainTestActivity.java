@@ -482,8 +482,8 @@ public class PEQualityMainTestActivity extends BaseActivity {
         Drawable drawable_one=DrawableLess.$tint(mActivity.getResources().getDrawable(R.drawable.rectangle_square10_gray),Color.parseColor("#3182c4"));
         drawable_two.setBounds(0, 0, chart_sup_reason.getLineHeight(),chart_sup_reason.getLineHeight());//让图片与文字对齐
         drawable_one.setBounds(0, 0, chart_sup_reason.getLineHeight(),chart_sup_reason.getLineHeight());//让图片与文字对齐
-        ImageSpan two = new ImageSpan(drawable_two);
-        ImageSpan imgSpan = new ImageSpan(drawable_one);
+        ImageSpan two = new ImageSpan(drawable_two,ImageSpan.ALIGN_CENTER);
+        ImageSpan imgSpan = new ImageSpan(drawable_one,ImageSpan.ALIGN_CENTER);
 
         SpannableStringBuilder sb=new SpannableStringBuilder();
         SpannableString sb_one = new SpannableString("0 我的成绩");

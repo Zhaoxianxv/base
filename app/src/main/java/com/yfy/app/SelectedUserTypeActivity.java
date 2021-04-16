@@ -1,5 +1,6 @@
 package com.yfy.app;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,21 +15,24 @@ import com.yfy.app.chart.EChartSActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
+import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.FileTools;
 import com.yfy.final_tag.data.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.dialog.ConfirmContentWindow;
 import com.yfy.final_tag.glide.FileCamera;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.view.SQToolBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@SuppressLint("NonConstantResourceId")
 public class SelectedUserTypeActivity extends BaseActivity {
     private static final String TAG = SelectedUserTypeActivity.class.getSimpleName();
 
@@ -41,6 +45,7 @@ public class SelectedUserTypeActivity extends BaseActivity {
         initSQToolbar();
         initRecycler();
         setAdapterData();
+        initDialog();
     }
 
 
@@ -91,8 +96,11 @@ public class SelectedUserTypeActivity extends BaseActivity {
                         startActivity(intent);
                         break;
                     case Base.type:
-                        startActivity(new Intent(mActivity, EChartSActivity.class));
+//                        startActivity(new Intent(mActivity, EChartSActivity.class));
 //                        FileCamera.scanMediaAllFile(mActivity);
+                        if (UserPreferences.getInstance().getIsFirstTimeOpen()){
+                            setContentShowDialog("隐私政策","","","");
+                        }
                         break;
                 }
 
@@ -100,6 +108,32 @@ public class SelectedUserTypeActivity extends BaseActivity {
         });
 
 
+    }
+
+    private ConfirmContentWindow confirmContentWindow;
+    private void initDialog(){
+
+        confirmContentWindow = new ConfirmContentWindow(mActivity);
+        confirmContentWindow.setPopClickListener(new NoFastClickListener() {
+            @Override
+            public void popClick(View view) {
+                switch (view.getId()){
+                    case R.id.pop_dialog_cancel:
+                        confirmContentWindow.dismiss();
+                        Logger.e("");
+                        break;
+                    case R.id.pop_dialog_ok:
+                        confirmContentWindow.dismiss();
+                        break;
+                }
+            }
+        });
+    }
+
+    public void setContentShowDialog(String title,String content,String ok,String cancel){
+        if (confirmContentWindow==null)return;
+        confirmContentWindow.setTitle(title,content,ok,cancel);
+        confirmContentWindow.showAtCenter();
     }
 
 

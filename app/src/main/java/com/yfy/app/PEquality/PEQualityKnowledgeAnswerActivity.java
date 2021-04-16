@@ -65,7 +65,7 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
             public void fastClick(View view) {
-                showDialog("提示","结束本次答题并计算最终分数");
+                setContentShowDialog("提示","结束本次答题并计算最终分数");
             }
         });
     }
@@ -91,10 +91,11 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         });
     }
 
-    private void showDialog(String title,String content){
+    public void setContentShowDialog(String title,String content){
         if (confirmContentWindow==null)return;
         confirmContentWindow.setTitle_s(title,content);
         confirmContentWindow.showAtCenter();
+
     }
 
     @BindView(R.id.knowledge_answer_pager)
