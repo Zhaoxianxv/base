@@ -389,4 +389,54 @@
         </androidx.gridlayout.widget.GridLayout>
 
     </RelativeLayout>
+    <androidx.gridlayout.widget.GridLayout
+        
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_30dp"
+        app:alignmentMode="alignBounds"
+        android:layout_marginTop="@dimen/margin_10dp"
+        app:columnCount="3"
+        app:orientation="horizontal"
+        app:useDefaultMargins="false">
+        
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/public_type_tab_txt_one"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_30dp"
+            app:layout_row="0"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_columnSpan="1"
+            android:layout_marginEnd="1dp"
+            android:background="@drawable/rectangle_square10_gray"            android:gravity="center"
+            tools:text="qsdasfsf"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            
+            android:id="@+id/public_type_tab_txt_two"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_30dp"
+            app:layout_row="0"
+            app:layout_column="1"
+            app:layout_columnWeight="1"
+            app:layout_columnSpan="1"
+            android:background="@drawable/rectangle_square10_gray"            android:gravity="center"
+            tools:text="2"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            
+            android:id="@+id/public_type_tab_txt_three"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_30dp"
+            app:layout_row="0"
+            app:layout_column="2"
+            app:layout_columnWeight="1"
+            app:layout_columnSpan="1"
+            
+            android:background="@drawable/rectangle_square10_gray"            android:gravity="center"
+            android:layout_marginStart="1dp"
+            tools:text="3"/>
+    
+    
+    
+    </androidx.gridlayout.widget.GridLayout>
+
 </LinearLayout>

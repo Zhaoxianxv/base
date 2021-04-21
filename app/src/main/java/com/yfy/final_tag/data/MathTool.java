@@ -108,6 +108,9 @@ public class MathTool {
         }
         int length=str.length();
         int idx=str.lastIndexOf(".");//注意不能用转义符
+        if (idx==-1){
+            return str;
+        }
         if (length-idx<=num){
             return str;
         }else{

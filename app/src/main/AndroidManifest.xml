@@ -20,6 +20,9 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- 闪光灯权限 -->
     <uses-permission android:name="android.permission.FLASHLIGHT" />
+    
+    <!--   10.0 文件访问限制   android:requestLegacyExternalStorage="true"-->
+    
     <application
         android:name=".App"
         android:icon="@mipmap/ic_launcher"

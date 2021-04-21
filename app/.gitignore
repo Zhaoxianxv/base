@@ -5,8 +5,7 @@
 # e) 指定文件： 直接写出文件名
 # f) []： 包含
 # 密钥储存库文件
-# 如果您不想检查密钥库文件，请取消注释以下行
-#*.jks
+# 如果您不想检查密钥库文件，请取消注释  ->  *.jks
 ##----------Android----------
 *.jks
 *.apk
@@ -30,3 +29,6 @@ local.properties
 .DS_Store
 gradle.properties
 
+##-------指定文件-----
+#/zhao_sheng/src/main/java/com/yfy/base
+#/zhao_sheng/src/main/java/com/yfy/final_tag
