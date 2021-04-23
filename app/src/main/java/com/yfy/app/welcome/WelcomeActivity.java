@@ -148,10 +148,6 @@ public class WelcomeActivity extends BaseActivity {
 
 
 
-
-
-
-
     public MessageReceiver mMessageReceiver;
     public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
 //    public static final String KEY_TITLE = "title";

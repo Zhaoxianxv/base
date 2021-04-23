@@ -110,7 +110,6 @@ public class  UpdateManager {
 		public void run() {
 			if (!Thread.currentThread().isInterrupted()){
 				try {
-					apkUrl=UploadDataService.getUrl();
 					URL url = new URL(apkUrl);
 					HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 					conn.setRequestMethod("GET");

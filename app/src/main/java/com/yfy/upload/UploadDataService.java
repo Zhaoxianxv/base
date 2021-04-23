@@ -1,17 +1,20 @@
 package com.yfy.upload;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.IBinder;
 
+import com.google.gson.Gson;
+import com.yfy.app.bean.BaseRes;
 import com.yfy.base.App;
 import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.final_tag.hander.HtmlAsyncTask;
+import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.viewtools.ViewTool;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,27 +26,18 @@ import java.net.URL;
  * Created by yfy1 on 2016/9/20.
  */
 public class UploadDataService extends Service{
-    public String name,oldname,packagename,packagenameurl;
-    public int code,oldcode;
+    public String name,oldname,packagename;
+    public int oldcode;
     String lines;
-    private static String url="";
-    public static String getUrl() {
-		return url;
-	}
 
 
     @Override
     public void onCreate() {
         super.onCreate();
         getVersion();
-        thread.start();
+
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        
-        return super.onStartCommand(intent, flags, startId);
-    }
 
     public String getVersion() {
         try {
@@ -58,62 +52,81 @@ public class UploadDataService extends Service{
             return "";
         }
     }
-    private Thread thread=new Thread(new Runnable() {
-        @Override
-        public void run() {
-            StringBuffer sb = new StringBuffer();
-
-            try {
-                URL url = new URL(Base.AUTO_UPDATE_URI);
-                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-                conn.setRequestMethod("GET");
-                conn.setConnectTimeout(5000);
-                conn.setRequestProperty("conn","Keep-Alive");
-                Logger.e("zxx","-conn-1-");
-                conn.connect();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                while ((lines = reader.readLine()) != null){
-                    sb.append(lines);
-                }
-
-                reader.close();
-                conn.disconnect();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-          
-            try {
-                String s="";
-            	if (sb.toString()!=null&&sb.toString().length()!=0) {
-                    Logger.e("zxx","-conn-2-");
-            		s=sb.toString();
-				}else {
-					return;
-				}
-                JSONObject json= new JSONObject(s);
-                name=  json.getString("versionName");
-                url=  json.getString("url");
-                code=  json.getInt("versionCode");
-                packagenameurl=  json.getString("packagename");
-                Logger.e("zxx",">>"+name+">>>>"+url);
-                if (code>oldcode&&packagename.equals(packagenameurl)){
-                    Intent i=new Intent();
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.setClass(getApplicationContext(),UpDataDialogActivity.class);
-                    startActivity(i);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            
-           
-        }
-    });
 
   
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
+
+
+
+
+
+
+
+
+    public GetHtmlAsyncTask mTask;
+    @SuppressLint("StaticFieldLeak")
+    class GetHtmlAsyncTask extends HtmlAsyncTask {
+        @Override
+        public String doIn(String... arg0) {
+            StringBuilder sb = new StringBuilder();
+
+            try {
+                HttpURLConnection conn;
+                URL url = new URL(Base.AUTO_UPDATE_URI);
+                conn = (HttpURLConnection)url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setConnectTimeout(5000);
+                conn.setRequestProperty("conn","Keep-Alive");
+                conn.connect();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while ((lines = reader.readLine()) != null){
+                    sb.append(lines);
+                }
+                reader.close();
+                conn.disconnect();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (sb.toString().length() != 0) {
+                return sb.toString();
+            }else {
+                return "";
+            }
+        }
+        @Override
+        public void doUpData(String list) {
+            if (StringJudge.isEmpty(list)){
+                ViewTool.showToastShort(getApplicationContext(),"没有数据，请从新尝试");
+            }else{
+                Gson gson=new Gson();
+                BaseRes res=gson.fromJson(content, BaseRes.class);
+                if (StringJudge.isEmpty(res.getPackagename())){
+
+                    ViewTool.showToastShort(getApplicationContext(),"没有获取到应用");
+                }else{
+                    if (res.getPackagename().equalsIgnoreCase(packagename)){
+                        if (res.getVersionCode()>oldcode){
+                            Intent i=new Intent();
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            i.setClass(getApplicationContext(),UpDataDialogActivity.class);
+                            startActivity(i);
+                        }
+                    }
+
+                }
+
+
+            }
+        }
+        @Override
+        public void onPre() {
+
+        }
+    }
+
+
+
 }

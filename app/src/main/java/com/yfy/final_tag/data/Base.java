@@ -38,8 +38,8 @@ public class Base {
 
 
 
-    //app更新地址
-    public static final String AUTO_UPDATE_URI = "http://www.yfyit.com/apk/cdsyxx.txt";
+    //app更新地址http://www.yfyit.com/apk/cs.txt
+    public static final String AUTO_UPDATE_URI = "http://www.yfyit.com/apk/cs.txt";
     public static final String HUA_WEI_PRIVATE = "http://www.yfyit.com/yszc.html";//
     public static final String HUA_WEI_AGREEMENT = "http://www.yfyit.com/yhxy.html";//
 

@@ -13,6 +13,7 @@ import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.chart.EChartSActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
+import com.yfy.base.App;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.db.UserPreferences;
@@ -27,6 +28,7 @@ import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.upload.UploadDataService;
 import com.yfy.view.SQToolBar;
 
 import java.util.ArrayList;
@@ -42,6 +44,15 @@ public class SelectedUserTypeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_recycler_view);
+
+
+
+        if (App.isServiceRunning(mActivity, UploadDataService.class.getSimpleName())){
+            Logger.e(TagFinal.ZXX, "UploadDataService: " );
+        }else{
+            startService(new Intent(App.getApp().getApplicationContext(),UploadDataService.class));//开启更新
+        }
+
         initSQToolbar();
         initRecycler();
         setAdapterData();
