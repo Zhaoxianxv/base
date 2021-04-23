@@ -10,9 +10,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
@@ -24,10 +21,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.chart.EChartSActivity;
-import com.yfy.app.chart.EChartView;
 import com.yfy.app.chart.bean.AngleAxis;
 import com.yfy.app.chart.bean.Legend;
 import com.yfy.app.chart.bean.PileRes;
@@ -36,19 +30,15 @@ import com.yfy.app.chart.bean.RadiusAxis;
 import com.yfy.app.chart.bean.Series;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.glide.GlideTools;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.greendao.bean.TermBean;
-import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuDevelopAdapter;
-import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuNormalAdapter;
 import com.yfy.app.duty_evaluate.bean.DutyEvaluateRes;
-import com.yfy.app.duty_evaluate.bean.InfoBean;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.hander.AssetsAsyncTask;
 import com.yfy.final_tag.hander.AssetsGetFileData;
-import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
@@ -99,7 +89,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.duty_evaluate_stu_main);
-//
+        Logger.e(TAG);
 //        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            View decorView = getWindow().getDecorView();
 //            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
@@ -128,6 +118,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 //                ColorRgbUtil.getParseColor("#2876E5"));
 
         initEChart();
+
+        getAssetsData("duty_evaluate_get_stu_detail.txt");
     }
 
 
@@ -356,7 +348,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 //                    case "校内活动":
 //                    case "校外实践":
 //                    case "比赛成绩":
-//                        intent=new Intent(mActivity,DutyEvaluatePracticeActivity.class);
+//                        intent=new Intent(mActivity,DutyEvaluatePrac
+//                        ticeActivity.class);
 //                        intent.putExtra(Base.title,keyValue.getTitle());
 //                        intent.putExtra(Base.term_bean,selected_termBean);
 //                        startActivity(intent);
@@ -384,7 +377,6 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         ViewTool.alterVectorDrawableColor(bg_left,color);
         ViewTool.alterVectorDrawableColor(bg_right,color);
         ViewTool.alterGradientStartEndColor(card_bg,startColor,endColor);
-//
         stu_rank.setTextColor(ColorRgbUtil.getWhite());
     }
 
@@ -495,8 +487,6 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
-
-
         PileRes res=new PileRes();
 
         AngleAxis angleAxis=new AngleAxis();
@@ -549,27 +539,14 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     @OnClick(R.id.stu_self_event_bg)
     void setStuEvent(){
 
-        Intent intent;
         KeyValue keyValue=new KeyValue();
         keyValue.setTitle("");
         keyValue.setRight_name("2021");
         keyValue.setRight_key("1");
-        if (true){
-            intent=new Intent(mActivity,DutyEvaluateStuAddActivity.class);
-            intent.putExtra(Base.year_value,keyValue.getRight_name());
-            intent.putExtra(Base.month_value,keyValue.getRight_key());
-            startActivity(intent);
-        }else{
-
-
-
-            intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
-
-            intent.putExtra(Base.year_value,keyValue.getRight_name());
-            intent.putExtra(Base.month_value,keyValue.getRight_key());
-            startActivity(intent);
-
-        }
+        Intent intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
+        intent.putExtra(Base.year_value,keyValue.getRight_name());
+        intent.putExtra(Base.month_value,keyValue.getRight_key());
+        startActivity(intent);
     }
 
 
@@ -639,27 +616,6 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     }
 
 
-//
-//    private void initAdapterData(DutyEvaluateRes res){
-//        adapter_develop_data.clear();
-//
-//
-//        for (InfoBean info:res.getInfo()){
-//            KeyValue bean=new KeyValue();
-//            bean.setView_type(TagFinal.TYPE_ITEM);
-//            bean.setTitle(info.getParent_title());
-//            bean.setValue(info.getParent_all_score());
-//
-//            adapter_develop_data.add(bean);
-//        }
-//
-//
-//        adapter_develop.setDataList(adapter_develop_data);
-//        adapter_develop.setLoadState(TagFinal.LOADING_END);
-//
-//    }
-
-
     @Override
     public void doUpData(String content) {
         dismissProgressDialog();
@@ -668,16 +624,19 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         }else{
             DutyEvaluateRes res=gson.fromJson(content,DutyEvaluateRes.class);
 //            initAdapterData(res);
+            webView.setWebViewClient(new MyWebViewClient());
+            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        webView.pauseTimers();
+
         if (mTask!=null&&mTask.getStatus()==AsyncTask.Status.RUNNING) {
             mTask.cancel(true);
         }
-//        webView.pauseTimers();
     }
 
 
@@ -693,12 +652,12 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     }
 
 
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        webView.resumeTimers();
-//    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        webView.resumeTimers();
+    }
 
 
 

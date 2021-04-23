@@ -370,6 +370,30 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />
+        
+<!--        aa chart-->
+        <activity android:name="com.yfy.AAChartCore.ChartsDemo.AdditionalContent.UpdateChartBackgroundColorActivity"></activity>
+        <activity android:name="com.yfy.AAChartCore.ChartsDemo.AdditionalContent.ScrollableChartActivity" />
+        <activity android:name="com.yfy.AAChartCore.ChartsDemo.AdditionalContent.DoubleChartsLinkedWorkActivity" />
+        <activity android:name="com.yfy.AAChartCore.ChartsDemo.AdditionalContent.ScrollingUpdateDataActivity" />
+        <activity android:name="com.yfy.AAChartCore.ChartsDemo.AdditionalContent.JSFormatterFunctionActivity" />
+        <activity android:name="com.yfy.AAChartCore.ChartsDemo.AdditionalContent.EvaluateJSStringFunctionActivity" />
+        <activity android:name="com.yfy.AAChartCore.ChartsDemo.AdditionalContent.OnlyRefreshChartDataActivity" />
+        <activity android:name="com.yfy.AAChartCore.ChartsDemo.AdditionalContent.HideOrShowChartSeriesActivity" />
+        <activity android:name="com.yfy.AAChartCore.ChartsDemo.AdditionalContent.DrawChartWithAAOptionsActivity" />
+        <activity android:name="com.yfy.AAChartCore.ChartsDemo.MainContent.AAChartMainActivity">
+        
+        </activity>
+        <activity
+            android:name="com.yfy.AAChartCore.ChartsDemo.MainContent.BasicChartActivity"
+            android:label="@string/title_activity_common_chart"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.AAChartCore.ChartsDemo.MainContent.SpecialChartActivity"
+            android:label="@string/title_activity_special_chart"
+            android:theme="@style/AppTheme" />
+        <activity android:name="com.yfy.AAChartCore.ChartsDemo.MainContent.CustomStyleChartActivity" />
+        <activity android:name="com.yfy.AAChartCore.ChartsDemo.MainContent.MixedChartActivity" />
     </application>
 
 </manifest>

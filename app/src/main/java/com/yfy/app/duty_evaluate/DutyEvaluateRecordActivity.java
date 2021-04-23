@@ -75,8 +75,6 @@ public class DutyEvaluateRecordActivity extends BaseActivity {
             @Override
             public void fastClick(View view) {
                 customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01",year_s,month_s));
-
-
             }
         });
 

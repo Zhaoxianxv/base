@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yfy.AAChartCore.ChartsDemo.MainContent.AAChartMainActivity;
 import com.yfy.app.PEquality.PEQualityMainTestActivity;
 import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.bean.BaseRes;
@@ -137,6 +138,10 @@ public class SelectedModeTypeActivity extends BaseActivity {
                         intent=new Intent(mActivity, DutyEvaluateStuMainActivity.class);
                         startActivity(intent);
                         break;
+                    case "AAChartMain":
+                        intent=new Intent(mActivity, AAChartMainActivity.class);
+                        startActivity(intent);
+                        break;
                     default:
                         break;
                 }
@@ -144,7 +149,7 @@ public class SelectedModeTypeActivity extends BaseActivity {
         });
 
     }
-    private List<String> list=new ArrayList<>();
+    public List<String> list=new ArrayList<>();
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
         list.add("TypeActivity");
@@ -156,6 +161,7 @@ public class SelectedModeTypeActivity extends BaseActivity {
         list.add("SpannableStringMainActivity");
         list.add("BarChartActivity");
         list.add("EChartSActivity");
+        list.add("AAChartMain");
         list.add("GRpcMainActivity");
         list.add("HttpPostMainActivity");
         list.add("RetrofitMainActivity");

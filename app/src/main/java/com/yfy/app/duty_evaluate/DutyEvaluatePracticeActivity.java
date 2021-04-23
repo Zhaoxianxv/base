@@ -1,5 +1,6 @@
 package com.yfy.app.duty_evaluate;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +19,6 @@ import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
-import com.yfy.view.SQToolBar;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+@SuppressLint("NonConstantResourceId")
 public class DutyEvaluatePracticeActivity extends BaseActivity {
     private static final String TAG = DutyEvaluatePracticeActivity.class.getSimpleName();
 
