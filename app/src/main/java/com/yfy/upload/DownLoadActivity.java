@@ -100,7 +100,6 @@ public class DownLoadActivity extends BaseActivity {
      * 多线程文件下载
      *
      * @author yangxiaolong
-     * @2014-8-7
      */
     class downloadTask extends Thread {
         private String downloadUrl;// 下载链接地址
@@ -118,7 +117,7 @@ public class DownLoadActivity extends BaseActivity {
             FileDownloadThread[] threads = new FileDownloadThread[threadNum];
             try {
                 URL url = new URL(downloadUrl);
-                Logger.d(TagFinal.ZXX, "download file http path:" + downloadUrl);
+                Logger.e(TagFinal.ZXX, "download file http path:" + downloadUrl);
                 URLConnection conn = url.openConnection();
                 // 读取下载文件总大小
                 int fileSize = conn.getContentLength();
@@ -130,7 +129,7 @@ public class DownLoadActivity extends BaseActivity {
                 mProgressbar.setMax(fileSize);
                 // 计算每条线程下载的数据长度
                 blockSize = (fileSize % threadNum) == 0 ? fileSize / threadNum : fileSize / threadNum + 1;
-                Logger.d(TagFinal.ZXX, "fileSize:" + fileSize + "  blockSize:"+blockSize);
+                Logger.e(TagFinal.ZXX, "fileSize:" + fileSize + "  blockSize:"+blockSize);
                 File file = new File(filePath);
                 for (int i = 0; i < threads.length; i++) {
                     // 启动线程，分别下载每个线程需要下载的部分

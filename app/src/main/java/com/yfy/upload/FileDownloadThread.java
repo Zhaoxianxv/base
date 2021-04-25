@@ -16,7 +16,6 @@ import java.net.URLConnection;
  * 文件下载类
  *
  * @author yangxiaolong
- * @2014-5-6
  */
 public class FileDownloadThread extends Thread {
 

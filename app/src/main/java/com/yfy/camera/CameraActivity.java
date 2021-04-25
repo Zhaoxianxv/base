@@ -374,7 +374,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
      */
     private void savePhoto() {
         FileOutputStream fos = null;
-        String cameraPath = TagFinal.getAppFile("save");
+//        String cameraPath = TagFinal.getAppFile("save");
+        String cameraPath = TagFinal.getAppFile(System.currentTimeMillis() + ".jpg");
         //相册文件夹
         File imageFile = new File(cameraPath);
         try {

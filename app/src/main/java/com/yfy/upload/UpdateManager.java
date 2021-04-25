@@ -105,7 +105,7 @@ public class  UpdateManager {
 		downloadApk();
 	}
 
-	private Runnable mdownApkRunnable = new Runnable() {
+	public Runnable mdownApkRunnable = new Runnable() {
 		@Override
 		public void run() {
 			if (!Thread.currentThread().isInterrupted()){

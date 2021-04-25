@@ -25,7 +25,11 @@ public  class TagFinal {
 
     public static String getAppFile(String path){
 
-        return Environment.getExternalStorageDirectory().toString() + StringUtils.stringToGetTextJoint("/yfy/%1$s",path);
+        return StringUtils.stringToGetTextJoint(
+                "%1$s/yfy/%2$s",
+                Environment.getExternalStorageDirectory().toString(),
+                path
+        );
     }
     /**
      *   int final tag

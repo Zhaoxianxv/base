@@ -1,67 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <LinearLayout
-        android:id="@+id/updata_app_layout"
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp"
-        android:background="#fffffd">
-        <TextView
-            android:layout_width="match_parent"
+        android:background="#fffffd"
+        android:layout_gravity="center"
+        >
+        <androidx.appcompat.widget.AppCompatTextView
+
+            android:id="@+id/up_data_app_title"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="提示"
+            tools:text="提示"
+            android:visibility="gone"
             android:textSize="16sp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:textColor="#181818"
             android:gravity="center_vertical"/>
-        <TextView
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/up_data_app_content"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="发现新的版本请立即更新！"
+            tools:text="发现新的版本请立即更新！"
+            android:layout_below="@id/up_data_app_title"
             android:textSize="14sp"
+            android:visibility="gone"
             android:textColor="#5b5b5b"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:gravity="center_vertical"/>
-        <LinearLayout
-            android:orientation="horizontal"
+        <RelativeLayout
+            android:id="@+id/up_data_app_do_layout"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginRight="20dp"
-            android:gravity="center_vertical">
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-            <TextView
-                android:id="@+id/updata_app"
+            android:visibility="gone"
+            android:layout_below="@id/up_data_app_content"
+
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/up_data_exit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更新"
+                android:layout_alignParentEnd="true"
+                android:padding="10dp"
+                tools:text="取消"
                 android:textColor="#61b145"
                 android:gravity="center"/>
-            <View
-                android:layout_width="30dp"
-                android:layout_height="match_parent"/>
-            <TextView
-                android:id="@+id/updata_exit"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/up_data_app"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="退出"
+                android:layout_toStartOf="@id/up_data_exit"
+                android:layout_marginEnd="@dimen/margin_10dp"
+                android:padding="10dp"
+                tools:text="更新"
                 android:textColor="#61b145"
                 android:gravity="center"/>
-        </LinearLayout>
 
 
-    </LinearLayout>
+        </RelativeLayout>
+        <ProgressBar
+            android:id="@+id/up_data_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_below="@id/up_data_app_title"
+            android:layout_marginTop="@dimen/margin_25dp"
+            android:layout_marginBottom="@dimen/margin_25dp"
+            android:layout_marginStart="@dimen/margin_5dp"
+            android:layout_marginEnd="@dimen/margin_5dp"
+            android:visibility="visible"
+            />
+    </RelativeLayout>
+
+
 </FrameLayout>

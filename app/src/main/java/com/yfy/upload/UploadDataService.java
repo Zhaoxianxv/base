@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.IBinder;
 
 import com.google.gson.Gson;
@@ -26,11 +27,11 @@ import java.net.URL;
  * Created by yfy1 on 2016/9/20.
  */
 public class UploadDataService extends Service{
-    public String name,oldname,packagename;
-    public int oldcode;
-    String lines;
 
-
+    /**
+     * 首次创建服务时，系统将调用此方法来执行一次性设置程序（在调用 onStartCommand() 或 onBind() 之前）。
+     * 如果服务已在运行，则不会调用此方法。该方法只被调用一次
+     */
     @Override
     public void onCreate() {
         super.onCreate();
@@ -38,21 +39,10 @@ public class UploadDataService extends Service{
 
     }
 
-
-    public String getVersion() {
-        try {
-            PackageManager manager = App.getApp().getApplicationContext().getPackageManager();
-            PackageInfo info = manager.getPackageInfo(App.getApp().getApplicationContext().getPackageName(), 0);
-            oldname = info.versionName;
-            oldcode = info.versionCode;
-            packagename = info.packageName;
-            return oldname;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "";
-        }
-    }
-
+    /**
+     *  绑定服务时才会调用
+     *  此方法必须重写，但在启动状态的情况下直接返回 null
+     */
   
     @Override
     public IBinder onBind(Intent intent) {
@@ -60,7 +50,45 @@ public class UploadDataService extends Service{
     }
 
 
+    /**
+     * 每次通过startService()方法启动Service时都会被回调。
+     */
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        System.out.println("onStartCommand invoke");
+        return super.onStartCommand(intent, flags, startId);
+    }
 
+    /**
+     * 服务销毁时的回调
+     */
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mTask!=null&&mTask.getStatus()== AsyncTask.Status.RUNNING) {
+            mTask.cancel(true);
+        }
+    }
+
+
+
+
+
+    private PackageInfo info;
+    public void getVersion() {
+        try {
+            PackageManager manager = App.getApp().getApplicationContext().getPackageManager();
+            info = manager.getPackageInfo(App.getApp().getApplicationContext().getPackageName(), 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+        if (info==null)return;
+        mTask=new GetHtmlAsyncTask();
+        mTask.execute();
+    }
 
 
 
@@ -72,7 +100,7 @@ public class UploadDataService extends Service{
         @Override
         public String doIn(String... arg0) {
             StringBuilder sb = new StringBuilder();
-
+            String lines;
             try {
                 HttpURLConnection conn;
                 URL url = new URL(Base.AUTO_UPDATE_URI);
@@ -82,6 +110,7 @@ public class UploadDataService extends Service{
                 conn.setRequestProperty("conn","Keep-Alive");
                 conn.connect();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
                 while ((lines = reader.readLine()) != null){
                     sb.append(lines);
                 }
@@ -97,32 +126,37 @@ public class UploadDataService extends Service{
             }
         }
         @Override
-        public void doUpData(String list) {
-            if (StringJudge.isEmpty(list)){
-                ViewTool.showToastShort(getApplicationContext(),"没有数据，请从新尝试");
+        public void doUpData(String result) {
+            if (StringJudge.isEmpty(result)){
+                ViewTool.showToastShort(getApplicationContext(),"没有数据");
             }else{
                 Gson gson=new Gson();
-                BaseRes res=gson.fromJson(content, BaseRes.class);
+                BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (StringJudge.isEmpty(res.getPackagename())){
-
                     ViewTool.showToastShort(getApplicationContext(),"没有获取到应用");
                 }else{
-                    if (res.getPackagename().equalsIgnoreCase(packagename)){
-                        if (res.getVersionCode()>oldcode){
-                            Intent i=new Intent();
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            i.setClass(getApplicationContext(),UpDataDialogActivity.class);
-                            startActivity(i);
+                    if (res.getPackagename().equalsIgnoreCase(info.packageName)){
+                        if (res.getVersionCode()>info.versionCode){
+                            Intent intent=new Intent();
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                            intent.setClass(getApplicationContext(),UpDataDialogActivity.class);
+                            intent.putExtra(Base.id,res.getUrl());
+                            startActivity(intent);
                         }
                     }
 
                 }
-
-
             }
+            stopService(new Intent(getApplicationContext(),UploadDataService.class));
         }
         @Override
         public void onPre() {
+
+        }
+
+        @Override
+        public void onProgress(Integer integers) {
 
         }
     }

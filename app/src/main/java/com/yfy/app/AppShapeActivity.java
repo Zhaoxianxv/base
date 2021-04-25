@@ -124,13 +124,13 @@ public class AppShapeActivity extends BaseActivity {
             }
         }
         @Override
-        public void doUpData(String list) {
+        public void doUpData(String result) {
             dismissProgressDialog();
-            if (StringJudge.isEmpty(list)){
+            if (StringJudge.isEmpty(result)){
                 ViewTool.showToastShort(mActivity,"没有数据，请从新尝试");
                 finish();
             }else{
-                BaseRes res=gson.fromJson(content, BaseRes.class);
+                BaseRes res=gson.fromJson(result, BaseRes.class);
 
                 if (StringJudge.isEmpty(res.getPackagename())){
                     GlideTools.loadImage(mActivity,R.drawable.ic_error_icon_rotate,icon);
@@ -151,6 +151,11 @@ public class AppShapeActivity extends BaseActivity {
         @Override
         public void onPre() {
             showProgressDialog("");
+        }
+
+        @Override
+        public void onProgress(Integer integers) {
+
         }
     }
     @Override

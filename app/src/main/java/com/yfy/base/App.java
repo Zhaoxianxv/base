@@ -116,7 +116,7 @@ public class App extends MultiDexApplication {
             return false;
         }
         for (int i = 0; i < serviceList.size(); i++) {
-            if (serviceList.get(i).service.getClassName().equals(className) == true) {
+            if (serviceList.get(i).service.getClassName().equalsIgnoreCase(className)) {
                 isRunning = true;
                 break;
             }
