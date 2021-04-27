@@ -138,9 +138,8 @@ public class UploadDataService extends Service{
                     if (res.getPackagename().equalsIgnoreCase(info.packageName)){
                         if (res.getVersionCode()>info.versionCode){
                             Intent intent=new Intent();
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
                             intent.setClass(getApplicationContext(),UpDataDialogActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra(Base.id,res.getUrl());
                             startActivity(intent);
                         }

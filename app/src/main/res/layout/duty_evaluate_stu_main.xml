@@ -187,13 +187,15 @@
             
                     />
         
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
             
-                    android:text="2021/01"
+                    android:id="@+id/stu_select_date"
+                    tools:text="2021/01"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="@dimen/margin_10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_5dp"
                     android:textSize="@dimen/textsize6"
                     android:gravity="center"
                     android:layout_centerVertical="true"
@@ -203,7 +205,7 @@
     
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="320dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="@dimen/margin_5dp"
                 android:paddingRight="@dimen/margin_5dp"
                 >
@@ -211,6 +213,7 @@
                     android:id="@+id/event_chart_web_view"
                     android:layout_width="match_parent"
                     android:layout_height="320dp"
+                    android:visibility="gone"
                     android:layout_marginEnd="@dimen/margin_5dp"
                     android:layout_marginStart="@dimen/margin_5dp"
                     android:scrollbars="none" />
@@ -447,6 +450,7 @@
                     android:layout_marginTop="@dimen/margin_45dp">
                     
                     <RelativeLayout
+                        android:id="@+id/develop_school_in_layout"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:background="@drawable/radius5_white"
@@ -461,7 +465,8 @@
                             android:padding="@dimen/margin_15dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="校内活动（10/20）"
+                            android:id="@+id/develop_school_in_title"
+                            tools:text="校内活动"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:gravity="bottom"
@@ -471,6 +476,7 @@
                             android:layout_marginStart="@dimen/margin_60dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/develop_school_in_title_sub"
                             android:text="校内活动（10/20）"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
@@ -502,6 +508,7 @@
                     </RelativeLayout>
                     
                     <RelativeLayout
+                        android:id="@+id/develop_school_out_layout"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_marginTop="@dimen/margin_5dp"
@@ -517,7 +524,8 @@
                             android:padding="@dimen/margin_15dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="校外实践（10/20）"
+                            android:id="@+id/develop_school_out_title"
+                            tools:text="校外实践"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:gravity="bottom"
@@ -527,7 +535,8 @@
                             android:layout_marginStart="@dimen/margin_60dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="校内活动（10/20）"
+                            android:id="@+id/develop_school_out_title_sub"
+                            tools:text="校内活动（10/20）"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:gravity="top"
@@ -557,6 +566,7 @@
                             />
                     </RelativeLayout>
                     <RelativeLayout
+                        android:id="@+id/develop_school_score_layout"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_marginTop="@dimen/margin_5dp"
@@ -572,7 +582,8 @@
                             android:padding="@dimen/margin_15dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="比赛成绩（10/20）"
+                            android:id="@+id/develop_school_score_title"
+                            tools:text="比赛成绩（10/20）"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:gravity="bottom"
@@ -583,12 +594,13 @@
                             />
     
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/develop_school_score_title_sub"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:layout_alignParentBottom="true"
                             android:layout_marginStart="@dimen/margin_60dp"
                             android:gravity="top"
-                            android:text="校内活动（10/20）"
+                            tools:text="校内活动（10/20）"
                             android:textColor="@color/gray_text"
                             android:textSize="@dimen/textsize5"
                             android:textStyle="bold" />

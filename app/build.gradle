@@ -10,7 +10,7 @@ android {
         applicationId "com.yfy.base"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 113
+        versionCode 119
         versionName "119"
         multiDexEnabled true  //
         renderscriptSupportModeEnabled true

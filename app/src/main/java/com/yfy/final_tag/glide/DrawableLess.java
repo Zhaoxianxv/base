@@ -1,12 +1,30 @@
 package com.yfy.final_tag.glide;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 
 import androidx.core.graphics.drawable.DrawableCompat;
 
 public final class DrawableLess {
+
+
+
+
+    //获取Drawable  （idDrawable）
+    @SuppressLint("UseCompatLoadingForDrawables")
+    public static Drawable getResourceDrawable(Activity mActivity, int idDrawable) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return mActivity.getResources().getDrawable(idDrawable, null);
+        } else {
+            return mActivity.getResources().getDrawable(idDrawable);
+        }
+
+    }
 
 
     /**
@@ -15,6 +33,7 @@ public final class DrawableLess {
      * ========================================================
      */
     //改变drawable图片颜色
+    @SuppressLint("UseCompatLoadingForDrawables")
     public static Drawable $tint(Drawable originDrawable, int color) {
         return $tint(originDrawable, ColorStateList.valueOf(color));
     }

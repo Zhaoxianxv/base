@@ -77,6 +77,7 @@ public class UpDataDialogActivity extends BaseActivity {
 
         do_layout.setVisibility(View.VISIBLE);
         upData_content.setVisibility(View.VISIBLE);
+        upData_title.setVisibility(View.VISIBLE);
         progress.setVisibility(View.GONE);
 
 
@@ -240,10 +241,12 @@ public class UpDataDialogActivity extends BaseActivity {
                 do{
                     int numread = is.read(buf);
                     count += numread;
+                    //通知主线程进度条百分比
                     publishProgress((int)(((float)count / length) * 100));
                     if(numread <= 0){
                         interceptFlag=false;
-                        publishProgress(100);//进度条
+                        //通知主线程进度条百分比
+                        publishProgress(100);
                         break;//do{}while(boolean) 条件为true
                     }else{
                         fos.write(buf,0,numread);
@@ -268,6 +271,7 @@ public class UpDataDialogActivity extends BaseActivity {
                 upData_content.setText("读取文件失败！");
                 progress.setVisibility(View.GONE);
             }else{
+                progress.setVisibility(View.GONE);
                 installApk(result);
             }
         }

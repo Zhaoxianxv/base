@@ -1,3 +1,4 @@
+
 package com.yfy.app.duty_evaluate;
 
 import android.annotation.SuppressLint;
@@ -21,6 +22,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.chart.bean.AngleAxis;
 import com.yfy.app.chart.bean.Legend;
@@ -28,6 +30,7 @@ import com.yfy.app.chart.bean.PileRes;
 import com.yfy.app.chart.bean.Polar;
 import com.yfy.app.chart.bean.RadiusAxis;
 import com.yfy.app.chart.bean.Series;
+import com.yfy.final_tag.DateUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.stringtool.Logger;
@@ -42,11 +45,14 @@ import com.yfy.final_tag.hander.AssetsGetFileData;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
+import com.yfy.greendao.tool.NormalDataSaveTools;
+import com.yfy.view.time.CustomDatePicker;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.widget.AppCompatTextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -83,7 +89,27 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
+    //校内活动
+    @BindView(R.id.develop_school_in_title)
+    AppCompatTextView develop_school_in_title;
+    @BindView(R.id.develop_school_in_title_sub)
+    AppCompatTextView develop_school_in_title_sub;
 
+    //校外实践
+    @BindView(R.id.develop_school_out_title)
+    AppCompatTextView develop_school_out_title;
+    @BindView(R.id.develop_school_out_title_sub)
+    AppCompatTextView develop_school_out_title_sub;
+
+    //比赛成绩
+    @BindView(R.id.develop_school_score_title)
+    AppCompatTextView develop_school_score_title;
+    @BindView(R.id.develop_school_score_title_sub)
+    AppCompatTextView develop_school_score_title_sub;
+
+
+
+    DateBean dateBean ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +123,10 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 //
 //        }
 
-        stu_rank.setText("雅生四星勋章\n总计25雅币");
+
+
+        initView();
+
         initCollapsing();
 
         GlideTools.loadImage(mActivity,R.mipmap.honor_one,top_head);
@@ -122,6 +151,27 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         getAssetsData("duty_evaluate_get_stu_detail.txt");
     }
 
+    public void initView(){
+        selected_termBean= NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
+        
+        stu_rank.setText("雅生四星勋章\n总计25雅币");
+
+        dateBean=new DateBean();
+        dateBean.setValue_long(System.currentTimeMillis(),true);
+        year_s=String.valueOf(dateBean.getYearName());
+        month_s=String.valueOf(dateBean.getMonthNameTwo());
+        select_date.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s",year_s,month_s));
+
+        develop_school_in_title.setText("校内活动");
+        develop_school_in_title_sub.setText("校内活动");
+
+        develop_school_out_title.setText("校外实践");
+        develop_school_out_title_sub.setText("校外实践");
+
+
+        develop_school_score_title.setText("比赛成绩");
+        develop_school_score_title_sub.setText("比赛成绩");
+    }
 
     @Override
     public void finish() {
@@ -348,8 +398,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 //                    case "校内活动":
 //                    case "校外实践":
 //                    case "比赛成绩":
-//                        intent=new Intent(mActivity,DutyEvaluatePrac
-//                        ticeActivity.class);
+//                        intent=new Intent(mActivity,DutyEvaluatePracticeActivity.class);
 //                        intent.putExtra(Base.title,keyValue.getTitle());
 //                        intent.putExtra(Base.term_bean,selected_termBean);
 //                        startActivity(intent);
@@ -407,7 +456,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         webView.removeJavascriptInterface("searchBoxJavaBridge_");
         webView.removeJavascriptInterface("accessibility");
         webView.removeJavascriptInterface("accessibilityTraversal");
-//        webView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new WebViewClient());
 
         webView.setWebViewClient(new MyWebViewClient());
         webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -535,17 +584,39 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
+    @BindView(R.id.stu_select_date)
+    AppCompatTextView select_date;
+    public String year_s,month_s;
+    public   CustomDatePicker customDatePicker1;
+    @OnClick(R.id.stu_select_date)
+    void setEChartDate(){
+
+        if (customDatePicker1==null){
+
+            customDatePicker1 = new CustomDatePicker(mActivity, new CustomDatePicker.ResultHandler() {
+                @Override
+                public void handle(String time) { // 回调接口，获得选中的时间
+                    String data=time.split(" ")[0].substring(0,time.split(" ")[0].lastIndexOf("-"));
+                    year_s=data.split("-")[0];
+                    month_s=data.split("-")[1];
+                    select_date.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s",year_s,month_s));
+                }
+            }, "2000-01-01 00:00", DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
+            // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
+            customDatePicker1.showSpecificTime(false); // 不显示时和分
+            customDatePicker1.setIsLoop(true); // 不允许循环滚动
+        }
+
+        customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01",year_s,month_s));
+    }
 
     @OnClick(R.id.stu_self_event_bg)
     void setStuEvent(){
 
-        KeyValue keyValue=new KeyValue();
-        keyValue.setTitle("");
-        keyValue.setRight_name("2021");
-        keyValue.setRight_key("1");
+
         Intent intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
-        intent.putExtra(Base.year_value,keyValue.getRight_name());
-        intent.putExtra(Base.month_value,keyValue.getRight_key());
+        intent.putExtra(Base.year_value,year_s);
+        intent.putExtra(Base.month_value,month_s);
         startActivity(intent);
     }
 
@@ -573,6 +644,35 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
             startActivity(intent);
 
         }
+    }
+
+
+    //校内活动
+    @OnClick(R.id.develop_school_in_layout)
+    void setDevelopIn(){
+        Intent intent=new Intent();
+        intent.setClass(mActivity,DutyEvaluateSchoolActivity.class);
+        intent.putExtra(Base.term_bean,selected_termBean);
+        intent.putExtra(Base.title,"校内活动");
+        startActivity(intent);
+    }
+    //校内活动
+    @OnClick(R.id.develop_school_out_layout)
+    void setDevelopOut(){
+        Intent intent=new Intent();
+        intent.setClass(mActivity,DutyEvaluateSchoolActivity.class);
+        intent.putExtra(Base.term_bean,selected_termBean);
+        intent.putExtra(Base.title,"校外实践");
+        startActivity(intent);
+    }
+    //比赛成绩
+    @OnClick(R.id.develop_school_score_layout)
+    void setDevelopScore(){
+        Intent intent=new Intent();
+        intent.setClass(mActivity,DutyEvaluateSchoolActivity.class);
+        intent.putExtra(Base.term_bean,selected_termBean);
+        intent.putExtra(Base.title,"比赛成绩");
+        startActivity(intent);
     }
 
     @Override
