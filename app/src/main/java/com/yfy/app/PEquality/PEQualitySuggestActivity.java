@@ -2,18 +2,14 @@ package com.yfy.app.PEquality;
 
 import android.os.Bundle;
 import com.yfy.app.bean.BaseRes;
-import com.yfy.app.net.ReqBody;
-import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
-import com.yfy.app.net.RetrofitGenerator;
-import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 
 import java.io.IOException;
 import java.util.List;

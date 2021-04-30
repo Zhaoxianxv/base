@@ -19,7 +19,7 @@ import com.yfy.base.R;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
 

@@ -17,7 +17,7 @@ import com.yfy.app.bean.BaseRes;
 import com.yfy.base.App;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.hander.HtmlAsyncTask;
 import com.yfy.final_tag.stringtool.StringJudge;

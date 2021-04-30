@@ -6,17 +6,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.yfy.app.PEquality.adapter.PEAttendListAdapter;
-import com.yfy.app.PEquality.adapter.PEAttitudeStuMainAdapter;
 import com.yfy.app.PEquality.tea.PEAttendListActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.net.ReqBody;
-import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
-import com.yfy.app.net.RetrofitGenerator;
-import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.charting_mp.animation.Easing;
@@ -37,7 +31,7 @@ import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.io.IOException;

@@ -12,7 +12,7 @@ import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;

@@ -13,7 +13,7 @@ import com.yfy.app.duty_evaluate.bean.InfoBean;
 import com.yfy.app.duty_evaluate.bean.SeBean;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.hander.AssetsAsyncTask;

@@ -7,8 +7,7 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.util.Base64;
 
-import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.data.TagFinal;
+import com.yfy.base.Base;
 import com.yfy.final_tag.glide.Photo;
 import com.yfy.final_tag.stringtool.StringUtils;
 

@@ -7,7 +7,7 @@ import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
@@ -18,7 +18,6 @@ import com.yfy.greendao.bean.BaseClass;
 import com.yfy.greendao.bean.StuBean;
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.greendao.tool.NormalDataSaveTools;
-import com.yfy.view.SQToolBar;
 
 import java.util.ArrayList;
 import java.util.List;

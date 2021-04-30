@@ -11,7 +11,7 @@ import com.yfy.app.net.login.ResetPasswordGetCodeRes;
 import com.yfy.app.net.login.UserDuplicationLoginRes;
 import com.yfy.app.net.login.UserGetDuplicationListRes;
 import com.yfy.app.net.login.UserLoginRes;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 
 import org.simpleframework.xml.Element;

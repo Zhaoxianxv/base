@@ -11,7 +11,7 @@ import android.os.IBinder;
 import com.google.gson.Gson;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.base.App;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.hander.HtmlAsyncTask;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.viewtools.ViewTool;

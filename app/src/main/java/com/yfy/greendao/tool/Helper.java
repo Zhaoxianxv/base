@@ -2,7 +2,7 @@ package com.yfy.greendao.tool;
 
 import android.content.Context;
 
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.greendao.DaoMaster;
 import com.yfy.greendao.DaoSession;

@@ -12,7 +12,7 @@ import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.EndlessRecyclerOnScrollListener;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.util.ArrayList;

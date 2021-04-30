@@ -18,12 +18,11 @@ import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.greendao.bean.StuBean;
 import com.yfy.greendao.tool.NormalDataSaveTools;
-import com.yfy.view.SQToolBar;
 
 import java.io.IOException;
 import java.util.ArrayList;

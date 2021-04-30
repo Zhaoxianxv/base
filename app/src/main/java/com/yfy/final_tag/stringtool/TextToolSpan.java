@@ -1,15 +1,12 @@
 package com.yfy.final_tag.stringtool;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
@@ -17,16 +14,8 @@ import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.TextView;
 
-import com.yfy.base.App;
 import com.yfy.base.R;
-import com.yfy.final_tag.data.Base;
-import com.yfy.final_tag.data.ColorRgbUtil;
-import com.yfy.final_tag.glide.BitmapLess;
 import com.yfy.final_tag.glide.DrawableLess;
-import com.yfy.final_tag.permission.PermissionTools;
-
-import androidx.annotation.RequiresApi;
-import androidx.core.content.FileProvider;
 
 /**
  * ImageSpan            图文混排
@@ -95,28 +84,6 @@ public class TextToolSpan {
      * ImageSpan.ALIGN_BOTTOM
      * ImageSpan.ALIGN_CENTER
      */
-    //添加一个图片
-    public static void  $spannableAddIconColor(Context context, TextView textView, String string, int resourceId, int color){
-        SpannableString sb = new SpannableString(string);
-
-        sb.setSpan(new ForegroundColorSpan(color), 0, sb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        Drawable drawable=DrawableLess.$tint(context.getResources().getDrawable(resourceId),color);
-
-        drawable.setBounds(0, 0, textView.getLineHeight(),textView.getLineHeight());//让图片与文字对齐
-
-        ImageSpan imgSpan;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
-            imgSpan = new ImageSpan(drawable,ImageSpan.ALIGN_CENTER);
-        }else{
-            imgSpan = new ImageSpan(drawable);
-        }
-
-
-        sb.setSpan(imgSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView.setText(sb);
-    }
-
-
 
     //textView文字添加链接点击转webView
     public static void  setSpannableStringColor(TextView tv,String startString ,String  endString,String linkString, int color,String link){
@@ -142,12 +109,34 @@ public class TextToolSpan {
 
         tv.setText(sb);
     }
+
     //添加一个图片
-    public static void  $spannableAddIconColor(Context context, TextView textView,String string, int resourceId, int drawable_color,int txt_color){
+    public static void  $spannableAddIconColor(Context context, TextView textView, String string, int resourceId, int color){
+        SpannableString sb = new SpannableString(string);
+
+        sb.setSpan(new ForegroundColorSpan(color), 0, sb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        Drawable drawable=DrawableLess.$tint(context.getResources().getDrawable(resourceId),color);
+
+        drawable.setBounds(0, 0, textView.getLineHeight(),textView.getLineHeight());//让图片与文字对齐
+
+        ImageSpan imgSpan;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+            imgSpan = new ImageSpan(drawable,ImageSpan.ALIGN_CENTER);
+        }else{
+            imgSpan = new ImageSpan(drawable);
+        }
+
+
+        sb.setSpan(imgSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(sb);
+    }
+
+    //添加一个图片
+    public static void  $spannableAddIconColor(TextView textView,String string, Drawable resourceDrawable, int drawable_color,int txt_color){
         SpannableString sb = new SpannableString(string);
 
         sb.setSpan(new ForegroundColorSpan(txt_color), 0, sb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        Drawable drawable=DrawableLess.$tint(context.getResources().getDrawable(resourceId),drawable_color);
+        Drawable drawable=DrawableLess.$tint(resourceDrawable,drawable_color);
         drawable.setBounds(0, 0, textView.getLineHeight(),textView.getLineHeight());//让图片与文字对齐
 
         ImageSpan imgSpan;

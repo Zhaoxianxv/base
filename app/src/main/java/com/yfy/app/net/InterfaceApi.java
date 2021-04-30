@@ -2,7 +2,7 @@ package com.yfy.app.net;
 
 
 
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 
 import retrofit2.Call;

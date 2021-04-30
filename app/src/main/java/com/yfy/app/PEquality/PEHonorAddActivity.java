@@ -1,5 +1,6 @@
 package com.yfy.app.PEquality;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +10,8 @@ import com.yfy.app.album.AlbumOneActivity;
 import com.yfy.app.album.SingePicShowActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
-import com.yfy.app.net.ReqBody;
-import com.yfy.app.net.ReqEnv;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
-import com.yfy.app.net.RetrofitGenerator;
-import com.yfy.app.net.base.UserGetTermListReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
@@ -29,7 +26,7 @@ import com.yfy.final_tag.permission.PermissionSuccess;
 import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
@@ -50,6 +47,7 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Response;
 
+@SuppressLint("NonConstantResourceId")
 public class PEHonorAddActivity extends BaseActivity {
     private static final String TAG = PEHonorAddActivity.class.getSimpleName();
 

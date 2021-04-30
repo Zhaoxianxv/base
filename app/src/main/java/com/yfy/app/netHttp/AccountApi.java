@@ -2,16 +2,12 @@ package com.yfy.app.netHttp;
 
 
 
-import com.yfy.app.netHttp.ApiUrl;
-import com.yfy.app.netHttp.bean.CodeRes;
-import com.yfy.app.netHttp.bean.Result;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;

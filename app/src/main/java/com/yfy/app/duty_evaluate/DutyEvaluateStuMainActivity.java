@@ -32,13 +32,15 @@ import com.yfy.app.chart.bean.RadiusAxis;
 import com.yfy.app.chart.bean.Series;
 import com.yfy.final_tag.DateUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
+import com.yfy.final_tag.glide.DrawableLess;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.final_tag.stringtool.TextToolSpan;
 import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.duty_evaluate.bean.DutyEvaluateRes;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.hander.AssetsAsyncTask;
 import com.yfy.final_tag.hander.AssetsGetFileData;
@@ -61,6 +63,19 @@ import butterknife.OnClick;
 public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsGetFileData {
     private static final String TAG = DutyEvaluateStuMainActivity.class.getSimpleName();
 
+    @BindView(R.id.duty_evaluate_stu_normal_title)
+    AppCompatTextView normal_score_rank;
+    @BindView(R.id.duty_evaluate_stu_normal_value)
+    AppCompatTextView normal_score_value;
+    @BindView(R.id.duty_evaluate_stu_normal_score_value)
+    AppCompatTextView normal_score_value_name;
+
+    @BindView(R.id.duty_span_stu)
+    AppCompatTextView duty_span_stu;
+
+
+    @BindView(R.id.replenish_term_name)
+    AppCompatTextView replenish_term_name;
 
 
     @BindView(R.id.duty_evaluate_stu_rank)
@@ -155,6 +170,18 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         selected_termBean= NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
         
         stu_rank.setText("雅生四星勋章\n总计25雅币");
+        normal_score_rank.setText(StringUtils.stringToGetTextJoint("排名：%1$s名","23"));
+        normal_score_value.setText(StringUtils.stringToGetTextJoint("获得雅币 %1$s 枚","5"));
+        normal_score_value.setText(StringUtils.stringToGetTextJoint("获得雅币 %1$s 枚","5"));
+        normal_score_value_name.setText(StringUtils.stringToGetTextJoint("%1$s分%2$s雅币","120","5"));
+        replenish_term_name.setText("第五期");
+        TextToolSpan.$spannableAddIconColor(
+                duty_span_stu,
+                "学生自评",
+                DrawableLess.getResourceDrawable(mActivity,R.drawable.ic_rectangle_g),
+                ColorRgbUtil.getResourceColor(mActivity,R.color.white),
+                ColorRgbUtil.getResourceColor(mActivity,R.color.white)
+                );
 
         dateBean=new DateBean();
         dateBean.setValue_long(System.currentTimeMillis(),true);

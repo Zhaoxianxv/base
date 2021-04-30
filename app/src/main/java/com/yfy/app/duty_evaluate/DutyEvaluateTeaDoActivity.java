@@ -19,42 +19,28 @@ import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.greendao.bean.StuBean;
-import com.yfy.greendao.bean.TermBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateTeaDoTabAdapter;
-import com.yfy.app.net.ReqBody;
-import com.yfy.app.net.ReqEnv;
-import com.yfy.app.net.ResBody;
-import com.yfy.app.net.ResEnv;
-import com.yfy.app.net.RetrofitGenerator;
-import com.yfy.app.net.base.UserGetClassAllStuReq;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.DateUtils;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
-import com.yfy.final_tag.data.ConvertObjtect;
 import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWMatchListMinWidthView;
 import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
-import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
-import com.yfy.greendao.tool.NormalDataSaveTools;
-import com.yfy.view.SQToolBar;
 import com.yfy.view.time.CustomDatePicker;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Response;
 
 @SuppressLint("NonConstantResourceId")
 public class DutyEvaluateTeaDoActivity extends BaseActivity {

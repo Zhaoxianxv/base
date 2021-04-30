@@ -15,9 +15,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.yfy.base.App;
 import com.yfy.base.R;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.FileTools;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.stringtool.Logger;
@@ -141,8 +140,6 @@ public class  UpdateManager {
 					Logger.e("zxx","-conn-3-");
 					fos.close();
 					is.close();
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
 				} catch(IOException e){
 					e.printStackTrace();
 				}

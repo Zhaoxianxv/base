@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateStuDetailAdapter;
 import com.yfy.app.duty_evaluate.bean.DutyEvaluateRes;
@@ -16,7 +15,7 @@ import com.yfy.app.duty_evaluate.bean.SeBean;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.DateUtils;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.hander.AssetsAsyncTask;
@@ -26,7 +25,6 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
-import com.yfy.view.SQToolBar;
 import com.yfy.view.time.CustomDatePicker;
 
 

@@ -1,4 +1,4 @@
-package com.yfy.final_tag.data;
+package com.yfy.base;
 
 
 import com.yfy.greendao.User;

@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.FileTools;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.hander.HtmlAsyncTask;
 import com.yfy.final_tag.listener.NoFastClickListener;
@@ -150,8 +150,8 @@ public class UpDataDialogActivity extends BaseActivity {
 
 
     @PermissionFail(requestCode = TagFinal.PHOTO_ALBUM)
-    public void showTip1() {
-        Toast.makeText(getApplicationContext(), R.string.permission_fail_album, Toast.LENGTH_SHORT).show();
+    public void showTipAlbum() {
+        ViewTool.showToastShort(mActivity, R.string.permission_fail_album);
     }
 
     @Override
@@ -292,6 +292,7 @@ public class UpDataDialogActivity extends BaseActivity {
     public void onPause() {
         super.onPause();
         if (mTask!=null&&mTask.getStatus()== AsyncTask.Status.RUNNING) {
+            interceptFlag=false;//结束下载文件（如果正在下载）
             mTask.cancel(true);
         }
     }

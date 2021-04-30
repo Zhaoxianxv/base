@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.MenuItem;
-import com.yfy.final_tag.data.Base;
+import com.yfy.base.Base;
 import com.yfy.base.R;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.video_jcv.JCVideoPlayer;
