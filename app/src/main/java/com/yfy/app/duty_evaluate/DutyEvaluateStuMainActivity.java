@@ -1,4 +1,3 @@
-
 package com.yfy.app.duty_evaluate;
 
 import android.annotation.SuppressLint;
@@ -23,7 +22,6 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yfy.app.bean.DateBean;
-import com.yfy.app.bean.KeyValue;
 import com.yfy.app.chart.bean.AngleAxis;
 import com.yfy.app.chart.bean.Legend;
 import com.yfy.app.chart.bean.PileRes;
@@ -63,19 +61,6 @@ import butterknife.OnClick;
 public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsGetFileData {
     private static final String TAG = DutyEvaluateStuMainActivity.class.getSimpleName();
 
-    @BindView(R.id.duty_evaluate_stu_normal_title)
-    AppCompatTextView normal_score_rank;
-    @BindView(R.id.duty_evaluate_stu_normal_value)
-    AppCompatTextView normal_score_value;
-    @BindView(R.id.duty_evaluate_stu_normal_score_value)
-    AppCompatTextView normal_score_value_name;
-
-    @BindView(R.id.duty_span_stu)
-    AppCompatTextView duty_span_stu;
-
-
-    @BindView(R.id.replenish_term_name)
-    AppCompatTextView replenish_term_name;
 
 
     @BindView(R.id.duty_evaluate_stu_rank)
@@ -95,14 +80,30 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
+    //----------常规性评价-----------
+    @BindView(R.id.stu_select_date)
+    AppCompatTextView select_date;
 
 
-    @BindView(R.id.stu_self_event_bg)
-    AppCompatImageView stu_event_bg;
-    @BindView(R.id.tea_event_bg)
-    AppCompatImageView tea_event_bg;
+    //    排名
+    @BindView(R.id.duty_evaluate_stu_normal_title)
+    AppCompatTextView normal_score_rank;
+    @BindView(R.id.duty_evaluate_stu_normal_value)
+    AppCompatTextView normal_score_value;
+    //按钮文字
+    @BindView(R.id.duty_span_stu)
+    AppCompatTextView duty_span_stu;
+    @BindView(R.id.duty_span_family)
+    AppCompatTextView duty_span_family;
+//
+//    @BindView(R.id.stu_self_event_bg)
+//    AppCompatImageView stu_event_bg;
+//    @BindView(R.id.tea_event_bg)
+//    AppCompatImageView tea_event_bg;
 
-
+    //-----------------发展性评价-----------------
+    @BindView(R.id.labour_score_value)
+    AppCompatTextView labour_score_value;
 
     //校内活动
     @BindView(R.id.develop_school_in_title)
@@ -124,7 +125,60 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
-    DateBean dateBean ;
+    //----------------补充性----------------
+    @BindView(R.id.replenish_term_name)
+    AppCompatTextView replenish_term_name;
+    //家庭劳动
+    @BindView(R.id.replenish_duty_labour_title)
+    AppCompatTextView labour_title;
+    @BindView(R.id.replenish_duty_labour_title_sub)
+    AppCompatTextView labour_title_sub;
+    @BindView(R.id.replenish_duty_labour_family)
+    AppCompatTextView labour_family;
+    @BindView(R.id.replenish_duty_labour_stu)
+    AppCompatTextView labour_stu;
+    @OnClick(R.id.replenish_duty_labour_stu)
+    void setLabourStu(){
+        Intent intent=new Intent();
+        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        startActivity(intent);
+    }
+
+    //文雅少年
+    @BindView(R.id.replenish_duty_young_title)
+    AppCompatTextView young_title;
+    @BindView(R.id.replenish_duty_young_title_sub)
+    AppCompatTextView young_title_sub;
+    @BindView(R.id.replenish_duty_young_family)
+    AppCompatTextView young_family;
+    @BindView(R.id.replenish_duty_young_stu)
+    AppCompatTextView young_stu;
+    @OnClick(R.id.replenish_duty_young_stu)
+    void setYoungStu(){
+        Intent intent=new Intent();
+        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        startActivity(intent);
+    }
+
+    //更多项目
+    @BindView(R.id.replenish_duty_more_title)
+    AppCompatTextView more_title;
+    @BindView(R.id.replenish_duty_more_title_sub)
+    AppCompatTextView more_title_sub;
+
+    @BindView(R.id.replenish_duty_more_family)
+    AppCompatTextView more_family;
+    @BindView(R.id.replenish_duty_more_stu)
+    AppCompatTextView more_stu;
+
+    @OnClick(R.id.replenish_duty_more_stu)
+    void setMoreStu(){
+        Intent intent=new Intent();
+        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        startActivity(intent);
+    }
+
+    DateBean dateBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,20 +193,17 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 //        }
 
 
-
         initView();
 
         initCollapsing();
 
-        GlideTools.loadImage(mActivity,R.mipmap.honor_one,top_head);
+        GlideTools.loadImage(mActivity, R.mipmap.honor_one, top_head);
         changeBgColor(
                 ColorRgbUtil.getParseColor(parse_color[0]),
                 "一",
                 "12",
                 ColorRgbUtil.getParseColor(parse_color_start[0]),
                 ColorRgbUtil.getParseColor(parse_color_end[0]));
-
-
 
 
 //        ViewTool.alterGradientStartEndColor(stu_event_bg,ColorRgbUtil.getParseColor("#F4A668"),ColorRgbUtil.getParseColor("#E94F4F"));
@@ -166,29 +217,46 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         getAssetsData("duty_evaluate_get_stu_detail.txt");
     }
 
-    public void initView(){
-        selected_termBean= NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
-        
+    public void initView() {
+        selected_termBean = NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
+
         stu_rank.setText("雅生四星勋章\n总计25雅币");
-        normal_score_rank.setText(StringUtils.stringToGetTextJoint("排名：%1$s名","23"));
-        normal_score_value.setText(StringUtils.stringToGetTextJoint("获得雅币 %1$s 枚","5"));
-        normal_score_value.setText(StringUtils.stringToGetTextJoint("获得雅币 %1$s 枚","5"));
-        normal_score_value_name.setText(StringUtils.stringToGetTextJoint("%1$s分%2$s雅币","120","5"));
-        replenish_term_name.setText("第五期");
+        normal_score_rank.setText(StringUtils.stringToGetTextJoint("排名：%1$s名", "23"));
+        normal_score_value.setText(StringUtils.stringToGetTextJoint("获得雅币 %1$s 枚", "5"));
+        normal_score_value.setText(StringUtils.stringToGetTextJoint("获得雅币 %1$s 枚", "5"));
+
+
+        String stu_self_duty = "学生自评1";
         TextToolSpan.$spannableAddIconColor(
                 duty_span_stu,
-                "学生自评",
-                DrawableLess.getResourceDrawable(mActivity,R.drawable.ic_rectangle_g),
-                ColorRgbUtil.getResourceColor(mActivity,R.color.white),
-                ColorRgbUtil.getResourceColor(mActivity,R.color.white)
-                );
+                stu_self_duty,
+                DrawableLess.getResourceDrawable(mActivity, R.drawable.ic_arrow_right_gray_24dp),
+                ColorRgbUtil.getResourceColor(mActivity, R.color.white),
+                ColorRgbUtil.getResourceColor(mActivity, R.color.white),
+                stu_self_duty.length() - 1,
+                stu_self_duty.length()
+        );
+        String family_duty = "家长评价1";
+        TextToolSpan.$spannableAddIconColor(
+                duty_span_family,
+                family_duty,
+                DrawableLess.getResourceDrawable(mActivity, R.drawable.ic_arrow_right_gray_24dp),
+                ColorRgbUtil.getResourceColor(mActivity, R.color.white),
+                ColorRgbUtil.getResourceColor(mActivity, R.color.white),
+                family_duty.length() - 1,
+                family_duty.length()
+        );
 
-        dateBean=new DateBean();
-        dateBean.setValue_long(System.currentTimeMillis(),true);
-        year_s=String.valueOf(dateBean.getYearName());
-        month_s=String.valueOf(dateBean.getMonthNameTwo());
-        select_date.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s",year_s,month_s));
+        dateBean = new DateBean();
+        dateBean.setValue_long(System.currentTimeMillis(), true);
+        year_s = String.valueOf(dateBean.getYearName());
+        month_s = String.valueOf(dateBean.getMonthNameTwo());
+        select_date.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s", year_s, month_s));
 
+
+
+        //发展性评价
+        labour_score_value.setText(StringUtils.stringToGetTextJoint("%1$s分%2$s雅币", "120", "5"));
         develop_school_in_title.setText("校内活动");
         develop_school_in_title_sub.setText("校内活动");
 
@@ -198,6 +266,26 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
         develop_school_score_title.setText("比赛成绩");
         develop_school_score_title_sub.setText("比赛成绩");
+
+
+
+        //补充性
+        replenish_term_name.setText("第五期");
+
+        labour_title.setText("家庭劳动");
+        labour_title_sub.setText("家庭劳动");
+        labour_stu.setText("学生评");
+        labour_family.setText("家长评");
+
+        young_title.setText("文雅少年");
+        young_title_sub.setText("文雅少年");
+        young_stu.setText("学生评");
+        young_family.setText("家长评");
+
+        more_title.setText("更多项目");
+        more_title_sub.setText("更多项目");
+        more_stu.setText("学生评");
+        more_family.setText("家长评");
     }
 
     @Override
@@ -208,29 +296,25 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     }
 
 
-
-
-
-
-
-
     public TextView menu_title;
     public TermBean selected_termBean;
 
 
     @OnClick(R.id.main_navi)
-    void setNavi(){
+    void setNavi() {
         finish();
 
     }
-    int num=0;
+
+    int num = 0;
+
     @OnClick(R.id.duty_evaluate_stu_head)
-    void setHead(){
+    void setHead() {
         num++;
-        switch (num%5){
+        switch (num % 5) {
             case 0:
-                GlideTools.loadImage(mActivity,R.mipmap.honor_one,top_head);
-                GlideTools.loadImage(mActivity,R.mipmap.rank_one,top_bg);
+                GlideTools.loadImage(mActivity, R.mipmap.honor_one, top_head);
+                GlideTools.loadImage(mActivity, R.mipmap.rank_one, top_bg);
                 changeBgColor(
                         ColorRgbUtil.getParseColor(parse_color[0]),
                         "一",
@@ -239,8 +323,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
                         ColorRgbUtil.getParseColor(parse_color_end[0]));
                 break;
             case 1:
-                GlideTools.loadImage(mActivity,R.mipmap.honor_two,top_head);
-                GlideTools.loadImage(mActivity,R.mipmap.rank_two,top_bg);
+                GlideTools.loadImage(mActivity, R.mipmap.honor_two, top_head);
+                GlideTools.loadImage(mActivity, R.mipmap.rank_two, top_bg);
                 changeBgColor(
                         ColorRgbUtil.getParseColor(parse_color[1]),
                         "二",
@@ -249,8 +333,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
                         ColorRgbUtil.getParseColor(parse_color_end[1]));
                 break;
             case 2:
-                GlideTools.loadImage(mActivity,R.mipmap.rank_three,top_bg);
-                GlideTools.loadImage(mActivity,R.mipmap.honor_three,top_head);
+                GlideTools.loadImage(mActivity, R.mipmap.rank_three, top_bg);
+                GlideTools.loadImage(mActivity, R.mipmap.honor_three, top_head);
                 changeBgColor(
                         ColorRgbUtil.getParseColor(parse_color[2]),
                         "二",
@@ -259,8 +343,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
                         ColorRgbUtil.getParseColor(parse_color_end[2]));
                 break;
             case 3:
-                GlideTools.loadImage(mActivity,R.mipmap.rank_four,top_bg);
-                GlideTools.loadImage(mActivity,R.mipmap.honor_four,top_head);
+                GlideTools.loadImage(mActivity, R.mipmap.rank_four, top_bg);
+                GlideTools.loadImage(mActivity, R.mipmap.honor_four, top_head);
                 changeBgColor(
                         ColorRgbUtil.getParseColor(parse_color[3]),
                         "二",
@@ -269,8 +353,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
                         ColorRgbUtil.getParseColor(parse_color_end[3]));
                 break;
             case 4:
-                GlideTools.loadImage(mActivity,R.mipmap.rank_five,top_bg);
-                GlideTools.loadImage(mActivity,R.mipmap.honor_five,top_head);
+                GlideTools.loadImage(mActivity, R.mipmap.rank_five, top_bg);
+                GlideTools.loadImage(mActivity, R.mipmap.honor_five, top_head);
                 changeBgColor(
                         ColorRgbUtil.getParseColor(parse_color[4]),
                         "二",
@@ -287,27 +371,15 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     }
 
 
-
-
-
-
-
-
-
-
-
     //配置CollapsingToolbarLayout布局
     public void initCollapsing() {
-        CollapsingToolbarLayout mCollapsingToolbarLayout =  findViewById(R.id.answer_collapsing);
+        CollapsingToolbarLayout mCollapsingToolbarLayout = findViewById(R.id.answer_collapsing);
         mCollapsingToolbarLayout.setTitle("返回");
         mCollapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
         //设置还没收缩时状态下字体颜色
         mCollapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
         //设置收缩后Toolbar上字体的颜色
     }
-
-
-
 
 
 //
@@ -441,34 +513,26 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 //
 
 
+    public String[] parse_color = new String[]{"#B88256", "#A0B8DA", "#CFA4A1", "#866AB5", "#EECE95"};
+    public String[] parse_color_start = new String[]{"#EBB77B", "#FDFDFD", "#E3CECB", "#D9D1E9", "#F2D49D"};
+    public String[] parse_color_end = new String[]{"#A16948", "#7195C9", "#830D0B", "#4A1F92", "#A17A37"};
 
-
-
-    public String[] parse_color=new String[]{"#B88256","#A0B8DA","#CFA4A1","#866AB5","#EECE95"};
-    public String[] parse_color_start=new String[]{"#EBB77B","#FDFDFD","#E3CECB","#D9D1E9","#F2D49D"};
-    public String[] parse_color_end=new String[]{"#A16948","#7195C9","#830D0B","#4A1F92","#A17A37"};
-
-    public void changeBgColor(int color,String content,String num,int startColor,int endColor){
-        stu_rank.setText(StringUtils.stringToGetTextJoint("雅生%1$s星勋章\n总计%2$s雅币",content,num));
-        ViewTool.alterVectorDrawableColor(bg_left,color);
-        ViewTool.alterVectorDrawableColor(bg_right,color);
-        ViewTool.alterGradientStartEndColor(card_bg,startColor,endColor);
+    public void changeBgColor(int color, String content, String num, int startColor, int endColor) {
+        stu_rank.setText(StringUtils.stringToGetTextJoint("雅生%1$s星勋章\n总计%2$s雅币", content, num));
+        ViewTool.alterVectorDrawableColor(bg_left, color);
+        ViewTool.alterVectorDrawableColor(bg_right, color);
+        ViewTool.alterGradientStartEndColor(card_bg, startColor, endColor);
         stu_rank.setTextColor(ColorRgbUtil.getWhite());
     }
 
 
-
-
-
-
-
-
     public WebView webView;
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("SetJavaScriptEnabled")
-    public void initEChart(){
+    public void initEChart() {
 
-        webView=findViewById(R.id.event_chart_web_view);
+        webView = findViewById(R.id.event_chart_web_view);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
@@ -496,7 +560,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            view.loadUrl( initEChartData());
+            view.loadUrl(initEChartData());
         }
 
         /**
@@ -527,9 +591,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
          * true意味着主程序接管网页加载，如果返回false让webview自己处理。
          *
          * @param view 当前webview
-         *
-         * @param url 即将重定向的url
-         *
+         * @param url  即将重定向的url
          * @return true:表示当前url已经加载完成，即使url还会重定向都不会再进行加载, false
          * 表示此url默认由系统处理，该重定向还是重定向，直到加载完成
          */
@@ -544,14 +606,12 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     }
 
 
+    public String initEChartData() {
 
+        List<String> title_name = StringUtils.listToStringSplitCharacters("遵纪守法,热爱学习,强健体魄,表率文雅,勤于劳动", ",");
+        List<String> tag_name = StringUtils.listToStringSplitCharacters("教师,家长,学生", ",");
 
-    public String  initEChartData(){
-
-        List<String> title_name=StringUtils.listToStringSplitCharacters("遵纪守法,热爱学习,强健体魄,表率文雅,勤于劳动",",");
-        List<String> tag_name= StringUtils.listToStringSplitCharacters("教师,家长,学生",",");
-
-        List<Integer> datas=new ArrayList<>();
+        List<Integer> datas = new ArrayList<>();
         datas.add(3);
         datas.add(1);
         datas.add(2);
@@ -559,50 +619,41 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         datas.add(2);
 
 
+        PileRes res = new PileRes();
 
-
-
-
-        PileRes res=new PileRes();
-
-        AngleAxis angleAxis=new AngleAxis();
+        AngleAxis angleAxis = new AngleAxis();
         res.setA(angleAxis);
 
-        RadiusAxis radiusAxis=new RadiusAxis();
+        RadiusAxis radiusAxis = new RadiusAxis();
         radiusAxis.setA("category");
         radiusAxis.setB(title_name);
         radiusAxis.setC(10);
         res.setB(radiusAxis);
 
-        Polar polar=new Polar();
+        Polar polar = new Polar();
         res.setC(polar);
 
 
-        List<Series> seriesList=new ArrayList<>();
-        for (String s:tag_name){
-            Series series=new Series("bar","polar",s,"a");
+        List<Series> seriesList = new ArrayList<>();
+        for (String s : tag_name) {
+            Series series = new Series("bar", "polar", s, "a");
             series.setB(datas);
             seriesList.add(series);
         }
         res.setD(seriesList);
 
 
-
-
-        Legend legend=new Legend();
+        Legend legend = new Legend();
         legend.setA(true);
         legend.setD(tag_name);
         res.setE(legend);
 
 
-
-        Gson gson= new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
 
         String call = StringUtils.stringToGetTextJoint(
                 "javascript:loadEcharts('%1$s')",
-                gson.toJson(res,PileRes.class)) ;
-
-
+                gson.toJson(res, PileRes.class));
 
 
         return call;
@@ -610,23 +661,21 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
+    public String year_s, month_s;
+    public CustomDatePicker customDatePicker1;
 
-    @BindView(R.id.stu_select_date)
-    AppCompatTextView select_date;
-    public String year_s,month_s;
-    public   CustomDatePicker customDatePicker1;
     @OnClick(R.id.stu_select_date)
-    void setEChartDate(){
+    void setEChartDate() {
 
-        if (customDatePicker1==null){
+        if (customDatePicker1 == null) {
 
             customDatePicker1 = new CustomDatePicker(mActivity, new CustomDatePicker.ResultHandler() {
                 @Override
                 public void handle(String time) { // 回调接口，获得选中的时间
-                    String data=time.split(" ")[0].substring(0,time.split(" ")[0].lastIndexOf("-"));
-                    year_s=data.split("-")[0];
-                    month_s=data.split("-")[1];
-                    select_date.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s",year_s,month_s));
+                    String data = time.split(" ")[0].substring(0, time.split(" ")[0].lastIndexOf("-"));
+                    year_s = data.split("-")[0];
+                    month_s = data.split("-")[1];
+                    select_date.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s", year_s, month_s));
                 }
             }, "2000-01-01 00:00", DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
             // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
@@ -634,82 +683,73 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
             customDatePicker1.setIsLoop(true); // 不允许循环滚动
         }
 
-        customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01",year_s,month_s));
+        customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01", year_s, month_s));
     }
 
     @OnClick(R.id.stu_self_event_bg)
-    void setStuEvent(){
+    void setStuEvent() {
 
 
-        Intent intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
-        intent.putExtra(Base.year_value,year_s);
-        intent.putExtra(Base.month_value,month_s);
+        Intent  intent = new Intent(mActivity, DutyEvaluateStuAddActivity.class);
+
+        intent.putExtra(Base.year_value, year_s);
+        intent.putExtra(Base.month_value, month_s);
         startActivity(intent);
+
+
     }
 
 
     @OnClick(R.id.tea_event_bg)
-    void setTea(){
-        Intent intent;
-        KeyValue keyValue=new KeyValue();
-        keyValue.setTitle("");
-        keyValue.setRight_name("2021");
-        keyValue.setRight_key("1");
-        if (true){
-            intent=new Intent(mActivity,DutyEvaluateStuAddActivity.class);
-            intent.putExtra(Base.year_value,keyValue.getRight_name());
-            intent.putExtra(Base.month_value,keyValue.getRight_key());
-            startActivity(intent);
-        }else{
+    void setTea() {
+
+        Intent intent = new Intent(mActivity, DutyEvaluateStuDetailActivity.class);
+        intent.putExtra(Base.year_value, year_s);
+        intent.putExtra(Base.month_value, month_s);
+        startActivity(intent);
 
 
-
-            intent=new Intent(mActivity,DutyEvaluateStuDetailActivity.class);
-
-            intent.putExtra(Base.year_value,keyValue.getRight_name());
-            intent.putExtra(Base.month_value,keyValue.getRight_key());
-            startActivity(intent);
-
-        }
     }
 
 
     //校内活动
     @OnClick(R.id.develop_school_in_layout)
-    void setDevelopIn(){
-        Intent intent=new Intent();
-        intent.setClass(mActivity,DutyEvaluateSchoolActivity.class);
-        intent.putExtra(Base.term_bean,selected_termBean);
-        intent.putExtra(Base.title,"校内活动");
+    void setDevelopIn() {
+        Intent intent = new Intent();
+        intent.setClass(mActivity, DutyEvaluateSchoolActivity.class);
+        intent.putExtra(Base.term_bean, selected_termBean);
+        intent.putExtra(Base.title, "校内活动");
         startActivity(intent);
     }
+
     //校内活动
     @OnClick(R.id.develop_school_out_layout)
-    void setDevelopOut(){
-        Intent intent=new Intent();
-        intent.setClass(mActivity,DutyEvaluateSchoolActivity.class);
-        intent.putExtra(Base.term_bean,selected_termBean);
-        intent.putExtra(Base.title,"校外实践");
+    void setDevelopOut() {
+        Intent intent = new Intent();
+        intent.setClass(mActivity, DutyEvaluateSchoolActivity.class);
+        intent.putExtra(Base.term_bean, selected_termBean);
+        intent.putExtra(Base.title, "校外实践");
         startActivity(intent);
     }
+
     //比赛成绩
     @OnClick(R.id.develop_school_score_layout)
-    void setDevelopScore(){
-        Intent intent=new Intent();
-        intent.setClass(mActivity,DutyEvaluateSchoolActivity.class);
-        intent.putExtra(Base.term_bean,selected_termBean);
-        intent.putExtra(Base.title,"比赛成绩");
+    void setDevelopScore() {
+        Intent intent = new Intent();
+        intent.setClass(mActivity, DutyEvaluateSchoolActivity.class);
+        intent.putExtra(Base.term_bean, selected_termBean);
+        intent.putExtra(Base.title, "比赛成绩");
         startActivity(intent);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RESULT_OK){
-            switch (requestCode){
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
                 case TagFinal.UI_TAG:
-                    assert data!=null;
-                    selected_termBean=data.getParcelableExtra(Base.data);
+                    assert data != null;
+                    selected_termBean = data.getParcelableExtra(Base.data);
                     menu_title.setText(selected_termBean.getName());
                     break;
                 case -1:
@@ -720,25 +760,18 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     }
 
 
-
-
-
-
     /**
      * -------------------------async task----------
      */
 
 
-
-
-
-
     //async task
 
     AssetsAsyncTask mTask;
-    public void getAssetsData(String file_name){
+
+    public void getAssetsData(String file_name) {
         showProgressDialog("");
-        mTask=new AssetsAsyncTask(this);
+        mTask = new AssetsAsyncTask(this);
         mTask.execute(file_name);
     }
 
@@ -746,10 +779,10 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     @Override
     public void doUpData(String content) {
         dismissProgressDialog();
-        if (StringJudge.isEmpty(content)){
-            ViewTool.showToastShort(mActivity,"没有数据，请从新尝试");
-        }else{
-            DutyEvaluateRes res=gson.fromJson(content,DutyEvaluateRes.class);
+        if (StringJudge.isEmpty(content)) {
+            ViewTool.showToastShort(mActivity, "没有数据，请从新尝试");
+        } else {
+            DutyEvaluateRes res = gson.fromJson(content, DutyEvaluateRes.class);
 //            initAdapterData(res);
             webView.setWebViewClient(new MyWebViewClient());
             webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -761,12 +794,10 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         super.onPause();
         webView.pauseTimers();
 
-        if (mTask!=null&&mTask.getStatus()==AsyncTask.Status.RUNNING) {
+        if (mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING) {
             mTask.cancel(true);
         }
     }
-
-
 
 
     @Override
@@ -779,13 +810,11 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     }
 
 
-
     @Override
     public void onResume() {
         super.onResume();
         webView.resumeTimers();
     }
-
 
 
 }

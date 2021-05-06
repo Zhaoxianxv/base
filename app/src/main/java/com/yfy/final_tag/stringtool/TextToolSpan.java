@@ -132,13 +132,20 @@ public class TextToolSpan {
     }
 
     //添加一个图片
-    public static void  $spannableAddIconColor(TextView textView,String string, Drawable resourceDrawable, int drawable_color,int txt_color){
+    public static void  $spannableAddIconColor(
+            TextView textView,
+            String string,
+            Drawable resourceDrawable,
+            int drawable_color,
+            int txt_color,
+            int start,//图片替换开始位置
+            int end//图片替换结束位置
+    )
+    {
         SpannableString sb = new SpannableString(string);
-
         sb.setSpan(new ForegroundColorSpan(txt_color), 0, sb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         Drawable drawable=DrawableLess.$tint(resourceDrawable,drawable_color);
         drawable.setBounds(0, 0, textView.getLineHeight(),textView.getLineHeight());//让图片与文字对齐
-
         ImageSpan imgSpan;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
             imgSpan = new ImageSpan(drawable,ImageSpan.ALIGN_CENTER);
@@ -146,7 +153,7 @@ public class TextToolSpan {
             imgSpan = new ImageSpan(drawable);
         }
 
-        sb.setSpan(imgSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb.setSpan(imgSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.setText(sb);
     }
 }

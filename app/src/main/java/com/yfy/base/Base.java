@@ -71,6 +71,7 @@ public class Base {
     public static final String index = "index";//
     public static final String image = "image";//
     public static final String name = "name";//
+
     public static final String num = "num";//
     public static final String mode_type = "mode_type";//
 
@@ -105,7 +106,7 @@ public class Base {
 
     public static String year="";
     public static String process_type="";
-
+    public static String type_name="";
 
 
 

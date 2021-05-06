@@ -168,7 +168,7 @@
                 android:background="@color/white"
                 android:layout_marginTop="@dimen/margin_15dp"
                 >
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="5dp"
                     android:layout_height="20dp"
                     android:layout_centerVertical="true"
@@ -189,7 +189,6 @@
                     />
         
                 <androidx.appcompat.widget.AppCompatTextView
-            
                     android:id="@+id/stu_select_date"
                     tools:text="2021/01"
                     android:layout_alignParentEnd="true"
@@ -279,7 +278,8 @@
                 <TableRow>
             
                     <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="80dp"
                         android:layout_margin="@dimen/margin_10dp"
                         app:cardCornerRadius="@dimen/margin_8dp"
@@ -301,7 +301,7 @@
                                 android:layout_height="50dp"
                                 app:srcCompat="@mipmap/fail"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="@dimen/margin_10dp"
+                                android:layout_marginStart="@dimen/margin_5dp"
                                 android:padding="@dimen/margin_3dp"
                                 app:tint="@color/Crimson"
                                 />
@@ -310,7 +310,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="@dimen/margin_5dp"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="65dp"
+                                android:layout_marginStart="60dp"
                                 android:orientation="vertical">
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:id="@+id/duty_span_stu"
@@ -326,8 +326,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="STUDENT"
-                                    android:paddingEnd="@dimen/margin_10dp"
-                                    android:textSize="@dimen/textsize11"
+                                    android:textSize="@dimen/textsize12"
                                     android:textStyle="bold"
                                     android:gravity="end"
                                     android:textColor="@color/White"
@@ -338,7 +337,8 @@
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="80dp"
                         android:layout_margin="@dimen/margin_10dp"
                         app:cardCornerRadius="@dimen/margin_8dp"
@@ -359,7 +359,7 @@
                                 android:layout_height="50dp"
                                 app:srcCompat="@mipmap/success"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="@dimen/margin_10dp"
+                                android:layout_marginStart="@dimen/margin_5dp"
                                 android:padding="3dp"
                                 app:tint="@color/LawnGreen"
                                 />
@@ -372,22 +372,21 @@
                                 android:layout_marginStart="60dp"
                                 android:orientation="vertical">
                                 <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="match_parent"
+                                    android:id="@+id/duty_span_family"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="家长评价"
-                                    android:gravity="start"
+                                    tools:text="家长评价"
+                                    android:gravity=""
                                     android:textSize="@dimen/textsize9"
                                     android:textColor="@color/white"
-                                    android:drawableEnd="@drawable/ic_east"
-                                    android:drawableTint="@color/WhiteSmoke"
                                     android:textStyle="bold"
                             
                                     />
-                                <TextView
+                                <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="PARENT"
-                                    android:textSize="@dimen/textsize11"
+                                    android:textSize="@dimen/textsize12"
                                     android:textStyle="bold"
                                     android:gravity="end"
                                     android:textColor="@color/White"
@@ -415,7 +414,7 @@
                     android:layout_height="@dimen/margin_45dp"
                     android:background="@color/white"
                     >
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="5dp"
                         android:layout_height="20dp"
                         android:layout_centerVertical="true"
@@ -434,7 +433,7 @@
                         />
                     
                     <TextView
-                        android:id="@+id/duty_evaluate_stu_normal_score_value"
+                        android:id="@+id/labour_score_value"
                         tools:text="120分3雅币"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="@dimen/margin_10dp"
@@ -452,6 +451,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
+                    android:visibility="visible"
                     android:layout_marginTop="@dimen/margin_45dp">
                     
                     <RelativeLayout
@@ -492,26 +492,24 @@
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:text="去登记"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="@dimen/margin_10dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/textsize5"
+                            android:layout_height="30dp"
+                            android:textSize="@dimen/textsize6"
                             android:gravity="center"
                             android:layout_centerVertical="true"
-                            android:background="@drawable/radius10_re"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/margin_10dp"
+                            android:background="@drawable/rectangle_radius_oval_white"
                             android:textColor="@color/white"
-                            android:paddingLeft="@dimen/margin_8dp"
-                            android:paddingRight="@dimen/margin_8dp"
-                            android:paddingBottom="@dimen/margin_2dp"
-                            android:paddingTop="@dimen/margin_2dp"
+                            android:paddingLeft="@dimen/margin_15dp"
+                            android:paddingRight="@dimen/margin_15dp"
                             android:backgroundTint="#E7C28E"
                             />
                     </RelativeLayout>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/margin_05dp"
-                        android:layout_marginStart="@dimen/margin_10dp"
+                        android:layout_marginStart="@dimen/margin_20dp"
                         android:layout_marginEnd="@dimen/margin_10dp"
                         android:background="@color/Gainsboro"/>
                     <RelativeLayout
@@ -555,24 +553,21 @@
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="@dimen/margin_10dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/textsize5"
+                            android:layout_height="@dimen/margin_30dp"
+                            android:textSize="@dimen/textsize6"
                             android:gravity="center"
-                            
                             android:layout_centerVertical="true"
-                            android:background="@drawable/radius10_re"
+                            android:background="@drawable/rectangle_radius_oval_white"
                             android:textColor="@color/white"
-                            android:paddingLeft="@dimen/margin_8dp"
-                            android:paddingRight="@dimen/margin_8dp"
-                            android:paddingBottom="@dimen/margin_2dp"
-                            android:paddingTop="@dimen/margin_2dp"
+                            android:paddingLeft="@dimen/margin_15dp"
+                            android:paddingRight="@dimen/margin_15dp"
                             android:backgroundTint="#E7C28E"
                             />
                     </RelativeLayout>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/margin_05dp"
-                        android:layout_marginStart="@dimen/margin_10dp"
+                        android:layout_marginStart="@dimen/margin_20dp"
                         android:layout_marginEnd="@dimen/margin_10dp"
                         android:background="@color/Gainsboro"/>
                     <RelativeLayout
@@ -616,16 +611,14 @@
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="@dimen/margin_10dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/textsize5"
+                            android:layout_height="@dimen/margin_30dp"
+                            android:textSize="@dimen/textsize6"
                             android:gravity="center"
                             android:layout_centerVertical="true"
-                            android:background="@drawable/radius10_re"
+                            android:background="@drawable/rectangle_radius_oval_white"
                             android:textColor="@color/white"
-                            android:paddingLeft="@dimen/margin_8dp"
-                            android:paddingRight="@dimen/margin_8dp"
-                            android:paddingBottom="@dimen/margin_2dp"
-                            android:paddingTop="@dimen/margin_2dp"
+                            android:paddingLeft="@dimen/margin_15dp"
+                            android:paddingRight="@dimen/margin_15dp"
                             android:backgroundTint="#E7C28E"
                             />
                     </RelativeLayout>
@@ -638,6 +631,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_15dp"
+                android:layout_marginBottom="@dimen/margin_60dp"
                 android:background="@color/white"
                 >
                 <RelativeLayout
@@ -645,11 +639,10 @@
                     android:layout_height="@dimen/margin_45dp"
                     >
                     
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="5dp"
                         android:layout_height="20dp"
                         android:layout_centerVertical="true"
-                        
                         android:background="#E7C28E"
                         android:layout_marginStart="@dimen/margin_10dp"
                         />
@@ -698,7 +691,8 @@
                             android:tint="@color/MediumTurquoise"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="家庭劳动（10/20）"
+                            android:id="@+id/replenish_duty_labour_title"
+                            tools:text="家庭劳动"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:gravity="bottom"
@@ -708,7 +702,8 @@
                             android:layout_marginStart="@dimen/margin_60dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="家庭劳动（10/20）"
+                            android:id="@+id/replenish_duty_labour_title_sub"
+                            tools:text="家庭劳动（10/20）"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:gravity="top"
@@ -719,28 +714,43 @@
                             android:layout_alignParentBottom="true"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="家长评"
+                            android:id="@+id/replenish_duty_labour_stu"
+                            tools:text="学生评"
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="@dimen/margin_10dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/textsize5"
+                            android:layout_height="@dimen/margin_30dp"
+                            android:textSize="@dimen/textsize6"
                             android:gravity="center"
                             
                             android:layout_centerVertical="true"
-                            android:background="@drawable/radius10_re"
+                            android:background="@drawable/rectangle_radius_oval_white"
                             android:textColor="@color/white"
-                            android:paddingLeft="@dimen/margin_8dp"
-                            android:paddingRight="@dimen/margin_8dp"
-                            android:paddingBottom="@dimen/margin_2dp"
-                            android:paddingTop="@dimen/margin_2dp"
-                            android:backgroundTint="@color/Peru"
+                            android:paddingLeft="@dimen/margin_15dp"
+                            android:paddingRight="@dimen/margin_15dp"
+                            android:backgroundTint="#E7C28E"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/replenish_duty_labour_family"
+                            tools:text="家长评"
+                            android:layout_marginEnd="@dimen/margin_10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/margin_30dp"
+                            android:textSize="@dimen/textsize6"
+                            android:gravity="center"
+                            android:layout_toStartOf="@id/replenish_duty_labour_stu"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/rectangle_radius_oval_white"
+                            android:textColor="@color/white"
+                            android:paddingLeft="@dimen/margin_15dp"
+                            android:paddingRight="@dimen/margin_15dp"
+                            android:backgroundTint="#E7C28E"
                             />
                     </RelativeLayout>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/margin_05dp"
-                        android:layout_marginStart="@dimen/margin_10dp"
+                        android:layout_marginStart="@dimen/margin_20dp"
                         android:layout_marginEnd="@dimen/margin_10dp"
                         android:background="@color/Gainsboro"/>
                     <RelativeLayout
@@ -749,7 +759,6 @@
                         >
     
                         <androidx.appcompat.widget.AppCompatImageView
-        
                             android:layout_width="@dimen/margin_60dp"
                             android:layout_height="@dimen/margin_60dp"
                             android:src="@mipmap/praise"
@@ -757,7 +766,8 @@
                             android:padding="@dimen/margin_15dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="文雅少年（10/20）"
+                            android:id="@+id/replenish_duty_young_title"
+                            tools:text="文雅少年"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:gravity="bottom"
@@ -767,7 +777,8 @@
                             android:layout_marginStart="@dimen/margin_60dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="文雅少年（10/20）"
+                            android:id="@+id/replenish_duty_young_title_sub"
+                            tools:text="文雅少年（10/20）"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:gravity="top"
@@ -778,34 +789,49 @@
                             android:layout_alignParentBottom="true"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="家长评"
+                            android:id="@+id/replenish_duty_young_stu"
+                            tools:text="学生评"
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="@dimen/margin_10dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/textsize5"
+                            android:layout_height="@dimen/margin_30dp"
+                            android:textSize="@dimen/textsize6"
                             android:gravity="center"
                             
                             android:layout_centerVertical="true"
-                            android:background="@drawable/radius10_re"
+                            android:background="@drawable/rectangle_radius_oval_white"
                             android:textColor="@color/white"
-                            android:paddingLeft="@dimen/margin_8dp"
-                            android:paddingRight="@dimen/margin_8dp"
-                            android:paddingBottom="@dimen/margin_2dp"
-                            android:paddingTop="@dimen/margin_2dp"
-                            android:backgroundTint="@color/Peru"
+                            android:paddingLeft="@dimen/margin_15dp"
+                            android:paddingRight="@dimen/margin_15dp"
+                            android:backgroundTint="#E7C28E"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/replenish_duty_young_family"
+                            tools:text="家长评"
+                            android:layout_marginEnd="@dimen/margin_10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/margin_30dp"
+                            android:textSize="@dimen/textsize6"
+                            android:gravity="center"
+                            android:layout_toStartOf="@id/replenish_duty_young_stu"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/rectangle_radius_oval_white"
+                            android:textColor="@color/white"
+                            android:paddingLeft="@dimen/margin_15dp"
+                            android:paddingRight="@dimen/margin_15dp"
+                            android:backgroundTint="#E7C28E"
                             />
                     </RelativeLayout>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/margin_05dp"
-                        android:layout_marginStart="@dimen/margin_10dp"
+                        android:layout_marginStart="@dimen/margin_20dp"
                         android:layout_marginEnd="@dimen/margin_10dp"
                         android:background="@color/Gainsboro"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:layout_marginBottom="@dimen/margin_40dp"
+                    
                         >
                         
                         <androidx.appcompat.widget.AppCompatImageView
@@ -816,7 +842,8 @@
                             android:padding="@dimen/margin_15dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="更多项目（10/20）"
+                            android:id="@+id/replenish_duty_more_title"
+                            tools:text="更多项目"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:gravity="bottom"
@@ -826,7 +853,8 @@
                             android:layout_marginStart="@dimen/margin_60dp"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="更多项目（10/20）"
+                            android:id="@+id/replenish_duty_more_title_sub"
+                            tools:text="更多项目（10/20）"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:gravity="top"
@@ -836,22 +864,38 @@
                             android:layout_marginStart="@dimen/margin_60dp"
                             android:layout_alignParentBottom="true"
                             />
+        
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="家长评"
+                            android:id="@+id/replenish_duty_more_stu"
+                            tools:text="学生评"
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="@dimen/margin_10dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/textsize5"
+                            android:layout_height="@dimen/margin_30dp"
+                            android:textSize="@dimen/textsize6"
                             android:gravity="center"
                             android:layout_centerVertical="true"
-                            android:background="@drawable/radius10_re"
+                            android:background="@drawable/rectangle_radius_oval_white"
                             android:textColor="@color/white"
-                            android:paddingLeft="@dimen/margin_8dp"
-                            android:paddingRight="@dimen/margin_8dp"
-                            android:paddingBottom="@dimen/margin_2dp"
-                            android:paddingTop="@dimen/margin_2dp"
-                            android:backgroundTint="@color/Peru"
+                            android:paddingLeft="@dimen/margin_15dp"
+                            android:paddingRight="@dimen/margin_15dp"
+                            android:backgroundTint="#E7C28E"
+                            />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/replenish_duty_more_family"
+                            tools:text="家长评"
+                            android:layout_marginEnd="@dimen/margin_10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/margin_30dp"
+                            android:textSize="@dimen/textsize6"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/rectangle_radius_oval_white"
+                            android:textColor="@color/white"
+                            android:paddingLeft="@dimen/margin_15dp"
+                            android:paddingRight="@dimen/margin_15dp"
+                            android:backgroundTint="#E7C28E"
+                            android:layout_toStartOf="@id/replenish_duty_more_stu"
                             />
                     </RelativeLayout>
                 
