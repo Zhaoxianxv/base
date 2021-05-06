@@ -8,7 +8,6 @@ package com.yfy.app.netHttp;
 public class ApiUrl {
 
 
-    public final static String SERVER_ROOT = "http://new.cdeps.sc.cn/";
 
     public final static String normal = "AppService";
     public final static String DIALOG = "dialog";

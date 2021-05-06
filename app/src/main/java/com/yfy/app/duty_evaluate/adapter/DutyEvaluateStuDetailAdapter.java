@@ -14,7 +14,7 @@ import com.google.android.material.internal.FlowLayout;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.ColorRgbUtil;
-import com.yfy.final_tag.data.ConvertObjtect;
+import com.yfy.final_tag.data.ConvertObject;
 import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
@@ -176,8 +176,8 @@ public class DutyEvaluateStuDetailAdapter extends BaseRecyclerAdapter {
                             Color.TRANSPARENT);
 
 
-                    int one=ConvertObjtect.getInstance().getInt(bean.getOne());
-                    int two=one+ConvertObjtect.getInstance().getInt(bean.getTwo());
+                    int one= ConvertObject.getInstance().getInt(bean.getOne());
+                    int two=one+ ConvertObject.getInstance().getInt(bean.getTwo());
                     int three=MathTool.randomIntMinMax(5,9);
                     Logger.e(String.valueOf(three));
                     ratingBar.setProgress(one);

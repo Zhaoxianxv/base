@@ -151,7 +151,7 @@ public class StringUtils {
 			if (title_sub.equalsIgnoreCase("storage")){
 				return path;
 			}else{
-				return Base.RETROFIT_URI+path;
+				return Base.HTTP_URI+path;
 
 			}
 		}

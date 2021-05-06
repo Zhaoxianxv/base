@@ -44,8 +44,9 @@ public class DutyEvaluateSchoolActivity extends BaseActivity {
         Logger.e(TAG);
         getData();
         initView();
-        initView();
         initSQToolbar();
+        initRecycler();
+
     }
 
     private String barTitle="";

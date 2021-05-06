@@ -32,7 +32,7 @@ import butterknife.BindView;
 public class StuReportGetVoteFragment extends BaseFragment {
 
 
-    private Gson gson;
+    public Gson gson;
 
     private StuReportVoteAdapter adapter;
     @BindView(R.id.public_recycler_single_top_recycler)
@@ -52,8 +52,8 @@ public class StuReportGetVoteFragment extends BaseFragment {
 
 
     private List<ReportTwo> tablelist=new ArrayList<>();
-    private List<ReportThree> adapter_list=new ArrayList<>();
-    private String user_type,show_type;
+    public List<ReportThree> adapter_list=new ArrayList<>();
+    public String user_type,show_type;
     private void getData() {
         tablelist = getArguments().getParcelableArrayList(Base.data);
         user_type = getArguments().getString(Base.type);
@@ -114,7 +114,7 @@ public class StuReportGetVoteFragment extends BaseFragment {
         recyclerView.setAdapter(adapter);
     }
 
-    private RecyclerView.OnScrollListener onScrollListener=new RecyclerView.OnScrollListener() {
+    public RecyclerView.OnScrollListener onScrollListener=new RecyclerView.OnScrollListener() {
         // 用来标记是否正在向上滑动
         private boolean isSlidingUpward = false;
         @Override

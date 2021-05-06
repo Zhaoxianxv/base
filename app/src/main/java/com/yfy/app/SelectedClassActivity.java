@@ -155,15 +155,7 @@ public class SelectedClassActivity extends BaseActivity {
 
     public  List<KeyValue> adapter_data_list=new ArrayList<>();
     public void getClassList() {
-        ReqEnv env = new ReqEnv();
-        ReqBody reqBody = new ReqBody();
-        UserGetClassListReq req = new UserGetClassListReq();
-        //获取参数
-        req.setSession_key(Base.user.getSession_key());
-        reqBody.userGetClassListReq = req;
-        env.body = reqBody;
-        Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_get_class_list_api(env);
-        call.enqueue(this);
+
     }
 
     @Override

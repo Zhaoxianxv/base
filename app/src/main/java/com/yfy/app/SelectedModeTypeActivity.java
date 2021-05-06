@@ -5,33 +5,20 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.yfy.AAChartCore.ChartsDemo.MainContent.AAChartMainActivity;
-import com.yfy.app.PEquality.PEQualityMainTestActivity;
-import com.yfy.app.PEquality.tea.PETeaMainActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.chart.BarChartActivity;
-import com.yfy.app.chart.EChartSActivity;
-import com.yfy.app.drawableBg.DrawableBgActivity;
-import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
-import com.yfy.app.duty_evaluate.PracticeAddActivity;
-import com.yfy.app.httppost.HttpPostMainActivity;
-import com.yfy.app.httppost.retrofitclient.RetrofitMainActivity;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
-import com.yfy.app.spannable_string.SpannableStringMainActivity;
-import com.yfy.app.voice.VoiceMainActivity;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
-import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
+import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.greendao.view.TypeActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -83,68 +70,11 @@ public class SelectedModeTypeActivity extends BaseActivity {
                 ColorRgbUtil.getGainsboro()));
         adapter=new SelectedModeTypeAdapter(mActivity);
         recyclerView.setAdapter(adapter);
-        adapter.setModeItem(new SelectedModeTypeAdapter.ModeItem() {
+        adapter.setIntentStart(new StartIntentInterface() {
             @Override
-            public void modeItem(String name) {
-                Intent intent;
-                switch (name){
-                    case "TypeActivity":
-                        startActivity(new Intent(mActivity, TypeActivity.class));
-                        break;
-                    case "CameraActivity":
-                        intent=new Intent(mActivity, PracticeAddActivity.class);
-                        startActivityForResult(intent,TagFinal.UI_ADD);                        break;
-                    case "视频":
-                        startActivity(new Intent(mActivity,BarChartActivity.class));
-                        break;
-                    case "drawable":
-                        startActivity(new Intent(mActivity,DrawableBgActivity.class));
-                        break;
-                    case "SpannableStringMainActivity":
-                        startActivity(new Intent(mActivity,SpannableStringMainActivity.class));
-                        break;
-                    case "BarChartActivity":
-                        startActivity(new Intent(mActivity,BarChartActivity.class));
-                        break;
-                    case "EChartSActivity":
-                        startActivity(new Intent(mActivity, EChartSActivity.class));
-                        break;
-                    case "Voice":
-                        startActivity(new Intent(mActivity,VoiceMainActivity.class));
-                        break;
-                    case "Version":
-                        startActivity(new Intent(mActivity,VersionDetailActivity.class));
-                        break;
-                    case "HttpPostMainActivity":
-                        startActivity(new Intent(mActivity,HttpPostMainActivity.class));
-                        break;
-                    case "RetrofitMainActivity":
-                        startActivity(new Intent(mActivity,RetrofitMainActivity.class));
-                        break;
-                    case "体育素质(tea)":
-                        intent=new Intent(mActivity, PETeaMainActivity.class);
-                        intent.putExtra(Base.title,"体育素质评价");
-                        startActivity(intent);
-                        break;
-                    case "体育素质(stu)":
-                        startActivity(new Intent(mActivity, PEQualityMainTestActivity.class));
-                        break;
-                    case "德育评价(tea)":
-                        intent=new Intent(mActivity,SelectedClassActivity.class);
-                        intent.putExtra(Base.mode_type,"duty_evaluate");
-                        startActivity(intent);
-                        break;
-                    case "德育评价(stu)":
-                        intent=new Intent(mActivity, DutyEvaluateStuMainActivity.class);
-                        startActivity(intent);
-                        break;
-                    case "AAChartMain":
-                        intent=new Intent(mActivity, AAChartMainActivity.class);
-                        startActivity(intent);
-                        break;
-                    default:
-                        break;
-                }
+            public void startIntentActivity(Intent intent) {
+
+                startActivity(intent);
             }
         });
 
@@ -153,7 +83,6 @@ public class SelectedModeTypeActivity extends BaseActivity {
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
         list.add("TypeActivity");
-        list.add("CameraActivity");
         list.add("视频");
         list.add("Version");
         list.add("Voice");

@@ -15,12 +15,22 @@ public class CPWBean implements Parcelable {
     private boolean is_show=false;
 
 
+    public CPWBean() {
+    }
+
+
     public CPWBean(String name, String id) {
         this.name = name;
         this.id = id;
     }
 
-    public CPWBean() {
+
+
+    public CPWBean(String name,String value, String id,String type) {
+        this.name = name;
+        this.id = id;
+        this.value = value;
+        this.type = type;
     }
 
     public String getValue() {

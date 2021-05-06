@@ -117,6 +117,16 @@ public class ViewTool {
         GradientDrawable one = (GradientDrawable) view.getBackground();
         one.setStroke(pxPointDp(context,1),color);
     }
+    //改变 Background Shape Drawable Solid Color <solid android:color="@color/white"/>
+    public static void alterBSDSColor(View view, int color) {
+        GradientDrawable one = (GradientDrawable) view.getBackground();
+        one.setTint(color);
+    }
+    //改变 AppCompatImageView  Shape Drawable Solid Color <solid android:color="@color/white"/>
+    public static void alterISDSColor(Context context,View view, int color) {
+//        GradientDrawable one = (GradientDrawable) view.getr();
+//        one.setTint(color);
+    }
 
 
     /**

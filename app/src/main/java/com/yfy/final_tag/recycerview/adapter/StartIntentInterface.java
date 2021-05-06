@@ -8,20 +8,20 @@ import com.yfy.final_tag.stringtool.Logger;
  * Created by zxx.
  * Date: 2021/3/5
  */
-public abstract class ItemIntentStart {
+public abstract class StartIntentInterface {
 
 
-    public void startItemIntent(Intent intent){
+    public void startIntentAdapter(Intent intent){
         if (!isFastClick()){
             return;
         }
-        startIntent(intent);
+        startIntentActivity(intent);
     }
-    public void startItemIntent(Intent intent,int tag){
+    public void startIntentAdapter(Intent intent, int tag){
         if (!isFastClick()){
             return;
         }
-        startIntent(intent,tag);
+        startIntentActivity(intent,tag);
     }
 
 
@@ -41,10 +41,10 @@ public abstract class ItemIntentStart {
         return isAllowClick;
     }
 
-    public void startIntent(Intent intent,int tag){
+    public void startIntentActivity(Intent intent, int tag){
 
     }
-    public void startIntent(Intent intent){
+    public void startIntentActivity(Intent intent){
 
     }
 

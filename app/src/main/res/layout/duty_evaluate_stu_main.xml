@@ -457,7 +457,7 @@
                     <RelativeLayout
                         android:id="@+id/develop_school_in_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="80dp"
                         >
                         
                         <androidx.appcompat.widget.AppCompatImageView
@@ -466,12 +466,13 @@
                             android:src="@mipmap/daochu"
                             android:padding="@dimen/margin_15dp"
                             android:tint="@color/MediumTurquoise"
+                            android:layout_centerVertical="true"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/develop_school_in_title"
                             tools:text="校内活动"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="40dp"
                             android:gravity="bottom"
                             android:textStyle="bold"
                             android:textSize="@dimen/textsize7"
@@ -482,7 +483,7 @@
                             android:id="@+id/develop_school_in_title_sub"
                             android:text="校内活动（10/20）"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="40dp"
                             android:gravity="top"
                             android:textSize="@dimen/textsize5"
                             android:textColor="@color/gray_text"
@@ -515,7 +516,7 @@
                     <RelativeLayout
                         android:id="@+id/develop_school_out_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="80dp"
                         >
                         
                         <androidx.appcompat.widget.AppCompatImageView
@@ -524,12 +525,13 @@
                             android:src="@mipmap/praise"
                             android:tint="@color/SandyBrown"
                             android:padding="@dimen/margin_15dp"
+                            android:layout_centerVertical="true"
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/develop_school_out_title"
                             tools:text="校外实践"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="40dp"
                             android:gravity="bottom"
                             android:textStyle="bold"
                             android:textSize="@dimen/textsize7"
@@ -540,7 +542,7 @@
                             android:id="@+id/develop_school_out_title_sub"
                             tools:text="校内活动（10/20）"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="40dp"
                             android:gravity="top"
                             android:textSize="@dimen/textsize5"
                             android:textColor="@color/gray_text"
@@ -573,7 +575,7 @@
                     <RelativeLayout
                         android:id="@+id/develop_school_score_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="80dp"
                         >
                         
                         <androidx.appcompat.widget.AppCompatImageView
@@ -582,12 +584,14 @@
                             android:src="@mipmap/icon_txt"
                             android:tint="@color/Brown"
                             android:padding="@dimen/margin_15dp"
+                            android:layout_centerVertical="true"
+    
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/develop_school_score_title"
                             tools:text="比赛成绩（10/20）"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="40dp"
                             android:gravity="bottom"
                             android:textStyle="bold"
                             android:textSize="@dimen/textsize7"
@@ -598,7 +602,7 @@
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/develop_school_score_title_sub"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="40dp"
                             android:layout_alignParentBottom="true"
                             android:layout_marginStart="@dimen/margin_60dp"
                             android:gravity="top"
@@ -680,7 +684,7 @@
                     
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="80dp"
                         >
                         
                         <androidx.appcompat.widget.AppCompatImageView
@@ -689,12 +693,14 @@
                             android:src="@mipmap/daochu"
                             android:padding="@dimen/margin_15dp"
                             android:tint="@color/MediumTurquoise"
+                            android:layout_centerVertical="true"
+    
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/replenish_duty_labour_title"
                             tools:text="家庭劳动"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="40dp"
                             android:gravity="bottom"
                             android:textStyle="bold"
                             android:textSize="@dimen/textsize7"
@@ -705,7 +711,7 @@
                             android:id="@+id/replenish_duty_labour_title_sub"
                             tools:text="家庭劳动（10/20）"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="40dp"
                             android:gravity="top"
                             android:textSize="@dimen/textsize5"
                             android:textColor="@color/gray_text"
@@ -755,7 +761,7 @@
                         android:background="@color/Gainsboro"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="80dp"
                         >
     
                         <androidx.appcompat.widget.AppCompatImageView
@@ -764,12 +770,14 @@
                             android:src="@mipmap/praise"
                             android:tint="@color/SandyBrown"
                             android:padding="@dimen/margin_15dp"
+                            android:layout_centerVertical="true"
+    
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/replenish_duty_young_title"
                             tools:text="文雅少年"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="40dp"
                             android:gravity="bottom"
                             android:textStyle="bold"
                             android:textSize="@dimen/textsize7"
@@ -780,7 +788,7 @@
                             android:id="@+id/replenish_duty_young_title_sub"
                             tools:text="文雅少年（10/20）"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="40dp"
                             android:gravity="top"
                             android:textSize="@dimen/textsize5"
                             android:textColor="@color/gray_text"
@@ -830,7 +838,7 @@
                         android:background="@color/Gainsboro"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="80dp"
                     
                         >
                         
@@ -840,12 +848,14 @@
                             android:src="@mipmap/icon_txt"
                             android:tint="@color/Brown"
                             android:padding="@dimen/margin_15dp"
+                            android:layout_centerVertical="true"
+    
                             />
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/replenish_duty_more_title"
                             tools:text="更多项目"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="40dp"
                             android:gravity="bottom"
                             android:textStyle="bold"
                             android:textSize="@dimen/textsize7"
@@ -856,7 +866,7 @@
                             android:id="@+id/replenish_duty_more_title_sub"
                             tools:text="更多项目（10/20）"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="40dp"
                             android:gravity="top"
                             android:textSize="@dimen/textsize5"
                             android:textColor="@color/gray_text"

@@ -27,7 +27,7 @@ import com.yfy.charting_mp.data.LineData;
 import com.yfy.charting_mp.data.LineDataSet;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.data.ColorRgbUtil;
-import com.yfy.final_tag.data.ConvertObjtect;
+import com.yfy.final_tag.data.ConvertObject;
 import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
@@ -281,8 +281,8 @@ public class PEAttitudeStuMainActivity extends BaseActivity {
         ArrayList<BarDataSet> yDatas = new ArrayList<>();
         int i=0;
         for (KeyValue score:values) {
-            yVals1.add(new BarEntry(ConvertObjtect.getInstance().getFloat(score.getValue()), i));
-            yVals2.add(new BarEntry(ConvertObjtect.getInstance().getFloat(score.getRight_value()), i));
+            yVals1.add(new BarEntry(ConvertObject.getInstance().getFloat(score.getValue()), i));
+            yVals2.add(new BarEntry(ConvertObject.getInstance().getFloat(score.getRight_value()), i));
             i++;
         }
 

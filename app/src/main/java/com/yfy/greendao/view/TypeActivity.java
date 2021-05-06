@@ -11,11 +11,11 @@ import com.yfy.app.net.ResEnv;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;
-import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
+import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 
@@ -71,36 +71,16 @@ public class TypeActivity extends BaseActivity {
                 ColorRgbUtil.getGainsboro()));
         adapter=new SelectedModeTypeAdapter(mActivity);
         recyclerView.setAdapter(adapter);
-        adapter.setModeItem(new SelectedModeTypeAdapter.ModeItem() {
+        adapter.setIntentStart(new StartIntentInterface() {
             @Override
-            public void modeItem(String name) {
-                Intent intent;
-                switch (name){
-                    case "stu":
-                        intent=new Intent(mActivity,AddStuActivity.class);
-                        intent.putExtra(Base.type,name);
-                        intent.putExtra(Base.title,"添加学生");
-                        startActivity(intent);
-                        break;
-                    case "class":
-                        intent=new Intent(mActivity,AddStuActivity.class);
-                        intent.putExtra(Base.type,name);
-                        intent.putExtra(Base.title,"添加班级");
-                        startActivity(intent);
-                        break;
-                    case "term":
-                        intent=new Intent(mActivity,AddStuActivity.class);
-                        intent.putExtra(Base.type,name);
-                        intent.putExtra(Base.title,"添加学期");
-                        startActivity(intent);
-                        break;
+            public void startIntentActivity(Intent intent) {
 
-                }
+                startActivity(intent);
             }
         });
 
     }
-    private List<String> list=new ArrayList<>();
+    public List<String> list=new ArrayList<>();
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
         list.add("stu");

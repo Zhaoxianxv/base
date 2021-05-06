@@ -63,6 +63,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
 
 
+
     @BindView(R.id.duty_evaluate_stu_rank)
     TextView stu_rank;
     @BindView(R.id.duty_evaluate_bg)
@@ -83,6 +84,29 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     //----------常规性评价-----------
     @BindView(R.id.stu_select_date)
     AppCompatTextView select_date;
+    public String year_s, month_s;
+    public CustomDatePicker customDatePicker1;
+    @OnClick(R.id.stu_select_date)
+    void setEChartDate() {
+
+        if (customDatePicker1 == null) {
+
+            customDatePicker1 = new CustomDatePicker(mActivity, new CustomDatePicker.ResultHandler() {
+                @Override
+                public void handle(String time) { // 回调接口，获得选中的时间
+                    String data = time.split(" ")[0].substring(0, time.split(" ")[0].lastIndexOf("-"));
+                    year_s = data.split("-")[0];
+                    month_s = data.split("-")[1];
+                    select_date.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s", year_s, month_s));
+                }
+            }, "2000-01-01 00:00", DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
+            // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
+            customDatePicker1.showSpecificTime(false); // 不显示时和分
+            customDatePicker1.setIsLoop(true); // 不允许循环滚动
+        }
+
+        customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01", year_s, month_s));
+    }
 
 
     //    排名
@@ -95,11 +119,37 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     AppCompatTextView duty_span_stu;
     @BindView(R.id.duty_span_family)
     AppCompatTextView duty_span_family;
-//
+
+
+
 //    @BindView(R.id.stu_self_event_bg)
 //    AppCompatImageView stu_event_bg;
 //    @BindView(R.id.tea_event_bg)
 //    AppCompatImageView tea_event_bg;
+
+    @OnClick(R.id.stu_self_event_bg)
+    void setStuEvent() {
+//        Intent  intent = new Intent();
+//        intent.setClass(mActivity, DutyEvaluateStuAddActivity.class);
+//        intent.putExtra(Base.year_value, year_s);
+//        intent.putExtra(Base.month_value, month_s);
+//        startActivity(intent);
+        Intent intent=new Intent();
+        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        startActivity(intent);
+    }
+
+
+    @OnClick(R.id.tea_event_bg)
+    void setTea() {
+        Intent  intent = new Intent();
+        intent.setClass(mActivity, DutyEvaluateStuDetailActivity.class);
+        intent.putExtra(Base.year_value, year_s);
+        intent.putExtra(Base.month_value, month_s);
+        startActivity(intent);
+    }
+
+
 
     //-----------------发展性评价-----------------
     @BindView(R.id.labour_score_value)
@@ -111,17 +161,44 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     @BindView(R.id.develop_school_in_title_sub)
     AppCompatTextView develop_school_in_title_sub;
 
+    @OnClick(R.id.develop_school_in_layout)
+    void setDevelopIn() {
+        Intent intent = new Intent();
+        intent.setClass(mActivity, DutyEvaluateSchoolActivity.class);
+        intent.putExtra(Base.term_bean, selected_termBean);
+        intent.putExtra(Base.title, "校内活动");
+        startActivity(intent);
+    }
+
+
     //校外实践
     @BindView(R.id.develop_school_out_title)
     AppCompatTextView develop_school_out_title;
     @BindView(R.id.develop_school_out_title_sub)
     AppCompatTextView develop_school_out_title_sub;
 
+    @OnClick(R.id.develop_school_out_layout)
+    void setDevelopOut() {
+        Intent intent = new Intent();
+        intent.setClass(mActivity, DutyEvaluateSchoolActivity.class);
+        intent.putExtra(Base.term_bean, selected_termBean);
+        intent.putExtra(Base.title, "校外实践");
+        startActivity(intent);
+    }
     //比赛成绩
     @BindView(R.id.develop_school_score_title)
     AppCompatTextView develop_school_score_title;
     @BindView(R.id.develop_school_score_title_sub)
     AppCompatTextView develop_school_score_title_sub;
+
+    @OnClick(R.id.develop_school_score_layout)
+    void setDevelopScore() {
+        Intent intent = new Intent();
+        intent.setClass(mActivity, DutyEvaluateSchoolActivity.class);
+        intent.putExtra(Base.term_bean, selected_termBean);
+        intent.putExtra(Base.title, "比赛成绩");
+        startActivity(intent);
+    }
 
 
 
@@ -143,6 +220,12 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         intent.setClass(mActivity,DutyScoreAddActivity.class);
         startActivity(intent);
     }
+    @OnClick(R.id.replenish_duty_labour_family)
+    void setLabourTea(){
+        Intent intent=new Intent();
+        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        startActivity(intent);
+    }
 
     //文雅少年
     @BindView(R.id.replenish_duty_young_title)
@@ -155,6 +238,12 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     AppCompatTextView young_stu;
     @OnClick(R.id.replenish_duty_young_stu)
     void setYoungStu(){
+        Intent intent=new Intent();
+        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.replenish_duty_young_family)
+    void setYoungTea(){
         Intent intent=new Intent();
         intent.setClass(mActivity,DutyScoreAddActivity.class);
         startActivity(intent);
@@ -173,6 +262,12 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
     @OnClick(R.id.replenish_duty_more_stu)
     void setMoreStu(){
+        Intent intent=new Intent();
+        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        startActivity(intent);
+    }
+    @OnClick(R.id.replenish_duty_more_family)
+    void setMoreTea(){
         Intent intent=new Intent();
         intent.setClass(mActivity,DutyScoreAddActivity.class);
         startActivity(intent);
@@ -251,6 +346,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
         dateBean.setValue_long(System.currentTimeMillis(), true);
         year_s = String.valueOf(dateBean.getYearName());
         month_s = String.valueOf(dateBean.getMonthNameTwo());
+
         select_date.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s", year_s, month_s));
 
 
@@ -660,87 +756,6 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     }
 
 
-
-    public String year_s, month_s;
-    public CustomDatePicker customDatePicker1;
-
-    @OnClick(R.id.stu_select_date)
-    void setEChartDate() {
-
-        if (customDatePicker1 == null) {
-
-            customDatePicker1 = new CustomDatePicker(mActivity, new CustomDatePicker.ResultHandler() {
-                @Override
-                public void handle(String time) { // 回调接口，获得选中的时间
-                    String data = time.split(" ")[0].substring(0, time.split(" ")[0].lastIndexOf("-"));
-                    year_s = data.split("-")[0];
-                    month_s = data.split("-")[1];
-                    select_date.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s", year_s, month_s));
-                }
-            }, "2000-01-01 00:00", DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
-            // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
-            customDatePicker1.showSpecificTime(false); // 不显示时和分
-            customDatePicker1.setIsLoop(true); // 不允许循环滚动
-        }
-
-        customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01", year_s, month_s));
-    }
-
-    @OnClick(R.id.stu_self_event_bg)
-    void setStuEvent() {
-
-
-        Intent  intent = new Intent(mActivity, DutyEvaluateStuAddActivity.class);
-
-        intent.putExtra(Base.year_value, year_s);
-        intent.putExtra(Base.month_value, month_s);
-        startActivity(intent);
-
-
-    }
-
-
-    @OnClick(R.id.tea_event_bg)
-    void setTea() {
-
-        Intent intent = new Intent(mActivity, DutyEvaluateStuDetailActivity.class);
-        intent.putExtra(Base.year_value, year_s);
-        intent.putExtra(Base.month_value, month_s);
-        startActivity(intent);
-
-
-    }
-
-
-    //校内活动
-    @OnClick(R.id.develop_school_in_layout)
-    void setDevelopIn() {
-        Intent intent = new Intent();
-        intent.setClass(mActivity, DutyEvaluateSchoolActivity.class);
-        intent.putExtra(Base.term_bean, selected_termBean);
-        intent.putExtra(Base.title, "校内活动");
-        startActivity(intent);
-    }
-
-    //校内活动
-    @OnClick(R.id.develop_school_out_layout)
-    void setDevelopOut() {
-        Intent intent = new Intent();
-        intent.setClass(mActivity, DutyEvaluateSchoolActivity.class);
-        intent.putExtra(Base.term_bean, selected_termBean);
-        intent.putExtra(Base.title, "校外实践");
-        startActivity(intent);
-    }
-
-    //比赛成绩
-    @OnClick(R.id.develop_school_score_layout)
-    void setDevelopScore() {
-        Intent intent = new Intent();
-        intent.setClass(mActivity, DutyEvaluateSchoolActivity.class);
-        intent.putExtra(Base.term_bean, selected_termBean);
-        intent.putExtra(Base.title, "比赛成绩");
-        startActivity(intent);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

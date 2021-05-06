@@ -1,16 +1,22 @@
 package com.yfy.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
+import com.yfy.app.duty_evaluate.PETeaHonorMainActivity;
+import com.yfy.base.Base;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
+import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
+import com.yfy.greendao.tool.NormalDataSaveTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,8 +98,26 @@ public class SelectedUserTypeAdapter extends BaseRecyclerAdapter {
                     //单/多选
 
                     initData(bean);
-                    if (modeItem!=null){
-                        modeItem.modeItem(bean);
+
+                    Intent intent=new Intent();
+                    //--------------德育评价----------
+                    switch (bean.getType()) {
+                        case Base.USER_TYPE_STU:
+                            intent.setClass(mContext, DutyEvaluateStuMainActivity.class);
+                            break;
+                        case Base.USER_TYPE_TEA:
+                            intent.setClass(mContext,SelectedClassActivity.class);
+                            intent.putExtra(Base.mode_type,"duty_evaluate");
+                            break;
+                        case "honor":
+                            intent.setClass(mContext, PETeaHonorMainActivity.class);
+                            intent.putExtra(Base.title,"荣誉比赛");
+                            intent.putExtra(Base.term_bean, NormalDataSaveTools.getInstance().getTermBeanToGreenDao());//
+                            break;
+                    }
+
+                    if (intentStart!=null){
+                        intentStart.startIntentAdapter(intent);
                     }
                 }
             });
@@ -114,17 +138,10 @@ public class SelectedUserTypeAdapter extends BaseRecyclerAdapter {
 
 
 
-    public interface UserTypeItem {
-        void modeItem(KeyValue bean);
+    public StartIntentInterface intentStart;
+
+    public void setIntentStart(StartIntentInterface intentStart) {
+        this.intentStart = intentStart;
     }
-
-    private UserTypeItem modeItem;
-
-    public void setModeItem(UserTypeItem modeItem) {
-        this.modeItem = modeItem;
-    }
-
-
-
 
 }

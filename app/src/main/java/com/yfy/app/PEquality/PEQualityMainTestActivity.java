@@ -46,7 +46,7 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
-import com.yfy.final_tag.data.ConvertObjtect;
+import com.yfy.final_tag.data.ConvertObject;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
@@ -421,10 +421,10 @@ public class PEQualityMainTestActivity extends BaseActivity {
         ArrayList<RadarEntry> yVals2 = new ArrayList<RadarEntry>();
 
         for (int i = 0; i < score.size(); i++) {
-            yVals1.add(new RadarEntry(ConvertObjtect.getInstance().getFloat(score.get(i))));
+            yVals1.add(new RadarEntry(ConvertObject.getInstance().getFloat(score.get(i))));
         }
         for (int i = 0; i < score_class.size(); i++) {
-            yVals2.add(new RadarEntry(ConvertObjtect.getInstance().getFloat(score_class.get(i))));
+            yVals2.add(new RadarEntry(ConvertObject.getInstance().getFloat(score_class.get(i))));
         }
 
         XAxis xAxis = mChart.getXAxis();

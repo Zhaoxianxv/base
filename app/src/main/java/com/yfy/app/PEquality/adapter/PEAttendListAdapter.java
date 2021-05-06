@@ -11,7 +11,7 @@ import com.yfy.app.album.MultPicShowActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
 import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
-import com.yfy.final_tag.recycerview.adapter.ItemIntentStart;
+import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
 import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.data.TagFinal;
@@ -116,22 +116,12 @@ public class PEAttendListAdapter extends BaseRecyclerAdapter {
 
 
 
-    /**
-     * 设置上拉加载状态
-     *
-     * @param loadState 1.正在加载 2.加载完成 3.加载到底
-     */
-    public void setLoadState(int loadState) {
-        this.loadState = loadState;
-        notifyDataSetChanged();
-    }
 
 
 
+    public StartIntentInterface intentStart;
 
-    public ItemIntentStart intentStart;
-
-    public void setIntentStart(ItemIntentStart intentStart) {
+    public void setIntentStart(StartIntentInterface intentStart) {
         this.intentStart = intentStart;
     }
 }

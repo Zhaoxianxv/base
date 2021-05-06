@@ -9,11 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.base.App;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
@@ -22,6 +20,7 @@ import com.yfy.final_tag.dialog.ConfirmContentWindow;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
+import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.upload.UploadDataService;
 
@@ -84,31 +83,10 @@ public class SelectedUserTypeActivity extends BaseActivity {
         adapter=new SelectedUserTypeAdapter(mActivity);
         recyclerView.setAdapter(adapter);
 
-        adapter.setModeItem(new SelectedUserTypeAdapter.UserTypeItem() {
+        adapter.setIntentStart(new StartIntentInterface() {
             @Override
-            public void modeItem(KeyValue bean) {
-                Intent intent;
-
-//                --------------德育评价----------
-                switch (bean.getType()) {
-                    case Base.USER_TYPE_STU:
-                        intent=new Intent(mActivity,DutyEvaluateStuMainActivity.class);
-                        startActivity(intent);
-                        break;
-                    case Base.USER_TYPE_TEA:
-                        intent=new Intent(mActivity,SelectedClassActivity.class);
-                        intent.putExtra(Base.mode_type,"duty_evaluate");
-                        startActivity(intent);
-                        break;
-                    case Base.type:
-//                        startActivity(new Intent(mActivity, EChartSActivity.class));
-//                        FileCamera.scanMediaAllFile(mActivity);
-                        if (UserPreferences.getInstance().getIsFirstTimeOpen()){
-                            setContentShowDialog("隐私政策","","","");
-                        }
-                        break;
-                }
-
+            public void startIntentActivity(Intent intent) {
+                startActivity(intent);
             }
         });
 
@@ -165,7 +143,11 @@ public class SelectedUserTypeActivity extends BaseActivity {
         KeyValue three=new KeyValue(TagFinal.TYPE_ITEM);
         three.setTitle("更新QQMail图片");
         three.setType(Base.type);
-        keyValue_adapter.add(three);
+//        keyValue_adapter.add(three);
+        KeyValue honor=new KeyValue(TagFinal.TYPE_ITEM);
+        honor.setTitle("honor");
+        honor.setType("honor");
+        keyValue_adapter.add(honor);
 
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);

@@ -5,13 +5,13 @@ package com.yfy.final_tag.data;
  * 转换数据类型
  *
  */
-public class ConvertObjtect {
+public class ConvertObject {
 
-    private static ConvertObjtect object;
+    private static ConvertObject object;
 
-    public static ConvertObjtect getInstance(){
+    public static ConvertObject getInstance(){
         if (object ==null){
-            object =new ConvertObjtect();
+            object =new ConvertObject();
         }
         return object;
     }

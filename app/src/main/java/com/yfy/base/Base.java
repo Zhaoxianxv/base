@@ -17,8 +17,13 @@ public class Base {
      * --------------------url tag---------------------
      */
     public static final String NAMESPACE = "http://tempuri.org/";//
+    //http
+    public final static String HTTP_URI = "http://new.cdeps.sc.cn/";
     //retrofit
-    public static final String RETROFIT_URI = "http://testeps.yfyit.com/";
+    public static final String RETROFIT_URI = "https://www.cdeps.sc.cn/";
+    //  public static final String RETROFIT_URI = "http://testeps.yfyit.com/";
+
+
     public static final String SOAP_ACTION = "SOAPAction: http://tempuri.org/AppService/";//
     public static final String POST_URI = "/AppService.svc";//
     public static final String Content_Type = "Content-Type: text/xml;charset=UTF-8";//

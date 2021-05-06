@@ -36,7 +36,7 @@ import com.yfy.final_tag.glide.RxCaptcha;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.base.Base;
-import com.yfy.final_tag.data.ConvertObjtect;
+import com.yfy.final_tag.data.ConvertObject;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWListBeanView;
@@ -260,7 +260,7 @@ LoginActivity extends BaseActivity {
 
 		req.setUsername(edit_name);
 		req.setPassword(edit_password);
-		req.setStuid(ConvertObjtect.getInstance().getInt(stu_id));
+		req.setStuid(ConvertObject.getInstance().getInt(stu_id));
 		req.setRole_id(type);
 		req.setAppid(ANDROID_ID);
 		req.setAndios("and");

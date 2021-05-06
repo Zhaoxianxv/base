@@ -1,26 +1,26 @@
 package com.yfy.app.PEquality.adapter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import com.google.android.material.internal.FlowLayout;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.cardview.widget.CardView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.android.material.internal.FlowLayout;
-import com.yfy.app.PEquality.PEHonorMainActivity;
 import com.yfy.app.album.MultPicShowActivity;
 import com.yfy.app.bean.KeyValue;
+import com.yfy.base.Base;
 import com.yfy.base.R;
 import com.yfy.charting_mp.animation.Easing;
 import com.yfy.charting_mp.charts.PieChart;
@@ -29,18 +29,16 @@ import com.yfy.charting_mp.data.Entry;
 import com.yfy.charting_mp.data.PieData;
 import com.yfy.charting_mp.data.PieDataSet;
 import com.yfy.charting_mp.utils.PercentFormatter;
+import com.yfy.final_tag.data.ColorRgbUtil;
+import com.yfy.final_tag.data.ConvertObject;
 import com.yfy.final_tag.data.MathTool;
+import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
 import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
-import com.yfy.final_tag.data.ColorRgbUtil;
-import com.yfy.final_tag.data.ConvertObjtect;
-import com.yfy.final_tag.dialog.CPWBean;
-import com.yfy.final_tag.dialog.CPWListBeanView;
-import com.yfy.final_tag.permission.PermissionTools;
-import com.yfy.final_tag.stringtool.RegexUtils;
 import com.yfy.final_tag.stringtool.StringJudge;
-import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.view.multi.MultiPictureView;
@@ -50,12 +48,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.cardview.widget.CardView;
-
 /**
  * Created by
  */
@@ -63,17 +55,10 @@ import androidx.cardview.widget.CardView;
 public class PEHonorMainAdapter extends BaseRecyclerAdapter {
 
     private List<KeyValue> dataList;
-    public PEHonorMainActivity mActivity;
-    private boolean is_stu=false;
-    public PEHonorMainAdapter(PEHonorMainActivity mContext) {
+    public PEHonorMainAdapter(Activity mContext) {
         super(mContext);
-        this.mActivity = mContext;
         this.dataList = new ArrayList<>();
 
-    }
-
-    public void setIs_stu(boolean is_stu) {
-        this.is_stu = is_stu;
     }
 
     public void setDataList(List<KeyValue> dataList) {
@@ -87,7 +72,7 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
     }
     @NonNull
     @Override
-    public ReViewHolder initViewHolder( ViewGroup parent, int position) {
+    public ReViewHolder initViewHolder(ViewGroup parent, int position) {
         //进行判断显示类型，来创建返回不同的View
         if (position == TagFinal.TYPE_ITEM) {
             return new ItemHolder(inflater.inflate(R.layout.p_e_honor_main_item_layout, parent, false));
@@ -96,7 +81,7 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
             return new ChartPieH(inflater.inflate(R.layout.public_chart_pie_layout, parent, false));
         }
         if (position == TagFinal.TYPE_FLOW_TITLE) {
-            return new TopH(inflater.inflate(R.layout.public_type_flow, parent, false));
+            return new TopH(inflater.inflate(R.layout.p_e_top_detail, parent, false));
         }
         return new ErrorHolder(parent);
     }
@@ -107,65 +92,31 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
         if (holder instanceof TopH) {
             TopH topH = (TopH) holder;
             topH.bean = dataList.get(position);
-            topH.title.setText(topH.bean.getTitle());
-            topH.right_arrow.setVisibility(View.GONE);
+            topH.setView();
             topH.setFlowLayoutTop(topH.bean.getCpwBeanArrayList());
 
         }
         if (holder instanceof ChartPieH) {
             ChartPieH pieH = (ChartPieH) holder;
-            pieH.setData();
+            pieH.bean=dataList.get(position);
+            pieH.setData(pieH.bean.getCpwBeanArrayList());
 
         }
         if (holder instanceof ItemHolder) {
             ItemHolder iHolder = (ItemHolder) holder;
             iHolder.bean = dataList.get(position);
             iHolder.index=position;
-            iHolder.initDialogList();
+
             iHolder.left_title.setText(iHolder.bean.getLeft_title());
             iHolder.left_sub.setText(iHolder.bean.getTitle());
-            iHolder.left_stu.setText(StringUtils.stringToGetTextJoint("学生%1$d",position));
-            if (is_stu){
-                iHolder.left_stu.setVisibility(View.VISIBLE);
-            }else{
-                iHolder.left_stu.setVisibility(View.GONE);
-            }
+
+
             iHolder.left_content.setText(iHolder.bean.getContent());
             iHolder.right_state.setText(iHolder.bean.getRight());
             iHolder.right_score.setText(iHolder.bean.getRight_value());
-            ViewTool.alterGradientDrawableStrokeColor(mContext,iHolder.bg,mContext.getResources().getColor(R.color.red));
-            if (StringJudge.isEmpty(iHolder.bean.getListValue())){
-//                iHolder.multi.setVisibility(View.GONE);
-                List<String> list=new ArrayList<>();
-                list.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603269209118&di=b3b911cc2c6b8e07f7ff9b163a58a641&imgtype=0&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D2404852592%2C1529663443%26fm%3D214%26gp%3D0.jpg");
-                list.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603269208912&di=b8d978a827eb0e04e906fbccc82505ab&imgtype=0&src=http%3A%2F%2Fwww.ps123.cn%2Fuploads%2Fallimg%2F140725%2F3_140725140431_1.jpg");
-                iHolder.multi.setList(list);
-            }else{
-                iHolder.multi.setVisibility(View.VISIBLE);
-                iHolder.multi.setList(iHolder.bean.getListValue());
-            }
-            switch (iHolder.bean.getRight()){
-                case "已通过":
-                    iHolder.right_score.setVisibility(View.VISIBLE);
-                    iHolder.line.setVisibility(View.VISIBLE);
-                    iHolder.line.setBackgroundColor(ColorRgbUtil.getForestGreen());
-                    iHolder.right_state.setTextColor(ColorRgbUtil.getForestGreen());
-                    iHolder.right_score.setTextColor(ColorRgbUtil.getForestGreen());
-                    ViewTool.alterGradientDrawableStrokeColor(mContext,iHolder.bg,ColorRgbUtil.getForestGreen());
-                    break;
-                case "已拒绝":
-                    iHolder.right_state.setTextColor(ColorRgbUtil.getGray());
-                    iHolder.right_score.setVisibility(View.GONE);
-                    iHolder.line.setVisibility(View.GONE);
-                    ViewTool.alterGradientDrawableStrokeColor(mContext,iHolder.bg,ColorRgbUtil.getGray());
-                    break;
-                case "待审核":
-                    iHolder.right_state.setTextColor(ColorRgbUtil.getOrangeRed());
-                    iHolder.right_score.setVisibility(View.GONE);
-                    iHolder.line.setVisibility(View.GONE);
-                    ViewTool.alterGradientDrawableStrokeColor(mContext,iHolder.bg,ColorRgbUtil.getOrangeRed());
-                    break;
-            }
+
+
+            iHolder.setView();
         }
 
     }
@@ -178,9 +129,159 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
 
 
 
+
+    private class ItemHolder extends ReViewHolder {
+        TextView left_title;
+        TextView left_sub;
+        TextView left_stu;
+        TextView left_content;
+        TextView right_state;
+        TextView right_score;
+        View line;
+        MultiPictureView multi;
+        LinearLayout bg;
+        RelativeLayout layout;
+        KeyValue bean;
+        int index;
+        ItemHolder(View itemView) {
+            super(itemView);
+            layout =  itemView.findViewById(R.id.p_e_honor_item_layout);
+            bg =  itemView.findViewById(R.id.p_e_honor_radio_group);
+            line =  itemView.findViewById(R.id.p_e_honor_right_line);
+            left_title =  itemView.findViewById(R.id.p_e_honor_left_title);
+            left_sub =  itemView.findViewById(R.id.p_e_honor_left_sub);
+            left_stu =  itemView.findViewById(R.id.p_e_honor_left_sub_name);
+            left_content =  itemView.findViewById(R.id.p_e_honor_content);
+            right_state =  itemView.findViewById(R.id.p_e_honor_right_state);
+            right_score =  itemView.findViewById(R.id.p_e_honor_right_score);
+            multi =  itemView.findViewById(R.id.p_e_honor_item_multi);
+            multi.setItemClickCallback(new MultiPictureView.ItemClickCallback() {
+                @Override
+                public void onItemClicked(@NotNull View view, int index, @NotNull ArrayList<String> uris) {
+                    Intent intent=new Intent(mContext, MultPicShowActivity.class);
+                    Bundle b=new Bundle();
+                    b.putStringArrayList(TagFinal.ALBUM_SINGE_URI,uris);
+                    b.putInt(TagFinal.ALBUM_LIST_INDEX,index);
+                    intent.putExtras(b);
+                    mContext.startActivity(intent);
+                }
+            });
+            layout.setOnClickListener(new NoFastClickListener() {
+                @Override
+                public void fastClick(View view) {
+//                    if (Base.user.getUsertype().equalsIgnoreCase(Base.USER_TYPE_TEA)){
+                    if (true){
+                        Intent intent=new Intent();
+                        intent.putExtra(Base.id,bean.getId());
+                        intent.putExtra(Base.data,bean);
+                        intent.putExtra(Base.index,index);
+                        if (intentStart!=null){
+                            intentStart.startIntentAdapter(intent);
+                        }
+                    }
+
+                }
+            });
+        }
+
+        public void setView(){
+
+//            if (Base.user.getUsertype().equalsIgnoreCase(Base.USER_TYPE_TEA)){
+            if (true){
+                left_stu.setVisibility(View.VISIBLE);
+                left_stu.setText(bean.getName());
+            }else{
+                left_stu.setVisibility(View.GONE);
+            }
+
+            if (StringJudge.isEmpty(bean.getListValue())){
+                multi.setVisibility(View.GONE);
+            }else{
+                multi.setVisibility(View.VISIBLE);
+                multi.setList(bean.getListValue());
+            }
+
+            ViewTool.alterGradientDrawableStrokeColor(mContext,bg,ColorRgbUtil.getResourceColor(mContext,R.color.red));
+            switch (bean.getRight()){
+                case "已通过":
+                    right_score.setVisibility(View.VISIBLE);
+                    line.setVisibility(View.VISIBLE);
+                    line.setBackgroundColor(ColorRgbUtil.getResourceColor(mContext,R.color.ForestGreen));
+                    right_state.setTextColor(ColorRgbUtil.getResourceColor(mContext,R.color.ForestGreen));
+                    right_score.setTextColor(ColorRgbUtil.getResourceColor(mContext,R.color.ForestGreen));
+                    ViewTool.alterGradientDrawableStrokeColor(mContext,bg,ColorRgbUtil.getResourceColor(mContext,R.color.ForestGreen));
+                    break;
+                case "已拒绝":
+                    right_state.setTextColor(ColorRgbUtil.getResourceColor(mContext,R.color.Gray));
+                    right_score.setVisibility(View.GONE);
+                    line.setVisibility(View.GONE);
+                    ViewTool.alterGradientDrawableStrokeColor(mContext,bg,ColorRgbUtil.getResourceColor(mContext,R.color.Gray));
+                    break;
+                case "待审核":
+                    right_state.setTextColor(ColorRgbUtil.getResourceColor(mContext,R.color.OrangeRed));
+                    right_score.setVisibility(View.GONE);
+                    line.setVisibility(View.GONE);
+                    ViewTool.alterGradientDrawableStrokeColor(mContext,bg,ColorRgbUtil.getResourceColor(mContext,R.color.OrangeRed));
+                    break;
+            }
+        }
+
+
+    }
+
+
+
+    class TopH extends ReViewHolder {
+        AppCompatTextView title;
+        TextView title_star;
+        FlowLayout flow;
+        RelativeLayout layout;
+        LinearLayout star_layout;
+        KeyValue bean;
+        TopH(View itemView) {
+            super(itemView);
+            star_layout =  itemView.findViewById(R.id.public_type_flow_star_layout);
+            layout =  itemView.findViewById(R.id.public_type_flow_layout);
+            title =  itemView.findViewById(R.id.public_type_flow_title);
+            title_star =  itemView.findViewById(R.id.public_type_flow_star_title);
+            flow =  itemView.findViewById(R.id.public_type_flow_flow);
+        }
+
+
+        public void setView(){
+            title_star.setText("你已进入我校体育人才储备库");
+            title.setText("已通过审核的荣誉比赛纳入数据统计");
+            if (MathTool.stringToInt(bean.getValue())>=60){
+                star_layout.setVisibility(View.VISIBLE);
+            }else{
+                star_layout.setVisibility(View.GONE);
+            }
+        }
+
+        private void setFlowLayoutTop(List<CPWBean> top_jz){
+
+            LayoutInflater mInflater = LayoutInflater.from(mContext);
+            if (flow.getChildCount()!=0){
+                flow.removeAllViews();
+            }
+            for (CPWBean bean:top_jz){
+                final TextView tv = (TextView) mInflater.inflate(R.layout.check_flowlayout_tv,flow, false);
+                tv.setTextColor(ColorRgbUtil.getGrayText());
+
+                tv.setText(bean.getName());
+
+                flow.addView(tv);
+            }
+        }
+
+
+
+    }
+
     class ChartPieH extends ReViewHolder {
         CardView cardView;
         PieChart mChart;
+        KeyValue bean;
         ChartPieH(View itemView) {
             super(itemView);
             cardView=itemView.findViewById(R.id.public_chart_pie_card);
@@ -222,36 +323,31 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
             l.setYOffset(0f);
 
         }
-        List<KeyValue> pieData=new ArrayList<>();
-        private void setData() {
-            float all_score=0f;
-            List<String> names_list=StringUtils.listToStringSplitCharacters("校级运动会,市级比赛,国家际比赛",",");
-            for (String s:names_list){
-                KeyValue bean=new KeyValue();
-                bean.setName(s);
-                bean.setValue(String.valueOf(MathTool.getRandomInt(5,15)));
-                pieData.add(bean);
-            }
-            for (KeyValue key:pieData){
-                if (!key.getValue().equals("0")){
-                    all_score+=ConvertObjtect.getInstance().getFloat(key.getValue());
-                }
-            }
+        private void setData(List<CPWBean> list) {
+
+            mChart.setCenterText(StringUtils.getTextJoint("总分:%1$s",bean.getValue()));
+
+
+
 
             ArrayList<Entry> yVals1 = new ArrayList<>();
             ArrayList<String> xVals = new ArrayList<>();
 
-            if (StringJudge.isEmpty(pieData)){
+
+
+            if (StringJudge.isEmpty(list)){
                 xVals.add("无数据");
                 yVals1.add(new Entry(5f, 0));
             }else{
-                for (int i = 0; i < pieData.size(); i++) {
-                    yVals1.add(new Entry(ConvertObjtect.getInstance().getFloat(pieData.get(i).getValue()), i));
-                    xVals.add(pieData.get(i).getName());
+                for (int i = 0; i < list.size(); i++) {
+                    CPWBean bean=list.get(i);
+                    yVals1.add(new Entry(ConvertObject.getInstance().getFloat(bean.getValue()), i));
+                    xVals.add(bean.getName());
                 }
             }
 
-            mChart.setCenterText(StringUtils.getTextJoint("总分:%1$s",MathTool.stringToGetTwoToDecimals(all_score)));
+
+
 
             PieDataSet dataSet = new PieDataSet(yVals1, "");
             dataSet.setDrawValues(true);
@@ -282,204 +378,14 @@ public class PEHonorMainAdapter extends BaseRecyclerAdapter {
             mChart.invalidate();
         }
     }
-    private class ItemHolder extends ReViewHolder {
-        TextView left_title;
-        TextView left_sub;
-        TextView left_stu;
-        TextView left_content;
-        TextView right_state;
-        TextView right_score;
-        View line;
-        MultiPictureView multi;
-        LinearLayout bg;
-        RelativeLayout layout;
-        KeyValue bean;
-        int index;
-        ItemHolder(View itemView) {
-            super(itemView);
-            layout =  itemView.findViewById(R.id.p_e_honor_item_layout);
-            bg =  itemView.findViewById(R.id.p_e_honor_radio_group);
-            line =  itemView.findViewById(R.id.p_e_honor_right_line);
-            left_title =  itemView.findViewById(R.id.p_e_honor_left_title);
-            left_sub =  itemView.findViewById(R.id.p_e_honor_left_sub);
-            left_stu =  itemView.findViewById(R.id.p_e_honor_left_sub_name);
-            left_content =  itemView.findViewById(R.id.p_e_honor_content);
-            right_state =  itemView.findViewById(R.id.p_e_honor_right_state);
-            right_score =  itemView.findViewById(R.id.p_e_honor_right_score);
-            multi =  itemView.findViewById(R.id.p_e_honor_item_multi);
-            multi.setItemClickCallback(new MultiPictureView.ItemClickCallback() {
-                @Override
-                public void onItemClicked(@NotNull View view, int index, @NotNull ArrayList<String> uris) {
-                    Intent intent=new Intent(mContext, MultPicShowActivity.class);
-                    Bundle b=new Bundle();
-                    b.putStringArrayList(TagFinal.ALBUM_SINGE_URI,uris);
-                    b.putInt(TagFinal.ALBUM_LIST_INDEX,index);
-                    intent.putExtras(b);
-                    mContext.startActivity(intent);
-                }
-            });
-            layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (bean.getType().equalsIgnoreCase(TagFinal.TRUE)){
 
 
-                        setCPWlListBeanData(bean);
-                    }
-                }
-            });
-        }
-
-        CPWListBeanView cpwListBeanView;
-        List<CPWBean> cpwBeans=new ArrayList<>();
-        private void setCPWlListBeanData(KeyValue bean){
-            switch (bean.getRight()){
-                case "已通过":
-                   return;
-                case "已拒绝":
-                    return;
-                case "待审核":
-                    if (StringJudge.isEmpty(cpwBeans)){
-                        List<String> list=StringUtils.listToStringSplitCharacters("已通过,已拒绝",",");
-                        for(String s:list){
-                            CPWBean cpwBean =new CPWBean();
-                            cpwBean.setName(s);
-                            cpwBean.setId(s);
-                            cpwBeans.add(cpwBean);
-                        }
-                    }
-                    cpwListBeanView.setDatas(cpwBeans);
-                    cpwListBeanView.showAtCenter();
-                    break;
-            }
 
 
-        }
-        private void initDialogList(){
-            cpwListBeanView = new CPWListBeanView(mActivity);
-            cpwListBeanView.setOnPopClickListener(new NoFastClickListener() {
-                @Override
-                public void onClick(CPWBean cpwBean, String type) {
-                    cpwListBeanView.dismiss();
-                    bean.setRight(cpwBean.getName());
-                    if(cpwBean.getName().equalsIgnoreCase("已通过")){
-                        bean.setRight_value("20\t分");
-                    }
-                    mActivity.showProgressDialog("");
-                    bg.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mActivity.dismissProgressDialog();
-                            notifyItemChanged(index,bean);
-                        }
-                    },1000);
 
-                }
-            });
-        }
+    public StartIntentInterface intentStart;
 
-
+    public void setIntentStart(StartIntentInterface intentStart) {
+        this.intentStart = intentStart;
     }
-
-
-
-    class TopH extends ReViewHolder {
-        AppCompatTextView title;
-        AppCompatImageView right_arrow;
-        FlowLayout flow;
-        RelativeLayout layout;
-        KeyValue bean;
-        TopH(View itemView) {
-            super(itemView);
-            layout =  itemView.findViewById(R.id.public_type_flow_layout);
-            title =  itemView.findViewById(R.id.public_type_flow_title);
-            right_arrow =  itemView.findViewById(R.id.public_type_flow_arrow);
-            flow =  itemView.findViewById(R.id.public_type_flow_flow);
-        }
-
-
-        private void setFlowLayoutTop(List<CPWBean> top_jz){
-
-            LayoutInflater mInflater = LayoutInflater.from(mContext);
-            if (flow.getChildCount()!=0){
-                flow.removeAllViews();
-            }
-            for (CPWBean bean:top_jz){
-                RelativeLayout view_layout = (RelativeLayout) mInflater.inflate(R.layout.public_detail_top_item,flow, false);
-                TextView key=view_layout.findViewById(R.id.seal_detail_key);
-                TextView value=view_layout.findViewById(R.id.seal_detail_value);
-                RatingBar ratingBar=view_layout.findViewById(R.id.seal_detail_value_star);
-                LinearLayout linearLayout=view_layout.findViewById(R.id.public_detail_txt_layout);
-                MultiPictureView multi=view_layout.findViewById(R.id.public_detail_layout_multi);
-
-                key.setTextColor(ColorRgbUtil.getGrayText());
-                value.setTextColor(ColorRgbUtil.getGrayText());
-                key.setText(bean.getName());
-                switch (bean.getType()){
-                    case "star":
-                        linearLayout.setVisibility(View.VISIBLE);
-                        multi.setVisibility(View.GONE);
-                        if (bean.getValue().equals("")){
-                            ratingBar.setRating(0f);
-                        }else{
-                            ratingBar.setRating(ConvertObjtect.getInstance().getFloat(bean.getValue()));
-                        }
-                        ratingBar.setVisibility(View.VISIBLE);
-                        value.setVisibility(View.GONE);
-                        break;
-                    case "image":
-                        linearLayout.setVisibility(View.GONE);
-                        multi.setVisibility(View.VISIBLE);
-
-//                        multi.clearItem();
-//                        if (StringJudge.isEmpty(bean.getListValue())){
-//                            multi.setVisibility(View.GONE);
-//                        }else{
-//                            multi.setVisibility(View.VISIBLE);
-//                            multi.setList(bean.getListValue());
-//                            multi.setItemClickCallback(new MultiPictureView.ItemClickCallback() {
-//                                @Override
-//                                public void onItemClicked(@NotNull View view, int index, @NotNull ArrayList<String> uris) {
-//                                    Intent intent=new Intent(mContext, MultPicShowActivity.class);
-//                                    Bundle b=new Bundle();
-//                                    b.putStringArrayList(TagFinal.ALBUM_SINGE_URI,uris);
-//                                    b.putInt(TagFinal.ALBUM_LIST_INDEX,index);
-//                                    intent.putExtras(b);
-//                                    mContext.startActivity(intent);
-//                                }
-//                            });
-//                        }
-                        break;
-                    default:
-                        linearLayout.setVisibility(View.VISIBLE);
-                        multi.setVisibility(View.GONE);
-                        value.setText(bean.getValue());
-                        ratingBar.setVisibility(View.GONE);
-                        value.setVisibility(View.VISIBLE);
-                        break;
-                }
-                final String content=bean.getValue().trim();
-                if (RegexUtils.isMobilePhoneNumber(content)){
-                    SpannableString ss = new SpannableString(content);
-                    ss.setSpan(new ClickableSpan() {
-                        @Override
-                        public void onClick(View view) {
-
-                            PermissionTools.tryTellPhone(mContext);
-                        }
-                    }, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    ss.setSpan(new ForegroundColorSpan(Color.parseColor("#FF3030")), 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    value.setText(ss);
-                    value.setMovementMethod(LinkMovementMethod.getInstance());
-                }
-                flow.addView(view_layout);
-            }
-        }
-
-
-
-    }
-
-
-
 }

@@ -21,7 +21,7 @@ import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
-import com.yfy.final_tag.recycerview.adapter.ItemIntentStart;
+import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
 import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.util.ArrayList;
@@ -85,14 +85,13 @@ public class PEAttitudeStuActivity extends BaseActivity {
 
         setAdapterData(true);
 
-        adapter_attitude.setIntentStart(new ItemIntentStart() {
+        adapter_attitude.setIntentStart(new StartIntentInterface() {
             @Override
-            public void startIntent(Intent intent) {
+            public void startIntentActivity(Intent intent) {
                 startActivity(intent);
             }
         });
-//        attend_txt.setText("请假记录");
-//        attitude_txt.setText("学习态度");
+
     }
 
 

@@ -6,17 +6,13 @@ import android.os.Bundle;
 
 import com.yfy.app.SelectedModeTypeAdapter;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.drawableBg.widget.ButtomActivity;
-import com.yfy.app.drawableBg.widget.EditTextActivity;
-import com.yfy.app.drawableBg.widget.ImageViewActivity;
-import com.yfy.app.drawableBg.widget.ListViewActivity;
-import com.yfy.app.drawableBg.widget.OrthogonActivity;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
+import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
 import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.util.ArrayList;
@@ -66,42 +62,16 @@ public class DrawableBgActivity extends BaseActivity {
                 ColorRgbUtil.getGainsboro()));
         adapter=new SelectedModeTypeAdapter(mActivity);
         recyclerView.setAdapter(adapter);
-        adapter.setModeItem(new SelectedModeTypeAdapter.ModeItem() {
+        adapter.setIntentStart(new StartIntentInterface() {
             @Override
-            public void modeItem(String name) {
-                switch (name){
-                    case "OrthogonActivity":
-                        startActivity(new Intent(mActivity,OrthogonActivity.class));
-                        break;
-                    case "EditTextActivity":
-                        startActivity(new Intent(mActivity,EditTextActivity.class));
-                        break;
-                    case "ButtomActivity":
-                        startActivity(new Intent(mActivity,ButtomActivity.class));
-                        break;
-                    case "ImageViewActivity":
-                        startActivity(new Intent(mActivity,ImageViewActivity.class));
-                        break;
-                    case "ListViewActivity":
-                        startActivity(new Intent(mActivity,ListViewActivity.class));
-                        break;
-                    case "TableLayoutActivity":
-                        startActivity(new Intent(mActivity,TableLayoutActivity.class));
-                        break;
-                    case "MaterialMainActivity":
-                        startActivity(new Intent(mActivity,MaterialMainActivity.class));
-                        break;
-                    case "SingleActivity":
-                        startActivity(new Intent(mActivity,SingleActivity.class));
-                        break;
-                    default:
-                        break;
-                }
+            public void startIntentActivity(Intent intent) {
+
+                startActivity(intent);
             }
         });
 
     }
-    private List<String> list=StringUtils.listToStringSplitCharacters("OrthogonActivity,EditTextActivity,ButtomActivity,ImageViewActivity,ListViewActivity",",");
+    public List<String> list=StringUtils.listToStringSplitCharacters("OrthogonActivity,EditTextActivity,ButtomActivity,ImageViewActivity,ListViewActivity",",");
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
         keyValue_adapter.clear();

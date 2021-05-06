@@ -1,6 +1,8 @@
 package com.yfy.app.netHttp;
 
 
+import com.yfy.base.Base;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -15,7 +17,7 @@ public enum RestClient {
 
     RestClient() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ApiUrl.SERVER_ROOT)
+                .baseUrl(Base.HTTP_URI)
                 .client(OkHttpClientParam.getClient())
                 .addConverterFactory(GsonConverterFactory.create())//这个配置是将服务器返回的json字符串转化为对象
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())//这个是用来决定你的返回值是Observable还是Call。

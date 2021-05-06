@@ -1,26 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:background="@color/Gainsboro"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/stu_report_child_check_layout"
+	android:background="@color/White"
 	xmlns:android="http://schemas.android.com/apk/res/android">
-	<CheckedTextView
+	<TextView
 		
 		android:id="@+id/stu_report_child_check"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:gravity="center_vertical"
-		android:background="@color/White"
 		android:paddingTop="@dimen/margin_8dp"
-		android:paddingLeft="@dimen/margin_10dp"
 		android:paddingBottom="@dimen/margin_8dp"
-		android:paddingRight="@dimen/margin_5dp"
-		android:text="asdasfakf;la'ggasdasdasadasdasdsfsafasfasfasfafasfafasfgggd"
-		android:checkMarkTint="@color/base_color"
+		android:layout_marginStart="@dimen/margin_5dp"
+		android:layout_marginEnd="@dimen/margin_5dp"
+		android:text=""
 		android:textSize="@dimen/textsize7"
-		android:layout_marginBottom="@dimen/margin_1dp"
-		android:checkMark="?android:attr/listChoiceIndicatorSingle" />
+	
+		/>
+	
+	<TableLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="@dimen/margin_10dp"
+		android:layout_marginStart="@dimen/margin_10dp"
+		android:layout_below="@id/stu_report_child_check"
+		android:stretchColumns="0,1,2">
+		<TableRow>
+			
+			<androidx.cardview.widget.CardView
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="30dp"
+				android:layout_margin="@dimen/margin_5dp"
+				app:cardCornerRadius="@dimen/margin_5dp"
+				
+				
+				>
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/stu_report_child_check_one"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:background="@drawable/radius5_white"
+					android:backgroundTint="@color/Gainsboro"/>
+				
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:gravity="center"
+					android:text="0"
+					android:textColor="@color/White"
+					android:textSize="@dimen/textsize7"
+					/>
+			
+			</androidx.cardview.widget.CardView>
+			<androidx.cardview.widget.CardView
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="30dp"
+				android:layout_margin="@dimen/margin_5dp"
+				app:cardCornerRadius="@dimen/margin_5dp"
+				
+				
+				>
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/stu_report_child_check_two"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:background="@drawable/radius5_white"
+					android:backgroundTint="@color/Gainsboro"/>
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:gravity="center"
+					android:text="1"
+					android:textColor="@color/White"
+					android:textSize="@dimen/textsize7"
+					/>
+			
+			</androidx.cardview.widget.CardView>
+			<androidx.cardview.widget.CardView
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="30dp"
+				android:layout_margin="@dimen/margin_5dp"
+				app:cardCornerRadius="@dimen/margin_5dp"
+				
+				
+				>
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/stu_report_child_check_three"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:background="@drawable/radius5_white"
+					android:backgroundTint="@color/Gainsboro"
+					/>
+				
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:gravity="center"
+					android:text="2"
+					android:textColor="@color/White"
+					android:textSize="@dimen/textsize7"
+					/>
+			</androidx.cardview.widget.CardView>
+		</TableRow>
+	
+	</TableLayout>
+	
 </RelativeLayout>
 
 

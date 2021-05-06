@@ -192,11 +192,11 @@
             tools:ignore="InnerclassSeparator" />
         <!-- voice -->
         
-        <!--<activity-->
-            <!--android:name="com.yfy.app.voice.VoiceMainActivity"-->
-            <!--android:screenOrientation="portrait"-->
-            <!--android:theme="@style/AppThemeInitial"-->
-            <!--tools:ignore="InnerclassSeparator" />-->
+        <activity
+            android:name="com.yfy.app.voice.VoiceMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeInitial"
+            tools:ignore="InnerclassSeparator" />
         <!-- g rpc -->
 <!--        <activity-->
 <!--            android:name="com.yfy.app.gRPC.GRpcMainActivity"-->
@@ -351,6 +351,12 @@
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.duty_evaluate.DutyScoreAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.yfy.app.duty_evaluate.PETeaHonorMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden|adjustResize"

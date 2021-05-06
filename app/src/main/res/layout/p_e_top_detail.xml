@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_marginTop="@dimen/margin_5dp"
+	android:id="@+id/public_type_flow_layout"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	
+	
+	<androidx.cardview.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="@dimen/margin_5dp"
+		android:layout_marginTop="@dimen/margin_8dp"
+		android:layout_marginEnd="@dimen/margin_8dp"
+		android:layout_marginBottom="@dimen/margin_8dp"
+		app:cardCornerRadius="@dimen/margin_5dp"
+		app:cardBackgroundColor="@color/white">
+		
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			
+			<LinearLayout
+				android:id="@+id/public_type_flow_star_layout"
+				android:layout_width="match_parent"
+				android:orientation="horizontal"
+				android:layout_marginBottom="@dimen/margin_5dp"
+				android:layout_marginTop="@dimen/margin_8dp"
+				android:gravity="center"
+				
+				android:layout_height="wrap_content">
+				<RatingBar
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="@dimen/margin_10dp"
+					android:numStars="1"
+					android:rating="1"
+					android:stepSize="1"
+					android:isIndicator="true"
+					style="@style/Base.Widget.AppCompat.RatingBar.Small" />
+				<TextView
+					android:id="@+id/public_type_flow_star_title"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textSize="@dimen/textsize6"
+					android:textColor="@color/main_red"
+					tools:text="你已进入我校体育人才储备库"/>
+				
+				<RatingBar
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:numStars="1"
+					android:rating="1"
+					android:stepSize="1"
+					android:isIndicator="true"
+					style="@style/Base.Widget.AppCompat.RatingBar.Small" />
+			</LinearLayout>
+			
+			
+			
+			<com.google.android.material.internal.FlowLayout
+				android:id="@+id/public_type_flow_flow"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/margin_10dp"
+				android:layout_marginBottom="@dimen/margin_5dp"
+				app:lineSpacing="@dimen/margin_3dp"
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				android:foregroundGravity="center"
+				android:layout_below="@id/public_type_flow_star_layout"
+				/>
+			
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="0.5dp"
+				android:background="@color/d3_gray"
+				android:layout_marginEnd="@dimen/margin_20dp"
+				android:layout_marginStart="@dimen/margin_20dp"
+				android:layout_above="@id/public_type_flow_flow"
+				/>
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/public_type_flow_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text=""
+				android:layout_marginStart="@dimen/margin_15dp"
+				android:textSize="@dimen/textsize5"
+				android:textColor="@color/GoldEnrod"
+				android:layout_below="@id/public_type_flow_flow"
+				android:layout_marginBottom="@dimen/margin_5dp"
+				/>
+		</RelativeLayout>
+	</androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>

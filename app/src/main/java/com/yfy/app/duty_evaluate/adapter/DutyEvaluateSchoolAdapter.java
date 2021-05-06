@@ -2,45 +2,24 @@ package com.yfy.app.duty_evaluate.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.android.material.internal.FlowLayout;
-import com.yfy.app.PEquality.PEHonorMainActivity;
 import com.yfy.app.album.MultPicShowActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.base.R;
-import com.yfy.charting_mp.animation.Easing;
-import com.yfy.charting_mp.charts.PieChart;
-import com.yfy.charting_mp.components.Legend;
-import com.yfy.charting_mp.data.Entry;
-import com.yfy.charting_mp.data.PieData;
-import com.yfy.charting_mp.data.PieDataSet;
-import com.yfy.charting_mp.utils.PercentFormatter;
 import com.yfy.final_tag.data.ColorRgbUtil;
-import com.yfy.final_tag.data.ConvertObjtect;
-import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWListBeanView;
 import com.yfy.final_tag.listener.NoFastClickListener;
-import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
-import com.yfy.final_tag.stringtool.RegexUtils;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
@@ -53,9 +32,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.cardview.widget.CardView;
 
 /**
  * Created by

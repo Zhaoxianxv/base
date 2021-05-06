@@ -85,7 +85,7 @@ public class DutyScoreAddActivity extends BaseActivity implements AssetsGetFileD
         initSQToolbar();
     }
 
-    private TextView title_bar;
+    public TextView title_bar;
     public void initSQToolbar(){
         assert toolbar!=null;
         title_bar=toolbar.setTitle("title");

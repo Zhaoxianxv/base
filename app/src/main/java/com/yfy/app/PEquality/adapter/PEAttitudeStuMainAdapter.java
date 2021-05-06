@@ -13,7 +13,7 @@ import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
-import com.yfy.final_tag.recycerview.adapter.ItemIntentStart;
+import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
 import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 import com.yfy.final_tag.stringtool.StringUtils;
 
@@ -96,28 +96,18 @@ public class PEAttitudeStuMainAdapter extends BaseRecyclerAdapter {
                 public void fastClick(View v) {
                     Intent intent=new Intent(mContext,PEAttitudeDetailActivity.class);
                     if (intentStart!=null){
-                        intentStart.startIntent(intent);
+                        intentStart.startIntentAdapter(intent);
                     }
 
                 }
             });
         }
     }
-    /**
-     * 设置上拉加载状态
-     *
-     * @param loadState 1.正在加载 2.加载完成 3.加载到底
-     */
-    public void setLoadState(int loadState) {
-        this.loadState = loadState;
-        notifyDataSetChanged();
-    }
 
 
+    public StartIntentInterface intentStart;
 
-    public ItemIntentStart intentStart;
-
-    public void setIntentStart(ItemIntentStart intentStart) {
+    public void setIntentStart(StartIntentInterface intentStart) {
         this.intentStart = intentStart;
     }
 }
