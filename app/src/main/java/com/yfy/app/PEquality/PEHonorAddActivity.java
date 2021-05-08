@@ -304,6 +304,7 @@ public class PEHonorAddActivity extends BaseActivity {
 
     public void addMult(String uri){
         if (uri==null) return;
+        Logger.e(uri);
         add_multi.addItem(uri);
     }
     public void setMultList(List<Photo> list){

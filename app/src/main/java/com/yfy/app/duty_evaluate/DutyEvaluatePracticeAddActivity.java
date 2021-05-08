@@ -42,8 +42,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 @SuppressLint("NonConstantResourceId")
-public class PracticeAddActivity extends BaseActivity {
-    private static final String TAG = PracticeAddActivity.class.getSimpleName();
+public class DutyEvaluatePracticeAddActivity extends BaseActivity {
+    private static final String TAG = DutyEvaluatePracticeAddActivity.class.getSimpleName();
 
 
     @BindView(R.id.p_e_honor_add_choose_date)

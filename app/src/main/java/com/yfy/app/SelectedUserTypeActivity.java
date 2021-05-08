@@ -141,9 +141,9 @@ public class SelectedUserTypeActivity extends BaseActivity {
         two.setType(Base.USER_TYPE_TEA);
         keyValue_adapter.add(two);
         KeyValue three=new KeyValue(TagFinal.TYPE_ITEM);
-        three.setTitle("更新QQMail图片");
+        three.setTitle("更新YFY图片");
         three.setType(Base.type);
-//        keyValue_adapter.add(three);
+        keyValue_adapter.add(three);
         KeyValue honor=new KeyValue(TagFinal.TYPE_ITEM);
         honor.setTitle("honor");
         honor.setType("honor");

@@ -31,8 +31,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 
-public class DutyEvaluateRecordActivity extends BaseActivity {
-    private static final String TAG = DutyEvaluateRecordActivity.class.getSimpleName();
+public class DutyEvaluateTeaRecordActivity extends BaseActivity {
+    private static final String TAG = DutyEvaluateTeaRecordActivity.class.getSimpleName();
 
     public DutyEvaluateRecodeAdapter adapter;
 

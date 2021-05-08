@@ -8,10 +8,11 @@ import android.widget.RelativeLayout;
 
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
-import com.yfy.app.duty_evaluate.PETeaHonorMainActivity;
+import com.yfy.app.duty_evaluate.DutyEvaluateTeaHonorMainActivity;
 import com.yfy.base.Base;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.glide.FileCamera;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
@@ -110,10 +111,13 @@ public class SelectedUserTypeAdapter extends BaseRecyclerAdapter {
                             intent.putExtra(Base.mode_type,"duty_evaluate");
                             break;
                         case "honor":
-                            intent.setClass(mContext, PETeaHonorMainActivity.class);
+                            intent.setClass(mContext, DutyEvaluateTeaHonorMainActivity.class);
                             intent.putExtra(Base.title,"荣誉比赛");
                             intent.putExtra(Base.term_bean, NormalDataSaveTools.getInstance().getTermBeanToGreenDao());//
                             break;
+                        case Base.type:
+                            FileCamera.scanMediaAllFile(mContext);
+                            return;
                     }
 
                     if (intentStart!=null){

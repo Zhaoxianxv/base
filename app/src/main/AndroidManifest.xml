@@ -335,7 +335,7 @@
             android:windowSoftInputMode="stateHidden|adjustResize"
             tools:ignore="InnerclassSeparator" />
         <activity
-            android:name="com.yfy.app.duty_evaluate.DutyEvaluateRecordActivity"
+            android:name="com.yfy.app.duty_evaluate.DutyEvaluateTeaRecordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />
@@ -350,13 +350,13 @@
             android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />
         <activity
-            android:name="com.yfy.app.duty_evaluate.DutyScoreAddActivity"
+            android:name="com.yfy.app.duty_evaluate.DutyEvaluateScoreAddActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden|adjustResize"
             tools:ignore="InnerclassSeparator" />
         <activity
-            android:name="com.yfy.app.duty_evaluate.PETeaHonorMainActivity"
+            android:name="com.yfy.app.duty_evaluate.DutyEvaluateTeaHonorMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden|adjustResize"
@@ -367,18 +367,13 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden|adjustResize"
             tools:ignore="InnerclassSeparator" />
-        <activity
-            android:name="com.yfy.app.duty_evaluate.DutyEvaluatePracticeActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            tools:ignore="InnerclassSeparator" />
-        <activity
+	    <activity
             android:name="com.yfy.app.duty_evaluate.DutyEvaluateSchoolActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />
         <activity
-            android:name="com.yfy.app.duty_evaluate.PracticeAddActivity"
+            android:name="com.yfy.app.duty_evaluate.DutyEvaluatePracticeAddActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />

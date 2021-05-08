@@ -15,6 +15,7 @@ import com.yfy.base.Base;
 import com.yfy.final_tag.FileTools;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.io.File;
@@ -22,6 +23,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import androidx.core.content.FileProvider;
@@ -42,6 +44,7 @@ public class FileCamera {
 
     public Intent takeCamera(){
         photo_camera= Environment.getExternalStorageDirectory().toString() + "/yfy/" + System.currentTimeMillis() + ".jpg";
+
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         FileTools.createFile(photo_camera);
@@ -118,14 +121,14 @@ public class FileCamera {
     }
     //提示本地相册更新
     public static void scanMediaAllFile(Activity context) {
-//        Logger.e(Environment.getExternalStorageDirectory().toString());
-//        Logger.e(Environment.getDataDirectory().toString());
-//        Logger.e(Environment.getDownloadCacheDirectory().toString());
-//        Logger.e(Environment.getRootDirectory().toString());
+//        Logger.e(Environment.getExternalStorageDirectory().toString());//或者外部存储媒体目录。
+//        Logger.e(Environment.getDataDirectory().toString());//获得android data的目录。
+//        Logger.e(Environment.getDownloadCacheDirectory().toString());//获得下载缓存目录。
+//        Logger.e(Environment.getRootDirectory().toString());//获得android的跟目录。
 //        Logger.e(Environment.getExternalStoragePublicDirectory().toString());
-        List<String> path_list=getAllFile(Environment.getExternalStorageDirectory().toString() + "/Download/QQMail/");
+        List<String> path_list=getAllFile(Environment.getExternalStorageDirectory().toString() + "/yfy/");
         if (StringJudge.isEmpty(path_list)){
-            ViewTool.showToastShort(context,"没有获取到路径：/Download/QQMail/");
+            ViewTool.showToastShort(context,"没有获取到路径：yfy");
             return;
         }
         int i=0;
@@ -153,6 +156,8 @@ public class FileCamera {
         File file = new File(mulu);
         File[] files = file.listFiles();
 
+        Logger.e(mulu);
+        Logger.e(files.length+"");
         if (files==null){
             return allFilePath;
         }else{
@@ -160,10 +165,21 @@ public class FileCamera {
                 return allFilePath;
             }
         }
-        for (File value : files) {
+
+
+
+        List<File> list = Arrays.asList(files);
+        List<File> fileList=new ArrayList<>(list);
+
+
+        for (File value : fileList) {
             if (value.isDirectory()) {
+                //file为目录
+               continue;
+            }else{
                 allFilePath.add(value.toString());
             }
+            Logger.e(value.toString());
         }
         return allFilePath;
     }

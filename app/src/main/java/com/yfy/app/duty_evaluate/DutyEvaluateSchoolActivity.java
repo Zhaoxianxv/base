@@ -169,7 +169,7 @@ public class DutyEvaluateSchoolActivity extends BaseActivity {
     @OnClick(R.id.public_recycler_del)
     void setAdd(){
         Intent intent=new Intent();
-        intent.setClass(mActivity,PracticeAddActivity.class);
+        intent.setClass(mActivity, DutyEvaluatePracticeAddActivity.class);
         startActivity(intent);
     }
 }

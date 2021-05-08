@@ -18,6 +18,7 @@ import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.final_tag.listener.NoFastClickListener;
+import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.greendao.bean.StuBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateTeaDoTabAdapter;
 import com.yfy.base.R;
@@ -34,6 +35,7 @@ import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
+import com.yfy.greendao.tool.NormalDataSaveTools;
 import com.yfy.view.time.CustomDatePicker;
 
 import java.util.ArrayList;
@@ -52,10 +54,45 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
     TabLayout one;
     @BindView(R.id.confirm_tab_layout_two)
     TabLayout two;
-    @BindView(R.id.public_type_choice_value)
-    AppCompatTextView selected_stu;
+    //时间
     @BindView(R.id.duty_evaluate_select_date_value)
     AppCompatTextView selected_date;
+    @OnClick(R.id.duty_evaluate_select_date_relative_layout)
+    void setSelectDate(){
+        customDatePicker1.show(DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
+    }
+
+    //stu
+    @BindView(R.id.public_type_choice_value)
+    AppCompatTextView selected_stu;
+    public List<CPWBean> scanStateList=new ArrayList<>();
+    private CPWBean select_stu=null;
+
+    @OnClick(R.id.duty_evaluate_select_stu_relative_layout)
+    void setSelectStu(){
+        closeKeyWord();
+        if (StringJudge.isEmpty(scanStateList)){
+            ViewTool.showToastShort(mActivity,"正在获取学生");
+            setStuData();
+            return;
+        }
+
+        CPWMatchListMinWidthView confirmPopWindow=new CPWMatchListMinWidthView(mActivity);
+        confirmPopWindow.setAnimationStyle(R.style.pop_window_anim_style);
+        confirmPopWindow.setOnPopClickListener(new NoFastClickListener() {
+            @Override
+            public void onClick( CPWBean bean,String type) {
+                select_stu=bean;
+                selected_stu.setText(select_stu.getName());
+                selected_stu.setTextColor(ColorRgbUtil.getBaseText());
+                recycler_layout.setVisibility(View.VISIBLE);
+            }
+        });
+        confirmPopWindow.showAtBottom(line,scanStateList);
+    }
+
+
+
 
 
     @BindView(R.id.tea_evaluate_select_score)
@@ -72,6 +109,7 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
         getData();
         initRecyclerView();
         initDatePicker();
+        setStuData();
     }
 
     public String class_id;
@@ -84,6 +122,23 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
         initView();
     }
 
+    private void setStuData(){
+        List<StuBean> stu_list= NormalDataSaveTools.getInstance().getStuBeanToGreenDao();
+        if (StringJudge.isEmpty(stu_list)){
+            stu_list=new ArrayList<>();
+
+        }
+        Logger.e(""+stu_list.size());
+        scanStateList.clear();
+        for (StuBean stuBean:stu_list){
+            CPWBean one=new CPWBean(stuBean.getStuname(),stuBean.getStuid());
+
+            scanStateList.add(one);
+        }
+
+
+
+    }
 
     public void initSQToolbar(String title) {
         assert toolbar!=null;
@@ -93,7 +148,7 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
             @Override
             public void fastClick(View view) {
 
-                Intent intent=new Intent(mActivity,DutyEvaluateRecordActivity.class);
+                Intent intent=new Intent(mActivity, DutyEvaluateTeaRecordActivity.class);
                 intent.putExtra(Base.class_bean,classBean);
                 startActivity(intent);
             }
@@ -221,38 +276,10 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
     }
 
 
-    public List<CPWBean> scanStateList=new ArrayList<>();
-    private CPWBean select_stu=null;
-
-    @OnClick(R.id.duty_evaluate_select_stu_relative_layout)
-    void setSelectStu(){
-        closeKeyWord();
-        if (StringJudge.isEmpty(scanStateList)){
-            ViewTool.showToastShort(mActivity,"正在获取学生");
-//            getClassAllStu();
-            return;
-        }
-
-        CPWMatchListMinWidthView confirmPopWindow=new CPWMatchListMinWidthView(mActivity);
-        confirmPopWindow.setAnimationStyle(R.style.pop_window_anim_style);
-        confirmPopWindow.setOnPopClickListener(new NoFastClickListener() {
-            @Override
-            public void onClick( CPWBean bean,String type) {
-                select_stu=bean;
-                selected_stu.setText(select_stu.getName());
-                selected_stu.setTextColor(ColorRgbUtil.getBaseText());
-                recycler_layout.setVisibility(View.VISIBLE);
-            }
-        });
-        confirmPopWindow.showAtBottom(line,scanStateList);
-    }
 
 
 
-    @OnClick(R.id.duty_evaluate_select_date_relative_layout)
-    void setSelectDate(){
-        customDatePicker1.show(DateUtils.getDateTime("yyyy-MM-dd HH:mm"));
-    }
+
     @OnClick(R.id.duty_evaluate_submit_button)
     void setSubmit(){
         closeKeyWord();
@@ -302,24 +329,6 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
 
     }
 
-
-    private void initStuCpData(BaseRes res){
-        scanStateList.clear();
-        if (StringJudge.isEmpty(res.getIncompletestu())){
-            select_stu=null;
-            ViewTool.showToastShort(mActivity,StringUtils.stringToGetTextJoint("未获取到\t%1$s\t的学生",classBean.getName()));
-            return;
-        }
-        for (StuBean stu:res.getIncompletestu()){
-            CPWBean bean=new CPWBean();
-            bean.setName(stu.getStuname());
-            bean.setValue(stu.getStuname());
-            bean.setId(stu.getStuid());
-            bean.setIs_select(false);
-            scanStateList.add(bean);
-        }
-
-    }
 
 
 

@@ -29,7 +29,7 @@ import butterknife.BindView;
  */
 
 @SuppressLint("NonConstantResourceId")
-public class StuReportGetVoteFragment extends BaseFragment {
+public class DutyEvaluateScoreAddFragment extends BaseFragment {
 
 
     public Gson gson;

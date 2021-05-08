@@ -135,7 +135,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 //        intent.putExtra(Base.month_value, month_s);
 //        startActivity(intent);
         Intent intent=new Intent();
-        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        intent.setClass(mActivity, DutyEvaluateScoreAddActivity.class);
         startActivity(intent);
     }
 
@@ -217,13 +217,13 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     @OnClick(R.id.replenish_duty_labour_stu)
     void setLabourStu(){
         Intent intent=new Intent();
-        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        intent.setClass(mActivity, DutyEvaluateScoreAddActivity.class);
         startActivity(intent);
     }
     @OnClick(R.id.replenish_duty_labour_family)
     void setLabourTea(){
         Intent intent=new Intent();
-        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        intent.setClass(mActivity, DutyEvaluateScoreAddActivity.class);
         startActivity(intent);
     }
 
@@ -239,13 +239,13 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     @OnClick(R.id.replenish_duty_young_stu)
     void setYoungStu(){
         Intent intent=new Intent();
-        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        intent.setClass(mActivity, DutyEvaluateScoreAddActivity.class);
         startActivity(intent);
     }
     @OnClick(R.id.replenish_duty_young_family)
     void setYoungTea(){
         Intent intent=new Intent();
-        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        intent.setClass(mActivity, DutyEvaluateScoreAddActivity.class);
         startActivity(intent);
     }
 
@@ -263,13 +263,13 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     @OnClick(R.id.replenish_duty_more_stu)
     void setMoreStu(){
         Intent intent=new Intent();
-        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        intent.setClass(mActivity, DutyEvaluateScoreAddActivity.class);
         startActivity(intent);
     }
     @OnClick(R.id.replenish_duty_more_family)
     void setMoreTea(){
         Intent intent=new Intent();
-        intent.setClass(mActivity,DutyScoreAddActivity.class);
+        intent.setClass(mActivity, DutyEvaluateScoreAddActivity.class);
         startActivity(intent);
     }
 

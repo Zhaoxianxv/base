@@ -40,8 +40,8 @@ import butterknife.OnClick;
 
 
 @SuppressLint("NonConstantResourceId")
-public class DutyScoreAddActivity extends BaseActivity implements AssetsGetFileData {
-    private static final String TAG = DutyScoreAddActivity.class.getSimpleName();
+public class DutyEvaluateScoreAddActivity extends BaseActivity implements AssetsGetFileData {
+    private static final String TAG = DutyEvaluateScoreAddActivity.class.getSimpleName();
 
     @BindView(R.id.tab_layout_button)
     Button button;
@@ -106,7 +106,7 @@ public class DutyScoreAddActivity extends BaseActivity implements AssetsGetFileD
         all_select.setChecked(!all_select.isChecked());
         String type=all_select.isChecked()? TagFinal.TRUE: TagFinal.FALSE;
         for (Fragment stuReportVoteFragment:fragments){
-            StuReportGetVoteFragment fragment= (StuReportGetVoteFragment) stuReportVoteFragment;
+            DutyEvaluateScoreAddFragment fragment= (DutyEvaluateScoreAddFragment) stuReportVoteFragment;
             fragment.selectItem(type);
         }
         for (ReportOne one:tab_title_list){
@@ -213,7 +213,7 @@ public class DutyScoreAddActivity extends BaseActivity implements AssetsGetFileD
                 for (ReportOne one:tab_title_list){
                     if (one.getTablename().equalsIgnoreCase("一级指标"))continue;
                     titles.add(one.getTablename());
-                    StuReportGetVoteFragment fragment=new StuReportGetVoteFragment();
+                    DutyEvaluateScoreAddFragment fragment=new DutyEvaluateScoreAddFragment();
                     Bundle bundle=new Bundle();
                     bundle.putParcelableArrayList(Base.data, (ArrayList<? extends Parcelable>) one.getTablelist());
                     bundle.putString(Base.type,user_type);

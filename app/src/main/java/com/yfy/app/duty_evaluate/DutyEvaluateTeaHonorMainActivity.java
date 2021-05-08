@@ -11,9 +11,7 @@ import com.yfy.app.PEquality.bean.QEHonorBean;
 import com.yfy.app.PEquality.bean.QEHonorRes;
 import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.netHttp.ApiUrl;
 import com.yfy.app.netHttp.HttpPostActivity;
-import com.yfy.app.netHttp.RestClient;
 import com.yfy.base.Base;
 import com.yfy.base.R;
 import com.yfy.final_tag.AppLess;
@@ -41,12 +39,10 @@ import java.util.Map;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
 
 
-public class PETeaHonorMainActivity extends HttpPostActivity implements AssetsGetFileData {
-    private static final String TAG = PETeaHonorMainActivity.class.getSimpleName();
+public class DutyEvaluateTeaHonorMainActivity extends HttpPostActivity implements AssetsGetFileData {
+    private static final String TAG = DutyEvaluateTeaHonorMainActivity.class.getSimpleName();
 
     private PEHonorMainAdapter adapter;
     @Override
