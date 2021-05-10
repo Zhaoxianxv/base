@@ -9,9 +9,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!--  -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    
+<!--    <uses-permission android:name="android.permission.WRITE_SETTINGS" />-->
+    
     <!-- 8.0 允许安装未知来源权限 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <!-- tell -->
@@ -188,7 +194,7 @@
         <activity
             android:name="com.yfy.app.video.PlayDirectlyActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeInitial"
+            android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />
         <!-- voice -->
         

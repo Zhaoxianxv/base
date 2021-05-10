@@ -148,10 +148,7 @@ public class PERecipeAdapter extends BaseRecyclerAdapter {
                         JCVideoPlayerStandard.startFullscreen(mContext, JCVideoPlayerStandard.class, url, title);
 
 
-//                        Intent intent=new Intent(mContext,PlayDirectlyActivity.class);
-//                        intent.putExtra(Base.value,"http://gslb.miaopai.com/stream/ed5HCfnhovu3tyIQAiv60Q__.mp4");
-//                        intent.putExtra(Base.title,"video");
-//                        mContext.startActivity(intent);
+
                     }
                 });
                 flow.addView(flow_view);

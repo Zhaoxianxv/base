@@ -1,14 +1,17 @@
 package com.yfy.final_tag.glide;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 
 
 import com.yfy.base.Base;
@@ -35,10 +38,10 @@ import androidx.core.content.FileProvider;
 public class FileCamera {
 
 
-    public Activity context;
+    public Activity mContext;
     public static String photo_camera;
     public FileCamera(Activity context) {
-        this.context = context;
+        this.mContext = context;
     }
 
 
@@ -52,7 +55,7 @@ public class FileCamera {
         Uri mOutPutFileUri ;
         //判断是否是AndroidN以及更高的版本
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            mOutPutFileUri = FileProvider.getUriForFile(context,Base.AUTHORITY, file);
+            mOutPutFileUri = FileProvider.getUriForFile(mContext,Base.AUTHORITY, file);
         }else{
             mOutPutFileUri = Uri.fromFile(file);
         }
@@ -109,18 +112,49 @@ public class FileCamera {
 //        return result;
 //    }
 
-    /**
-     *   提示本地相册更新
-     */
-
     private void scanMediaFile(File photo) {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         Uri contentUri = Uri.fromFile(photo);
         mediaScanIntent.setData(contentUri);
-        context.sendBroadcast(mediaScanIntent);
+        mContext.sendBroadcast(mediaScanIntent);
+    }
+
+    /**
+     *   提示本地相册更新
+     *
+     *
+     *   通过操作 MediaStore 类。
+     * 发送广播更新 MediaStore。
+     * 通过操作 MediaScannerConnection 类。
+     *  https://blog.csdn.net/iblue007/article/details/111835449
+     */
+
+
+    //提示更新文件夹
+    public static void scanAllFile(Activity context) {
+
+
+        File file = new File(Environment.getExternalStorageDirectory().toString() + "/yfy/");
+        File[] files = file.listFiles();
+
+        if (files==null||files.length==0){
+            ViewTool.showToastShort(context,"没有获取到路径：yfy");
+            return;
+        }
+
+
+        List<File> list = Arrays.asList(files);
+        List<File> fileList=new ArrayList<>(list);
+//
+//        for (File value : fileList) {
+//            updateFileFromDatabase(context,files);
+//        }
+
+
     }
     //提示本地相册更新
     public static void scanMediaAllFile(Activity context) {
+
 //        Logger.e(Environment.getExternalStorageDirectory().toString());//或者外部存储媒体目录。
 //        Logger.e(Environment.getDataDirectory().toString());//获得android data的目录。
 //        Logger.e(Environment.getDownloadCacheDirectory().toString());//获得下载缓存目录。
@@ -131,22 +165,62 @@ public class FileCamera {
             ViewTool.showToastShort(context,"没有获取到路径：yfy");
             return;
         }
-        int i=0;
+
         for (String path:path_list){
-            File file = new File(path);
-            scanMediaAllFile(context,file);
-            Logger.e(String.valueOf(i++));
+
+            scanMediaAllFile(context,path);
+
+
         }
 
     }
-    public static void scanMediaAllFile(Activity context,File photo) {
-        Logger.e("scanMediaAllFile");
+    //图片文件更新
+    public static void scanMediaAllFile(Activity context,String file_path) {
+
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        Uri contentUri = Uri.fromFile(photo);
+        Uri contentUri ;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            File file = new File(file_path);
+            contentUri = FileProvider.getUriForFile(context, Base.AUTHORITY, file);
+        } else {
+            contentUri=Uri.parse(file_path);
+        }
         mediaScanIntent.setData(contentUri);
         context.sendBroadcast(mediaScanIntent);
     }
 
+
+
+
+    public static String[] mimeTypes=new String[] {"video/quicktime"};
+    //删除文件后更新数据库  通知媒体库更新文件夹
+    public static void updateFileFromDatabase(Context context){
+
+        List<String> path_list=getAllFile(Environment.getExternalStorageDirectory().toString() + "/yfy/");
+        if (StringJudge.isEmpty(path_list)){
+            ViewTool.showToastShort(context,"没有获取到路径：yfy");
+            return;
+        }
+
+//        intent .setType("*/*");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //通过操作 MediaScannerConnection 类
+            MediaScannerConnection.scanFile(context, StringUtils.arraysToListString(path_list), mimeTypes, new MediaScannerConnection.OnScanCompletedListener() {
+                        public void onScanCompleted(String path, Uri uri) {
+                            Logger.e("path",path);
+                            Logger.e("uri",uri.getPath());
+
+                        }
+                    });
+        } else  {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_MEDIA_MOUNTED);
+            Uri contentUri ;
+            contentUri=Uri.parse("file://" + Environment.getExternalStorageDirectory());
+            intent.setData(contentUri);
+            context.sendBroadcast(intent);
+        }
+    }
 
     /**
      * 获取某个目录下所有的文件的全路径名的集合；
@@ -156,8 +230,6 @@ public class FileCamera {
         File file = new File(mulu);
         File[] files = file.listFiles();
 
-        Logger.e(mulu);
-        Logger.e(files.length+"");
         if (files==null){
             return allFilePath;
         }else{

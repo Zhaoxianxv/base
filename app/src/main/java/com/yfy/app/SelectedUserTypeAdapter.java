@@ -2,6 +2,7 @@ package com.yfy.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Environment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -116,7 +117,7 @@ public class SelectedUserTypeAdapter extends BaseRecyclerAdapter {
                             intent.putExtra(Base.term_bean, NormalDataSaveTools.getInstance().getTermBeanToGreenDao());//
                             break;
                         case Base.type:
-                            FileCamera.scanMediaAllFile(mContext);
+                            FileCamera.updateFileFromDatabase(mContext);
                             return;
                     }
 

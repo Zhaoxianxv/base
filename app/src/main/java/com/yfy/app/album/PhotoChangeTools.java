@@ -12,7 +12,7 @@ import com.yfy.final_tag.BuildVersionMethod;
 import java.io.File;
 
 /**
- * Created by yfyandr on 2018/5/3.
+ * Created by yfy on 2018/5/3.
  */
 
 public class PhotoChangeTools {

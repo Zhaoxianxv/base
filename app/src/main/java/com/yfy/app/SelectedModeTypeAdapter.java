@@ -24,6 +24,7 @@ import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.app.httppost.HttpPostMainActivity;
 import com.yfy.app.httppost.retrofitclient.RetrofitMainActivity;
 import com.yfy.app.spannable_string.SpannableStringMainActivity;
+import com.yfy.app.video.PlayDirectlyActivity;
 import com.yfy.app.voice.VoiceMainActivity;
 import com.yfy.base.Base;
 import com.yfy.base.R;
@@ -105,10 +106,10 @@ public class SelectedModeTypeAdapter extends BaseRecyclerAdapter {
                             intent.setClass(mContext, TypeActivity.class);
                             break;
                         case "视频":
-//                            intent.setClass(mContext, BarChartActivity.class);
-
-                            return;
-//                            break;
+                            intent.putExtra(Base.value,"https://www.w3school.com.cn/example/html5/mov_bbb.mp4");
+                            intent.putExtra(Base.title,"video");
+                            intent.setClass(mContext, PlayDirectlyActivity.class);
+                            break;
                         case "drawable":
                             intent.setClass(mContext, DrawableBgActivity.class);
                             break;

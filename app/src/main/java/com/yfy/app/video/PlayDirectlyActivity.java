@@ -6,8 +6,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.MenuItem;
+import android.view.View;
+
+import com.yfy.app.PEquality.tea.PEQualityTeaSuggestActivity;
 import com.yfy.base.Base;
 import com.yfy.base.R;
+import com.yfy.base.activity.BaseActivity;
+import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.video_jcv.JCVideoPlayer;
 import com.yfy.video_jcv.JCVideoPlayerStandard;
@@ -16,7 +22,7 @@ import com.yfy.video_jcv.JCVideoPlayerStandard;
 /**
  * Created by Nathen on 16/7/31.
  */
-public class PlayDirectlyActivity extends AppCompatActivity {
+public class PlayDirectlyActivity extends BaseActivity {
 
 
 
@@ -31,11 +37,21 @@ public class PlayDirectlyActivity extends AppCompatActivity {
         Intent intent=getIntent();
         String url=intent.getStringExtra(Base.value);
         String title=intent.getStringExtra(Base.title);
+        initSQToolbar(title);
         JCVideoPlayerStandard.startFullscreen(this, JCVideoPlayerStandard.class, url, title);
 
 
 
     }
+
+
+    private void initSQToolbar(String title) {
+        assert toolbar!=null;
+        toolbar.setTitle(title);
+
+    }
+
+
 
     //配置video_jvc
     @Override
