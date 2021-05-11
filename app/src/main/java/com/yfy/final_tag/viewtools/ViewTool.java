@@ -8,6 +8,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ClipDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
@@ -19,6 +20,7 @@ import android.text.InputType;
 import android.text.Selection;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -44,6 +46,15 @@ public class ViewTool {
     }
 
 
+
+    //button改变按钮颜色
+    public static void setButtonBgColor(Button button , int color){
+        button.getBackground().setColorFilter(color, PorterDuff.Mode.DARKEN);
+    }
+    public static void setButtonBgColor(Button button ,int color,int text_color){
+        button.setTextColor(text_color);
+        button.getBackground().setColorFilter(color, PorterDuff.Mode.DARKEN);
+    }
 
 
 
