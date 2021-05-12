@@ -10,8 +10,8 @@ android {
         applicationId "com.yfy.base"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 119
-        versionName "119"
+        versionCode 120
+        versionName "120"
         multiDexEnabled true  //
         renderscriptSupportModeEnabled true
         vectorDrawables.useSupportLibrary = true//和support-vector-drawable 用于vector文件支持
@@ -86,7 +86,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
@@ -114,8 +114,8 @@ dependencies {
     implementation 'com.ogaclejapan.smarttablayout:library:1.6.0@aar'
     implementation 'com.ogaclejapan.smarttablayout:utils-v4:1.6.0@aar'
 
-    //jcv
-    implementation 'com.google.android.exoplayer:exoplayer:r2.0.4'
+    //jcv视频
+    implementation 'com.google.android.exoplayer:exoplayer:2.13.3'
     //e chart
     implementation 'com.github.abel533:ECharts:3.0.0.2'
 
@@ -133,7 +133,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
-    implementation('com.squareup.retrofit2:converter-simplexml:2.1.0') {
+    implementation('com.squareup.retrofit2:converter-simplexml:2.3.0') {
         exclude group: 'xpp3', module: 'xpp3'
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
