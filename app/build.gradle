@@ -114,8 +114,8 @@ dependencies {
     implementation 'com.ogaclejapan.smarttablayout:library:1.6.0@aar'
     implementation 'com.ogaclejapan.smarttablayout:utils-v4:1.6.0@aar'
 
-    //jcv视频
-    implementation 'com.google.android.exoplayer:exoplayer:2.13.3'
+    //jcv
+    implementation 'com.google.android.exoplayer:exoplayer:r2.0.4'
     //e chart
     implementation 'com.github.abel533:ECharts:3.0.0.2'
 

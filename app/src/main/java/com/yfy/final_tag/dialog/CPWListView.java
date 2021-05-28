@@ -70,8 +70,8 @@ public class CPWListView extends PopupWindow  {
 //                int index = state_list .getCheckedItemPosition();     // 即获取选中位置
                 if(ListView.INVALID_POSITION != position) {
 
-                    if (listenner!=null){
-                        listenner.onClick(position,type);
+                    if (listener !=null){
+                        listener.onClick(position,type);
                     }
                 }
             }
@@ -188,13 +188,13 @@ public class CPWListView extends PopupWindow  {
 
 
 
-	private OnPopClickListenner listenner = null;
+	private PopClickListener listener = null;
 
-	public void setOnPopClickListenner(OnPopClickListenner listenner) {
-		this.listenner = listenner;
+	public void setOnPopClickListener(PopClickListener listener) {
+		this.listener = listener;
 	}
 
-	public static interface OnPopClickListenner {
+	public static interface PopClickListener {
 		public void onClick(int index, String type);
 	}
 }

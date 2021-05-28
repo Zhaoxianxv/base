@@ -19,12 +19,14 @@ public abstract class NoFastClickListener implements View.OnClickListener , PopC
     public void popClick(View view) {
         if (isFastClick()){
             fastClick(view);
+            fastPopClick(view);
         }
     }
     @Override
     public void popClick(CPWBean cpwBean, String type) {
         if (isFastClick()){
             onClick(cpwBean,type);
+            fastPopClick(cpwBean, type);
         }
     }
 
@@ -36,6 +38,7 @@ public abstract class NoFastClickListener implements View.OnClickListener , PopC
             view.setTag(position);
             fastClick(view);
             onClick(view,position);
+            fastMenuClick(view,position);
         }
     }
 
@@ -61,6 +64,18 @@ public abstract class NoFastClickListener implements View.OnClickListener , PopC
     }
 
     public void onClick(CPWBean cpwBean, String type) {
+
+    }
+
+    public void fastMenuClick(View view, int position) {
+
+    }
+    public void fastPopClick(View view){
+
+
+    }
+    public void fastPopClick(CPWBean cpwBean, String type){
+
 
     }
 }
