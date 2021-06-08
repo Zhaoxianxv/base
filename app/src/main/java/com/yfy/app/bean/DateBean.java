@@ -12,14 +12,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateBean implements Parcelable {
-    private static final long DAY_LONG=86400000;
-    private String name;
-    private String name_year_month;
-    private String value;
-    private long value_long;
-    private boolean is_time=false;
-    private SimpleDateFormat name_f ;
-    private SimpleDateFormat value_f ;
+    public static final long DAY_LONG=86400000;
+    public String name;
+    public String name_year_month;
+    public String value;
+    public long value_long;
+    public boolean is_time=false;
+    public SimpleDateFormat name_f ;
+    public SimpleDateFormat value_f ;
     public DateBean(String name, String value) {
         this.name = name;
         this.value = value;
@@ -64,59 +64,6 @@ public class DateBean implements Parcelable {
     }
 
 
-
-    public int getYearName(){
-        Calendar calendar = Calendar.getInstance();
-        Date date = new Date(value_long);
-        calendar.setTime(date);
-        return calendar.get(Calendar.YEAR);
-    }
-    public int getMonthName(){
-        Calendar calendar = Calendar.getInstance();
-        Date date = new Date(value_long);
-        calendar.setTime(date);
-        return calendar.get(Calendar.MONTH)+1;
-    }
-    public String getMonthNameTwo(){
-        Calendar calendar = Calendar.getInstance();
-        Date date = new Date(value_long);
-        calendar.setTime(date);
-        int num=calendar.get(Calendar.MONTH)+1;
-        String content="";
-        if (num<10){
-            content=StringUtils.stringToGetTextJoint("0%1$d",num);
-        }else{
-            content=String.valueOf(num);
-        }
-        return content;
-    }
-
-    public void addOneDay(){
-        value_long+=DAY_LONG;
-        Date date = new Date(value_long);
-        if (is_time){
-            name=name_f.format(date);
-            value=value_f.format(date);
-        }else{
-            name=name_f.format(date);
-            value=value_f.format(date);
-        }
-    }
-
-
-    public String getWeekOfDate() {
-        String[] weekOfDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
-        Calendar calendar = Calendar.getInstance();
-        Date date = new Date(value_long);
-        if(date != null){
-            calendar.setTime(date);
-        }
-        int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-        if (w < 0){
-            w = 0;
-        }
-        return weekOfDays[w];
-    }
 
     public String getName() {
         return name;
@@ -187,4 +134,107 @@ public class DateBean implements Parcelable {
             return new DateBean[size];
         }
     };
+
+
+
+
+
+
+
+
+
+
+    //------------tool--------------
+
+    public void addOneDay(){
+        value_long+=DAY_LONG;
+        Date date = new Date(value_long);
+        if (is_time){
+            name=name_f.format(date);
+            value=value_f.format(date);
+        }else{
+            name=name_f.format(date);
+            value=value_f.format(date);
+        }
+    }
+
+    public int getYearName(){
+        Calendar calendar = Calendar.getInstance();
+        Date date = new Date(value_long);
+        calendar.setTime(date);
+        return calendar.get(Calendar.YEAR);
+    }
+    public int getMonthName(){
+        Calendar calendar = Calendar.getInstance();
+        Date date = new Date(value_long);
+        calendar.setTime(date);
+        return calendar.get(Calendar.MONTH)+1;
+    }
+    public int getDayName(){
+        Calendar calendar = Calendar.getInstance();
+        Date date = new Date(value_long);
+        calendar.setTime(date);
+        return calendar.get(Calendar.DAY_OF_MONTH);
+    }
+    public String getMonthNameTwo(){
+        Calendar calendar = Calendar.getInstance();
+        Date date = new Date(value_long);
+        calendar.setTime(date);
+        int num=calendar.get(Calendar.MONTH)+1;
+        String content="";
+        if (num<10){
+            content= StringUtils.stringToGetTextJoint("0%1$d",num);
+        }else{
+            content=String.valueOf(num);
+        }
+        return content;
+    }
+
+
+
+    public String getWeekOfDate() {
+        String[] weekOfDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+        Calendar calendar = Calendar.getInstance();
+        Date date = new Date(value_long);
+        if(date != null){
+            calendar.setTime(date);
+        }
+        int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+        if (w < 0){
+            w = 0;
+        }
+        return weekOfDays[w];
+    }
+
+    public boolean isCurrentDay() {
+        int curYear = getYear();
+        int curMonth = getMonth();
+        int curDay = getCurrentMonthDay();
+        return getYearName() == curYear && getMonthName() == curMonth && getDayName() == curDay;
+    }
+    public static int getYear() {
+        return Calendar.getInstance().get(Calendar.YEAR);
+    }
+
+    public static int getMonth() {
+        return Calendar.getInstance().get(Calendar.MONTH) + 1;
+    }
+
+    public static int getCurrentMonthDay() {
+        return Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+    }
+
+    public static int getWeekDay() {
+        return Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1;
+    }
+
+
+    public static int getHour() {
+        return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+    }
+
+    public static int getMinute() {
+        return Calendar.getInstance().get(Calendar.MINUTE);
+    }
+
 }
