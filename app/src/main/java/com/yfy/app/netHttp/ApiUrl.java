@@ -25,6 +25,8 @@ public class ApiUrl {
 
     public final static String USER_GET_TOKEN= "AppService/gettoken";
     public final static String USER_LOGIN= "AppService/login";
+    public final static String USER_GET_STU_TO_SEARCH_CHAR= "AppService/get_stulistyfy";
+    public final static String USER_RESET_PASS_WORD_TO_ADMIN= "AppService/set_stupassyfy";
     //--------------------school news-------------------------
     public final static String SCHOOL_GET_NEWS_MENU= "AppService/get_newslist_menu";
     public static final String BASE_SAVE_IMG ="AppService/saveimg";//

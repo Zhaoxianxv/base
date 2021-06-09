@@ -194,6 +194,21 @@ public class StringUtils {
 	}
 
 	/**
+	 * 文件后缀名
+	 */
+	public static String getFileSuffixName(String value) {
+		if (booleanToInclude(value,".")){
+			//获取最后一个.的位置
+			int lastIndexOf = value.lastIndexOf(".");
+			//获取文件的后缀名 .jpg
+//			Logger.e(value.substring(lastIndexOf));
+			return value.substring(lastIndexOf);
+		}else{
+			return "";
+		}
+	}
+
+	/**
 	 * 将子节数转换为Kb
 	 */
 	public static String convertBytesToOther(long byteSize) {

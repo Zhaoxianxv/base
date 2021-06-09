@@ -1,22 +1,16 @@
-/**
- * 
- */
 package com.yfy.app.album;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.yfy.base.R;
 import com.yfy.final_tag.glide.GlideTools;
-import com.yfy.final_tag.viewtools.ViewUtils;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.glide.Photo;
 import com.yfy.view.CheckImageView;
 
@@ -27,7 +21,6 @@ import java.util.List;
  * @author yfy1
 
  * @version 1.0
- * @Desprition
  */
 public class AlbumOneAdapter extends BaseAdapter {
 
@@ -38,7 +31,6 @@ public class AlbumOneAdapter extends BaseAdapter {
 	private boolean single;
 	public Context context;
 	public int mScreenWidth;
-	private int itemWidth = 10;
 
 	public AlbumOneAdapter(Context context, List<Photo> list) {
 		photoList = list;
@@ -77,9 +69,7 @@ public class AlbumOneAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.album_one_item_gridview, null);
 			holder.photo =  convertView.findViewById(R.id.photo);
 			holder.selected_iv =  convertView.findViewById(R.id.selected_iv);
-			LayoutParams params =  holder.photo.getLayoutParams();
-			params.width = itemWidth;
-			params.height = itemWidth;
+
 			holder.photo.requestLayout();
 			convertView.setTag(holder);
 		} else {
@@ -91,10 +81,10 @@ public class AlbumOneAdapter extends BaseAdapter {
 
 
 		GlideTools.loadImage(context,photoList.get(position).getPath(),holder.photo);
-		convertView.setOnClickListener(new OnClickListener() {
+		convertView.setOnClickListener(new NoFastClickListener() {
 
 			@Override
-			public void onClick(View v) {
+			public void fastClick(View v) {
 				onInnerClick(v, position2, photoList);
 			}
 		});
@@ -158,18 +148,19 @@ public class AlbumOneAdapter extends BaseAdapter {
 		public abstract void onChecked(View v, List<Photo> list);
 	}
 
-	public void initItemSize(GridView gridView) {
-		itemWidth = (mScreenWidth - gridView.getPaddingLeft() - gridView.getPaddingRight() - ViewUtils.getHorizontalSpacing(gridView)) / 3;
+
+	private class ViewHolder {
+		public ImageView photo;
+		public CheckImageView selected_iv;
 	}
+
+
+
 
 	public void notifyDataSetChanged(List<Photo> list) {
 		this.photoList = list;
 		super.notifyDataSetChanged();
 	}
 
-	private class ViewHolder {
-		public ImageView photo;
-		public CheckImageView selected_iv;
-	}
 }
 

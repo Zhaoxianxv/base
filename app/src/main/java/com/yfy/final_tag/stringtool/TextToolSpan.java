@@ -77,7 +77,37 @@ public class TextToolSpan {
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         );
     }
-
+    //修改字体颜色
+    public static void  $spannableStringColor(TextView tv,String startString, int color){
+        SpannableString spannableString = new SpannableString(startString);
+        spannableString.setSpan(
+                new ForegroundColorSpan(color),
+                0,
+                spannableString.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        tv.setText(spannableString);
+    }
+    //修改字体颜色
+    public static void  $spannableStringColor(TextView tv,String oneString, int oneColor,String twoString,int twoColor){
+        SpannableStringBuilder sb=new SpannableStringBuilder();
+        SpannableString sb_one = new SpannableString(oneString);
+        SpannableString sb_two = new SpannableString(twoString);
+        sb_one.setSpan(
+                new ForegroundColorSpan(oneColor),
+                0,
+                sb_one.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        sb_two.setSpan(
+                new ForegroundColorSpan(twoColor),
+                0,
+                sb_two.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        sb.append(sb_one).append(sb_two);
+        tv.setText(sb);
+    }
     /**
      * 图片与文字的对齐方式
      * ImageSpan.ALIGN_BASELINE

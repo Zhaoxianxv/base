@@ -1,5 +1,6 @@
 package com.yfy.final_tag.glide;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +12,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.Settings;
 
 
 import com.yfy.base.Base;
@@ -38,10 +38,10 @@ import androidx.core.content.FileProvider;
 public class FileCamera {
 
 
-    public Activity mContext;
+    public Activity mActivity;
     public static String photo_camera;
     public FileCamera(Activity context) {
-        this.mContext = context;
+        this.mActivity = context;
     }
 
 
@@ -55,7 +55,7 @@ public class FileCamera {
         Uri mOutPutFileUri ;
         //判断是否是AndroidN以及更高的版本
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            mOutPutFileUri = FileProvider.getUriForFile(mContext,Base.AUTHORITY, file);
+            mOutPutFileUri = FileProvider.getUriForFile(mActivity,Base.AUTHORITY, file);
         }else{
             mOutPutFileUri = Uri.fromFile(file);
         }
@@ -116,7 +116,7 @@ public class FileCamera {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         Uri contentUri = Uri.fromFile(photo);
         mediaScanIntent.setData(contentUri);
-        mContext.sendBroadcast(mediaScanIntent);
+        mActivity.sendBroadcast(mediaScanIntent);
     }
 
     /**
@@ -131,62 +131,40 @@ public class FileCamera {
 
 
     //提示更新文件夹
-    public static void scanAllFile(Activity context) {
-
-
-        File file = new File(Environment.getExternalStorageDirectory().toString() + "/yfy/");
-        File[] files = file.listFiles();
-
-        if (files==null||files.length==0){
-            ViewTool.showToastShort(context,"没有获取到路径：yfy");
-            return;
-        }
-
-
-        List<File> list = Arrays.asList(files);
-        List<File> fileList=new ArrayList<>(list);
-//
-//        for (File value : fileList) {
-//            updateFileFromDatabase(context,files);
-//        }
-
-
-    }
-    //提示本地相册更新
-    public static void scanMediaAllFile(Activity context) {
-
-//        Logger.e(Environment.getExternalStorageDirectory().toString());//或者外部存储媒体目录。
-//        Logger.e(Environment.getDataDirectory().toString());//获得android data的目录。
-//        Logger.e(Environment.getDownloadCacheDirectory().toString());//获得下载缓存目录。
-//        Logger.e(Environment.getRootDirectory().toString());//获得android的跟目录。
-//        Logger.e(Environment.getExternalStoragePublicDirectory().toString());
-        List<String> path_list=getAllFile(Environment.getExternalStorageDirectory().toString() + "/yfy/");
-        if (StringJudge.isEmpty(path_list)){
-            ViewTool.showToastShort(context,"没有获取到路径：yfy");
-            return;
-        }
-
-        for (String path:path_list){
-
-            scanMediaAllFile(context,path);
-
-
-        }
-
-    }
     //图片文件更新
-    public static void scanMediaAllFile(Activity context,String file_path) {
+    @SuppressLint("ObsoleteSdkInt")
+    public void scanMediaSelectFile(String file_path) {
+        Logger.e(file_path);
+        List<String> path_list=new ArrayList<>();
+        path_list.add(file_path);
 
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        Uri contentUri ;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            File file = new File(file_path);
-            contentUri = FileProvider.getUriForFile(context, Base.AUTHORITY, file);
-        } else {
-            contentUri=Uri.parse(file_path);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //通过操作 MediaScannerConnection 类
+            MediaScannerConnection.scanFile(
+                    mActivity,
+                    StringUtils.arraysToListString(path_list),
+//                    mimeTypes,
+                    null,
+                    new MediaScannerConnection.OnScanCompletedListener() {
+                        public void onScanCompleted(String path, Uri uri) {
+//                            Logger.e("path",path);
+//                            Logger.e("uri",uri.getPath());
+
+//                            Intent mediaScanIntent = new Intent();
+//                            mediaScanIntent.setAction(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+//                            Uri contentUri ;
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                                File file = new File(path);
+//                                contentUri = FileProvider.getUriForFile(mActivity, Base.AUTHORITY, file);
+//                            } else {
+//                                contentUri=Uri.parse(path);
+//                            }
+//                            mediaScanIntent.setData(contentUri);
+//                            mActivity.sendBroadcast(mediaScanIntent);
+
+                        }
+                    });
         }
-        mediaScanIntent.setData(contentUri);
-        context.sendBroadcast(mediaScanIntent);
     }
 
 
@@ -205,7 +183,11 @@ public class FileCamera {
 //        intent .setType("*/*");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //通过操作 MediaScannerConnection 类
-            MediaScannerConnection.scanFile(context, StringUtils.arraysToListString(path_list), mimeTypes, new MediaScannerConnection.OnScanCompletedListener() {
+            MediaScannerConnection.scanFile(
+                    context,
+                    StringUtils.arraysToListString(path_list),
+                    mimeTypes,
+                    new MediaScannerConnection.OnScanCompletedListener() {
                         public void onScanCompleted(String path, Uri uri) {
                             Logger.e("path",path);
                             Logger.e("uri",uri.getPath());

@@ -31,6 +31,15 @@ public  class TagFinal {
                 path
         );
     }
+    public static String getAppFile(int num,long date,String suffix){
+
+        return StringUtils.stringToGetTextJoint(
+                "%1$s/yfy/%2$s%3$s",
+                Environment.getExternalStorageDirectory().toString(),
+                date+num,
+                suffix
+        );
+    }
     /**
      *   int final tag
      */

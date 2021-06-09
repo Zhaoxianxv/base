@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
+import com.yfy.app.SearchStuPassWordActivity;
 import com.yfy.app.SelectedUserTypeActivity;
 import com.yfy.app.welcome.adapter.GuidePagerAdapter;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItem;
@@ -103,7 +104,7 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void run() {
                 //初始化登录信息
-                startActivity(new Intent(WelcomeActivity.this,SelectedUserTypeActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, SearchStuPassWordActivity.class));
 //
                 finish();
 

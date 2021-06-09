@@ -23,6 +23,12 @@ public abstract class StartIntentInterface {
         }
         startIntentActivity(intent,tag);
     }
+    public void startIntentAdapter(Intent intent, String type){
+        if (!isFastClick()){
+            return;
+        }
+        startIntentActivity(intent,type);
+    }
 
 
 
@@ -42,6 +48,9 @@ public abstract class StartIntentInterface {
     }
 
     public void startIntentActivity(Intent intent, int tag){
+
+    }
+    public void startIntentActivity(Intent intent, String type){
 
     }
     public void startIntentActivity(Intent intent){

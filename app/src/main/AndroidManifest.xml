@@ -108,6 +108,14 @@
             android:name="com.yfy.app.SelectStuActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.SearchUserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.SearchStuPassWordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <!-- album -->
         <activity
             android:name="com.yfy.app.album.AlbumAllActivity"

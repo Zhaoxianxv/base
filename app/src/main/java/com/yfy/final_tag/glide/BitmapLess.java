@@ -3,13 +3,10 @@ package com.yfy.final_tag.glide;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.PixelFormat;
-import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
-import com.yfy.base.R;
+import com.yfy.final_tag.FileTools;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.io.File;
@@ -20,28 +17,6 @@ import java.io.InputStream;
 import java.util.UUID;
 
 public final class BitmapLess {
-
-
-    /**
-     * 读取drawable资源成Bitmap
-     */
-    public static Bitmap $drawable(Context context, int drawableId) {
-        return BitmapFactory.decodeResource(context.getResources(), drawableId);
-    }
-    //改变drawableId图片颜色
-    public static Bitmap $drawableColor(Context context, int drawableId,int color) {
-        return drawableToBitmap(DrawableLess.$tint(context.getResources().getDrawable(drawableId),color),true);
-    }
-    // Drawable转换成一个Bitmap
-    public static Bitmap drawableToBitmap(Drawable drawable,boolean is) {
-        Bitmap bitmap = Bitmap.createBitmap( drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565);
-        Canvas canvas = new Canvas(bitmap);
-        if(is){
-            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());//保证图片大小不变
-        }
-        drawable.draw(canvas);
-        return bitmap;
-    }
 
     /**
      * 根据reqWidth, reqHeight计算最合适的inSampleSize
@@ -160,11 +135,6 @@ public final class BitmapLess {
     /**
      * 获取缩略图
      * 1. 支持自动旋转
-     * @param path
-     * @param maxWidth
-     * @param maxHeight
-     * @param autoRotate
-     * @return
      */
     public static Bitmap $thumbnail(String path, int maxWidth, int maxHeight, boolean autoRotate) {
 
@@ -199,28 +169,41 @@ public final class BitmapLess {
 
     /**
      * 保存到本地，默认路径/mnt/sdcard/[package]/save/
-     * @param bitmap
-     * @param format
-     * @param quality
-     * @param context
-     * @return
      */
-    public static String $save(Bitmap bitmap, Bitmap.CompressFormat format, int quality, Context context) {
+    public static String $save(Bitmap bitmap, String image_suffix , int quality) {
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             return null;
         }
-        File dir = new File(TagFinal.getAppDir("save"));
-        File destFile = new File(dir, UUID.randomUUID().toString());
-        return $save(bitmap, format, quality, destFile);
+        Bitmap.CompressFormat format;
+        switch (image_suffix){
+            case "png":
+                format=Bitmap.CompressFormat.PNG;
+                break;
+            case "":
+                format=Bitmap.CompressFormat.WEBP;
+                break;
+            default:
+                format=Bitmap.CompressFormat.JPEG;
+                break;
+        }
+//        File dir = new File(Environment.getExternalStorageDirectory().toString() + "/yfy/");
+//        if (!dir.exists()) {
+//            dir.mkdirs();
+//        }
+//        File destFile = new File(dir, UUID.randomUUID().toString());
+
+
+        String saveFileName= TagFinal.getAppFile( 1,System.currentTimeMillis(),"."+image_suffix);
+        FileTools.createFile(saveFileName);
+        File dir = new File(saveFileName);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        return $save(bitmap, format, quality, dir);
     }
 
     /**
      * 保存到本地destFile
-     * @param bitmap
-     * @param format
-     * @param quality
-     * @param destFile
-     * @return
      */
     public static String $save(Bitmap bitmap, Bitmap.CompressFormat format, int quality, File destFile) {
         try {
@@ -233,10 +216,7 @@ public final class BitmapLess {
             if (bitmap != null && !bitmap.isRecycled()) {
                 bitmap.recycle();
             }
-
             return destFile.getAbsolutePath();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

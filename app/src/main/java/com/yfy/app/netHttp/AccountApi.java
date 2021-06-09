@@ -54,6 +54,20 @@ public interface AccountApi {
             @Field("andios") String andios
     );
 
+    @FormUrlEncoded
+    @POST(ApiUrl.USER_GET_STU_TO_SEARCH_CHAR)
+    Call<ResponseBody> base_get_stu_to_search_char_api(
+            @Field(Base.session_key) String session_key,
+            @Field("key") String key
+    );
+
+    @FormUrlEncoded
+    @POST(ApiUrl.USER_RESET_PASS_WORD_TO_ADMIN)
+    Call<ResponseBody> base_reset_pass_to_admin_api(
+            @Field(Base.session_key) String session_key,
+            @Field("stuid") int stuid
+    );
+
     //-------------------------------school news-----------------------
     @FormUrlEncoded
     @POST(ApiUrl.SCHOOL_GET_NEWS_MENU)

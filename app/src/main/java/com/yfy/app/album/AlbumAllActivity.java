@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.yfy.app.album;
 
 import android.content.Intent;
@@ -13,6 +10,7 @@ import android.widget.ListView;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.glide.PhotoAlbum;
+import com.yfy.final_tag.listener.NoFastClickListener;
 
 import java.util.ArrayList;
 
@@ -38,7 +36,6 @@ public class AlbumAllActivity extends BaseActivity {
 		initSQToolbar();
 	}
 	/**
-	 * @description
 	 */
 	public void getData(){
 		Bundle b = getIntent().getExtras();
@@ -56,9 +53,9 @@ public class AlbumAllActivity extends BaseActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		toolbar.setNavigationIcon(R.drawable.ic_arrow_left_nav);
 		toolbar.setTitle("相册");
-		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+		toolbar.setNavigationOnClickListener(new NoFastClickListener() {
 			@Override
-			public void onClick(View v) {
+			public void fastClick(View v) {
 				onBackPressed();
 			}
 		});

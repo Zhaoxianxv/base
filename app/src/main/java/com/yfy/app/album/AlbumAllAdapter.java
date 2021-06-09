@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.yfy.app.album;
 
 import android.content.Context;
@@ -11,8 +8,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.yfy.base.R;
 import com.yfy.base.adapter.AbstractAdapter;
+import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.glide.PhotoAlbum;
+import com.yfy.final_tag.stringtool.StringUtils;
 
 import java.util.List;
 
@@ -25,13 +24,9 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 public class AlbumAllAdapter extends AbstractAdapter<PhotoAlbum> {
 
 	/**
-	 * @param context
-	 * @param list
 	 */
 	public AlbumAllAdapter(Context context, List<PhotoAlbum> list) {
 		super(context, list);
-
-
 	}
 
 	@Override
@@ -40,13 +35,15 @@ public class AlbumAllAdapter extends AbstractAdapter<PhotoAlbum> {
 		PhotoAlbum photoAlbum = list.get(position);
 		TextView album_name = holder.getView(TextView.class, R.id.album_name);
 		ImageView album_photo = holder.getView(ImageView.class, R.id.album_photo);
-		album_name.setText(photoAlbum.getName() + "(" + photoAlbum.photoList.size() + ")");
+		album_name.setText(StringUtils.stringToGetTextJoint("%1$s(%2$d)",photoAlbum.getName(),photoAlbum.photoList.size()));
 
 		if (StringJudge.isEmpty(photoAlbum.photoList))return;
+
 		Glide.with(context)
 				.load(photoAlbum.photoList.get(0).getPath())
 				.apply(RequestOptions.bitmapTransform(new RoundedCornersTransformation(16, 0, RoundedCornersTransformation.CornerType.BOTTOM_LEFT)))
                 .into(album_photo);
+
 
 
 	}

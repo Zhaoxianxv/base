@@ -142,7 +142,7 @@ public class ViewTool {
 
     /**
      * 将px值转换为dip或dp值，保证尺寸大小不变
-     * @param pxValue （DisplayMetrics类中属性density）
+     *（DisplayMetrics类中属性density）
      * 控件1dp=2dip
      */
     public static int pxPointDp(Context context, float pxValue) {

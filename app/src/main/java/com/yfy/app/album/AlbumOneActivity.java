@@ -117,7 +117,6 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 		if (allPhotoAlbumList != null&&allPhotoAlbumList.size()!=0) {
 			photoList = allPhotoAlbumList.get(position).photoList;
 			adapter = new AlbumOneAdapter(mActivity, photoList, single);
-			adapter.initItemSize(pic_gridview);
 			if (position == 0) {
 				toolbar.setTitle("最近相片");
 			} else {
@@ -150,9 +149,7 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 		} else {
 			toolbar.setTitle(photoList.get(0).getAlbumName());
 		}
-		adapter.initItemSize(pic_gridview);
 		pic_gridview.setAdapter(adapter);
-
 		adapter.setCheckedListenner(this);
 	}
 
