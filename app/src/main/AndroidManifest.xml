@@ -415,6 +415,17 @@
             android:theme="@style/AppTheme" />
         <activity android:name="com.yfy.AAChartCore.ChartsDemo.MainContent.CustomStyleChartActivity" />
         <activity android:name="com.yfy.AAChartCore.ChartsDemo.MainContent.MixedChartActivity" />
+        
+        
+<!--    view mode    -->
+        <activity
+            android:name="com.yfy.app.view.ViewTypeSelectActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.view.date_select.DateSelectMainActivity"
+            android:theme="@style/AppTheme" />
+    
+
     </application>
 
 </manifest>

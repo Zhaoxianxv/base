@@ -344,8 +344,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
         dateBean = new DateBean();
         dateBean.setValue_long(System.currentTimeMillis(), true);
-        year_s = String.valueOf(dateBean.getYearName());
-        month_s = String.valueOf(dateBean.getMonthNameTwo());
+        year_s = String.valueOf(dateBean.getSelectYearNameInt());
+        month_s = String.valueOf(dateBean.getSelectMonthNameString());
 
         select_date.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s", year_s, month_s));
 

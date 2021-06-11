@@ -14,12 +14,14 @@ import java.util.Date;
 public class DateBean implements Parcelable {
     public static final long DAY_LONG=86400000;
     public String name;
-    public String name_year_month;
     public String value;
     public long value_long;
     public boolean is_time=false;
     public SimpleDateFormat name_f ;
     public SimpleDateFormat value_f ;
+
+
+
     public DateBean(String name, String value) {
         this.name = name;
         this.value = value;
@@ -158,25 +160,123 @@ public class DateBean implements Parcelable {
         }
     }
 
-    public int getYearName(){
+
+
+
+
+    //获取选择月的天
+    public  int getMonthDays(int year, int month) {
+        if (month > 12) {
+            month = 1;
+            year += 1;
+        } else if (month < 1) {
+            month = 12;
+            year -= 1;
+        }
+        int[] arr = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        int days = 0;
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+            arr[1] = 29;
+        }
+        try {
+            days = arr[month - 1];
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
+        return days;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //判断是否是当前 年、月、日
+    public boolean isCurrentDay() {
+        int curYear = getNowYear();
+        int curMonth = getNowMonth();
+        int curDay = getNowMonthDay();
+        return getSelectYearNameInt() == curYear && getSelectMonthNameInt() == curMonth && getSelectDayNameInt() == curDay;
+    }
+
+    public boolean isCurrentMonth() {
+        int curYear = getNowYear();
+        int curMonth = getNowMonth();
+        return getSelectYearNameInt() == curYear && getSelectMonthNameInt() == curMonth ;
+    }
+
+    public boolean isCurrentYear() {
+        int curYear = getNowYear();
+        return getSelectYearNameInt() == curYear;
+    }
+
+
+
+
+    //获取当前 年、月、日、时、分、秒、毫秒
+    public  int getNowYear() {
+        return Calendar.getInstance().get(Calendar.YEAR);
+    }
+
+    public  int getNowMonth() {
+        return Calendar.getInstance().get(Calendar.MONTH) + 1;
+    }
+
+    public  int getNowMonthDay() {
+        return Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+    }
+
+
+    public  int getNowHour() {
+        return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+    }
+
+    public  int getNowMinute() {
+        return Calendar.getInstance().get(Calendar.MINUTE);
+    }
+    //秒
+    public  int getNowSecond() {
+        return Calendar.getInstance().get(Calendar.SECOND);
+    }
+    //秒内毫秒
+    public  int getNowMilliSecond() {
+        return Calendar.getInstance().get(Calendar.MILLISECOND);
+    }
+
+
+    //获取选中 年、月、日、
+    public int getSelectYearNameInt(){
         Calendar calendar = Calendar.getInstance();
         Date date = new Date(value_long);
         calendar.setTime(date);
         return calendar.get(Calendar.YEAR);
     }
-    public int getMonthName(){
+    public int getSelectMonthNameInt(){
         Calendar calendar = Calendar.getInstance();
         Date date = new Date(value_long);
         calendar.setTime(date);
         return calendar.get(Calendar.MONTH)+1;
     }
-    public int getDayName(){
+    public int getSelectDayNameInt(){
         Calendar calendar = Calendar.getInstance();
         Date date = new Date(value_long);
         calendar.setTime(date);
         return calendar.get(Calendar.DAY_OF_MONTH);
     }
-    public String getMonthNameTwo(){
+
+    public String getSelectMonthNameString(){
         Calendar calendar = Calendar.getInstance();
         Date date = new Date(value_long);
         calendar.setTime(date);
@@ -191,9 +291,23 @@ public class DateBean implements Parcelable {
     }
 
 
+    /**
+     * ------------------------------星期--------------------------------------
+     * 星期日 : Sunday= 1;
+     */
 
-    public String getWeekOfDate() {
-        String[] weekOfDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+
+
+    public String[] weekOfDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+
+    public int getNowWeekNameInt() {
+        return Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1;
+    }
+    public String getNowWeekNameString(){
+        return getWeekIntConvertString(getNowWeekNameInt());
+    }
+
+    public int getSelectWeekNameInt() {
         Calendar calendar = Calendar.getInstance();
         Date date = new Date(value_long);
         if(date != null){
@@ -203,38 +317,18 @@ public class DateBean implements Parcelable {
         if (w < 0){
             w = 0;
         }
-        return weekOfDays[w];
+        return w;
+    }
+    public String getSelectWeekNameString(){
+        return getWeekIntConvertString(getSelectWeekNameInt());
     }
 
-    public boolean isCurrentDay() {
-        int curYear = getYear();
-        int curMonth = getMonth();
-        int curDay = getCurrentMonthDay();
-        return getYearName() == curYear && getMonthName() == curMonth && getDayName() == curDay;
-    }
-    public static int getYear() {
-        return Calendar.getInstance().get(Calendar.YEAR);
-    }
-
-    public static int getMonth() {
-        return Calendar.getInstance().get(Calendar.MONTH) + 1;
-    }
-
-    public static int getCurrentMonthDay() {
-        return Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-    }
-
-    public static int getWeekDay() {
-        return Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1;
-    }
-
-
-    public static int getHour() {
-        return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-    }
-
-    public static int getMinute() {
-        return Calendar.getInstance().get(Calendar.MINUTE);
+    //int week 转 string week
+    public String getWeekIntConvertString(int week) {
+        if (week < 0){
+            week = 0;
+        }
+        return weekOfDays[week];
     }
 
 }

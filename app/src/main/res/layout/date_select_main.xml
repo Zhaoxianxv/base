@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/White"
+	android:orientation="vertical" >
+	
+	<com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
+	
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:layout_marginTop="@dimen/margin_5dp"
+		android:background="@color/WhiteSmoke" >
+		
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/btnPreMonth"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:padding="@dimen/margin_10dp"
+			android:layout_marginStart="10dp"
+			android:src="@drawable/ic_nag_back"
+			android:tint="@color/DarkRed"
+			/>
+		
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/btnNextMonth"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:layout_alignParentEnd="true"
+			android:padding="@dimen/margin_10dp"
+			android:layout_marginEnd="10dp"
+			android:tint="@color/DarkRed"
+			android:src="@drawable/ic_arrow_right_gray_24dp"
+			/>
+		
+		<TextView
+			android:id="@+id/tvCurrentMonth"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:layout_centerVertical="true"
+			android:text="11月"
+			android:textColor="#323232"
+			android:textSize="22sp" />
+	</RelativeLayout>
+	
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/margin_1dp"
+		android:background="@color/ee_gray"/>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/WhiteSmoke"
+		android:paddingTop="@dimen/margin_10dp"
+		android:paddingBottom="@dimen/margin_10dp"
+		android:orientation="vertical" >
+		
+		<TableLayout
+			android:layout_width="match_parent"
+			android:layout_height="20dip"
+			android:layout_marginBottom="2dip"
+			android:layout_marginTop="2dip" >
+			
+			<TableRow>
+				
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="@dimen/textsize9"
+					android:text="@string/sunday"
+					android:textColor="@color/canlendar_text_color" />
+				
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="@dimen/textsize9"
+					android:text="@string/monday"
+					android:textColor="@color/canlendar_text_color" />
+				
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="@dimen/textsize9"
+					android:text="@string/thesday"
+					android:textColor="@color/canlendar_text_color" />
+				
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="@dimen/textsize9"
+					android:text="@string/wednesday"
+					android:textColor="@color/canlendar_text_color" />
+				
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="@dimen/textsize9"
+					android:text="@string/thursday"
+					android:textColor="@color/canlendar_text_color" />
+				
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="@dimen/textsize9"
+					android:text="@string/friday"
+					android:textColor="@color/canlendar_text_color" />
+				
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:textSize="@dimen/textsize9"
+					android:text="@string/saturday"
+					android:textColor="@color/canlendar_text_color" />
+			</TableRow>
+		</TableLayout>
+	</LinearLayout>
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:orientation="vertical" >
+		
+		<com.yfy.app.view.date_select.CalendarCard
+			android:id="@+id/calendar_card"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="125dp"
+			/>
+	
+	</LinearLayout>
+
+</LinearLayout>

@@ -102,8 +102,8 @@ public class DutyEvaluateTeaRecordActivity extends BaseActivity {
         DateBean bean=new DateBean();
         bean.setValue_long(System.currentTimeMillis(),false);
 
-        year_s=String.valueOf(bean.getYearName());
-        month_s=bean.getMonthNameTwo();
+        year_s=String.valueOf(bean.getSelectYearNameInt());
+        month_s=bean.getSelectMonthNameString();
 
         select_date_tv.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s",year_s,month_s));
         customDatePicker1 = new CustomDatePicker(mActivity, new CustomDatePicker.ResultHandler() {

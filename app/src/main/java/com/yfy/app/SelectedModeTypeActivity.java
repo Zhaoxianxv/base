@@ -27,7 +27,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class SelectedModeTypeActivity extends BaseActivity {
+public class
+
+SelectedModeTypeActivity extends BaseActivity {
     private static final String TAG = SelectedModeTypeActivity.class.getSimpleName();
 
     private SelectedModeTypeAdapter adapter;

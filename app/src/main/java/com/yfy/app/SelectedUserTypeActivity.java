@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yfy.app.bean.KeyValue;
+import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
+import com.yfy.app.duty_evaluate.DutyEvaluateTeaHonorMainActivity;
+import com.yfy.app.view.ViewTypeSelectActivity;
 import com.yfy.base.App;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
@@ -17,11 +20,13 @@ import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.ConfirmContentWindow;
+import com.yfy.final_tag.glide.FileCamera;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
 import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.greendao.tool.NormalDataSaveTools;
 import com.yfy.upload.UploadDataService;
 
 import java.util.ArrayList;
@@ -85,8 +90,33 @@ public class SelectedUserTypeActivity extends BaseActivity {
 
         adapter.setIntentStart(new StartIntentInterface() {
             @Override
-            public void startIntentActivity(Intent intent) {
+            public void startIntentActivity(Intent intent,String type) {
+
+
+                switch (type){
+                    case "view_mode":
+                        intent.setClass(mActivity, ViewTypeSelectActivity.class);
+
+                        break;
+                    case Base.USER_TYPE_STU:
+                        intent.setClass(mActivity, DutyEvaluateStuMainActivity.class);
+                        break;
+                    case Base.USER_TYPE_TEA:
+                        intent.setClass(mActivity,SelectedClassActivity.class);
+                        intent.putExtra(Base.mode_type,"duty_evaluate");
+                        break;
+                    case "honor":
+                        intent.setClass(mActivity, DutyEvaluateTeaHonorMainActivity.class);
+                        intent.putExtra(Base.title,"荣誉比赛");
+                        intent.putExtra(Base.term_bean, NormalDataSaveTools.getInstance().getTermBeanToGreenDao());//
+                        break;
+                    case Base.type:
+                        FileCamera.updateFileFromDatabase(mActivity);
+                        return;
+                }
+
                 startActivity(intent);
+
             }
         });
 
@@ -127,6 +157,11 @@ public class SelectedUserTypeActivity extends BaseActivity {
     public List<KeyValue> keyValue_adapter=new ArrayList<>();
     private void setAdapterData(){
         keyValue_adapter.clear();
+
+        KeyValue view_mode=new KeyValue(TagFinal.TYPE_ITEM);
+        view_mode.setTitle("view_mode");
+        view_mode.setType("view_mode");
+        keyValue_adapter.add(view_mode);
 
         KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
         one.setTitle("学生");

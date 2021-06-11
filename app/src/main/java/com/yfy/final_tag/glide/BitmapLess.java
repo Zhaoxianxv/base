@@ -3,14 +3,16 @@ package com.yfy.final_tag.glide;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
 import com.yfy.final_tag.FileTools;
 import com.yfy.final_tag.data.TagFinal;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,12 +20,33 @@ import java.util.UUID;
 
 public final class BitmapLess {
 
+
+
+
+    /**
+     * 读取drawable资源成Bitmap
+     */
+    public static Bitmap $drawable(Context context, int drawableId) {
+        return BitmapFactory.decodeResource(context.getResources(), drawableId);
+    }
+    //改变drawableId图片颜色
+    public static Bitmap $drawableColor(Context context, int drawableId,int color) {
+        return drawableToBitmap(DrawableLess.$tint(context.getResources().getDrawable(drawableId),color),true);
+    }
+    // Drawable转换成一个Bitmap
+    public static Bitmap drawableToBitmap(Drawable drawable, boolean is) {
+        Bitmap bitmap = Bitmap.createBitmap( drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565);
+        Canvas canvas = new Canvas(bitmap);
+        if(is){
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());//保证图片大小不变
+        }
+        drawable.draw(canvas);
+        return bitmap;
+    }
+
     /**
      * 根据reqWidth, reqHeight计算最合适的inSampleSize
-     *
-     * @param options
-     * @param maxWidth
-     * @param maxHeight
+
      * @return
      */
     public static int $sampleSize(BitmapFactory.Options options, int maxWidth, int maxHeight) {
@@ -45,9 +68,6 @@ public final class BitmapLess {
 
     /**
      * 更节省内存的读取raw资源成Bitmap
-     *
-     * @param context
-     * @param rawId
      * @return
      */
     public static Bitmap $raw(Context context, int rawId) {
@@ -72,9 +92,7 @@ public final class BitmapLess {
 
     /**
      * 旋转Bitmap
-     *
-     * @param angle
-     * @param originBitmap
+
      * @param recycleOriginBitmap 是否回收传进来的原始Bitmap
      * @return
      */
@@ -92,9 +110,6 @@ public final class BitmapLess {
     /**
      * 缩放Bitmap(默认回收传进来的原始Bitmap)
      *
-     * @param originBitmap
-     * @param scaleX
-     * @param scaleY
      * @return
      */
     public static Bitmap $scale(Bitmap originBitmap, float scaleX, float scaleY) {
@@ -103,10 +118,6 @@ public final class BitmapLess {
 
     /**
      * 缩放Bitmap
-     *
-     * @param originBitmap
-     * @param scaleX
-     * @param scaleY
      * @param recycleOriginBitmap 是否回收传进来的原始Bitmap
      * @return
      */
@@ -123,9 +134,6 @@ public final class BitmapLess {
 
     /**
      * 获取缩略图（默认关闭自动旋转）
-     * @param path
-     * @param maxWidth
-     * @param maxHeight
      * @return
      */
     public static Bitmap $thumbnail(String path, int maxWidth, int maxHeight) {

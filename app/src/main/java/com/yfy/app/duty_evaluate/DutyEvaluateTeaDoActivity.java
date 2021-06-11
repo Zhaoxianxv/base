@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
-import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.final_tag.listener.NoFastClickListener;
@@ -307,8 +306,8 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
         DateBean bean=new DateBean();
         bean.setValue_long(System.currentTimeMillis(),false);
 
-        year_s=String.valueOf(bean.getYearName());
-        month_s=bean.getMonthNameTwo();
+        year_s=String.valueOf(bean.getSelectYearNameInt());
+        month_s=bean.getSelectMonthNameString();
 
         selected_date.setText(StringUtils.stringToGetTextJoint("%1$s-%2$s",year_s,month_s));
         select_date_value=StringUtils.stringToGetTextJoint("%1$s-%2$s-01",year_s,month_s);
