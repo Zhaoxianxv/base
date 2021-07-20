@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.yfy.app.album.AlbumOneActivity;
 import com.yfy.app.bean.DateBean;
 import com.yfy.final_tag.listener.NoFastClickListener;
-import com.yfy.greendao.bean.TermBean;
+import com.yfy.app.bean.TermBean;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.camera.CameraActivity;
@@ -136,7 +136,7 @@ public class DutyEvaluatePracticeAddActivity extends BaseActivity {
         cpwListBeanView = new CPWListBeanView(mActivity);
         cpwListBeanView.setOnPopClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(CPWBean cpwBean,String type) {
+            public void fastPopClick(CPWBean cpwBean,String type) {
                 selected_rank=cpwBean.getName();
                 select_rank_tv.setText(cpwBean.getName());
                 select_rank_tv.setTextColor(ColorRgbUtil.getBaseText());
@@ -219,7 +219,7 @@ public class DutyEvaluatePracticeAddActivity extends BaseActivity {
         album_select.setName(mActivity.getResources().getString(R.string.upload_type));
         album_select.setOnPopClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastPopClick(View view) {
 
                 switch (view.getId()) {
                     case R.id.popu_select_one:
@@ -260,7 +260,7 @@ public class DutyEvaluatePracticeAddActivity extends BaseActivity {
 
     @PermissionSuccess(requestCode = TagFinal.CAMERA)
     public void takePhoto() {
-        CameraActivity.startMe(mActivity,TagFinal.CAMERA, CameraActivity.MongolianLayerType.HK_MACAO_TAIWAN_PASSES_NEGATIVE);
+        CameraActivity.startMe(mActivity,TagFinal.CAMERA, CameraActivity.MongolianLayerType.PASSPORT_PERSON_INFO);
     }
     @PermissionSuccess(requestCode = TagFinal.PHOTO_ALBUM)
     public void photoAlbum() {

@@ -28,7 +28,7 @@ import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
-import com.yfy.greendao.bean.TermBean;
+import com.yfy.app.bean.TermBean;
 import com.yfy.json.JsonParser;
 
 import java.util.ArrayList;
@@ -89,7 +89,7 @@ public class DutyEvaluateTeaHonorMainActivity extends HttpPostActivity implement
         cpwListBeanView = new CPWListBeanView(mActivity);
         cpwListBeanView.setOnPopClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(CPWBean cpwBean, String type) {
+            public void fastPopClick(CPWBean cpwBean, String type) {
                 cpwListBeanView.dismiss();
 
                 if(cpwBean.getValue().equalsIgnoreCase("0"))return;

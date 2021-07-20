@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by yfyandr on 2017/10/23.
+ * Created by yfy on 2017/10/23.
  * 转换list《string》
  */
 

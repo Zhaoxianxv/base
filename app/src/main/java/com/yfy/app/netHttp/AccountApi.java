@@ -4,6 +4,8 @@ package com.yfy.app.netHttp;
 
 import com.yfy.base.Base;
 
+import org.simpleframework.xml.Order;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;

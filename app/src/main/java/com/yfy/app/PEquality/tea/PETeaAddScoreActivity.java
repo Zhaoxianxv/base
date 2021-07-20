@@ -131,7 +131,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
                 confirmPopWindow.setAnimationStyle(R.style.pop_window_anim_style);
                 confirmPopWindow.setOnPopClickListener(new NoFastClickListener() {
                     @Override
-                    public void onClick( CPWBean bean,String type) {
+                    public void fastPopClick( CPWBean bean,String type) {
                         stu_name.setText(bean.getName());
                         score_edit.setText(bean.getValue());
                     }
@@ -195,7 +195,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
             return;
         }
 
-        showProgressDialog("");
+        ViewTool.showProgressDialog(mActivity,"");
         forward.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -209,7 +209,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
                     score_edit.setText(scanStateList.get(dataIndex+1).getValue());
                 }
                 refreshButton();
-                dismissProgressDialog();
+                ViewTool.dismissProgressDialog();
             }
         },1000);
 
@@ -283,7 +283,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
     @Override
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
         if (!isActivity())return;
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
         String name=names.get(names.size()-1);
         ResEnv respEnvelope = response.body();
@@ -296,7 +296,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
                 if (res.getResult().equals("true")){
                     Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
                 }else{
-                    toastShow("error");
+                    ViewTool.showToastShort(mActivity,"error");
                 }
             }
             if (b.saveImgRes!=null) {
@@ -308,10 +308,10 @@ public class PETeaAddScoreActivity extends BaseActivity {
 //                    list_c.add(Base.RETROFIT_URI+res.getImg());
 //                    adapter.notifyItemChanged(position_index,multi_bean);
 //                }else{
-//                    toastShow(res.getError_code());
+//                    ViewTool.showToastShort(mActivity,res.getError_code());
 //                }
 //                if (num==1){
-//                    dismissProgressDialog();
+//                     ViewTool.dismissProgressDialog();
 //                }else{
 //                    num--;
 //                }
@@ -325,7 +325,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
                 Logger.e("onResponse: IOException");
                 e.printStackTrace();
             }
-            toastShow(StringUtils.stringToGetTextJoint("数据错误:%1$d",response.code()));
+            ViewTool.showToastShort(mActivity,StringUtils.stringToGetTextJoint("数据错误:%1$d",response.code()));
         }
 
     }
@@ -333,9 +333,9 @@ public class PETeaAddScoreActivity extends BaseActivity {
     @Override
     public void onFailure(Call<ResEnv> call, Throwable t) {
         if (!isActivity())return;
-        toastShow(R.string.fail_do_not);
+        ViewTool.showToastShort(mActivity,R.string.fail_do_not);
         Logger.e("onFailure  :"+call.request().headers().toString());
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
     }
 
     @Override

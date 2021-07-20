@@ -12,7 +12,7 @@ import java.io.File;
 import androidx.core.content.FileProvider;
 
 /**
- * Created by yfyandr on 2018/5/7.
+ * Created by yfy on 2018/5/7.
  * 用于区分不同版本间函数
  */
 

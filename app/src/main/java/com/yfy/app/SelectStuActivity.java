@@ -21,7 +21,8 @@ import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
-import com.yfy.greendao.bean.StuBean;
+import com.yfy.app.bean.StuBean;
+import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.greendao.tool.NormalDataSaveTools;
 
 import java.io.IOException;
@@ -138,7 +139,7 @@ public class SelectStuActivity extends BaseActivity {
     @Override
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
         if (!isActivity())return;
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
         String name=names.get(names.size()-1);
 
@@ -161,7 +162,7 @@ public class SelectStuActivity extends BaseActivity {
                 Logger.e(TagFinal.ZXX, "onResponse: IOException");
                 e.printStackTrace();
             }
-            toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
+            ViewTool.showToastShort(mActivity,StringUtils.getTextJoint("数据错误:%1$d",response.code()));
         }
     }
 
@@ -169,8 +170,8 @@ public class SelectStuActivity extends BaseActivity {
     public void onFailure(Call<ResEnv> call, Throwable t) {
         if (!isActivity())return;
         Logger.e("onFailure  "+call.request().headers().toString() );
-        dismissProgressDialog();
-        toastShow(R.string.fail_do_not);
+        ViewTool.dismissProgressDialog();
+        ViewTool.showToastShort(mActivity,R.string.fail_do_not);
     }
 
     @Override

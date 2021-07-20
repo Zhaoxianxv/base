@@ -59,8 +59,8 @@ import static com.yfy.final_tag.glide.RxCaptcha.TYPE.NUMBER;
 /**
  * @version 1.0
  */
-public class
-LoginActivity extends BaseActivity {
+@SuppressLint("NonConstantResourceId")
+public class LoginActivity extends BaseActivity {
 
 	private final static String TAG =LoginActivity.class.getSimpleName();
 
@@ -124,7 +124,7 @@ LoginActivity extends BaseActivity {
 		album_select.setName("请选择账号类型");
 		album_select.setOnPopClickListener(new NoFastClickListener() {
 			@Override
-			public void fastClick(View view) {
+			public void fastPopClick(View view) {
 				switch (view.getId()) {
 					case R.id.popu_select_one:
 						type = "2";
@@ -164,7 +164,7 @@ LoginActivity extends BaseActivity {
 	List<CPWBean> cpwBeans=new ArrayList<>();
 	private void setCPWlListBeanData(List<Stunlist> stunlist){
 		if (StringJudge.isEmpty(stunlist)){
-			toastShow(R.string.success_not_details);
+			ViewTool.showToastShort(mActivity,R.string.success_not_details);
 			return;
 		}else{
 			cpwBeans.clear();
@@ -185,7 +185,7 @@ LoginActivity extends BaseActivity {
 		cpwListBeanView = new CPWListBeanView(mActivity);
 		cpwListBeanView.setOnPopClickListener(new NoFastClickListener() {
 			@Override
-			public void onClick(CPWBean cpwBean, String type) {
+			public void fastPopClick(CPWBean cpwBean, String type) {
 				duplicationLogin_(cpwBean.getId());
 				cpwListBeanView.dismiss();
 			}
@@ -201,19 +201,19 @@ LoginActivity extends BaseActivity {
 		edit_password = password.getText().toString().trim();
 		edit_code = code.getText().toString().trim();
 		if (StringJudge.isEmpty(edit_code)) {
-			toastShow(R.string.please_edit_code);
+			ViewTool.showToastShort(mActivity,R.string.please_edit_code);
 			return false;
 		}
 		if (!edit_code.equals(code_s)){
-			toastShow(R.string.please_edit_yse_code);
+			ViewTool.showToastShort(mActivity,R.string.please_edit_yse_code);
 			return false;
 		}
 		if (StringJudge.isEmpty(edit_name)) {
-			toastShow(R.string.please_edit_account);
+			ViewTool.showToastShort(mActivity,R.string.please_edit_account);
 			return false;
 		}
 		if (StringJudge.isEmpty(edit_password)) {
-			toastShow(R.string.please_edit_password);
+			ViewTool.showToastShort(mActivity,R.string.please_edit_password);
 			return false;
 		}
 //		keyboardUtil.hideKeyboardLayout();
@@ -330,7 +330,7 @@ LoginActivity extends BaseActivity {
 							break;
 							default:
 								ViewTool.dismissProgressDialog();
-								toastShow(res.getError_code());
+								ViewTool.showToastShort(mActivity,res.getError_code());
 								break;
 					}
 
@@ -358,7 +358,7 @@ LoginActivity extends BaseActivity {
 							startActivity(intent);
 							break;
 						default:
-							toastShow(res.getError_code());
+							ViewTool.showToastShort(mActivity,res.getError_code());
 							break;
 					}
 				}
@@ -372,7 +372,7 @@ LoginActivity extends BaseActivity {
 						login_(res.getTooken());
 					}
 				}else{
-					toastShow(res.getError_code());
+					ViewTool.showToastShort(mActivity,res.getError_code());
 				}
 			}
 		}else{
@@ -385,7 +385,7 @@ LoginActivity extends BaseActivity {
 				Logger.e("onResponse: IOException");
 				e.printStackTrace();
 			}
-			toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
+			ViewTool.showToastShort(mActivity,StringUtils.getTextJoint("数据错误:%1$d",response.code()));
 		}
 
 
@@ -397,7 +397,7 @@ LoginActivity extends BaseActivity {
 		if (!isActivity())return;
 		ViewTool.dismissProgressDialog();
 		Logger.e( "onFailure  "+call.request().headers().toString() );
-		toastShow(R.string.fail_do_not);
+		ViewTool.showToastShort(mActivity,R.string.fail_do_not);
 
 	}
 

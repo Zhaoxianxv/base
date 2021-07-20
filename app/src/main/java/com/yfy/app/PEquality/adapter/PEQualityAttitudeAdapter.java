@@ -21,7 +21,7 @@ import java.util.List;
 import androidx.cardview.widget.CardView;
 
 /**
- * Created by yfyandr on 2017/12/27.
+ * Created by yfy on 2017/12/27.
  */
 
 public class PEQualityAttitudeAdapter extends BaseRecyclerAdapter {

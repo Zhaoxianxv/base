@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 
 /**
- * Created by yfyandr on 2018/5/7.
+ * Created by yfy on 2018/5/7.
  */
 
 public class ContentResolverTools {

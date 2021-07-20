@@ -18,6 +18,7 @@ import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.io.IOException;
 import java.util.List;
@@ -66,19 +67,19 @@ public class ChangePasswordActivity extends BaseActivity  {
         firstpass=first.getText().toString().trim();
         againpass=again.getText().toString().trim();
         if (StringJudge.isEmpty(oldpass)){
-            toastShow("请输入密码");
+            ViewTool.showToastShort(mActivity,"请输入密码");
             return false;
         }
         if (StringJudge.isEmpty(firstpass)){
-            toastShow("请输入新密码");
+            ViewTool.showToastShort(mActivity,"请输入新密码");
             return false;
         }
         if (StringJudge.isEmpty(againpass)){
-            toastShow("请再次输入新密码");
+            ViewTool.showToastShort(mActivity,"请再次输入新密码");
             return false;
         }
         if (!firstpass.equals(againpass)){
-            toastShow("新密码输入不一致");
+            ViewTool.showToastShort(mActivity,"新密码输入不一致");
             return false;
         }
         return true;
@@ -105,7 +106,7 @@ public class ChangePasswordActivity extends BaseActivity  {
         reqEnv.body = reqBody;
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_change_password_api(reqEnv);
         call.enqueue(this);
-        showProgressDialog("");
+        ViewTool.showProgressDialog(mActivity,"");
     }
 
 
@@ -113,7 +114,7 @@ public class ChangePasswordActivity extends BaseActivity  {
     @Override
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
         if (!isActivity())return;
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         ResEnv respEnvelope = response.body();
         List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
         String name=names.get(names.size()-1);
@@ -126,7 +127,7 @@ public class ChangePasswordActivity extends BaseActivity  {
 //                    Base.user =null;
 //                    UserPreferences.getInstance().clearUserAll();
 //                    GreenDaoManager.getInstance().clearUser();
-//                    toastShow("密码修改成功，请重新登录");
+//                    ViewTool.showToastShort(mActivity,"密码修改成功，请重新登录");
 //                    startActivity(new Intent(mActivity,LoginActivity.class));
 //                    onPageBack();
 //                }
@@ -140,7 +141,7 @@ public class ChangePasswordActivity extends BaseActivity  {
                 Logger.e("onResponse: IOException");
                 e.printStackTrace();
             }
-            toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
+            ViewTool.showToastShort(mActivity,StringUtils.getTextJoint("数据错误:%1$d",response.code()));
         }
 
     }
@@ -149,7 +150,7 @@ public class ChangePasswordActivity extends BaseActivity  {
     public void onFailure(Call<ResEnv> call, Throwable t) {
         if (!isActivity())return;
         Logger.e("onFailure  :"+call.request().headers().toString());
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
     }
 
     @Override

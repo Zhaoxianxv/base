@@ -1,7 +1,7 @@
 package com.yfy.app.album;
 
 /**
- * Created by yfyandr on 2018/6/12.
+ * Created by yfy on 2018/6/12.
  */
 
 public class CompressZip {

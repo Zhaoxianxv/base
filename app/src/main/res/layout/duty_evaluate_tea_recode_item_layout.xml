@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/White"
     android:id="@+id/duty_evaluate_stu_item_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -16,7 +16,7 @@
         android:layout_marginRight="@dimen/margin_8dp"
         android:layout_marginBottom="@dimen/margin_8dp"
         app:cardCornerRadius="@dimen/margin_5dp"
-        app:cardBackgroundColor="@color/white">
+        app:cardBackgroundColor="@color/White">
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -125,7 +125,7 @@ public class AppShapeActivity extends BaseActivity {
         }
         @Override
         public void doUpData(String result) {
-            dismissProgressDialog();
+            ViewTool.dismissProgressDialog();
             if (StringJudge.isEmpty(result)){
                 ViewTool.showToastShort(mActivity,"没有数据，请从新尝试");
                 finish();
@@ -150,7 +150,7 @@ public class AppShapeActivity extends BaseActivity {
         }
         @Override
         public void onPre() {
-            showProgressDialog("");
+            ViewTool.showProgressDialog(mActivity,"");
         }
 
         @Override

@@ -376,7 +376,7 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
             cpwListView = new CPWListBeanView(mContext);
             cpwListView.setOnPopClickListener(new NoFastClickListener() {
                 @Override
-                public void onClick(CPWBean cpwBean, String type) {
+                public void fastPopClick(CPWBean cpwBean, String type) {
                     switch (type){
                         case "type":
                             bean.setRight_name(cpwBean.getName());
@@ -501,7 +501,7 @@ public class PEQualityTeaSuggestAdapter extends RecyclerView.Adapter<RecyclerVie
             album_select.setName(mContext.getResources().getString(R.string.upload_type));
             album_select.setOnPopClickListener(new NoFastClickListener() {
                 @Override
-                public void fastClick(View view) {
+                public void fastPopClick(View view) {
                     if (sealChoice!=null){
                         sealChoice.refresh(bean, position_index);
                     }

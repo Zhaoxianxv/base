@@ -8,7 +8,7 @@ import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.final_tag.listener.NoFastClickListener;
-import com.yfy.greendao.bean.StuBean;
+import com.yfy.app.bean.StuBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateRecodeAdapter;
 import com.yfy.app.net.ResEnv;
 import com.yfy.base.R;
@@ -155,7 +155,7 @@ public class DutyEvaluateTeaRecordActivity extends BaseActivity {
     @Override
     public void onFailure(Call<ResEnv> call, Throwable t) {
         if (!isActivity())return;
-        toastShow(R.string.fail_do_not);
+        ViewTool.showToastShort(mActivity,R.string.fail_do_not);
         Logger.e("onFailure  :"+call.request().headers().toString());
         ViewTool.dismissProgressDialog();
     }

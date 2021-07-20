@@ -9,7 +9,7 @@
     android:minHeight="@dimen/margin_50dp"
     android:paddingLeft="@dimen/margin_10dp"
     android:paddingRight="@dimen/margin_5dp"
-    android:background="@color/white">
+    android:background="@color/White">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lib_title"

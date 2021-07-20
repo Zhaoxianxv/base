@@ -1,7 +1,7 @@
 package com.yfy.app.login.bean;
 
 /**
- * Created by yfyandr on 2017/6/21.
+ * Created by yfy on 2017/6/21.
  */
 
 public class Stunlist {

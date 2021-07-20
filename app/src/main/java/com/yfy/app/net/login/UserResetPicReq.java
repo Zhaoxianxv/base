@@ -9,7 +9,7 @@ import org.simpleframework.xml.Order;
 import org.simpleframework.xml.Root;
 
 /**
- * Created by yfyandr on 2018/4/26.
+ * Created by yfy on 2018/4/26.
  */
 @Root(name = TagFinal.USER_ADD_HEAD, strict = false)
 @Namespace(reference = Base.NAMESPACE)

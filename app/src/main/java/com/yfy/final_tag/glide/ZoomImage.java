@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by yfyandr on 2017/11/7.
+ * Created by yfy on 2017/11/7.
  */
 
 public class ZoomImage {

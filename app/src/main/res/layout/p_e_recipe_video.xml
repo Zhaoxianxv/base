@@ -12,7 +12,7 @@
         android:minHeight="@dimen/margin_50dp"
         android:layout_margin="@dimen/margin_5dp"
         app:cardCornerRadius="@dimen/margin_5dp"
-        app:cardBackgroundColor="@color/white">
+        app:cardBackgroundColor="@color/White">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"

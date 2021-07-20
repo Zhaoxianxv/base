@@ -8,7 +8,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 /**
- * Created by yfyandr on 2018/4/26.
+ * Created by yfy on 2018/4/26.
  */
 @Root(name = TagFinal.USER_GET_CLASS_TO_ALL_STU +Base.RESPONSE)
 public class UserGetClassAllStuRes {

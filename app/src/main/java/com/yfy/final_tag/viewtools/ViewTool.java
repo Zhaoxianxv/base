@@ -22,6 +22,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -138,6 +139,38 @@ public class ViewTool {
 //        GradientDrawable one = (GradientDrawable) view.getr();
 //        one.setTint(color);
     }
+
+
+    //---------------------------
+    public static void releaseImageView(ImageView iv) {
+        try {
+            if (iv != null) {
+                iv.setImageResource(0);
+            }
+        } catch (Throwable t) {
+        }
+    }
+
+    public static void releaseBitmap(Bitmap bitmap) {
+        try {
+            if (bitmap != null && !bitmap.isRecycled()) {
+                bitmap.recycle();
+            }
+        } catch (Throwable t) {
+        }
+    }
+
+
+
+    public static void setImageBitmap(ImageView iv, Bitmap bitmap) {
+        try {
+            if (iv != null && bitmap != null) {
+                iv.setImageBitmap(bitmap);
+            }
+        } catch (Throwable t) {
+        }
+    }
+
 
 
     /**
@@ -333,7 +366,7 @@ public class ViewTool {
         @Override
         public void onFinish() {
             ViewTool.showToastShort(mContext,"网络超时");
-            dismissProgressDialog();
+            ViewTool.dismissProgressDialog();
 
         }
 

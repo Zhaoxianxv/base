@@ -9,7 +9,7 @@ import org.simpleframework.xml.Order;
 import org.simpleframework.xml.Root;
 
 /**
- * Created by yfyandr on 2018/4/26.
+ * Created by yfy on 2018/4/26.
  */
 @Root(name = TagFinal.USER_GET_CODE_TO_SYSTEM_PHONE, strict = false)
 @Namespace(reference = TagFinal.NAMESPACE)

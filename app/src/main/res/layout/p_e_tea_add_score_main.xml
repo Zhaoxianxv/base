@@ -97,12 +97,12 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/margin_10dp"/>
 
-            <EditText
+             <EditText
                 android:id="@+id/p_e_tea_add_score_edit_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/margin_45dp"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:hint="点击输入"
                 android:inputType="numberDecimal"
                 android:gravity="center_vertical|right"
@@ -142,7 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:tint="@color/white"
+                    android:tint="@color/White"
                     android:src="@drawable/ic_arrow_left_nav"/>
 
             </androidx.cardview.widget.CardView>
@@ -160,7 +160,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/White"
                     android:text="@string/submit"/>
 
             </androidx.cardview.widget.CardView>
@@ -177,7 +177,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:tint="@color/white"
+                    android:tint="@color/White"
                     android:src="@drawable/ic_arrow_right_gray_24dp"/>
 
             </androidx.cardview.widget.CardView>

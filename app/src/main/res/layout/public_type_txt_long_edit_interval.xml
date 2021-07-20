@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_25dp"
             android:minHeight="@dimen/margin_60dp"
-            android:background="@color/white"
+            android:background="@color/White"
             android:hint="请填写小结内容"
             android:gravity="start"
             android:textSize="@dimen/textsize7"

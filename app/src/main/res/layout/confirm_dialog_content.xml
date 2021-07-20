@@ -47,7 +47,7 @@
                 android:gravity="center"
                 android:text="取消"
                 android:textSize="@dimen/textsize9"
-                android:textColor="@color/blue"
+                android:textColor="@color/DeepSkyBlue"
                 android:padding="@dimen/margin_10dp"
                 />
             <TextView
@@ -57,7 +57,7 @@
                 android:gravity="center"
                 android:text="确定"
                 android:textSize="@dimen/textsize9"
-                android:textColor="@color/blue"
+                android:textColor="@color/DeepSkyBlue"
                 android:padding="@dimen/margin_10dp"
                 />
 

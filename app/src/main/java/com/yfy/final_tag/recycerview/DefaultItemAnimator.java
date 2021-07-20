@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * Created by yfyandr on 2017/12/5.
+ * Created by yfy on 2017/12/5.
  */
 
 public class DefaultItemAnimator extends RecyclerView.ItemAnimator {

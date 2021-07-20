@@ -16,7 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 
 
 /**
- * Created by yfyandr on 2017/9/25.
+ * Created by yfy on 2017/9/25.
  *
  *  要创建一个AlertDialog，就要用到AlertDialog.Builder中的create()方法。
  *  使用AlertDialog.Builder创建对话框需要了解以下几个方法：

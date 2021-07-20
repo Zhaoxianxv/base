@@ -1,5 +1,6 @@
 package com.yfy.app.login;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.rsa.AES;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.List;
 
@@ -30,7 +32,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ResetPasswordToHavePasswordActivity extends BaseActivity implements Callback<ResEnv> {
+@SuppressLint("NonConstantResourceId")
+public class ResetPasswordToHavePasswordActivity extends BaseActivity  {
     private static final String TAG = ResetPasswordToHavePasswordActivity.class.getSimpleName();
     @BindView(R.id.reset_edit_new_password)
     EditText edit_new_pass;
@@ -85,21 +88,21 @@ public class ResetPasswordToHavePasswordActivity extends BaseActivity implements
         String first_password = edit_new_pass.getText().toString().trim();
         String alter_password=alter_edit_pass.getText().toString().trim();
         if (StringJudge.isEmpty(first_password)){
-            toastShow(R.string.please_edit_password);
+            ViewTool.showToastShort(mActivity,R.string.please_edit_password);
             return;
         }
         if(!RegexUtils.isCharAndNumbar(first_password)){
-            toastShow("密码必须是六位以上且包含字母、数字");
+            ViewTool.showToastShort(mActivity,"密码必须是六位以上且包含字母、数字");
             return;
         }
 
         if (StringJudge.isEmpty(alter_password)){
-            toastShow("请再次输入新密码");
+            ViewTool.showToastShort(mActivity,"请再次输入新密码");
             return;
         }
 
         if (!first_password.equals(alter_password)){
-            toastShow("新密码输入不一致");
+            ViewTool.showToastShort(mActivity,"新密码输入不一致");
             return ;
         }
 
@@ -114,14 +117,14 @@ public class ResetPasswordToHavePasswordActivity extends BaseActivity implements
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_reset_password(reqEnv);
         call.enqueue(this);
         Logger.e(reqEnv.toString());
-        showProgressDialog("");
+        ViewTool.showProgressDialog(mActivity,"");
     }
 
 
     @Override
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
         if (!isActivity())return;
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
         String name=names.get(names.size()-1);
         ResEnv respEnvelope = response.body();
@@ -132,17 +135,17 @@ public class ResetPasswordToHavePasswordActivity extends BaseActivity implements
                 Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 UserRes res= gson.fromJson(result,UserRes.class);
                 if (res.getResult().equalsIgnoreCase(TagFinal.TRUE)){
-                    toastShow(R.string.success_do);
+                    ViewTool.showToastShort(mActivity,R.string.success_do);
 //                    Intent intent=new Intent(mActivity,LoginActivity.class);
 //                    startActivity(intent);
                     finish();
                 }else{
-                    toastShow(res.getError_code());
+                    ViewTool.showToastShort(mActivity,res.getError_code());
                 }
             }
         }else{
             Logger.e(StringUtils.getTextJoint("%1$s:%2$d",name,response.code()));
-            toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
+            ViewTool.showToastShort(mActivity,StringUtils.getTextJoint("数据错误:%1$d",response.code()));
         }
 
     }
@@ -150,9 +153,9 @@ public class ResetPasswordToHavePasswordActivity extends BaseActivity implements
     @Override
     public void onFailure(Call<ResEnv> call, Throwable t) {
         if (isActivity())return;
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         Logger.e("onFailure  :"+call.request().headers().toString());
-        toastShow(R.string.fail_do_not);
+        ViewTool.showToastShort(mActivity,R.string.fail_do_not);
 
     }
 

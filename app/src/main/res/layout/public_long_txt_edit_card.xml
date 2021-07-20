@@ -39,7 +39,7 @@
                 android:visibility="gone"
                 android:text="上传"
                 android:textColor="@color/red"
-                android:background="@drawable/radius3_whitebg_basecolorline"
+                android:background="@drawable/radius3_whitebg_colorline"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/margin_3dp"/>
 
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_25dp"
                 android:minHeight="@dimen/margin_80dp"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:hint="请填写小结内容"
                 android:gravity="start"
                 android:textSize="@dimen/textsize7"

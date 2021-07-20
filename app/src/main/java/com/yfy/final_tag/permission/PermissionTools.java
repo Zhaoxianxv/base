@@ -8,7 +8,7 @@ import com.yfy.final_tag.data.TagFinal;
 
 
 /**
- *  Created by yfyandr on 2017/9/21.
+ *  Created by yfy on 2017/9/21.
  *  基于工具 compile 'com.lovedise:permissiongen:0.0.6'//权限
  */
 

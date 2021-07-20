@@ -32,6 +32,7 @@ import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWListBeanView;
 import com.yfy.final_tag.dialog.ConfirmDateWindow;
+import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.view.multi.MultiPictureView;
 
 import org.jetbrains.annotations.NotNull;
@@ -155,7 +156,7 @@ public class PEHonorAddActivity extends BaseActivity {
         cpwListBeanView = new CPWListBeanView(mActivity);
         cpwListBeanView.setOnPopClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(CPWBean cpwBean,String type) {
+            public void fastPopClick(CPWBean cpwBean,String type) {
                 choose_course.setText(cpwBean.getName());
                 choose_course.setTextColor(ColorRgbUtil.getBaseText());
                 cpwListBeanView.dismiss();
@@ -202,7 +203,7 @@ public class PEHonorAddActivity extends BaseActivity {
     @Override
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
         if (!isActivity())return;
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
         String name=names.get(names.size()-1);
         ResEnv respEnvelope = response.body();
@@ -214,7 +215,7 @@ public class PEHonorAddActivity extends BaseActivity {
                 BaseRes res=gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equals("true")){
                 }else{
-                    toastShow("error");
+                    ViewTool.showToastShort(mActivity,"error");
                 }
             }
 
@@ -226,7 +227,7 @@ public class PEHonorAddActivity extends BaseActivity {
                 Logger.e("onResponse: IOException");
                 e.printStackTrace();
             }
-            toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
+            ViewTool.showToastShort(mActivity,StringUtils.getTextJoint("数据错误:%1$d",response.code()));
         }
 
     }
@@ -234,9 +235,9 @@ public class PEHonorAddActivity extends BaseActivity {
     @Override
     public void onFailure(Call<ResEnv> call, Throwable t) {
         if (!isActivity())return;
-        toastShow(R.string.fail_do_not);
+        ViewTool.showToastShort(mActivity,R.string.fail_do_not);
         Logger.e("onFailure  :"+call.request().headers().toString());
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
     }
 
     @Override
@@ -287,7 +288,7 @@ public class PEHonorAddActivity extends BaseActivity {
         album_select.setName(mActivity.getResources().getString(R.string.upload_type));
         album_select.setOnPopClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastPopClick(View view) {
 
                 switch (view.getId()) {
                     case R.id.popu_select_one:

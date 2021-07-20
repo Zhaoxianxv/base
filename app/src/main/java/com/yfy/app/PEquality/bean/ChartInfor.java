@@ -3,7 +3,7 @@ package com.yfy.app.PEquality.bean;
 import java.util.List;
 
 /**
- * Created by yfyandr on 2017/6/30.
+ * Created by yfy on 2017/6/30.
  */
 
 public class ChartInfor {

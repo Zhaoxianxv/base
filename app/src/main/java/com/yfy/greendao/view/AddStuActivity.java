@@ -14,9 +14,9 @@ import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
-import com.yfy.greendao.bean.BaseClass;
-import com.yfy.greendao.bean.StuBean;
-import com.yfy.greendao.bean.TermBean;
+import com.yfy.app.bean.BaseClass;
+import com.yfy.app.bean.StuBean;
+import com.yfy.app.bean.TermBean;
 import com.yfy.greendao.tool.NormalDataSaveTools;
 
 import java.util.ArrayList;

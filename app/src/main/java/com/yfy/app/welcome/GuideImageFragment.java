@@ -10,6 +10,8 @@ import android.widget.ImageView;
 
 import com.yfy.app.welcome.utils.v4.FragmentPagerItem;
 import com.yfy.base.R;
+import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import androidx.fragment.app.Fragment;
 
@@ -31,8 +33,8 @@ public class GuideImageFragment extends Fragment {
         } else if (fragmentPagerItemPosition == 2) {
             bitmap = BitmapFactory.decodeResource(getResources(),  R.mipmap.homepaga);//initial three pager
         }
-        if (Utils.isNotNull(bitmap)) {
-            ViewTools.setImageBitmap(iv_image, bitmap);
+        if (StringJudge.isNotNull(bitmap)) {
+            ViewTool.setImageBitmap(iv_image, bitmap);
         }
 
         return contentView;
@@ -41,9 +43,9 @@ public class GuideImageFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        ViewTools.releaseImageView(iv_image);
+        ViewTool.releaseImageView(iv_image);
         iv_image = null;
-        ViewTools.releaseBitmap(bitmap);
+        ViewTool.releaseBitmap(bitmap);
         bitmap = null;
     }
 

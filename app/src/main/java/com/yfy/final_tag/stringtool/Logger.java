@@ -33,15 +33,30 @@ public class Logger {
             Log.w(tag, msg);
         }
     }
-    public static void e(String tag, String msg){
-        if (LOG_ENABLE){
-            Log.e(tag, msg);
-        }
-    }
+
     public static void e( String msg){
         if (LOG_ENABLE){
             Log.e(TagFinal.ZXX, msg);
         }
     }
+
+    public static void e(String tag, String msg){
+        if (LOG_ENABLE){
+            //自身有一定长度的String
+            if(msg.length() > 4000) {
+                int num=3000;
+                for(int i=0;i<msg.length();i+=num){
+                    if(i+num<msg.length()){
+                        Log.e(tag,msg.substring(i, i+num));
+                    }else{
+                        Log.e(tag,msg.substring(i, msg.length()));
+                    }
+                }
+            } else{
+                Log.e(tag,msg);
+            }
+        }
+    }
+
 
 }

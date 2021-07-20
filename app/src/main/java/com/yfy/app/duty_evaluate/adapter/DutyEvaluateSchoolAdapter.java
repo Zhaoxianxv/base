@@ -115,10 +115,10 @@ public class DutyEvaluateSchoolAdapter extends BaseRecyclerAdapter {
                     ViewTool.alterGradientDrawableStrokeColor(mContext,iHolder.bg,ColorRgbUtil.getGray());
                     break;
                 case "待审核":
-                    iHolder.right_state.setTextColor(ColorRgbUtil.getOrangeRed());
+                    iHolder.right_state.setTextColor(ColorRgbUtil.getResourceColor(mContext,R.color.OrangeRed));
                     iHolder.right_score.setVisibility(View.GONE);
                     iHolder.line.setVisibility(View.GONE);
-                    ViewTool.alterGradientDrawableStrokeColor(mContext,iHolder.bg,ColorRgbUtil.getOrangeRed());
+                    ViewTool.alterGradientDrawableStrokeColor(mContext,iHolder.bg,ColorRgbUtil.getResourceColor(mContext,R.color.OrangeRed));
                     break;
             }
         }
@@ -210,7 +210,7 @@ public class DutyEvaluateSchoolAdapter extends BaseRecyclerAdapter {
             cpwListBeanView = new CPWListBeanView(mContext);
             cpwListBeanView.setOnPopClickListener(new NoFastClickListener() {
                 @Override
-                public void onClick(CPWBean cpwBean, String type) {
+                public void fastPopClick(CPWBean cpwBean, String type) {
                     cpwListBeanView.dismiss();
                     bean.setRight(cpwBean.getName());
                     if(cpwBean.getName().equalsIgnoreCase("已通过")){

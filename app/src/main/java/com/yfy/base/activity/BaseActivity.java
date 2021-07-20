@@ -1,6 +1,6 @@
 package com.yfy.base.activity;
 
-import android.app.ProgressDialog;
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 import com.google.gson.Gson;
 import com.yfy.app.net.ReqBody;
 import com.yfy.app.net.ReqEnv;
@@ -26,13 +25,13 @@ import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.view.SQToolBar;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Subscription;
 
 
 /**
@@ -49,9 +48,9 @@ import retrofit2.Response;
  * <p/>
 
  */
+@SuppressLint("NonConstantResourceId")
 public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> {
 
-    public ProgressDialog dialog;
     public BaseActivity mActivity;
     public Gson gson;
 
@@ -140,40 +139,16 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
 
 
 
-
-
     /**
-     * 全局Toast,log,ProgressDialog
+     * 保存Subscription對象到compositeSubscription里面，
+     * 当Activity销毁的时候，会在onDestory()方法调用 compositeSubscription.unsubscribe();
      */
+    public void addToCompositeSubscription(Subscription s) {
+//        compositeSubscription.add(s);
+    }
 
-    public void toastShow(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-    }
-    public void toastShow(@StringRes int text) {
-       toastShow(mActivity.getString(text));
-    }
-    // 显示一个ProgressDialog
-    public void showProgressDialog(String title, String message) {
-        if (dialog == null) {
-            dialog = new ProgressDialog(this);
-        }
-        dialog.setCancelable(false);
-        if (title != null && !title.equals("")) {
-            dialog.setTitle(title);
-        }
-        if (message != null && !message.equals("")) {
-            dialog.setMessage(message);
-        }
-        dialog.show();
-    }
-    public void showProgressDialog(String message) {
-        showProgressDialog(null, message);
-    }
-    public void dismissProgressDialog() {
-        if (dialog != null) {
-            dialog.dismiss();
-        }
-    }
+
+
     //隐藏软键盘
     public void closeKeyWord() {
         View view = getWindow().peekDecorView();

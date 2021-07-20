@@ -93,7 +93,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:minHeight="@dimen/margin_45dp"
-			android:background="@color/white"
+			android:background="@color/White"
 			android:hint="请填写获奖项目"
 			android:gravity="center_vertical|right"
 			android:paddingRight="@dimen/margin_10dp"

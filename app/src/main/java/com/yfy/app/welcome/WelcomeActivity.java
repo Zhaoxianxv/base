@@ -26,6 +26,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.glide.BitmapLess;
+import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.jpush.ExampleUtil;
 import com.yfy.jpush.LocalBroadcastManager;
 
@@ -98,7 +99,7 @@ public class WelcomeActivity extends BaseActivity {
     private void showSplash() {
         iv_splash =  findViewById(R.id.splash_iv_splash);
         iv_splash.setVisibility(View.VISIBLE);
-        ViewTools.setImageBitmap(iv_splash, splashBitmap);
+        ViewTool.setImageBitmap(iv_splash, splashBitmap);
         iv_splash.setBackgroundColor(Color.WHITE);
         iv_splash.postDelayed(new Runnable() {
             @Override
@@ -128,9 +129,9 @@ public class WelcomeActivity extends BaseActivity {
         super.onDestroy();
         vp_guide = null;
         tab_indicator = null;
-        ViewTools.releaseImageView(iv_splash);
+        ViewTool.releaseImageView(iv_splash);
         iv_splash = null;
-        ViewTools.releaseBitmap(splashBitmap);
+        ViewTool.releaseBitmap(splashBitmap);
         splashBitmap = null;
         guidePagerAdapter = null;
         btn_done = null;

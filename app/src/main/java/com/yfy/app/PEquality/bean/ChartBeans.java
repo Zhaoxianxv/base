@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by yfyandr on 2017/6/30.
+ * Created by yfy on 2017/6/30.
  */
 
 public class ChartBeans implements Parcelable{

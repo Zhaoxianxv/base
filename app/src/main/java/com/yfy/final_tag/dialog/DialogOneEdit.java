@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 
 /**
- * Created by yfyandr on 2018/4/9.
+ * Created by yfy on 2018/4/9.
  */
 
 public class DialogOneEdit extends AlertDialog implements OnClickListener{

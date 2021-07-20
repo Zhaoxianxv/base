@@ -160,5 +160,26 @@ public  class TagFinal {
     public static final String USER_GET_CLASS_TO_ALL_STU = "get_TeachersMoral_incompletestu";//获取一个班级学生
 
 
+    //----------------------------attend-----------------------
+    public final static String ATTEND_ADMIN_SET_STATE ="attendance_did_review_syxx";//审核操作(同意1，申请2，驳回3，校长4)
+    public final static String ATTEND_SET_DELETE ="delete_attendance";//撤销申请
+    public final static String ATTEND_SET_ADD ="attendance_submit1";//新增提交
+    public final static String ATTEND_GET_ADD_MASTER ="attendance_approve_sy";//审核人列表 )
+    public final static String ATTEND_GET_ADD_TYPE ="attendance_type";//请假type
+    public final static String ATTEND_GET_ITEM_DETAIL = "attend";//获取item detail
+    public final static String ATTEND_ADMIN_GET_LIST = "attendance_review_list_syxx";//获取首页审核列表
+    public final static String ATTEND_USER_GET_LIST = "attendance_list_syxx";//获取首页列表普通用户
+    public final static String ATTEND_GET_COUNT ="get_attendance_review_count";//审核操作数量
+
+    //-------------------maintain-------------------------
+    public final static String MAINTAIN_ADMIN_SET_STATE= "setMaintain_syxx";//同意，拒绝， dealstate,//1,完成2，拒绝,3 维修中
+    public final static String MAINTAIN_SET_SECTION_MSG = "setMaintainclassid";//部门转交
+    public final static String MAINTAIN_SET_DELETE = "delete_maintain";//撤销自己申请
+    public final static String MAINTAIN_SET_ADD = "addMaintainnew";//新增报修
+    public final static String MAINTAIN_GET_ADD_SECTION = "getMaintainclass";//获取部门分类
+    public final static String MAINTAIN_GET_DETAIL= "getMaintain";//获取item detail
+    public final static String MAINTAIN_ADMIN_GET_LIST = "get_Maintain_admin";//获取首页列表管理用户
+    public final static String MAINTAIN_USER_GET_LIST = "get_Maintain_user";//获取首页列表普通用户
+    public final static String MAINTAIN_GET_COUNT = "get_maintain_review_count";//获取需要处理次数
 }
 

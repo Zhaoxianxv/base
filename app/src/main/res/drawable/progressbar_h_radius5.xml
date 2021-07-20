@@ -8,7 +8,7 @@
                 android:bottomRightRadius="@dimen/margin_5dp"
                 android:topLeftRadius="@dimen/margin_5dp"
                 android:topRightRadius="@dimen/margin_5dp"/>
-            <solid android:color="@color/white" />
+            <solid android:color="@color/White" />
         </shape>
     </item>
     <item android:id="@android:id/progress">

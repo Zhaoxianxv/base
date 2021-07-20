@@ -27,6 +27,7 @@ import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.rsa.AES;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.List;
 
@@ -108,18 +109,18 @@ public class ResetPasswordActivity extends BaseActivity implements Callback<ResE
         String tell=edit_phone.getText().toString().trim();
 
         if (StringJudge.isEmpty(tell)){
-            toastShow(R.string.please_edit_phone);
+            ViewTool.showToastShort(mActivity,R.string.please_edit_phone);
             return;
         }
 
         if (StringJudge.isEmpty(user_type)){
-            toastShow("请选择用户类型");
+            ViewTool.showToastShort(mActivity,"请选择用户类型");
             return;
         }
         if (RegexUtils.isMobilePhoneNumber(tell)){
             resetGetCode(true,tell,user_type);
         }else{
-            toastShow("支持：13，14，15，17，18，19 .手机号段");
+            ViewTool.showToastShort(mActivity,"支持：13，14，15，17，18，19 .手机号段");
         }
 
     }
@@ -129,34 +130,34 @@ public class ResetPasswordActivity extends BaseActivity implements Callback<ResE
     void setBtn(){
         String e_code=edit_code.getText().toString().trim();
         if (StringJudge.isEmpty(e_code)){
-            toastShow(R.string.please_edit_code);
+            ViewTool.showToastShort(mActivity,R.string.please_edit_code);
             return;
         }
         if (!code.equals(e_code)){
-            toastShow("验证码输入错误！");
+            ViewTool.showToastShort(mActivity,"验证码输入错误！");
             return;
         }
 
         first_password = edit_new_pass.getText().toString().trim();
         String alter_password=alter_edit_pass.getText().toString().trim();
         if (StringJudge.isEmpty(first_password)){
-            toastShow(R.string.please_edit_password);
+            ViewTool.showToastShort(mActivity,R.string.please_edit_password);
             return;
         }
         if(!RegexUtils.isCharAndNumbar(first_password)){
-            toastShow("密码必须是六位以上且包含字母、数字");
+            ViewTool.showToastShort(mActivity,"密码必须是六位以上且包含字母、数字");
             return;
         }
 
         if (StringJudge.isEmpty(alter_password)){
-            toastShow("请再次输入新密码");
+            ViewTool.showToastShort(mActivity,"请再次输入新密码");
             return;
         }
 
         if (first_password.equals(alter_password)){
             resetPassWord();
         }else{
-            toastShow("新密码输入不一致");
+            ViewTool.showToastShort(mActivity,"新密码输入不一致");
         }
     }
 
@@ -210,7 +211,7 @@ public class ResetPasswordActivity extends BaseActivity implements Callback<ResE
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_reset_password_get_code(reqEnv);
         call.enqueue(this);
         Logger.e(reqEnv.toString());
-        if (is)showProgressDialog("");
+        if (is) ViewTool.showProgressDialog(mActivity,"");
 
     }
 
@@ -219,7 +220,7 @@ public class ResetPasswordActivity extends BaseActivity implements Callback<ResE
         //登陆时传的Constants.APP_ID：
 
         if (StringJudge.isEmpty(user_id)){
-            toastShow("请重新获取验证码");
+            ViewTool.showToastShort(mActivity,"请重新获取验证码");
             return;
         }
 
@@ -233,7 +234,7 @@ public class ResetPasswordActivity extends BaseActivity implements Callback<ResE
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_reset_password(reqEnv);
         call.enqueue(this);
         Logger.e(reqEnv.toString());
-        showProgressDialog("");
+        ViewTool.showProgressDialog(mActivity,"");
     }
 
 
@@ -242,7 +243,7 @@ public class ResetPasswordActivity extends BaseActivity implements Callback<ResE
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
 
         if (!isActivity())return;
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
         String name=names.get(names.size()-1);
         ResEnv respEnvelope = response.body();
@@ -257,7 +258,7 @@ public class ResetPasswordActivity extends BaseActivity implements Callback<ResE
                     code=res.getVerification_Code();
                     user_id=res.getUserid();
                 }else{
-                    toastShow(res.getError_code());
+                    ViewTool.showToastShort(mActivity,res.getError_code());
                 }
             }
             if (b.userResetPasswordRes !=null){
@@ -265,15 +266,15 @@ public class ResetPasswordActivity extends BaseActivity implements Callback<ResE
                 Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 UserRes res= gson.fromJson(result,UserRes.class);
                 if (res.getResult().equalsIgnoreCase(TagFinal.TRUE)){
-                    toastShow(R.string.success_do);
+                    ViewTool.showToastShort(mActivity,R.string.success_do);
                     finish();
                 }else{
-                    toastShow(res.getError_code());
+                    ViewTool.showToastShort(mActivity,res.getError_code());
                 }
             }
         }else{
             Logger.e(StringUtils.getTextJoint("%1$s:%2$d",name,response.code()));
-            toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
+            ViewTool.showToastShort(mActivity,StringUtils.getTextJoint("数据错误:%1$d",response.code()));
         }
 
     }
@@ -281,9 +282,9 @@ public class ResetPasswordActivity extends BaseActivity implements Callback<ResE
     @Override
     public void onFailure(Call<ResEnv> call, Throwable t) {
         if (isActivity())return;
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         Logger.e("onFailure  :"+call.request().headers().toString());
-        toastShow(R.string.fail_do_not);
+        ViewTool.showToastShort(mActivity,R.string.fail_do_not);
 
     }
 

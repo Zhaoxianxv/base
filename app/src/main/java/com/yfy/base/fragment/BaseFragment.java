@@ -121,10 +121,6 @@ public abstract class BaseFragment extends Fragment {
     }
 
 
-    public void toastShow(String text) {
-        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
-    }
-
 
     /**
      * 显示一个ProgressDialog

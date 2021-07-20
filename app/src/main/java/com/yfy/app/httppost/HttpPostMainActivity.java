@@ -277,7 +277,7 @@ public class HttpPostMainActivity extends HttpPostActivity implements HttpNetHel
         album_select.setName(mActivity.getResources().getString(R.string.upload_type));
         album_select.setOnPopClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastPopClick(View view) {
 
                 switch (view.getId()) {
                     case R.id.popu_select_one:

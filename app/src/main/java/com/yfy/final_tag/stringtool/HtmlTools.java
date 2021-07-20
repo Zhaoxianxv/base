@@ -3,7 +3,7 @@ package com.yfy.final_tag.stringtool;
 import android.text.Html;
 
 /**
- * Created by yfyandr on 2017/12/21.
+ * Created by yfy on 2017/12/21.
  */
 
 public class HtmlTools {

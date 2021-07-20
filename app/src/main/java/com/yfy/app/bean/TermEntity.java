@@ -1,7 +1,7 @@
 package com.yfy.app.bean;
 
 /**
- * Created by yfyandr on 2017/6/9.
+ * Created by yfy on 2017/6/9.
  */
 public class TermEntity {
     /**

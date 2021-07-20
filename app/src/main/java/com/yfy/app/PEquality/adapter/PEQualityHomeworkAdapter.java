@@ -16,7 +16,7 @@ import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * Created by yfyandr on 2017/12/27.
+ * Created by yfy on 2017/12/27.
  */
 
 public class PEQualityHomeworkAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

@@ -1,9 +1,5 @@
 package com.yfy.app.bean;
 
-import com.yfy.greendao.bean.BaseGrade;
-import com.yfy.greendao.bean.StuBean;
-import com.yfy.greendao.bean.TermBean;
-
 import java.util.List;
 
 public class BaseRes {

@@ -15,7 +15,7 @@ import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.stringtool.StringUtils;
-import com.yfy.greendao.bean.TermBean;
+import com.yfy.app.bean.TermBean;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.base.Base;
@@ -77,7 +77,7 @@ public class DutyEvaluateSchoolActivity extends BaseActivity {
     }
 
     public void initView(){
-        button.setTextColor(ColorRgbUtil.getResourceColor(mActivity,R.color.white));
+        button.setTextColor(ColorRgbUtil.getResourceColor(mActivity,R.color.White));
         button.setText("添加");
 
 

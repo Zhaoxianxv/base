@@ -181,14 +181,14 @@ public class DutyEvaluateScoreAddActivity extends BaseActivity implements Assets
 
     AssetsAsyncTask mTask;
     public void getAssetsData(String file_name){
-        showProgressDialog("");
+        ViewTool.showProgressDialog(mActivity,"");
         mTask=new AssetsAsyncTask(this);
         mTask.execute(file_name);
     }
 
     @Override
     public void doUpData(String result) {
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         if (StringJudge.isEmpty(result)){
             ViewTool.showToastShort(mActivity,"没有数据，请从新尝试");
         }else{
@@ -223,7 +223,7 @@ public class DutyEvaluateScoreAddActivity extends BaseActivity implements Assets
                 }
                 adapter.setData(fragments,titles);
             }else{
-                toastShow(JsonParser.getErrorCode(result));
+                ViewTool.showToastShort(mActivity,JsonParser.getErrorCode(result));
             }
         }
     }

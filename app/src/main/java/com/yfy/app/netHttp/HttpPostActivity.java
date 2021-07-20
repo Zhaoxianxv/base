@@ -48,7 +48,6 @@ import rx.subscriptions.CompositeSubscription;
 @SuppressLint("NonConstantResourceId")
 public class HttpPostActivity extends AppCompatActivity implements  Callback<ResponseBody> {
 
-    public ProgressDialog dialog;
     public HttpPostActivity mActivity;
     public Gson gson;
 

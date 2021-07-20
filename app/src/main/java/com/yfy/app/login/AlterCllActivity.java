@@ -21,6 +21,7 @@ import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.RegexUtils;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.List;
 
@@ -69,17 +70,17 @@ public class AlterCllActivity extends BaseActivity implements Callback<ResEnv> {
         first_editor=first.getText().toString().trim();
         again_editor=again.getText().toString().trim();
         if (StringJudge.isEmpty(first_editor)){
-            toastShow("请输入电话号码");
+            ViewTool.showToastShort(mActivity,"请输入电话号码");
             return ;
         }
         if (StringJudge.isEmpty(first_editor)){
-            toastShow("请再次输入电话号码");
+            ViewTool.showToastShort(mActivity,"请再次输入电话号码");
             return ;
         }
         if (first_editor.equals(again_editor)){
             alterpass(first_editor);
         }else{
-            toastShow("确认号码是否一致！");
+            ViewTool.showToastShort(mActivity,"确认号码是否一致！");
         }
     }
 
@@ -96,7 +97,7 @@ public class AlterCllActivity extends BaseActivity implements Callback<ResEnv> {
         if (RegexUtils.isMobilePhoneNumber(no)){
 
         }else{
-            toastShow("支持：13，14，15，17，18，19 .手机号段");
+            ViewTool.showToastShort(mActivity,"支持：13，14，15，17，18，19 .手机号段");
             return;
         }
 
@@ -110,14 +111,14 @@ public class AlterCllActivity extends BaseActivity implements Callback<ResEnv> {
         reqEnv.body = reqBody;
         Call<ResEnv> call = RetrofitGenerator.getWeatherInterfaceApi().user_reset_call(reqEnv);
         call.enqueue(this);
-        showProgressDialog("");
+        ViewTool.showProgressDialog(mActivity,"");
     }
 
 
     @Override
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
         if (!isActivity())return;
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         ResEnv respEnvelope = response.body();
         List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
         String name=names.get(names.size()-1);
@@ -127,7 +128,7 @@ public class AlterCllActivity extends BaseActivity implements Callback<ResEnv> {
                 String result=b.userResetCallRes.result;
                 Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
 //                if (JsonParser.isSuccess(result)){
-//                    toastShow("联系号码设置成功！");
+//                    ViewTool.showToastShort(mActivity,"联系号码设置成功！");
 //                    setResult(RESULT_OK);
 //                    onPageBack();
 //                }
@@ -142,7 +143,7 @@ public class AlterCllActivity extends BaseActivity implements Callback<ResEnv> {
     public void onFailure(Call<ResEnv> call, Throwable t) {
         if (!isActivity())return;
         Logger.e("onFailure  :"+call.request().headers().toString());
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
     }
 
     @Override

@@ -34,7 +34,7 @@ import com.yfy.final_tag.glide.DrawableLess;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.TextToolSpan;
-import com.yfy.greendao.bean.TermBean;
+import com.yfy.app.bean.TermBean;
 import com.yfy.app.duty_evaluate.bean.DutyEvaluateRes;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
@@ -326,8 +326,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
                 duty_span_stu,
                 stu_self_duty,
                 DrawableLess.getResourceDrawable(mActivity, R.drawable.ic_arrow_right_gray_24dp),
-                ColorRgbUtil.getResourceColor(mActivity, R.color.white),
-                ColorRgbUtil.getResourceColor(mActivity, R.color.white),
+                ColorRgbUtil.getResourceColor(mActivity, R.color.White),
+                ColorRgbUtil.getResourceColor(mActivity, R.color.White),
                 stu_self_duty.length() - 1,
                 stu_self_duty.length()
         );
@@ -336,8 +336,8 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
                 duty_span_family,
                 family_duty,
                 DrawableLess.getResourceDrawable(mActivity, R.drawable.ic_arrow_right_gray_24dp),
-                ColorRgbUtil.getResourceColor(mActivity, R.color.white),
-                ColorRgbUtil.getResourceColor(mActivity, R.color.white),
+                ColorRgbUtil.getResourceColor(mActivity, R.color.White),
+                ColorRgbUtil.getResourceColor(mActivity, R.color.White),
                 family_duty.length() - 1,
                 family_duty.length()
         );
@@ -785,7 +785,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
     AssetsAsyncTask mTask;
 
     public void getAssetsData(String file_name) {
-        showProgressDialog("");
+        ViewTool.showProgressDialog(mActivity,"");
         mTask = new AssetsAsyncTask(this);
         mTask.execute(file_name);
     }
@@ -793,7 +793,7 @@ public class DutyEvaluateStuMainActivity extends BaseActivity implements AssetsG
 
     @Override
     public void doUpData(String content) {
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         if (StringJudge.isEmpty(content)) {
             ViewTool.showToastShort(mActivity, "没有数据，请从新尝试");
         } else {

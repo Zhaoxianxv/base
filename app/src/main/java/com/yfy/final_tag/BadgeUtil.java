@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 import androidx.core.app.NotificationCompat;
 
 /**
- * Created by yfyandr on 2017/9/26.
+ * Created by yfy on 2017/9/26.
  */
 public final class BadgeUtil {
     private static final String TAG = "zxx";

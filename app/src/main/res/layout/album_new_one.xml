@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:background="@color/app_base_color"
         app:title=""
-        app:titleTextColor="@color/white"
+        app:titleTextColor="@color/White"
         android:layout_height="46dp">
     </androidx.appcompat.widget.Toolbar>
 

@@ -14,7 +14,7 @@ import com.yfy.final_tag.stringtool.Logger;
 
 
 /**
- * Created by yfyandr on 2018/1/24.
+ * Created by yfy on 2018/1/24.
  */
 
 public class RecycAnimator extends DefaultItemAnimator {

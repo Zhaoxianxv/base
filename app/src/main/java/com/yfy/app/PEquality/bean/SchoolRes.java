@@ -1,7 +1,7 @@
 package com.yfy.app.PEquality.bean;
 
 
-import com.yfy.greendao.bean.TermBean;
+import com.yfy.app.bean.TermBean;
 
 import java.util.List;
 

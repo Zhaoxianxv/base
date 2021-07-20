@@ -38,6 +38,7 @@ import com.yfy.final_tag.glide.ZoomImage;
 import com.yfy.final_tag.permission.PermissionFail;
 import com.yfy.final_tag.permission.PermissionGen;
 import com.yfy.final_tag.permission.PermissionSuccess;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -85,12 +86,12 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
             public void fastClick(View view) {
-                mActivity.showProgressDialog("");
+                ViewTool.showProgressDialog(mActivity,"");
                 recyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         mActivity.closeKeyWord();
-                        mActivity.dismissProgressDialog();
+                        ViewTool.dismissProgressDialog();
                         if (type.equalsIgnoreCase("成绩录入")){
                             KeyValue adapter_bean=adapter.getDataList().get(index);
                             for (int i=0;i<allStu.size();i++){
@@ -513,7 +514,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
     @Override
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
         if (!isActivity())return;
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
         String name=names.get(names.size()-1);
         ResEnv respEnvelope = response.body();
@@ -526,7 +527,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
                 if (res.getResult().equals("true")){
                     Logger.e(StringUtils.stringToGetTextJoint("%1$s:\n%2$s",name,result));
                 }else{
-                    toastShow("error");
+                    ViewTool.showToastShort(mActivity,"error");
                 }
             }
             if (b.saveImgRes!=null) {
@@ -538,10 +539,10 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
                     list_c.add(Base.RETROFIT_URI+res.getImg());
                     adapter.notifyItemChanged(position_index,multi_bean);
                 }else{
-                    toastShow(res.getError_code());
+                    ViewTool.showToastShort(mActivity,res.getError_code());
                 }
                 if (num==1){
-                    dismissProgressDialog();
+                    ViewTool.dismissProgressDialog();
                 }else{
                     num--;
                 }
@@ -555,7 +556,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
                 Logger.e("onResponse: IOException");
                 e.printStackTrace();
             }
-            toastShow(StringUtils.stringToGetTextJoint("数据错误:%1$d",response.code()));
+            ViewTool.showToastShort(mActivity,StringUtils.stringToGetTextJoint("数据错误:%1$d",response.code()));
         }
 
     }
@@ -563,9 +564,9 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
     @Override
     public void onFailure(Call<ResEnv> call, Throwable t) {
         if (!isActivity())return;
-        toastShow(R.string.fail_do_not);
+        ViewTool.showToastShort(mActivity,R.string.fail_do_not);
         Logger.e("onFailure  :"+call.request().headers().toString());
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
     }
 
     @Override
@@ -617,7 +618,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
             // TODO Auto-generated method stub
             super.onPostExecute(result);
             if (StringJudge.isEmpty(base64_list)){
-                toastShow("没有数据");
+                ViewTool.showToastShort(mActivity,"没有数据");
             }
             for (String s:base64_list){
                 saveImg(s);
@@ -631,7 +632,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            showProgressDialog("");
+            ViewTool.showProgressDialog(mActivity,"");
         }
     }
     @Override

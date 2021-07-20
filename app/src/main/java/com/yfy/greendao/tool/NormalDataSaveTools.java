@@ -1,8 +1,8 @@
 package com.yfy.greendao.tool;
 
-import com.yfy.greendao.bean.BaseClass;
-import com.yfy.greendao.bean.StuBean;
-import com.yfy.greendao.bean.TermBean;
+import com.yfy.app.bean.BaseClass;
+import com.yfy.app.bean.StuBean;
+import com.yfy.app.bean.TermBean;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.greendao.KeyValueDb;
 

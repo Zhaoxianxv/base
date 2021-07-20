@@ -25,12 +25,12 @@ public class RetrofitGenerator {
     //接口
     public static InterfaceApi weatherInterfaceApi;
 
-    private static Strategy strategy = new AnnotationStrategy();
-    private static Serializer serializer = new Persister(strategy);
+    public static Strategy strategy = new AnnotationStrategy();
+    public static Serializer serializer = new Persister(strategy);
 
-    private static OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+    public static OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
 
-   private static Retrofit.Builder retrofitBuilder =  new Retrofit.Builder()
+    public static Retrofit.Builder retrofitBuilder =  new Retrofit.Builder()
             .addConverterFactory(SimpleXmlConverterFactory.create(serializer))
             .baseUrl(Base.RETROFIT_URI);
 

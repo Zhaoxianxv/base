@@ -9,8 +9,8 @@
     android:background="@color/White"
     android:paddingLeft="@dimen/margin_10dp"
     android:paddingRight="@dimen/margin_15dp"
-    android:text="@string/date_type"
-    android:checkMarkTint="@color/white"
+    android:text="@string/app_name"
+    android:checkMarkTint="@color/White"
     android:textSize="@dimen/textsize7"
     android:checkMark="?android:attr/listChoiceIndicatorSingle" />
 

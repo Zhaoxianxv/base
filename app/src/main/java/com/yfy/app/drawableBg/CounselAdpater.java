@@ -12,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.yfy.app.welcome.Utils;
 import com.yfy.base.R;
 import com.yfy.final_tag.banner.ADInfo;
 import com.yfy.final_tag.banner.CycleViewPager;
@@ -21,6 +20,7 @@ import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 import com.yfy.final_tag.stringtool.Logger;
+import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.ArrayList;
@@ -180,7 +180,7 @@ public class CounselAdpater extends BaseRecyclerAdapter {
      * @param adInfos 刷新的数据
      */
     public void setADInfos(List<ADInfo> adInfos) {
-        if (Utils.isEmpty(adInfos)) {
+        if (StringJudge.isEmpty(adInfos)) {
             return;
         }
         this.adInfos.addAll(adInfos);
@@ -229,7 +229,7 @@ public class CounselAdpater extends BaseRecyclerAdapter {
     }
 
     public void addNewses(List<News> newses) {
-        if (Utils.isNotEmpty(newses)) {
+        if (StringJudge.isNotEmpty(newses)) {
             this.newses.addAll(newses);
         }
     }

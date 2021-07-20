@@ -20,7 +20,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="@string/upload_type"
-            android:textColor="@color/a3_gray" />
+            android:textColor="@color/DarkGray" />
 
         <View
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="@string/take_photo"
-            android:textColor="@color/qq_blue" />
+            android:textColor="@color/DeepSkyBlue" />
 
         <View
             android:layout_width="match_parent"
@@ -50,7 +50,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="@string/album"
-            android:textColor="@color/qq_blue" />
+            android:textColor="@color/DeepSkyBlue" />
     </LinearLayout>
 
     <TextView
@@ -62,7 +62,7 @@
         android:background="@drawable/radius5_white"
         android:gravity="center"
         android:text="@string/cancel"
-        android:textColor="@color/qq_blue"
+        android:textColor="@color/DeepSkyBlue"
         android:textSize="@dimen/textsize9"
         android:textStyle="bold" />
 

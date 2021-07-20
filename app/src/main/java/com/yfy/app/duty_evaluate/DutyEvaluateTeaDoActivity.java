@@ -18,7 +18,7 @@ import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
-import com.yfy.greendao.bean.StuBean;
+import com.yfy.app.bean.StuBean;
 import com.yfy.app.duty_evaluate.adapter.DutyEvaluateTeaDoTabAdapter;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
@@ -80,7 +80,7 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
         confirmPopWindow.setAnimationStyle(R.style.pop_window_anim_style);
         confirmPopWindow.setOnPopClickListener(new NoFastClickListener() {
             @Override
-            public void onClick( CPWBean bean,String type) {
+            public void fastPopClick( CPWBean bean,String type) {
                 select_stu=bean;
                 selected_stu.setText(select_stu.getName());
                 selected_stu.setTextColor(ColorRgbUtil.getBaseText());

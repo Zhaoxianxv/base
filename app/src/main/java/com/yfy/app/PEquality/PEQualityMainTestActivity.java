@@ -25,7 +25,7 @@ import com.yfy.app.SelectedTermActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.final_tag.listener.NoFastClickListener;
-import com.yfy.greendao.bean.TermBean;
+import com.yfy.app.bean.TermBean;
 import com.yfy.app.net.ResBody;
 import com.yfy.app.net.ResEnv;
 import com.yfy.base.R;
@@ -51,6 +51,7 @@ import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.recycerview.GridDividerLineNotBottom;
 import com.yfy.final_tag.stringtool.TextToolSpan;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -150,7 +151,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
                                         break;
 
                                     default:
-                                        toastShow("暂未开放");
+                                        ViewTool.showToastShort(mActivity,"暂未开放");
                                         break;
                                 }
                                 return true;
@@ -520,7 +521,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
     @Override
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
         if (!isActivity())return;
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
         String name=names.get(names.size()-1);
         ResEnv respEnvelope = response.body();
@@ -533,7 +534,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
                 if (res.getResult().equals("true")){
 
                 }else{
-                    toastShow("error");
+                    ViewTool.showToastShort(mActivity,"error");
                 }
             }
 
@@ -545,7 +546,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
                 Logger.e("onResponse: IOException");
                 e.printStackTrace();
             }
-            toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
+            ViewTool.showToastShort(mActivity,StringUtils.getTextJoint("数据错误:%1$d",response.code()));
         }
 
     }
@@ -553,9 +554,9 @@ public class PEQualityMainTestActivity extends BaseActivity {
     @Override
     public void onFailure(Call<ResEnv> call, Throwable t) {
         if (!isActivity())return;
-        toastShow(R.string.fail_do_not);
+        ViewTool.showToastShort(mActivity,R.string.fail_do_not);
         Logger.e("onFailure  :"+call.request().headers().toString());
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
     }
 
     @Override

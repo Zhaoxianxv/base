@@ -80,7 +80,7 @@ public class GreenDaoManager {
         return getUserDao().loadAll();
     }
     public User getUser(String  session_key){
-        return getUserDao().queryRaw("where idU = \""+session_key+"\"").get(0);
+        return getUserDao().queryRaw("where session_key = \""+session_key+"\"").get(0);
     }
 
     public List<User> queryNote(String where, String... params){

@@ -55,18 +55,18 @@ public class TextToolSpan {
         spannableString.setSpan(imgSpan, 1, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannableString;
     }
-    public static SpannableString stringToByteArrayGetString(Context context){
-        SpannableString spannableString = new SpannableString("");
-        ImageSpan imgSpan = new ImageSpan(context, R.drawable.radius_oval_gray);
-        ImageSpan two = new ImageSpan(context, R.drawable.radius_oval_gray);
-        SpannableStringBuilder sb=new SpannableStringBuilder();
-        SpannableString sb_one = new SpannableString("013\t我的成绩");
-        SpannableString sb_two = new SpannableString("012\t班级平均成绩");
-        sb_one.setSpan(imgSpan, 0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sb_two.setSpan(two, 0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sb.append(sb_one).append("\t\t").append(sb_two);
-        return spannableString;
-    }
+//    public static SpannableString stringToByteArrayGetString(Context context){
+//        SpannableString spannableString = new SpannableString("");
+//        ImageSpan imgSpan = new ImageSpan(context, R.drawable.radius_oval_gray);
+//        ImageSpan two = new ImageSpan(context, R.drawable.radius_oval_gray);
+//        SpannableStringBuilder sb=new SpannableStringBuilder();
+//        SpannableString sb_one = new SpannableString("013\t我的成绩");
+//        SpannableString sb_two = new SpannableString("012\t班级平均成绩");
+//        sb_one.setSpan(imgSpan, 0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        sb_two.setSpan(two, 0, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        sb.append(sb_one).append("\t\t").append(sb_two);
+//        return spannableString;
+//    }
 
     //修改字体颜色
     public static void  $spannableStringColor(SpannableString spannableString, int color){

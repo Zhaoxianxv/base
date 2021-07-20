@@ -1,5 +1,6 @@
 package com.yfy.app.spannable_string;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.yfy.final_tag.glide.DrawableLess;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.stringtool.TextToolSpan;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,6 +31,7 @@ import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Response;
 
+@SuppressLint("NonConstantResourceId")
 public class SpannableStringMainActivity extends BaseActivity {
     private static final String TAG = SpannableStringMainActivity.class.getSimpleName();
 
@@ -91,7 +94,7 @@ public class SpannableStringMainActivity extends BaseActivity {
     @Override
     public void onResponse(Call<ResEnv> call, Response<ResEnv> response) {
         if (!isActivity())return;
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         List<String> names=StringUtils.listToStringSplitCharacters(call.request().headers().toString().trim(), "/");
         String name=names.get(names.size()-1);
         ResEnv respEnvelope = response.body();
@@ -104,7 +107,7 @@ public class SpannableStringMainActivity extends BaseActivity {
                 if (res.getResult().equals("true")){
                     Logger.e(StringUtils.getTextJoint("%1$s:\n%2$s",name,result));
                 }else{
-                    toastShow("error");
+                    ViewTool.showToastShort(mActivity,"error");
                 }
             }
 
@@ -117,7 +120,7 @@ public class SpannableStringMainActivity extends BaseActivity {
                 Logger.e("onResponse: IOException");
                 e.printStackTrace();
             }
-            toastShow(StringUtils.getTextJoint("数据错误:%1$d",response.code()));
+            ViewTool.showToastShort(mActivity,StringUtils.getTextJoint("数据错误:%1$d",response.code()));
         }
 
     }
@@ -125,9 +128,9 @@ public class SpannableStringMainActivity extends BaseActivity {
     @Override
     public void onFailure(Call<ResEnv> call, Throwable t) {
         if (!isActivity())return;
-        toastShow(R.string.fail_do_not);
+        ViewTool.showToastShort(mActivity,R.string.fail_do_not);
         Logger.e("onFailure  :"+call.request().headers().toString());
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
     }
 
     @Override

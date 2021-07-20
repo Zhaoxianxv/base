@@ -89,7 +89,7 @@
                             android:background="@drawable/ic_triangle_left_one_24dp"
                             android:backgroundTint="@color/orange"
                             android:src="@drawable/ic_triangle_left_24dp"
-                            android:tint="@color/white"
+                            android:tint="@color/White"
                             android:scaleType="fitXY"
                             />
                         <androidx.appcompat.widget.AppCompatImageView
@@ -100,7 +100,7 @@
                             android:background="@drawable/ic_triangle_right_one_24dp"
                             android:backgroundTint="@color/orange"
                             android:src="@drawable/ic_triangle_right_24dp"
-                            android:tint="@color/white"
+                            android:tint="@color/White"
                             android:scaleType="fitXY"
                             />
                     </LinearLayout>
@@ -120,7 +120,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/margin_5dp"
-                        android:background="@color/white"
+                        android:background="@color/White"
                         android:layout_alignParentBottom="true"/>
                 </RelativeLayout>
             </RelativeLayout>
@@ -140,7 +140,7 @@
                         android:layout_height="@dimen/margin_45dp"
                         android:padding="@dimen/margin_5dp"
                         app:srcCompat="@drawable/ic_navi_back"
-                        app:tint="@color/white"
+                        app:tint="@color/White"
                         />
                     <TextView
                         android:layout_width="wrap_content"
@@ -165,7 +165,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_45dp"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:layout_marginTop="@dimen/margin_15dp"
                 >
                 <androidx.appcompat.widget.AppCompatImageView
@@ -208,7 +208,7 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="@dimen/margin_5dp"
                 android:paddingRight="@dimen/margin_5dp"
-                android:background="@color/white"
+                android:background="@color/White"
                 
                 >
                 <WebView
@@ -225,7 +225,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:paddingTop="@dimen/margin_10dp"
                 >
 
@@ -273,7 +273,7 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:stretchColumns="0,1">
                 <TableRow>
             
@@ -320,7 +320,7 @@
                                     android:gravity="start"
                                     android:textSize="@dimen/textsize9"
                                     android:textStyle="bold"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/White"
                                     />
                                 <TextView
                                     android:layout_width="match_parent"
@@ -378,7 +378,7 @@
                                     tools:text="家长评价"
                                     android:gravity=""
                                     android:textSize="@dimen/textsize9"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/White"
                                     android:textStyle="bold"
                             
                                     />
@@ -412,7 +412,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/margin_45dp"
-                    android:background="@color/white"
+                    android:background="@color/White"
                     >
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="5dp"
@@ -450,7 +450,7 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/White"
                     android:visibility="visible"
                     android:layout_marginTop="@dimen/margin_45dp">
                     
@@ -501,7 +501,7 @@
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="@dimen/margin_10dp"
                             android:background="@drawable/rectangle_radius_oval_white"
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:paddingLeft="@dimen/margin_15dp"
                             android:paddingRight="@dimen/margin_15dp"
                             android:backgroundTint="#E7C28E"
@@ -560,7 +560,7 @@
                             android:gravity="center"
                             android:layout_centerVertical="true"
                             android:background="@drawable/rectangle_radius_oval_white"
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:paddingLeft="@dimen/margin_15dp"
                             android:paddingRight="@dimen/margin_15dp"
                             android:backgroundTint="#E7C28E"
@@ -620,7 +620,7 @@
                             android:gravity="center"
                             android:layout_centerVertical="true"
                             android:background="@drawable/rectangle_radius_oval_white"
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:paddingLeft="@dimen/margin_15dp"
                             android:paddingRight="@dimen/margin_15dp"
                             android:backgroundTint="#E7C28E"
@@ -636,7 +636,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_15dp"
                 android:layout_marginBottom="@dimen/margin_60dp"
-                android:background="@color/white"
+                android:background="@color/White"
                 >
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -731,7 +731,7 @@
                             
                             android:layout_centerVertical="true"
                             android:background="@drawable/rectangle_radius_oval_white"
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:paddingLeft="@dimen/margin_15dp"
                             android:paddingRight="@dimen/margin_15dp"
                             android:backgroundTint="#E7C28E"
@@ -747,7 +747,7 @@
                             android:layout_toStartOf="@id/replenish_duty_labour_stu"
                             android:layout_centerVertical="true"
                             android:background="@drawable/rectangle_radius_oval_white"
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:paddingLeft="@dimen/margin_15dp"
                             android:paddingRight="@dimen/margin_15dp"
                             android:backgroundTint="#E7C28E"
@@ -808,7 +808,7 @@
                             
                             android:layout_centerVertical="true"
                             android:background="@drawable/rectangle_radius_oval_white"
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:paddingLeft="@dimen/margin_15dp"
                             android:paddingRight="@dimen/margin_15dp"
                             android:backgroundTint="#E7C28E"
@@ -824,7 +824,7 @@
                             android:layout_toStartOf="@id/replenish_duty_young_stu"
                             android:layout_centerVertical="true"
                             android:background="@drawable/rectangle_radius_oval_white"
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:paddingLeft="@dimen/margin_15dp"
                             android:paddingRight="@dimen/margin_15dp"
                             android:backgroundTint="#E7C28E"
@@ -886,7 +886,7 @@
                             android:gravity="center"
                             android:layout_centerVertical="true"
                             android:background="@drawable/rectangle_radius_oval_white"
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:paddingLeft="@dimen/margin_15dp"
                             android:paddingRight="@dimen/margin_15dp"
                             android:backgroundTint="#E7C28E"
@@ -901,7 +901,7 @@
                             android:gravity="center"
                             android:layout_centerVertical="true"
                             android:background="@drawable/rectangle_radius_oval_white"
-                            android:textColor="@color/white"
+                            android:textColor="@color/White"
                             android:paddingLeft="@dimen/margin_15dp"
                             android:paddingRight="@dimen/margin_15dp"
                             android:backgroundTint="#E7C28E"

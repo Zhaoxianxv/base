@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -48,7 +47,7 @@ public class CPWMatchListMinWidthView extends PopupWindow  {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		View view = inflater.inflate(R.layout.confirm_list_macth_view, null);
 		listview = view.findViewById(R.id.pop_list);//发起群聊
-		adapter=new PopListAdapter(context);
+		adapter=new PopListAdapter();
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener((parent, view1, position, id) -> {
 			//获取选中的参数
@@ -114,10 +113,8 @@ public class CPWMatchListMinWidthView extends PopupWindow  {
 
 
 	public class PopListAdapter extends BaseAdapter {
-		public Context context;
 		public List<CPWBean> datas;
-		PopListAdapter(Context context) {
-			this.context = context;
+		PopListAdapter() {
 			this.datas = new ArrayList<>();
 		}
 
@@ -160,7 +157,7 @@ public class CPWMatchListMinWidthView extends PopupWindow  {
 						viewHolder.name,
 						StringUtils.stringToGetTextJoint("0\t%1$s",bean.getName()),
 						R.drawable.ic_arrow_play_right_black_24dp,
-						ColorRgbUtil.getOrangeRed());
+						ColorRgbUtil.getResourceColor(context,R.color.OrangeRed));
 			}else {
 				if (position%2==0){
 					TextToolSpan.$spannableAddIconColor(

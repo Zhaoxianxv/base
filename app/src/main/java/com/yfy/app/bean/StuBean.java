@@ -1,4 +1,4 @@
-package com.yfy.greendao.bean;
+package com.yfy.app.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;

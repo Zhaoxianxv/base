@@ -14,7 +14,78 @@ import retrofit2.http.POST;
  * 接口请求
  */
 public interface InterfaceApi {
+    /**
+     * --------------------------------maintain----------------------------------
+     */
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+ TagFinal.MAINTAIN_SET_SECTION_MSG})
+    @POST(Base.POST_URI)
+    Call<ResEnv> maintain_set_section_msg_api(@Body ReqEnv Envelope);
 
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+ TagFinal.MAINTAIN_SET_DELETE})
+    @POST(Base.POST_URI)
+    Call<ResEnv> maintain_set_delete_api(@Body ReqEnv Envelope);
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+ TagFinal.MAINTAIN_SET_ADD})
+    @POST(Base.POST_URI)
+    Call<ResEnv> maintain_set_add(@Body ReqEnv Envelope);
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.MAINTAIN_GET_ADD_SECTION})
+    @POST(Base.POST_URI)
+    Call<ResEnv> maintain_get_add_section_api(@Body ReqEnv Envelope);
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.MAINTAIN_GET_DETAIL})
+    @POST(Base.POST_URI)
+    Call<ResEnv> maintain_get_detail_api(@Body ReqEnv Envelope);
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.MAINTAIN_ADMIN_GET_LIST})
+    @POST(Base.POST_URI)
+    Call<ResEnv> maintain_admin_get_list_api(@Body ReqEnv Envelope);
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.MAINTAIN_USER_GET_LIST})
+    @POST(Base.POST_URI)
+    Call<ResEnv> maintain_user_get_list_api(@Body ReqEnv Envelope);
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.MAINTAIN_GET_COUNT})
+    @POST(Base.POST_URI)
+    Call<ResEnv> maintain_get_count_api(@Body ReqEnv Envelope);
+
+
+    /**
+     *----------------------attend-----------------------
+     */
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_ADMIN_SET_STATE})
+    @POST(Base.POST_URI)
+    Call<ResEnv> attend_admin_set_state_api(@Body ReqEnv Envelope);
+
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_SET_DELETE})
+    @POST(Base.POST_URI)
+    Call<ResEnv> attend_set_delete_item_api(@Body ReqEnv Envelope);
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_GET_ADD_MASTER})
+    @POST(Base.POST_URI)
+    Call<ResEnv> attend_get_add_master_api(@Body ReqEnv Envelope);
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_GET_ADD_TYPE})
+    @POST(Base.POST_URI)
+    Call<ResEnv> attend_get_add_type_api(@Body ReqEnv Envelope);
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_GET_ITEM_DETAIL})
+    @POST(Base.POST_URI)
+    Call<ResEnv> attend_get_item_detail_api(@Body ReqEnv Envelope);
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_ADMIN_GET_LIST})
+    @POST(Base.POST_URI)
+    Call<ResEnv> attend_admin_get_list_api(@Body ReqEnv Envelope);
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_USER_GET_LIST})
+    @POST(Base.POST_URI)
+    Call<ResEnv> attend_user_get_list_api(@Body ReqEnv Envelope);
+
+    @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.ATTEND_GET_COUNT})
+    @POST(Base.POST_URI)
+    Call<ResEnv> attend_get_count_api(@Body ReqEnv Envelope);
     //--------------------base-----------------------
 
     @Headers({Base.Content_Type, Base.SOAP_ACTION+TagFinal.BASE_SAVE_IMG})

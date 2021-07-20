@@ -1,7 +1,7 @@
 package com.yfy.app.login.bean;
 
 /**
- * Created by yfyandr on 2017/9/21.
+ * Created by yfy on 2017/9/21.
  */
 
 public class UserBaseData {

@@ -115,13 +115,13 @@
                 android:gravity="center"
                 android:layout_marginRight="1dp"
                 android:background="@drawable/radius_left_top5"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/White"
                 android:text="1"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:text="2"/>
             <TextView
                 android:layout_width="match_parent"
@@ -129,7 +129,7 @@
                 android:gravity="center"
                 android:layout_marginLeft="1dp"
                 android:background="@drawable/radius_right_top5"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/White"
                 android:text="3"/>
         </TableRow>
 
@@ -147,13 +147,13 @@
                 android:gravity="center"
                 android:layout_marginRight="1dp"
                 android:background="@drawable/radius_left_bottom5"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/White"
                 android:text="1"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:text="2"/>
             <TextView
                 android:layout_width="match_parent"
@@ -201,7 +201,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/margin_5dp"
         android:layout_marginTop="@dimen/margin_1dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/White"
         >
 
 
@@ -277,7 +277,7 @@
                 app:layout_columnWeight="1"
                 app:layout_columnSpan="1"
                 android:text="体重指数"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:gravity="center"
                 android:textSize="@dimen/textsize5"/>
             <androidx.appcompat.widget.AppCompatTextView
@@ -289,7 +289,7 @@
                 app:layout_columnWeight="1"
                 app:layout_columnSpan="1"
                 android:text="18.24310926"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:gravity="center"
                 android:textSize="@dimen/textsize5"
                 />
@@ -302,7 +302,7 @@
                 app:layout_columnWeight="1"
                 app:layout_columnSpan="1"
                 android:text="80.00"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:gravity="center"
                 android:textColor="@color/app_base_text_color"
                 android:textSize="@dimen/textsize5"
@@ -350,7 +350,7 @@
                 app:layout_column="0"
                 app:layout_columnWeight="1"
                 app:layout_columnSpan="1"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:text="15%"
                 android:gravity="center"
                 android:textColor="@color/app_base_text_color"
@@ -365,7 +365,7 @@
                 app:layout_columnWeight="1"
                 app:layout_columnSpan="1"
                 android:gravity="center"
-                android:background="@color/white"
+                android:background="@color/White"
                 android:text="45.5"
                 android:textSize="@dimen/textsize5"
                 />
@@ -378,7 +378,7 @@
                 app:layout_column="2"
                 app:layout_rowSpan="2"
                 app:layout_columnWeight="1"
-                android:background="@color/white"
+                android:background="@color/White"
                 app:layout_gravity="fill_vertical"
                 android:layout_marginTop="@dimen/margin_1dp"
                 android:gravity="center"

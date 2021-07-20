@@ -193,7 +193,7 @@ public class DutyEvaluateStuDetailActivity extends BaseActivity implements Asset
 
     AssetsAsyncTask mTask;
     public void getAssetsData(String file_name){
-        showProgressDialog("");
+        ViewTool.showProgressDialog(mActivity,"");
         mTask=new AssetsAsyncTask(this);
         mTask.execute(file_name);
     }
@@ -246,7 +246,7 @@ public class DutyEvaluateStuDetailActivity extends BaseActivity implements Asset
 
     @Override
     public void doUpData(String content) {
-        dismissProgressDialog();
+        ViewTool.dismissProgressDialog();
         closeSwipeRefresh();
         if (StringJudge.isEmpty(content)){
             ViewTool.showToastShort(mActivity,"没有数据，请从新尝试");

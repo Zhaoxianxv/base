@@ -26,7 +26,7 @@ import androidx.multidex.MultiDexApplication;
  */
 
 public class App extends MultiDexApplication {
-    public List<Activity> activities = new ArrayList<Activity>();
+    public List<Activity> activities = new ArrayList<>();
     private static App app;
     public DaoSession mDaoSession;
     public SQLiteDatabase db;
@@ -76,8 +76,8 @@ public class App extends MultiDexApplication {
 //        daoSession = daoMaster.newSession();
 
         mHelper = new Helper(getApplicationContext());
-        mDaoMaster = mHelper.getDaoMaster(getApplicationContext());
-        mDaoSession =  mHelper.getDaoSession(getApplicationContext());
+        mDaoMaster = Helper.getDaoMaster(getApplicationContext());
+        mDaoSession =  Helper.getDaoSession(getApplicationContext());
     }
 
     public DaoSession getDaoSession() {

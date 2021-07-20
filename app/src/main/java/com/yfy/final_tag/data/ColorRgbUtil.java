@@ -20,19 +20,12 @@ public class ColorRgbUtil {
 
 
     public static int getBaseColor(){
-        return Color.rgb(148,35,40);
+        return Color.parseColor("#0000E1");
     }
 
-    public static int getOrangeRed(){
-        return Color.rgb(255,69,0);
-    }
-    public static int getOrange(){
-        return Color.rgb(255,128,0);
-    }
 
-    public static int getGreen(){
-        return Color.rgb(0,128,0);
-    }
+
+
     public static int getBlue(){
         return Color.parseColor("#0000E1");
     }
@@ -73,34 +66,20 @@ public class ColorRgbUtil {
         return Color.parseColor("#C0C0C0");
     }
 
-    public static int getMaroon(){
-        return Color.rgb(128,0,0);
-    }
     public static int getLightPink(){
         return Color.parseColor("#FFB6C1");
     }
 
-    //   <!--淡珊瑚色	-->
-    public static int getLightCoral(){ return Color.rgb(240,128,128); }
     //<!--森林绿-->
-    public static int getForestGreen(){ return Color.rgb(34,139,34); }
-
-
-
-
-
-
-
-
-    public static int getDrakGreen(){
-        return Color.rgb(34,139,34);
+    public static int getForestGreen(){
+        return Color.parseColor("#228B22");
     }
+
+    //696969
     public static int getGray(){
-        return Color.rgb(128,128,128);
+        return Color.parseColor("#696969");
     }
-    public static int getMediumBlue(){
-        return Color.rgb(0, 0, 205);
-    }
+
 
 
 
