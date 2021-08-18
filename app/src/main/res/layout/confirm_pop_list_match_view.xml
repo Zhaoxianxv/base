@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<ListView
+		android:id="@+id/pop_list"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:choiceMode="singleChoice"
+		android:dividerHeight="0.5dp"
+		android:divider="@color/blue"
+		android:entries="@array/p_e_score"
+		android:scrollbars="none">
+	</ListView>
+	<View
+		android:id="@+id/pop_list_line"
+		android:layout_width="match_parent"
+		android:layout_height="0.5dp"
+		android:layout_below="@id/pop_list"
+		android:background="@color/blue"
+		/>
+	<View
+		android:id="@+id/pop_list_view"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@id/pop_list_line"
+		android:background="#55000000"
+		/>
+</RelativeLayout>
