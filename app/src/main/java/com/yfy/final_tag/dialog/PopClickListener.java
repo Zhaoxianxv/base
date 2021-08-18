@@ -8,5 +8,6 @@ import android.view.View;
  */
 public interface PopClickListener {
     void popClick(View view);
+    void popClick(View view,String type);
     void popClick(CPWBean cpwBean, String type);
 }

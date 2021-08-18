@@ -72,7 +72,7 @@ public class PEHonorMainActivity extends BaseActivity implements AssetsGetFileDa
 
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                 Intent intent;
                 if (type.equalsIgnoreCase(TagFinal.TRUE)){
                     intent=new Intent(mActivity,SelectStuActivity.class);

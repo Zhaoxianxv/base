@@ -70,7 +70,7 @@ public class DutyEvaluateTeaHonorMainActivity extends HttpPostActivity implement
         menu_one=toolbar.addMenuText(TagFinal.ONE_INT,select_term.getName());
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastMenuClick(View view, int position){
                 Intent intent=new Intent();
                 intent.setClass(mActivity, SelectedTermActivity.class);
                 startActivity(intent);

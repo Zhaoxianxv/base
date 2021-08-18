@@ -35,8 +35,8 @@ public class ReqEnv {
     @Element(name = "Header", required = false)
     public String aHeader="";
 
-    private static Strategy strategy = new AnnotationStrategy();
-    private static Serializer serializer = new Persister(strategy);
+    public static Strategy strategy = new AnnotationStrategy();
+    public static Serializer serializer = new Persister(strategy);
     @Override
     public String toString() {
 

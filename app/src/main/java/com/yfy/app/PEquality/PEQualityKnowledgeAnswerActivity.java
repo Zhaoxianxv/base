@@ -61,7 +61,7 @@ public class PEQualityKnowledgeAnswerActivity extends BaseActivity {
         toolbar.addMenuText(TagFinal.ONE_INT,"结束答题");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                 setContentShowDialog("提示","结束本次答题并计算最终分数");
             }
         });

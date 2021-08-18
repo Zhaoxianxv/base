@@ -58,7 +58,7 @@ public class AlterCllActivity extends BaseActivity implements Callback<ResEnv> {
         TextView menuOne=toolbar.addMenuText(1,R.string.ok);
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                 closeKeyWord();
                 isSend();
 

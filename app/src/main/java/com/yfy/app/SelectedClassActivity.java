@@ -69,7 +69,7 @@ public class SelectedClassActivity extends BaseActivity {
         menu_one =toolbar.addMenuText(TagFinal.ONE_INT,"");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                 Intent intent=new Intent(mActivity,SelectedTermActivity.class);
                 startActivityForResult(intent,TagFinal.UI_TAG);
             }

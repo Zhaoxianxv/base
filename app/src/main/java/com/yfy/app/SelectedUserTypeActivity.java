@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateTeaHonorMainActivity;
+import com.yfy.app.lottery.LotteryMainActivity;
 import com.yfy.app.view.ViewTypeSelectActivity;
 import com.yfy.base.App;
 import com.yfy.base.R;
@@ -42,9 +43,7 @@ public class SelectedUserTypeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_recycler_view);
-
-
-
+        Logger.e(TAG);
         if (App.isServiceRunning(mActivity, UploadDataService.class.getSimpleName())){
             Logger.e(TagFinal.ZXX, "UploadDataService: " );
         }else{
@@ -64,8 +63,8 @@ public class SelectedUserTypeActivity extends BaseActivity {
         toolbar.addMenuText(TagFinal.ONE_INT,"zxx");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
-                startActivity(new Intent(SelectedUserTypeActivity.this, SelectedModeTypeActivity.class));
+            public void fastMenuClick(View view, int position){
+                startActivity(new Intent(mActivity, SelectedModeTypeActivity.class));
             }
         });
 
@@ -94,7 +93,11 @@ public class SelectedUserTypeActivity extends BaseActivity {
 
 
                 switch (type){
-                    case "view_mode":
+                    case "LotteryMainActivity":
+                        intent.setClass(mActivity, LotteryMainActivity.class);
+
+                        break;
+                    case "ViewTypeSelectActivity":
                         intent.setClass(mActivity, ViewTypeSelectActivity.class);
 
                         break;
@@ -113,6 +116,7 @@ public class SelectedUserTypeActivity extends BaseActivity {
                     case Base.type:
                         FileCamera.updateFileFromDatabase(mActivity);
                         return;
+
                 }
 
                 startActivity(intent);
@@ -158,31 +162,10 @@ public class SelectedUserTypeActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
-        KeyValue view_mode=new KeyValue(TagFinal.TYPE_ITEM);
-        view_mode.setTitle("view_mode");
-        view_mode.setType("view_mode");
-        keyValue_adapter.add(view_mode);
-
-        KeyValue one=new KeyValue(TagFinal.TYPE_ITEM);
-        one.setTitle("学生");
-        one.setType(Base.USER_TYPE_STU);
-        keyValue_adapter.add(one);
+        keyValue_adapter.add(new KeyValue("彩","LotteryMainActivity"));
+        keyValue_adapter.add(new KeyValue("View","ViewTypeSelectActivity"));
 
 
-
-
-        KeyValue two=new KeyValue(TagFinal.TYPE_ITEM);
-        two.setTitle("教师");
-        two.setType(Base.USER_TYPE_TEA);
-        keyValue_adapter.add(two);
-        KeyValue three=new KeyValue(TagFinal.TYPE_ITEM);
-        three.setTitle("更新YFY图片");
-        three.setType(Base.type);
-        keyValue_adapter.add(three);
-        KeyValue honor=new KeyValue(TagFinal.TYPE_ITEM);
-        honor.setTitle("honor");
-        honor.setType("honor");
-        keyValue_adapter.add(honor);
 
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);

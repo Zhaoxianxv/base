@@ -13,7 +13,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.yfy.base.R;
-import com.yfy.final_tag.listener.NoFastClickListener;
 
 
 /**

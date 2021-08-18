@@ -61,7 +61,7 @@ public class PEQualityHomeworkActivity extends BaseActivity {
         }
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                 if (type.equalsIgnoreCase(TagFinal.TRUE)){
                     Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                     intent.putExtra(Base.title,title);

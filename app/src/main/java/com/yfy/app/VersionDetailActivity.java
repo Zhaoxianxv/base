@@ -52,7 +52,7 @@ public class VersionDetailActivity extends BaseActivity {
         toolbar.addMenuText(TagFinal.ONE_INT,"分享");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                 startActivity(new Intent(mActivity,AppShapeActivity.class));
 
             }

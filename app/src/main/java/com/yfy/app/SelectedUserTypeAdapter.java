@@ -96,7 +96,7 @@ public class SelectedUserTypeAdapter extends BaseRecyclerAdapter {
                     //单/多选
                     Intent intent=new Intent();
                     if (intentStart!=null){
-                        intentStart.startIntentAdapter(intent,bean.getType());
+                        intentStart.startIntentAdapter(intent,bean.getValue());
                     }
                 }
             });

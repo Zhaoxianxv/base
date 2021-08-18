@@ -82,7 +82,7 @@ public class SearchUserActivity extends BaseActivity {
 		toolbar.addMenuText(TagFinal.ONE_INT, R.string.ok);
 		toolbar.setOnMenuClickListener(new NoFastClickListener() {
 			@Override
-			public void onClick(View view, int position) {
+			public void fastMenuClick(View view, int position) {
 				getContactsChild(adapter.getDataList());
 			}
 		});

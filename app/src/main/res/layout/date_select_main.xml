@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:background="@color/White"
-	android:orientation="vertical" >
+	android:orientation="vertical">
 	
 	<com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
 	
 	
 	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="50dp"
-		android:layout_marginTop="@dimen/margin_5dp"
+		android:layout_height="@dimen/margin_45dp"
 		android:background="@color/WhiteSmoke" >
 		
 		<androidx.appcompat.widget.AppCompatImageView
-			android:id="@+id/btnPreMonth"
+			android:id="@+id/date_select_btn_PreMonth"
 			android:layout_width="50dp"
 			android:layout_height="50dp"
 			android:padding="@dimen/margin_10dp"
 			android:layout_marginStart="10dp"
-			android:src="@drawable/ic_nag_back"
+			android:src="@drawable/ic_navi_back"
 			android:tint="@color/DarkRed"
 			/>
 		
 		<androidx.appcompat.widget.AppCompatImageView
-			android:id="@+id/btnNextMonth"
+			android:id="@+id/date_select_btn_btnNextMonth"
 			android:layout_width="50dp"
 			android:layout_height="50dp"
 			android:layout_alignParentEnd="true"
@@ -37,12 +36,12 @@
 			/>
 		
 		<TextView
-			android:id="@+id/tvCurrentMonth"
+			android:id="@+id/date_select_month"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_centerInParent="true"
 			android:layout_centerVertical="true"
-			android:text="11月"
+			tools:text="11月"
 			android:textColor="#323232"
 			android:textSize="22sp" />
 	</RelativeLayout>
@@ -133,19 +132,11 @@
 		</TableLayout>
 	</LinearLayout>
 	
-	<LinearLayout
+	<com.yfy.app.view.date_select.DateSelectCard
+		android:id="@+id/calendar_card"
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1"
-		android:orientation="vertical" >
+		android:layout_height="wrap_content"
 		
-		<com.yfy.app.view.date_select.CalendarCard
-			android:id="@+id/calendar_card"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="125dp"
-			/>
-	
-	</LinearLayout>
+		/>
 
 </LinearLayout>

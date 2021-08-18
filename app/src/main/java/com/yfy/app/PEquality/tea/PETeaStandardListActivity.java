@@ -58,7 +58,7 @@ public class PETeaStandardListActivity extends BaseActivity {
         toolbar.addMenuText(TagFinal.ONE_INT,"添加");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
 
                 Intent intent=new Intent(mActivity,PETeaAddScoreActivity.class);
                 intent.putExtra(Base.title,title);

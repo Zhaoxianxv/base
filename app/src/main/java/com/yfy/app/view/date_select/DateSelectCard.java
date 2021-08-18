@@ -11,9 +11,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
+import com.yfy.app.bean.DateBean;
+
 
 @SuppressLint("ClickableViewAccessibility")
-public class CalendarCard extends View {
+public class DateSelectCard extends View {
 
 	private static final int TOTAL_COL = 7; //
 	private static final int TOTAL_ROW = 6; //
@@ -24,10 +26,9 @@ public class CalendarCard extends View {
 	public int mViewHeight; //
 	private int mCellSpace; //
 	private Row rows[] = new Row[TOTAL_ROW]; //
-	private static CustomDate mShowDate; //
-	public static CustomDate mSelectedDate;
+	private DateBean mShowDate; //
 
-	private OnCellClickListener mCellClickListener; //
+
 	private int touchSlop; //
 	private boolean callBackCellSpace;
 
@@ -35,36 +36,20 @@ public class CalendarCard extends View {
 	private float mDownX;
 	private float mDownY;
 
-	/**
-	 *
-	 * 
-	 * @author wuwenjie
-	 * 
-	 */
-	public interface OnCellClickListener {
-		void clickDate(CustomDate date); //
 
-		void changeDate(CustomDate date); //
-	}
 
-	public CalendarCard(Context context, AttributeSet attrs, int defStyleAttr) {
+	public DateSelectCard(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		init(context);
 	}
 
-	public CalendarCard(Context context, AttributeSet attrs) {
+	public DateSelectCard(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context);
 	}
 
-	public CalendarCard(Context context) {
+	public DateSelectCard(Context context) {
 		super(context);
-		init(context);
-	}
-
-	public CalendarCard(Context context, OnCellClickListener listener) {
-		super(context);
-		this.mCellClickListener = listener;
 		init(context);
 	}
 
@@ -79,27 +64,23 @@ public class CalendarCard extends View {
 	}
 
 	private void initDate() {
-		mShowDate = new CustomDate();
+		mShowDate = new DateBean();
+		mShowDate.setValue_long(System.currentTimeMillis(),true);
 		fillDate();//
 	}
 
 	private void fillDate() {
-		int monthDay = DateUtil.getCurrentMonthDay(); //
-		int lastMonthDays = DateUtil.getMonthDays(mShowDate.year, mShowDate.month - 1); //
-		int currentMonthDays = DateUtil.getMonthDays(mShowDate.year, mShowDate.month); //
-		int firstDayWeek = DateUtil.getWeekDayFromDate(mShowDate.year, mShowDate.month);
+		int monthDay = mShowDate.getNowMonthDay(); //
+		int lastMonthDays = mShowDate.getMonthDays(mShowDate.getSelectYearNameInt(),mShowDate.getSelectMonthNameInt()-1); //上月天数
+
+		int currentMonthDays = mShowDate.getMonthDays(mShowDate.getSelectYearNameInt(),mShowDate.getSelectMonthNameInt()); //选中月天数
+		int firstDayWeek = mShowDate.getSelectWeekFirstNameInt(mShowDate.getSelectYearNameInt(),mShowDate.getSelectMonthNameInt());//选中月第一天星期几
 
 		boolean isCurrentMonth = false;
-		if (DateUtil.isCurrentMonth(mShowDate)) {
+		if (mShowDate.isCurrentMonth()) {
 			isCurrentMonth = true;
 		}
-		boolean isSelectedMonth = false;
-		if (DateUtil.isSameMonth(mSelectedDate, mShowDate)) {
-			isSelectedMonth = true;
-		}
 
-		boolean isNextMonth = false;
-		isNextMonth = DateUtil.isNextMonth(mShowDate);
 
 		int day = 0;
 		for (int j = 0; j < TOTAL_ROW; j++) {
@@ -109,50 +90,30 @@ public class CalendarCard extends View {
 				if (position >= firstDayWeek && position < firstDayWeek + currentMonthDays) {
 					day++;
 					rows[j].cells[i] = new Cell(
-							CustomDate.modifiDayForObject(mShowDate, day),
+							mShowDate.getObjectForDay(mShowDate, day),
 							State.CURRENT_MONTH_DAY,
 							i,
 							j
 					);
 					if (isCurrentMonth && day == monthDay) {
-						CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
 						rows[j].cells[i] = new Cell(
-								date,
+								mShowDate.getObjectForDay(mShowDate,day),
 								State.TODAY,
 								i,
 								j
 						);
 					}
-					if (isSelectedMonth && day == mSelectedDate.day) {
-						if (rows[j].cells[i] != null && rows[j].cells[i].state == State.TODAY) {
-							rows[j].cells[i].state = State.TODAY_SELECTED_DAY;
-						} else {
-							rows[j].cells[i] = new Cell(
-									mSelectedDate,
-									State.SELECTED_DAY,
-									i,
-									j
-							);
-						}
-						mClickCell = rows[j].cells[i];
-					} else if ((isCurrentMonth && day > monthDay) || isNextMonth) {
-						rows[j].cells[i] = new Cell(
-								CustomDate.modifiDayForObject(mShowDate, day),
-								State.UNREACH_DAY,
-								i,
-								j
-						);
-					}
+
 				} else if (position < firstDayWeek) {
 					rows[j].cells[i] = new Cell(
-							new CustomDate(mShowDate.year, mShowDate.month - 1, lastMonthDays - (firstDayWeek - position - 1)),
+							new DateBean(mShowDate.getSelectYearNameInt(),mShowDate.getSelectMonthNameInt() - 1, lastMonthDays - (firstDayWeek - position - 1),true),
 							State.PAST_MONTH_DAY,
 							i,
 							j
 					);
 				} else if (position >= firstDayWeek + currentMonthDays) {
 					rows[j].cells[i] = new Cell(
-							new CustomDate(mShowDate.year, mShowDate.month + 1, position - firstDayWeek - currentMonthDays + 1),
+							new DateBean(mShowDate.getSelectYearNameInt(), mShowDate.getSelectMonthNameInt() + 1, position - firstDayWeek - currentMonthDays + 1,true),
 							State.NEXT_MONTH_DAY,
 							i,
 							j
@@ -160,7 +121,9 @@ public class CalendarCard extends View {
 				}
 			}
 		}
-		mCellClickListener.changeDate(mShowDate);
+		if (mDateSelectClickListener!=null){
+			mDateSelectClickListener.changeDate(mShowDate);
+		}
 	}
 
 	@Override
@@ -189,23 +152,23 @@ public class CalendarCard extends View {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			mDownX = event.getX();
-			mDownY = event.getY();
-			break;
-		case MotionEvent.ACTION_UP:
-			float disX = event.getX() - mDownX;
-			float disY = event.getY() - mDownY;
-			if (Math.abs(disX) < touchSlop && Math.abs(disY) < touchSlop) {
-				int col = (int) (mDownX / mCellSpace);
-				int row = (int) (mDownY / mCellSpace);
-				if (isEffectClick(col, row)) {//
-					measureClickCell(col, row);
+			case MotionEvent.ACTION_DOWN:
+				mDownX = event.getX();
+				mDownY = event.getY();
+				break;
+			case MotionEvent.ACTION_UP:
+				float disX = event.getX() - mDownX;
+				float disY = event.getY() - mDownY;
+				if (Math.abs(disX) < touchSlop && Math.abs(disY) < touchSlop) {
+					int col = (int) (mDownX / mCellSpace);
+					int row = (int) (mDownY / mCellSpace);
+					if (isEffectClick(col, row)) {//
+						measureClickCell(col, row);
+					}
 				}
-			}
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
 		}
 
 		return true;
@@ -216,16 +179,13 @@ public class CalendarCard extends View {
 			return false;
 		}
 		State state = rows[row].cells[col].state;
-//		return true;
-//		return state == State.CURRENT_MONTH_DAY || state == State.TODAY;//可点击今天和今天以前时间
-		return state == State.UNREACH_DAY||state == State.TODAY;//
+//		return true;//所有
+		return state == State.CURRENT_MONTH_DAY || state == State.TODAY;//可点选中月的日期击和今天
 	}
 
 	/**
 	 *
-	 * 
-	 * @param col
-	 * @param row
+	 *
 	 */
 	private void measureClickCell(int col, int row) {
 		if (col >= TOTAL_COL || row >= TOTAL_ROW)
@@ -252,14 +212,10 @@ public class CalendarCard extends View {
 					rows[row].cells[col].j
 			);
 
-			CustomDate date = rows[row].cells[col].date;
-			date.week = col;
+			DateBean date = rows[row].cells[col].date;
 
-			mSelectedDate = new CustomDate(date);
-			mCellClickListener.clickDate(date);
 
-			//
-			// update();
+			mDateSelectClickListener.clickDate(date);
 
 			invalidate();
 		}
@@ -267,9 +223,9 @@ public class CalendarCard extends View {
 
 	/**
 	 *
-	 * 
+	 *
 	 * @author wuwenjie
-	 * 
+	 *
 	 */
 	class Row {
 		public int j;
@@ -291,17 +247,17 @@ public class CalendarCard extends View {
 
 	/**
 	 *
-	 * 
+	 *
 	 * @author wuwenjie
-	 * 
+	 *
 	 */
 	class Cell {
-		public CustomDate date;
+		public DateBean date;
 		public State state;
 		public int i;
 		public int j;
 
-		public Cell(CustomDate date, State state, int i, int j) {
+		public Cell(DateBean date, State state, int i, int j) {
 			super();
 			this.date = date;
 			this.state = state;
@@ -316,59 +272,49 @@ public class CalendarCard extends View {
 			float centerY = mCellSpace * (j + 0.5f);
 			float radius = mCellSpace / 2f;
 			switch (state) {
-			case TODAY_SELECTED_DAY:
-			case SELECTED_DAY:
-				mTextPaint.setColor(Color.parseColor("#fffffe"));
-				mCirclePaint.setColor(Color.parseColor("#87C126"));
-				// canvas.drawCircle((float) (mCellSpace * (i + 0.5)),
-				// (float) ((j + 0.5) * mCellSpace), mCellSpace / 3,
-				// mCirclePaint);
-				canvas.drawRoundRect(
-						new RectF(
-								centerX - radius,
-								centerY - radius,
-								centerX + radius,
-								centerY + radius
-						),
-						10,
-						10,
-						mCirclePaint
-				);
-				break;
-			case TODAY: //
-				mTextPaint.setColor(Color.parseColor("#fffffe"));
-				mCirclePaint.setColor(Color.parseColor("#F24949"));
-				// canvas.drawCircle((float) (mCellSpace * (i + 0.5)),
-				// (float) ((j + 0.5) * mCellSpace), mCellSpace / 3,
-				// mCirclePaint);
-				canvas.drawRoundRect(
-						new RectF(
-								centerX - radius,
-								centerY - radius,
-								centerX + radius,
-								centerY + radius
-						),
-						10,
-						10,
-						mCirclePaint
-				);
-				break;
-			case CURRENT_MONTH_DAY: //
-				mTextPaint.setColor(Color.GRAY);
-				break;
-			case PAST_MONTH_DAY: //
+				case TODAY_SELECTED_DAY:
+				case SELECTED_DAY:
+					mTextPaint.setColor(Color.parseColor("#fffffe"));
+					mCirclePaint.setColor(Color.parseColor("#87C126"));
+					// canvas.drawCircle((float) (mCellSpace * (i + 0.5)),
+					// (float) ((j + 0.5) * mCellSpace), mCellSpace / 3,
+					// mCirclePaint);
+					canvas.drawRoundRect(
+							new RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius),
+							10,
+							10,
+							mCirclePaint
+					);
+					break;
+				case TODAY: //
+					mTextPaint.setColor(Color.parseColor("#fffffe"));
+					mCirclePaint.setColor(Color.parseColor("#F24949"));
+					// canvas.drawCircle((float) (mCellSpace * (i + 0.5)),
+					// (float) ((j + 0.5) * mCellSpace), mCellSpace / 3,
+					// mCirclePaint);
+					canvas.drawRoundRect(
+							new RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius),
+							10,
+							10,
+							mCirclePaint
+					);
+					break;
+				case CURRENT_MONTH_DAY: //
+					mTextPaint.setColor(Color.GRAY);
+					break;
+				case PAST_MONTH_DAY: //
 
-			case NEXT_MONTH_DAY: //
-				mTextPaint.setColor(Color.parseColor("#fffffe"));
-				break;
-			case UNREACH_DAY: //
-				mTextPaint.setColor(Color.BLACK);
-				break;
-			default:
-				break;
+				case NEXT_MONTH_DAY: //
+					mTextPaint.setColor(Color.parseColor("#fffffe"));
+					break;
+				case UNREACH_DAY: //
+					mTextPaint.setColor(Color.BLACK);
+					break;
+				default:
+					break;
 			}
 
-			String content = date.day + "";
+			String content = date.getSelectDayNameInt() + "";
 			canvas.drawText(
 					content,
 					(float) ((i + 0.5) * mCellSpace - mTextPaint.measureText(content) / 2),
@@ -393,9 +339,41 @@ public class CalendarCard extends View {
 		invalidate();
 	}
 
-	public void update(CustomDate date) {
-		mShowDate = date;
+	public void update(DateBean date) {
+
+		mShowDate.setValue_long(date.getValue_long());
 		update();
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/**
+	 *
+	 *
+	 * @author wuwenjie
+	 *
+	 */
+	private DateSelectClickListener mDateSelectClickListener;
+
+	public void setmDateSelectClickListener(DateSelectClickListener mDateSelectClickListener) {
+		this.mDateSelectClickListener = mDateSelectClickListener;
+	}
+
+	public interface DateSelectClickListener {
+		void clickDate(DateBean date); //
+
+		void changeDate(DateBean date); //
+	}
+
 
 }

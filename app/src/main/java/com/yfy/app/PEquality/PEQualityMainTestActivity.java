@@ -181,7 +181,7 @@ public class PEQualityMainTestActivity extends BaseActivity {
 //        toolbar.setNaviText("教师");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                 Intent intent=new Intent(mActivity,SelectedTermActivity.class);
                 startActivityForResult(intent,TagFinal.UI_TAG);
             }

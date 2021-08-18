@@ -81,7 +81,7 @@ public class DutyEvaluatePracticeAddActivity extends BaseActivity {
         toolbar.addMenuText(TagFinal.ONE_INT,"提交");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
 
                 saveHonor();
             }
@@ -93,9 +93,9 @@ public class DutyEvaluatePracticeAddActivity extends BaseActivity {
     private ConfirmDateWindow date_dialog;
     private void initDateDialog(){
         date_dialog = new ConfirmDateWindow(mActivity);
-        date_dialog.setOnPopClickListenner(new ConfirmDateWindow.OnPopClickListenner() {
+        date_dialog.setOnPopClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view) {
+            public void fastPopClick(View view) {
                 switch (view.getId()) {
                     case R.id.set:
                         selected_date_bean.setName(date_dialog.getTimeName());

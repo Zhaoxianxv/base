@@ -254,9 +254,9 @@ public class AddStuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         private ConfirmDateWindow dateDialog;
         private void initDateDialog() {
             dateDialog = new ConfirmDateWindow(mContext);
-            dateDialog.setOnPopClickListenner(new ConfirmDateWindow.OnPopClickListenner() {
+            dateDialog.setOnPopClickListener(new NoFastClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void fastPopClick(View view) {
                     switch (view.getId()) {
                         case R.id.set:
                             bean.setRight_name(dateDialog.getTimeName());

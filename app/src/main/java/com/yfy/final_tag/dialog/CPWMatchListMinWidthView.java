@@ -2,7 +2,6 @@ package com.yfy.final_tag.dialog;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -45,7 +44,7 @@ public class CPWMatchListMinWidthView extends PopupWindow  {
 	private void initalize() {
 		type="";
 		LayoutInflater inflater = LayoutInflater.from(context);
-		View view = inflater.inflate(R.layout.confirm_list_macth_view, null);
+		View view = inflater.inflate(R.layout.confirm_pop_list_normal_view, null);
 		listview = view.findViewById(R.id.pop_list);//发起群聊
 		adapter=new PopListAdapter();
 		listview.setAdapter(adapter);

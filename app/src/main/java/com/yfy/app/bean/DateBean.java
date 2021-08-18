@@ -54,15 +54,12 @@ public class DateBean implements Parcelable {
         if (is_time){
             name_f = new SimpleDateFormat("yyyy年MM月dd");
             value_f = new SimpleDateFormat("yyyy/MM/dd");
-            name=name_f.format(date);
-            value=value_f.format(date);
         }else{
             value_f = new SimpleDateFormat("yyyy/MM/dd HH:mm");
             name_f = new SimpleDateFormat("yyyy年MM月dd HH:mm");
-            name=name_f.format(date);
-            value=value_f.format(date);
         }
-
+        name=name_f.format(date);
+        value=value_f.format(date);
     }
 
 
@@ -290,7 +287,6 @@ public class DateBean implements Parcelable {
         return content;
     }
 
-
     /**
      * ------------------------------星期--------------------------------------
      * 星期日 : Sunday= 1;
@@ -319,6 +315,13 @@ public class DateBean implements Parcelable {
         }
         return w;
     }
+    public int getSelectWeekFirstNameInt(int year,int month) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month-1);
+        c.set(Calendar.DAY_OF_MONTH, 1);
+        return c.get(Calendar.DAY_OF_WEEK)-1;
+    }
     public String getSelectWeekNameString(){
         return getWeekIntConvertString(getSelectWeekNameInt());
     }
@@ -330,5 +333,62 @@ public class DateBean implements Parcelable {
         }
         return weekOfDays[week];
     }
+
+
+    /**
+     * ---------------返回一个特定的日期对象--------
+     */
+
+
+    public DateBean(int year,int month,int dayOfMonth,boolean is_time) {
+
+
+
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR,year);
+        c.set(Calendar.MONTH, month-1);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        Date date=new Date(c.getTimeInMillis());
+
+        this.value_long = c.getTimeInMillis();
+        this.is_time=is_time;
+        if (is_time){
+            name_f = new SimpleDateFormat("yyyy年MM月dd");
+            value_f = new SimpleDateFormat("yyyy/MM/dd");
+
+        }else{
+            value_f = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            name_f = new SimpleDateFormat("yyyy年MM月dd HH:mm");
+        }
+        name=name_f.format(date);
+        value=value_f.format(date);
+    }
+
+    public  DateBean getObjectForDay(DateBean date, int day) {
+        return new DateBean(date.getSelectYearNameInt(), date.getSelectMonthNameInt(), day,true);
+    }
+
+
+    // true 返回 year false 返回 month
+    private int getYearOrMonth(int year, int month, boolean is) {
+        if (month > 12) {
+            year += month / 12;
+            month = month % 12;
+        } else if (month == 0) {
+            year -= 1;
+            month = 12;
+        } else if (month < 0) {
+            year -= Math.abs(month) / 12 + 1;
+            month = 12 - Math.abs(month) % 12;
+        }
+        if (is) {
+            return year;
+        } else {
+            return month;
+        }
+
+    }
+
+
 
 }

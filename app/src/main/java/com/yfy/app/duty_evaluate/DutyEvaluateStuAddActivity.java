@@ -68,7 +68,7 @@ public class DutyEvaluateStuAddActivity extends BaseActivity implements AssetsGe
         toolbar.addMenuText(TagFinal.ONE_INT,"完成");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                finish();
             }
         });

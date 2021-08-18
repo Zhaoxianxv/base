@@ -85,7 +85,7 @@ public class PEQualityTeaSuggestActivity extends BaseActivity {
         toolbar.addMenuText(TagFinal.ONE_INT,R.string.submit);
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                 ViewTool.showProgressDialog(mActivity,"");
                 recyclerView.postDelayed(new Runnable() {
                     @Override

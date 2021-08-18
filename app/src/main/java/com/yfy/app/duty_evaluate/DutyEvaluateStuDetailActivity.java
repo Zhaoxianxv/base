@@ -68,7 +68,7 @@ public class DutyEvaluateStuDetailActivity extends BaseActivity implements Asset
         select_date_tv=toolbar.addMenuText(TagFinal.TWO_INT,"");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                 customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01",year_s,month_s));
 
             }

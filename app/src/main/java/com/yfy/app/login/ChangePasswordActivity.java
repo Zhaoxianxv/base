@@ -53,7 +53,7 @@ public class ChangePasswordActivity extends BaseActivity  {
 
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                 if (isSend()){
                     alterPass();
                 }

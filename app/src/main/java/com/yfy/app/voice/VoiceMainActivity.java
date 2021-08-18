@@ -37,15 +37,15 @@ public class VoiceMainActivity extends Activity {
 
 	private ListView mListView;
 	private ArrayAdapter<Recorder> mAdapter;
-	private List<Recorder> mDatas = new ArrayList<>();
-	
+	public List<Recorder> mDatas = new ArrayList<>();
 
-	private AudioRecorderButton mAudioRecorderButton;
+
+	public AudioRecorderButton mAudioRecorderButton;
 	private View mAnimView;
 	
 	private View topView;
 	private boolean flag = false;
-	
+
 	public static String currentTimeString = "";
 	
 	@Override
@@ -56,8 +56,8 @@ public class VoiceMainActivity extends Activity {
 
 		PermissionTools.tryVoice(VoiceMainActivity.this);
 		topView=findViewById(R.id.topView);
-		mListView = (ListView) findViewById(R.id.voiceNotesListView);
-		mAudioRecorderButton = (AudioRecorderButton) findViewById(R.id.recorderButton);
+		mListView =  findViewById(R.id.voiceNotesListView);
+		mAudioRecorderButton =  findViewById(R.id.recorderButton);
 		
 		mAudioRecorderButton.setAudioFinishRecorderListenter(new AudioRecorderButton.AudioFinishRecorderListenter() {
 

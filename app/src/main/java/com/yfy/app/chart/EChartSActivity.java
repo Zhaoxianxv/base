@@ -59,7 +59,7 @@ public class EChartSActivity extends BaseActivity {
         confirmContentWindow = new ConfirmContentWindow(mActivity);
         confirmContentWindow.setPopClickListener(new NoFastClickListener() {
             @Override
-            public void popClick(View view) {
+            public void fastPopClick(View view) {
 
                 switch (view.getId()){
                     case R.id.pop_dialog_title:
@@ -85,7 +85,7 @@ public class EChartSActivity extends BaseActivity {
         toolbar.addMenuText(TagFinal.ONE_INT,"Json");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void fastMenuClick(View view, int position) {
                 initString();
             }
         });

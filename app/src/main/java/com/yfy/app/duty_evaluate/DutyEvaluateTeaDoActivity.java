@@ -145,7 +145,7 @@ public class DutyEvaluateTeaDoActivity extends BaseActivity {
         toolbar.addMenuText(TagFinal.ONE_INT,"记录");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
 
                 Intent intent=new Intent(mActivity, DutyEvaluateTeaRecordActivity.class);
                 intent.putExtra(Base.class_bean,classBean);

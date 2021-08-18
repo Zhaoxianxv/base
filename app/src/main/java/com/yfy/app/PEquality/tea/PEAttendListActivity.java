@@ -61,7 +61,7 @@ public class PEAttendListActivity extends BaseActivity {
         toolbar.addMenuText(TagFinal.ONE_INT,"新增");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
 
                 Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                 intent.putExtra(Base.title,"新增请假");

@@ -116,7 +116,7 @@ public class PETeaAddScoreActivity extends BaseActivity {
         toolbar.addMenu(TagFinal.ONE_INT,R.drawable.ic_parent_head,ColorRgbUtil.getWhite());
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
 
                 closeKeyWord();
                 String name=stu_name.getText().toString().trim();

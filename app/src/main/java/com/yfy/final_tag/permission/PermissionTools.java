@@ -63,8 +63,9 @@ public class PermissionTools {
         PermissionGen
                 .needPermission(mActivity, TagFinal.VOICE_RECORD,
                         new String[]{
-                                Manifest.permission.READ_EXTERNAL_STORAGE,
                                 Manifest.permission.RECORD_AUDIO,
+                                Manifest.permission.WAKE_LOCK,
+                                Manifest.permission.READ_EXTERNAL_STORAGE,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE
                         });
 

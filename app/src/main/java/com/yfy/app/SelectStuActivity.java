@@ -74,7 +74,7 @@ public class SelectStuActivity extends BaseActivity {
             toolbar.addMenuText(TagFinal.ONE_INT,"确定");
             toolbar.setOnMenuClickListener(new NoFastClickListener() {
                 @Override
-                public void fastClick(View view) {
+                public void fastMenuClick(View view, int position){
 
                     List<String> nameList=new ArrayList<>();
                     List<KeyValue> stuList=adapter.getDataList();

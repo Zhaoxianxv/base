@@ -63,7 +63,7 @@ public class PERecipeActivity extends BaseActivity {
         toolbar.addMenuText(TagFinal.ONE_INT,"添加");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                 Intent intent=new Intent(mActivity,PEQualityTeaSuggestActivity.class);
                 intent.putExtra(Base.title,title);
                 intent.putExtra(Base.type,title);

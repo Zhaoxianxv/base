@@ -13,7 +13,6 @@ import androidx.annotation.StringRes;
 
 import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yfy.base.R;
+import com.yfy.final_tag.glide.DrawableLess;
 import com.yfy.final_tag.listener.NoFastClickListener;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +68,7 @@ public class SQToolBar extends RelativeLayout {
 
         MENU_ICON_SIZE = (int) context.getResources().getDimension(R.dimen.margin_35dp);
         MENU_ITEM_SIZE = (int) context.getResources().getDimension(R.dimen.margin_45dp);
-        TEXT_PADDING_LEFT_RIGHT = dip2px(14);
+        TEXT_PADDING_LEFT_RIGHT = ViewTool.dpPointPx(context,14);
 
         menus = new ArrayList<>();
         //设置要给默认导航
@@ -119,8 +120,9 @@ public class SQToolBar extends RelativeLayout {
     /**
      * 设置导航（左上角图标）
      */
-    public ImageView setNavi(@DrawableRes int resid) {
-        return setNavi(getResources().getDrawable(resid));
+
+    public ImageView setNavi(int resid) {
+        return setNavi(DrawableLess.getResourceDrawable(getContext(),resid));
     }
 
     /**
@@ -246,11 +248,11 @@ public class SQToolBar extends RelativeLayout {
      * 添加图片菜單
      */
     public ImageView addMenu(int position, @DrawableRes int resid) {
-        return addMenu(position, getResources().getDrawable(resid));
+        return addMenu(position, DrawableLess.getResourceDrawable(getContext(),resid));
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public ImageView addMenu(int position, @DrawableRes int resid, int res_color) {
-        Drawable drawable=getResources().getDrawable(resid);
+        Drawable drawable=DrawableLess.getResourceDrawable(getContext(),resid);
         drawable.setTint(res_color);
         return addMenu(position, drawable);
     }
@@ -284,9 +286,9 @@ public class SQToolBar extends RelativeLayout {
     }
 
     private void setMenuListener(View menu) {
-        menu.setOnClickListener(new OnClickListener() {
+        menu.setOnClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View v) {
+            public void fastClick(View v) {
                 if (onMenuClickListener != null) {
                     onMenuClickListener.onMenuClick(v, (int) v.getTag());
                 }
@@ -345,9 +347,9 @@ public class SQToolBar extends RelativeLayout {
      * 默认点击导航后，返回上一个页面
      */
     private void setDefaultNaviClickListener() {
-        setOnNaviClickListener(new OnClickListener() {
+        setOnNaviClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View v) {
+            public void fastClick(View v) {
                 if (getContext() instanceof Activity) {
                     ((Activity) getContext()).finish();
                 }
@@ -407,14 +409,7 @@ public class SQToolBar extends RelativeLayout {
         return menus;
     }
 
-    public int px2dip(float pxValue) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, pxValue, getResources().getDisplayMetrics());
-    }
 
-    public int dip2px(float dipValue) {
-        float density = getResources().getDisplayMetrics().density;
-        return (int) (density * dipValue);
-    }
 
 
     /**

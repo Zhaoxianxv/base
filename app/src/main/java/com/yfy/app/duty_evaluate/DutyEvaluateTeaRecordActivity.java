@@ -62,7 +62,7 @@ public class DutyEvaluateTeaRecordActivity extends BaseActivity {
         select_date_tv=toolbar.addMenuText(TagFinal.ONE_INT,"");
         toolbar.setOnMenuClickListener(new NoFastClickListener() {
             @Override
-            public void fastClick(View view) {
+            public void fastMenuClick(View view, int position){
                 customDatePicker1.show(StringUtils.stringToGetTextJoint("%1$s-%2$s-01 01:01",year_s,month_s));
             }
         });

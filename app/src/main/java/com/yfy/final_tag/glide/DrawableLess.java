@@ -2,6 +2,7 @@ package com.yfy.final_tag.glide;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -16,7 +17,7 @@ public final class DrawableLess {
 
     //获取Drawable  （idDrawable）
     @SuppressLint("UseCompatLoadingForDrawables")
-    public static Drawable getResourceDrawable(Activity mActivity, int idDrawable) {
+    public static Drawable getResourceDrawable(Context mActivity, int idDrawable) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return mActivity.getResources().getDrawable(idDrawable, null);

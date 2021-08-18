@@ -35,18 +35,7 @@ public class ConfirmDateWindow extends PopupWindow  {
 
 	private String time;
 
-	public String getTime() {
-		String time = String.format(Locale.CHINA,
-				"%04d/%02d/%02d/",
-				year.getCurrentItem()+1950,
-				month.getCurrentItem()+1,
-				day.getCurrentItem()+1);
-		return time;
-	}
-	public long getTimeLong() {
-		Date time=new Date( year.getCurrentItem()+50, month.getCurrentItem(), day.getCurrentItem()+1);
-		return time.getTime();
-	}
+
 
 	public String getTimeValue() {
 		String time = String.format(Locale.CHINA,
@@ -64,6 +53,7 @@ public class ConfirmDateWindow extends PopupWindow  {
 				day.getCurrentItem()+1);
 		return time;
 	}
+
 	public ConfirmDateWindow(Activity context) {
 		super(context);
 		this.context = context;
@@ -174,25 +164,26 @@ public class ConfirmDateWindow extends PopupWindow  {
 
 
 
-	private View.OnClickListener onClickListener = new View.OnClickListener() {
+	public View.OnClickListener onClickListener = new View.OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
-			if (listenner != null) {
-				listenner.onClick(v);
+			if (listener != null) {
+				if (StringJudge.isEmpty(type)){
+					listener.popClick(v);
+				}else{
+					listener.popClick(v,type);
+				}
 			}
 		}
 	};
 
-	private OnPopClickListenner listenner = null;
+	private PopClickListener listener = null;
 
-	public void setOnPopClickListenner(OnPopClickListenner listenner) {
-		this.listenner = listenner;
+	public void setOnPopClickListener(PopClickListener listener) {
+		this.listener = listener;
 	}
 
-	public static interface OnPopClickListenner {
-		public void onClick(View view);
-	}
 
 
 
@@ -224,16 +215,12 @@ public class ConfirmDateWindow extends PopupWindow  {
 	private void initDay(int arg1, int arg2) {
 		NumericWheelAdapter numericWheelAdapter=new NumericWheelAdapter(context,1, getDay(arg1, arg2), "%02d");
 		numericWheelAdapter.setLabel(" 日");
-		//		numericWheelAdapter.setTextSize(15);  设置字体大小
 		day.setViewAdapter(numericWheelAdapter);
 		day.setCyclic(true);
 	}
 
 	/**
 	 *
-	 * @param year
-	 * @param month
-	 * @return
 	 */
 	private int getDay(int year, int month) {
 		int day = 30;
@@ -265,4 +252,62 @@ public class ConfirmDateWindow extends PopupWindow  {
 		}
 		return day;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//区分同时选择几个时间
+	public String type="";
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	public long getTimeLong() {
+		int yearNameInt=year.getCurrentItem()+1950;
+		int monthNameInt=month.getCurrentItem()+1;
+		int dayOfMonth=day.getCurrentItem()+1;
+
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.YEAR,getYearOrMonth(yearNameInt,monthNameInt,true));
+		c.set(Calendar.MONTH, getYearOrMonth(yearNameInt,monthNameInt,false)-1);
+		c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+
+
+		Date time=new Date(c.getTimeInMillis());
+		return time.getTime();
+	}
+
+
+	// true 返回 year false 返回 month
+	private int getYearOrMonth(int year, int month, boolean is) {
+		if (month > 12) {
+			year += month / 12;
+			month = month % 12;
+		} else if (month == 0) {
+			year -= 1;
+			month = 12;
+		} else if (month < 0) {
+			year -= Math.abs(month) / 12 + 1;
+			month = 12 - Math.abs(month) % 12;
+		}
+		if (is) {
+			return year;
+		} else {
+			return month;
+		}
+
+	}
+
+
 }
