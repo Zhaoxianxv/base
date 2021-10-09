@@ -53,14 +53,8 @@ public class LotteryMainActivity extends BaseActivity {
 
     private void initSQToolbar() {
         assert toolbar!=null;
-        toolbar.setTitle("选择用户类型");
-        toolbar.addMenuText(TagFinal.ONE_INT,"zxx");
-        toolbar.setOnMenuClickListener(new NoFastClickListener() {
-            @Override
-            public void fastMenuClick(View view, int position){
-                startActivity(new Intent(mActivity, SelectedModeTypeActivity.class));
-            }
-        });
+        toolbar.setTitle("用户");
+
 
 
     }

@@ -17,13 +17,13 @@
     <ScrollView
         android:id="@+id/sv_main"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/margin_0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -31,13 +31,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_45dp"
                 android:orientation="horizontal"
-                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginStart="@dimen/margin_10dp"
                 android:gravity="center_vertical">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="@dimen/margin_50dp"
                     android:layout_height="@dimen/margin_30dp"
-                    android:layout_marginLeft="@dimen/margin_5dp"
                     android:text="账    号:"
+                    android:layout_marginStart="@dimen/margin_5dp"
                     app:autoSizeTextType="uniform"
                     android:textSize="@dimen/textsize9"
                     android:gravity="center_vertical"/>
@@ -46,12 +46,12 @@
                     android:id="@+id/login_phone"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:textColor="@color/base_color"
+                    android:text=""
                     android:hint="@string/please_edit_account"
+                    android:textColor="@color/base_color"
                     android:singleLine="true"
                     android:textColorHint="@color/gray"
                     android:padding="@dimen/margin_5dp"
-                    android:text=""
                     android:selectAllOnFocus="true"
                     android:textSize="@dimen/textsize7"
                     android:background="@android:color/transparent"
@@ -72,14 +72,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_45dp"
                 android:orientation="horizontal"
-                android:layout_marginLeft="@dimen/margin_10dp"
+                android:layout_marginStart="@dimen/margin_10dp"
                 android:gravity="center_vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="@dimen/margin_50dp"
                     android:layout_height="@dimen/margin_30dp"
-                    android:layout_marginLeft="@dimen/margin_5dp"
                     android:text="密    码:"
+                    android:layout_marginStart="@dimen/margin_5dp"
                     app:autoSizeTextType="uniform"
                     android:textSize="@dimen/textsize9"
                     android:gravity="center_vertical"/>
@@ -88,11 +88,11 @@
                     android:id="@+id/login_password"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:textColor="@color/base_color"
+                    android:text=""
                     android:hint="@string/please_edit_password"
+                    android:textColor="@color/base_color"
                     android:textColorHint="@color/gray"
                     android:textSize="@dimen/textsize7"
-                    android:text=""
                     android:inputType="textPassword"
                     android:singleLine="true"
                     android:padding="@dimen/margin_5dp"
@@ -110,14 +110,15 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_45dp"
-                android:layout_marginLeft="@dimen/margin_10dp">
+                android:layout_marginStart="@dimen/margin_10dp"
+                >
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/login_code_tag"
                     android:layout_width="@dimen/margin_50dp"
                     android:layout_height="@dimen/margin_30dp"
-                    android:layout_marginLeft="@dimen/margin_5dp"
                     android:text="验证码:"
+                    android:layout_marginStart="@dimen/margin_5dp"
                     app:autoSizeTextType="uniform"
                     android:layout_centerVertical="true"
                     android:textSize="@dimen/textsize9"
@@ -128,16 +129,16 @@
                     android:layout_width="@dimen/margin_100dp"
                     android:layout_height="@dimen/margin_35dp"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/margin_10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/margin_10dp"
                     />
                 <EditText
                     android:id="@+id/login_code"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:textColor="@color/base_color"
-                    android:layout_toRightOf="@id/login_code_tag"
                     android:hint="@string/please_edit_code"
+                    android:textColor="@color/base_color"
+                    android:layout_toEndOf="@id/login_code_tag"
                     android:textColorHint="@color/gray"
                     android:textSize="@dimen/textsize7"
                     android:selectAllOnFocus="true"
@@ -145,7 +146,7 @@
                     android:singleLine="true"
                     android:padding="@dimen/margin_5dp"
                     android:background="@android:color/transparent"
-                    android:layout_toLeftOf="@id/login_code_image"
+                    android:layout_toStartOf="@id/login_code_image"
                     />
 
             </RelativeLayout>
@@ -181,17 +182,81 @@
                 android:id="@+id/login_forget_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="忘记密码?"
                 android:layout_marginTop="@dimen/margin_20dp"
                 android:paddingTop="@dimen/margin_5dp"
                 android:paddingBottom="@dimen/margin_5dp"
-                android:paddingRight="@dimen/margin_10dp"
-                android:text="忘记密码?"
-                android:gravity="right"
+                android:gravity="end"
+                android:paddingEnd="@dimen/margin_10dp"
                 android:textColor="@color/main_red"/>
+    
+    
+            <RelativeLayout
+                android:id="@+id/relative_layout_protocol_login_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+                <RadioButton
+                    android:id="@+id/radio_bt_protocol_login_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:layout_marginStart="@dimen/margin_10dp"
+                    android:layout_centerVertical="true"
+                    android:focusable="false"
+                    android:checked="false"
+                    android:buttonTint="@color/app_base_color"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/margin_45dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我已阅读并同意"
+                        android:textColor="@color/canlendar_text_color"
+                        android:gravity="center"
+                        android:textSize="@dimen/textsize9"
+                        />
+                    <TextView
+                        android:id="@+id/version_agreement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 用户协议 "
+                        android:gravity="center"
+                        android:textColor="@color/app_base_color"
+                        android:autoLink="none"
+                        android:textSize="@dimen/textsize9"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="和"
+                        android:textColor="@color/canlendar_text_color"
+                        android:gravity="center"
+                        android:textSize="@dimen/textsize9"
+                        />
+                    <TextView
+                        android:id="@+id/version_private"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 隐私声明 "
+                        android:gravity="center"
+                        android:textColor="@color/app_base_color"
+                        android:autoLink="none"
+                        android:textSize="@dimen/textsize9"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
 
 
         </LinearLayout>
-
     </ScrollView>
 
 </LinearLayout>

@@ -28,9 +28,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class
-
-SelectedModeTypeActivity extends BaseActivity {
+public class SelectedModeTypeActivity extends BaseActivity {
     private static final String TAG = SelectedModeTypeActivity.class.getSimpleName();
 
     private SelectedModeTypeAdapter adapter;
@@ -50,7 +48,7 @@ SelectedModeTypeActivity extends BaseActivity {
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle("DOME");
-        toolbar.cancelNavi();
+//        toolbar.cancelNavi();
 
 
     }

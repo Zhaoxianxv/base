@@ -116,8 +116,7 @@ public class PEHonorAddActivity extends BaseActivity {
             public void fastPopClick(View view) {
                 switch (view.getId()) {
                     case R.id.set:
-                        dateBean.setName(date_dialog.getTimeName());
-                        dateBean.setValue(date_dialog.getTimeValue());
+                        dateBean.setValue_long(date_dialog.getTimeLong());
                         choose_date.setText(dateBean.getName());
                         choose_date.setTextColor(ColorRgbUtil.getBaseText());
                         date_dialog.dismiss();

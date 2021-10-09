@@ -1,6 +1,7 @@
 package com.yfy.app.voice.view;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -18,10 +19,11 @@ import com.yfy.final_tag.data.TagFinal;
 
 /**
  */
+@SuppressLint("AppCompatCustomView")
 public class AudioRecorderButton extends Button implements AudioStateListenter {
 
 	/**
-
+	 *
 	 */
 	private static final int STATE_NORMAL = 1;
 	private static final int STATE_RECORDERING = 2;
@@ -205,7 +207,7 @@ public class AudioRecorderButton extends Button implements AudioStateListenter {
 	
 	/**
 	 */
-	private Handler mHandler = new Handler() {
+	public Handler mHandler = new Handler() {
 		
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
@@ -231,7 +233,7 @@ public class AudioRecorderButton extends Button implements AudioStateListenter {
 	private float mTime;
 	/**
 	 */
-	private Runnable mGetVoiceLevelRunnable = new Runnable() {
+	public Runnable mGetVoiceLevelRunnable = new Runnable() {
 
 		@Override
 		public void run() {

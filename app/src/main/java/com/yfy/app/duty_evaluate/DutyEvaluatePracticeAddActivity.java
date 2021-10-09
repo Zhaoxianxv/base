@@ -98,8 +98,7 @@ public class DutyEvaluatePracticeAddActivity extends BaseActivity {
             public void fastPopClick(View view) {
                 switch (view.getId()) {
                     case R.id.set:
-                        selected_date_bean.setName(date_dialog.getTimeName());
-                        selected_date_bean.setValue(date_dialog.getTimeValue());
+                        selected_date_bean.setValue_long(date_dialog.getTimeLong());
                         select_date_tv.setText(selected_date_bean.getName());
                         select_date_tv.setTextColor(ColorRgbUtil.getBaseText());
                         date_dialog.dismiss();

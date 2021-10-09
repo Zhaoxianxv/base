@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.yfy.app.voice.recorder.MediaManage;
 import com.yfy.app.voice.view.AudioRecorderButton;
 import com.yfy.base.R;
+import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.DateUtils;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.permission.PermissionFail;
@@ -24,16 +25,17 @@ import com.yfy.final_tag.permission.PermissionGen;
 import com.yfy.final_tag.permission.PermissionSuccess;
 import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.greendao.KeyValueDb;
 import com.yfy.greendao.tool.GreenDaoManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.crypto.Mac;
 
 
-
-public class VoiceMainActivity extends Activity {
+public class VoiceMainActivity extends BaseActivity {
 
 	private ListView mListView;
 	private ArrayAdapter<Recorder> mAdapter;
@@ -84,8 +86,7 @@ public class VoiceMainActivity extends Activity {
 		mAdapter = new AudioRecorderAdapter(this, mDatas);
 		mListView.setAdapter(mAdapter);
 
-		//mListView.getChildAt(index)
-		
+
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -149,27 +150,23 @@ public class VoiceMainActivity extends Activity {
     }
 	/**
 	 * @author songshi
-	 *
 	 */
 
 	
 	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
+	public void onPause() {
 		super.onPause();
 		MediaManage.pause();
 	}
 	
 	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
+	public void onResume() {
 		super.onResume();
 		MediaManage.resume();
 	}
 	
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		MediaManage.release();
 	}
@@ -180,19 +177,10 @@ public class VoiceMainActivity extends Activity {
 
 
 	@PermissionSuccess(requestCode = TagFinal.VOICE_RECORD)
-	private void voiceRecord() {
-
+	public void voiceRecord() {
+		ViewTool.showToastShort(mActivity,"没有获取到麦克风权限！");
 	}
 
-	@PermissionFail(requestCode = TagFinal.CAMERA)
-	private void showCamere() {
-		Toast.makeText(getApplicationContext(), R.string.permission_camera, Toast.LENGTH_SHORT).show();
-	}
-
-	@PermissionFail(requestCode = TagFinal.PHOTO_ALBUM)
-	private void showTip1() {
-		Toast.makeText(getApplicationContext(), R.string.permission_fail_album, Toast.LENGTH_SHORT).show();
-	}
 
 	@Override
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

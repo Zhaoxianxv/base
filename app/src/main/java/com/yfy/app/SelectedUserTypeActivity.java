@@ -13,6 +13,7 @@ import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateTeaHonorMainActivity;
 import com.yfy.app.lottery.LotteryMainActivity;
 import com.yfy.app.view.ViewTypeSelectActivity;
+import com.yfy.app.voice.VoiceMainActivity;
 import com.yfy.base.App;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
@@ -53,20 +54,13 @@ public class SelectedUserTypeActivity extends BaseActivity {
         initSQToolbar();
         initRecycler();
         setAdapterData();
-        initDialog();
     }
 
 
     private void initSQToolbar() {
         assert toolbar!=null;
         toolbar.setTitle("选择用户类型");
-        toolbar.addMenuText(TagFinal.ONE_INT,"zxx");
-        toolbar.setOnMenuClickListener(new NoFastClickListener() {
-            @Override
-            public void fastMenuClick(View view, int position){
-                startActivity(new Intent(mActivity, SelectedModeTypeActivity.class));
-            }
-        });
+
 
 
     }
@@ -93,13 +87,17 @@ public class SelectedUserTypeActivity extends BaseActivity {
 
 
                 switch (type){
+                    case "VoiceMainActivity":
+                        intent.setClass(mActivity, VoiceMainActivity.class);
+                        break;
                     case "LotteryMainActivity":
                         intent.setClass(mActivity, LotteryMainActivity.class);
-
+                        break;
+                    case "SelectedModeTypeActivity":
+                        intent.setClass(mActivity, SelectedModeTypeActivity.class);
                         break;
                     case "ViewTypeSelectActivity":
                         intent.setClass(mActivity, ViewTypeSelectActivity.class);
-
                         break;
                     case Base.USER_TYPE_STU:
                         intent.setClass(mActivity, DutyEvaluateStuMainActivity.class);
@@ -127,32 +125,6 @@ public class SelectedUserTypeActivity extends BaseActivity {
 
     }
 
-    private ConfirmContentWindow confirmContentWindow;
-    private void initDialog(){
-
-        confirmContentWindow = new ConfirmContentWindow(mActivity);
-        confirmContentWindow.setPopClickListener(new NoFastClickListener() {
-            @Override
-            public void popClick(View view) {
-                switch (view.getId()){
-                    case R.id.pop_dialog_cancel:
-                        confirmContentWindow.dismiss();
-                        Logger.e("");
-                        break;
-                    case R.id.pop_dialog_ok:
-                        confirmContentWindow.dismiss();
-                        break;
-                }
-            }
-        });
-    }
-
-    public void setContentShowDialog(String title,String content,String ok,String cancel){
-        if (confirmContentWindow==null)return;
-        confirmContentWindow.setTitle(title,content,ok,cancel);
-        confirmContentWindow.showAtCenter();
-    }
-
 
 
 
@@ -162,6 +134,8 @@ public class SelectedUserTypeActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
+        keyValue_adapter.add(new KeyValue("voice","VoiceMainActivity"));
+        keyValue_adapter.add(new KeyValue("ModeType","SelectedModeTypeActivity"));
         keyValue_adapter.add(new KeyValue("彩","LotteryMainActivity"));
         keyValue_adapter.add(new KeyValue("View","ViewTypeSelectActivity"));
 

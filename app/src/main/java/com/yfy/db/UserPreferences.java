@@ -41,7 +41,6 @@ public class UserPreferences extends Preferences {
      * 保存first
      */
     private static final String TAG_FIRST = "first";
-    private static final String USER_FIRST_LOGIN = "user_first_login";
     public void saveFirstTimeOpen(boolean name){
         saveBooolean(TAG_FIRST, name);
     }
@@ -50,6 +49,16 @@ public class UserPreferences extends Preferences {
         return getBoolean(TAG_FIRST,true);
     }
 
+    /**
+     * ----------------第一次登录
+     */
+    private static final String USER_FIRST_LOGIN = "user_first_login";
+    public void saveFirstLogin(boolean is){
+        saveBooolean(USER_FIRST_LOGIN, is);
+    }
+    public boolean getIsFirstLogin(){
+        return getBoolean(USER_FIRST_LOGIN,true);
+    }
 
 
     /**

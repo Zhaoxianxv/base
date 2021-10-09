@@ -9,8 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
+import com.yfy.app.WebActivity;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.login.bean.Stunlist;
 import com.yfy.app.login.bean.UserRes;
@@ -27,6 +31,7 @@ import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.keyboard.password.KeyboardTouchListener;
 import com.yfy.final_tag.keyboard.password.KeyboardUtil;
 import com.yfy.final_tag.listener.NoFastClickListener;
+import com.yfy.final_tag.stringtool.TextToolSpan;
 import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.greendao.tool.GreenDaoManager;
 import com.yfy.db.UserPreferences;
@@ -97,6 +102,7 @@ public class LoginActivity extends BaseActivity {
 		code_s=rxCaptcha.getCode();
 //		initMoveKeyBoard();
 		initDialogList();
+		initPrivateProtocol();
 	}
 
 	@OnClick(R.id.login_code_image)
@@ -144,6 +150,7 @@ public class LoginActivity extends BaseActivity {
 
 	@OnClick(R.id.login_button)
 	void setlogin(){
+
 		if (isCanSend()){
 			album_select.showAtBottom();
 		}
@@ -217,7 +224,9 @@ public class LoginActivity extends BaseActivity {
 			return false;
 		}
 //		keyboardUtil.hideKeyboardLayout();
-		return true;
+
+		return isFirstProtocolLogin();
+
 	}
 
 
@@ -407,6 +416,8 @@ public class LoginActivity extends BaseActivity {
 	}
 
 	private void saveUser(UserRes res, String login_type){
+		//
+		UserPreferences.getInstance().saveFirstLogin(false);//保存已经登录一次
 		ViewTool.showToastShort(mActivity,"登录成功");
 		GreenDaoManager.getInstance().clearUser();
 		User user=new User();
@@ -481,6 +492,71 @@ public class LoginActivity extends BaseActivity {
 //            System.out.println("onclickType" + onclickType);
 //            System.out.println("editText" + editText.getText().toString());
 		}
+	}
+
+
+
+	/**
+	 * ---------------隐私协议书 Protocol
+	 */
+
+	public boolean is_protocol=false;
+	@BindView(R.id.relative_layout_protocol_login_main)
+	RelativeLayout layout_protocol_login_main;
+	@OnClick(R.id.relative_layout_protocol_login_main)
+	void setSelectProtocol(){
+		is_protocol=!is_protocol;
+		rbt_check_flag_login.setChecked(is_protocol);
+
+	}
+	@BindView(R.id.radio_bt_protocol_login_main)
+	RadioButton rbt_check_flag_login;
+
+
+	@OnClick(R.id.version_private)
+	void setPrivate(){
+
+		Intent intent = new Intent(mActivity, WebActivity.class);
+		Bundle b = new Bundle();
+		b.putString(TagFinal.URI_TAG, Base.HUA_WEI_PRIVATE);
+		b.putString(TagFinal.TITLE_TAG, "隐私声明");
+		intent.putExtras(b);
+		startActivity(intent);
+	}
+	@OnClick(R.id.version_agreement)
+	void setAgreement(){
+
+		Intent intent = new Intent(mActivity, WebActivity.class);
+		Bundle b = new Bundle();
+		b.putString(TagFinal.URI_TAG, Base.HUA_WEI_AGREEMENT);
+		b.putString(TagFinal.TITLE_TAG, "用户协议");
+		intent.putExtras(b);
+		startActivity(intent);
+	}
+
+	//初始化界面
+	public void initPrivateProtocol(){
+		if (UserPreferences.getInstance().getIsFirstLogin()){
+			layout_protocol_login_main.setVisibility(View.VISIBLE);
+			rbt_check_flag_login.setChecked(false);
+		}else{
+			layout_protocol_login_main.setVisibility(View.GONE);
+
+		}
+	}
+	//判断app第一次登录隐私阅读条件  false 未阅读
+	public boolean isFirstProtocolLogin(){
+		if (UserPreferences.getInstance().getIsFirstLogin()){
+			if (rbt_check_flag_login.isChecked()){
+				return true;
+			}else{
+				ViewTool.showToastShort(mActivity,"请点击已阅读用户条例和隐私协议！");
+				return false;
+			}
+		}else{
+			return true;
+		}
+
 	}
 
 }

@@ -20,10 +20,10 @@ public class AudioRecorderAdapter extends ArrayAdapter<Recorder> {
 	private List<Recorder> mDatas;
 	private Context mContext;
 
-	private int mMinItemWidth;
-	private int mMaxItemWidth;
+	public int mMinItemWidth;
+	public int mMaxItemWidth;
 
-	private LayoutInflater mInflater;
+	public LayoutInflater mInflater;
 
 
 	//
@@ -42,10 +42,8 @@ public class AudioRecorderAdapter extends ArrayAdapter<Recorder> {
 
 	}
 
-	/* *
-	 * ViewHolderģʽ
-	 * (non-Javadoc)
-	 * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+	/**
+	 *
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -80,8 +78,6 @@ public class AudioRecorderAdapter extends ArrayAdapter<Recorder> {
 	}
 
 	/**
-	 * Item�ؼ�
-	 * @author songshi
 	 *
 	 */
 	private class ViewHolder {

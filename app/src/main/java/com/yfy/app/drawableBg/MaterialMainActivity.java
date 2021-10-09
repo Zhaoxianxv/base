@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 
 import androidx.annotation.NonNull;
@@ -49,12 +50,12 @@ public class MaterialMainActivity extends BaseActivity {
 //        mDrawerLayout.closeDrawer(Gravity.START);     //      关闭一边
 //        mDrawerLayout.closeDrawers();       //      关闭所有
 
-        toggle.setOnClickListener(new View.OnClickListener() {
+        toggle.setOnClickListener(new NoFastClickListener() {
 
             @Override
-            public void onClick(View v) {
+            public void fastClick(View v) {
 //                mDrawerLayout.isDrawerOpen(mDrawerToggle.);
-                mDrawerLayout.openDrawer(Gravity.START);
+                mDrawerLayout.openDrawer(Gravity.END);
 //                mDrawerLayout.closeDrawers();
 //                mDrawerLayout.openDrawer(listView);
             }
