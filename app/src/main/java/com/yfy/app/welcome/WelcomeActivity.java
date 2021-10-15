@@ -15,8 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
-import com.yfy.app.SearchStuPassWordActivity;
-import com.yfy.app.SelectedUserTypeActivity;
+import com.yfy.app.MainUserTypeActivity;
 import com.yfy.app.welcome.adapter.GuidePagerAdapter;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItem;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItemAdapter;
@@ -52,8 +51,7 @@ public class WelcomeActivity extends BaseActivity {
     private void initView() {
 //        splashBitmap = BitmapLess.$drawableColor(this,R.mipmap.icon_launcher,ColorRgbUtil.getBaseColor());
         splashBitmap = BitmapLess.$drawable(this,R.mipmap.icon_launcher);
-//        if (UserPreferences.getInstance().getIsFirstTimeOpen()) {
-        if (false) {
+        if (UserPreferences.getInstance().getIsFirstTimeOpen()) {
             showGuide();//显示引导内容
         } else {
             showSplash();//显示闪屏图片
@@ -91,7 +89,6 @@ public class WelcomeActivity extends BaseActivity {
                 tab_indicator.setVisibility(View.GONE);
                 btn_done.setVisibility(View.GONE);
                 showSplash();
-                UserPreferences.getInstance().saveFirstTimeOpen(false);
             }
         });
     }
@@ -105,7 +102,7 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void run() {
                 //初始化登录信息
-                startActivity(new Intent(WelcomeActivity.this, SelectedUserTypeActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, MainUserTypeActivity.class));
 //
                 finish();
 

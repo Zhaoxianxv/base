@@ -72,6 +72,10 @@
         
         <!-- </>?????????????????????????????????AppKey -->
         <activity
+            android:name="com.yfy.app.ProtocolDialogActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeDialogShowBar" />
+        <activity
             android:name="com.yfy.upload.UpDataDialogActivity"
             android:theme="@style/AppThemeDialog" />
         
@@ -192,7 +196,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.yfy.app.SelectedUserTypeActivity"
+            android:name="com.yfy.app.MainUserTypeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- chart -->

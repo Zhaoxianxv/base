@@ -1,6 +1,7 @@
 package com.yfy.final_tag.stringtool;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.media.ExifInterface;
 import android.media.MediaPlayer;
@@ -22,7 +23,13 @@ import java.util.regex.Pattern;
 
 
 public class StringUtils {
+	public static String getResourceString(Activity mActivity, int string_id){
+		return mActivity.getResources().getString(string_id);
+	}
 
+	public static String[] getResourceStringArray(Activity mActivity, int string_array_id){
+		return mActivity.getResources().getStringArray(string_array_id);
+	}
 
 	//---------------------返回byte[]-----------------
 	public static byte[] arraysByteToString(String content){

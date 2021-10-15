@@ -2,23 +2,17 @@ package com.yfy.app;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Environment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
-import com.yfy.app.duty_evaluate.DutyEvaluateTeaHonorMainActivity;
-import com.yfy.base.Base;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.glide.FileCamera;
 import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
-import com.yfy.greendao.tool.NormalDataSaveTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +23,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 /**
  * Created by yfy1 on 2016/10/17.
  */
-public class SelectedUserTypeAdapter extends BaseRecyclerAdapter {
+public class MainUserTypeAdapter extends BaseRecyclerAdapter {
 
 
 
@@ -41,7 +35,7 @@ public class SelectedUserTypeAdapter extends BaseRecyclerAdapter {
 
 
 
-    public SelectedUserTypeAdapter(Activity mContext){
+    public MainUserTypeAdapter(Activity mContext){
         super(mContext);
         this.dataList = new ArrayList<>();
     }

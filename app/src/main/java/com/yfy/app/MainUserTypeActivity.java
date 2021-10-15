@@ -3,7 +3,6 @@ package com.yfy.app;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,19 +10,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateTeaHonorMainActivity;
+import com.yfy.app.login.LoginActivity;
 import com.yfy.app.lottery.LotteryMainActivity;
 import com.yfy.app.view.ViewTypeSelectActivity;
 import com.yfy.app.voice.VoiceMainActivity;
 import com.yfy.base.App;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
+import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.AppLess;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.dialog.ConfirmContentWindow;
 import com.yfy.final_tag.glide.FileCamera;
-import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
@@ -35,22 +34,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressLint("NonConstantResourceId")
-public class SelectedUserTypeActivity extends BaseActivity {
-    private static final String TAG = SelectedUserTypeActivity.class.getSimpleName();
+public class MainUserTypeActivity extends BaseActivity {
+    private static final String TAG = MainUserTypeActivity.class.getSimpleName();
 
-    public SelectedUserTypeAdapter adapter;
+    public MainUserTypeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_recycler_view);
         Logger.e(TAG);
-        if (App.isServiceRunning(mActivity, UploadDataService.class.getSimpleName())){
-            Logger.e(TagFinal.ZXX, "UploadDataService: " );
-        }else{
-            startService(new Intent(App.getApp().getApplicationContext(),UploadDataService.class));//开启更新
-        }
 
+        initProtocolDialog();
         initSQToolbar();
         initRecycler();
         setAdapterData();
@@ -78,7 +73,7 @@ public class SelectedUserTypeActivity extends BaseActivity {
                 LinearLayoutManager.HORIZONTAL,
                 1,
                 ColorRgbUtil.getGainsboro()));
-        adapter=new SelectedUserTypeAdapter(mActivity);
+        adapter=new MainUserTypeAdapter(mActivity);
         recyclerView.setAdapter(adapter);
 
         adapter.setIntentStart(new StartIntentInterface() {
@@ -87,6 +82,9 @@ public class SelectedUserTypeActivity extends BaseActivity {
 
 
                 switch (type){
+                    case "LoginActivity":
+                        intent.setClass(mActivity, LoginActivity.class);
+                        break;
                     case "VoiceMainActivity":
                         intent.setClass(mActivity, VoiceMainActivity.class);
                         break;
@@ -138,6 +136,7 @@ public class SelectedUserTypeActivity extends BaseActivity {
         keyValue_adapter.add(new KeyValue("ModeType","SelectedModeTypeActivity"));
         keyValue_adapter.add(new KeyValue("彩","LotteryMainActivity"));
         keyValue_adapter.add(new KeyValue("View","ViewTypeSelectActivity"));
+        keyValue_adapter.add(new KeyValue("login","LoginActivity"));
 
 
 
@@ -153,6 +152,24 @@ public class SelectedUserTypeActivity extends BaseActivity {
     }
 
 
+    /**
+     * ---------------------protocol
+     */
+    public void initProtocolDialog(){
+//        UserPreferences.getInstance().saveFirstTimeOpen(false);
+
+        if (UserPreferences.getInstance().getIsFirstTimeOpen()){
+            Intent intent=new Intent();
+            intent.setClass(mActivity,ProtocolDialogActivity.class);
+            startActivity(intent);
+        }else{
+            if (App.isServiceRunning(mActivity, UploadDataService.class.getSimpleName())){
+                Logger.e(TagFinal.ZXX, "UploadDataService: " );
+            }else{
+                startService(new Intent(App.getApp().getApplicationContext(),UploadDataService.class));//开启更新
+            }
+        }
+    }
 
 
 }

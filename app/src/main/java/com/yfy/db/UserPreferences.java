@@ -41,8 +41,8 @@ public class UserPreferences extends Preferences {
      * 保存first
      */
     private static final String TAG_FIRST = "first";
-    public void saveFirstTimeOpen(boolean name){
-        saveBooolean(TAG_FIRST, name);
+    public void saveFirstTimeOpen(boolean is){
+        saveBooolean(TAG_FIRST, is);
     }
 
     public boolean getIsFirstTimeOpen(){

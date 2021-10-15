@@ -152,7 +152,8 @@ public class LoginActivity extends BaseActivity {
 	void setlogin(){
 
 		if (isCanSend()){
-			album_select.showAtBottom();
+			UserPreferences.getInstance().saveFirstLogin(false);//保存已经登录一次
+//			album_select.showAtBottom();
 		}
 	}
 
@@ -417,7 +418,7 @@ public class LoginActivity extends BaseActivity {
 
 	private void saveUser(UserRes res, String login_type){
 		//
-		UserPreferences.getInstance().saveFirstLogin(false);//保存已经登录一次
+//
 		ViewTool.showToastShort(mActivity,"登录成功");
 		GreenDaoManager.getInstance().clearUser();
 		User user=new User();
