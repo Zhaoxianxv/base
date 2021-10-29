@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
-
+    
     <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent"
+        />
+    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,12 +19,12 @@
         android:layout_gravity="center"
         >
         <androidx.appcompat.widget.AppCompatTextView
-
+            
             android:id="@+id/up_data_app_title"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             tools:text="提示"
-            android:visibility="gone"
+            android:visibility="visible"
             android:textSize="16sp"
             android:layout_marginStart="20dp"
             android:textColor="#181818"
@@ -31,44 +32,60 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/up_data_app_content"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/margin_40dp"
             tools:text="发现新的版本请立即更新！"
             android:layout_below="@id/up_data_app_title"
             android:textSize="14sp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:textColor="#5b5b5b"
             android:layout_marginStart="20dp"
             android:gravity="center_vertical"/>
+        
+        
         <RelativeLayout
             android:id="@+id/up_data_app_do_layout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
             android:layout_below="@id/up_data_app_content"
-
+            
             >
-
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/up_data_app_content_to"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                tools:text="浏览器下载更新"
+                android:textColor="#61b145"
+                android:textSize="14sp"
+                android:visibility="visible"
+                android:layout_marginStart="20dp"
+                android:gravity="center_vertical"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/up_data_app"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                tools:text="APP下载更新"
+                android:layout_below="@id/up_data_app_content_to"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="@dimen/margin_3dp"
+                android:textColor="#61b145"
+                android:gravity="center"/>
+            
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/up_data_exit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:padding="10dp"
                 tools:text="取消"
-                android:textColor="#61b145"
-                android:gravity="center"/>
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/up_data_app"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/up_data_exit"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBaseline="@id/up_data_app"
                 android:layout_marginEnd="@dimen/margin_10dp"
+                android:layout_marginBottom="@dimen/margin_3dp"
                 android:padding="10dp"
-                tools:text="更新"
                 android:textColor="#61b145"
                 android:gravity="center"/>
-
-
+        
+        
         </RelativeLayout>
         <ProgressBar
             android:id="@+id/up_data_progress"
@@ -80,7 +97,7 @@
             android:layout_marginBottom="@dimen/margin_25dp"
             android:layout_marginStart="@dimen/margin_5dp"
             android:layout_marginEnd="@dimen/margin_5dp"
-            android:visibility="visible"
+            android:visibility="gone"
             />
     </RelativeLayout>
 

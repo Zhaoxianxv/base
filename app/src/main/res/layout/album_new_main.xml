@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:background="@color/White"
+	android:orientation="vertical">
+	
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/margin_45dp"
+		android:background="@color/base_color">
+		
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/bar_back_iv_album_main"
+			android:layout_width="@dimen/margin_45dp"
+			android:layout_height="@dimen/margin_45dp"
+			android:padding="@dimen/margin_5dp"
+			app:srcCompat="@drawable/ic_arrow_left_nav"/>
+	</RelativeLayout>
+	
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="0.5dp"
+		android:background="#bababa"/>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		
+		<RelativeLayout
+			android:id="@+id/bottom_rela"
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:layout_alignParentBottom="true"
+			android:background="@drawable/album_layer_top_gray" >
+			<TextView
+				android:id="@+id/pic_total_size"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_centerVertical="true"
+				android:layout_marginStart="10dp"
+				android:gravity="center"
+				android:text="@string/selected_file_size" />
+			<TextView
+				android:id="@+id/ok_tv"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/selected_file_num"
+				android:layout_alignParentEnd="true"
+				android:layout_centerVertical="true"
+				android:layout_marginEnd="10dp"
+				android:background="@drawable/album_text_bg_selector"
+				android:gravity="center"
+				android:paddingBottom="5dp"
+				android:paddingLeft="10dp"
+				android:paddingRight="10dp"
+				android:paddingTop="5dp"
+				android:textColor="@color/White"
+				/>
+			<TextView
+				android:id="@+id/clear_tv"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/selected_file_clear"
+				android:layout_centerVertical="true"
+				android:layout_marginEnd="10dp"
+				android:layout_toStartOf="@id/ok_tv"
+				android:background="@drawable/album_text_bg_selector"
+				android:gravity="center"
+				android:paddingBottom="5dp"
+				android:paddingLeft="10dp"
+				android:paddingRight="10dp"
+				android:paddingTop="5dp"
+				android:textColor="@color/White"
+				/>
+		</RelativeLayout>
+		
+		
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/grid_view_album_main"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_above="@id/bottom_rela"
+			/>
+	
+	
+	
+	</RelativeLayout>
+
+
+</LinearLayout>

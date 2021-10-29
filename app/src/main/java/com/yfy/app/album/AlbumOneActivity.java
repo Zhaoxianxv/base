@@ -18,6 +18,7 @@ import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.Photo;
 import com.yfy.final_tag.glide.PhotoAlbum;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -47,7 +48,7 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 	private AlbumOneAdapter adapter;
 	private ArrayList<Photo> photoList;//相册分类组
 	public List<Photo> selectedPhotoList = new ArrayList<>();//选中图片
-	public ArrayList<PhotoAlbum> allPhotoAlbumList = null;//全部图片
+	public ArrayList<PhotoAlbum> allPhotoAlbumList = new ArrayList<>();//全部图片
 	private int position;
 	private boolean single;
 
@@ -114,7 +115,11 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 	}
 
 	private void startAdaterTask() {
-		if (allPhotoAlbumList != null&&allPhotoAlbumList.size()!=0) {
+		if (StringJudge.isEmpty(allPhotoAlbumList)) {
+			PhotoAlbumHelper helper = new PhotoAlbumHelper(this);
+			helper.setOnEndListenner(this);
+			helper.execute(false);
+		} else {
 			photoList = allPhotoAlbumList.get(position).photoList;
 			adapter = new AlbumOneAdapter(mActivity, photoList, single);
 			if (position == 0) {
@@ -124,10 +129,6 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 			}
 			pic_gridview.setAdapter(adapter);
 			adapter.setCheckedListenner(AlbumOneActivity.this);
-		} else {
-			PhotoAlbumHelper helper = new PhotoAlbumHelper(this);
-			helper.setOnEndListenner(this);
-			helper.execute(false);
 		}
 	}
 
@@ -138,7 +139,7 @@ public class AlbumOneActivity extends BaseActivity implements OnEndListenner,Che
 	@Override
 	public void OnEnd(ArrayList<PhotoAlbum> list) {
 		if (list==null||list.size()==0){
-
+			ViewTool.showToastShort(mActivity,"没能获取到你的相册");
 		}
 		allPhotoAlbumList = list;
 		photoList = list.get(position).photoList;

@@ -25,6 +25,7 @@ import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.glide.BitmapLess;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.jpush.ExampleUtil;
 import com.yfy.jpush.LocalBroadcastManager;
@@ -82,9 +83,9 @@ public class WelcomeActivity extends BaseActivity {
         });
         //关联
         tab_indicator.setViewPager(vp_guide);
-        btn_done.setOnClickListener(new View.OnClickListener() {
+        btn_done.setOnClickListener(new NoFastClickListener() {
             @Override
-            public void onClick(View view) {
+            public void fastClick(View view) {
                 vp_guide.setVisibility(View.GONE);
                 tab_indicator.setVisibility(View.GONE);
                 btn_done.setVisibility(View.GONE);

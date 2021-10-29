@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.FileProvider;
+import butterknife.BindView;
+import butterknife.OnClick;
 
 import android.view.KeyEvent;
 import android.view.View;
@@ -139,7 +141,20 @@ public class UpDataDialogActivity extends BaseActivity {
 //        }
 //    }
 
+    /*app打开浏览器*/
+    @BindView(R.id.up_data_app_content_to)
+    AppCompatTextView tv_updata_llq;
+    @OnClick(R.id.up_data_app_content_to)
+    void setLlq(){
+        Intent intent=new Intent();
+        intent.setData(Uri.parse(load_path));//Url 就是你要打开的网址
+        intent.setAction(Intent.ACTION_VIEW);
+        startActivity(intent); //启动浏览器
 
+    }
+    /*浏览器打开app*/
+    /*在Manifest文件的Activity中加入以下代码*/
+    /*在html中加入点击事件*/
 
     @PermissionSuccess(requestCode = TagFinal.PHOTO_ALBUM)
     public void getApk() {
