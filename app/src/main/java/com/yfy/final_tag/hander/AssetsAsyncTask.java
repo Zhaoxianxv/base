@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
  */
 public class AssetsAsyncTask extends AsyncTask<String, Integer, String> {
 
-    AssetsGetFileData api;
+    public AssetsGetFileData api;
 
     public AssetsAsyncTask(AssetsGetFileData api) {
         this.api = api;
@@ -40,6 +40,7 @@ public class AssetsAsyncTask extends AsyncTask<String, Integer, String> {
         super.onPostExecute(result);
         if (api!=null){
             api.doUpData(result);
+//            api.doUpData(result,"");
         }
 
     }
@@ -59,17 +60,20 @@ public class AssetsAsyncTask extends AsyncTask<String, Integer, String> {
 
 
 
+    /*返回Assets文件内容，文件名称*/
     public static String getAssetsFileJson(String file_name) {
 
         BufferedReader reader = null;
         try {
             StringBuilder sb = new StringBuilder();
+
             InputStream inputStream = App.getApp().getApplicationContext().getAssets().open(file_name);
             reader = new BufferedReader(new InputStreamReader(inputStream));
             String s;
             while ((s = reader.readLine()) != null) {
                 sb.append(s);
             }
+            sb.append("#&#").append(file_name);
             return sb.toString();
         } catch (IOException e1) {
             e1.printStackTrace();

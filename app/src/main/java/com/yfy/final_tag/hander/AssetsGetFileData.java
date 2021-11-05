@@ -9,6 +9,7 @@ package com.yfy.final_tag.hander;
 public interface AssetsGetFileData {
 
     void doUpData(String content);
+//    void doUpData(String content,String api_name);
 
 
 

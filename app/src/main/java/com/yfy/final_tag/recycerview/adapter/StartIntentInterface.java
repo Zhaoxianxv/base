@@ -41,7 +41,7 @@ public abstract class StartIntentInterface {
     public boolean isFastClick() {
 
         long currentTime = System.currentTimeMillis();//当前系统时间
-        boolean isAllowClick = (currentTime - lastClickTime) >= 1000;      //是否允许点击
+        boolean isAllowClick = (currentTime - lastClickTime) >= 100;      //是否允许点击
         Logger.e(String.format("%1$s:%2$s:%3$s:%4$s",lastClickTime,currentTime,currentTime - lastClickTime,isAllowClick));
         lastClickTime = currentTime;
         return isAllowClick;

@@ -128,6 +128,7 @@ public class SingePicShowActivity extends BaseActivity {
 
     @PermissionSuccess(requestCode = TagFinal.PHOTO_ALBUM)
     public void photoAlbum() {
+        /*下载网络图片保存到本地*/
         Logger.e(url);
         Glide.with(mActivity)
                 .asBitmap()

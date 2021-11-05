@@ -148,7 +148,7 @@ public class DutyEvaluateStuAddActivity extends BaseActivity implements AssetsGe
 
 
 
-    //async task
+    /*async task*/
 
     AssetsAsyncTask mTask;
     public void getAssetsData(String file_name){

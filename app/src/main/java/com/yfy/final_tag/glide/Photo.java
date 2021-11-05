@@ -4,22 +4,35 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Photo implements Parcelable {
-	/**
-	 * 
-	 */
 
+	/*id*/
 	private String id;
+	/**/
 	private int drawable;
+	/*路径*/
 	private String path;
+	/*文件名称*/
 	private String fileName="";
 	private String albumName;
 	private long size;
 	private boolean isSelected;
 	private String description = "";
 	private boolean temporary;
+
+
+
+
 	public Photo() {
 		super();
 	}
+
+	public Photo(String path, long size, String description,boolean isSelected) {
+		this.path = path;
+		this.size = size;
+		this.description = description;
+		this.isSelected = isSelected;
+	}
+
 	public Photo(
 			String id,
 			String path,

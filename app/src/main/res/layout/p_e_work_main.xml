@@ -8,10 +8,13 @@
 	
 	<com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
 	
-	
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/margin_10dp"
+		android:background="@color/BlanchedAlmond"/>
 	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="@dimen/margin_45dp"
+		android:layout_height="50dp"
 		android:background="@color/WhiteSmoke" >
 		
 		<androidx.appcompat.widget.AppCompatImageView
@@ -20,7 +23,7 @@
 			android:layout_height="50dp"
 			android:padding="@dimen/margin_10dp"
 			android:layout_marginStart="10dp"
-			android:src="@drawable/ic_navi_back"
+			android:src="@drawable/ic_nag_back"
 			android:tint="@color/DarkRed"
 			/>
 		
@@ -48,8 +51,8 @@
 	
 	<View
 		android:layout_width="match_parent"
-		android:layout_height="@dimen/margin_1dp"
-		android:background="@color/ee_gray"/>
+		android:layout_height="@dimen/margin_5dp"
+		android:background="@color/BlanchedAlmond"/>
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -136,6 +139,7 @@
 		android:id="@+id/calendar_card"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_marginTop="@dimen/margin_10dp"
 		
 		/>
 

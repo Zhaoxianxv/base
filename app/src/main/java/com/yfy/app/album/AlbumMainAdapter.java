@@ -1,176 +1,183 @@
 package com.yfy.app.album;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.view.LayoutInflater;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
-import com.yfy.dujiangyan.R;
+import com.yfy.base.Base;
+import com.yfy.base.R;
+import com.yfy.final_tag.FileTools;
+import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.glide.Photo;
 import com.yfy.final_tag.listener.NoFastClickListener;
-import com.yfy.final_tag.viewtools.ViewUtils;
-import com.yfy.view.CheckImageView;
+import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
+import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
+import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
+import com.yfy.final_tag.stringtool.StringJudge;
+import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * @author yfy1
 
  * @version 1.0
  */
-public class AlbumMainAdapter extends BaseAdapter {
+public class AlbumMainAdapter extends BaseRecyclerAdapter {
 
 
-	public List<Photo> selectedPhotoList = new ArrayList<>();
-	private List<Photo> photoList = new ArrayList<Photo>();
-	public LayoutInflater inflater;
-	private boolean single;
-	public Activity mActivity;
+	public List<Photo> photoList = new ArrayList<>();
 
-	public AlbumMainAdapter(Activity context, List<Photo> list) {
-		photoList = list;
-		inflater = LayoutInflater.from(context);
-		mActivity =context;
-
+	public void setPhotoList(List<Photo> photoList) {
+		this.photoList = photoList;
 	}
 
-	public AlbumMainAdapter(Activity context, List<Photo> list, boolean single) {
-		this(context, list);
+	public List<Photo> getPhotoList() {
+		return photoList;
+	}
+
+	public boolean single=false;
+
+	public void setSingle(boolean single) {
 		this.single = single;
 	}
 
+
+
+	public AlbumMainAdapter(Activity mContext) {
+		super(mContext);
+		ViewTool.getScreenWidth(mContext);
+
+	}
+
 	@Override
-	public int getCount() {
+	public int getItemViewType(int position) {
+		// 最后一个item设置为FooterView
+		return TagFinal.TYPE_ITEM;
+
+	}
+
+	@Override
+	public ReViewHolder initViewHolder(ViewGroup parent, int viewType) {
+		//进行判断显示类型，来创建返回不同的View
+		if (viewType == TagFinal.TYPE_ITEM) {
+			View view = inflater.inflate(R.layout.album_main_item, parent, false);
+			return new RecyclerViewHolder(view);
+
+		}
+		return new ErrorHolder(parent);
+	}
+
+	@Override
+	public void bindHolder(ReViewHolder holder, int position) {
+		if (holder instanceof RecyclerViewHolder) {
+			RecyclerViewHolder reHolder = (RecyclerViewHolder) holder;
+			reHolder.bean = photoList.get(position);
+			reHolder.index=position;
+			reHolder.setView();
+		}
+
+
+	}
+
+	@Override
+	public int getItemCount() {
 		return photoList.size();
 	}
 
-	@Override
-	public Object getItem(int position) {
-		return photoList.get(position);
-	}
 
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
+	private class RecyclerViewHolder extends ReViewHolder {
+		AppCompatImageView iv_select_state;
+		ImageView iv_photo;
+		RelativeLayout layout;
+		int index;
+		Photo bean;
 
-	@SuppressLint("InflateParams")
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		final int position2 = position;
-		ViewHolder holder;
-		if (convertView == null) {
-			holder = new ViewHolder();
-			convertView = inflater.inflate(R.layout.album_one_item_gridview, null);
-			holder.photo =  convertView.findViewById(R.id.photo);
-			holder.selected_iv =  convertView.findViewById(R.id.selected_iv);
+		RecyclerViewHolder(View itemView) {
+			super(itemView);
+			iv_photo = itemView.findViewById(R.id.photo_iv_album_main_item);
+			iv_select_state = itemView.findViewById(R.id.select_state_iv_album_main_item);
+			layout = itemView.findViewById(R.id.layout_relative_album_main_item);
+			layout.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent();
+					if (single){
+						bean.setSelected(!bean.isSelected());
+						notifyItemChanged(index,bean);
+						for (int i=0;i<photoList.size();i++) {
+							Photo photo=photoList.get(i);
+							if (bean.getPath().equalsIgnoreCase(photo.getPath()))continue;
+							if (photo.isSelected()){
+								photo.setSelected(false);
+								notifyItemChanged(i,photo);
+							}
+						}
+					}else{
+						bean.setSelected(!bean.isSelected());
+						notifyItemChanged(index,bean);
 
-			ViewGroup.LayoutParams params =  holder.photo.getLayoutParams();
-			params.width = itemWidth;
-			params.height = itemWidth;
-			holder.photo.requestLayout();
+					}
+					if (intentStart!=null){
+						intentStart.startIntentAdapter(intent,photoSelectedNum());
+					}
+				}
+			});
 
-			convertView.setTag(holder);
-		} else {
-			holder = (ViewHolder) convertView.getTag();
+
 		}
 
-		Photo photo = photoList.get(position);
-		holder.selected_iv.setChecked(photo.isSelected());
-
-
-		GlideTools.loadUriImage(mActivity,photoList.get(position).getPath(),holder.photo);
-
-		convertView.setOnClickListener(new NoFastClickListener() {
-
-			@Override
-			public void fastClick(View v) {
-				onInnerClick(v, position2, photoList);
+		private String photoSelectedNum() {
+			if (StringJudge.isNotEmpty(photoList)) {
+				long size = 0;
+				for (Photo photo:photoList) {
+					if (photo.isSelected())
+					size += FileTools.getFileSize(photo.getPath());
+				}
+				return "已选" + FileTools.convertBytesToOther(size);
+			}else {
+				return "已选\t0\tB" ;
 			}
-		});
-
-		return convertView;
-	}
-
-	public synchronized void onInnerClick(View v, int position, List<Photo> list) {
-		if (single) {
-			singleCheck(v, position, list);
-		} else {
-			multipleCheck(v, position, list);
 		}
-		if (listenner != null) {
-			listenner.onChecked(v,selectedPhotoList);
+
+
+		public void setView() {
+			int itemWidth= ViewTool.getScreenWidth(mContext)/3;
+			RelativeLayout.LayoutParams params =  new RelativeLayout.LayoutParams(itemWidth,itemWidth);
+			layout.setLayoutParams(params);
+			layout.requestLayout();
+
+			GlideTools.loadUriImage(mContext, bean.getPath(), iv_photo);
+			iv_select_state.setVisibility(View.VISIBLE);
+//			if (single) {
+//				iv_select_state.setVisibility(View.GONE);
+//			} else {
+//				iv_select_state.setVisibility(View.VISIBLE);
+//			}
+
+			if (bean.isSelected()) {
+				GlideTools.loadImage(mContext, R.drawable.photo_selecteds, iv_select_state);
+			} else {
+				GlideTools.loadImage(mContext, R.drawable.photo_unselected, iv_select_state);
+			}
+
+
 		}
 	}
 
-	private void singleCheck(View v, int position, List<Photo> list) {
-		Photo photo = list.get(position);
-		ViewHolder holder = (ViewHolder) v.getTag();
-		for (Photo bean:list){
-			bean.setSelected(false);
-		}
-		selectedPhotoList.clear();
-		photo.setSelected(true);
-		holder.selected_iv.setChecked(true);
-		notifyDataSetChanged(list);
-		selectedPhotoList.add(photo);
-	}
 
-	private void multipleCheck(View v, int position, List<Photo> list) {
-		Photo photo = list.get(position);
-		boolean b = photo.isSelected();
-		ViewHolder holder = (ViewHolder) v.getTag();
-		if (b) {
-			selectedPhotoList.remove(photo);
-		} else {
-			selectedPhotoList.add(photo);
-		}
-		holder.selected_iv.setChecked(!b);
-		photo.setSelected(!b);
-	}
+	public StartIntentInterface intentStart;
 
-	//清理所有选中
-	public void clearSeleter(){
-		for (Photo photo:photoList){
-			photo.setSelected(false);
-		}
-		notifyDataSetInvalidated();
-	}
-
-
-	private CheckedListenner listenner = null;
-
-	public void setCheckedListenner(CheckedListenner listenner) {
-		this.listenner = listenner;
-	}
-
-	public static interface CheckedListenner {
-		public abstract void onChecked(View v, List<Photo> list);
-	}
-
-
-
-	public void notifyDataSetChanged(List<Photo> list) {
-		this.photoList = list;
-		super.notifyDataSetChanged();
-	}
-
-	public class ViewHolder {
-		public ImageView photo;
-		public CheckImageView selected_iv;
-	}
-
-
-	private int itemWidth = 10;
-	public void initItemSize(GridView gridView,int mScreenWidth) {
-		itemWidth = (mScreenWidth - gridView.getPaddingLeft() - gridView.getPaddingRight() - ViewUtils.getHorizontalSpacing(gridView)) / 3;
+	public void setIntentStart(StartIntentInterface intentStart) {
+		this.intentStart = intentStart;
 	}
 
 }
-

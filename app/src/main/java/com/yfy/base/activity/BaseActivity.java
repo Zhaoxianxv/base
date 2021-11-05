@@ -17,6 +17,7 @@ import com.yfy.app.net.RetrofitGenerator;
 import com.yfy.app.net.base.BaseGetTokenReq;
 import com.yfy.base.App;
 import com.yfy.base.R;
+import com.yfy.final_tag.viewtools.ViewTool;
 import com.yfy.greendao.tool.GreenDaoManager;
 import com.yfy.db.UserPreferences;
 import com.yfy.final_tag.stringtool.Logger;
@@ -121,6 +122,7 @@ public class BaseActivity extends AppCompatActivity implements Callback<ResEnv> 
 
     public void onPause() {
         super.onPause();
+        ViewTool.dismissProgressDialog();
     }
 
 

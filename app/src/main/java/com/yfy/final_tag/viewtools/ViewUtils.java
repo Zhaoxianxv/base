@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.yfy.final_tag.viewtools;
 
 import android.annotation.TargetApi;

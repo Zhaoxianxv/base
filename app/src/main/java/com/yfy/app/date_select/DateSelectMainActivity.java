@@ -1,11 +1,9 @@
-package com.yfy.app.view.date_select;
+package com.yfy.app.date_select;
 
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.yfy.app.bean.DateBean;

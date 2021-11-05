@@ -48,7 +48,7 @@ public abstract class NoFastClickListener implements View.OnClickListener , PopC
     private boolean isFastClick() {
 
         long currentTime = System.currentTimeMillis();//当前系统时间
-        boolean isAllowClick = (currentTime - lastClickTime) >= 1000;      //是否允许点击
+        boolean isAllowClick = (currentTime - lastClickTime) >= 300;      //是否允许点击
 //        Logger.e(String.format("%1$s:%2$s:%3$s:",lastClickTime,currentTime,currentTime - lastClickTime));
         lastClickTime = currentTime;
         return isAllowClick;

@@ -365,7 +365,7 @@ public class ViewTool {
         //计时器结束
         @Override
         public void onFinish() {
-            ViewTool.showToastShort(mContext,"网络超时");
+            ViewTool.showToastShort(mContext,"");
             ViewTool.dismissProgressDialog();
 
         }

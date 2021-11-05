@@ -3,10 +3,15 @@ package com.yfy.app;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yfy.app.PEquality.work.PETeaWorkMainActivity;
+import com.yfy.app.album.AlbumMainActivity;
+import com.yfy.app.album.AlbumOneActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateTeaHonorMainActivity;
@@ -23,6 +28,10 @@ import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.FileCamera;
+import com.yfy.final_tag.permission.PermissionFail;
+import com.yfy.final_tag.permission.PermissionGen;
+import com.yfy.final_tag.permission.PermissionSuccess;
+import com.yfy.final_tag.permission.PermissionTools;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
 import com.yfy.final_tag.recycerview.RecycleViewDivider;
 import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
@@ -82,6 +91,12 @@ public class MainUserTypeActivity extends BaseActivity {
 
 
                 switch (type){
+                    case "PETeaWorkMainActivity":
+                        intent.setClass(mActivity, PETeaWorkMainActivity.class);
+                        break;
+                    case "AlbumMainActivity":
+                        PermissionTools.tryWRPerm(mActivity);
+                        return;
                     case "LoginActivity":
                         intent.setClass(mActivity, LoginActivity.class);
                         break;
@@ -132,11 +147,13 @@ public class MainUserTypeActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
-        keyValue_adapter.add(new KeyValue("voice","VoiceMainActivity"));
-        keyValue_adapter.add(new KeyValue("ModeType","SelectedModeTypeActivity"));
-        keyValue_adapter.add(new KeyValue("彩","LotteryMainActivity"));
-        keyValue_adapter.add(new KeyValue("View","ViewTypeSelectActivity"));
-        keyValue_adapter.add(new KeyValue("login","LoginActivity"));
+//        keyValue_adapter.add(new KeyValue("p e 作业","PETeaWorkMainActivity"));
+//        keyValue_adapter.add(new KeyValue("voice","VoiceMainActivity"));
+//        keyValue_adapter.add(new KeyValue("ModeType","SelectedModeTypeActivity"));
+//        keyValue_adapter.add(new KeyValue("彩","LotteryMainActivity"));
+//        keyValue_adapter.add(new KeyValue("View","ViewTypeSelectActivity"));
+//        keyValue_adapter.add(new KeyValue("login","LoginActivity"));
+        keyValue_adapter.add(new KeyValue("album","AlbumMainActivity"));
 
 
 
@@ -171,5 +188,30 @@ public class MainUserTypeActivity extends BaseActivity {
         }
     }
 
+
+
+
+
+
+
+
+
+    @PermissionSuccess(requestCode = TagFinal.PHOTO_ALBUM)
+    private void photoAlbum() {
+        Intent intent = new Intent();
+        intent.setClass(mActivity, AlbumMainActivity.class);
+        intent.putExtra(TagFinal.ALBUM_SINGLE,false);
+        intent.putExtra(TagFinal.ALBUM_LIST_INDEX,-1);
+        startActivity(intent);
+    }
+
+    @PermissionFail(requestCode = TagFinal.PHOTO_ALBUM)
+    private void showTip1() {
+        Toast.makeText(getApplicationContext(), R.string.permission_fail_album, Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+    }
 
 }

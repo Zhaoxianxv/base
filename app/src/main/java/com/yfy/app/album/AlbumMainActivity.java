@@ -4,10 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
+import android.view.KeyEvent;
 import android.widget.TextView;
 
-import com.yfy.app.album.AlbumOneAdapter.CheckedListenner;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.FileTools;
@@ -16,6 +15,7 @@ import com.yfy.final_tag.glide.Photo;
 import com.yfy.final_tag.hander.AlbumAsyncTask;
 import com.yfy.final_tag.hander.AlbumGetFileData;
 import com.yfy.final_tag.recycerview.DefaultItemAnimator;
+import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
@@ -36,7 +36,7 @@ import butterknife.OnClick;
  * @author yfy
  */
 @SuppressLint("NonConstantResourceId")
-public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData, CheckedListenner {
+public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData {
 	private static final String TAG = AlbumMainActivity.class.getSimpleName();
 
 	@BindView(R.id.pic_total_size)
@@ -44,13 +44,17 @@ public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData
 	@BindView(R.id.ok_tv)
 	TextView ok_tv;
 	@OnClick(R.id.ok_tv)
-	void setok(){
+	void setOk(){
+		selectedPhotoList.clear();
+		for (Photo photo:adapter.getPhotoList()	 ) {
+			if (photo.isSelected())selectedPhotoList.add(photo);
+		}
 		Intent intent=new Intent();
 		ArrayList<Photo> photos=new ArrayList<>(selectedPhotoList);
 		intent.putParcelableArrayListExtra(TagFinal.ALBUM_TAG,  photos);
 		setResult(RESULT_OK,intent);
-		clearData();
-		onPageBack();
+
+		finish();
 	}
 
 	@OnClick(R.id.bar_back_iv_album_main)
@@ -59,7 +63,7 @@ public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData
 	}
 
 	@OnClick(R.id.clear_tv)
-	void setclear(){
+	void setClear(){
 		clearData();
 	}
 	@Override
@@ -70,6 +74,7 @@ public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData
 		getData();
 
 		initRecycler();
+		getAlbumAsyncTask();
 
 	}
 
@@ -83,7 +88,6 @@ public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData
 		pic_total_size.setText("已选\t0\tB");
 		ok_tv.setText("确定(0)");
 		adapter.notifyDataSetChanged();
-		adapter.clearSeleter();
 
 		super.finish();
 	}
@@ -111,49 +115,33 @@ public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData
 		GridLayoutManager manager = new GridLayoutManager(mActivity,3, LinearLayoutManager.VERTICAL,false);
 		recyclerView.setLayoutManager(manager);
 		recyclerView.setItemAnimator(new DefaultItemAnimator());
-		adapter=new AlbumMainAdapter(mActivity,photo_album_List);
-//		recyclerView.setAdapter(adapter);
+		adapter=new AlbumMainAdapter(mActivity);
+		recyclerView.setAdapter(adapter);
+		adapter.setSingle(single);
+		adapter.setIntentStart(new StartIntentInterface() {
+			@Override
+			public void startIntentActivity(Intent intent,String type) {
 
-
-
-	}
-
-
-
-
-
-	@Override
-	public void onChecked(View v, List<Photo> list) {
-		selectedPhotoList=list;
-		photoSelectedNum(list);
-	}
-
-	private void photoSelectedNum(List<Photo> list) {
-		if (list.size() >= 0) {
-			long size = 0;
-			ok_tv.setText(StringUtils.stringToGetTextJoint("确定(%1$d)",list.size()));
-			for (Iterator<Photo> iterator = list.iterator(); iterator.hasNext();) {
-				Photo photo = iterator.next();
-				size += FileTools.getFileSize(photo.getPath());
+				pic_total_size.setText(type);
 			}
-			String sizeStr = "已选" + FileTools.convertBytesToOther(size);
-			pic_total_size.setText(sizeStr);
-		}
+		});
+
+
+
 	}
+
 
 
 
 
 
 	public void clearData(){
-		for (Iterator<Photo> iterator = photo_album_List.iterator(); iterator.hasNext();) {
-			Photo photo = iterator.next();
+		for (Photo photo :photo_album_List) {
 			photo.setSelected(false);
 		}
 		pic_total_size.setText(StringUtils.stringToGetTextJoint("已选%1$sB","0"));
 		ok_tv.setText("确定(0)");
-		adapter.notifyDataSetChanged(photo_album_List);
-		adapter.clearSeleter();
+		adapter.notifyDataSetChanged();
 	}
 
 
@@ -198,7 +186,7 @@ public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData
 	//async task
 
 	AlbumAsyncTask mTask;
-	public void getAlbumAsyncTask(String file_name){
+	public void getAlbumAsyncTask(){
 		ViewTool.showProgressDialog(mActivity,"");
 		mTask=new AlbumAsyncTask(this);
 		mTask.setResolver(this);
@@ -218,6 +206,7 @@ public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData
 	public List<Photo> photo_album_List=new ArrayList<>();
 	@Override
 	public void OnEnd(List<Photo> list) {
+		ViewTool.dismissProgressDialog();
 		if (StringJudge.isEmpty(list)){
 			ViewTool.showToastShort(mActivity,"没有获取到相册列表");
 			return;
@@ -228,7 +217,25 @@ public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData
 			ViewTool.showToastShort(mActivity,"没有获取到相片");
 			return;
 		}
+		adapter.setPhotoList(photo_album_List);
+		adapter.setLoadState(TagFinal.LOADING_END);
 	}
+
+
+	/*返回键监听*/
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode){
+			case KeyEvent.KEYCODE_BACK:
+				finish();
+				return false;
+			case KeyEvent.KEYCODE_HOME:
+//				return super.onKeyDown(keyCode, event);
+		}
+		return super.onKeyDown(keyCode, event);
+
+	}
+
 
 
 }

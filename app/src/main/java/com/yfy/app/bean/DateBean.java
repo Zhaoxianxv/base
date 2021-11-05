@@ -21,6 +21,7 @@ public class DateBean implements Parcelable {
     private boolean is_time=true;
 
 
+
     public DateBean() {
     }
 
@@ -80,9 +81,16 @@ public class DateBean implements Parcelable {
         this.is_time = is;
 
     }
+    /*拓展携带数据 state 用于标记当前对象天状态 ：空：不标记，*/
+    private String state_color="";
 
+    public String getState_color() {
+        return state_color;
+    }
 
-
+    public void setState_color(String state_color) {
+        this.state_color = state_color;
+    }
     //------------------------tools------------
 
 

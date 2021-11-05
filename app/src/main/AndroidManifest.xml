@@ -132,6 +132,10 @@
             android:exported="false"
             android:theme="@style/AppThemeWindow" />
         <activity
+            android:name="com.yfy.app.album.AlbumMainActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name="com.yfy.app.album.SingePicShowActivity"
             android:exported="false"
             android:theme="@style/AppThemeWindow" />
@@ -247,6 +251,21 @@
             android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />
         <!-- PEquality -->
+        <activity
+            android:name="com.yfy.app.PEquality.work.PETeaWorkMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.yfy.app.PEquality.work.PETeaWorkStuListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.yfy.app.PEquality.work.PETeaWorkStuDetailSetStateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.PEScoreMainActivity"
             android:screenOrientation="portrait"
@@ -441,7 +460,7 @@
             android:name="com.yfy.app.view.ViewTypeSelectActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.yfy.app.view.date_select.DateSelectMainActivity"
+            android:name="com.yfy.app.date_select.DateSelectMainActivity"
             android:theme="@style/AppTheme" />
     
 

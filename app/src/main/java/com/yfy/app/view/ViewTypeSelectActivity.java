@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.yfy.app.bean.KeyValue;
-import com.yfy.app.view.date_select.DateSelectMainActivity;
+import com.yfy.app.date_select.DateSelectMainActivity;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.AppLess;

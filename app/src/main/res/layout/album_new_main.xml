@@ -9,7 +9,7 @@
 	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="@dimen/margin_45dp"
-		android:background="@color/base_color">
+		android:background="@color/app_base_color">
 		
 		<androidx.appcompat.widget.AppCompatImageView
 			android:id="@+id/bar_back_iv_album_main"
