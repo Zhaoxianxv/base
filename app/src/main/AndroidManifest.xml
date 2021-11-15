@@ -252,6 +252,11 @@
             tools:ignore="InnerclassSeparator" />
         <!-- PEquality -->
         <activity
+            android:name="com.yfy.app.PEquality.work.PETeaWorkAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
+        <activity
             android:name="com.yfy.app.PEquality.work.PETeaWorkMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"

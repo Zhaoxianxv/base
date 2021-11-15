@@ -7,19 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.yfy.app.PEquality.bean.WorkDayPE;
+import com.yfy.app.PEquality.bean.WorkResPE;
 import com.yfy.app.PEquality.bean.QEHonorRes;
 import com.yfy.app.bean.BaseClass;
 import com.yfy.app.bean.BaseGrade;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
 import com.yfy.app.bean.TermBean;
-import com.yfy.app.date_select.DateSelectCard;
+import com.yfy.app.date_select.DateSelectStateCard;
 import com.yfy.app.netHttp.ApiUrl;
 import com.yfy.app.netHttp.HttpNetHelpInterface;
 import com.yfy.app.netHttp.HttpPostActivity;
 import com.yfy.base.Base;
 import com.yfy.base.R;
 import com.yfy.final_tag.AppLess;
+import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.dialog.CPWListBeanView;
@@ -82,7 +85,6 @@ public class PETeaWorkMainActivity extends HttpPostActivity implements HttpNetHe
     private String title;
     private void getData(){
         select_term= NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
-
         title="作业";
         getAssetsData(AssetsApi.GET_CLASS_BEAN_API);
 
@@ -135,30 +137,42 @@ public class PETeaWorkMainActivity extends HttpPostActivity implements HttpNetHe
 
 
     public DateBean select_date;
-    public DateSelectCard calendarCard;
+    public DateSelectStateCard calendarCard;
     private void initDateDate() {
 
-        calendarCard =  findViewById(R.id.calendar_card);
-        calendarCard.setmDateSelectClickListener(new DateSelectCard.DateSelectClickListener() {
+        calendarCard =  findViewById(R.id.calendar_card_pe);
+        calendarCard.setDateSelectClickListener(new DateSelectStateCard.DateSelectClickListener() {
             @Override
-            public void clickDate(DateBean date) {
+            public void clickDate(DateBean date,String state) {
                 select_date.setValue_long(date.getValue_long());
                 select_month.setText(StringUtils.stringToGetTextJoint("%1$d年%2$d月",select_date.getSelectYearNameInt(),select_date.getSelectMonthNameInt()));
 
+
                 Intent intent=new Intent();
-                intent.setClass(mActivity, PETeaWorkStuListActivity.class);
-                intent.putExtra(Base.title,"title");
-                intent.putExtra(Base.data,select_date);
-                intent.putExtra(Base.term_bean,select_term);
-                intent.putExtra(Base.class_bean,class_bean);
+                Logger.eLogText(state);
+
+                switch (state){
+                    /*选中日期已布置作业*/
+                    case "5":
+                        intent.setClass(mActivity, PETeaWorkStuListActivity.class);
+                        intent.putExtra(Base.title,"title");
+                        intent.putExtra(Base.date,date);
+                        intent.putExtra(Base.term_bean,select_term);
+                        intent.putExtra(Base.class_bean,class_bean);
+                        break;
+                        /*选中日期未布置作业*/
+                    case "":
+                        intent.setClass(mActivity,PETeaWorkAddActivity.class);
+                        intent.putExtra(Base.date,date);
+                        intent.putExtra(Base.class_bean,class_bean);
+                        break;
+                }
+
 
                 startActivity(intent);
             }
 
-            @Override
-            public void changeDate(DateBean date) {
 
-            }
         });
     }
 
@@ -221,10 +235,8 @@ public class PETeaWorkMainActivity extends HttpPostActivity implements HttpNetHe
 
 
 
-    /*获取当前月份日期作业发放数据*/
     public void getHonor(boolean is){
 
-        getAssetsData("get_class_bean.txt");
 
 
 
@@ -297,15 +309,18 @@ public class PETeaWorkMainActivity extends HttpPostActivity implements HttpNetHe
             int lastIndexOf = content.lastIndexOf("#&#");
             String result=content.substring(0,lastIndexOf);
             String api_name=content.substring(lastIndexOf).substring(3);
+            Logger.eLogText(result);
             switch (api_name){
                 case AssetsApi.GET_CLASS_BEAN_API:
                     dataInitClass(result);
                     if (mTask!=null&&mTask.getStatus()== AsyncTask.Status.RUNNING) {
                         mTask.cancel(true);
                     }
+                    /*获取当前月份日期作业发放数据*/
                     getAssetsData(AssetsApi.PE_GET_MONTH_WORK_STATE_API);
                     break;
                 case AssetsApi.PE_GET_MONTH_WORK_STATE_API:
+                    dataInitMonth(result);
                     break;
             }
         }
@@ -345,14 +360,37 @@ public class PETeaWorkMainActivity extends HttpPostActivity implements HttpNetHe
                         cpwBeans.add(cpwBean);
                     }
                 }
-
             }
         }else{
             ViewTool.showToastShort(mActivity,res.getError_code());
         }
     }
 
-    
-    public void dataInitMonth(String result){}
+
+    public List<DateBean> dateBeanList=new ArrayList<>();
+    public void dataInitMonth(String result){
+        dateBeanList.clear();
+        WorkResPE res=gson.fromJson(result, WorkResPE.class);
+        if (res.getResult().equalsIgnoreCase(TagFinal.TRUE)){
+            if (StringJudge.isEmpty(res.getMonth_day_list())){
+                ViewTool.showToastShort(mActivity,"没有获取到信息");
+            }else{
+                for (WorkDayPE workDayPE:res.getMonth_day_list()){
+                    DateBean bean=new DateBean();
+                    bean.setDateYMD(
+                            MathTool.stringToInt(workDayPE.getName_year()),
+                            MathTool.stringToInt(workDayPE.getName_month()),
+                            MathTool.stringToInt(workDayPE.getName_day())
+                            );
+                    bean.setState_color(workDayPE.getState());
+                    dateBeanList.add(bean);
+                }
+
+                calendarCard.update(select_date,dateBeanList);
+            }
+        }else{
+            ViewTool.showToastShort(mActivity,res.getError_code());
+        }
+    }
 
 }

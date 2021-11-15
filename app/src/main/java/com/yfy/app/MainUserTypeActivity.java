@@ -147,12 +147,12 @@ public class MainUserTypeActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
-//        keyValue_adapter.add(new KeyValue("p e 作业","PETeaWorkMainActivity"));
-//        keyValue_adapter.add(new KeyValue("voice","VoiceMainActivity"));
-//        keyValue_adapter.add(new KeyValue("ModeType","SelectedModeTypeActivity"));
-//        keyValue_adapter.add(new KeyValue("彩","LotteryMainActivity"));
-//        keyValue_adapter.add(new KeyValue("View","ViewTypeSelectActivity"));
-//        keyValue_adapter.add(new KeyValue("login","LoginActivity"));
+        keyValue_adapter.add(new KeyValue("p e 作业","PETeaWorkMainActivity"));
+        keyValue_adapter.add(new KeyValue("voice","VoiceMainActivity"));
+        keyValue_adapter.add(new KeyValue("ModeType","SelectedModeTypeActivity"));
+        keyValue_adapter.add(new KeyValue("彩","LotteryMainActivity"));
+        keyValue_adapter.add(new KeyValue("View","ViewTypeSelectActivity"));
+        keyValue_adapter.add(new KeyValue("login","LoginActivity"));
         keyValue_adapter.add(new KeyValue("album","AlbumMainActivity"));
 
 

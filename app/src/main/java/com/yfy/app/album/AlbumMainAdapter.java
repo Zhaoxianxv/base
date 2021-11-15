@@ -7,19 +7,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.yfy.base.Base;
 import com.yfy.base.R;
 import com.yfy.final_tag.FileTools;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.GlideTools;
 import com.yfy.final_tag.glide.Photo;
-import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.recycerview.adapter.BaseRecyclerAdapter;
 import com.yfy.final_tag.recycerview.adapter.ReViewHolder;
 import com.yfy.final_tag.recycerview.adapter.StartIntentInterface;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.viewtools.ViewTool;
-
 import java.util.ArrayList;
 import java.util.List;
 

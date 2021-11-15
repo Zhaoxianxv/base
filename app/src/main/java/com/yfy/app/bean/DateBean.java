@@ -364,6 +364,7 @@ public class DateBean implements Parcelable {
 
 
     public  DateBean getObjectForDay(DateBean date, int day) {
+
         return new DateBean(date.getSelectYearNameInt(), date.getSelectMonthNameInt(), day,true);
     }
 
@@ -396,25 +397,39 @@ public class DateBean implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeString(this.name);
+        dest.writeString(this.value);
         dest.writeString(this.type);
         dest.writeLong(this.value_long);
         dest.writeByte(this.is_time ? (byte) 1 : (byte) 0);
-
+        dest.writeString(this.state_color);
+        dest.writeSerializable(this.name_f);
+        dest.writeSerializable(this.value_f);
+        dest.writeStringArray(this.weekOfDays);
     }
 
     public void readFromParcel(Parcel source) {
-
+        this.name = source.readString();
+        this.value = source.readString();
         this.type = source.readString();
         this.value_long = source.readLong();
         this.is_time = source.readByte() != 0;
-
+        this.state_color = source.readString();
+        this.name_f = (SimpleDateFormat) source.readSerializable();
+        this.value_f = (SimpleDateFormat) source.readSerializable();
+        this.weekOfDays = source.createStringArray();
     }
 
     protected DateBean(Parcel in) {
+        this.name = in.readString();
+        this.value = in.readString();
         this.type = in.readString();
         this.value_long = in.readLong();
         this.is_time = in.readByte() != 0;
+        this.state_color = in.readString();
+        this.name_f = (SimpleDateFormat) in.readSerializable();
+        this.value_f = (SimpleDateFormat) in.readSerializable();
+        this.weekOfDays = in.createStringArray();
     }
 
     public static final Parcelable.Creator<DateBean> CREATOR = new Parcelable.Creator<DateBean>() {

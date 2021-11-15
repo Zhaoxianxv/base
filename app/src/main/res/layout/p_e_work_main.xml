@@ -135,8 +135,8 @@
 		</TableLayout>
 	</LinearLayout>
 	
-	<com.yfy.app.date_select.DateSelectCard
-		android:id="@+id/calendar_card"
+	<com.yfy.app.date_select.DateSelectStateCard
+		android:id="@+id/calendar_card_pe"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="@dimen/margin_10dp"
