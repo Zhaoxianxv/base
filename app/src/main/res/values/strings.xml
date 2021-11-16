@@ -48,7 +48,7 @@
 	<string name="fill_in_text" translatable="false">填资料/查分班</string>
 	<string name="not_fill_w" translatable="false">未填写</string>
 	<string name="index_people" translatable="false">搜索人姓名/拼音</string>
-	
+	<string name="all_select" translatable="false">全选</string>
 	<string name="submit" translatable="false">提 交</string>
 	<string name="class_search" translatable="false">分班查询</string>
 	<string name="submit_tips" translatable="false">请完整填写所有资料后，点击下方提交按钮，将资料提交至服务器！</string>

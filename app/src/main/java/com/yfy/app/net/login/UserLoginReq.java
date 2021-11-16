@@ -1,5 +1,6 @@
 package com.yfy.app.net.login;
 
+import com.yfy.app.net.ElementToString;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.TagFinal;
 
@@ -14,7 +15,7 @@ import org.simpleframework.xml.Root;
 @Root(name = TagFinal.USER_LOGIN, strict = false)
 @Namespace(reference = Base.NAMESPACE)
 @Order(elements = {"username","password","role_id","appid","andios","firsttoken"})
-public class UserLoginReq {
+public class UserLoginReq extends ElementToString {
 
     @Namespace(reference = Base.NAMESPACE)
     @Element(name = "username", required = false)
@@ -59,5 +60,33 @@ public class UserLoginReq {
 
     public void setAppid(String appid) {
         this.appid = appid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getRole_id() {
+        return role_id;
+    }
+
+    public String getAppid() {
+        return appid;
+    }
+
+    public String getAndios() {
+        return andios;
+    }
+
+    public void setAndios(String andios) {
+        this.andios = andios;
+    }
+
+    public String getFirsttoken() {
+        return firsttoken;
     }
 }

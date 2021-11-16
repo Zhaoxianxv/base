@@ -72,4 +72,32 @@ public class UserDuplicationLoginReq {
     public void setFirsttoken(String firsttoken) {
         this.firsttoken = firsttoken;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public int getStuid() {
+        return stuid;
+    }
+
+    public String getAppid() {
+        return appid;
+    }
+
+    public String getAndios() {
+        return andios;
+    }
+
+    public String getRole_id() {
+        return role_id;
+    }
+
+    public String getFirsttoken() {
+        return firsttoken;
+    }
 }

@@ -31,6 +31,17 @@ import java.util.regex.Pattern;
  */
 public class MathTool {
 
+
+    /*判断奇数:num % 2!=0为奇数，奇数Uneven*/
+    public static boolean isUnevenNumber(int num) {
+        if (num == 0) return false;
+        return num % 2 != 0;
+    }
+    /*取余数d：a/b=c余d 余数remainder*/
+    public static int getRemainder(int a, int b) {
+        if (a == 0) return 0;
+        return a % b ;
+    }
     //Math.ceil(): 天花板的意思，就是逢余进一
     //Math.floor() : 地板的意思，就是逢余舍一
 
@@ -42,12 +53,11 @@ public class MathTool {
     //System.out.println(Math.abs(-10.4)); // 10.4 取绝对值
     //System.out.println(Math.abs(10.1)); // 10.1 取绝对值
 
-    //返回[min_num,max_num+min_num)区间的数
-    //System.out.println(Math.random() * 2 + 1);// [1, 3)的double类型的数
-    public static double getRandom(int min_num,int max_num){
-        return Math.random() * max_num+min_num;
+    /*Math.random()取随机数[min, max)区间的随机数Random  [min, max)=Math.random()*max+min*/
+    //[0, 1)= Math.random()；的double类型的数值
+    public static double getRandom(int min,int max){
+        return Math.random() * max+min;
     }
-    //[min_num, min+max)
     public static float getRandomInt(int min_num,int max_num){
         return getRound(Math.random() * max_num+min_num) ;
     }
@@ -55,7 +65,6 @@ public class MathTool {
 
 
     /**
-     * round 四舍五入，float时返回int值，double时返回long值
      *  rint 四舍五入，返回double值 注意.5的时候会取偶数 异常的尴尬
      */
     //System.out.println(Math.round(10.1)); // 10；System.out.println(Math.round(10.5)); // 11
@@ -65,6 +74,8 @@ public class MathTool {
     //System.out.println(Math.rint(10.51)); // 11.0；System.out.println(Math.rint(-10.5)); // -10.0
     //System.out.println(Math.rint(-11.5)); // -12.0；System.out.println(Math.rint(-10.51)); // -11.0
     //System.out.println(Math.rint(-10.6)); // -11.0；System.out.println(Math.rint(-10.2)); // -10.0
+
+    /*Math.round(num) 四舍五入，num为float时返回int值，double时返回long值*/
     public static long getRound(double num){
         return Math.round(num);
     }
@@ -73,6 +84,7 @@ public class MathTool {
     }
 
 
+    /*Math.rint(num)*/
     public static double getRint(double num){
         return Math.rint(num);
     }
@@ -172,6 +184,7 @@ public class MathTool {
         return list.get(idx);
     }
 
+    /*判断all数量的数组第position位置是否是last row行first column列*/
     public static boolean isLastRowToFirstColumn(int all_num, int position, int column){
 
         if (position % column == 0 && (all_num - 1) / column == position / column) {
@@ -181,6 +194,7 @@ public class MathTool {
             return false;
         }
     }
+    /*判断all数量的数组第position位置是否是last row行last column列*/
     public static boolean isLastRowToLastColumn(int all_num, int position, int column) {
         if (all_num == 0) return false;
         if ((all_num-1) == position && all_num % column == 0) {

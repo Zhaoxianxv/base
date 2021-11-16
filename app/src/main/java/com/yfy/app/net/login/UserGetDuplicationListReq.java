@@ -64,4 +64,27 @@ public class UserGetDuplicationListReq {
     }
 
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getRole_id() {
+        return role_id;
+    }
+
+    public String getAppid() {
+        return appid;
+    }
+
+    public String getAndios() {
+        return andios;
+    }
+
+    public String getFirsttoken() {
+        return firsttoken;
+    }
 }

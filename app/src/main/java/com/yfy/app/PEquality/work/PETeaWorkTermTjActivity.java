@@ -2,19 +2,21 @@ package com.yfy.app.PEquality.work;
 
 import android.os.Bundle;
 
-import com.yfy.app.bean.StuBean;
 import com.yfy.app.netHttp.HttpNetHelpInterface;
 import com.yfy.app.netHttp.HttpPostActivity;
 import com.yfy.base.Base;
 import com.yfy.base.R;
 import com.yfy.final_tag.AppLess;
+import com.yfy.final_tag.dialog.CPWBean;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.viewtools.ViewTool;
 
 
-
-public class PETeaWorkStuDetailSetStateActivity extends HttpPostActivity implements HttpNetHelpInterface {
-    private static final String TAG = PETeaWorkStuDetailSetStateActivity.class.getSimpleName();
+/**
+ * --------学生作业统计一学期一次：按学生作业完成排名
+ */
+public class PETeaWorkTermTjActivity extends HttpPostActivity implements HttpNetHelpInterface {
+    private static final String TAG = PETeaWorkTermTjActivity.class.getSimpleName();
 
 
 
@@ -30,14 +32,15 @@ public class PETeaWorkStuDetailSetStateActivity extends HttpPostActivity impleme
 
 
 
-    public StuBean stuBean;
+    public CPWBean classCPWBean;
+
     private void getData(){
-        stuBean=getIntent().getParcelableExtra(Base.data);
+        classCPWBean=getIntent().getParcelableExtra(Base.class_bean);
 
     }
     private void initSQToolbar() {
         assert toolbar!=null;
-        toolbar.setTitle("学生作业完成处理打分");
+        toolbar.setTitle("作业统计");
     }
 
 

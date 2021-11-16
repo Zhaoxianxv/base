@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
-import com.yfy.final_tag.FileTools;
 import com.yfy.final_tag.data.TagFinal;
 import com.yfy.final_tag.glide.Photo;
 import com.yfy.final_tag.hander.AlbumAsyncTask;
@@ -22,7 +21,6 @@ import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -81,14 +79,6 @@ public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData
 	public List<Photo> selectedPhotoList=new ArrayList<>();
 	@Override
 	public void finish() {
-		for (Photo photo :photo_album_List) {
-			photo.setSelected(false);
-		}
-		selectedPhotoList.clear();
-		pic_total_size.setText("已选\t0\tB");
-		ok_tv.setText("确定(0)");
-		adapter.notifyDataSetChanged();
-
 		super.finish();
 	}
 
@@ -139,7 +129,8 @@ public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData
 		for (Photo photo :photo_album_List) {
 			photo.setSelected(false);
 		}
-		pic_total_size.setText(StringUtils.stringToGetTextJoint("已选%1$sB","0"));
+		selectedPhotoList.clear();
+		pic_total_size.setText("已选\t0\tB");
 		ok_tv.setText("确定(0)");
 		adapter.notifyDataSetChanged();
 	}
@@ -227,6 +218,7 @@ public class AlbumMainActivity extends BaseActivity implements  AlbumGetFileData
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode){
 			case KeyEvent.KEYCODE_BACK:
+				clearData();
 				finish();
 				return false;
 			case KeyEvent.KEYCODE_HOME:

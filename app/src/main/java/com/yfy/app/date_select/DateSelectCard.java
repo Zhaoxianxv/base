@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewConfiguration;
 
 import com.yfy.app.bean.DateBean;
-import com.yfy.final_tag.data.ColorRgbUtil;
 
 
 @SuppressLint("ClickableViewAccessibility")
@@ -153,23 +152,23 @@ public class DateSelectCard extends View {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		switch (event.getAction()) {
-			case MotionEvent.ACTION_DOWN:
-				mDownX = event.getX();
-				mDownY = event.getY();
-				break;
-			case MotionEvent.ACTION_UP:
-				float disX = event.getX() - mDownX;
-				float disY = event.getY() - mDownY;
-				if (Math.abs(disX) < touchSlop && Math.abs(disY) < touchSlop) {
-					int col = (int) (mDownX / mCellSpace);
-					int row = (int) (mDownY / mCellSpace);
-					if (isEffectClick(col, row)) {//
-						measureClickCell(col, row);
-					}
+		case MotionEvent.ACTION_DOWN:
+			mDownX = event.getX();
+			mDownY = event.getY();
+			break;
+		case MotionEvent.ACTION_UP:
+			float disX = event.getX() - mDownX;
+			float disY = event.getY() - mDownY;
+			if (Math.abs(disX) < touchSlop && Math.abs(disY) < touchSlop) {
+				int col = (int) (mDownX / mCellSpace);
+				int row = (int) (mDownY / mCellSpace);
+				if (isEffectClick(col, row)) {//
+					measureClickCell(col, row);
 				}
-				break;
-			default:
-				break;
+			}
+			break;
+		default:
+			break;
 		}
 
 		return true;
@@ -186,20 +185,36 @@ public class DateSelectCard extends View {
 
 	/**
 	 *
-	 *
+	 * 
 	 */
 	private void measureClickCell(int col, int row) {
 		if (col >= TOTAL_COL || row >= TOTAL_ROW)
 			return;
+		if (mClickCell != null) {
+			if (mClickCell.state == State.TODAY_SELECTED_DAY) {
+				mClickCell.state = State.TODAY;
+			} else {
+				mClickCell.state = State.CURRENT_MONTH_DAY;
+			}
+			rows[mClickCell.j].cells[mClickCell.i] = mClickCell;
+		}
 
 		if (rows[row] != null) {
+			if (rows[row].cells[col].state == State.TODAY) {
+				rows[row].cells[col].state = State.TODAY_SELECTED_DAY;
+			} else {
+				rows[row].cells[col].state = State.SELECTED_DAY;
+			}
 			mClickCell = new Cell(
 					rows[row].cells[col].date,
 					rows[row].cells[col].state,
 					rows[row].cells[col].i,
 					rows[row].cells[col].j
 			);
+
 			DateBean date = rows[row].cells[col].date;
+
+
 			mDateSelectClickListener.clickDate(date);
 
 			invalidate();
@@ -208,9 +223,9 @@ public class DateSelectCard extends View {
 
 	/**
 	 *
-	 *
+	 * 
 	 * @author wuwenjie
-	 *
+	 * 
 	 */
 	class Row {
 		public int j;
@@ -232,26 +247,15 @@ public class DateSelectCard extends View {
 
 	/**
 	 *
-	 *
+	 * 
 	 * @author wuwenjie
-	 *
+	 * 
 	 */
 	class Cell {
 		public DateBean date;
 		public State state;
 		public int i;
 		public int j;
-		/*一天分为上下两部分 top 上半部背景颜色*/
-		public int top_color;
-		public int bottom_color;
-		public void setTop_color(int top_color) {
-			this.top_color = top_color;
-		}
-
-		public void setBottom_color(int bottom_color) {
-			this.bottom_color = bottom_color;
-		}
-
 
 		public Cell(DateBean date, State state, int i, int j) {
 			super();
@@ -268,45 +272,46 @@ public class DateSelectCard extends View {
 			float centerY = mCellSpace * (j + 0.5f);
 			float radius = mCellSpace / 2f;
 			switch (state) {
-				case SELECTED_DAY:
-					mTextPaint.setColor(Color.parseColor("#fffffe"));
-					mCirclePaint.setColor(Color.parseColor("#87C126"));
-					// canvas.drawCircle((float) (mCellSpace * (i + 0.5)),
-					// (float) ((j + 0.5) * mCellSpace), mCellSpace / 3,
-					// mCirclePaint);
-					canvas.drawRoundRect(
-							new RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius),
-							10,
-							10,
-							mCirclePaint
-					);
-					break;
-				case TODAY: //
-					mTextPaint.setColor(Color.parseColor("#fffffe"));
-					mCirclePaint.setColor(Color.parseColor("#F24949"));
-					canvas.drawRoundRect(
-							new RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius),
-							10,
-							10,
-							mCirclePaint
-					);
-					break;
-				case CURRENT_MONTH_DAY: //
-					mTextPaint.setColor(Color.GRAY);
-					break;
-				case PAST_MONTH_DAY: //
-				case NEXT_MONTH_DAY: //
-					mTextPaint.setColor(Color.parseColor("#fffffe"));
-					break;
-				case UNREACH_DAY: //
-					mTextPaint.setColor(Color.BLACK);
-					break;
-				case STATE_COLOR_ONE:
-					mTextPaint.setColor(Color.WHITE);
-					canvasTwo(canvas, centerX, centerY,radius , mCirclePaint,getPink(),getPink());
-					break;
-				default:
-					break;
+			case TODAY_SELECTED_DAY:
+			case SELECTED_DAY:
+				mTextPaint.setColor(Color.parseColor("#fffffe"));
+				mCirclePaint.setColor(Color.parseColor("#87C126"));
+				// canvas.drawCircle((float) (mCellSpace * (i + 0.5)),
+				// (float) ((j + 0.5) * mCellSpace), mCellSpace / 3,
+				// mCirclePaint);
+				canvas.drawRoundRect(
+						new RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius),
+						10,
+						10,
+						mCirclePaint
+				);
+				break;
+			case TODAY: //
+				mTextPaint.setColor(Color.parseColor("#fffffe"));
+				mCirclePaint.setColor(Color.parseColor("#F24949"));
+				// canvas.drawCircle((float) (mCellSpace * (i + 0.5)),
+				// (float) ((j + 0.5) * mCellSpace), mCellSpace / 3,
+				// mCirclePaint);
+				canvas.drawRoundRect(
+						new RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius),
+						10,
+						10,
+						mCirclePaint
+				);
+				break;
+			case CURRENT_MONTH_DAY: //
+				mTextPaint.setColor(Color.GRAY);
+				break;
+			case PAST_MONTH_DAY: //
+
+			case NEXT_MONTH_DAY: //
+				mTextPaint.setColor(Color.parseColor("#fffffe"));
+				break;
+			case UNREACH_DAY: //
+				mTextPaint.setColor(Color.BLACK);
+				break;
+			default:
+				break;
 			}
 
 			String content = date.getSelectDayNameInt() + "";
@@ -320,20 +325,13 @@ public class DateSelectCard extends View {
 	}
 
 	enum State {
+		TODAY,
 		CURRENT_MONTH_DAY,
 		PAST_MONTH_DAY,
 		NEXT_MONTH_DAY,
 		UNREACH_DAY,
 		SELECTED_DAY,
-		/*全部*/
-		ALL_DAY,
-		/*今天*/
-		TODAY,
-		/*对应 DateBean state_color*/
-		STATE_COLOR_ONE,
-		STATE_COLOR_TWO,
-		STATE_COLOR_THREE,
-		STATE_COLOR_FOUR,
+		TODAY_SELECTED_DAY;
 	}
 
 	public void update() {
@@ -356,45 +354,13 @@ public class DateSelectCard extends View {
 
 
 
-	/*一天分为上下两部分 color 上半部背景颜色 color1下半，设置颜色*/
-	public void canvasTwo(Canvas canvas,float centerX,float centerY,float radius,Paint paint,int color,int color1){
-		mCirclePaint.setColor(color);
-		canvas.drawRoundRect(
-				new RectF(centerX - radius+1, centerY - radius+1, centerX + radius-1, centerY ),
-				0,
-				0,
-				mCirclePaint);
-		mCirclePaint.setColor(color1);
 
-		canvas.drawRoundRect(
-				new RectF(centerX - radius+1, centerY , centerX + radius-1, centerY + radius-1),
-				0,
-				0,
-				mCirclePaint);
-	}
-
-
-	private int getRed(){
-		return  Color.rgb(176,63,79);
-	}//
-
-	private int getGreen(){
-		return Color.rgb(51,173,48);
-	}
-
-	private int getAtten(){
-		return  Color.rgb(240,128,128);
-	}//
-
-	private int getClock_on(){ return  Color.rgb(146,146,122); }
-	public  int getPink(){
-		return Color.parseColor("#FFC0CB");
-	}
 
 
 	/**
 	 *
 	 *
+	 * @author wuwenjie
 	 *
 	 */
 	private DateSelectClickListener mDateSelectClickListener;

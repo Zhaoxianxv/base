@@ -1,7 +1,6 @@
 package com.yfy.app.netHttp;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -119,6 +118,7 @@ public class HttpPostActivity extends AppCompatActivity implements  Callback<Res
 
     public void onPause() {
         super.onPause();
+        ViewTool.dismissProgressDialog();
     }
 
 
@@ -235,7 +235,7 @@ public class HttpPostActivity extends AppCompatActivity implements  Callback<Res
         if (is){
             ViewTool.showProgressDialog(mActivity,"");
         }
-        Logger.e(type);
+        logger(type);
         if (type.equalsIgnoreCase(ApiUrl.DIALOG)){
             if (isFastClick()){
                 bodyCall.enqueue(this);
@@ -244,6 +244,8 @@ public class HttpPostActivity extends AppCompatActivity implements  Callback<Res
             bodyCall.enqueue(this);
         }
     }
+
+
     public void setNetHelper(HttpNetHelpInterface api, Call<ResponseBody> bodyCall, boolean is,String type,boolean ismore) {
         if (netHelper == null) {
             netHelper = api;
@@ -251,6 +253,7 @@ public class HttpPostActivity extends AppCompatActivity implements  Callback<Res
         if (is){
             ViewTool.showProgressDialog(mActivity,"");
         }
+        logger(type);
         //控制反复加载 ismore
         if (ismore){
             if (isFastClick()){
@@ -266,16 +269,19 @@ public class HttpPostActivity extends AppCompatActivity implements  Callback<Res
         String api_name= StringUtils.stringToGetTextJoint("%1$s/%2$s",names.get(names.size()-2),names.get(names.size()-1));
         try {
             if (response.body()==null){
-                ViewTool.showToastShort(mActivity,"数据出错");
-                Logger.e(StringUtils.getTextJoint("--%1$s--:%2$s",api_name,response.message()));
+                if (Logger.IS_SHOW_LOG_NET_FLAG){
+                    ViewTool.showToastShort(mActivity,"数据出错");
+                }
+                logger(StringUtils.getTextJoint("--%1$s--:%2$s",api_name,response.message()));
                 if (netHelper !=null){
                     netHelper.success(ApiUrl.DATA_ERROR,"");
                 }
             }else{
                 String result= response.body().string();
+
+                logger(StringUtils.getTextJoint("%1$s:\n%2$s",api_name,result));
                 if (JsonParser.isSuccess(result)){
-//                    Logger.e(StringUtils.getTextJoint("http:%1$s",names.get(names.size()-1)));
-//                    Logger.e(StringUtils.getTextJoint("http:%1$s:\n%2$s",names.get(names.size()-1),result));
+
                     ResultRes res=gson.fromJson(result,ResultRes.class);
                     if (res.getResult().equalsIgnoreCase(TagFinal.FALSE)){
                         if (res.getError_code().equalsIgnoreCase(Base.login_error_code)){
@@ -289,17 +295,20 @@ public class HttpPostActivity extends AppCompatActivity implements  Callback<Res
                     }
                 }else{
                     ViewTool.dismissProgressDialog();
-                    Logger.e(StringUtils.stringToGetTextJoint("%1$s:jSON错误",names.get(names.size()-1)));
+                   logger(StringUtils.stringToGetTextJoint("%1$s:jSON错误",api_name));
                     ViewTool.showToastShort(mActivity,JsonParser.getErrorCode(result));
+                    if (netHelper !=null){
+                        netHelper.success(api_name,result);
+                    }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-//            if (netHelper !=null){
-//                netHelper.success(ApiUrl.DATA_IOE,"");
-//            }
+            if (netHelper !=null){
+                netHelper.success(ApiUrl.DATA_IOE,"");
+            }
             ViewTool.dismissProgressDialog();
-            Logger.e(StringUtils.stringToGetTextJoint("%1$s:%2$s",names.get(names.size()-1),"没有数据:IOException"));
+            logger(StringUtils.stringToGetTextJoint("%1$s:%2$s",api_name,"没有数据:IOException"));
         }
 
     }
@@ -309,10 +318,21 @@ public class HttpPostActivity extends AppCompatActivity implements  Callback<Res
         List<String> names= StringUtils.listToStringSplitCharacters(call.request().url().toString().trim(), "/");
         String api_name= StringUtils.stringToGetTextJoint("%1$s/%2$s",names.get(names.size()-2),names.get(names.size()-1));
         ViewTool.dismissProgressDialog();
-        ViewTool.showToastShort(mActivity,R.string.fail_do_not);
-        Logger.e(names.get(names.size()-1));
+
+        if (Logger.IS_SHOW_LOG_NET_FLAG){
+            ViewTool.showToastShort(mActivity,R.string.fail_do_not);
+        }
+        logger(api_name);
         if (netHelper !=null){
             netHelper.fail(api_name);
+        }
+    }
+
+
+
+    private void logger(String result){
+        if (Logger.IS_SHOW_LOG_NET_FLAG){
+            Logger.eLogText(result);
         }
     }
 

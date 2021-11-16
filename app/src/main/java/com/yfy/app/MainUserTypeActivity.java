@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yfy.app.PEquality.work.PEStuWorkMainActivity;
 import com.yfy.app.PEquality.work.PETeaWorkMainActivity;
 import com.yfy.app.album.AlbumMainActivity;
 import com.yfy.app.album.AlbumOneActivity;
@@ -94,6 +95,9 @@ public class MainUserTypeActivity extends BaseActivity {
                     case "PETeaWorkMainActivity":
                         intent.setClass(mActivity, PETeaWorkMainActivity.class);
                         break;
+                    case "PEStuWorkMainActivity":
+                        intent.setClass(mActivity, PEStuWorkMainActivity.class);
+                        break;
                     case "AlbumMainActivity":
                         PermissionTools.tryWRPerm(mActivity);
                         return;
@@ -147,7 +151,8 @@ public class MainUserTypeActivity extends BaseActivity {
     private void setAdapterData(){
         keyValue_adapter.clear();
 
-        keyValue_adapter.add(new KeyValue("p e 作业","PETeaWorkMainActivity"));
+        keyValue_adapter.add(new KeyValue("p e 作业-stu","PEStuWorkMainActivity"));
+        keyValue_adapter.add(new KeyValue("p e 作业-tea","PETeaWorkMainActivity"));
         keyValue_adapter.add(new KeyValue("voice","VoiceMainActivity"));
         keyValue_adapter.add(new KeyValue("ModeType","SelectedModeTypeActivity"));
         keyValue_adapter.add(new KeyValue("彩","LotteryMainActivity"));

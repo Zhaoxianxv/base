@@ -11,7 +11,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
+import com.yfy.app.PEquality.work.PETeaWorkAddActivity;
 import com.yfy.app.bean.DateBean;
+import com.yfy.base.Base;
 import com.yfy.base.R;
 import com.yfy.final_tag.data.ColorRgbUtil;
 
@@ -101,41 +103,41 @@ public class DateSelectStateCard extends View {
 					day++;
 					/*某天的时间对象date_row*/
 					DateBean date_row=mShowDate.getObjectForDay(mShowDate, day);
-
 					rows[j].cells[i] = new Cell(date_row, State.ALL_DAY, i, j);
-
-
+					/*今天以前的日期*/
+					if(System.currentTimeMillis()-DateBean.DAY_LONG>=date_row.getValue_long()){
+						rows[j].cells[i].state=State.TO_DAY_AGO;
+					}
 					/*为日历控件添加标记类型*/
 					for (DateBean dateBean:state_color_list){
 						if (dateBean.getSelectDayNameInt()==day&&dateBean.getSelectYearNameInt()==date_row.getSelectYearNameInt()&&date_row.getSelectMonthNameInt()==dateBean.getSelectMonthNameInt()){
 							/*实列对象Cell*/
 							date_row.setState_color(dateBean.getState_color());
 							rows[j].cells[i].date=date_row;
-							switch (dateBean.getState_color()){
-								case "1":
-									rows[j].cells[i].state=State.STATE_COLOR_TWO;
-									break;
-								case "5":
-									rows[j].cells[i].state=State.STATE_COLOR_ONE;
-									break;
-							}
+							/*为时间添加State_color状态显示标签*/
+							rows[j].cells[i].state=State.STATE_COLOR;
+
 							/*上半颜色*/
 							switch (dateBean.getState_color()){
-								case "1":
+								case "7":
+									rows[j].cells[i].setTop_color(ColorRgbUtil.getResourceColor(mContext,R.color.Orange));
 									break;
 								case "5":
-									rows[j].cells[i].setTop_color(ColorRgbUtil.getResourceColor(mContext,R.color.Orange));
+									rows[j].cells[i].setTop_color(ColorRgbUtil.getResourceColor(mContext,R.color.Red));
 									break;
 							}
 							/*下半颜色*/
 							switch (dateBean.getState_color()){
-								case "1":
+								case "7":
+									rows[j].cells[i].setBottom_color(ColorRgbUtil.getResourceColor(mContext,R.color.Orange));
+									break;
 								case "5":
 									rows[j].cells[i].setBottom_color(ColorRgbUtil.getResourceColor(mContext,R.color.Red));
 									break;
 							}
 						}
 					}
+
 				} else if (position < firstDayWeek) {
 					/*上个月*/
 					rows[j].cells[i] = new Cell(
@@ -238,7 +240,7 @@ public class DateSelectStateCard extends View {
 			float radius = mCellSpace / 2f;
 			switch (state) {
 				case ALL_DAY: //
-					mTextPaint.setColor(Color.GRAY);
+					mTextPaint.setColor(ColorRgbUtil.getResourceColor(mContext,R.color.app_base_text_color));
 					mCirclePaint.setColor(Color.WHITE);
 					canvas.drawRoundRect(
 							new RectF(centerX - radius+1, centerY - radius+1, centerX + radius-1, centerY + radius-1),
@@ -246,13 +248,25 @@ public class DateSelectStateCard extends View {
 							0,
 							mCirclePaint);
 					break;
+				case TO_DAY_AGO:
+					/*今天以前的日期*/
+					mTextPaint.setColor(ColorRgbUtil.getResourceColor(mContext,R.color.Silver));
+					mCirclePaint.setColor(Color.WHITE);
+					canvas.drawRoundRect(
+							new RectF(centerX - radius+1, centerY - radius+1, centerX + radius-1, centerY + radius-1),
+							0,
+							0,
+							mCirclePaint);
+					break;
+
 				case PAST_MONTH_DAY: //
 				case NEXT_MONTH_DAY: //
 					mTextPaint.setColor(Color.parseColor("#fffffe"));
 					break;
-				case STATE_COLOR_ONE:
+				case STATE_COLOR:
 					canvasTwo(canvas, centerX, centerY,radius , top_color, bottom_color);
 					break;
+
 				default:
 					break;
 			}
@@ -296,10 +310,10 @@ public class DateSelectStateCard extends View {
 		/*全部*/
 		ALL_DAY,
 		/*对应 DateBean state_color*/
-		STATE_COLOR_ONE,
-		STATE_COLOR_TWO,
-		STATE_COLOR_THREE,
-		STATE_COLOR_FOUR,
+		STATE_COLOR,
+		/*今天以前的日期*/
+		TO_DAY_AGO,
+
 	}
 
 

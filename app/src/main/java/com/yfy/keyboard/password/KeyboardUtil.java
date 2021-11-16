@@ -1,4 +1,4 @@
-package com.yfy.final_tag.keyboard.password;
+package com.yfy.keyboard.password;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

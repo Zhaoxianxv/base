@@ -4,17 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
+import com.yfy.app.PEquality.bean.QEHonorRes;
 import com.yfy.app.PEquality.bean.WorkDayPE;
 import com.yfy.app.PEquality.bean.WorkResPE;
-import com.yfy.app.PEquality.bean.QEHonorRes;
-import com.yfy.app.bean.BaseClass;
-import com.yfy.app.bean.BaseGrade;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.bean.DateBean;
-import com.yfy.app.bean.TermBean;
 import com.yfy.app.date_select.DateSelectStateCard;
 import com.yfy.app.netHttp.ApiUrl;
 import com.yfy.app.netHttp.HttpNetHelpInterface;
@@ -24,17 +20,13 @@ import com.yfy.base.R;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.data.MathTool;
 import com.yfy.final_tag.data.TagFinal;
-import com.yfy.final_tag.dialog.CPWBean;
-import com.yfy.final_tag.dialog.CPWListBeanView;
 import com.yfy.final_tag.hander.AssetsApi;
 import com.yfy.final_tag.hander.AssetsAsyncTask;
 import com.yfy.final_tag.hander.AssetsGetFileData;
-import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.stringtool.Logger;
 import com.yfy.final_tag.stringtool.StringJudge;
 import com.yfy.final_tag.stringtool.StringUtils;
 import com.yfy.final_tag.viewtools.ViewTool;
-import com.yfy.greendao.tool.NormalDataSaveTools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,17 +35,13 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 @SuppressLint("NonConstantResourceId")
-public class PETeaWorkMainActivity extends HttpPostActivity implements HttpNetHelpInterface , AssetsGetFileData {
-    private static final String TAG = PETeaWorkMainActivity.class.getSimpleName();
+public class PEStuWorkMainActivity extends HttpPostActivity implements HttpNetHelpInterface , AssetsGetFileData {
+    private static final String TAG = PEStuWorkMainActivity.class.getSimpleName();
 
 
 
     @BindView(R.id.date_select_month)
     TextView select_month;
-    @OnClick(R.id.date_select_month)
-    void selectDate(){
-
-    }
 
 
     @OnClick(R.id.date_select_btn_PreMonth)
@@ -77,61 +65,21 @@ public class PETeaWorkMainActivity extends HttpPostActivity implements HttpNetHe
         getData();
         initSQToolbar();
         initDateDate();
-        initDialogList();
     }
 
-    public CPWBean class_bean;
-    public TermBean select_term;
-    private String title;
     private void getData(){
-        select_term= NormalDataSaveTools.getInstance().getTermBeanToGreenDao();
-        title="作业";
-        getAssetsData(AssetsApi.GET_CLASS_BEAN_API);
+        /*获取当前月份日期作业发放数据*/
+        getAssetsData(AssetsApi.PE_GET_MONTH_WORK_STATE_API);
 
     }
     private void initSQToolbar() {
         assert toolbar!=null;
-        toolbar.setTitle(title);
-        toolbar.addMenuText(TagFinal.ONE_INT,"统计");
-        toolbar.setOnMenuClickListener(new NoFastClickListener() {
-            @Override
-            public void fastMenuClick(View view, int position) {
+        toolbar.setTitle("作业");
 
-
-                setCPWlListBeanData();
-
-            }
-        });
 
     }
 
-    private CPWListBeanView cpwListBeanView;
-    public List<CPWBean> cpwBeans=new ArrayList<>();
-    private void setCPWlListBeanData(){
-        if (StringJudge.isEmpty(cpwBeans)){
-            ViewTool.showToastShort(mActivity,"没有获取到班级");
-            return;
-        }
-        cpwListBeanView.setDatas(cpwBeans);
-        cpwListBeanView.showAtCenter();
-    }
 
-    private void initDialogList(){
-        cpwListBeanView = new CPWListBeanView(mActivity);
-        cpwListBeanView.setOnPopClickListener(new NoFastClickListener() {
-
-            @Override
-            public void fastPopClick(CPWBean cpwBean, String type) {
-
-                Intent intent=new Intent();
-
-                intent.setClass(mActivity,PETeaWorkTermTjActivity.class);
-                intent.putExtra(Base.class_bean,cpwBean);
-                startActivity(intent);
-                cpwListBeanView.dismiss();
-            }
-        });
-    }
 
 
 
@@ -155,37 +103,21 @@ public class PETeaWorkMainActivity extends HttpPostActivity implements HttpNetHe
                 Logger.eLogText(state);
 
                 switch (state){
+                    /*选中日期已布置作业-未审核*/
                     case "5":
-                        /*选中日期已布置作业*/
-                        intent.setClass(mActivity, PETeaWorkStuListActivity.class);
-                        intent.putExtra(Base.title,"title");
-                        intent.putExtra(Base.date,date);
-                        intent.putExtra(Base.term_bean,select_term);
-                        intent.putExtra(Base.class_bean,class_bean);
+                        intent.setClass(mActivity, PEStuWorkIngDetailActivity.class);
                         startActivity(intent);
                         break;
-                    case "":
-                        /*选中日期未布置作业-可布置当周当天以后的时间*/
-                        if(date.getValue_long()-System.currentTimeMillis()+DateBean.DAY_LONG>=0){
-                            intent.setClass(mActivity,PETeaWorkAddActivity.class);
-                            intent.putExtra(Base.date,date);
-                            intent.putExtra(Base.class_bean,class_bean);
-                            startActivity(intent);
-                        }else{
-                            ViewTool.showToastShort(mActivity,"不能布置昨天以前的作业");
-                        }
-
+                    /*选中日期已布置作业-已审核*/
+                    case "7":
+                        intent.setClass(mActivity, PEStuWorkEndDetailActivity.class);
+                        startActivity(intent);
                         break;
-                    default:
-
-                       break;
+                        /*选中日期未布置作业*/
+                    case "":
+                        break;
                 }
-
-
-
             }
-
-
         });
     }
 
@@ -274,10 +206,7 @@ public class PETeaWorkMainActivity extends HttpPostActivity implements HttpNetHe
                 BaseRes res= gson.fromJson(result, BaseRes.class);
                 if (res.getResult().equalsIgnoreCase(TagFinal.TRUE)){
 
-                    for (TermBean bean:res.getTerm()){
-                        CPWBean cpwBean=new CPWBean(StringUtils.stringToGetTextJoint("%1$s",bean.getName()),bean.getId());
-                        cpwBeans.add(cpwBean);
-                    }
+
                 }else{
                     ViewTool.showToastShort(mActivity,res.getError_code());
                 }
@@ -325,12 +254,10 @@ public class PETeaWorkMainActivity extends HttpPostActivity implements HttpNetHe
             Logger.eShowResultText(api_name,result);
             switch (api_name){
                 case AssetsApi.GET_CLASS_BEAN_API:
-                    dataInitClass(result);
                     if (mTask!=null&&mTask.getStatus()== AsyncTask.Status.RUNNING) {
                         mTask.cancel(true);
                     }
-                    /*获取当前月份日期作业发放数据*/
-                    getAssetsData(AssetsApi.PE_GET_MONTH_WORK_STATE_API);
+
                     break;
                 case AssetsApi.PE_GET_MONTH_WORK_STATE_API:
                     dataInitMonth(result);
@@ -357,29 +284,6 @@ public class PETeaWorkMainActivity extends HttpPostActivity implements HttpNetHe
 
 
 
-    public void dataInitClass(String result){
-        BaseRes res=gson.fromJson(result,BaseRes.class);
-        if (res.getResult().equalsIgnoreCase(TagFinal.TRUE)){
-            if (StringJudge.isEmpty(res.getGradelist())){
-                ViewTool.showToastShort(mActivity,"没有获取到班级信息");
-            }else{
-                cpwBeans.clear();
-                List<BaseGrade> list=res.getGradelist();
-                for (BaseGrade s:list){
-                    for (BaseClass bean:s.getClasslist()){
-                        CPWBean cpwBean=new CPWBean(StringUtils.stringToGetTextJoint("%1$s-%2$s",s.getGradename(),bean.getClassname()),bean.getClassid());
-
-                        class_bean=cpwBean;
-                        cpwBeans.add(cpwBean);
-                    }
-                }
-            }
-        }else{
-            ViewTool.showToastShort(mActivity,res.getError_code());
-        }
-    }
-
-
     public List<DateBean> dateBeanList=new ArrayList<>();
     public void dataInitMonth(String result){
         dateBeanList.clear();
@@ -395,11 +299,8 @@ public class PETeaWorkMainActivity extends HttpPostActivity implements HttpNetHe
                             MathTool.stringToInt(workDayPE.getName_month()),
                             MathTool.stringToInt(workDayPE.getName_day())
                             );
-                    if (workDayPE.getState().equalsIgnoreCase("5")){
-                        bean.setState_color(workDayPE.getState());
-                        dateBeanList.add(bean);
-                    }
-
+                    bean.setState_color(workDayPE.getState());
+                    dateBeanList.add(bean);
                 }
 
                 calendarCard.update(select_date,dateBeanList);

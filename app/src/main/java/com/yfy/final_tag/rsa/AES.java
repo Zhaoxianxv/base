@@ -18,10 +18,9 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class AES {
     private static byte[]  mSecretKey; // 密钥
-    private static String ALGORITHM = "AES"; //加解密算法
-    private static String CIPHER_TRANSFORMATION = "AES/CBC/PKCS5Padding"; // 加密算法/工作模式/填充方式
-//    private static byte[]  iv = new byte[16]; // 用于初始化向量，必须是16位
-    private static byte[]  iv = new byte[16]; // 用于初始化向量，必须是16位
+    public static String ALGORITHM = "AES"; //加解密算法
+    public static String CIPHER_TRANSFORMATION = "AES/CBC/PKCS5Padding"; // 加密算法/工作模式/填充方式
+    public static byte[]  iv = new byte[16]; // 用于初始化向量，必须是16位
 
 
     /**

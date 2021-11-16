@@ -14,6 +14,7 @@ public class StuBean implements Parcelable {
     private String stuid;
     private String stuname;
     private String headpic;
+    private String stusex;
     private boolean is_selected=false;//用于判断
 
 
@@ -23,6 +24,15 @@ public class StuBean implements Parcelable {
 
     public void setIs_selected(boolean is_selected) {
         this.is_selected = is_selected;
+    }
+
+
+    public String getStusex() {
+        return stusex;
+    }
+
+    public void setStusex(String stusex) {
+        this.stusex = stusex;
     }
 
     public String getStuid() {

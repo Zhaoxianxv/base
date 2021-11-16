@@ -15,7 +15,9 @@ public class Logger {
     //设为false关闭日志
     public static final boolean IS_SHOW_LOG_FLAG = true;
     public static final boolean IS_SHOW_LOG_NET_FLAG = false;//http_net显示
-    public static final boolean IS_SHOW_LOG_LONG_TEXT_FLAG = false;//长文本显示Flag
+    public static final boolean IS_SHOW_LOG_LONG_TEXT_FLAG = true;//长文本显示Flag
+    public static final boolean IS_SHOW_ELEMENT_FLAG = false;//显示参数
+    public static final boolean IS_SHOW_RESULT_FLAG = true;//显示返回数据
 
     public static void i(String tag, String msg){
         if (LOG_ENABLE){
@@ -85,6 +87,31 @@ public class Logger {
     public static void eLogText(String msg){
         if (IS_SHOW_LOG_FLAG){
             Log.e(TagFinal.ZXX, msg);
+        }
+    }
+    public static void eShowElementText(String msg){
+        if (IS_SHOW_ELEMENT_FLAG){
+            Log.e("element", msg);
+        }
+    }
+    public static void eShowResultText(String tag, String msg){
+        Log.e("result", tag);
+        if (IS_SHOW_RESULT_FLAG){
+            //自身有一定长度的String
+            if(msg.length() > 4000) {
+                if (IS_SHOW_LOG_LONG_TEXT_FLAG){
+                    int num=3000;
+                    for(int i=0;i<msg.length();i+=num){
+                        if(i+num<msg.length()){
+                            Log.e("result",msg.substring(i, i+num));
+                        }else{
+                            Log.e("result",msg.substring(i, msg.length()));
+                        }
+                    }
+                }
+            }else{
+                Log.e("result",msg);
+            }
         }
     }
 

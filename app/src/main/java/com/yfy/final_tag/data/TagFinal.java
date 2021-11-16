@@ -125,7 +125,8 @@ public  class TagFinal {
     public static final String BODY = "Body";//
 
 
-
+    public static final String USER_TYPE_TEA="tea";
+    public static final String USER_TYPE_STU="stu";
     public static final String TITLE_TAG="title_tag";
     public static final String URI_TAG="uri_tag";
     public static final String ZXX="zxx";

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/WhiteSmoke"
+    >
+
+    <com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_select_stu_group"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_45dp"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="@dimen/margin_1dp"
+        android:paddingTop="@dimen/margin_1dp"
+        android:background="@color/WhiteSmoke"
+        >
+
+
+        <RelativeLayout
+            android:id="@+id/relative_layout_select_all_stu_select_stu_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            >
+            <RadioButton
+                android:id="@+id/radio_bt_select_all_stu_select_stu_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:layout_marginStart="@dimen/margin_10dp"
+                android:layout_centerVertical="true"
+                android:focusable="false"
+                android:checked="false"
+                android:buttonTint="@color/app_base_color"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_name_select_all_stu_select_stu_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/margin_40dp"
+                android:textSize="@dimen/textsize7"
+                android:text="@string/all_select"
+                android:layout_marginStart="@dimen/margin_50dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/app_base_color"
+                />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/bt_select_state_stu_select_stu_group"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/all_select"
+            android:textColor="@color/White"
+            android:backgroundTint="@color/app_base_color"
+            android:layout_toEndOf="@id/relative_layout_select_all_stu_select_stu_group"
+            android:layout_marginEnd="@dimen/margin_15dp"
+            android:layout_marginStart="@dimen/margin_15dp"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/public_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:splitMotionEvents="false"
+        android:layout_above="@id/relative_layout_select_stu_group"
+        android:layout_marginTop="@dimen/margin_45dp">
+        <!--android:splitMotionEvents：
+定义布局是否传递触摸事件（touch）到子布局，
+true表示传递给子布局，false表示不传递。-->
+    </androidx.recyclerview.widget.RecyclerView>
+</RelativeLayout>
+

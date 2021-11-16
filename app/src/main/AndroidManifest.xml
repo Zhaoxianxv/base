@@ -252,6 +252,21 @@
             tools:ignore="InnerclassSeparator" />
         <!-- PEquality -->
         <activity
+            android:name="com.yfy.app.PEquality.work.PEStuWorkIngDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.yfy.app.PEquality.work.PEStuWorkEndDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.yfy.app.PEquality.work.PEStuWorkMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
+        <activity
             android:name="com.yfy.app.PEquality.work.PETeaWorkAddActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
@@ -268,6 +283,11 @@
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name="com.yfy.app.PEquality.work.PETeaWorkStuDetailSetStateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name="com.yfy.app.PEquality.work.PETeaWorkTermTjActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             tools:ignore="InnerclassSeparator" />

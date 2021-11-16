@@ -22,6 +22,8 @@ public class UserRes {
     private String token;
 
 
+
+
     public String getHeadpic() {
         return headpic;
     }

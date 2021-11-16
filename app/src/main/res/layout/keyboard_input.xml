@@ -44,7 +44,7 @@
             android:shadowRadius="0.0"
             android:visibility="gone" />
         <!-- 字母键盘样式 -->
-        <com.yfy.final_tag.keyboard.password.PpKeyBoardView
+        <com.yfy.keyboard.password.PpKeyBoardView
             android:id="@+id/keyboard_view_abc_sym"
             android:layout_centerInParent="true"
             android:layout_width="match_parent"

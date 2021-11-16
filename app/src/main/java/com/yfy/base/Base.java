@@ -18,7 +18,7 @@ public class Base {
      */
     public static final String NAMESPACE = "http://tempuri.org/";//
     //http
-    public final static String HTTP_URI = "http://new.cdeps.sc.cn/";
+    public final static String HTTP_URI = "https://www.cdeps.sc.cn/";
     //retrofit
     public static final String RETROFIT_URI = "https://www.cdeps.sc.cn/";
     //  public static final String RETROFIT_URI = "http://testeps.yfyit.com/";
@@ -118,5 +118,9 @@ public class Base {
 
 
     public static User user = null;
+
+    /*response element []*/
+    public static final String termid = "termid";//
+
 
 }

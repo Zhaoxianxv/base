@@ -3,7 +3,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-
+	
 	<com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
 	
 	<RelativeLayout
@@ -20,8 +20,8 @@
 			android:text="查看作业内容，学生作业完成状态，审核作业完成状态"
 			android:textColor="@color/White"
 			android:layout_centerInParent="true"/>
-		
-			
+	
+	
 	</RelativeLayout>
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/recycler_view_work_stu_p_e_work"
