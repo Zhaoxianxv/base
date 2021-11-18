@@ -41,19 +41,20 @@ public interface AccountApi {
     //-------------------------------user----------------------
     @FormUrlEncoded
     @POST(ApiUrl.USER_GET_TOKEN)
-    Observable<String> base_get_token_api(
-            @Field("staffid") int staffid,
-            @Field("usertype") String usertype,
-            @Field("appid") String appid,
-            @Field("andios") String andios
+    Call<ResponseBody> base_get_token_api(
+            @Field("username") String username,
+            @Field("password") String password
     );
+
     @FormUrlEncoded
     @POST(ApiUrl.USER_LOGIN)
-    Observable<String> base_user_login_api(
-            @Field("staffid") int staffid,
-            @Field("usertype") String usertype,
+    Call<ResponseBody> base_login_api(
+            @Field("username") String username,
+            @Field("password") String password,
+            @Field("role_id") String role_id,
             @Field("appid") String appid,
-            @Field("andios") String andios
+            @Field("andios") String andios,
+            @Field("firsttoken") String firsttoken
     );
 
     @FormUrlEncoded
@@ -97,6 +98,14 @@ public interface AccountApi {
     @POST(ApiUrl.Get_Name)
     Call<ResponseBody> getGetNameImage(@Part("description") RequestBody description);
 
+    @FormUrlEncoded
+//    @POST(ApiUrl.SATISFACTION_TEA_GET_STU)
+    @POST("AppService/get_TeachersMoral_incompletestu")
+    Call<ResponseBody> satisfaction_tea_get_stu_api(
+            @Field(Base.session_key) String session_key,
+            @Field("classid") int classid,
+            @Field(Base.termid) int termid
+    );
 
 
 

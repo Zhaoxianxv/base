@@ -23,7 +23,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 /**
  * Created by yfy1 on 2016/10/17.
  */
-public class MainUserTypeAdapter extends BaseRecyclerAdapter {
+public class MainLAdapter extends BaseRecyclerAdapter {
 
 
 
@@ -35,7 +35,7 @@ public class MainUserTypeAdapter extends BaseRecyclerAdapter {
 
 
 
-    public MainUserTypeAdapter(Activity mContext){
+    public MainLAdapter(Activity mContext){
         super(mContext);
         this.dataList = new ArrayList<>();
     }

@@ -6,6 +6,11 @@
         <item>分享到朋友圈</item>
         <item>分享到新浪微博</item>
     </string-array>
+    <string-array name="gold_type">
+        <item>gold_enter</item>
+        <item>gold_exit</item>
+        <item>gold_embezzle</item>
+    </string-array>
     <string-array name="default_des">
         <item>奖励原因1</item>
         <item>奖励原因2</item>

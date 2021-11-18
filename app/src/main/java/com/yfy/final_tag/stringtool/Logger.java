@@ -95,7 +95,7 @@ public class Logger {
         }
     }
     public static void eShowResultText(String tag, String msg){
-        Log.e("result", tag);
+        Log.e("response_result", tag);
         if (IS_SHOW_RESULT_FLAG){
             //自身有一定长度的String
             if(msg.length() > 4000) {
@@ -103,14 +103,14 @@ public class Logger {
                     int num=3000;
                     for(int i=0;i<msg.length();i+=num){
                         if(i+num<msg.length()){
-                            Log.e("result",msg.substring(i, i+num));
+                            Log.e("response_result",msg.substring(i, i+num));
                         }else{
-                            Log.e("result",msg.substring(i, msg.length()));
+                            Log.e("response_result",msg.substring(i, msg.length()));
                         }
                     }
                 }
             }else{
-                Log.e("result",msg);
+                Log.e("response_result",msg);
             }
         }
     }

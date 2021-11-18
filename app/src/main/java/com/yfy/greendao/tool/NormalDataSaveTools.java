@@ -1,6 +1,7 @@
 package com.yfy.greendao.tool;
 
 import com.yfy.app.bean.BaseClass;
+import com.yfy.app.bean.KeyValue;
 import com.yfy.app.bean.StuBean;
 import com.yfy.app.bean.TermBean;
 import com.yfy.final_tag.stringtool.StringJudge;
@@ -19,6 +20,10 @@ public class NormalDataSaveTools {
     private final String TYPE_GREEN_STU_DATA = "type_green_stu_data";
     private final String TYPE_GREEN_CLASS_DATA = "type_green_class_data";
     private final String HONOR_TYPE_GREEN_DAO = "honor_bean_data";
+    /*买入记录----卖出记录-----挪用资金*/
+    private final String GOLD_ICB_ENTER= "gold_enter";
+    private final String GOLD_ICB_EXIT = "gold_exit";
+    private final String GOLD_ICB_EMBEZZLE = "gold_embezzle";
 
     private static NormalDataSaveTools normalDataSaveApi;
 
@@ -115,5 +120,21 @@ public class NormalDataSaveTools {
 
         keyValue.setType(HONOR_TYPE_GREEN_DAO);
         GreenDaoManager.getInstance().saveKeyValueDb(keyValue);
+    }
+
+
+    /*买入记录enter----卖出记录exit-----挪用资金 embezzle*/
+
+    public void saveGoldData(KeyValueDb bean, String type) {
+
+
+        bean.setType(type);
+        GreenDaoManager.getInstance().saveKeyValueDb(bean);
+
+    }
+    public List<KeyValueDb> getGoldToGreenDao(String type) {
+        List<KeyValueDb> db_index = GreenDaoManager.getInstance().getKeyValueDbList("where type = ?", type);
+
+        return db_index;
     }
 }

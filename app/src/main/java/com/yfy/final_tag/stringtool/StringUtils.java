@@ -23,10 +23,12 @@ import java.util.regex.Pattern;
 
 
 public class StringUtils {
+	/*获取res文件中string,根据string——id*/
 	public static String getResourceString(Activity mActivity, int string_id){
 		return mActivity.getResources().getString(string_id);
 	}
 
+	/*获取res文件中的数组,根据string——id*/
 	public static String[] getResourceStringArray(Activity mActivity, int string_array_id){
 		return mActivity.getResources().getStringArray(string_array_id);
 	}

@@ -3,6 +3,7 @@ package com.yfy.app;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,10 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.yfy.app.PEquality.work.PEStuWorkMainActivity;
 import com.yfy.app.PEquality.work.PETeaWorkMainActivity;
 import com.yfy.app.album.AlbumMainActivity;
-import com.yfy.app.album.AlbumOneActivity;
 import com.yfy.app.bean.KeyValue;
 import com.yfy.app.duty_evaluate.DutyEvaluateStuMainActivity;
 import com.yfy.app.duty_evaluate.DutyEvaluateTeaHonorMainActivity;
+import com.yfy.app.gold.GoldAddActivity;
+import com.yfy.app.gold.GoldMainActivity;
 import com.yfy.app.login.LoginActivity;
 import com.yfy.app.lottery.LotteryMainActivity;
 import com.yfy.app.view.ViewTypeSelectActivity;
@@ -28,7 +30,9 @@ import com.yfy.final_tag.AppLess;
 import com.yfy.base.Base;
 import com.yfy.final_tag.data.ColorRgbUtil;
 import com.yfy.final_tag.data.TagFinal;
+import com.yfy.final_tag.dialog.ProtocolPopupWindow;
 import com.yfy.final_tag.glide.FileCamera;
+import com.yfy.final_tag.listener.NoFastClickListener;
 import com.yfy.final_tag.permission.PermissionFail;
 import com.yfy.final_tag.permission.PermissionGen;
 import com.yfy.final_tag.permission.PermissionSuccess;
@@ -42,12 +46,14 @@ import com.yfy.upload.UploadDataService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @SuppressLint("NonConstantResourceId")
-public class MainUserTypeActivity extends BaseActivity {
-    private static final String TAG = MainUserTypeActivity.class.getSimpleName();
+public class MainLActivity extends BaseActivity {
+    private static final String TAG = MainLActivity.class.getSimpleName();
 
-    public MainUserTypeAdapter adapter;
+    public MainLAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +89,7 @@ public class MainUserTypeActivity extends BaseActivity {
                 LinearLayoutManager.HORIZONTAL,
                 1,
                 ColorRgbUtil.getGainsboro()));
-        adapter=new MainUserTypeAdapter(mActivity);
+        adapter=new MainLAdapter(mActivity);
         recyclerView.setAdapter(adapter);
 
         adapter.setIntentStart(new StartIntentInterface() {
@@ -92,6 +98,12 @@ public class MainUserTypeActivity extends BaseActivity {
 
 
                 switch (type){
+                    case "GoldMainActivity":
+                        intent.setClass(mActivity, GoldMainActivity.class);
+                        break;
+                    case "GoldAddActivity":
+                        intent.setClass(mActivity, GoldAddActivity.class);
+                        break;
                     case "PETeaWorkMainActivity":
                         intent.setClass(mActivity, PETeaWorkMainActivity.class);
                         break;
@@ -159,6 +171,8 @@ public class MainUserTypeActivity extends BaseActivity {
         keyValue_adapter.add(new KeyValue("View","ViewTypeSelectActivity"));
         keyValue_adapter.add(new KeyValue("login","LoginActivity"));
         keyValue_adapter.add(new KeyValue("album","AlbumMainActivity"));
+        keyValue_adapter.add(new KeyValue("Gold_list","GoldMainActivity"));
+        keyValue_adapter.add(new KeyValue("Gold_add","GoldAddActivity"));
 
 
 
@@ -177,24 +191,53 @@ public class MainUserTypeActivity extends BaseActivity {
     /**
      * ---------------------protocol
      */
-    public void initProtocolDialog(){
-//        UserPreferences.getInstance().saveFirstTimeOpen(false);
 
-        if (UserPreferences.getInstance().getIsFirstTimeOpen()){
-            Intent intent=new Intent();
-            intent.setClass(mActivity,ProtocolDialogActivity.class);
-            startActivity(intent);
+    public void initProtocolDialog(){
+
+        if (App.isServiceRunning(mActivity, UploadDataService.class.getSimpleName())){
+            Logger.eLogText( "UploadDataService: " );
         }else{
-            if (App.isServiceRunning(mActivity, UploadDataService.class.getSimpleName())){
-                Logger.e(TagFinal.ZXX, "UploadDataService: " );
-            }else{
-                startService(new Intent(App.getApp().getApplicationContext(),UploadDataService.class));//开启更新
-            }
+            startService(new Intent(App.getApp().getApplicationContext(),UploadDataService.class));//开启更新
+        }
+        if (UserPreferences.getInstance().getIsFirstTimeOpen()){
+            initProtocol();
+
+            Timer tExit  = new Timer();
+            tExit.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    mActivity.runOnUiThread(new Runnable() {
+                        public void run() {
+                            confirmProtocolWindow.showAtCenter();
+                        }
+                    });
+                }
+            }, 1000);
         }
     }
 
 
 
+    private ProtocolPopupWindow confirmProtocolWindow;
+    private void initProtocol(){
+        confirmProtocolWindow = new ProtocolPopupWindow(mActivity);
+        confirmProtocolWindow.setOnPopClickListener(new NoFastClickListener() {
+            @Override
+            public void fastPopClick(View view) {
+                switch (view.getId()){
+                    case R.id.tv_exit_app_protocol:
+                        Logger.eLogText("tv_exit_app_protocol");
+                        confirmProtocolWindow.dismiss();
+                        App.getApp().onTerminate();
+                        break;
+                    case R.id.tv_pass_app_protocol:
+                        confirmProtocolWindow.dismiss();
+                        UserPreferences.getInstance().saveFirstTimeOpen(false);
+                        break;
+                }
+            }
+        });
+    }
 
 
 

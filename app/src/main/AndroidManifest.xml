@@ -61,7 +61,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        
 
+        <activity
+            android:name="com.yfy.app.gold.GoldAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.yfy.app.gold.GoldMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name="com.yfy.greendao.view.AddStuActivity"
             android:screenOrientation="portrait"
@@ -201,7 +211,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.yfy.app.MainUserTypeActivity"
+            android:name="com.yfy.app.MainLActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <!-- chart -->

@@ -113,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:layout_marginRight="1dp"
+                android:layout_marginEnd="1dp"
                 android:background="@drawable/radius_left_top5"
                 android:backgroundTint="@color/White"
                 android:text="1"/>
@@ -127,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_marginLeft="1dp"
+                android:layout_marginStart="1dp"
                 android:background="@drawable/radius_right_top5"
                 android:backgroundTint="@color/White"
                 android:text="3"/>
@@ -145,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:layout_marginRight="1dp"
+                android:layout_marginEnd="1dp"
                 android:background="@drawable/radius_left_bottom5"
                 android:backgroundTint="@color/White"
                 android:text="1"/>
@@ -159,7 +159,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_marginLeft="1dp"
+                android:layout_marginStart="1dp"
                 android:background="@drawable/radius_right_bottom5"
                 android:text="3"/>
         </TableRow>
@@ -249,7 +249,7 @@
                 app:layout_columnWeight="1"
                 app:layout_columnSpan="1"
                 android:background="@color/WhiteSmoke"
-                android:layout_marginLeft="@dimen/margin_1dp"
+                android:layout_marginStart="@dimen/margin_1dp"
                 android:gravity="center"
                 android:textSize="@dimen/textsize7"/>
             <androidx.appcompat.widget.AppCompatTextView
@@ -263,7 +263,7 @@
                 app:layout_columnSpan="1"
                 android:gravity="center"
                 android:background="@color/WhiteSmoke"
-                android:layout_marginLeft="@dimen/margin_1dp"
+                android:layout_marginStart="@dimen/margin_1dp"
                 android:textSize="@dimen/textsize7"
                 />
 
@@ -398,18 +398,20 @@
         app:columnCount="3"
         app:orientation="horizontal"
         app:useDefaultMargins="false">
-        
+    
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/public_type_tab_txt_one"
             android:layout_width="0dp"
             android:layout_height="@dimen/margin_30dp"
-            app:layout_row="0"
-            app:layout_column="0"
-            app:layout_columnWeight="1"
-            app:layout_columnSpan="1"
             android:layout_marginEnd="1dp"
-            android:background="@drawable/rectangle_square10_gray"            android:gravity="center"
-            tools:text="qsdasfsf"/>
+            android:background="@drawable/rectangle_square10_gray"
+            android:gravity="center"
+            app:layout_column="0"
+            app:layout_columnSpan="1"
+            app:layout_columnWeight="1"
+            app:layout_row="0"
+            tools:text="qsdasfsf" />
+    
         <androidx.appcompat.widget.AppCompatTextView
             
             android:id="@+id/public_type_tab_txt_two"
@@ -431,7 +433,8 @@
             app:layout_columnWeight="1"
             app:layout_columnSpan="1"
             
-            android:background="@drawable/rectangle_square10_gray"            android:gravity="center"
+            android:background="@drawable/rectangle_square10_gray"
+            android:gravity="center"
             android:layout_marginStart="1dp"
             tools:text="3"/>
     

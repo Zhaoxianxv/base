@@ -2,7 +2,9 @@
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	>
 	
 	<com.yfy.view.SQToolBar style="@style/App_SQToolbar"/>
 	
@@ -10,18 +12,61 @@
 		android:id="@+id/relative_layout_work_content_p_e_work"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:minHeight="@dimen/margin_80dp"
 		android:layout_marginTop="@dimen/margin_45dp"
-		android:background="@color/base_color">
-		
-		<TextView
-			android:layout_width="wrap_content"
+		android:orientation="vertical"
+		android:background="@color/BlanchedAlmond"
+		>
+		<RelativeLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="查看作业内容，学生作业完成状态，审核作业完成状态"
-			android:textColor="@color/White"
-			android:layout_centerInParent="true"/>
-	
-	
+			android:background="@color/White"
+			android:layout_marginTop="@dimen/margin_5dp"
+			android:layout_marginBottom="@dimen/margin_5dp"
+			>
+			<TextView
+				android:id="@+id/tv_flag_work_content_p_e_work"
+				android:layout_width="wrap_content"
+				android:layout_height="@dimen/margin_20dp"
+				android:text="@string/title"
+				android:layout_marginStart="@dimen/margin_10dp"
+				android:gravity="center_vertical"
+				android:textSize="@dimen/textsize7"
+				android:textStyle="bold"
+				android:layout_marginTop="@dimen/margin_3dp"
+				/>
+			
+			<TextView
+				android:id="@+id/tv_work_content_p_e_work"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="查看作业内容，学生作业完成状态，审核作业完成状态"
+				android:layout_marginTop="@dimen/margin_25dp"
+				android:minHeight="@dimen/margin_30dp"
+				android:background="@color/White"
+				android:gravity="start"
+				android:textSize="@dimen/textsize7"
+				android:paddingLeft="@dimen/margin_10dp"
+				android:paddingRight="@dimen/margin_10dp"
+				android:paddingBottom="@dimen/margin_5dp"
+				/>
+			<com.yfy.view.multi.MultiPictureView
+				android:id="@+id/view_work_show_multi_p_e_work"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/tv_work_content_p_e_work"
+				android:layout_marginTop="5dp"
+				android:layout_marginBottom="@dimen/margin_5dp"
+				android:layout_marginLeft="@dimen/margin_5dp"
+				android:layout_marginRight="@dimen/margin_5dp"
+				app:imageLayoutMode="STATIC"
+				app:max="9"
+				app:ratio="1"
+				app:space="6dp"
+				app:span="5"
+				/>
+		</RelativeLayout>
+		
+		
 	</RelativeLayout>
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/recycler_view_work_stu_p_e_work"

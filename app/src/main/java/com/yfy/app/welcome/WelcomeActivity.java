@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
-import com.yfy.app.MainUserTypeActivity;
+import com.yfy.app.MainLActivity;
 import com.yfy.app.welcome.adapter.GuidePagerAdapter;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItem;
 import com.yfy.app.welcome.utils.v4.FragmentPagerItemAdapter;
@@ -103,7 +103,7 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void run() {
                 //初始化登录信息
-                startActivity(new Intent(WelcomeActivity.this, MainUserTypeActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, MainLActivity.class));
 //
                 finish();
 

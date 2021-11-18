@@ -15,7 +15,6 @@ import com.yfy.app.date_select.DateSelectStateCard;
 import com.yfy.app.netHttp.ApiUrl;
 import com.yfy.app.netHttp.HttpNetHelpInterface;
 import com.yfy.app.netHttp.HttpPostActivity;
-import com.yfy.base.Base;
 import com.yfy.base.R;
 import com.yfy.final_tag.AppLess;
 import com.yfy.final_tag.data.MathTool;

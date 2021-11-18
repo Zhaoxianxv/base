@@ -2,27 +2,39 @@ package com.yfy.final_tag.hander;
 
 import android.os.AsyncTask;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class PicAsyncTask extends AsyncTask<String, Integer, Void>{
+public class PicAsyncTask extends AsyncTask<String, Integer, List<String>>{
 
-    public List<String> content=new ArrayList<>();
+
+    SaveImageAsync api;
+
+    public PicAsyncTask(SaveImageAsync api) {
+        this.api = api;
+    }
+
     @Override
-    protected Void doInBackground(String... strings) {
+    protected List<String>  doInBackground(String... strings) {
         if (isCancelled()) {
             return null;
         }
-        content=doIn(strings);
-        return null;
+        if (api!=null){
+            return api.doIn(strings);
+        }else{
+            return null;
+        }
+
     }
     //onPostExecute方法用于在执行完后台任务doInBackground后更新UI,显示结果
     @Override
-    protected void onPostExecute(Void result) {
+    protected void onPostExecute(List<String> result) {
         // TODO Auto-generated method stub
         super.onPostExecute(result);
-        doUpData(content);
+        if (api!=null){
+            api.doUpData(result);
+        }
+
     }
 
     //onProgressUpdate方法用于更新进度信息
@@ -34,13 +46,13 @@ public abstract class PicAsyncTask extends AsyncTask<String, Integer, Void>{
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        onPre();
+        if (api!=null){
+            api.onPre();
+        }
     }
 
 
 
-    public abstract List<String> doIn(String... arg0);
-    public abstract void doUpData(List<String> list);
-    public abstract void onPre();
+
 
 }

@@ -113,6 +113,7 @@ public class PETeaWorkStuListAdapter extends BaseRecyclerAdapter {
         public void setView(){
             user_name.setText(bean.getStuname());
             user_score.setText(bean.getStusex());
+            user_score.setVisibility(View.GONE);
             GlideTools.chanCircle(mContext,bean.getHeadpic(),user_head,R.mipmap.head);
             if (MathTool.getRemainder(index,5)==0){
                 select_state.setVisibility(View.VISIBLE);

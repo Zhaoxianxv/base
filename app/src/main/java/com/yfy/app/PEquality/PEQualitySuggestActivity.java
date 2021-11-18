@@ -1,5 +1,6 @@
 package com.yfy.app.PEquality;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import com.yfy.app.bean.BaseRes;
 import com.yfy.app.net.ResBody;
@@ -20,6 +21,7 @@ import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Response;
 
+@SuppressLint("NonConstantResourceId")
 public class PEQualitySuggestActivity extends BaseActivity {
     private static final String TAG = PEQualitySuggestActivity.class.getSimpleName();
 

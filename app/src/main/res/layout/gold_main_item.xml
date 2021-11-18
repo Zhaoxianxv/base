@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:background="@color/Gainsboro"
+	android:id="@+id/layout_main_adapter_gold"
+	android:orientation="vertical">
+	
+	<androidx.gridlayout.widget.GridLayout
+		
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/margin_30dp"
+		app:alignmentMode="alignBounds"
+		app:columnCount="3"
+		app:orientation="horizontal"
+		app:useDefaultMargins="false">
+		<TextView
+			android:id="@+id/tv_date_main_adapter_gold"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:text="@string/date_type_2"
+			android:textColor="@color/gray_text"
+			android:layout_centerVertical="true"
+			android:textStyle="bold"
+			android:textSize="@dimen/textsize7"
+			android:gravity="center"
+			android:background="@color/White"
+			app:layout_row="0"
+			app:layout_column="0"
+			app:layout_columnWeight="1"
+			app:layout_columnSpan="1"
+			/>
+		<TextView
+			android:id="@+id/tv_gram_num_main_adapter_gold"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:text="gram"
+			android:textColor="@color/gray_text"
+			android:gravity="center"
+			android:background="@color/White"
+			app:layout_row="0"
+			app:layout_column="1"
+			app:layout_columnWeight="1"
+			app:layout_columnSpan="1"
+			android:layout_marginEnd="@dimen/margin_1dp"
+			android:layout_marginStart="@dimen/margin_1dp"
+			/>
+		
+		<TextView
+			android:id="@+id/tv_money_num_main_adapter_gold"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:text="money_num"
+			android:layout_centerVertical="true"
+			android:textStyle="bold"
+			android:textSize="@dimen/textsize7"
+			android:gravity="center"
+			android:background="@color/White"
+			app:layout_row="0"
+			app:layout_column="2"
+			app:layout_columnWeight="1"
+			app:layout_columnSpan="1"
+			/>
+		
+	</androidx.gridlayout.widget.GridLayout>
+
+
+</RelativeLayout>

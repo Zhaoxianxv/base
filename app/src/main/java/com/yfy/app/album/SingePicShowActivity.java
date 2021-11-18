@@ -48,7 +48,7 @@ public class SingePicShowActivity extends BaseActivity {
 
 
     private void initSQToolbar() {
-        Toolbar toolbar= (Toolbar) findViewById(R.id.show_pic_one_title_bar);
+        Toolbar toolbar=  findViewById(R.id.show_pic_one_title_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (title!=null){
@@ -79,7 +79,7 @@ public class SingePicShowActivity extends BaseActivity {
         initView();
     }
     public void initView(){
-        PinchImageView imageView= (PinchImageView) findViewById(R.id.big_url_pic);
+        PinchImageView imageView=  findViewById(R.id.big_url_pic);
         GlideTools.loadImage(mActivity,url,imageView);
     }
 
@@ -100,7 +100,7 @@ public class SingePicShowActivity extends BaseActivity {
         switch (item.getItemId()){
             case R.id.menu_down_title:
                 if (StringJudge.isEmpty(url)){
-                    ViewTool.showToastShort(mActivity,"无法下载本张图片");
+                    ViewTool.showToastShort(mActivity,"没有获取到图片");
                 }else{
                     String title=url.substring(0, 4);
                     if (title.equalsIgnoreCase("http")){

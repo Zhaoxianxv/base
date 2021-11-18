@@ -77,7 +77,7 @@ public class PETeaWorkStuListActivity extends HttpPostActivity implements HttpNe
     public RecyclerView recyclerView;
     public void initRecycler(){
         recyclerView =  findViewById(R.id.recycler_view_work_stu_p_e_work);
-        GridLayoutManager manager = new GridLayoutManager(mActivity,4, LinearLayoutManager.VERTICAL,false);
+        GridLayoutManager manager = new GridLayoutManager(mActivity,5, LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter=new PETeaWorkStuListAdapter(mActivity);
