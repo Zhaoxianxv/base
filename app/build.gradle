@@ -10,8 +10,8 @@ android {
         applicationId "com.yfy.base"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 123
-        versionName "123"
+        versionCode 125
+        versionName "125"
         multiDexEnabled true  //
         renderscriptSupportModeEnabled true
         vectorDrawables.useSupportLibrary = true//和support-vector-drawable 用于vector文件支持

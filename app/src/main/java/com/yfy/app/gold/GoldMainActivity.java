@@ -2,7 +2,6 @@ package com.yfy.app.gold;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -102,7 +101,6 @@ public class GoldMainActivity extends BaseActivity implements SaveImageAsync {
                 cpwListBeanView.dismiss();
                 select_gold_type=cpwBean.getId();
                 tv_top_title.setText(select_gold_type);
-
                 getDBData();
 
             }
@@ -114,10 +112,7 @@ public class GoldMainActivity extends BaseActivity implements SaveImageAsync {
     public List<KeyValueDb> keyValue_adapter=new ArrayList<>();
     public RecyclerView recyclerView;
     public void initRecycler(){
-
         recyclerView =  findViewById(R.id.public_recycler);
-
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //添加分割线
         recyclerView.addItemDecoration(new RecycleViewDivider(
@@ -130,24 +125,15 @@ public class GoldMainActivity extends BaseActivity implements SaveImageAsync {
         adapter.setIntentStart(new StartIntentInterface() {
             @Override
             public void startIntentActivity(Intent intent, String type) {
-
                 if (type.equalsIgnoreCase("del")){
                     getDBData();
                 }
             }
         });
 
-        adapter.setDataList(keyValue_adapter);
-        adapter.setLoadState(TagFinal.LOADING_END);
+
 
     }
-
-
-
-
-
-
-
 
 
     /**
@@ -155,20 +141,10 @@ public class GoldMainActivity extends BaseActivity implements SaveImageAsync {
      */
 
 
-
-
     @Override
     public boolean isActivity() {
         return AppLess.isTopActivy(TAG);
     }
-
-
-
-
-
-
-
-
 
 
 
@@ -191,54 +167,18 @@ public class GoldMainActivity extends BaseActivity implements SaveImageAsync {
 
 
     public PicAsyncTask mTask;
-    public int num_exit=0,num_enter=0,embezzle_num=0;
+    public int num_exit=0,num_enter=0;
+    public int embezzle_num=0;
     public List<KeyValueDb> gold_enter_list=new ArrayList<>();
     public List<KeyValueDb> gold_exit_list=new ArrayList<>();
     public List<KeyValueDb> gold_embezzle_list=new ArrayList<>();
     @Override
     public List<String> doIn(String... arg0) {
         List<String> list=new ArrayList<>(Arrays.asList(arg0));
-
-
         gold_embezzle_list = NormalDataSaveTools.getInstance().getGoldToGreenDao("gold_embezzle");
         gold_enter_list = NormalDataSaveTools.getInstance().getGoldToGreenDao("gold_enter");
         gold_exit_list = NormalDataSaveTools.getInstance().getGoldToGreenDao("gold_exit");
-
         keyValue_adapter=NormalDataSaveTools.getInstance().getGoldToGreenDao(select_gold_type);
-
-        switch (select_gold_type){
-            case "gold_enter":
-                if (StringJudge.isEmpty(gold_enter_list)){
-                    tv_content.setText("没有记录");
-                }else{
-                    for (KeyValueDb db:gold_enter_list){
-                        num_enter+= MathTool.stringToInt(db.getValue());
-                    }
-                    tv_title.setText(StringUtils.stringToGetTextJoint("enter:%1$d",num_enter));
-                }
-                break;
-            case "gold_exit":
-                if (StringJudge.isEmpty(gold_exit_list)){
-                    tv_content.setText("没有记录");
-                }else{
-                    for (KeyValueDb db:gold_exit_list){
-                        num_exit+= MathTool.stringToInt(db.getValue());
-                    }
-                }
-                break;
-            case "gold_embezzle":
-                if (StringJudge.isEmpty(gold_embezzle_list)){
-                    tv_content.setText("没有记录");
-                }else{
-                    for (KeyValueDb db:gold_embezzle_list){
-                        if (db.getRank().equalsIgnoreCase(TagFinal.TRUE))continue;
-                        embezzle_num+= MathTool.stringToInt(db.getValue());
-                    }
-                    tv_content.setText(StringUtils.stringToGetTextJoint("还有挪用:%1$d",embezzle_num));
-                }
-                break;
-        }
-
         return list;
     }
     @Override
@@ -246,27 +186,42 @@ public class GoldMainActivity extends BaseActivity implements SaveImageAsync {
         ViewTool.dismissProgressDialog();
         adapter.setDataList(keyValue_adapter);
         adapter.setLoadState(TagFinal.LOADING_END);
+        for (KeyValueDb db:gold_exit_list){
+            num_exit+= MathTool.stringToInt(db.getValue());
+        }
+        for (KeyValueDb db:gold_enter_list){
+            num_enter+= MathTool.stringToInt(db.getValue());
+        }
         switch (select_gold_type){
             case "gold_enter":
                 if (StringJudge.isEmpty(gold_enter_list)){
-                    tv_title.setText("gold_enter");
+                    tv_title.setText("进");
                 }else{
                     tv_title.setText(StringUtils.stringToGetTextJoint("enter:%1$d",num_enter));
                 }
                 break;
             case "gold_exit":
                 if (StringJudge.isEmpty(gold_exit_list)){
-                    tv_title.setText("exit");
+                    tv_title.setText("出");
                 }else{
                     tv_title.setText(StringUtils.stringToGetTextJoint("exit:%1$d",num_exit));
                 }
                 break;
             case "gold_embezzle":
-                tv_title.setText(StringUtils.stringToGetTextJoint("还有挪用:%1$d",embezzle_num));
+                if (StringJudge.isEmpty(gold_exit_list)){
+                    tv_title.setText("洛");
+                }else{
+                    for (KeyValueDb db:gold_embezzle_list){
+                        if (db.getRank().equalsIgnoreCase(TagFinal.TRUE))continue;
+                        embezzle_num+= MathTool.stringToInt(db.getValue());
+                    }
+                    tv_title.setText(StringUtils.stringToGetTextJoint("还有挪用:%1$d",embezzle_num));
+                }
+
                 break;
         }
 
-        int num=num_exit-num_enter;
+        float num=num_exit-num_enter;
         tv_content.setText(StringUtils.stringToGetTextJoint("金额:%1$d",num));
         if(num>0){
             tv_content.setTextColor(ColorRgbUtil.getResourceColor(mActivity,R.color.main_red));
