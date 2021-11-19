@@ -13,6 +13,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.yfy.base.R;
+import com.yfy.final_tag.stringtool.StringJudge;
 
 
 /**
@@ -118,7 +119,12 @@ public class ConfirmContentWindow extends PopupWindow  {
 		@Override
 		public void onClick(View v) {
 			if (listener != null) {
-				listener.popClick(v);
+//				listener.popClick(v);
+				if (StringJudge.isEmpty(type)){
+					listener.popClick(v);
+				}else{
+					listener.popClick(v,type);
+				}
 			}
 			dismiss();
 		}
@@ -130,5 +136,14 @@ public class ConfirmContentWindow extends PopupWindow  {
 		this.listener = listener;
 	}
 
+	/*type*/
+	private String type="";
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 }

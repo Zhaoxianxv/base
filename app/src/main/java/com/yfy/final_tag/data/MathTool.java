@@ -146,6 +146,9 @@ public class MathTool {
             return Integer.valueOf(strNum);
         }
     }
+    public static long stringToLong(String str){
+        return Long.parseLong(str);
+    }
     /** 在 list数据中随机选出 [min,max]范围个数的 list
      *
      *

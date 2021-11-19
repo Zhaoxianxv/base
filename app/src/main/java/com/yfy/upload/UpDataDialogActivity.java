@@ -18,8 +18,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
+import com.yfy.base.App;
 import com.yfy.base.R;
 import com.yfy.base.activity.BaseActivity;
 import com.yfy.final_tag.FileTools;
@@ -73,9 +73,10 @@ public class UpDataDialogActivity extends BaseActivity {
         upData_content=findViewById(R.id.up_data_app_content);
 
         upData_title.setText("提示");
-        upData_content.setText("发现新的版本请立即更新！");
+        upData_content.setText("发现新的版本请立即更新！\n浏览器下载需要跳转到手机浏览器点击“下载”");
         exit_txt.setText("取消");
-        upData_txt.setText("更新");
+        upData_txt.setText("自动下载更新版本");
+        tv_updata_llq.setText("浏览器下载新版本");
 
         do_layout.setVisibility(View.VISIBLE);
         upData_content.setVisibility(View.VISIBLE);
@@ -109,7 +110,7 @@ public class UpDataDialogActivity extends BaseActivity {
                     }
                     break;
                 case R.id.up_data_exit:
-                    finish();
+                    App.getApp().onTerminate();
                     break;
 
             }
@@ -124,48 +125,18 @@ public class UpDataDialogActivity extends BaseActivity {
         startActivityForResult(intent,TagFinal.UI_ADMIN);
     }
 
-//掉应用商店
-//    public void launchAppDetail(String appPkg, String marketPkg) {
-//        try {
-//            if (TextUtils.isEmpty(appPkg)) return;
-//
-//            Uri uri = Uri.parse("market://details?id=" + appPkg);
-//            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//            if (!TextUtils.isEmpty(marketPkg)) {
-//                intent.setPackage(marketPkg);
-//            }
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(intent);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
-    /*app打开浏览器*/
-    @BindView(R.id.up_data_app_content_to)
-    AppCompatTextView tv_updata_llq;
-    @OnClick(R.id.up_data_app_content_to)
-    void setLlq(){
-        Intent intent=new Intent();
-        intent.setData(Uri.parse(load_path));//Url 就是你要打开的网址
-        intent.setAction(Intent.ACTION_VIEW);
-        startActivity(intent); //启动浏览器
 
-    }
-    /*浏览器打开app*/
-    /*在Manifest文件的Activity中加入以下代码*/
-    /*在html中加入点击事件*/
 
     @PermissionSuccess(requestCode = TagFinal.PHOTO_ALBUM)
     public void getApk() {
-
         mTask=new GetHtmlAsyncTask();
         mTask.execute(load_path);
     }
 
 
     @PermissionFail(requestCode = TagFinal.PHOTO_ALBUM)
-    public void showTipAlbum() {
+    public void showTip1() {
         ViewTool.showToastShort(mActivity, R.string.permission_fail_album);
     }
 
@@ -241,12 +212,12 @@ public class UpDataDialogActivity extends BaseActivity {
 
                 long length = conn.getContentLength();//
                 if (length <= 0) {
-                    Logger.e(TagFinal.ZXX, "读取文件失败");
+                    Logger.eLongText(TagFinal.ZXX, "读取文件失败");
                     return "";
                 }
 
                 //写入文件
-                saveFileName =TagFinal.getAppFile( System.currentTimeMillis() + ".apk");
+                saveFileName =TagFinal.getAppFile(System.currentTimeMillis() + ".apk");
                 FileTools.createFile(saveFileName);
                 File ApkFile = new File(saveFileName);
                 FileOutputStream fos = new FileOutputStream(ApkFile);
@@ -307,7 +278,7 @@ public class UpDataDialogActivity extends BaseActivity {
     public void onPause() {
         super.onPause();
         if (mTask!=null&&mTask.getStatus()== AsyncTask.Status.RUNNING) {
-            interceptFlag=false;//结束下载文件（如果正在下载）
+            interceptFlag=false;
             mTask.cancel(true);
         }
     }
@@ -315,6 +286,34 @@ public class UpDataDialogActivity extends BaseActivity {
 
 
 
+    /*浏览器下载*/
+    @BindView(R.id.up_data_app_content_to)
+    AppCompatTextView tv_updata_llq;
+    @OnClick(R.id.up_data_app_content_to)
+    void setLlq(){
+        Intent intent=new Intent();
+        intent.setData(Uri.parse(load_path));//Url 就是你要打开的网址
+        intent.setAction(Intent.ACTION_VIEW);
+        startActivity(intent); //启动浏览器
+
+    }
+
+    /*掉应用商店*/
+//    public void launchAppDetail(String appPkg, String marketPkg) {
+//        try {
+//            if (StringJudge.isEmpty(appPkg)) return;
+//
+//            Uri uri = Uri.parse("market://details?id=" + appPkg);
+//            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//            if (!StringJudge.isEmpty(marketPkg)) {
+//                intent.setPackage(marketPkg);
+//            }
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(intent);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
 
@@ -335,14 +334,12 @@ public class UpDataDialogActivity extends BaseActivity {
     private static Boolean isExit = false;
 
     private void exitBy2Click() {
-        Timer tExit ;
         if (isExit ) {
-            finish();
-            System.exit(0);
+            App.getApp().onTerminate();
         } else {
             isExit = true;
             ViewTool.showToastShort(mActivity,"再按一次退出更新");
-            tExit = new Timer();
+            Timer tExit  = new Timer();
             tExit.schedule(new TimerTask() {
                 @Override
                 public void run() {

@@ -127,9 +127,8 @@ public class GreenDaoManager {
     }
 
 
-    /**
-     * ------------------key value-------------
-     */
+
+    /*------------------KeyValueDb-------------*/
     //刪除
     public void clearKeyValue() {
         getKeyValueDbDao().deleteAll();
@@ -155,8 +154,6 @@ public class GreenDaoManager {
     }
 
     //infoDao.queryBuilder().where(infosDao.Properties.TypeId.eq(typeid)).offset(pageNum-1).limit(pageSize).list();
-
-
 
     //保存
     public long saveKeyValueDb(KeyValueDb keyValueDb){

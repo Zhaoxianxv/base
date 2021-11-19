@@ -253,6 +253,10 @@ public class GoldAddActivity extends HttpPostActivity implements  SaveImageAsync
 
 
     public void addTeaItem() {
+        if (select_gold_type==null) {
+            cpwListBeanView.showAtCenter();
+            return;
+        }
         String gram_req="",date_req="",money_req="";
 
         List<KeyValue> adapter_list=adapter.getDataList();
@@ -264,7 +268,7 @@ public class GoldAddActivity extends HttpPostActivity implements  SaveImageAsync
                         ViewTool.showToastShort(mActivity,bean.getRight_key());
                         return;
                     }
-                    date_req=bean.getRight_value();
+                    date_req=bean.getRight_name();
                     break;
 
                 case "gram":

@@ -52,7 +52,8 @@ public class WelcomeActivity extends BaseActivity {
     private void initView() {
 //        splashBitmap = BitmapLess.$drawableColor(this,R.mipmap.icon_launcher,ColorRgbUtil.getBaseColor());
         splashBitmap = BitmapLess.$drawable(this,R.mipmap.icon_launcher);
-        if (UserPreferences.getInstance().getIsFirstTimeOpen()) {
+//        if (UserPreferences.getInstance().getIsFirstTimeOpen()) {
+        if (false) {
             showGuide();//显示引导内容
         } else {
             showSplash();//显示闪屏图片

@@ -34,6 +34,12 @@ public class NormalDataSaveTools {
         return normalDataSaveApi;
     }
 
+
+    /*根据long id获取KeyValueDb*/
+//    public KeyValueDb getKeyValueDb(){
+//
+//    }
+    /*------------*/
     public void saveClassData(BaseClass bean) {
 
         KeyValueDb keyValue = new KeyValueDb();
@@ -126,7 +132,6 @@ public class NormalDataSaveTools {
     /*买入记录enter----卖出记录exit-----挪用资金 embezzle*/
 
     public void saveGoldData(KeyValueDb bean, String type) {
-
 
         bean.setType(type);
         GreenDaoManager.getInstance().saveKeyValueDb(bean);
